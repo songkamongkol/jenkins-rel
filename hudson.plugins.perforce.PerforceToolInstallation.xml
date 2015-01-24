@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<hudson.plugins.perforce.PerforceToolInstallation_-DescriptorImpl plugin="perforce@1.3.33">
+  <installations>
+    <hudson.plugins.perforce.PerforceToolInstallation>
+      <name>p4</name>
+      <home>p4</home>
+      <properties/>
+    </hudson.plugins.perforce.PerforceToolInstallation>
+  </installations>
+</hudson.plugins.perforce.PerforceToolInstallation_-DescriptorImpl>

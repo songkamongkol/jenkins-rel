@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<hudson.plugins.logparser.LogParserPublisher_-DescriptorImpl plugin="log-parser@1.0.8">
+  <parsingRulesGlobal>
+    <hudson.plugins.logparser.ParserRuleFile>
+      <name>default</name>
+      <path>/var/lib/jenkins/log_parse_rule</path>
+    </hudson.plugins.logparser.ParserRuleFile>
+    <hudson.plugins.logparser.ParserRuleFile>
+      <name>il</name>
+      <path>/var/lib/jenkins/il_log_parse_rule</path>
+    </hudson.plugins.logparser.ParserRuleFile>
+    <hudson.plugins.logparser.ParserRuleFile>
+      <name>regression</name>
+      <path>/var/lib/jenkins/regression_log_parse_rule</path>
+    </hudson.plugins.logparser.ParserRuleFile>
+  </parsingRulesGlobal>
+</hudson.plugins.logparser.LogParserPublisher_-DescriptorImpl>

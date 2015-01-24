@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<hudson.plugins.claim.ClaimConfig plugin="claim@2.5">
+  <sendEmails>false</sendEmails>
+</hudson.plugins.claim.ClaimConfig>
