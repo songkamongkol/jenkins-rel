@@ -1,0 +1,432 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>IL Build job for centralboot image targets:&lt;br&gt;&#xd;
+target=centralboot packaging=1&lt;br&gt;&#xd;
+Copies artfacts from ci jobs: il_changeling_all, il_chos2, il_virtual, il_vtc, il_testmodule_contents&lt;br&gt;&#xd;
+Then runs Centralboot to generate centralboot image and run reversion script to update the version info.&lt;br&gt;&#xd;
+&#xd;
+Note: run this target after a clean build&#xd;
+# $WORKSPACE/build/il/scripts/phxbld -j8 c3_yocto  # run this target after a clean build</description>
+  <logRotator class="hudson.tasks.LogRotator">
+    <daysToKeep>-1</daysToKeep>
+    <numToKeep>15</numToKeep>
+    <artifactDaysToKeep>-1</artifactDaysToKeep>
+    <artifactNumToKeep>1</artifactNumToKeep>
+  </logRotator>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
+      <useBuildBlocker>false</useBuildBlocker>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>BRANCH_NAME</name>
+          <description>branch name</description>
+          <defaultValue>4.46_rel</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>P4CLEANWORKSPACE</name>
+          <description>clean build</description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BLL_BUILD_NUMBER</name>
+          <description>This is used to pass a common build number to all IL and BLL build jobs run during the nightly build process.</description>
+          <defaultValue>BAD_BUILD_NUMBER</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>STC_MAJ_MIN_VERSION</name>
+          <description></description>
+          <defaultValue>4.46</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>SOURCE_OS</name>
+          <description></description>
+          <defaultValue>IL</defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.22">
+      <autoRebuild>false</autoRebuild>
+    </com.sonyericsson.rebuild.RebuildSettings>
+  </properties>
+  <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.33">
+    <configVersion>2</configVersion>
+    <p4User>scmbuild</p4User>
+    <p4Passwd></p4Passwd>
+    <p4Port>perforce.spirentcom.com:1666</p4Port>
+    <p4Client>${JOB_NAME}_${BRANCH_NAME}</p4Client>
+    <projectPath>//SCM/Scripts/ci_* //ws/Build_Scripts/Scripts/ci_*
++//TestCenter/${BRANCH_NAME}/... //ws/...
+-//TestCenter/*/sandbox/...
+-//TestCenter/*/.../WebHelp/...
+-//TestCenter/*/Bakeoff_TestCaseScripts/...
+-//TestCenter/*/other/...
+-//TestCenter/*/documents/...
+-//TestCenter/*/schedules/...
+-//TestCenter/*/regression/...
+-//TestCenter/*/userdocauto/...
+-//TestCenter/*/common/lib/boost_1_34_0/...
+-//TestCenter/*/framework/ui/...
+-//TestCenter/*/content/.../ui/...
+-//TestCenter/*/.../bll/...
++//TestCenter/${BRANCH_NAME}/framework/bll/base/... //ws/framework/bll/base/...
++//TestCenter/${BRANCH_NAME}/framework/bll/unittestdrv/... //ws/framework/bll/unittestdrv/...
++//TestCenter/${BRANCH_NAME}/framework/bll/vendor/... //ws/framework/bll/vendor/...
+//hypervisor/mainline/amara/ChassisImage/...  //ws/ChassisImage/...</projectPath>
+    <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
+    <p4SysDrive>C:</p4SysDrive>
+    <p4SysRoot>C:\WINDOWS</p4SysRoot>
+    <browser class="hudson.plugins.perforce.browsers.P4Web">
+      <url>http://jenkins.ad.spirentcom.com:5104/</url>
+      <p4WebEndShite>?ac=22</p4WebEndShite>
+      <p4DifEndShite>?ac=19</p4DifEndShite>
+      <p4ClEndShite>?ac=10</p4ClEndShite>
+    </browser>
+    <p4Tool>p4</p4Tool>
+    <useClientSpec>false</useClientSpec>
+    <useStreamDepot>false</useStreamDepot>
+    <forceSync>true</forceSync>
+    <alwaysForceSync>false</alwaysForceSync>
+    <dontUpdateServer>false</dontUpdateServer>
+    <disableAutoSync>false</disableAutoSync>
+    <disableChangeLogOnly>false</disableChangeLogOnly>
+    <disableSyncOnly>false</disableSyncOnly>
+    <showIntegChanges>false</showIntegChanges>
+    <useOldClientName>false</useOldClientName>
+    <createWorkspace>true</createWorkspace>
+    <updateView>true</updateView>
+    <dontRenameClient>false</dontRenameClient>
+    <updateCounterValue>false</updateCounterValue>
+    <dontUpdateClient>false</dontUpdateClient>
+    <exposeP4Passwd>false</exposeP4Passwd>
+    <wipeBeforeBuild>false</wipeBeforeBuild>
+    <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
+    <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
+    <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
+    <firstChange>0</firstChange>
+    <fileLimit>0</fileLimit>
+    <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
+    <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
+    <lineEndValue>local</lineEndValue>
+    <useViewMask>true</useViewMask>
+    <useViewMaskForPolling>true</useViewMaskForPolling>
+    <useViewMaskForSyncing>false</useViewMaskForSyncing>
+    <useViewMaskForChangeLog>false</useViewMaskForChangeLog>
+    <pollOnlyOnMaster>true</pollOnlyOnMaster>
+  </scm>
+  <quietPeriod>120</quietPeriod>
+  <assignedNode>ilpkg-01</assignedNode>
+  <canRoam>false</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>true</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>env
+p4 info
+
+echo Clean up prior to extracting tarballs
+
+# make the version file writeable
+sudo chmod 777 $WORKSPACE/build/il/version
+
+# need to remove information in repos directory and packages directory
+sudo -S rm -rf $WORKSPACE/build/il/repos/*
+sudo -S rm -rf $WORKSPACE/build/il/packages/*
+
+
+sudo scons target=packageclean
+sudo scons target=kernelclean
+
+rm -f $WORKSPACE/*.txt</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>#!/bin/bash
+
+if [ -f /mnt/builds/jenkins/il_changeling_all_yocto-${BRANCH_NAME}_promoting.txt ]; then
+echo &quot;Promotion is in progress, wait for 5 minutes&quot;
+sleep 300
+else
+echo &quot;No promotion is in progress, proceeding with packaging&quot;
+fi
+
+echo &quot;Packaging started&quot; &gt; /mnt/builds/jenkins/il_changeling_all_yocto-${BRANCH_NAME}_packaging.txt
+echo Copying il_changeling_all build artifacts from /mnt/builds/jenkins/il_changeling_all_yocto-$BRANCH_NAME/build-packaging/
+ls -algh /mnt/builds/jenkins/il_changeling_all_yocto-$BRANCH_NAME/build-packaging/*.txt
+mkdir -p $WORKSPACE/build/il/packages
+cp -r /mnt/builds/jenkins/il_changeling_all_yocto-$BRANCH_NAME/build-packaging/* $WORKSPACE/build/il/packages
+cp $WORKSPACE/build/il/packages/fsimg/rawimage.map $WORKSPACE/build/il/packages/fsimg/changeling_rawimage.map
+echo &quot;Finished copying il_changeling_all files&quot;
+rm -f /mnt/builds/jenkins/il_changeling_all_yocto-${BRANCH_NAME}_packaging.txt</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>#!/bin/bash
+
+if [ -f /mnt/builds/jenkins/il_changeling_yocto-${BRANCH_NAME}_promoting.txt ]; then
+echo &quot;Promotion is in progress, wait for 5 minutes&quot;
+sleep 300
+else
+echo &quot;No promotion is in progress, proceeding with packaging&quot;
+fi
+
+echo &quot;Packaging started&quot; &gt; /mnt/builds/jenkins/il_changeling_yocto-${BRANCH_NAME}_packaging.txt
+echo Copying il_changeling_yocto build artifacts from /mnt/builds/jenkins/il_changeling_yocto-${BRANCH_NAME}/build-packaging/
+ls -algh /mnt/builds/jenkins/il_changeling_yocto-${BRANCH_NAME}/build-packaging/*.txt
+mkdir -p $WORKSPACE/build/il/packages
+cp -r /mnt/builds/jenkins/il_changeling_yocto-${BRANCH_NAME}/build-packaging/* $WORKSPACE/build/il/packages
+cp $WORKSPACE/build/il/packages/fsimg/rawimage.map $WORKSPACE/build/il/packages/fsimg/changeling_rawimage.map
+echo &quot;Finished copying il_changeling files&quot;
+rm -f /mnt/builds/jenkins/il_changeling_yocto-${BRANCH_NAME}_packaging.txt</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>#!/bin/bash
+
+if [ -f /mnt/builds/jenkins/il_chos2_yocto-${BRANCH_NAME}_promoting.txt ]; then
+echo &quot;Promotion is in progress, wait for 5 minutes&quot;
+sleep 300
+else
+echo &quot;No promotion is in progress, proceeding with packaging&quot;
+fi
+
+echo &quot;Packaging started&quot; &gt; /mnt/builds/jenkins/il_chos2_yocto-${BRANCH_NAME}_packaging.txt
+echo Copying il_chos2 build artifacts from /mnt/builds/jenkins/il_chos2_yocto-$BRANCH_NAME/build-packaging/
+ls -algh /mnt/builds/jenkins/il_chos2_yocto-${BRANCH_NAME}/build-packaging/*.txt
+cp -r /mnt/builds/jenkins/il_chos2_yocto-$BRANCH_NAME/build-packaging/* $WORKSPACE/build/il/packages
+echo &quot;Finished copying il_chos2 files&quot;
+rm -f /mnt/builds/jenkins/il_chos2_yocto-${BRANCH_NAME}_packaging.txt</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>#!/bin/bash
+
+if [ -f /mnt/builds/jenkins/il_virtual_yocto-${BRANCH_NAME}_promoting.txt ]; then
+echo &quot;Promotion is in progress, wait for 5 minutes&quot;
+sleep 300
+else
+echo &quot;No promotion is in progress, proceeding with packaging&quot;
+fi
+
+echo &quot;Packaging started&quot; &gt; /mnt/builds/jenkins/il_virtual_yocto-${BRANCH_NAME}_packaging.txt
+echo Copying il_virtual build artifacts from /mnt/builds/jenkins/il_virtual_yocto-$BRANCH_NAME/build-packaging/
+ls -algh /mnt/builds/jenkins/il_virtual_yocto-${BRANCH_NAME}/build-packaging/*.txt
+cp -r /mnt/builds/jenkins/il_virtual_yocto-$BRANCH_NAME/build-packaging/* $WORKSPACE/build/il/packages
+cp $WORKSPACE/build/il/packages/fsimg/rawimage.map $WORKSPACE/build/il/packages/fsimg/virtual_rawimage.map
+echo &quot;Finished copying il_virtual files&quot;
+rm -f /mnt/builds/jenkins/il_virtual_yocto-${BRANCH_NAME}_packaging.txt</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>#!/bin/bash
+
+if [ -f /mnt/builds/jenkins/il_vtc-${BRANCH_NAME}_promoting.txt ]; then
+echo &quot;Promotion is in progress, wait for 5 minutes&quot;
+sleep 300
+else
+echo &quot;No promotion is in progress, proceeding with packaging&quot;
+fi
+
+echo &quot;Packaging started&quot; &gt; /mnt/builds/jenkins/il_vtc-${BRANCH_NAME}_packaging.txt
+echo Copying il_vtc build artifacts from /mnt/builds/jenkins/il_vtc-$BRANCH_NAME/build-packaging/
+ls -algh /mnt/builds/jenkins/il_vtc-${BRANCH_NAME}/build-packaging/*.txt
+cp -r /mnt/builds/jenkins/il_vtc-$BRANCH_NAME/build-packaging/* $WORKSPACE/build/il/packages
+cp $WORKSPACE/build/il/packages/fsimg/rawimage.map $WORKSPACE/build/il/packages/fsimg/vtc_rawimage.map
+echo &quot;Finished copying il_vtc files&quot;
+rm -f /mnt/builds/jenkins/il_vtc-${BRANCH_NAME}_packaging.txt</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>#!/bin/bash
+
+if [ -f /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}_promoting.txt ]; then
+echo &quot;Promotion is in progress, wait for 5 minutes&quot;
+sleep 300
+else
+echo &quot;No promotion is in progress, proceeding with packaging&quot;
+fi
+
+echo &quot;Packaging started&quot; &gt; /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}_packaging.txt
+echo Copying il_lxcbuild artifacts from /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}/build-packaging/
+ls -algh /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}/build-packaging/*.txt
+cp /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}/build-packaging/rawimg/*lxc* $WORKSPACE/build/il/packages/rawimg
+echo &quot;Finished copying il_lxcfiles&quot;
+rm -f /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}_packaging.txt</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>#!/bin/bash
+
+if [ -f /mnt/builds/jenkins/il_qemu_yocto-${BRANCH_NAME}_promoting.txt ]; then
+echo &quot;Promotion is in progress, wait for 5 minutes&quot;
+sleep 300
+else
+echo &quot;No promotion is in progress, proceeding with packaging&quot;
+fi
+
+echo &quot;Packaging started&quot; &gt; /mnt/builds/jenkins/il_qemu_yocto-${BRANCH_NAME}_packaging.txt
+echo Copying il_qemu build artifacts from /mnt/builds/jenkins/il_qemu_yocto-${BRANCH_NAME}/build-packaging/
+ls -algh /mnt/builds/jenkins/il_qemu_yocto-${BRANCH_NAME}/build-packaging/*.txt
+# cp /mnt/builds/jenkins/il_qemu_yocto-${BRANCH_NAME}/build-packaging/rawimg/yocto* $WORKSPACE/build/il/packages/rawimg
+cp /mnt/builds/jenkins/il_qemu_yocto/build-packaging/qemu*.tgz $WORKSPACE/build/il/packages/rawimg
+echo &quot;Finished copying il_qemu files&quot;
+rm -f /mnt/builds/jenkins/il_qemu_yocto-${BRANCH_NAME}_packaging.txt</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>#!/bin/bash
+
+if [ -f /mnt/builds/jenkins/il_chassisvm-${BRANCH_NAME}_promoting.txt ]; then
+echo &quot;Promotion is in progress, wait for 5 minutes&quot;
+sleep 300
+else
+echo &quot;No promotion is in progress, proceeding with packaging&quot;
+fi
+
+echo &quot;Packaging started&quot; &gt; /mnt/builds/jenkins/il_chassisvm-${BRANCH_NAME}_packaging.txt
+echo Copying il_chassisvm build artifacts from /mnt/builds/jenkins/il_chassisvm-${BRANCH_NAME}/build-packaging/
+ls -algh /mnt/builds/jenkins/il_chassisvm-${BRANCH_NAME}/build-packaging/*.txt
+
+# chassisvm files need to be of a certain name per Ramana&apos;s request
+export fixtargettgz=testcenter_c3_vm-4.30.0423-1.1.tgz
+export fulltgzname=`ls /mnt/builds/jenkins/il_chassisvm-${BRANCH_NAME}/build-packaging/fsimg/testcenter_c3*.tgz`
+export tgzname=`basename $fulltgzname`
+cp -f /mnt/builds/jenkins/il_chassisvm-${BRANCH_NAME}/build-packaging/fsimg/$tgzname $WORKSPACE/framework/il/platform/scripts/chassis/i686/c3_vm_patch/$fixtargettgz
+cp -f /mnt/builds/jenkins/il_chassisvm-${BRANCH_NAME}/build-packaging/fsimg/${tgzname}.md5 $WORKSPACE/framework/il/platform/scripts/chassis/i686/c3_vm_patch/${fixtargettgz}.md5
+echo &quot;Finished copying il_chassisvm files&quot;
+rm -f /mnt/builds/jenkins/il_chassisvm-${BRANCH_NAME}_packaging.txt
+</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>#!/bin/bash
+
+if [ -f /mnt/builds/jenkins/il_testmodule_contents-${BRANCH_NAME}_promoting.txt ]; then
+echo &quot;Promotion is in progress, wait for 5 minutes&quot;
+sleep 300
+else
+echo &quot;No promotion is in progress, proceeding with packaging&quot;
+fi
+
+
+echo &quot;Packaging started&quot; &gt; /mnt/builds/jenkins/il_testmodule_contents-${BRANCH_NAME}_packaging.txt
+echo Copying il_testmodule_contents build artifacts from /mnt/builds/jenkins/il_testmodule_contents-$BRANCH_NAME/build-packaging/
+ls -algh /mnt/builds/jenkins/il_testmodule_contents-${BRANCH_NAME}/build-packaging/*.txt
+cp -r /mnt/builds/jenkins/il_testmodule_contents-$BRANCH_NAME/build-packaging/* $WORKSPACE/build/il/packages
+echo &quot;Finished copying il_testmodule_contents files&quot;
+rm -f /mnt/builds/jenkins/il_testmodule_contents-${BRANCH_NAME}_packaging.txt
+
+cp $WORKSPACE/build/il/packages/fsimg/rawimage.map $WORKSPACE/build/il/packages/fsimg/main_rawimage.map
+cat $WORKSPACE/build/il/packages/fsimg/changeling_rawimage.map &gt; $WORKSPACE/build/il/packages/fsimg/rawimage.map
+cat $WORKSPACE/build/il/packages/fsimg/virtual_rawimage.map &gt;&gt; $WORKSPACE/build/il/packages/fsimg/rawimage.map
+cat $WORKSPACE/build/il/packages/fsimg/vtc_rawimage.map &gt;&gt; $WORKSPACE/build/il/packages/fsimg/rawimage.map
+cat $WORKSPACE/build/il/packages/fsimg/main_rawimage.map &gt;&gt; $WORKSPACE/build/il/packages/fsimg/rawimage.map
+rm $WORKSPACE/build/il/packages/fsimg/*_rawimage.map
+echo &quot;Finished copying all il ci build artifacts&quot;</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>export DEPENDENT_JOB_NAME=integration_il_centralboot_packaging
+echo &quot;Removing extra l4l7 bundle package: $WORKSPACE/build/il/packages/bundle/l4l7-*..zip&quot;
+rm -rf $WORKSPACE/build/il/packages/bundle/l4l7-*.zip
+python $WORKSPACE/Build_Scripts/Scripts/ci_run_jenkins_steps.py --createpropfile=yes --runcimaketarballs=no --runsetver=no --runciftpcentralboot=no --runcimakelstarballs=no --runcopyl4l7=yes --createversionfile=no</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>echo Creating Central Boot image file
+sudo scons target=centralboot_yoctovm packaging=1</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>echo &quot;Creating Amara C3 image file&quot;
+# $WORKSPACE/build/il/scripts/phxbld -j8 c3_yocto  # run this target after a clean build
+sudo scons target=c3_pkg_yocto packaging=1</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>echo &quot;Copying tmos bundle from vtc job for Avalanche build ...&quot;
+rm -rf $WORKSPACE/build/il/packages/tmos-av
+mkdir $WORKSPACE/build/il/packages/tmos-av
+cp /mnt/builds/jenkins/il_vtc-$BRANCH_NAME/build-packaging/bundle/tmos*.zip .
+filename=`ls tmos*.zip`
+filever=${filename:5:9}
+cp -f $WORKSPACE/tmos-${filever}.zip $WORKSPACE/build/il/packages/bundle/tmosvtc-${filever}.zip
+rm -f $WORKSPACE/tmos-*.zip</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>echo &quot;Copying chassisvm files ...&quot; 
+rm -rf $WORKSPACE/build/il/packages/chassisvm 
+mkdir $WORKSPACE/build/il/packages/chassisvm 
+cp $WORKSPACE/framework/il/platform/scripts/chassis/i686/c3_vm_patch/testcenter_c3* $WORKSPACE/build/il/packages/chassisvm 
+</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>echo &quot;Creating controller3 fsimg file to be use for Amara recovery USB disk ...&quot;
+ln -s $WORKSPACE/ChassisImage/chassis.img.gz $WORKSPACE/build/il/packages/rawimg/chassis.img.gz
+# sudo $WORKSPACE/build/il/scripts/phxbld -j32 c3_yocto
+sudo $WORKSPACE/build/il/scripts/phxbld -j32 amara_yocto</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>export DEPENDENT_JOB_NAME=integration_il_centralboot_packaging
+echo &quot;Running reversion_il.sh script ...&quot;
+python $WORKSPACE/Build_Scripts/Scripts/ci_run_jenkins_steps.py --runilreversion=yes</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers>
+    <hudson.tasks.ArtifactArchiver>
+      <artifacts>properties.txt</artifacts>
+      <allowEmptyArchive>false</allowEmptyArchive>
+      <onlyIfSuccessful>false</onlyIfSuccessful>
+      <fingerprint>false</fingerprint>
+      <defaultExcludes>true</defaultExcludes>
+    </hudson.tasks.ArtifactArchiver>
+    <hudson.plugins.logparser.LogParserPublisher plugin="log-parser@1.0.8">
+      <unstableOnWarning>false</unstableOnWarning>
+      <failBuildOnError>true</failBuildOnError>
+      <parsingRulesPath>/var/lib/jenkins/il_log_parse_rule</parsingRulesPath>
+    </hudson.plugins.logparser.LogParserPublisher>
+    <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.39">
+      <recipientList>$DEFAULT_RECIPIENTS</recipientList>
+      <configuredTriggers>
+        <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
+          <email>
+            <recipientList></recipientList>
+            <subject>$PROJECT_DEFAULT_SUBJECT</subject>
+            <body>$PROJECT_DEFAULT_CONTENT</body>
+            <recipientProviders>
+              <hudson.plugins.emailext.plugins.recipients.DevelopersRecipientProvider/>
+            </recipientProviders>
+            <attachmentsPattern></attachmentsPattern>
+            <attachBuildLog>false</attachBuildLog>
+            <compressBuildLog>false</compressBuildLog>
+            <replyTo></replyTo>
+            <contentType>project</contentType>
+          </email>
+        </hudson.plugins.emailext.plugins.trigger.FailureTrigger>
+      </configuredTriggers>
+      <contentType>default</contentType>
+      <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
+      <defaultContent>$DEFAULT_CONTENT</defaultContent>
+      <attachmentsPattern></attachmentsPattern>
+      <presendScript></presendScript>
+      <attachBuildLog>false</attachBuildLog>
+      <compressBuildLog>false</compressBuildLog>
+      <replyTo>$DEFAULT_RECIPIENTS</replyTo>
+      <saveOutput>false</saveOutput>
+      <disabled>false</disabled>
+    </hudson.plugins.emailext.ExtendedEmailPublisher>
+    <hudson.plugins.parameterizedtrigger.BuildTrigger plugin="parameterized-trigger@2.25">
+      <configs>
+        <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+          <configs>
+            <hudson.plugins.parameterizedtrigger.FileBuildParameters>
+              <propertiesFile>properties.txt</propertiesFile>
+              <failTriggerOnMissing>false</failTriggerOnMissing>
+              <useMatrixChild>false</useMatrixChild>
+              <onlyExactRuns>false</onlyExactRuns>
+            </hudson.plugins.parameterizedtrigger.FileBuildParameters>
+          </configs>
+          <projects>release_446_il_ftp_centralboot_packaging</projects>
+          <condition>SUCCESS</condition>
+          <triggerWithNoParameters>false</triggerWithNoParameters>
+        </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+      </configs>
+    </hudson.plugins.parameterizedtrigger.BuildTrigger>
+  </publishers>
+  <buildWrappers>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.5.15"/>
+  </buildWrappers>
+</project>

@@ -1,0 +1,213 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>Creates database entries for:&lt;br&gt;
+BLL Windows, BLL Linux, FreeBSD, FreeBSD 6.3, FreeBSD 7.1, Solaris, BLL Linux 64 and IL.&lt;br&gt;
+Launches:
+release_package_bll_windows, integration_bll_freebsd, integration_bll_freebsd63, release_bll_freebsd71&lt;br&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+release_il_linux_chos2, release_il_linux_changeling, release_il_linux_main, release_il_virtual&lt;br&gt;
+release_ccp&lt;br&gt;
+</description>
+  <logRotator class="hudson.tasks.LogRotator">
+    <daysToKeep>-1</daysToKeep>
+    <numToKeep>50</numToKeep>
+    <artifactDaysToKeep>-1</artifactDaysToKeep>
+    <artifactNumToKeep>-1</artifactNumToKeep>
+  </logRotator>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
+      <useBuildBlocker>false</useBuildBlocker>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>BRANCH_NAME</name>
+          <description></description>
+          <defaultValue>4.48_rel</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>STC_MAJ_MIN_VERSION</name>
+          <description></description>
+          <defaultValue>4.48</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BRANCH_ID</name>
+          <description></description>
+          <defaultValue>6</defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.promoted__builds.JobPropertyImpl plugin="promoted-builds@2.19">
+      <activeProcessNames>
+        <string>release Ready for SmartTest</string>
+      </activeProcessNames>
+    </hudson.plugins.promoted__builds.JobPropertyImpl>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.22">
+      <autoRebuild>false</autoRebuild>
+    </com.sonyericsson.rebuild.RebuildSettings>
+  </properties>
+  <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.33">
+    <configVersion>2</configVersion>
+    <p4User>scmbuild</p4User>
+    <p4Passwd></p4Passwd>
+    <p4Port>perforce.spirentcom.com:1666</p4Port>
+    <p4Client>${JOB_NAME}_${BRANCH_NAME}</p4Client>
+    <projectPath>//SCM/Scripts/ci_* //ws/Scripts/ci_*
++//TestCenter/${BRANCH_NAME}/... //ws/...
+-//TestCenter/*/sandbox/...
+-//TestCenter/*/.../WebHelp/...
+-//TestCenter/*/Bakeoff_TestCaseScripts/...
+-//TestCenter/*/other/...
+-//TestCenter/*/documents/...
+-//TestCenter/*/schedules/...
+-//TestCenter/*/regression/...
+-//TestCenter/*/userdocauto/...
+-//TestCenter/*/common/lib/boost_1_34_0/...
+-//TestCenter/*/Layer1/...
+-//TestCenter/*/framework/ui/resultsanalysis/tools/jvm/...
+-//TestCenter/*/framework/il/freebsd/sys/dev/digi/...
+-//TestCenter/*/framework/il/platform/scripts/chassis/i686/filesys/etc/...</projectPath>
+    <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
+    <clientOwner></clientOwner>
+    <p4SysDrive>C:</p4SysDrive>
+    <p4SysRoot>C:\WINDOWS</p4SysRoot>
+    <p4Tool>p4</p4Tool>
+    <useClientSpec>false</useClientSpec>
+    <useStreamDepot>false</useStreamDepot>
+    <forceSync>false</forceSync>
+    <alwaysForceSync>false</alwaysForceSync>
+    <dontUpdateServer>false</dontUpdateServer>
+    <disableAutoSync>false</disableAutoSync>
+    <disableChangeLogOnly>false</disableChangeLogOnly>
+    <disableSyncOnly>false</disableSyncOnly>
+    <showIntegChanges>false</showIntegChanges>
+    <useOldClientName>false</useOldClientName>
+    <createWorkspace>true</createWorkspace>
+    <updateView>true</updateView>
+    <dontRenameClient>false</dontRenameClient>
+    <updateCounterValue>false</updateCounterValue>
+    <dontUpdateClient>false</dontUpdateClient>
+    <exposeP4Passwd>false</exposeP4Passwd>
+    <wipeBeforeBuild>false</wipeBeforeBuild>
+    <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
+    <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
+    <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
+    <firstChange>-1</firstChange>
+    <fileLimit>0</fileLimit>
+    <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
+    <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
+    <lineEndValue>local</lineEndValue>
+    <useViewMask>true</useViewMask>
+    <useViewMaskForPolling>true</useViewMaskForPolling>
+    <useViewMaskForSyncing>false</useViewMaskForSyncing>
+    <useViewMaskForChangeLog>false</useViewMaskForChangeLog>
+    <pollOnlyOnMaster>false</pollOnlyOnMaster>
+  </scm>
+  <assignedNode>spccalengec02</assignedNode>
+  <canRoam>false</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers>
+    <hudson.triggers.SCMTrigger>
+      <spec>00 18 * * *</spec>
+      <ignorePostCommitHooks>false</ignorePostCommitHooks>
+    </hudson.triggers.SCMTrigger>
+  </triggers>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.BatchFile>
+      <command>set BLL_BUILD_NUMBER=%BUILD_NUMBER%&#xd;
+del ui_*.txt&#xd;
+del bll_*.txt&#xd;
+del *il_*changelist*.txt&#xd;
+del Report_*.txt&#xd;
+del Build_*.txt&#xd;
+rem c:\python27\python %WORKSPACE%\Scripts\ci_run_jenkins_steps.py --createchangereport=yes</command>
+    </hudson.tasks.BatchFile>
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.33">
+      <project>release_ui_ci</project>
+      <filter>BLL_changelist_*.txt, UI_changelist_*.txt</filter>
+      <target></target>
+      <selector class="hudson.plugins.copyartifact.PermalinkBuildSelector">
+        <id>lastSuccessfulBuild</id>
+      </selector>
+      <flatten>true</flatten>
+      <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
+    </hudson.plugins.copyartifact.CopyArtifact>
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.33">
+      <project>release_il_testmodule_contents_ci</project>
+      <filter>*il_testmodule_contents*changelist_*.txt</filter>
+      <target></target>
+      <selector class="hudson.plugins.copyartifact.PermalinkBuildSelector">
+        <id>lastSuccessfulBuild</id>
+      </selector>
+      <flatten>true</flatten>
+      <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
+    </hudson.plugins.copyartifact.CopyArtifact>
+    <hudson.plugins.python.Python plugin="python@1.2">
+      <command>import os
+import glob
+import re
+
+files = glob.glob(&quot;*il_testmodule_contents*changelist*.txt&quot;)
+# files = glob.glob(&quot;BLL_*.txt&quot;)
+changelistfile = files[0]
+changelist = re.sub(r&apos;.txt$&apos;, &quot;&quot;, changelistfile )
+changelist = re.sub(r&apos;il_testmodule_contents_changelist_&apos;, &quot;&quot;, changelist )
+build_number = os.environ[&apos;BUILD_NUMBER&apos;]
+print &quot;IL Changelist is &quot; + changelist
+il_changelist_file=&apos;IL_&apos; + changelist + &apos;.txt&apos;
+f = open(il_changelist_file, &apos;w&apos;)
+f.write(&quot;\nCHANGELIST=&quot; + changelist + &quot; &quot; + build_number)
+f.close</command>
+    </hudson.plugins.python.Python>
+    <hudson.tasks.BatchFile>
+      <command>SET FULLVER=00%BUILD_NUMBER%%BRANCH_ID%&#xd;
+if %BUILD_NUMBER% gtr 9 SET FULLVER=0%BUILD_NUMBER%%BRANCH_ID%&#xd;
+if %BUILD_NUMBER% gtr 99 SET FULLVER=%BUILD_NUMBER%%BRANCH_ID%&#xd;
+echo FULLVER is %FULLVER%&#xd;
+echo &quot;%BRANCH_NAME% Build Number: %FULLVER%&quot; &gt; BUILD_%STC_MAJ_MIN_VERSION%.%FULLVER%.txt&#xd;
+&#xd;
+perl %WORKSPACE%\Scripts\ci_update_database.pl ALL %STC_MAJ_MIN_VERSION% %FULLVER% %BUILD_ID% &quot;In Progress&quot; %BUILD_URL% %BRANCH_NAME%&#xd;
+&#xd;
+perl %WORKSPACE%\Scripts\ci_update_database_changelist.pl STC %STC_MAJ_MIN_VERSION% %FULLVER%</command>
+    </hudson.tasks.BatchFile>
+    <hudson.tasks.BatchFile>
+      <command>REM --- Tag file handling for SmartTest&#xd;
+rem copy \\spccalfs04\SCM\SCMSmartTest\%STC_MAJ_MIN_VERSION%\pw_packages_to_test \\martin\archive\pv\TestCenter\%STC_MAJ_MIN_VERSION%\Engineering_Builds\pw_packages_to_test.new&#xd;
+&#xd;
+copy \\results.cal.ci.spirentcom.com\smt\SCMSmartTest\%STC_MAJ_MIN_VERSION%\pw_packages_to_test \\martin\archive\pv\TestCenter\%STC_MAJ_MIN_VERSION%\Engineering_Builds\pw_packages_to_test.new&#xd;
+exit /B 0</command>
+    </hudson.tasks.BatchFile>
+  </builders>
+  <publishers>
+    <hudson.tasks.ArtifactArchiver>
+      <artifacts>Report_*${BUILD_NUMBER}${BRANCH_ID}.txt, BLL_changelist_*.txt, UI_changelist_*.txt, *il_*changelist*.txt, BUILD_*.txt</artifacts>
+      <allowEmptyArchive>false</allowEmptyArchive>
+      <onlyIfSuccessful>false</onlyIfSuccessful>
+      <fingerprint>false</fingerprint>
+      <defaultExcludes>true</defaultExcludes>
+    </hudson.tasks.ArtifactArchiver>
+    <hudson.plugins.claim.ClaimPublisher plugin="claim@2.5"/>
+    <hudson.plugins.parameterizedtrigger.BuildTrigger plugin="parameterized-trigger@2.25">
+      <configs>
+        <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+          <configs>
+            <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+              <properties>BLL_BUILD_NUMBER=${BUILD_NUMBER}</properties>
+            </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+          </configs>
+          <projects>release_bll_windows_packaging_new,release_bll_freebsd71_packaging,release_bll_freebsd63_packaging,release_il_centralboot_packaging,release_ccp_packaging-new,release_cts_windows_packaging,release_bll_linux_x64_packaging,release_cts_linux_packaging</projects>
+          <condition>SUCCESS</condition>
+          <triggerWithNoParameters>false</triggerWithNoParameters>
+        </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+      </configs>
+    </hudson.plugins.parameterizedtrigger.BuildTrigger>
+  </publishers>
+  <buildWrappers>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.5.15"/>
+  </buildWrappers>
+</project>

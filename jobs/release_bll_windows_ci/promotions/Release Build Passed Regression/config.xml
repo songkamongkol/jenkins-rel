@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<hudson.plugins.promoted__builds.PromotionProcess plugin="promoted-builds@2.19">
+  <actions/>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <conditions>
+    <hudson.plugins.promoted__builds.conditions.DownstreamPassCondition>
+      <jobs>release_bll_ci_join</jobs>
+      <evenIfUnstable>false</evenIfUnstable>
+    </hudson.plugins.promoted__builds.conditions.DownstreamPassCondition>
+    <hudson.plugins.promoted__builds.conditions.UpstreamPromotionCondition>
+      <requiredPromotionNames>Release Build Passed on all OS</requiredPromotionNames>
+    </hudson.plugins.promoted__builds.conditions.UpstreamPromotionCondition>
+  </conditions>
+  <icon>star-gold</icon>
+  <buildSteps>
+    <hudson.tasks.BatchFile>
+      <command>echo &quot;Promoted ID: %PROMOTED_ID%&quot;&#xd;
+echo &quot;Promoted Job: %PROMOTED_JOB_NAME%&quot;&#xd;
+echo &quot;Promoted URL: %PROMOTED_URL%&quot;&#xd;
+echo &quot;Promoted NUMBER: %PROMOTED_NUMBER%&quot;</command>
+    </hudson.tasks.BatchFile>
+  </buildSteps>
+</hudson.plugins.promoted__builds.PromotionProcess>

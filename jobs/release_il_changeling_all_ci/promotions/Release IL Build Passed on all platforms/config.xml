@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<hudson.plugins.promoted__builds.PromotionProcess plugin="promoted-builds@2.17">
+  <actions/>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <conditions>
+    <hudson.plugins.promoted__builds.conditions.DownstreamPassCondition>
+      <jobs>release_il_ci_join</jobs>
+      <evenIfUnstable>false</evenIfUnstable>
+    </hudson.plugins.promoted__builds.conditions.DownstreamPassCondition>
+  </conditions>
+  <icon>star-orange</icon>
+  <assignedLabel>bldmiscwin-02</assignedLabel>
+  <buildSteps>
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.30">
+      <project>release_il_changeling_all_ci</project>
+      <filter>changelist.properties</filter>
+      <target></target>
+      <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
+      <flatten>true</flatten>
+      <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
+    </hudson.plugins.copyartifact.CopyArtifact>
+    <EnvInjectBuilder plugin="envinject@1.89">
+      <info>
+        <propertiesFilePath>changelist.properties</propertiesFilePath>
+      </info>
+    </EnvInjectBuilder>
+    <hudson.tasks.BatchFile>
+      <command>echo Promoted Job: %PROMOTED_JOB_NAME%
+echo Promoted Build Number: %PROMOTED_NUMBER%
+echo P4 Changelist: %P4_CHANGESET%
+IF EXIST \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_changeling_all-%BRANCH_NAME%_packaging.txt (
+	echo Packaging in progress, wait for 5 minutes before proceeding with the build promotion
+	sleep 300
+) ELSE (
+	echo No packaging is in progress, promoting build
+)
+
+echo &quot;Promoting build for %P4_CHANGESET%&quot; &gt; \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_changeling_all-%BRANCH_NAME%_promoting.txt
+rd /s /q \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_changeling_all-%BRANCH_NAME%\build-packaging
+xcopy \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_changeling_all-%BRANCH_NAME%\build-%P4_CHANGESET% \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_changeling_all-%BRANCH_NAME%\build-packaging /e /d /i
+echo &quot;changelist %P4_CHANGESET%, build number %PROMOTED_NUMBER%&quot; &gt; \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_changeling_all-%BRANCH_NAME%\build-packaging\il_changeling_all-%BRANCH_NAME%_%P4_CHANGESET%.txt
+del /f /q \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_changeling_all-%BRANCH_NAME%_promoting.txt</command>
+    </hudson.tasks.BatchFile>
+  </buildSteps>
+</hudson.plugins.promoted__builds.PromotionProcess>

@@ -1,0 +1,172 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>Accepts Version,BLL Build number and Branch name from a &quot;build&quot; job .&lt;br&gt;&#xd;
+&#xd;
+Triggers job &quot;integration_launch_bv&quot; for BV system &quot;CTS&quot;  &lt;br&gt;&#xd;
+Triggers job &quot;integration_launch_bv&quot; for BV system &quot;Roma&quot;  &lt;br&gt;&#xd;
+Triggers job &quot;integration_launch_bv&quot; for BV system &quot;Avalanche&quot;  &lt;br&gt;&#xd;
+</description>
+  <logRotator class="hudson.tasks.LogRotator">
+    <daysToKeep>-1</daysToKeep>
+    <numToKeep>20</numToKeep>
+    <artifactDaysToKeep>-1</artifactDaysToKeep>
+    <artifactNumToKeep>-1</artifactNumToKeep>
+  </logRotator>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
+      <useBuildBlocker>false</useBuildBlocker>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>BRANCH_NAME</name>
+          <description>branch name</description>
+          <defaultValue>4.44_rel</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>STC_MAJ_MIN_VERSION</name>
+          <description>Version</description>
+          <defaultValue>4.42</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BLL_BUILD_NUMBER</name>
+          <description>Build number</description>
+          <defaultValue>BAD_BUILD_NUMBER</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.TextParameterDefinition>
+          <name>LAUNCH_BV_ROMA</name>
+          <description>Option for running BV Roma after the build</description>
+          <defaultValue>NO</defaultValue>
+        </hudson.model.TextParameterDefinition>
+        <hudson.model.TextParameterDefinition>
+          <name>LAUNCH_BV_CTS</name>
+          <description>Option for running BV CTS after the build</description>
+          <defaultValue>YES</defaultValue>
+        </hudson.model.TextParameterDefinition>
+        <hudson.model.TextParameterDefinition>
+          <name>LAUNCH_BV_Avalanche</name>
+          <description>Option for running BV Avalanche after the build</description>
+          <defaultValue>NO</defaultValue>
+        </hudson.model.TextParameterDefinition>
+        <hudson.model.TextParameterDefinition>
+          <name>LAUNCH_BV_L4L7_New</name>
+          <description>Option for running BV L4L7_New after the build</description>
+          <defaultValue>NO</defaultValue>
+        </hudson.model.TextParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <assignedNode>scmbuild2-xp</assignedNode>
+  <canRoam>false</canRoam>
+  <disabled>true</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>true</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.plugins.python.Python plugin="python@1.2">
+      <command>import os
+
+if os.environ[&apos;BRANCH_NAME&apos;]==&apos;integration&apos;:      
+    branch_id=&quot;3&quot;  
+if os.environ[&apos;BRANCH_NAME&apos;]==&apos;4.1x_rel&apos;:      
+    branch_id=&quot;6&quot;  
+if os.environ[&apos;BRANCH_NAME&apos;]==&apos;release&apos;:      
+    branch_id=&quot;6&quot;  
+
+if os.environ[&apos;BLL_BUILD_NUMBER&apos;]==&apos;BAD_BUILD_NUMBER&apos;:      
+    os.environ[&apos;BLL_BUILD_NUMBER&apos; ]= os.environ[&apos;BUILD_NUMBER&apos;]
+bll_build_number=os.environ[&apos;BLL_BUILD_NUMBER&apos; ]
+stc_maj_min_ver=os.environ[&apos;STC_MAJ_MIN_VERSION&apos;]
+fullnum= &quot;00&quot; + bll_build_number  + branch_id + &quot;0000&quot;
+buildver = &quot;00&quot; + bll_build_number + branch_id
+    
+if  int(bll_build_number)  &gt; 9:
+    # print &quot;bll_build_number: greater than 9&quot;
+    fullnum = &quot;0&quot; + bll_build_number + branch_id + &quot;0000&quot;
+    buildver = &quot;0&quot; + bll_build_number + branch_id
+if  int(bll_build_number)  &gt; 99:
+    # print &quot;bll_build_number: greater than 99&quot;
+    fullnum = bll_build_number + branch_id + &quot;0000&quot;
+    buildver = bll_build_number + branch_id
+il_build_number=stc_maj_min_ver + &quot;.&quot; + buildver
+
+# bll_build_number and il_build_number would always be the same in Jenkins
+bll_build_number=il_build_number
+il_build_number=il_build_number
+il_branch_name= os.environ[&apos;BRANCH_NAME&apos;]
+print &quot;BLL build number is &quot; + bll_build_number
+print &quot;IL build number is &quot; + il_build_number
+paramfile = open(os.environ[&apos;WORKSPACE&apos;] + &quot;\properties.txt&quot;, &quot;w&quot;)
+paramfile.write(&quot;BLL_BUILD_NUMBER=&quot; + bll_build_number + &quot;\n&quot;)
+paramfile.write(&quot;IL_BUILD_NUMBER=&quot; + il_build_number + &quot;\n&quot;)
+paramfile.write(&quot;BRANCH_NAME=&quot; + il_branch_name + &quot;\n&quot;)
+paramfile.close()
+
+
+
+</command>
+    </hudson.plugins.python.Python>
+  </builders>
+  <publishers>
+    <hudson.plugins.claim.ClaimPublisher plugin="claim@2.3"/>
+    <hudson.plugins.parameterizedtrigger.BuildTrigger plugin="parameterized-trigger@2.22">
+      <configs>
+        <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+          <configs>
+            <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+              <properties>LAUNCH_BV =  ${LAUNCH_BV_CTS}
+BV_TYPE = CTS
+</properties>
+            </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+            <hudson.plugins.parameterizedtrigger.FileBuildParameters>
+              <propertiesFile>properties.txt</propertiesFile>
+              <failTriggerOnMissing>false</failTriggerOnMissing>
+            </hudson.plugins.parameterizedtrigger.FileBuildParameters>
+          </configs>
+          <projects>release_BV_Launch_one</projects>
+          <condition>SUCCESS</condition>
+          <triggerWithNoParameters>false</triggerWithNoParameters>
+        </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+        <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+          <configs>
+            <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+              <properties>LAUNCH_BV =  ${LAUNCH_BV_ROMA}
+BV_TYPE = Roma
+</properties>
+            </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+            <hudson.plugins.parameterizedtrigger.FileBuildParameters>
+              <propertiesFile>properties.txt</propertiesFile>
+              <failTriggerOnMissing>false</failTriggerOnMissing>
+            </hudson.plugins.parameterizedtrigger.FileBuildParameters>
+          </configs>
+          <projects>release_BV_Launch_one</projects>
+          <condition>SUCCESS</condition>
+          <triggerWithNoParameters>false</triggerWithNoParameters>
+        </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+        <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+          <configs>
+            <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+              <properties>LAUNCH_BV =  ${LAUNCH_BV_Avalanche}
+BV_TYPE = Avalanche
+</properties>
+            </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+            <hudson.plugins.parameterizedtrigger.FileBuildParameters>
+              <propertiesFile>properties.txt</propertiesFile>
+              <failTriggerOnMissing>false</failTriggerOnMissing>
+            </hudson.plugins.parameterizedtrigger.FileBuildParameters>
+          </configs>
+          <projects>release_BV_Launch_one</projects>
+          <condition>SUCCESS</condition>
+          <triggerWithNoParameters>false</triggerWithNoParameters>
+        </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+      </configs>
+    </hudson.plugins.parameterizedtrigger.BuildTrigger>
+  </publishers>
+  <buildWrappers>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.5.8"/>
+  </buildWrappers>
+</project>
