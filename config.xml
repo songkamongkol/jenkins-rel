@@ -860,6 +860,7 @@
             <string>release_446_regression_ci</string>
             <string>release_446_regression_cl_nightly</string>
             <string>release_446_regression_nightly</string>
+            <string>release_446_results_reporter_windows_ci</string>
             <string>release_446_ui_ci</string>
             <string>release_446_ui_debug_ci</string>
             <string>release_446_webhelp</string>
