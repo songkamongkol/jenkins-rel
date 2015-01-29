@@ -1,10 +1,9 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<project>
+<?xml version="1.0" encoding="UTF-8"?><project>
   <actions/>
-  <description>Sync SCM build scripts and other files as needed for packaging.&lt;br&gt;&#xd;
-Run ci_packageinstaller.pl to create PACKAGE_L4L7.&lt;br&gt;&#xd;
-Copy build results to \\martin\archive\pv\TestCenter\4.10\Engineering_Builds\integration\BUILDVERSION&lt;br&gt;&#xd;
-Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02&lt;br&gt;&#xd;
+  <description>Sync SCM build scripts and other files as needed for packaging.&lt;br&gt;
+Run ci_packageinstaller.pl to create PACKAGE_L4L7.&lt;br&gt;
+Copy build results to \\martin\archive\pv\TestCenter\4.10\Engineering_Builds\integration\BUILDVERSION&lt;br&gt;
+Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02&lt;br&gt;
 Requires L drive to be mapped to \\filer\home\qabuild&lt;br&gt;</description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
@@ -22,7 +21,7 @@ Requires L drive to be mapped to \\filer\home\qabuild&lt;br&gt;</description>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.48_rel</defaultValue>
+          <defaultValue>4.49_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -42,16 +41,16 @@ Requires L drive to be mapped to \\filer\home\qabuild&lt;br&gt;</description>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description>major minor version</description>
-          <defaultValue>4.48</defaultValue>
+          <defaultValue>4.49</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
-          <description></description>
+          <description/>
           <defaultValue>BAD_BUILD_NUMBER</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>SOURCE_OS</name>
-          <description></description>
+          <description/>
           <defaultValue>BLLWindows</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -63,7 +62,7 @@ Requires L drive to be mapped to \\filer\home\qabuild&lt;br&gt;</description>
   <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.33">
     <configVersion>2</configVersion>
     <p4User>tableuser</p4User>
-    <p4Passwd></p4Passwd>
+    <p4Passwd/>
     <p4Port>perforce.spirentcom.com:1666</p4Port>
     <p4Client>${JOB_NAME}_${BRANCH_NAME}</p4Client>
     <projectPath>//SCM/Build_Scripts/STC_Build_Scripts/... //ws/Build_Scripts/STC_Build_Scripts/...
@@ -122,66 +121,66 @@ Requires L drive to be mapped to \\filer\home\qabuild&lt;br&gt;</description>
   <customWorkspace>${JOB_NAME}</customWorkspace>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>cd %WORKSPACE%\bin\release&#xd;
-SET DEPENDENT_JOB_NAME=release_446_bll_windows_packaging&#xd;
-SET CI_PACKAGE_OPT=PACKAGE_L4L7&#xd;
-net use /Delete L:&#xd;
-net use L: \\filer.spirentcom.com\home\qabuild Spirent8 /user:SPIRENTCOM\qabuild &#xd;
-rem net use L: \\filer.spirentcom.com\home\qabuild&#xd;
-net use&#xd;
-del /f /q &quot;d:\p2_installer\builds\Spirent TestCenter Layer 4-7 Application.exe&quot;&#xd;
-rd /s /q  &quot;d:\p2_installer\builds\Spirent TestCenter Layer 4-7 Application&quot;&#xd;
+      <command>cd %WORKSPACE%\bin\release
+SET DEPENDENT_JOB_NAME=release_446_bll_windows_packaging
+SET CI_PACKAGE_OPT=PACKAGE_L4L7
+net use /Delete L:
+net use L: \\filer.spirentcom.com\home\qabuild Spirent8 /user:SPIRENTCOM\qabuild 
+rem net use L: \\filer.spirentcom.com\home\qabuild
+net use
+del /f /q "d:\p2_installer\builds\Spirent TestCenter Layer 4-7 Application.exe"
+rd /s /q  "d:\p2_installer\builds\Spirent TestCenter Layer 4-7 Application"
 c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --createpropfile=yes --runcimaketarballs=no --runsetver=no --runcipackageinstaller=yes</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.python.Python plugin="python@1.2">
       <command>import os
 import sys
 
-if os.environ[&apos;BRANCH_NAME&apos;]==&apos;integration&apos;:      
-    branch_id=&quot;3&quot;  
-if os.environ[&apos;BRANCH_NAME&apos;]==&apos;release&apos;:    
-    branch_id=&quot;6&quot;  
-if os.environ[&apos;BRANCH_NAME&apos;]==&apos;4.44_rel&apos;:    
-    branch_id=&quot;6&quot;  
-if &apos;_rel&apos; in os.environ[&apos;BRANCH_NAME&apos;]:
-    branch_id=&apos;6&apos;
+if os.environ['BRANCH_NAME']=='integration':      
+    branch_id="3"  
+if os.environ['BRANCH_NAME']=='release':    
+    branch_id="6"  
+if os.environ['BRANCH_NAME']=='4.44_rel':    
+    branch_id="6"  
+if '_rel' in os.environ['BRANCH_NAME']:
+    branch_id='6'
 
 
-if os.environ[&apos;BLL_BUILD_NUMBER&apos;]==&apos;BAD_BUILD_NUMBER&apos;:      
-    os.environ[&apos;BLL_BUILD_NUMBER&apos; ]= os.environ[&apos;BUILD_NUMBER&apos;]
-bll_build_number=os.environ[&apos;BLL_BUILD_NUMBER&apos; ]
-stc_maj_min_ver=os.environ[&apos;STC_MAJ_MIN_VERSION&apos;]
-fullnum= &quot;00&quot; + bll_build_number  + branch_id + &quot;0000&quot;
-buildver = &quot;00&quot; + bll_build_number + branch_id
+if os.environ['BLL_BUILD_NUMBER']=='BAD_BUILD_NUMBER':      
+    os.environ['BLL_BUILD_NUMBER' ]= os.environ['BUILD_NUMBER']
+bll_build_number=os.environ['BLL_BUILD_NUMBER' ]
+stc_maj_min_ver=os.environ['STC_MAJ_MIN_VERSION']
+fullnum= "00" + bll_build_number  + branch_id + "0000"
+buildver = "00" + bll_build_number + branch_id
     
 if  int(bll_build_number)  &gt; 9:
-    # print &quot;bll_build_number: greater than 9&quot;
-    fullnum = &quot;0&quot; + bll_build_number + branch_id + &quot;0000&quot;
-    buildver = &quot;0&quot; + bll_build_number + branch_id
+    # print "bll_build_number: greater than 9"
+    fullnum = "0" + bll_build_number + branch_id + "0000"
+    buildver = "0" + bll_build_number + branch_id
 if  int(bll_build_number)  &gt; 99:
-    # print &quot;bll_build_number: greater than 99&quot;
-    fullnum = bll_build_number + branch_id + &quot;0000&quot;
+    # print "bll_build_number: greater than 99"
+    fullnum = bll_build_number + branch_id + "0000"
     buildver = bll_build_number + branch_id
-il_build_number=stc_maj_min_ver + &quot;.&quot; + buildver
+il_build_number=stc_maj_min_ver + "." + buildver
 
 # bll_build_number and il_build_number would always be the same in Jenkins
 bll_build_number=il_build_number
 il_build_number=il_build_number
-il_branch_name= os.environ[&apos;BRANCH_NAME&apos;]
-print &quot;BLL build number is &quot; + bll_build_number
-print &quot;IL build number is &quot; + il_build_number
-paramfile = open(os.environ[&apos;WORKSPACE&apos;] + &quot;\properties.txt&quot;, &quot;w&quot;)
-paramfile.write(&quot;BLL_BUILD_NUMBER=&quot; + bll_build_number + &quot;\n&quot;)
-paramfile.write(&quot;IL_BUILD_NUMBER=&quot; + il_build_number + &quot;\n&quot;)
-paramfile.write(&quot;BRANCH_NAME=&quot; + il_branch_name + &quot;\n&quot;)
+il_branch_name= os.environ['BRANCH_NAME']
+print "BLL build number is " + bll_build_number
+print "IL build number is " + il_build_number
+paramfile = open(os.environ['WORKSPACE'] + "\properties.txt", "w")
+paramfile.write("BLL_BUILD_NUMBER=" + bll_build_number + "\n")
+paramfile.write("IL_BUILD_NUMBER=" + il_build_number + "\n")
+paramfile.write("BRANCH_NAME=" + il_branch_name + "\n")
 paramfile.close()
 
 # check if L4L7 installer was successfully built, if not abort with error 
-filename=&apos;\\\\martin\\archive\\pv\\TestCenter\\&apos; + stc_maj_min_ver + &apos;\\Engineering_Builds\\GUI_BLL\\&apos; + il_build_number + &apos;\\Spirent TestCenter Layer 4-7 Application.exe&apos;
+filename='\\\\martin\\archive\\pv\\TestCenter\\' + stc_maj_min_ver + '\\Engineering_Builds\\GUI_BLL\\' + il_build_number + '\\Spirent TestCenter Layer 4-7 Application.exe'
 if os.path.exists(filename) == True:
-    print &apos;Installer file &quot;&apos; + filename + &apos;&quot; exists.&apos;
+    print 'Installer file "' + filename + '" exists.'
 else:
-    print &apos;error: Installer file &quot;&apos; + filename + &apos;&quot; DOES NOT exist, exiting with error&apos;
+    print 'error: Installer file "' + filename + '" DOES NOT exist, exiting with error'
     sys.exit(1)
 
 

@@ -1,18 +1,17 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<project>
+<?xml version="1.0" encoding="UTF-8"?><project>
   <actions/>
-  <description>IL Build job for virtual targets:&lt;br&gt;&#xd;
-$WORKSPACE/build/il/scripts/phxbld -j8 aonic&lt;br&gt;&#xd;
-$WORKSPACE/build/il/scripts/phxbld -j8 aonic_raw&lt;br&gt;&#xd;
-$WORKSPACE/build/il/scripts/phxbld -j8 aonic_64&lt;br&gt;&#xd;
-$WORKSPACE/build/il/scripts/phxbld -j8 aonic_64_raw&lt;br&gt;&#xd;
-sudo rm $WORKSPACE/build/il/packages/fsimg/aonic-*&lt;br&gt;&#xd;
-$WORKSPACE/build/il/scripts/phxbld -j8 appliance&lt;br&gt;&#xd;
-$WORKSPACE/build/il/scripts/phxbld -j16 qemu&lt;br&gt;&#xd;
-$WORKSPACE/build/il/scripts/phxbld -j16 qemu_raw&lt;br&gt;&#xd;
-$WORKSPACE/build/il/scripts/phxbld -j16 stca&lt;br&gt;&#xd;
-Archive il_virtual_*.tar&lt;br&gt;&#xd;
-&#xd;
+  <description>IL Build job for virtual targets:&lt;br&gt;
+$WORKSPACE/build/il/scripts/phxbld -j8 aonic&lt;br&gt;
+$WORKSPACE/build/il/scripts/phxbld -j8 aonic_raw&lt;br&gt;
+$WORKSPACE/build/il/scripts/phxbld -j8 aonic_64&lt;br&gt;
+$WORKSPACE/build/il/scripts/phxbld -j8 aonic_64_raw&lt;br&gt;
+sudo rm $WORKSPACE/build/il/packages/fsimg/aonic-*&lt;br&gt;
+$WORKSPACE/build/il/scripts/phxbld -j8 appliance&lt;br&gt;
+$WORKSPACE/build/il/scripts/phxbld -j16 qemu&lt;br&gt;
+$WORKSPACE/build/il/scripts/phxbld -j16 qemu_raw&lt;br&gt;
+$WORKSPACE/build/il/scripts/phxbld -j16 stca&lt;br&gt;
+Archive il_virtual_*.tar&lt;br&gt;
+
 </description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
@@ -30,7 +29,7 @@ Archive il_virtual_*.tar&lt;br&gt;&#xd;
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.48_rel</defaultValue>
+          <defaultValue>4.49_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -49,8 +48,8 @@ Archive il_virtual_*.tar&lt;br&gt;&#xd;
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
-          <description></description>
-          <defaultValue>4.48</defaultValue>
+          <description/>
+          <defaultValue>4.49</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -66,7 +65,7 @@ Archive il_virtual_*.tar&lt;br&gt;&#xd;
   <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.33">
     <configVersion>2</configVersion>
     <p4User>scmbuild</p4User>
-    <p4Passwd></p4Passwd>
+    <p4Passwd/>
     <p4Port>perforceproxy.cal.ci.spirentcom.com:1999</p4Port>
     <p4Client>${JOB_NAME}_${BRANCH_NAME}</p4Client>
     <projectPath>//SCM/Scripts/ci_* //ws/Build_Scripts/Scripts/ci_*
@@ -89,7 +88,7 @@ Archive il_virtual_*.tar&lt;br&gt;&#xd;
 //TARDIS/avalanche_release/... //ws/content/traffic/l4l7vm/...
 //TARDIS/Studio_release/avanext/... //ws/content/traffic/studio_perf/avanext/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner></clientOwner>
+    <clientOwner/>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -140,16 +139,16 @@ Archive il_virtual_*.tar&lt;br&gt;&#xd;
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>export avail=`df -h | grep \/dev\/sda1 | sed &apos;s/\(.*\)G\(.*\)G\(.*\)[G|M].*/\3/g&apos; | sed &apos;s/\ //g&apos; | cut -d . -f 1`
+      <command>export avail=`df -h | grep \/dev\/sda1 | sed 's/\(.*\)G\(.*\)G\(.*\)[G|M].*/\3/g' | sed 's/\ //g' | cut -d . -f 1`
 export cutoff_limit=10
 # clear ccache is disk space is too low
 if [[ $avail -ge $cutoff_limit ]]; then 
-     echo &quot;Available disk space is $avail and is greater than $cutoff_limit, ccache not clear&quot;; 
+     echo "Available disk space is $avail and is greater than $cutoff_limit, ccache not clear"; 
 else 
-     echo &quot;Cut-off limit for disk space is $cutoff_limit and is greater than available disk space of $avail, clearing ccache&quot;;
+     echo "Cut-off limit for disk space is $cutoff_limit and is greater than available disk space of $avail, clearing ccache";
      ccache -C
-     export avail=`df -h | grep \/dev\/sda1 | sed &apos;s/\(.*\)G\(.*\)G\(.*\)G.*/\3/g&apos;`
-     echo &quot;Available disk space after ccache cleared is now $avail&quot;
+     export avail=`df -h | grep \/dev\/sda1 | sed 's/\(.*\)G\(.*\)G\(.*\)G.*/\3/g'`
+     echo "Available disk space after ccache cleared is now $avail"
 fi</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
@@ -185,7 +184,7 @@ chmod a+r $WORKSPACE/build/il/packages/rawimg/*.ova</command>
     <hudson.tasks.Shell>
       <command># rm -f il_virtual_$STC_MAJ_MIN_VERSION.tar
 # tar cvf il_virtual_$STC_MAJ_MIN_VERSION.tar ./build/il/packages
-echo &quot;Finished creating il_virtual_$STC_MAJ_MIN_VERSION.tar&quot;
+echo "Finished creating il_virtual_$STC_MAJ_MIN_VERSION.tar"
 python $HOME/jenkins/build_cleanup.py --n=50 --file=/mnt/builds/jenkins/il_virtual_yocto-$BRANCH_NAME</command>
     </hudson.tasks.Shell>
   </builders>
@@ -210,17 +209,17 @@ python $HOME/jenkins/build_cleanup.py --n=50 --file=/mnt/builds/jenkins/il_virtu
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
           <email>
-            <recipientList></recipientList>
+            <recipientList/>
             <subject>$PROJECT_DEFAULT_SUBJECT</subject>
             <body>$PROJECT_DEFAULT_CONTENT</body>
             <recipientProviders>
               <hudson.plugins.emailext.plugins.recipients.DevelopersRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern></attachmentsPattern>
+            <attachmentsPattern/>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
-            <replyTo></replyTo>
+            <replyTo/>
             <contentType>project</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.FailureTrigger>
@@ -228,11 +227,11 @@ python $HOME/jenkins/build_cleanup.py --n=50 --file=/mnt/builds/jenkins/il_virtu
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern></attachmentsPattern>
-      <presendScript></presendScript>
+      <attachmentsPattern/>
+      <presendScript/>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
-      <replyTo></replyTo>
+      <replyTo/>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
@@ -242,7 +241,7 @@ python $HOME/jenkins/build_cleanup.py --n=50 --file=/mnt/builds/jenkins/il_virtu
           <command># copy the build output to storage server
 export STORAGE_DIR=/mnt/builds/jenkins/il_virtual_yocto-$BRANCH_NAME/build-$P4_CHANGELIST/
 
-if [ ! -d &quot;$STORAGE_DIR&quot; ]; then
+if [ ! -d "$STORAGE_DIR" ]; then
   mkdir -p $STORAGE_DIR
 fi
 

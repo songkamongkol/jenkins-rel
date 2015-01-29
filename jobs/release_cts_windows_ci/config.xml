@@ -1,7 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<project>
+<?xml version="1.0" encoding="UTF-8"?><project>
   <actions/>
-  <description></description>
+  <description/>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
     <numToKeep>15</numToKeep>
@@ -18,7 +17,7 @@
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.48_rel</defaultValue>
+          <defaultValue>4.49_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -60,7 +59,7 @@
   <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.33">
     <configVersion>2</configVersion>
     <p4User>tableuser</p4User>
-    <p4Passwd></p4Passwd>
+    <p4Passwd/>
     <p4Port>perforceproxy.cal.ci.spirentcom.com:1999</p4Port>
     <p4Client>${JOB_NAME}_${BRANCH_NAME}</p4Client>
     <projectPath>//TestCenter/${BRANCH_NAME}/... //ws/...
@@ -76,6 +75,7 @@
 -//TestCenter/${BRANCH_NAME}/.../WebHelp/...
 +//TestCenter/${BRANCH_NAME}/scm/tools/... //ws/scm/tools/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
+    <clientOwner/>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -118,7 +118,7 @@
   </scm>
   <assignedNode>bllbuild-win-07</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
@@ -130,89 +130,89 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>rem check environment&#xd;
-set&#xd;
-genSln.bat&#xd;
-echo &quot;attrib -r bin\Release\Cts\* /s&quot;&#xd;
+      <command>rem check environment
+set
+genSln.bat
+echo "attrib -r bin\Release\Cts\* /s"
 attrib -r bin\Release\Cts\* /s</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>if &quot;%RELEASE_BUILD%&quot; == &quot;true&quot; (&#xd;
-attrib -r framework\bll\core\include\licensing\ControlledReleaseCheck.h&#xd;
-copy framework\bll\core\include\licensing\ga_release\ControlledReleaseCheck.h framework\bll\core\include\licensing\ControlledReleaseCheck.h /y&#xd;
-&#xd;
+      <command>if "%RELEASE_BUILD%" == "true" (
+attrib -r framework\bll\core\include\licensing\ControlledReleaseCheck.h
+copy framework\bll\core\include\licensing\ga_release\ControlledReleaseCheck.h framework\bll\core\include\licensing\ControlledReleaseCheck.h /y
+
 )</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>rem devenv /build Release Framework.BLL.Gen.sln&#xd;
-rem devenv /build Release Plugins.BLL.Gen.sln&#xd;
-rem devenv /build Release TestCenter.Automation.Gen.sln&#xd;
-&#xd;
-scons -j 4 -f SConstruct.bll debug=0 target=bll-win32&#xd;
+      <command>rem devenv /build Release Framework.BLL.Gen.sln
+rem devenv /build Release Plugins.BLL.Gen.sln
+rem devenv /build Release TestCenter.Automation.Gen.sln
+
+scons -j 4 -f SConstruct.bll debug=0 target=bll-win32
 </command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>rem devenv /build Release TestCenter.UI.Gen.sln&#xd;
-pushd C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC&#xd;
-call vcvarsall.bat x86&#xd;
-popd&#xd;
+      <command>rem devenv /build Release TestCenter.UI.Gen.sln
+pushd C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC
+call vcvarsall.bat x86
+popd
 msbuild.exe TestCenter.UI.Gen.sln /t:build /p:Configuration=Release</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>rem devenv /build Release CTS.sln&#xd;
-scons -j 4 -f SConstruct.bll debug=0 target=cts-bll-win32&#xd;
+      <command>rem devenv /build Release CTS.sln
+scons -j 4 -f SConstruct.bll debug=0 target=cts-bll-win32
 </command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>rem devenv /build Release CTS.UI.Gen.sln&#xd;
-pushd C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC&#xd;
-call vcvarsall.bat x86&#xd;
-popd&#xd;
+      <command>rem devenv /build Release CTS.UI.Gen.sln
+pushd C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC
+call vcvarsall.bat x86
+popd
 msbuild.exe CTS.UI.Gen.sln /t:build /p:Configuration=Release</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>cd bin\Release&#xd;
-rebase.exe -b 0x12000000 -u . *.dll&#xd;
+      <command>cd bin\Release
+rebase.exe -b 0x12000000 -u . *.dll
 exit /B 0</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>rem cd %WORKSPACE%&#xd;
-rem %WORKSPACE%\distribute_cts.bat&#xd;
-echo &quot;Skipped&quot;</command>
+      <command>rem cd %WORKSPACE%
+rem %WORKSPACE%\distribute_cts.bat
+echo "Skipped"</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>if %BUILD_SAVE_PDB% == true (&#xd;
-&#xd;
-cd bin\Release&#xd;
-rmdir /q /s pdb&#xd;
-mkdir pdb&#xd;
-copy *.pdb pdb&#xd;
-del /q pdb\test*.pdb &#xd;
-&#xd;
-set P4PORT=perforce.spirentcom.com:1666&#xd;
-set P4USER=tableuser&#xd;
-set P4CLIENT=%p4Client%&#xd;
-&quot;C:\Program Files\Debugging Tools for Windows (x86)\srcsrv\p4index.cmd&quot; -source=%WORKSPACE% -symbols=pdb -debug&#xd;
-&#xd;
-c:\tools\psexec\PsExec.exe -s cmd.exe /c &quot;C:\Program Files\Debugging Tools for Windows (x86)\symstore&quot; add /f %WORKSPACE%\bin\Release\pdb\*.pdb /s \\spccalfs04\PV-Results\Builds\jenkins\symbols\cts_ci /t Conformance&#xd;
-c:\tools\psexec\PsExec.exe -s cmd.exe /c &quot;C:\Program Files\Debugging Tools for Windows (x86)\symstore&quot; add /f %WORKSPACE%\bin\Release\*.dll /s \\spccalfs04\PV-Results\Builds\jenkins\symbols\cts_ci /t Conformance&#xd;
-REM c:\tools\psexec\PsExec.exe -s cmd.exe /c &quot;C:\Program Files\Debugging Tools for Windows (x86)\agestore&quot; \\spccalfs04\PV-Results\Builds\jenkins\symbols\cts_ci -days 20&#xd;
-&#xd;
-rmdir /q /s pdb&#xd;
+      <command>if %BUILD_SAVE_PDB% == true (
+
+cd bin\Release
+rmdir /q /s pdb
+mkdir pdb
+copy *.pdb pdb
+del /q pdb\test*.pdb 
+
+set P4PORT=perforce.spirentcom.com:1666
+set P4USER=tableuser
+set P4CLIENT=%p4Client%
+"C:\Program Files\Debugging Tools for Windows (x86)\srcsrv\p4index.cmd" -source=%WORKSPACE% -symbols=pdb -debug
+
+c:\tools\psexec\PsExec.exe -s cmd.exe /c "C:\Program Files\Debugging Tools for Windows (x86)\symstore" add /f %WORKSPACE%\bin\Release\pdb\*.pdb /s \\spccalfs04\PV-Results\Builds\jenkins\symbols\cts_ci /t Conformance
+c:\tools\psexec\PsExec.exe -s cmd.exe /c "C:\Program Files\Debugging Tools for Windows (x86)\symstore" add /f %WORKSPACE%\bin\Release\*.dll /s \\spccalfs04\PV-Results\Builds\jenkins\symbols\cts_ci /t Conformance
+REM c:\tools\psexec\PsExec.exe -s cmd.exe /c "C:\Program Files\Debugging Tools for Windows (x86)\agestore" \\spccalfs04\PV-Results\Builds\jenkins\symbols\cts_ci -days 20
+
+rmdir /q /s pdb
 )</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>rem c:\Python27\python.exe framework\tools\buildUtil\pw_build_tracker.py --build_dir=&quot;c:\dev\jenkins\workspace\cts_windows\bin\Release&quot;&#xd;
-echo &quot;Skipping pw_build_tracker.py &quot;</command>
+      <command>rem c:\Python27\python.exe framework\tools\buildUtil\pw_build_tracker.py --build_dir="c:\dev\jenkins\workspace\cts_windows\bin\Release"
+echo "Skipping pw_build_tracker.py "</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>cd bin\Release&#xd;
-del CTS*.tar.gz&#xd;
-xcopy /Y /R /D ..\..\scm\tools\devexpress .&#xd;
-xcopy /Y /R /D ..\..\scm\tools\dundas .&#xd;
-xcopy /Y /R /D ..\..\scm\tools\janus .&#xd;
-if %BUILD_PACKAGE_BUILD% == true (&#xd;
-  python ..\..\framework\tools\buildUtil\package.py --suffix=all --package=CTS&#xd;
+      <command>cd bin\Release
+del CTS*.tar.gz
+xcopy /Y /R /D ..\..\scm\tools\devexpress .
+xcopy /Y /R /D ..\..\scm\tools\dundas .
+xcopy /Y /R /D ..\..\scm\tools\janus .
+if %BUILD_PACKAGE_BUILD% == true (
+  python ..\..\framework\tools\buildUtil\package.py --suffix=all --package=CTS
 )</command>
     </hudson.tasks.BatchFile>
   </builders>
@@ -235,46 +235,46 @@ if %BUILD_PACKAGE_BUILD% == true (&#xd;
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.UnstableTrigger>
           <email>
-            <recipientList></recipientList>
+            <recipientList/>
             <subject>$PROJECT_DEFAULT_SUBJECT</subject>
             <body>$PROJECT_DEFAULT_CONTENT</body>
             <recipientProviders>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern></attachmentsPattern>
+            <attachmentsPattern/>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
-            <replyTo></replyTo>
+            <replyTo/>
             <contentType>project</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.UnstableTrigger>
         <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
           <email>
-            <recipientList></recipientList>
+            <recipientList/>
             <subject>$PROJECT_DEFAULT_SUBJECT</subject>
             <body>$PROJECT_DEFAULT_CONTENT</body>
             <recipientProviders>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern></attachmentsPattern>
+            <attachmentsPattern/>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
-            <replyTo></replyTo>
+            <replyTo/>
             <contentType>project</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.FailureTrigger>
         <hudson.plugins.emailext.plugins.trigger.FixedTrigger>
           <email>
-            <recipientList></recipientList>
+            <recipientList/>
             <subject>$PROJECT_DEFAULT_SUBJECT</subject>
             <body>$PROJECT_DEFAULT_CONTENT</body>
             <recipientProviders>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern></attachmentsPattern>
+            <attachmentsPattern/>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
-            <replyTo></replyTo>
+            <replyTo/>
             <contentType>project</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.FixedTrigger>
@@ -282,11 +282,11 @@ if %BUILD_PACKAGE_BUILD% == true (&#xd;
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern></attachmentsPattern>
-      <presendScript></presendScript>
+      <attachmentsPattern/>
+      <presendScript/>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
-      <replyTo></replyTo>
+      <replyTo/>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<hudson.plugins.promoted__builds.PromotionProcess plugin="promoted-builds@2.17">
+<hudson.plugins.promoted__builds.PromotionProcess plugin="promoted-builds@2.19">
   <actions/>
   <keepDependencies>false</keepDependencies>
   <properties/>
@@ -28,7 +28,7 @@
         <completeBuild>true</completeBuild>
       </threshold>
     </hudson.tasks.BuildTrigger>
-    <hudson.plugins.parameterizedtrigger.BuildTrigger plugin="parameterized-trigger@2.22">
+    <hudson.plugins.parameterizedtrigger.BuildTrigger plugin="parameterized-trigger@2.25">
       <configs>
         <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
           <configs>

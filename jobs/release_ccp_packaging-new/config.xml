@@ -1,5 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<project>
+<?xml version="1.0" encoding="UTF-8"?><project>
   <actions/>
   <description>Retrieve Provisioning_WebHelp.tar.gz</description>
   <logRotator class="hudson.tasks.LogRotator">
@@ -18,7 +17,7 @@
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.48_rel</defaultValue>
+          <defaultValue>4.49_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -32,8 +31,8 @@
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
-          <description></description>
-          <defaultValue>4.48</defaultValue>
+          <description/>
+          <defaultValue>4.49</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -44,7 +43,7 @@
   <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.33">
     <configVersion>2</configVersion>
     <p4User>tableuser</p4User>
-    <p4Passwd></p4Passwd>
+    <p4Passwd/>
     <p4Port>perforce.spirentcom.com:1666</p4Port>
     <p4Client>${JOB_NAME}_${BRANCH_NAME}</p4Client>
     <projectPath>+//TestCenter/${BRANCH_NAME}/... //ws/...
@@ -76,7 +75,7 @@
 +//TestCenter/${BRANCH_NAME}/framework/ui/automation/... //ws/framework/ui/automation/...
 +//TestCenter/${BRANCH_NAME}/bin/Release/ProvisionManagerHelp/WebHelp/...  //ws/bin/Release/ProvisionManagerHelp/WebHelp/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner></clientOwner>
+    <clientOwner/>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -135,56 +134,56 @@
       <command>genSln.bat</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>SET PATH=C:\Python27\;C:\Python27\Scripts\;%PATH%&#xd;
-scons -j 12 -f SConstruct.bll debug=0 target=bll-win32-coreonly&#xd;
-&#xd;
+      <command>SET PATH=C:\Python27\;C:\Python27\Scripts\;%PATH%
+scons -j 12 -f SConstruct.bll debug=0 target=bll-win32-coreonly
+
 </command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>echo &quot;bll-win32-coreonly build complete&quot;&#xd;
-dir bin\release\api&#xd;
-SET PATH=C:\Python27\;C:\Python27\Scripts\;%PATH%&#xd;
-SET STC_BUILD_ROOT=D:\dev\jenkins-rel\workspace\release_ccp_packaging-new&#xd;
-scons -j 12 -f SConstruct.AutomationClient.Only.Gen.bll&#xd;
+      <command>echo "bll-win32-coreonly build complete"
+dir bin\release\api
+SET PATH=C:\Python27\;C:\Python27\Scripts\;%PATH%
+SET STC_BUILD_ROOT=D:\dev\jenkins-rel\workspace\release_ccp_packaging-new
+scons -j 12 -f SConstruct.AutomationClient.Only.Gen.bll
 </command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>rem devenv Core.UI.Gen.sln /build Release&#xd;
-pushd D:\Program Files (x86)\Microsoft Visual Studio 10.0\vc&#xd;
-call vcvarsall.bat x86&#xd;
-popd&#xd;
-echo &quot;Automation client build complete&quot;&#xd;
-dir bin\release\api&#xd;
-msbuild.exe Core.UI.Gen.sln /t:build /p:Configuration=Release&#xd;
-echo &quot;STC Build Complete&quot;&#xd;
-dir bin\release\api&#xd;
-&#xd;
+      <command>rem devenv Core.UI.Gen.sln /build Release
+pushd D:\Program Files (x86)\Microsoft Visual Studio 10.0\vc
+call vcvarsall.bat x86
+popd
+echo "Automation client build complete"
+dir bin\release\api
+msbuild.exe Core.UI.Gen.sln /t:build /p:Configuration=Release
+echo "STC Build Complete"
+dir bin\release\api
+
 </command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>SET PATH=C:\Python27\;C:\Python27\Scripts\;%PATH%&#xd;
-set STC_SRC_PATH=%WORKSPACE%&#xd;
-set STC_REL_PATH=%WORKSPACE%\bin\Release&#xd;
-rd /s /q CCPApplication&#xd;
+      <command>SET PATH=C:\Python27\;C:\Python27\Scripts\;%PATH%
+set STC_SRC_PATH=%WORKSPACE%
+set STC_REL_PATH=%WORKSPACE%\bin\Release
+rd /s /q CCPApplication
 hg clone http://mercurial.cal.ci.spirentcom.com/CCPApplication/</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>SET PATH=C:\Python27\;C:\Python27\Scripts\;%PATH%&#xd;
-set STC_SRC_PATH=%WORKSPACE%&#xd;
-set STC_REL_PATH=%WORKSPACE%\bin\Release&#xd;
-cd CCPApplication&#xd;
-dir media\scripts\provmanager.js&#xd;
-echo &quot;c:\Python27\Scripts\scons.bat&quot;&#xd;
-cmd /k c:\Python27\Scripts\scons.bat&#xd;
-cd provmanager&#xd;
-echo &quot;set_version.bat %STC_MAJ_MIN_VERSION%&quot;&#xd;
+      <command>SET PATH=C:\Python27\;C:\Python27\Scripts\;%PATH%
+set STC_SRC_PATH=%WORKSPACE%
+set STC_REL_PATH=%WORKSPACE%\bin\Release
+cd CCPApplication
+dir media\scripts\provmanager.js
+echo "c:\Python27\Scripts\scons.bat"
+cmd /k c:\Python27\Scripts\scons.bat
+cd provmanager
+echo "set_version.bat %STC_MAJ_MIN_VERSION%"
 set_version.bat %STC_MAJ_MIN_VERSION%</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.33">
       <project>release_ccp_webhelp</project>
       <filter>Provisioning_WebHelp.tar.gz</filter>
-      <target></target>
-      <excludes></excludes>
+      <target/>
+      <excludes/>
       <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
@@ -198,93 +197,93 @@ import shutil
 
 
 # retrieving the current STC build number
-# pattern=&apos;STC_Build=&apos;
-branchID=&apos;6&apos;
-# fin = open(os.environ[&apos;WORKSPACE&apos;] + &quot;/stc&quot;+os.environ[&apos;STC_MAJ_MIN_VERSION&apos;]+&quot;.ver&quot;, &quot;r&quot;)
+# pattern='STC_Build='
+branchID='6'
+# fin = open(os.environ['WORKSPACE'] + "/stc"+os.environ['STC_MAJ_MIN_VERSION']+".ver", "r")
 # for line in fin.readlines():
 #      if pattern in line:      
 #          print line
-#          line = line.replace(pattern,&apos;&apos;)
+#          line = line.replace(pattern,'')
 #          buildno = line.rstrip()
 #fin.close
-stc_build_num_raw = os.environ[&apos;BLL_BUILD_NUMBER&apos;] + branchID
+stc_build_num_raw = os.environ['BLL_BUILD_NUMBER'] + branchID
 stc_build_num = stc_build_num_raw.zfill(4)
-print &quot;Build Number is &quot; + os.environ[&apos;STC_MAJ_MIN_VERSION&apos;] + &quot;.&quot; + stc_build_num
-os.environ[&apos;STC_BUILD_NUMBER&apos;] = stc_build_num
-fullnum = stc_build_num + &quot;0000&quot;
-print &quot;Full version number is &quot; +  fullnum
+print "Build Number is " + os.environ['STC_MAJ_MIN_VERSION'] + "." + stc_build_num
+os.environ['STC_BUILD_NUMBER'] = stc_build_num
+fullnum = stc_build_num + "0000"
+print "Full version number is " +  fullnum
 
 # call setver.py for STC files in CCP
-os.system(&quot;cd&quot;)
-os.chdir(&quot;CCPApplication\\provmanager\stc&quot;)
-print &quot;python ..\\..\\..\\framework\\tools\\buildUtil\\setver.py &quot; + os.environ[&apos;STC_MAJ_MIN_VERSION&apos;] + &quot; &quot; +  fullnum
-#os.system(&quot;python ..\\..\\..\\framework\\tools\\buildUtil\\setver.py os.environ[&apos;STC_MAJ_MIN_VERSION&apos;] &quot; + fullnum);
+os.system("cd")
+os.chdir("CCPApplication\\provmanager\stc")
+print "python ..\\..\\..\\framework\\tools\\buildUtil\\setver.py " + os.environ['STC_MAJ_MIN_VERSION'] + " " +  fullnum
+#os.system("python ..\\..\\..\\framework\\tools\\buildUtil\\setver.py os.environ['STC_MAJ_MIN_VERSION'] " + fullnum);
 # trying out using subprocess
 sys.stdout.flush()
-retcode = subprocess.call([&quot;Python.exe&quot;, &quot;..\\..\\..\\framework\\tools\\buildUtil\\setver.py&quot;, os.environ[&apos;STC_MAJ_MIN_VERSION&apos;], fullnum])
-print &quot;setver returned: &quot;+str(retcode)
+retcode = subprocess.call(["Python.exe", "..\\..\\..\\framework\\tools\\buildUtil\\setver.py", os.environ['STC_MAJ_MIN_VERSION'], fullnum])
+print "setver returned: "+str(retcode)
 
 # generate installer for the build
-ws = os.environ[&apos;WORKSPACE&apos;]
+ws = os.environ['WORKSPACE']
 os.chdir(ws)
-ci_installer_cmd = &quot;perl &quot; + ws + &quot;/Build_Scripts/STC_Build_Scripts/ci_packageinstaller.pl &quot; + ws +  &quot; &quot; + ws + &quot;/Installer&quot; + &quot; &quot; + os.environ[&apos;STC_MAJ_MIN_VERSION&apos;] + &quot;.&quot; + stc_build_num + &quot; PACKAGE_DMCP &quot; + ws
-ci_installer_cmd.replace(&apos;/&apos;, &apos;\\&apos;)
-print &quot;Executing &quot; + ci_installer_cmd
+ci_installer_cmd = "perl " + ws + "/Build_Scripts/STC_Build_Scripts/ci_packageinstaller.pl " + ws +  " " + ws + "/Installer" + " " + os.environ['STC_MAJ_MIN_VERSION'] + "." + stc_build_num + " PACKAGE_DMCP " + ws
+ci_installer_cmd.replace('/', '\\')
+print "Executing " + ci_installer_cmd
 sys.stdout.flush()
 os.system(ci_installer_cmd)
 
 # copy the final installer to \\martin and \\spccafs03
-ws.replace(&apos;/&apos;, &apos;\\&apos;)
-ccp_installer = ws + &quot;\\Installer\\Cloud Core Provisioning.exe&quot;
-martin_dir = &quot;\\\\martin\\archive\\pv\\TestCenter\\&quot; +  os.environ[&apos;STC_MAJ_MIN_VERSION&apos;]  + &quot;\\Engineering_Builds\\GUI_BLL\\&quot; + os.environ[&apos;STC_MAJ_MIN_VERSION&apos;] + &quot;.&quot; + stc_build_num
-fs03_dir = &quot;\\\\spccalfs03\\development\\scm\\release\\STC\\&quot; + os.environ[&apos;STC_MAJ_MIN_VERSION&apos;]  + &quot;\\&quot; + os.environ[&apos;STC_MAJ_MIN_VERSION&apos;] + &quot;.&quot; + stc_build_num
+ws.replace('/', '\\')
+ccp_installer = ws + "\\Installer\\Cloud Core Provisioning.exe"
+martin_dir = "\\\\martin\\archive\\pv\\TestCenter\\" +  os.environ['STC_MAJ_MIN_VERSION']  + "\\Engineering_Builds\\GUI_BLL\\" + os.environ['STC_MAJ_MIN_VERSION'] + "." + stc_build_num
+fs03_dir = "\\\\spccalfs03\\development\\scm\\release\\STC\\" + os.environ['STC_MAJ_MIN_VERSION']  + "\\" + os.environ['STC_MAJ_MIN_VERSION'] + "." + stc_build_num
 
 # make sure target directory exists before copying file
 if os.path.exists(martin_dir):
-        print &quot;srcdir: &quot;, martin_dir, &quot; exists&quot;
+        print "srcdir: ", martin_dir, " exists"
 else:
         try:
-            print &quot;creating: &quot;, martin_dir
+            print "creating: ", martin_dir
             sys.stdout.flush()
-            pipe = subprocess.Popen([&quot;cmd&quot;, &quot;/c&quot;, &quot;mkdir&quot;, martin_dir], stdin=subprocess.PIPE)
+            pipe = subprocess.Popen(["cmd", "/c", "mkdir", martin_dir], stdin=subprocess.PIPE)
             pipe.wait()
             pipe.stdin.close()
         except IOError, e:
-            print &quot;Unable to create directory. %s&quot; % e    
+            print "Unable to create directory. %s" % e    
    
-print &quot;Copying &quot; + ccp_installer +  &quot; to &quot; + martin_dir
+print "Copying " + ccp_installer +  " to " + martin_dir
 shutil.copy(ccp_installer, martin_dir)
 
 # make sure target directory exists before copying file
 if os.path.exists(fs03_dir):
-        print &quot;srcdir: &quot;, fs03_dir, &quot; exists&quot;
+        print "srcdir: ", fs03_dir, " exists"
 else:
         try:
-            print &quot;creating: &quot;, fs03_dir
+            print "creating: ", fs03_dir
             sys.stdout.flush()
-            pipe = subprocess.Popen([&quot;cmd&quot;, &quot;/c&quot;, &quot;mkdir&quot;, fs03_dir], stdin=subprocess.PIPE)
+            pipe = subprocess.Popen(["cmd", "/c", "mkdir", fs03_dir], stdin=subprocess.PIPE)
             pipe.wait()
             pipe.stdin.close()
         except IOError, e:
-            print &quot;Unable to create directory. %s&quot; % e
+            print "Unable to create directory. %s" % e
 
-print &quot;Copying &quot; + ccp_installer + &quot; to &quot; + fs03_dir
+print "Copying " + ccp_installer + " to " + fs03_dir
 shutil.copy(ccp_installer, fs03_dir )
 
 </command>
     </hudson.plugins.python.Python>
     <hudson.tasks.BatchFile>
-      <command>echo &quot;END&quot;&#xd;
-rem cd provmanager\stc&#xd;
-rem SET FULLNUM=0%BUILD_NUMBER%60000&#xd;
-rem if %BUILD_NUMBER% gtr 99 SET FULLNUM=%BUILD_NUMBER%30000&#xd;
-rem echo %FULLNUM%&#xd;
-rem SET FULLVER=00%BUILD_NUMBER%6&#xd;
-rem if %BUILD_NUMBER% gtr 9 SET FULLVER=0%BUILD_NUMBER%3&#xd;
-rem if %BUILD_NUMBER% gtr 99 SET FULLVER=%BUILD_NUMBER%3&#xd;
-rem echo FULLVER is %FULLVER%&#xd;
-rem python ..\..\framework\tools\buildUtil\setver.py &quot;4.20&quot; %FULLNUM%&#xd;
-rem cd %WORKSPACE%&#xd;
+      <command>echo "END"
+rem cd provmanager\stc
+rem SET FULLNUM=0%BUILD_NUMBER%60000
+rem if %BUILD_NUMBER% gtr 99 SET FULLNUM=%BUILD_NUMBER%30000
+rem echo %FULLNUM%
+rem SET FULLVER=00%BUILD_NUMBER%6
+rem if %BUILD_NUMBER% gtr 9 SET FULLVER=0%BUILD_NUMBER%3
+rem if %BUILD_NUMBER% gtr 99 SET FULLVER=%BUILD_NUMBER%3
+rem echo FULLVER is %FULLVER%
+rem python ..\..\framework\tools\buildUtil\setver.py "4.20" %FULLNUM%
+rem cd %WORKSPACE%
 rem  perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% PACKAGE_DMCP %WORKSPACE%</command>
     </hudson.tasks.BatchFile>
   </builders>

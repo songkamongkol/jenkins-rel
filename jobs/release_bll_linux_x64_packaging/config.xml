@@ -1,9 +1,8 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<project>
+<?xml version="1.0" encoding="UTF-8"?><project>
   <actions/>
-  <description>Extracts TestCenter.Linux.x64.tar.gz from bll_linux_x64 build job&lt;br&gt;&#xd;
-Runs setver.py using python script ci_run_jenkins_steps.py script&lt;br&gt;&#xd;
-Creates a new tarball&lt;br&gt;&#xd;
+  <description>Extracts TestCenter.Linux.x64.tar.gz from bll_linux_x64 build job&lt;br&gt;
+Runs setver.py using python script ci_run_jenkins_steps.py script&lt;br&gt;
+Creates a new tarball&lt;br&gt;
 Triggers integration_ftp_tarball which restructures the tarball and copies the output to Martin&lt;br&gt;</description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
@@ -21,7 +20,7 @@ Triggers integration_ftp_tarball which restructures the tarball and copies the o
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.48_rel</defaultValue>
+          <defaultValue>4.49_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -36,16 +35,16 @@ Triggers integration_ftp_tarball which restructures the tarball and copies the o
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description>major minor version TODO: get this from a file</description>
-          <defaultValue>4.48</defaultValue>
+          <defaultValue>4.49</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
-          <description></description>
+          <description/>
           <defaultValue>BAD_BUILD_NUMBER</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>SOURCE_OS</name>
-          <description></description>
+          <description/>
           <defaultValue>EL3Linux64Client</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -57,7 +56,7 @@ Triggers integration_ftp_tarball which restructures the tarball and copies the o
   <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.33">
     <configVersion>2</configVersion>
     <p4User>tableuser</p4User>
-    <p4Passwd></p4Passwd>
+    <p4Passwd/>
     <p4Port>perforce.spirentcom.com:1666</p4Port>
     <p4Client>${JOB_NAME}_${BRANCH_NAME}</p4Client>
     <projectPath>//SCM/Build_Scripts/STC_Build_Scripts/... //ws/Build_Scripts/STC_Build_Scripts/...
@@ -116,8 +115,8 @@ Triggers integration_ftp_tarball which restructures the tarball and copies the o
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.33">
       <project>release_bll_linux_x64_ci</project>
       <filter>build/il/bld_bll-el3-64-automation-client-only_x86_64/Release/bin/TestCenter.Linux.AutomationClient.x64.tar.gz</filter>
-      <target></target>
-      <excludes></excludes>
+      <target/>
+      <excludes/>
       <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
@@ -131,7 +130,7 @@ cd Spirent_TestCenter_Application_Linux_Server
 rm -f Spirent_TestCenter_Auto_Linux64Client_$STC_MAJ_MIN_VERSION.tar.gz
 tar cvf Spirent_TestCenter_Auto_Linux64Client_$STC_MAJ_MIN_VERSION.tar *
 gzip Spirent_TestCenter_Auto_Linux64Client_$STC_MAJ_MIN_VERSION.tar
-echo &quot;Finished creating Spirent_TestCenter_Auto_Linux64Client_$STC_MAJ_MIN_VERSION.tar.gz&quot;</command>
+echo "Finished creating Spirent_TestCenter_Auto_Linux64Client_$STC_MAJ_MIN_VERSION.tar.gz"</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
