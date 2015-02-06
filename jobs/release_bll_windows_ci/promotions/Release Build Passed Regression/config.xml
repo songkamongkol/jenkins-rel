@@ -11,10 +11,9 @@
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <conditions>
-    <hudson.plugins.promoted__builds.conditions.DownstreamPassCondition>
-      <jobs>release_bll_ci_join</jobs>
+    <hudson.plugins.promoted__builds.conditions.SelfPromotionCondition>
       <evenIfUnstable>false</evenIfUnstable>
-    </hudson.plugins.promoted__builds.conditions.DownstreamPassCondition>
+    </hudson.plugins.promoted__builds.conditions.SelfPromotionCondition>
     <hudson.plugins.promoted__builds.conditions.UpstreamPromotionCondition>
       <requiredPromotionNames>Release Build Passed on all OS</requiredPromotionNames>
     </hudson.plugins.promoted__builds.conditions.UpstreamPromotionCondition>
