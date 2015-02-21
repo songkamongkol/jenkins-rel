@@ -115,7 +115,7 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -332,7 +332,7 @@ mv *_CoverageReport unit_test_report&#xd;
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.5.15"/>
     <EnvInjectBuildWrapper plugin="envinject@1.90">
       <info>
-        <propertiesContent>STC_BUILD_ROOT=C:\jenkins\workspace\release_446_ui_ci</propertiesContent>
+        <propertiesContent>STC_BUILD_ROOT=C:\jenkins-rel\workspace\release_446_ui_ci</propertiesContent>
         <loadFilesFromMaster>false</loadFilesFromMaster>
       </info>
     </EnvInjectBuildWrapper>
