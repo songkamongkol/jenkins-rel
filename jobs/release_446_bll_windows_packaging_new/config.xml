@@ -125,7 +125,7 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -166,7 +166,7 @@ exit /B 0</command>
 python framework\tools\buildUtil\package.py --install TestCenter.Windows.no_version.tar.gz --directory=bin/Release&#xd;
 echo extracting STAKCommands.beta.Windows.tar.gz file from job %COPYARTIFACT_BUILD_NUMBER_UI%&#xd;
 python framework\tools\buildUtil\package.py --install STAKCommands.beta.Windows.tar.gz --directory=STAKCommands&#xd;
-xcopy  /S /I /E /Y  D:\dev\jenkins\release_446_bll_windows_packaging_new\STAKCommands\STAKCommands\*.* M:\TestCenter\%STC_MAJ_MIN_VERSION%\Engineering_Builds\GUI_BLL\%STC_MAJ_MIN_VERSION%.%BLL_BUILD_NUMBER%6\STAKCommands&#xd;
+xcopy  /S /I /E /Y  D:\jenkins-rel\release_446_bll_windows_packaging_new\STAKCommands\STAKCommands\*.* M:\TestCenter\%STC_MAJ_MIN_VERSION%\Engineering_Builds\GUI_BLL\%STC_MAJ_MIN_VERSION%.%BLL_BUILD_NUMBER%6\STAKCommands&#xd;
 </command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.33">
