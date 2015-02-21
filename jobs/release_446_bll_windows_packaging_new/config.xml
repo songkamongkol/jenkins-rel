@@ -94,7 +94,7 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
 //TestCenter/${BRANCH_NAME}/common/lib/hexViewCtrl/... //ws/common/lib/hexViewCtrl/...
 //TestCenter/${BRANCH_NAME}/content/traffic/l4l7/tools/DpgUpdate/... //ws/bin/Release/Dpg/DpgUpdate/...
 //TestCenter/${BRANCH_NAME}/common/lib/pduEditor/... //ws/common/lib/pduEditor/...
-//ISDE_China/SDE/Java/... //ws/framework/ui/EAT/...
+- //ISDE_China/SDE/Java/... //ws/framework/ui/EAT/...
 //TestCenter/${BRANCH_NAME}/framework/bll/serverManager/scripts/... //ws/framework/bll/serverManager/scripts/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
     <p4SysDrive>C:</p4SysDrive>
@@ -200,10 +200,10 @@ cd framework\ui\resultsanalysis&#xd;
 ant</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>echo Running EAT Ant build&#xd;
-c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --updateeatversion=yes&#xd;
-cd framework\ui\EAT&#xd;
-ant -f build_windows.xml&amp;&amp;ant -f build_linux.xml</command>
+      <command>rem  echo Running EAT Ant build&#xd;
+rem c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --updateeatversion=yes&#xd;
+rem cd framework\ui\EAT&#xd;
+rem ant -f build_windows.xml&amp;&amp;ant -f build_linux.xml</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
       <command>echo Running Results Reporter ant unix distribution build&#xd;
@@ -229,18 +229,18 @@ rem exit /B 0</command>
 del ResultsReporter.Unix.tar</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>echo Creating EAT.Unix.tar.gz for unix distribution&#xd;
-7z a -ttar EAT.Unix.tar %WORKSPACE%\framework\ui\EAT\Release_Linux\*&#xd;
-7z a -ttar EAT.Unix.tar %WORKSPACE%\framework\ui\EAT\Build_Linux\configuration&#xd;
-7z a -ttar EAT.Unix.tar %WORKSPACE%\framework\ui\EAT\Build_Linux\plugins&#xd;
-7z a -ttar EAT.Unix.tar %WORKSPACE%\framework\ui\EAT\Build_Linux\.eclipseproduct&#xd;
-7z a -tgzip EAT.Unix.tar.gz EAT.Unix.tar&#xd;
-del EAT.Unix.tar</command>
+      <command>rem echo Creating EAT.Unix.tar.gz for unix distribution&#xd;
+rem 7z a -ttar EAT.Unix.tar %WORKSPACE%\framework\ui\EAT\Release_Linux\*&#xd;
+rem 7z a -ttar EAT.Unix.tar %WORKSPACE%\framework\ui\EAT\Build_Linux\configuration&#xd;
+rem 7z a -ttar EAT.Unix.tar %WORKSPACE%\framework\ui\EAT\Build_Linux\plugins&#xd;
+rem 7z a -ttar EAT.Unix.tar %WORKSPACE%\framework\ui\EAT\Build_Linux\.eclipseproduct&#xd;
+rem 7z a -tgzip EAT.Unix.tar.gz EAT.Unix.tar&#xd;
+rem del EAT.Unix.tar</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
-      <artifacts>ResultsReporter.Unix.tar.gz, EAT.Unix.tar.gz, BLL_changelist*.txt, UI_changelist*.txt</artifacts>
+      <artifacts>ResultsReporter.Unix.tar.gz, BLL_changelist*.txt, UI_changelist*.txt</artifacts>
       <allowEmptyArchive>false</allowEmptyArchive>
       <onlyIfSuccessful>false</onlyIfSuccessful>
       <fingerprint>false</fingerprint>
