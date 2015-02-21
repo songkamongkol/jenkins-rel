@@ -68,8 +68,8 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02&lt;br&gt;&#xd;
       <autoRebuild>false</autoRebuild>
     </com.sonyericsson.rebuild.RebuildSettings>
   </properties>
-  <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.27">
-    <configVersion>1</configVersion>
+  <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.33">
+    <configVersion>2</configVersion>
     <p4User>tableuser</p4User>
     <p4Passwd></p4Passwd>
     <p4Port>perforce.spirentcom.com:1666</p4Port>
@@ -88,6 +88,7 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02&lt;br&gt;&#xd;
 //TestCenter/${BRANCH_NAME}/content/traffic/l4l7/tools/DpgUpdate/... //ws/bin/Release/Dpg/DpgUpdate/...
 //TestCenter/${BRANCH_NAME}/common/lib/pduEditor/... //ws/common/lib/pduEditor/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
+    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -117,7 +118,7 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02&lt;br&gt;&#xd;
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>0</firstChange>
+    <firstChange>-1</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -138,7 +139,7 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02&lt;br&gt;&#xd;
   <concurrentBuild>false</concurrentBuild>
   <customWorkspace>${JOB_NAME}</customWorkspace>
   <builders>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.30">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.33">
       <project>release_446_cts_windows_ci</project>
       <filter>bin/Release/CTS.Windows.all.tar.gz</filter>
       <target></target>
@@ -146,7 +147,7 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02&lt;br&gt;&#xd;
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.30">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.33">
       <project>release_446_webhelp</project>
       <filter>CTS_WebHelp.tar.gz</filter>
       <target></target>
@@ -155,17 +156,17 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02&lt;br&gt;&#xd;
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.BatchFile>
-      <command>rem copy n:\transfer\15th-transfer\CTS.Windows.all.tar.gz . /y
-echo extracting CTS.Windows.all.tar.gz file from job %COPYARTIFACT_BUILD_NUMBER_UI%
+      <command>rem copy n:\transfer\15th-transfer\CTS.Windows.all.tar.gz . /y&#xd;
+echo extracting CTS.Windows.all.tar.gz file from job %COPYARTIFACT_BUILD_NUMBER_UI%&#xd;
 python framework\tools\buildUtil\package.py --install CTS.Windows.all.tar.gz  --directory=bin/Release</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>cd %WORKSPACE%\bin\release
-SET DEPENDENT_JOB_NAME=integration_package_cts_windows
-rem set CI_PACKAGE_OPT which ci_run_jenkins_steps.py uses to call ci_packageinstaller.pl script now
-rem ADD --runcipackageinstaller=yes
-SET CI_PACKAGE_OPT=PACKAGE_CTS
-c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --updateilversionxml=yes
+      <command>cd %WORKSPACE%\bin\release&#xd;
+SET DEPENDENT_JOB_NAME=integration_package_cts_windows&#xd;
+rem set CI_PACKAGE_OPT which ci_run_jenkins_steps.py uses to call ci_packageinstaller.pl script now&#xd;
+rem ADD --runcipackageinstaller=yes&#xd;
+SET CI_PACKAGE_OPT=PACKAGE_CTS&#xd;
+c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --updateilversionxml=yes&#xd;
 c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --createpropfile=yes --runcimaketarballs=no --runsetver=yes --runcipackageinstaller=yes</command>
     </hudson.tasks.BatchFile>
   </builders>
@@ -175,9 +176,9 @@ c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --c
       <failBuildOnError>true</failBuildOnError>
       <parsingRulesPath>/opt/jenkins/jenkins-root/log_parse_rule</parsingRulesPath>
     </hudson.plugins.logparser.LogParserPublisher>
-    <hudson.plugins.claim.ClaimPublisher plugin="claim@2.3"/>
+    <hudson.plugins.claim.ClaimPublisher plugin="claim@2.5"/>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.5.8"/>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.5.15"/>
   </buildWrappers>
 </project>
