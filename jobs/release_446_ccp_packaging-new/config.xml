@@ -41,8 +41,8 @@
       <autoRebuild>false</autoRebuild>
     </com.sonyericsson.rebuild.RebuildSettings>
   </properties>
-  <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.27">
-    <configVersion>1</configVersion>
+  <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.33">
+    <configVersion>2</configVersion>
     <p4User>tableuser</p4User>
     <p4Passwd></p4Passwd>
     <p4Port>perforce.spirentcom.com:1666</p4Port>
@@ -76,6 +76,7 @@
 +//TestCenter/${BRANCH_NAME}/framework/ui/automation/... //ws/framework/ui/automation/...
 +//TestCenter/${BRANCH_NAME}/bin/Release/ProvisionManagerHelp/WebHelp/...  //ws/bin/Release/ProvisionManagerHelp/WebHelp/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
+    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -105,7 +106,7 @@
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>0</firstChange>
+    <firstChange>-1</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -125,7 +126,7 @@
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
-    <EnvInjectBuilder plugin="envinject@1.89">
+    <EnvInjectBuilder plugin="envinject@1.90">
       <info>
         <propertiesContent>ISCMD=D:\PROGRA~1\InstallShield\2011SA~1\System\iscmdbld.exe</propertiesContent>
       </info>
@@ -134,42 +135,42 @@
       <command>genSln.bat</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>SET PATH=C:\Python27\;C:\Python27\Scripts\;%PATH%
+      <command>SET PATH=C:\Python27\;C:\Python27\Scripts\;%PATH%&#xd;
 scons -j 12 -f SConstruct.bll debug=0 target=bll-win32-coreonly</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>SET PATH=C:\Python27\;C:\Python27\Scripts\;%PATH%
-SET STC_BUILD_ROOT=D:\dev\jenkins\workspace\release_446_ccp_packaging-new
+      <command>SET PATH=C:\Python27\;C:\Python27\Scripts\;%PATH%&#xd;
+SET STC_BUILD_ROOT=D:\dev\jenkins\workspace\release_446_ccp_packaging-new&#xd;
 scons -j 12 -f SConstruct.AutomationClient.Only.Gen.bll</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>rem devenv Core.UI.Gen.sln /build Release
-pushd D:\Program Files (x86)\Microsoft Visual Studio 10.0\vc
-call vcvarsall.bat x86
-popd
-msbuild.exe Core.UI.Gen.sln /t:build /p:Configuration=Release
+      <command>rem devenv Core.UI.Gen.sln /build Release&#xd;
+pushd D:\Program Files (x86)\Microsoft Visual Studio 10.0\vc&#xd;
+call vcvarsall.bat x86&#xd;
+popd&#xd;
+msbuild.exe Core.UI.Gen.sln /t:build /p:Configuration=Release&#xd;
 </command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>SET PATH=C:\Python27\;C:\Python27\Scripts\;%PATH%
-set STC_SRC_PATH=%WORKSPACE%
-set STC_REL_PATH=%WORKSPACE%\bin\Release
-rd /s /q CCPApplication
+      <command>SET PATH=C:\Python27\;C:\Python27\Scripts\;%PATH%&#xd;
+set STC_SRC_PATH=%WORKSPACE%&#xd;
+set STC_REL_PATH=%WORKSPACE%\bin\Release&#xd;
+rd /s /q CCPApplication&#xd;
 hg clone http://mercurial.cal.ci.spirentcom.com/CCPApplication/</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>SET PATH=C:\Python27\;C:\Python27\Scripts\;%PATH%
-set STC_SRC_PATH=%WORKSPACE%
-set STC_REL_PATH=%WORKSPACE%\bin\Release
-cd CCPApplication
-dir media\scripts\provmanager.js
-echo &quot;c:\Python27\Scripts\scons.bat&quot;
-cmd /k c:\Python27\Scripts\scons.bat
-cd provmanager
-echo &quot;set_version.bat %STC_MAJ_MIN_VERSION%&quot;
+      <command>SET PATH=C:\Python27\;C:\Python27\Scripts\;%PATH%&#xd;
+set STC_SRC_PATH=%WORKSPACE%&#xd;
+set STC_REL_PATH=%WORKSPACE%\bin\Release&#xd;
+cd CCPApplication&#xd;
+dir media\scripts\provmanager.js&#xd;
+echo &quot;c:\Python27\Scripts\scons.bat&quot;&#xd;
+cmd /k c:\Python27\Scripts\scons.bat&#xd;
+cd provmanager&#xd;
+echo &quot;set_version.bat %STC_MAJ_MIN_VERSION%&quot;&#xd;
 set_version.bat %STC_MAJ_MIN_VERSION%</command>
     </hudson.tasks.BatchFile>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.30">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.33">
       <project>release_446_ccp_webhelp</project>
       <filter>Provisioning_WebHelp.tar.gz</filter>
       <target></target>
@@ -262,17 +263,17 @@ shutil.copy(ccp_installer, fs03_dir )
 </command>
     </hudson.plugins.python.Python>
     <hudson.tasks.BatchFile>
-      <command>echo &quot;END&quot;
-rem cd provmanager\stc
-rem SET FULLNUM=0%BUILD_NUMBER%60000
-rem if %BUILD_NUMBER% gtr 99 SET FULLNUM=%BUILD_NUMBER%30000
-rem echo %FULLNUM%
-rem SET FULLVER=00%BUILD_NUMBER%6
-rem if %BUILD_NUMBER% gtr 9 SET FULLVER=0%BUILD_NUMBER%3
-rem if %BUILD_NUMBER% gtr 99 SET FULLVER=%BUILD_NUMBER%3
-rem echo FULLVER is %FULLVER%
-rem python ..\..\framework\tools\buildUtil\setver.py &quot;4.20&quot; %FULLNUM%
-rem cd %WORKSPACE%
+      <command>echo &quot;END&quot;&#xd;
+rem cd provmanager\stc&#xd;
+rem SET FULLNUM=0%BUILD_NUMBER%60000&#xd;
+rem if %BUILD_NUMBER% gtr 99 SET FULLNUM=%BUILD_NUMBER%30000&#xd;
+rem echo %FULLNUM%&#xd;
+rem SET FULLVER=00%BUILD_NUMBER%6&#xd;
+rem if %BUILD_NUMBER% gtr 9 SET FULLVER=0%BUILD_NUMBER%3&#xd;
+rem if %BUILD_NUMBER% gtr 99 SET FULLVER=%BUILD_NUMBER%3&#xd;
+rem echo FULLVER is %FULLVER%&#xd;
+rem python ..\..\framework\tools\buildUtil\setver.py &quot;4.20&quot; %FULLNUM%&#xd;
+rem cd %WORKSPACE%&#xd;
 rem  perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% PACKAGE_DMCP %WORKSPACE%</command>
     </hudson.tasks.BatchFile>
   </builders>
@@ -282,14 +283,14 @@ rem  perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WO
       <failBuildOnError>true</failBuildOnError>
       <parsingRulesPath>/opt/jenkins/jenkins-root/log_parse_rule</parsingRulesPath>
     </hudson.plugins.logparser.LogParserPublisher>
-    <hudson.plugins.claim.ClaimPublisher plugin="claim@2.3"/>
-    <hudson.tasks.Mailer plugin="mailer@1.8">
+    <hudson.plugins.claim.ClaimPublisher plugin="claim@2.5"/>
+    <hudson.tasks.Mailer plugin="mailer@1.12">
       <recipients>somboon.ongkamongkol@spirent.com</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.5.8"/>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.5.15"/>
   </buildWrappers>
 </project>
