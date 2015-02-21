@@ -332,7 +332,7 @@ mv *_CoverageReport unit_test_report&#xd;
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.5.15"/>
     <EnvInjectBuildWrapper plugin="envinject@1.90">
       <info>
-        <propertiesContent>STC_BUILD_ROOT=c:\jenkins-rel\workspace\release_446_ui_ci</propertiesContent>
+        <propertiesContent>STC_BUILD_ROOT=C:\jenkins\workspace\release_446_ui_ci</propertiesContent>
         <loadFilesFromMaster>false</loadFilesFromMaster>
       </info>
     </EnvInjectBuildWrapper>
