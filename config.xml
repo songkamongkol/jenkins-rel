@@ -752,6 +752,18 @@
       </nodeProperties>
       <userId>mpandey</userId>
     </slave>
+    <slave>
+      <name>bllbuild-win-02</name>
+      <description>Windows BLL build machine (Windows 7)</description>
+      <remoteFS>c:\jenkins-rel</remoteFS>
+      <numExecutors>1</numExecutors>
+      <mode>NORMAL</mode>
+      <retentionStrategy class="hudson.slaves.RetentionStrategy$Always"/>
+      <launcher class="hudson.slaves.JNLPLauncher"/>
+      <label>windows_x86</label>
+      <nodeProperties/>
+      <userId>mpandey</userId>
+    </slave>
   </slaves>
   <quietPeriod>5</quietPeriod>
   <scmCheckoutRetryCount>0</scmCheckoutRetryCount>
