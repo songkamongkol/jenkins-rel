@@ -115,7 +115,7 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -182,6 +182,7 @@ python framework\tools\buildUtil\package.py --install STAKCommands.beta.Windows.
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
       <command>pushd C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC&#xd;
+set path=%path:&quot;=%&#xd;
 call vcvarsall.bat x86&#xd;
 popd&#xd;
 msbuild.exe TestCenter.UI.Gen.sln /t:build /p:Configuration=Release</command>
