@@ -771,7 +771,15 @@
       <numExecutors>1</numExecutors>
       <mode>NORMAL</mode>
       <retentionStrategy class="hudson.slaves.RetentionStrategy$Always"/>
-      <launcher class="hudson.slaves.JNLPLauncher"/>
+      <launcher class="hudson.os.windows.ManagedWindowsServiceLauncher" plugin="windows-slaves@1.0">
+        <userName>spirent</userName>
+        <password>mvZUSoz7R1ibODLqzinyPRvrWDGSZdkSX0wmJWXwKaE=</password>
+        <account class="hudson.os.windows.ManagedWindowsServiceAccount$AnotherUser">
+          <userName>bllbuild-win-04\spirent</userName>
+          <password>mvZUSoz7R1ibODLqzinyPRvrWDGSZdkSX0wmJWXwKaE=</password>
+        </account>
+        <host>bllbuild-win-04.cal.ci.spirentcom.com</host>
+      </launcher>
       <label>windows_x86</label>
       <nodeProperties/>
       <userId>mpandey</userId>
