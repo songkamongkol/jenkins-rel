@@ -115,7 +115,7 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -208,7 +208,7 @@ python ..\..\framework\tools\buildUtil\setver.py --package=TestCenter.Windows.ta
     <hudson.tasks.BatchFile>
       <command>if %BUILD_RUN_UNITTEST% == true (&#xd;
 cd bin\Release&#xd;
-python ..\..\framework\tools\testRunner\testRunner.py --runInParallel=8 --ui --archive&#xd;
+python ..\..\framework\tools\testRunner\testRunner.py --runInParallel=8 --ui --uicoverage --archive&#xd;
 rmdir /Q /S unit_test_report&#xd;
 mkdir unit_test_report&#xd;
 copy *.html unit_test_report&#xd;
