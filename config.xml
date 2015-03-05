@@ -519,7 +519,15 @@
       <numExecutors>1</numExecutors>
       <mode>NORMAL</mode>
       <retentionStrategy class="hudson.slaves.RetentionStrategy$Always"/>
-      <launcher class="hudson.slaves.JNLPLauncher"/>
+      <launcher class="hudson.os.windows.ManagedWindowsServiceLauncher" plugin="windows-slaves@1.0">
+        <userName>spirent</userName>
+        <password>mvZUSoz7R1ibODLqzinyPRvrWDGSZdkSX0wmJWXwKaE=</password>
+        <account class="hudson.os.windows.ManagedWindowsServiceAccount$AnotherUser">
+          <userName>uibldwin-03\spirent</userName>
+          <password>mvZUSoz7R1ibODLqzinyPRvrWDGSZdkSX0wmJWXwKaE=</password>
+        </account>
+        <host>uibldwin-03.cal.ci.spirentcom.com</host>
+      </launcher>
       <label></label>
       <nodeProperties/>
       <userId>somboon</userId>
