@@ -118,7 +118,7 @@ Archive il_virtual_*.tar&lt;br&gt;&#xd;
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -177,6 +177,7 @@ p4 info
 
 
 $WORKSPACE/build/il/scripts/phxbld -j32 appliance_yocto_tardis3
+$WORKSPACE/build/il/scripts/phxbld -j32 yocto_lxc_ose
 
 sudo rm -rf $WORKSPACE/build/il/bld_*
 chmod a+r $WORKSPACE/build/il/packages/rawimg/*.ova</command>
