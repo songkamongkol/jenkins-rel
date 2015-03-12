@@ -178,7 +178,7 @@ perl %WORKSPACE%\Scripts\ci_update_database.pl ALL %STC_MAJ_MIN_VERSION% %FULLVE
 perl %WORKSPACE%\Scripts\ci_update_database_changelist.pl STC %STC_MAJ_MIN_VERSION% %FULLVER%&#xd;
 &#xd;
 python %WORKSPACE%\Scripts\changelist_info\update_database_with_changelist.py -v %STC_MAJ_MIN_VERSION% -b %FULLVER%&#xd;
-</command>
+exit \B 1</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
       <command>REM --- Tag file handling for SmartTest&#xd;
