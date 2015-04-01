@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>Copy build output raw files to \\filer.caw.com\home\qabuild\TestCenter\2.00\engineering_builds\GUI_BLL as per request from Nicolas&#xd;
-&#xd;
+  <description>Copy build output raw files to \\filer.caw.com\home\qabuild\TestCenter\2.00\engineering_builds\GUI_BLL as per request from Nicolas
+
 NOTE: This job must be setup to run on the same machine as the Windows </description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
