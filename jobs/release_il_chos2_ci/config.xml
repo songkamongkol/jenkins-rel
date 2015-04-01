@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>CI IL Build job for chos2:&lt;br&gt;
-$WORKSPACE/build/il/scripts/phxbld -j8 chos2_yocto&lt;br&gt;
-$WORKSPACE/build/il/scripts/phxbld -j8 controller3_yocto_yocto&lt;br&gt;
-$WORKSPACE/build/il/scripts/phxbld idltarball&lt;br&gt;
-Archive il_chos2_*.tar&lt;br&gt;
+  <description>CI IL Build job for chos2:&lt;br&gt;&#xd;
+$WORKSPACE/build/il/scripts/phxbld -j8 chos2_yocto&lt;br&gt;&#xd;
+$WORKSPACE/build/il/scripts/phxbld -j8 controller3_yocto_yocto&lt;br&gt;&#xd;
+$WORKSPACE/build/il/scripts/phxbld idltarball&lt;br&gt;&#xd;
+Archive il_chos2_*.tar&lt;br&gt;&#xd;
 Wait 10 minutes&lt;br&gt;</description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
@@ -52,6 +52,9 @@ Wait 10 minutes&lt;br&gt;</description>
         <string>Release IL Build Passed on all platforms</string>
       </activeProcessNames>
     </hudson.plugins.promoted__builds.JobPropertyImpl>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.22">
+      <autoRebuild>false</autoRebuild>
+    </com.sonyericsson.rebuild.RebuildSettings>
   </properties>
   <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.33">
     <configVersion>2</configVersion>
@@ -77,7 +80,6 @@ Wait 10 minutes&lt;br&gt;</description>
 +//TestCenter/${BRANCH_NAME}/framework/bll/unittestdrv/... //ws/framework/bll/unittestdrv/...
 +//TestCenter/${BRANCH_NAME}/framework/bll/vendor/... //ws/framework/bll/vendor/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -184,11 +186,10 @@ python $HOME/jenkins/build_cleanup.py --n=50 --file=/mnt/builds/jenkins/il_chos2
     <hudson.plugins.logparser.LogParserPublisher plugin="log-parser@1.0.8">
       <unstableOnWarning>false</unstableOnWarning>
       <failBuildOnError>true</failBuildOnError>
-      <parsingRulesPath>/opt/jenkins/jenkins-root/log_parse_rule</parsingRulesPath>
+      <parsingRulesPath>/var/lib/jenkins/log_parse_rule</parsingRulesPath>
     </hudson.plugins.logparser.LogParserPublisher>
     <hudson.tasks.Fingerprinter>
       <targets>*_changelist_*.txt</targets>
-      <recordBuildArtifacts>false</recordBuildArtifacts>
     </hudson.tasks.Fingerprinter>
     <hudson.plugins.claim.ClaimPublisher plugin="claim@2.5"/>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.39">
@@ -240,7 +241,6 @@ cp -r $WORKSPACE/build/il/packages/idltar $STORAGE_DIR
       <scriptOnlyIfSuccess>true</scriptOnlyIfSuccess>
       <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
       <markBuildUnstable>false</markBuildUnstable>
-      <executeOn>BOTH</executeOn>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
   </publishers>
   <buildWrappers>
