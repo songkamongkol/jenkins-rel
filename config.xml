@@ -4,6 +4,7 @@
     <string>hudson.diagnosis.TooManyJobsButNoView</string>
     <string>OldData</string>
     <string>jenkins.security.s2m.MasterKillSwitchWarning</string>
+    <string>hudson.node_monitors.MonitorMarkedNodeOffline</string>
   </disabledAdministrativeMonitors>
   <version>1.594</version>
   <numExecutors>2</numExecutors>
