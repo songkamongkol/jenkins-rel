@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <hudson.plugins.perforce.PerforceSCM_-PerforceSCMDescriptor plugin="perforce@1.3.33">
-  <generation>7</generation>
+  <generation>58</generation>
   <p4ClientPattern>.*</p4ClientPattern>
   <p4ReadlineTimeout>0</p4ReadlineTimeout>
   <passwordExposeDisabled>false</passwordExposeDisabled>
