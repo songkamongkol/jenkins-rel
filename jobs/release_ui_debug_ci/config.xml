@@ -47,7 +47,7 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description>major minor version TODO: get this from a file</description>
-          <defaultValue>4.50</defaultValue>
+          <defaultValue>4.51</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BUILD_LABEL</name>

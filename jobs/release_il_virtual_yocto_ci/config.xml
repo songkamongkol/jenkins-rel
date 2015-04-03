@@ -50,7 +50,7 @@ Archive il_virtual_*.tar&lt;br&gt;&#xd;
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description></description>
-          <defaultValue>4.50</defaultValue>
+          <defaultValue>4.51</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
