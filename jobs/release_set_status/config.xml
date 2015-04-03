@@ -33,7 +33,7 @@ example: &quot;38&quot; &quot;FreeBSD&quot; &quot;integration_ftp_tarball&quot; 
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description></description>
-          <defaultValue>4.50_rel</defaultValue>
+          <defaultValue>4.51_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>

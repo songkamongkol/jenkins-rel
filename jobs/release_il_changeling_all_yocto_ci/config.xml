@@ -24,7 +24,7 @@ Archive il_changeling_*.tar&lt;br&gt;&#xd;
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.50_rel</defaultValue>
+          <defaultValue>4.51_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>

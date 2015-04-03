@@ -22,7 +22,7 @@ Requires L drive to be mapped to \\filer\home\qabuild&lt;br&gt;</description>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.50_rel</defaultValue>
+          <defaultValue>4.51_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
