@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>IL Build job for centralboot image targets:&lt;br&gt;
-target=centralboot packaging=1&lt;br&gt;
-Copies artfacts from ci jobs: il_changeling_all, il_chos2, il_virtual, il_vtc, il_testmodule_contents&lt;br&gt;
-Then runs Centralboot to generate centralboot image and run reversion script to update the version info.&lt;br&gt;
+  <description>IL Build job for centralboot image targets:&lt;br&gt;&#xd;
+target=centralboot packaging=1&lt;br&gt;&#xd;
+Copies artfacts from ci jobs: il_changeling_all, il_chos2, il_virtual, il_vtc, il_testmodule_contents&lt;br&gt;&#xd;
+Then runs Centralboot to generate centralboot image and run reversion script to update the version info.&lt;br&gt;&#xd;
 </description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
@@ -75,7 +75,6 @@ Then runs Centralboot to generate centralboot image and run reversion script to 
 +//TestCenter/${BRANCH_NAME}/framework/bll/vendor/... //ws/framework/bll/vendor/...
 //hypervisor/mainline/amara/ChassisImage/...  //ws/ChassisImage/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -105,7 +104,7 @@ Then runs Centralboot to generate centralboot image and run reversion script to 
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -351,7 +350,12 @@ rm -f $WORKSPACE/tmos-*.zip</command>
 </command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command>echo &quot;Creating controller3 fsimg file to be use for Amara recovery USB disk ...&quot;
+      <command>echo &quot;Creating place holder &apos;Spirent TestCenter Application.exe&apos;  file ...&quot;
+mkdir -p $WORKSPACE/build/stc/setup
+echo testcenter &gt; $WORKSPACE/build/stc/setup/Spirent\ TestCenter\ Application.exe
+echo ${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}6 &gt; $WORKSPACE/build/stc/setup/version
+
+echo &quot;Creating controller3 fsimg file to be use for Amara recovery USB disk ...&quot;
 ln -s $WORKSPACE/ChassisImage/chassis.img.gz $WORKSPACE/build/il/packages/rawimg/chassis.img.gz
 # sudo $WORKSPACE/build/il/scripts/phxbld -j32 c3_yocto
 sudo $WORKSPACE/build/il/scripts/phxbld -j0 amara_yocto</command>
