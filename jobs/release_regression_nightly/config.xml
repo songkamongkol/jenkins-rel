@@ -1,7 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<project>
+<?xml version="1.0" encoding="UTF-8"?><project>
   <actions/>
-  <description></description>
+  <description/>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
     <numToKeep>50</numToKeep>
@@ -19,7 +18,7 @@
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.51_rel</defaultValue>
+          <defaultValue>4.52_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>INSTALL_DIR</name>
@@ -38,8 +37,8 @@
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>EMAIL_DEV</name>
-          <description></description>
-          <defaultValue></defaultValue>
+          <description/>
+          <defaultValue/>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -47,13 +46,13 @@
   <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.33">
     <configVersion>2</configVersion>
     <p4User>tableuser</p4User>
-    <p4Passwd></p4Passwd>
+    <p4Passwd/>
     <p4Port>perforceproxy.cal.ci.spirentcom.com:1999</p4Port>
     <p4Client>${JOB_NAME}</p4Client>
     <projectPath>//TestCenter/${BRANCH_NAME}/framework/tools/buildUtil/... //ws/framework/tools/buildUtil/...
 //TestCenter/${BRANCH_NAME}/regression/... //ws/regression/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner></clientOwner>
+    <clientOwner/>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -107,15 +106,15 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>del UI_changelist*.txt&#xd;
-del BLL_Linux_changelist_*.txt&#xd;
-del il_qemu_changelist_*.txt&#xd;
+      <command>del UI_changelist*.txt
+del BLL_Linux_changelist_*.txt
+del il_qemu_changelist_*.txt
 exit /B 0</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.33">
       <project>release_bll_windows_ci</project>
       <filter>bin/Release/TestCenter.Windows.bll.tar.gz, bll_idl_crc.txt</filter>
-      <target></target>
+      <target/>
       <selector class="hudson.plugins.copyartifact.PermalinkBuildSelector">
         <id>lastBuild</id>
       </selector>
@@ -125,7 +124,7 @@ exit /B 0</command>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.33">
       <project>release_bll_windows_ci</project>
       <filter>bin/Release/STAKCommands.beta.Windows.tar.gz</filter>
-      <target></target>
+      <target/>
       <selector class="hudson.plugins.copyartifact.PermalinkBuildSelector">
         <id>lastBuild</id>
       </selector>
@@ -135,7 +134,7 @@ exit /B 0</command>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.33">
       <project>release_il_qemu_ci</project>
       <filter>*il_qemu*changelist_*.txt</filter>
-      <target></target>
+      <target/>
       <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
@@ -143,7 +142,7 @@ exit /B 0</command>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.33">
       <project>release_ui_ci</project>
       <filter>UI_changelist_*.txt</filter>
-      <target></target>
+      <target/>
       <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
@@ -151,7 +150,7 @@ exit /B 0</command>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.33">
       <project>release_bll_linux_ci</project>
       <filter>BLL_Linux_changelist*.txt</filter>
-      <target></target>
+      <target/>
       <selector class="hudson.plugins.copyartifact.PermalinkBuildSelector">
         <id>lastSuccessfulBuild</id>
       </selector>
@@ -159,28 +158,28 @@ exit /B 0</command>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.BatchFile>
-      <command>rmdir /q /s regression\il_img&#xd;
-mkdir regression\il_img\&#xd;
-copy \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_qemu-4.44_rel\build-latest\* regression\il_img&#xd;
-&#xd;
-python regression\jenkins\compare_crc.py --first bll_idl_crc.txt --second regression\il_img\il_idl_crc.txt&#xd;
+      <command>rmdir /q /s regression\il_img
+mkdir regression\il_img\
+copy \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_qemu-4.44_rel\build-latest\* regression\il_img
+
+python regression\jenkins\compare_crc.py --first bll_idl_crc.txt --second regression\il_img\il_idl_crc.txt
 </command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>python regression/stcInstall.py --stc-install-dir=&quot;%INSTALL_DIR%&quot; --stc-package=TestCenter.Windows.bll.tar.gz --chassis=qmanager.cal.ci.spirentcom.com --fw-image-dir=regression\il_img --qm-uid %JOB_NAME% --stc-res-package=STAKCommands.beta.Windows.tar.gz</command>
+      <command>python regression/stcInstall.py --stc-install-dir="%INSTALL_DIR%" --stc-package=TestCenter.Windows.bll.tar.gz --chassis=qmanager.cal.ci.spirentcom.com --fw-image-dir=regression\il_img --qm-uid %JOB_NAME% --stc-res-package=STAKCommands.beta.Windows.tar.gz</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>tclsh regression\util\unittest\all.tcl&#xd;
-&#xd;
-REM python regression/killProcess.py --keywords &quot;equipServer tclsh&quot;&#xd;
-&#xd;
-python regression/killProcess.py --keywords &quot;equipServer tclsh TestCenterSession tshark&quot;&#xd;
-&#xd;
-&#xd;
-python regression/run.py --vm-user-id=%JOB_NAME% --stc-pkg-dir=&apos;%INSTALL_DIR%&apos; -n %NUM_EXECUTOR% -m &apos;%FILTER%&apos; --archive-tmpdir --keep-all-tmpdir --keep-bad-vm --basetemp=c:/pytest_tmp --maxfail=4 --vm-desc=%BUILD_TAG% --vm-server=&apos;http://qmanager.cal.ci.spirentcom.com:8080&apos; --timeout 1800&#xd;
-&#xd;
-python regression/killProcess.py --keywords &quot;equipServer tclsh TestCenterSession tshark&quot;&#xd;
-&#xd;
+      <command>tclsh regression\util\unittest\all.tcl
+
+REM python regression/killProcess.py --keywords "equipServer tclsh"
+
+python regression/killProcess.py --keywords "equipServer tclsh TestCenterSession tshark"
+
+
+python regression/run.py --vm-user-id=%JOB_NAME% --stc-pkg-dir='%INSTALL_DIR%' -n %NUM_EXECUTOR% -m '%FILTER%' --archive-tmpdir --keep-all-tmpdir --keep-bad-vm --basetemp=c:/pytest_tmp --maxfail=4 --vm-desc=%BUILD_TAG% --vm-server='http://qmanager.cal.ci.spirentcom.com:8080' --timeout 1800
+
+python regression/killProcess.py --keywords "equipServer tclsh TestCenterSession tshark"
+
 exit /B 0</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
@@ -222,17 +221,17 @@ exit /B 0</command>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
           <email>
-            <recipientList></recipientList>
+            <recipientList/>
             <subject>$PROJECT_DEFAULT_SUBJECT</subject>
             <body>$PROJECT_DEFAULT_CONTENT</body>
             <recipientProviders>
               <hudson.plugins.emailext.plugins.recipients.DevelopersRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern></attachmentsPattern>
+            <attachmentsPattern/>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
-            <replyTo></replyTo>
+            <replyTo/>
             <contentType>project</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.FailureTrigger>
@@ -240,11 +239,11 @@ exit /B 0</command>
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern></attachmentsPattern>
-      <presendScript></presendScript>
+      <attachmentsPattern/>
+      <presendScript/>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
-      <replyTo></replyTo>
+      <replyTo/>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
