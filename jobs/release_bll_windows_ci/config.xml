@@ -1,7 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<project>
+<?xml version="1.0" encoding="UTF-8"?><project>
   <actions/>
-  <description></description>
+  <description/>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
     <numToKeep>20</numToKeep>
@@ -18,7 +17,7 @@
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.51_rel</defaultValue>
+          <defaultValue>4.52_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -53,8 +52,8 @@
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
-          <description></description>
-          <defaultValue>4.51</defaultValue>
+          <description/>
+          <defaultValue>4.52</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -71,7 +70,7 @@
   <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.33">
     <configVersion>2</configVersion>
     <p4User>tableuser</p4User>
-    <p4Passwd></p4Passwd>
+    <p4Passwd/>
     <p4Port>perforceproxy.cal.ci.spirentcom.com:1999</p4Port>
     <p4Client>${JOB_NAME}_${BRANCH_NAME}</p4Client>
     <projectPath>//TestCenter/${BRANCH_NAME}/... //ws/...
@@ -149,19 +148,19 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>del BLL_changelist_*.txt&#xd;
+      <command>del BLL_changelist_*.txt
 echo %P4_CHANGELIST% %JOB_NAME% %BUILD_NUMBER% &gt; BLL_changelist_%P4_CHANGELIST%.txt</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>echo P4CHANGESTART %P4_CHANGELIST% P4CHANGEEND&#xd;
-rd /s /q bin\Release\STAKCommands&#xd;
+      <command>echo P4CHANGESTART %P4_CHANGELIST% P4CHANGEEND
+rd /s /q bin\Release\STAKCommands
 genSln.bat</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>if &quot;%RELEASE_BUILD%&quot; == &quot;true&quot; (&#xd;
-attrib -r framework\bll\core\include\licensing\ControlledReleaseCheck.h&#xd;
-copy framework\bll\core\include\licensing\ga_release\ControlledReleaseCheck.h framework\bll\core\include\licensing\ControlledReleaseCheck.h /y&#xd;
-&#xd;
+      <command>if "%RELEASE_BUILD%" == "true" (
+attrib -r framework\bll\core\include\licensing\ControlledReleaseCheck.h
+copy framework\bll\core\include\licensing\ga_release\ControlledReleaseCheck.h framework\bll\core\include\licensing\ControlledReleaseCheck.h /y
+
 )</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.python.Python plugin="python@1.2">
@@ -174,99 +173,99 @@ import glob
 import shutil
 import re
 
-stc_maj_min_ver=os.environ[&apos;STC_MAJ_MIN_VERSION&apos;]
-print &quot;\nIN:_run_update_ilversion_xml&quot;
-ilversion_xml_path = os.path.join(os.environ[&apos;WORKSPACE&apos;], &apos;framework&apos;, &apos;bll&apos;, &apos;core&apos;, &apos;install&apos;, &apos;release&apos;, &apos;ILVersion.xml&apos;)
-tmpfile = ilversion_xml_path + &quot;.new&quot;
-print &quot;ILVerson.xml path: &quot;, ilversion_xml_path
+stc_maj_min_ver=os.environ['STC_MAJ_MIN_VERSION']
+print "\nIN:_run_update_ilversion_xml"
+ilversion_xml_path = os.path.join(os.environ['WORKSPACE'], 'framework', 'bll', 'core', 'install', 'release', 'ILVersion.xml')
+tmpfile = ilversion_xml_path + ".new"
+print "ILVerson.xml path: ", ilversion_xml_path
 
-ilbuildnumber = &apos;0000&apos;
+ilbuildnumber = '0000'
 
-f1 = open(ilversion_xml_path, &apos;r&apos;) 
-f2 = open(&apos;yourBigFile.txt.tmp&apos;, &apos;w&apos;) 
+f1 = open(ilversion_xml_path, 'r') 
+f2 = open('yourBigFile.txt.tmp', 'w') 
 for line in f1.readlines(): 
-	match = re.search( &apos;StcSystem Version=&apos; , line )
+	match = re.search( 'StcSystem Version=' , line )
 	if match : 
-	    line = &apos;&lt;StcSystem Version=&quot;&apos; + stc_maj_min_ver + &apos;&quot;&gt;\n&apos;
+	    line = '&lt;StcSystem Version="' + stc_maj_min_ver + '"&gt;\n'
 
-	match = re.search( &apos;TestModule Id=&apos; , line )
+	match = re.search( 'TestModule Id=' , line )
 	if match : 
-	        line = &apos;&lt;TestModule Id=&quot;Firmware&quot; Version=\&quot;&apos; + stc_maj_min_ver + &apos;.&apos; + ilbuildnumber + &apos;&quot;&apos; + &apos; CheckExactVersion=&quot;true&quot;/&gt;\n&apos;
+	        line = '&lt;TestModule Id="Firmware" Version=\"' + stc_maj_min_ver + '.' + ilbuildnumber + '"' + ' CheckExactVersion="true"/&gt;\n'
 	
-	match = re.search( &apos;TestPackage Id=&quot;stc&quot;&apos; , line )
+	match = re.search( 'TestPackage Id="stc"' , line )
 	if match : 
-	        line = &apos;&lt;TestPackage Id=&quot;stc&quot; Version=&quot;&apos; + stc_maj_min_ver + &apos;.&apos; + ilbuildnumber + &apos;&quot;&apos; + &apos; CheckExactVersion=&quot;true&quot;/&gt;\n&apos;
+	        line = '&lt;TestPackage Id="stc" Version="' + stc_maj_min_ver + '.' + ilbuildnumber + '"' + ' CheckExactVersion="true"/&gt;\n'
 	
-	match = re.search( &apos;TestPackage Id=&quot;l2l3&quot;&apos; , line )
+	match = re.search( 'TestPackage Id="l2l3"' , line )
 	if match : 
-	        line = &apos;&lt;TestPackage Id=&quot;l2l3&quot; Version=&quot;&apos; + stc_maj_min_ver + &apos;.&apos; + ilbuildnumber + &apos;&quot;&apos; + &apos; CheckExactVersion=&quot;true&quot;/&gt;\n&apos;
+	        line = '&lt;TestPackage Id="l2l3" Version="' + stc_maj_min_ver + '.' + ilbuildnumber + '"' + ' CheckExactVersion="true"/&gt;\n'
 	f2.write(line) 
 
 f1.close() 
 f2.close() 
 
-if os.path.exists(&quot;ILVersion.old&quot;):
+if os.path.exists("ILVersion.old"):
 	sys.stdout.flush()
-	pipe = subprocess.Popen([&quot;cmd&quot;, &quot;/c&quot;, &quot;attrib&quot;,  &quot;-r&quot;, &quot;ILVersion.old&quot;], stdout=subprocess.PIPE)
+	pipe = subprocess.Popen(["cmd", "/c", "attrib",  "-r", "ILVersion.old"], stdout=subprocess.PIPE)
 	pipe.wait()
 	attrib_output = pipe.stdout.read()
-	print &quot;attrib output: &quot; + attrib_output
-	os.remove(&apos;ILVersion.old&apos;)       
+	print "attrib output: " + attrib_output
+	os.remove('ILVersion.old')       
 	
-os.rename(ilversion_xml_path, &quot;ILVersion.old&quot;)
-os.rename(&quot;yourBigFile.txt.tmp&quot;, ilversion_xml_path) 
-print &quot;_run_update_ilversion_xml: complete&quot;</command>
+os.rename(ilversion_xml_path, "ILVersion.old")
+os.rename("yourBigFile.txt.tmp", ilversion_xml_path) 
+print "_run_update_ilversion_xml: complete"</command>
     </hudson.plugins.python.Python>
     <hudson.tasks.BatchFile>
-      <command>rem devenv /build Release Framework.BLL.Gen.sln&#xd;
-rem devenv /build Release Plugins.BLL.Gen.sln&#xd;
-rem devenv /build Release TestCenter.Automation.Gen.sln&#xd;
-&#xd;
+      <command>rem devenv /build Release Framework.BLL.Gen.sln
+rem devenv /build Release Plugins.BLL.Gen.sln
+rem devenv /build Release TestCenter.Automation.Gen.sln
+
 scons -j 12 -f SConstruct.bll debug=0 target=bll-win32</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>cd bin\Release&#xd;
-rebase.exe -b 0x12000000 -u . *.dll&#xd;
+      <command>cd bin\Release
+rebase.exe -b 0x12000000 -u . *.dll
 exit /B 0</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>if %BUILD_SAVE_PDB% == true (&#xd;
-&#xd;
-cd bin\Release&#xd;
-rmdir /q /s pdb&#xd;
-mkdir pdb&#xd;
-copy *.pdb pdb&#xd;
-del /q pdb\test*.pdb&#xd;
-copy TestCenter*.pdb pdb&#xd;
-&#xd;
-set P4PORT=perforce.spirentcom.com:1666&#xd;
-set P4USER=tableuser&#xd;
-set P4CLIENT=%p4Client%&#xd;
-&quot;C:\Program Files (x86)\Debugging Tools for Windows (x86)\srcsrv\p4index.cmd&quot; -source=%WORKSPACE% -symbols=pdb -debug&#xd;
-&#xd;
-&quot;C:\Program Files (x86)\Debugging Tools for Windows (x86)\symstore&quot; add /f %WORKSPACE%\bin\Release\pdb\*.pdb /s \\archive.cal.ci.spirentcom.com\symbols\testcenter_ci /t SpirentTestCenter&#xd;
-&quot;C:\Program Files (x86)\Debugging Tools for Windows (x86)\symstore&quot; add /f %WORKSPACE%\bin\Release\*.dll /s \\archive.cal.ci.spirentcom.com\symbols\testcenter_ci /t SpirentTestCenter&#xd;
-REM &quot;C:\Program Files (x86)\Debugging Tools for Windows (x86)\agestore&quot; \\archive.cal.ci.spirentcom.com\symbols\testcenter_ci -days 20&#xd;
-&#xd;
-rmdir /q /s pdb&#xd;
+      <command>if %BUILD_SAVE_PDB% == true (
+
+cd bin\Release
+rmdir /q /s pdb
+mkdir pdb
+copy *.pdb pdb
+del /q pdb\test*.pdb
+copy TestCenter*.pdb pdb
+
+set P4PORT=perforce.spirentcom.com:1666
+set P4USER=tableuser
+set P4CLIENT=%p4Client%
+"C:\Program Files (x86)\Debugging Tools for Windows (x86)\srcsrv\p4index.cmd" -source=%WORKSPACE% -symbols=pdb -debug
+
+"C:\Program Files (x86)\Debugging Tools for Windows (x86)\symstore" add /f %WORKSPACE%\bin\Release\pdb\*.pdb /s \\archive.cal.ci.spirentcom.com\symbols\testcenter_ci /t SpirentTestCenter
+"C:\Program Files (x86)\Debugging Tools for Windows (x86)\symstore" add /f %WORKSPACE%\bin\Release\*.dll /s \\archive.cal.ci.spirentcom.com\symbols\testcenter_ci /t SpirentTestCenter
+REM "C:\Program Files (x86)\Debugging Tools for Windows (x86)\agestore" \\archive.cal.ci.spirentcom.com\symbols\testcenter_ci -days 20
+
+rmdir /q /s pdb
 )</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>c:\Python26\python.exe framework\tools\buildUtil\pw_build_tracker.py --build_dir=&quot;c:\jenkins\workspace\release_bll_windows_ci\bin\Release&quot;&#xd;
-c:\Python26\python.exe common\idl\crc.py -f bll_idl_crc.txt --desc &quot;%JOB_NAME% %BUILD_NUMBER%&quot;</command>
+      <command>c:\Python26\python.exe framework\tools\buildUtil\pw_build_tracker.py --build_dir="c:\jenkins\workspace\release_bll_windows_ci\bin\Release"
+c:\Python26\python.exe common\idl\crc.py -f bll_idl_crc.txt --desc "%JOB_NAME% %BUILD_NUMBER%"</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>if %BUILD_RUN_UNITTEST% == true (&#xd;
-cd bin\Release&#xd;
-python ..\..\framework\tools\testRunner\testRunner.py --runInParallel=8 --bll --stak --archive&#xd;
+      <command>if %BUILD_RUN_UNITTEST% == true (
+cd bin\Release
+python ..\..\framework\tools\testRunner\testRunner.py --runInParallel=8 --bll --stak --archive
 )</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>cd bin\Release&#xd;
-del TestCenter*.tar.gz&#xd;
-if %BUILD_PACKAGE_BUILD% == true (&#xd;
-python ..\..\framework\tools\buildUtil\package.py --suffix=bll --package=TestCenter &#xd;
-python ..\..\framework\tools\buildUtil\package.py --package=STAKCommands.beta&#xd;
+      <command>cd bin\Release
+del TestCenter*.tar.gz
+if %BUILD_PACKAGE_BUILD% == true (
+python ..\..\framework\tools\buildUtil\package.py --suffix=bll --package=TestCenter 
+python ..\..\framework\tools\buildUtil\package.py --package=STAKCommands.beta
 )</command>
     </hudson.tasks.BatchFile>
   </builders>
@@ -300,7 +299,7 @@ python ..\..\framework\tools\buildUtil\package.py --package=STAKCommands.beta&#x
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.UnstableTrigger>
           <email>
-            <recipientList></recipientList>
+            <recipientList/>
             <subject>$PROJECT_DEFAULT_SUBJECT</subject>
             <body>$PROJECT_DEFAULT_CONTENT</body>
             <recipientProviders>
@@ -309,10 +308,10 @@ python ..\..\framework\tools\buildUtil\package.py --package=STAKCommands.beta&#x
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern></attachmentsPattern>
+            <attachmentsPattern/>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
-            <replyTo></replyTo>
+            <replyTo/>
             <contentType>project</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.UnstableTrigger>
@@ -327,16 +326,16 @@ python ..\..\framework\tools\buildUtil\package.py --package=STAKCommands.beta&#x
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern></attachmentsPattern>
+            <attachmentsPattern/>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
-            <replyTo></replyTo>
+            <replyTo/>
             <contentType>project</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.FailureTrigger>
         <hudson.plugins.emailext.plugins.trigger.FixedTrigger>
           <email>
-            <recipientList></recipientList>
+            <recipientList/>
             <subject>$PROJECT_DEFAULT_SUBJECT</subject>
             <body>$PROJECT_DEFAULT_CONTENT</body>
             <recipientProviders>
@@ -345,10 +344,10 @@ python ..\..\framework\tools\buildUtil\package.py --package=STAKCommands.beta&#x
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern></attachmentsPattern>
+            <attachmentsPattern/>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
-            <replyTo></replyTo>
+            <replyTo/>
             <contentType>project</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.FixedTrigger>
@@ -356,11 +355,11 @@ python ..\..\framework\tools\buildUtil\package.py --package=STAKCommands.beta&#x
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern></attachmentsPattern>
-      <presendScript></presendScript>
+      <attachmentsPattern/>
+      <presendScript/>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
-      <replyTo></replyTo>
+      <replyTo/>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
