@@ -86,7 +86,7 @@ Triggers release_bll_win_pkg_webhelp&lt;br&gt;</description>
   </scm>
   <assignedNode>techpubbld</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
