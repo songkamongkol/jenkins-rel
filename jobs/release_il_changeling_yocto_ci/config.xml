@@ -108,7 +108,7 @@
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -174,7 +174,8 @@ python $HOME/jenkins/build_cleanup.py --n=50 --file=/mnt/builds/jenkins/il_chang
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command># Per Klaus&apos;s suggestion, remove c3_tmp directory to prevent error from pw_build_tracker.py
-sudo rm -rf $WORKSPACE/build/il/bld_i686_chassis_3_yocto/c3_tmp</command>
+sudo rm -rf $WORKSPACE/build/il/bld_i686_chassis_3_yocto/c3_tmp
+sudo rm -rf $WORKSPACE/build/il/bld_x86_64_chassis_3_yocto/c3_tmp</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>python $WORKSPACE/framework/tools/buildUtil/pw_build_tracker.py --build_dir=$WORKSPACE/build/il --job_name=il
