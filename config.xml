@@ -915,6 +915,7 @@
           <properties class="hudson.model.View$PropertyList"/>
           <jobNames>
             <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../../../../slaves/slave[3]/nodeProperties/hudson.slaves.EnvironmentVariablesNodeProperty/envVars/tree-map/default/comparator"/>
+            <string>release_bll_freebsd63_packaging_new</string>
             <string>release_bll_win_pkg_webhelp</string>
             <string>release_bll_windows_packaging_new</string>
             <string>release_ccp_packaging-new</string>
