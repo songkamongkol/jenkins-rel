@@ -94,7 +94,7 @@ release_ccp&lt;br&gt;&#xd;
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -205,7 +205,7 @@ exit /B 0</command>
               <properties>BLL_BUILD_NUMBER=${BUILD_NUMBER}</properties>
             </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
           </configs>
-          <projects>release_bll_windows_packaging_new,release_bll_freebsd71_packaging,release_bll_freebsd63_packaging_obsolete,release_il_centralboot_packaging,release_ccp_packaging-new,release_cts_windows_packaging,release_bll_linux_x64_packaging,release_cts_linux_packaging</projects>
+          <projects>release_bll_windows_packaging_new,release_bll_freebsd71_packaging,release_bll_freebsd63_packaging,release_il_centralboot_packaging,release_ccp_packaging-new,release_cts_windows_packaging,release_bll_linux_x64_packaging,release_cts_linux_packaging</projects>
           <condition>SUCCESS</condition>
           <triggerWithNoParameters>false</triggerWithNoParameters>
         </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
