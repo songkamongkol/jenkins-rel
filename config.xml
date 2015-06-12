@@ -26,6 +26,12 @@
   <clouds/>
   <slaves>
     <slave>
+      <temporaryOfflineCause class="hudson.node_monitors.DiskSpaceMonitorDescriptor$DiskSpace">
+        <path>C:\Users\spirent\AppData\Local\Temp</path>
+        <size>908644352</size>
+        <triggered>true</triggered>
+        <trigger>hudson.node_monitors.TemporarySpaceMonitor</trigger>
+      </temporaryOfflineCause>
       <name>spccalengec02</name>
       <description>Windows Server 2008 Standard R2 64 bit</description>
       <remoteFS>d:\jenkins-rel</remoteFS>
