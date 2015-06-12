@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
-  <description>Call this job to set a pass/fail status for a build:&lt;br&gt;
-Pass the build number, build type, dependant job to check and the branch name&lt;br&gt;
-example: "38" "FreeBSD" "integration_ftp_tarball" "integration"&lt;br&gt;
+  <description>Call this job to set a pass/fail status for a build:&lt;br&gt;&#xd;
+Pass the build number, build type, dependant job to check and the branch name&lt;br&gt;&#xd;
+example: &quot;38&quot; &quot;FreeBSD&quot; &quot;integration_ftp_tarball&quot; &quot;integration&quot;&lt;br&gt;&#xd;
 </description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
@@ -12,40 +13,50 @@ example: "38" "FreeBSD" "integration_ftp_tarball" "integration"&lt;br&gt;
   </logRotator>
   <keepDependencies>false</keepDependencies>
   <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
+      <useBuildBlocker>false</useBuildBlocker>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
-          <description/>
+          <description></description>
           <defaultValue>39</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>SOURCE_OS</name>
-          <description/>
+          <description></description>
           <defaultValue>FreeBSD</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>DEPENDENT_JOB_NAME</name>
-          <description/>
+          <description></description>
           <defaultValue>integration_ftp_tarball</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
-          <description/>
+          <description></description>
           <defaultValue>4.52_rel</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BRANCH_ID</name>
+          <description></description>
+          <defaultValue>6</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.22">
+      <autoRebuild>false</autoRebuild>
+    </com.sonyericsson.rebuild.RebuildSettings>
   </properties>
-  <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.33">
+  <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.34">
     <configVersion>2</configVersion>
     <p4User>scmbuild</p4User>
-    <p4Passwd/>
+    <p4Passwd></p4Passwd>
     <p4Port>perforce.spirentcom.com:1666</p4Port>
     <p4Client>${JOB_NAME}_${BRANCH_NAME}</p4Client>
     <projectPath>//SCM/Scripts/ci_* //ws/Scripts/ci_*</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner/>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <p4Tool>p4</p4Tool>
@@ -69,13 +80,13 @@ example: "38" "FreeBSD" "integration_ftp_tarball" "integration"&lt;br&gt;
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
     <lineEndValue>local</lineEndValue>
     <useViewMask>false</useViewMask>
-    <useViewMaskForPolling>false</useViewMaskForPolling>
+    <useViewMaskForPolling>true</useViewMaskForPolling>
     <useViewMaskForSyncing>false</useViewMaskForSyncing>
     <useViewMaskForChangeLog>false</useViewMaskForChangeLog>
     <pollOnlyOnMaster>false</pollOnlyOnMaster>
@@ -89,11 +100,11 @@ example: "38" "FreeBSD" "integration_ftp_tarball" "integration"&lt;br&gt;
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>SET FULLVER=00%BUILD_NUMBER%6
-if %BUILD_NUMBER% gtr 9 SET FULLVER=0%BUILD_NUMBER%6
-if %BUILD_NUMBER% gtr 99 SET FULLVER=%BUILD_NUMBER%6
-echo FULLVER is %FULLVER%
-
+      <command>SET FULLVER=00%BLL_BUILD_NUMBER%%BRANCH_ID%&#xd;
+if %BUILD_NUMBER% gtr 9 SET FULLVER=0%BUILD_NUMBER%6&#xd;
+if %BUILD_NUMBER% gtr 99 SET FULLVER=%BUILD_NUMBER%6&#xd;
+echo FULLVER is %FULLVER%&#xd;
+&#xd;
 cscript %WORKSPACE%\Scripts\ci_getJenkinsBranchStatus.vbs %BLL_BUILD_NUMBER% %SOURCE_OS% %DEPENDENT_JOB_NAME% %BRANCH_NAME%</command>
     </hudson.tasks.BatchFile>
   </builders>
