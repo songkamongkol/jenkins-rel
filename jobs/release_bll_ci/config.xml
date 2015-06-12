@@ -23,7 +23,7 @@
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
-  <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.33">
+  <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.34">
     <configVersion>2</configVersion>
     <p4User>tableuser</p4User>
     <p4Passwd></p4Passwd>
@@ -99,7 +99,7 @@
   </scm>
   <assignedNode>spccalengec02</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
@@ -202,6 +202,6 @@
     </hudson.plugins.emailext.ExtendedEmailPublisher>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.5.15"/>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.5.16"/>
   </buildWrappers>
 </project>
