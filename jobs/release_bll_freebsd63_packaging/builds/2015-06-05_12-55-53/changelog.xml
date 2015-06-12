@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<changelog>
+	<entry>
+		<changenumber>735070</changenumber>
+		<date>2015-06-05 12:36:14</date>
+		<description>Remove Polaris configuration</description>
+		<user>hron</user>
+		<workspace>hron_CAL-868ZTZ1_1860</workspace>
+		<files>
+			<file>
+				<name>//SCM/Scripts/SmartTest/STR-Resource-SYS-05-109-Setup.txt</name>
+				<workspacePath>Build_Scripts/Scripts/SmartTest/STR-Resource-SYS-05-109-Setup.txt</workspacePath>
+				<rev>18</rev>
+				<changenumber>735070</changenumber>
+				<action>EDIT</action>
+			</file>
+			<file>
+				<name>//SCM/Scripts/SmartTest/STR-Resource-SYS-05-109.txt</name>
+				<workspacePath>Build_Scripts/Scripts/SmartTest/STR-Resource-SYS-05-109.txt</workspacePath>
+				<rev>23</rev>
+				<changenumber>735070</changenumber>
+				<action>EDIT</action>
+			</file>
+		</files>
+		<jobs>
+		</jobs>
+	</entry>
+	<entry>
+		<changenumber>735069</changenumber>
+		<date>2015-06-05 12:35:06</date>
+		<description>Add polaris</description>
+		<user>mhaber</user>
+		<workspace>CAL-7JY76Q1</workspace>
+		<files>
+			<file>
+				<name>//SCM/Scripts/SmartTest/SmartTest-SYS-01-Configuration.doc</name>
+				<workspacePath>Build_Scripts/Scripts/SmartTest/SmartTest-SYS-01-Configuration.doc</workspacePath>
+				<rev>10</rev>
+				<changenumber>735069</changenumber>
+				<action>EDIT</action>
+			</file>
+		</files>
+		<jobs>
+		</jobs>
+	</entry>
+	<entry>
+		<changenumber>735068</changenumber>
+		<date>2015-06-05 12:23:20</date>
+		<description>Adding C50 polaris to SYS-01 configuration</description>
+		<user>mhaber</user>
+		<workspace>CAL-7JY76Q1</workspace>
+		<files>
+			<file>
+				<name>//SCM/Scripts/SmartTest/STR-Resource-SYS-01-109-Setup.txt</name>
+				<workspacePath>Build_Scripts/Scripts/SmartTest/STR-Resource-SYS-01-109-Setup.txt</workspacePath>
+				<rev>2</rev>
+				<changenumber>735068</changenumber>
+				<action>EDIT</action>
+			</file>
+			<file>
+				<name>//SCM/Scripts/SmartTest/STR-Resource-SYS-01-109.txt</name>
+				<workspacePath>Build_Scripts/Scripts/SmartTest/STR-Resource-SYS-01-109.txt</workspacePath>
+				<rev>9</rev>
+				<changenumber>735068</changenumber>
+				<action>EDIT</action>
+			</file>
+		</files>
+		<jobs>
+		</jobs>
+	</entry>
+	<entry>
+		<changenumber>735060</changenumber>
+		<date>2015-06-05 11:10:44</date>
+		<description>Description: Promoting to 4.52_rel.  Fix for OSE Defect DE6134 and DE5938
+	Change Type: DevTest
+	Change #: none
+	Reviewed by: John S, Nilesh G
+	Review ID: 44482
+	Approved by: Michelle Bruni
+	Designer Testing: table build
+	Testing Impact: None. Affects only OSE</description>
+		<user>owagner</user>
+		<workspace>owagner_4.52_rel</workspace>
+		<files>
+			<file>
+				<name>//TestCenter/4.52_rel/build/il/configs/packaging/spec/ose.spec</name>
+				<workspacePath>build/il/configs/packaging/spec/ose.spec</workspacePath>
+				<rev>6</rev>
+				<changenumber>735060</changenumber>
+				<action>INTEGRATE</action>
+			</file>
+			<file>
+				<name>//TestCenter/4.52_rel/content/datacenter/datacenter/bll/src/ose/OseSwitchProtocol.cpp</name>
+				<workspacePath>content/datacenter/datacenter/bll/src/ose/OseSwitchProtocol.cpp</workspacePath>
+				<rev>7</rev>
+				<changenumber>735060</changenumber>
+				<action>EDIT</action>
+			</file>
+			<file>
+				<name>//TestCenter/4.52_rel/content/datacenter/datacenter/def/stcDataCenter.xml</name>
+				<workspacePath>content/datacenter/datacenter/def/stcDataCenter.xml</workspacePath>
+				<rev>6</rev>
+				<changenumber>735060</changenumber>
+				<action>INTEGRATE</action>
+			</file>
+			<file>
+				<name>//TestCenter/4.52_rel/content/datacenter/datacenter/il/osed/SdnNetworkOVSAdapter.py</name>
+				<workspacePath>content/datacenter/datacenter/il/osed/SdnNetworkOVSAdapter.py</workspacePath>
+				<rev>4</rev>
+				<changenumber>735060</changenumber>
+				<action>INTEGRATE</action>
+			</file>
+			<file>
+				<name>//TestCenter/4.52_rel/content/datacenter/datacenter/ui/Forms/OSE/OseAdditionalPortConfigForm.cs</name>
+				<workspacePath>content/datacenter/datacenter/ui/Forms/OSE/OseAdditionalPortConfigForm.cs</workspacePath>
+				<rev>4</rev>
+				<changenumber>735060</changenumber>
+				<action>INTEGRATE</action>
+			</file>
+		</files>
+		<jobs>
+		</jobs>
+	</entry>
+</changelog>
