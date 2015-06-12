@@ -101,8 +101,8 @@ example: &quot;38&quot; &quot;FreeBSD&quot; &quot;integration_ftp_tarball&quot; 
   <builders>
     <hudson.tasks.BatchFile>
       <command>SET FULLVER=00%BLL_BUILD_NUMBER%%BRANCH_ID%&#xd;
-if %BUILD_NUMBER% gtr 9 SET FULLVER=0%BUILD_NUMBER%6&#xd;
-if %BUILD_NUMBER% gtr 99 SET FULLVER=%BUILD_NUMBER%6&#xd;
+if %BUILD_NUMBER% gtr 9 SET FULLVER=0%BUILD_NUMBER%%BRANCH_ID%&#xd;
+if %BUILD_NUMBER% gtr 99 SET FULLVER=%BUILD_NUMBER%%BRANCH_ID%&#xd;
 echo FULLVER is %FULLVER%&#xd;
 &#xd;
 cscript %WORKSPACE%\Scripts\ci_getJenkinsBranchStatus.vbs %BLL_BUILD_NUMBER% %SOURCE_OS% %DEPENDENT_JOB_NAME% %BRANCH_NAME%</command>
