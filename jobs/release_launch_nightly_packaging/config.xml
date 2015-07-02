@@ -1,12 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
-  <description>Creates database entries for:&lt;br&gt;
-BLL Windows, BLL Linux, FreeBSD, FreeBSD 6.3, FreeBSD 7.1, Solaris, BLL Linux 64 and IL.&lt;br&gt;
-Launches:
-release_package_bll_windows, integration_bll_freebsd, integration_bll_freebsd63, release_bll_freebsd71&lt;br&gt;
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
-release_il_linux_chos2, release_il_linux_changeling, release_il_linux_main, release_il_virtual&lt;br&gt;
-release_ccp&lt;br&gt;
+  <description>Creates database entries for:&lt;br&gt;&#xd;
+BLL Windows, BLL Linux, FreeBSD, FreeBSD 6.3, FreeBSD 7.1, Solaris, BLL Linux 64 and IL.&lt;br&gt;&#xd;
+Launches:&#xd;
+release_package_bll_windows, integration_bll_freebsd, integration_bll_freebsd63, release_bll_freebsd71&lt;br&gt;&#xd;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&#xd;
+release_il_linux_chos2, release_il_linux_changeling, release_il_linux_main, release_il_virtual&lt;br&gt;&#xd;
+release_ccp&lt;br&gt;&#xd;
 </description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
@@ -23,17 +24,17 @@ release_ccp&lt;br&gt;
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
-          <description/>
+          <description></description>
           <defaultValue>4.53_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
-          <description/>
+          <description></description>
           <defaultValue>4.53</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_ID</name>
-          <description/>
+          <description></description>
           <defaultValue>6</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -50,7 +51,7 @@ release_ccp&lt;br&gt;
   <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.34">
     <configVersion>2</configVersion>
     <p4User>scmbuild</p4User>
-    <p4Passwd/>
+    <p4Passwd></p4Passwd>
     <p4Port>perforce.spirentcom.com:1666</p4Port>
     <p4Client>${JOB_NAME}_${BRANCH_NAME}</p4Client>
     <projectPath>//SCM/Scripts/ci_* //ws/Scripts/ci_*
@@ -93,7 +94,7 @@ release_ccp&lt;br&gt;
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -111,26 +112,26 @@ release_ccp&lt;br&gt;
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
     <hudson.triggers.SCMTrigger>
-      <spec>45 18 * * *</spec>
+      <spec>00 19 * * *</spec>
       <ignorePostCommitHooks>false</ignorePostCommitHooks>
     </hudson.triggers.SCMTrigger>
   </triggers>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>set BLL_BUILD_NUMBER=%BUILD_NUMBER%
-del ui_*.txt
-del bll_*.txt
-del *il_*changelist*.txt
-del Report_*.txt
-del Build_*.txt
+      <command>set BLL_BUILD_NUMBER=%BUILD_NUMBER%&#xd;
+del ui_*.txt&#xd;
+del bll_*.txt&#xd;
+del *il_*changelist*.txt&#xd;
+del Report_*.txt&#xd;
+del Build_*.txt&#xd;
 rem c:\python27\python %WORKSPACE%\Scripts\ci_run_jenkins_steps.py --createchangereport=yes</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
       <project>release_ui_ci</project>
       <filter>BLL_changelist_*.txt, UI_changelist_*.txt</filter>
-      <target/>
-      <excludes/>
+      <target></target>
+      <excludes></excludes>
       <selector class="hudson.plugins.copyartifact.PermalinkBuildSelector">
         <id>lastSuccessfulBuild</id>
       </selector>
@@ -140,8 +141,8 @@ rem c:\python27\python %WORKSPACE%\Scripts\ci_run_jenkins_steps.py --createchang
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
       <project>release_il_testmodule_contents_ci</project>
       <filter>*il_testmodule_contents*changelist_*.txt</filter>
-      <target/>
-      <excludes/>
+      <target></target>
+      <excludes></excludes>
       <selector class="hudson.plugins.copyartifact.PermalinkBuildSelector">
         <id>lastSuccessfulBuild</id>
       </selector>
@@ -153,37 +154,37 @@ rem c:\python27\python %WORKSPACE%\Scripts\ci_run_jenkins_steps.py --createchang
 import glob
 import re
 
-files = glob.glob("*il_testmodule_contents*changelist*.txt")
-# files = glob.glob("BLL_*.txt")
+files = glob.glob(&quot;*il_testmodule_contents*changelist*.txt&quot;)
+# files = glob.glob(&quot;BLL_*.txt&quot;)
 changelistfile = files[0]
-changelist = re.sub(r'.txt$', "", changelistfile )
-changelist = re.sub(r'il_testmodule_contents_changelist_', "", changelist )
-build_number = os.environ['BUILD_NUMBER']
-print "IL Changelist is " + changelist
-il_changelist_file='IL_' + changelist + '.txt'
-f = open(il_changelist_file, 'w')
-f.write("\nCHANGELIST=" + changelist + " " + build_number)
+changelist = re.sub(r&apos;.txt$&apos;, &quot;&quot;, changelistfile )
+changelist = re.sub(r&apos;il_testmodule_contents_changelist_&apos;, &quot;&quot;, changelist )
+build_number = os.environ[&apos;BUILD_NUMBER&apos;]
+print &quot;IL Changelist is &quot; + changelist
+il_changelist_file=&apos;IL_&apos; + changelist + &apos;.txt&apos;
+f = open(il_changelist_file, &apos;w&apos;)
+f.write(&quot;\nCHANGELIST=&quot; + changelist + &quot; &quot; + build_number)
 f.close</command>
     </hudson.plugins.python.Python>
     <hudson.tasks.BatchFile>
-      <command>SET FULLVER=00%BUILD_NUMBER%%BRANCH_ID%
-if %BUILD_NUMBER% gtr 9 SET FULLVER=0%BUILD_NUMBER%%BRANCH_ID%
-if %BUILD_NUMBER% gtr 99 SET FULLVER=%BUILD_NUMBER%%BRANCH_ID%
-echo FULLVER is %FULLVER%
-echo "%BRANCH_NAME% Build Number: %FULLVER%" &gt; BUILD_%STC_MAJ_MIN_VERSION%.%FULLVER%.txt
-
-perl %WORKSPACE%\Scripts\ci_update_database.pl ALL %STC_MAJ_MIN_VERSION% %FULLVER% %BUILD_ID% "In Progress" %BUILD_URL% %BRANCH_NAME%
-
-perl %WORKSPACE%\Scripts\ci_update_database_changelist.pl STC %STC_MAJ_MIN_VERSION% %FULLVER%
-
-python %WORKSPACE%\Scripts\changelist_info\update_database_with_changelist.py -v %STC_MAJ_MIN_VERSION% -b %FULLVER%
+      <command>SET FULLVER=00%BUILD_NUMBER%%BRANCH_ID%&#xd;
+if %BUILD_NUMBER% gtr 9 SET FULLVER=0%BUILD_NUMBER%%BRANCH_ID%&#xd;
+if %BUILD_NUMBER% gtr 99 SET FULLVER=%BUILD_NUMBER%%BRANCH_ID%&#xd;
+echo FULLVER is %FULLVER%&#xd;
+echo &quot;%BRANCH_NAME% Build Number: %FULLVER%&quot; &gt; BUILD_%STC_MAJ_MIN_VERSION%.%FULLVER%.txt&#xd;
+&#xd;
+perl %WORKSPACE%\Scripts\ci_update_database.pl ALL %STC_MAJ_MIN_VERSION% %FULLVER% %BUILD_ID% &quot;In Progress&quot; %BUILD_URL% %BRANCH_NAME%&#xd;
+&#xd;
+perl %WORKSPACE%\Scripts\ci_update_database_changelist.pl STC %STC_MAJ_MIN_VERSION% %FULLVER%&#xd;
+&#xd;
+python %WORKSPACE%\Scripts\changelist_info\update_database_with_changelist.py -v %STC_MAJ_MIN_VERSION% -b %FULLVER%&#xd;
 </command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>REM --- Tag file handling for SmartTest
-rem copy \\spccalfs04\SCM\SCMSmartTest\%STC_MAJ_MIN_VERSION%\pw_packages_to_test \\martin\archive\pv\TestCenter\%STC_MAJ_MIN_VERSION%\Engineering_Builds\pw_packages_to_test.new
-
-copy \\results.cal.ci.spirentcom.com\smt\SCMSmartTest\%STC_MAJ_MIN_VERSION%\pw_packages_to_test \\martin\archive\pv\TestCenter\%STC_MAJ_MIN_VERSION%\Engineering_Builds\pw_packages_to_test.new
+      <command>REM --- Tag file handling for SmartTest&#xd;
+rem copy \\spccalfs04\SCM\SCMSmartTest\%STC_MAJ_MIN_VERSION%\pw_packages_to_test \\martin\archive\pv\TestCenter\%STC_MAJ_MIN_VERSION%\Engineering_Builds\pw_packages_to_test.new&#xd;
+&#xd;
+copy \\results.cal.ci.spirentcom.com\smt\SCMSmartTest\%STC_MAJ_MIN_VERSION%\pw_packages_to_test \\martin\archive\pv\TestCenter\%STC_MAJ_MIN_VERSION%\Engineering_Builds\pw_packages_to_test.new&#xd;
 exit /B 0</command>
     </hudson.tasks.BatchFile>
   </builders>
