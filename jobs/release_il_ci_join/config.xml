@@ -20,7 +20,7 @@
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.33">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
       <project>release_il_changeling_yocto_ci</project>
       <filter>*il_changeling_*changelist*.txt</filter>
       <target></target>
@@ -31,7 +31,7 @@
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.33">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
       <project>release_il_qemu_yocto_ci</project>
       <filter>*il_qemu_*changelist*.txt</filter>
       <target></target>
@@ -42,7 +42,7 @@
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.33">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
       <project>release_il_virtual_yocto_ci</project>
       <filter>*il_virtual_*changelist*.txt</filter>
       <target></target>
@@ -51,7 +51,7 @@
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.33">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
       <project>release_il_stca_ci</project>
       <filter>*il_stca_*changelist*.txt</filter>
       <target></target>
@@ -60,7 +60,7 @@
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.33">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
       <project>release_il_changeling_all_yocto_ci</project>
       <filter>*il_changeling_all*changelist*.txt</filter>
       <target></target>
@@ -69,7 +69,7 @@
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.33">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
       <project>release_il_chos2_yocto_ci</project>
       <filter>*il_chos2*changelist*.txt</filter>
       <target></target>
@@ -78,7 +78,7 @@
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.33">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
       <project>release_il_testmodule_contents_ci</project>
       <filter>*il_testmodule_contents*changelist*.txt</filter>
       <target></target>
@@ -87,7 +87,7 @@
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.33">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
       <project>release_il_chhvm_yocto_ci</project>
       <filter>*il_chhvm_*changelist_*.txt</filter>
       <target></target>
@@ -96,16 +96,7 @@
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.33">
-      <project>release_il_qemu_ci</project>
-      <filter>*il_qemu_*changelist*.txt</filter>
-      <target></target>
-      <excludes></excludes>
-      <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
-      <flatten>true</flatten>
-      <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
-    </hudson.plugins.copyartifact.CopyArtifact>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.33">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
       <project>release_il_changeling_ci</project>
       <filter>*il_changeling_*changelist*.txt</filter>
       <target></target>
@@ -114,7 +105,7 @@
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.33">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
       <project>release_il_lxc_yocto_ci</project>
       <filter>*il_lxc*changelist*.txt</filter>
       <target></target>
@@ -169,6 +160,6 @@
     </hudson.plugins.emailext.ExtendedEmailPublisher>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.5.15"/>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.5.16"/>
   </buildWrappers>
 </project>
