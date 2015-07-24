@@ -1,15 +1,47 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
+  <actions/>
+  <description></description>
   <keepDependencies>false</keepDependencies>
-  <properties/>
+  <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
+      <useBuildBlocker>false</useBuildBlocker>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.22">
+      <autoRebuild>false</autoRebuild>
+    </com.sonyericsson.rebuild.RebuildSettings>
+  </properties>
   <scm class="hudson.scm.NullSCM"/>
-  <canRoam>true</canRoam>
+  <assignedNode>spccalengec02</assignedNode>
+  <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
-  <builders/>
+  <builders>
+    <hudson.plugins.python.Python plugin="python@1.2">
+      <command>import urllib2
+
+# -- get the filename for latest install_stcapi*.py from main Jenkins server
+stc_restapi_job_url = &apos;http://jenkins.cal.ci.spirentcom.com:8080/job/stcapi_rest_api/91/api/xml?xpath=/*/artifact[1]/fileName&apos;
+html = urllib2.urlopen(stc_restapi_job_url)
+install_stcapi_filename = html.read()
+install_stcapi_filename = install_stcapi_filename.replace(&apos;&lt;fileName&gt;&apos;, &apos;&apos;)
+install_stcapi_filename = install_stcapi_filename.replace(&apos;&lt;/fileName&gt;&apos;, &apos;&apos;)
+print &quot;Filename: %s&quot; % install_stcapi_filename
+
+# -- get the python script
+stc_restapi_py = &apos;http://jenkins.cal.ci.spirentcom.com:8080/job/stcapi_rest_api/lastSuccessfulBuild/artifact/deployment/&apos; + install_stcapi_filename
+response = urllib2.urlopen(stc_restapi_py )
+html = response.read()
+local_restapi_py = open(install_stcapi_filename,&apos;w&apos;)
+local_restapi_py.write(html)
+local_restapi_py.close()</command>
+    </hudson.plugins.python.Python>
+  </builders>
   <publishers/>
-  <buildWrappers/>
+  <buildWrappers>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.5.16"/>
+  </buildWrappers>
 </project>
