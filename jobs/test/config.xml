@@ -35,7 +35,7 @@ print &quot;Filename: %s&quot; % install_stcapi_filename
 stc_restapi_py = &apos;http://jenkins.cal.ci.spirentcom.com:8080/job/stcapi_rest_api/lastSuccessfulBuild/artifact/deployment/&apos; + install_stcapi_filename
 response = urllib2.urlopen(stc_restapi_py )
 html = response.read()
-local_restapi_py = open(install_stcapi_filename,&apos;w&apos;)
+local_restapi_py = open(install_stcapi_filename,&apos;wb&apos;)
 local_restapi_py.write(html)
 local_restapi_py.close()</command>
     </hudson.plugins.python.Python>
