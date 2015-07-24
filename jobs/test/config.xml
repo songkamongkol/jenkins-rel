@@ -24,7 +24,7 @@
       <command>import urllib2
 
 # -- get the filename for latest install_stcapi*.py from main Jenkins server
-stc_restapi_job_url = &apos;http://jenkins.cal.ci.spirentcom.com:8080/job/stcapi_rest_api/91/api/xml?xpath=/*/artifact[1]/fileName&apos;
+stc_restapi_job_url = &apos;http://jenkins.cal.ci.spirentcom.com:8080/job/stcapi_rest_api/lastSuccessfulBuild/api/xml?xpath=/*/artifact[1]/fileName&apos;
 html = urllib2.urlopen(stc_restapi_job_url)
 install_stcapi_filename = html.read()
 install_stcapi_filename = install_stcapi_filename.replace(&apos;&lt;fileName&gt;&apos;, &apos;&apos;)
