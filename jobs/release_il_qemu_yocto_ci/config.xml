@@ -108,7 +108,7 @@
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -152,7 +152,8 @@ echo BRANCH_NAME=$BRANCH_NAME &gt;&gt; $WORKSPACE/changelist.properties</command
 
 # Rename yocto*.img.gz to qemu*.img.gz 
     cd $WORKSPACE/build/il/packages/rawimg
-    export OLDNAME=`ls yocto.512*.img.gz`
+    # export OLDNAME=`ls yocto.512*.img.gz`
+    export OLDNAME=`ls yocto_cloud.512*.img.gz`
     export NEWNAME=`echo $OLDNAME | sed &apos;s/yocto/qemu/&apos;`
     mv $OLDNAME $NEWNAME
 fi</command>
