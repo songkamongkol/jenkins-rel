@@ -30,7 +30,7 @@ Archive il_virtual_*.tar&lt;br&gt;&#xd;
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.54_rel</defaultValue>
+          <defaultValue>4.56_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -50,7 +50,7 @@ Archive il_virtual_*.tar&lt;br&gt;&#xd;
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description></description>
-          <defaultValue>4.54</defaultValue>
+          <defaultValue>4.56</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -177,10 +177,11 @@ p4 info
 
 
 $WORKSPACE/build/il/scripts/phxbld -j32 appliance_yocto_tardis3
+$WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.0 appliance_hypervisor
 $WORKSPACE/build/il/scripts/phxbld -j32 yocto_lxc_ose
 
 sudo rm -rf $WORKSPACE/build/il/bld_*
-chmod a+r $WORKSPACE/build/il/packages/rawimg/*.ova</command>
+sudo chmod a+r $WORKSPACE/build/il/packages/rawimg/*.ova</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command># rm -f il_virtual_$STC_MAJ_MIN_VERSION.tar

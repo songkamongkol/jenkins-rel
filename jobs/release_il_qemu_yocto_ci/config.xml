@@ -18,7 +18,7 @@
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.54_rel</defaultValue>
+          <defaultValue>4.56_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -43,7 +43,7 @@
         <hudson.model.StringParameterDefinition>
           <name>RELEASE_NUM</name>
           <description>release number</description>
-          <defaultValue>4.54</defaultValue>
+          <defaultValue>4.56</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -79,6 +79,7 @@
 +//TestCenter/${BRANCH_NAME}/framework/bll/unittestdrv/... //ws/framework/bll/unittestdrv/...
 +//TestCenter/${BRANCH_NAME}/framework/bll/vendor/... //ws/framework/bll/vendor/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
+    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -274,6 +275,7 @@ cp $WORKSPACE/${JOB_NAME}_changelist_${P4_CHANGELIST}.txt $STORAGE_DIR</command>
       <scriptOnlyIfSuccess>true</scriptOnlyIfSuccess>
       <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
       <markBuildUnstable>false</markBuildUnstable>
+      <executeOn>BOTH</executeOn>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
   </publishers>
   <buildWrappers>

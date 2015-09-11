@@ -21,7 +21,7 @@ The latest build is stored at \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.54_rel</defaultValue>
+          <defaultValue>4.56_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -46,7 +46,7 @@ The latest build is stored at \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_
         <hudson.model.StringParameterDefinition>
           <name>RELEASE_NUM</name>
           <description>release number</description>
-          <defaultValue>4.54</defaultValue>
+          <defaultValue>4.56</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>CHANGELIST</name>
@@ -86,7 +86,8 @@ The latest build is stored at \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_
 -//TestCenter/*/.../bll/...
 +//TestCenter/${BRANCH_NAME}/framework/bll/base/... //ws/framework/bll/base/...
 +//TestCenter/${BRANCH_NAME}/framework/bll/unittestdrv/... //ws/framework/bll/unittestdrv/...
-+//TestCenter/${BRANCH_NAME}/framework/bll/vendor/... //ws/framework/bll/vendor/...</projectPath>
++//TestCenter/${BRANCH_NAME}/framework/bll/vendor/... //ws/framework/bll/vendor/...
+//hypervisor/mainline/amara/ChassisImage/... //ws/ChassisImage/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
     <p4Label>${CHANGELIST}</p4Label>
     <clientOwner></clientOwner>
@@ -152,7 +153,8 @@ sudo scons target=kernelclean</command>
     <hudson.tasks.Shell>
       <command>env
 p4 info
-$WORKSPACE/build/il/scripts/phxbld -j8 c3_y3</command>
+$WORKSPACE/build/il/scripts/phxbld -j32 c3_y3
+$WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.0 c3_hypervisor</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command># clean up old build output
@@ -184,9 +186,12 @@ export STORAGE_DIR=/mnt/builds/jenkins/il_chhvm_yocto-$BRANCH_NAME/build-$P4_CHA
 
 if [ ! -d &quot;$STORAGE_DIR&quot; ]; then
   mkdir -p $STORAGE_DIR
+  mkdir -p $STORAGE_DIR/fsimg
 fi
 
 cp -r $WORKSPACE/build/il/packages/bundle $STORAGE_DIR
+cp $WORKSPACE/build/il/packages/fsimg/chassis_hypervisor* $STORAGE_DIR/fsimg
+cp $WORKSPACE/build/il/packages/fsimg/yocto_version $STORAGE_DIR/fsimg
 cp -r $WORKSPACE/build/il/packages/rawimg $STORAGE_DIR
 </command>
         </hudson.tasks.Shell>
