@@ -66,6 +66,7 @@ xcopy %BUILD_OUTPUT_DIR%\bin\Release\stclib %FILER_DIR%\ stclib /e /i /y&#xd;
 xcopy %BUILD_OUTPUT_DIR%\bin\Release\Templates %FILER_DIR%\Templates /e /i /y&#xd;
 xcopy %BUILD_OUTPUT_DIR%\bin\Release\Tcl %FILER_DIR%\Tcl /e /i /y&#xd;
 xcopy %BUILD_OUTPUT_DIR%\bin\Release\Python %FILER_DIR%\Python /e /i /y&#xd;
+xcopy %BUILD_OUTPUT_DIR%\bin\Release\Python\STAKCommands %FILER_DIR%\STAKCommands /e /i /y&#xd;
 copy %BUILD_OUTPUT_DIR%\bin\Release\*.* %FILER_DIR% /y&#xd;
 &#xd;
 </command>
