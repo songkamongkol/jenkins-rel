@@ -1,5 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<project>
+<?xml version="1.0" encoding="UTF-8"?><project>
   <actions/>
   <description>IL Build job for centralboot image targets:&lt;br&gt;
 target=centralboot packaging=1&lt;br&gt;
@@ -22,7 +21,7 @@ Then runs Centralboot to generate centralboot image and run reversion script to 
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.56_rel</defaultValue>
+          <defaultValue>4.57_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -36,12 +35,12 @@ Then runs Centralboot to generate centralboot image and run reversion script to 
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
-          <description></description>
-          <defaultValue>4.56</defaultValue>
+          <description/>
+          <defaultValue>4.57</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>SOURCE_OS</name>
-          <description></description>
+          <description/>
           <defaultValue>IL</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -53,7 +52,7 @@ Then runs Centralboot to generate centralboot image and run reversion script to 
   <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.34">
     <configVersion>2</configVersion>
     <p4User>scmbuild</p4User>
-    <p4Passwd></p4Passwd>
+    <p4Passwd/>
     <p4Port>perforce.spirentcom.com:1666</p4Port>
     <p4Client>${JOB_NAME}_${BRANCH_NAME}</p4Client>
     <projectPath>//SCM/Scripts/ci_* //ws/Build_Scripts/Scripts/ci_*
@@ -75,7 +74,7 @@ Then runs Centralboot to generate centralboot image and run reversion script to 
 +//TestCenter/${BRANCH_NAME}/framework/bll/vendor/... //ws/framework/bll/vendor/...
 //hypervisor/mainline/amara/ChassisImage/...  //ws/ChassisImage/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner></clientOwner>
+    <clientOwner/>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -148,145 +147,145 @@ rm -f $WORKSPACE/*.txt</command>
       <command>#!/bin/bash
 
 if [ -f /mnt/builds/jenkins/il_changeling_all_yocto-${BRANCH_NAME}_promoting.txt ]; then
-echo &quot;Promotion is in progress, wait for 5 minutes&quot;
+echo "Promotion is in progress, wait for 5 minutes"
 sleep 300
 else
-echo &quot;No promotion is in progress, proceeding with packaging&quot;
+echo "No promotion is in progress, proceeding with packaging"
 fi
 
-echo &quot;Packaging started&quot; &gt; /mnt/builds/jenkins/il_changeling_all_yocto-${BRANCH_NAME}_packaging.txt
+echo "Packaging started" &gt; /mnt/builds/jenkins/il_changeling_all_yocto-${BRANCH_NAME}_packaging.txt
 echo Copying il_changeling_all build artifacts from /mnt/builds/jenkins/il_changeling_all_yocto-$BRANCH_NAME/build-packaging/
 ls -algh /mnt/builds/jenkins/il_changeling_all_yocto-$BRANCH_NAME/build-packaging/*.txt
 mkdir -p $WORKSPACE/build/il/packages
 cp -r /mnt/builds/jenkins/il_changeling_all_yocto-$BRANCH_NAME/build-packaging/* $WORKSPACE/build/il/packages
 cp $WORKSPACE/build/il/packages/fsimg/rawimage.map $WORKSPACE/build/il/packages/fsimg/changeling_rawimage.map
-echo &quot;Finished copying il_changeling_all files&quot;
+echo "Finished copying il_changeling_all files"
 rm -f /mnt/builds/jenkins/il_changeling_all_yocto-${BRANCH_NAME}_packaging.txt</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>#!/bin/bash
 
 if [ -f /mnt/builds/jenkins/il_changeling_yocto-${BRANCH_NAME}_promoting.txt ]; then
-echo &quot;Promotion is in progress, wait for 5 minutes&quot;
+echo "Promotion is in progress, wait for 5 minutes"
 sleep 300
 else
-echo &quot;No promotion is in progress, proceeding with packaging&quot;
+echo "No promotion is in progress, proceeding with packaging"
 fi
 
-echo &quot;Packaging started&quot; &gt; /mnt/builds/jenkins/il_changeling_yocto-${BRANCH_NAME}_packaging.txt
+echo "Packaging started" &gt; /mnt/builds/jenkins/il_changeling_yocto-${BRANCH_NAME}_packaging.txt
 echo Copying il_changeling_yocto build artifacts from /mnt/builds/jenkins/il_changeling_yocto-${BRANCH_NAME}/build-packaging/
 ls -algh /mnt/builds/jenkins/il_changeling_yocto-${BRANCH_NAME}/build-packaging/*.txt
 mkdir -p $WORKSPACE/build/il/packages
 cp -r /mnt/builds/jenkins/il_changeling_yocto-${BRANCH_NAME}/build-packaging/* $WORKSPACE/build/il/packages
 cp $WORKSPACE/build/il/packages/fsimg/rawimage.map $WORKSPACE/build/il/packages/fsimg/changeling_rawimage.map
-echo &quot;Finished copying il_changeling files&quot;
+echo "Finished copying il_changeling files"
 rm -f /mnt/builds/jenkins/il_changeling_yocto-${BRANCH_NAME}_packaging.txt</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>#!/bin/bash
 
 if [ -f /mnt/builds/jenkins/il_chos2_yocto-${BRANCH_NAME}_promoting.txt ]; then
-echo &quot;Promotion is in progress, wait for 5 minutes&quot;
+echo "Promotion is in progress, wait for 5 minutes"
 sleep 300
 else
-echo &quot;No promotion is in progress, proceeding with packaging&quot;
+echo "No promotion is in progress, proceeding with packaging"
 fi
 
-echo &quot;Packaging started&quot; &gt; /mnt/builds/jenkins/il_chos2_yocto-${BRANCH_NAME}_packaging.txt
+echo "Packaging started" &gt; /mnt/builds/jenkins/il_chos2_yocto-${BRANCH_NAME}_packaging.txt
 echo Copying il_chos2 build artifacts from /mnt/builds/jenkins/il_chos2_yocto-$BRANCH_NAME/build-packaging/
 ls -algh /mnt/builds/jenkins/il_chos2_yocto-${BRANCH_NAME}/build-packaging/*.txt
 cp -r /mnt/builds/jenkins/il_chos2_yocto-$BRANCH_NAME/build-packaging/* $WORKSPACE/build/il/packages
-echo &quot;Finished copying il_chos2 files&quot;
+echo "Finished copying il_chos2 files"
 rm -f /mnt/builds/jenkins/il_chos2_yocto-${BRANCH_NAME}_packaging.txt</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>#!/bin/bash
 
 if [ -f /mnt/builds/jenkins/il_virtual_yocto-${BRANCH_NAME}_promoting.txt ]; then
-echo &quot;Promotion is in progress, wait for 5 minutes&quot;
+echo "Promotion is in progress, wait for 5 minutes"
 sleep 300
 else
-echo &quot;No promotion is in progress, proceeding with packaging&quot;
+echo "No promotion is in progress, proceeding with packaging"
 fi
 
-echo &quot;Packaging started&quot; &gt; /mnt/builds/jenkins/il_virtual_yocto-${BRANCH_NAME}_packaging.txt
+echo "Packaging started" &gt; /mnt/builds/jenkins/il_virtual_yocto-${BRANCH_NAME}_packaging.txt
 echo Copying il_virtual build artifacts from /mnt/builds/jenkins/il_virtual_yocto-$BRANCH_NAME/build-packaging/
 ls -algh /mnt/builds/jenkins/il_virtual_yocto-${BRANCH_NAME}/build-packaging/*.txt
 cp -r -v /mnt/builds/jenkins/il_virtual_yocto-$BRANCH_NAME/build-packaging/* $WORKSPACE/build/il/packages
-if [ &quot;$?&quot; -ne &quot;0&quot; ]; then
-  echo &quot;error: cp failed for il_virtual_yocto&quot;
+if [ "$?" -ne "0" ]; then
+  echo "error: cp failed for il_virtual_yocto"
   exit 1
 fi
 
 cp $WORKSPACE/build/il/packages/fsimg/rawimage.map $WORKSPACE/build/il/packages/fsimg/virtual_rawimage.map
-echo &quot;Finished copying il_virtual files&quot;
+echo "Finished copying il_virtual files"
 rm -f /mnt/builds/jenkins/il_virtual_yocto-${BRANCH_NAME}_packaging.txt</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>#!/bin/bash
 
 if [ -f /mnt/builds/jenkins/il_stca-${BRANCH_NAME}_promoting.txt ]; then
-echo &quot;Promotion is in progress, wait for 5 minutes&quot;
+echo "Promotion is in progress, wait for 5 minutes"
 sleep 300
 else
-echo &quot;No promotion is in progress, proceeding with packaging&quot;
+echo "No promotion is in progress, proceeding with packaging"
 fi
 
-echo &quot;Packaging started&quot; &gt; /mnt/builds/jenkins/il_stca-${BRANCH_NAME}_packaging.txt
+echo "Packaging started" &gt; /mnt/builds/jenkins/il_stca-${BRANCH_NAME}_packaging.txt
 echo Copying il_stca build artifacts from /mnt/builds/jenkins/il_stca-$BRANCH_NAME/build-packaging/
 ls -algh /mnt/builds/jenkins/il_stca-${BRANCH_NAME}/build-packaging/*.txt
 cp -r /mnt/builds/jenkins/il_stca-$BRANCH_NAME/build-packaging/* $WORKSPACE/build/il/packages
 cp $WORKSPACE/build/il/packages/fsimg/rawimage.map $WORKSPACE/build/il/packages/fsimg/stca_rawimage.map
-echo &quot;Finished copying il_stca files&quot;
+echo "Finished copying il_stca files"
 rm -f /mnt/builds/jenkins/il_stca-${BRANCH_NAME}_packaging.txt</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>#!/bin/bash
 
 if [ -f /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}_promoting.txt ]; then
-echo &quot;Promotion is in progress, wait for 5 minutes&quot;
+echo "Promotion is in progress, wait for 5 minutes"
 sleep 300
 else
-echo &quot;No promotion is in progress, proceeding with packaging&quot;
+echo "No promotion is in progress, proceeding with packaging"
 fi
 
-echo &quot;Packaging started&quot; &gt; /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}_packaging.txt
+echo "Packaging started" &gt; /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}_packaging.txt
 echo Copying il_lxcbuild artifacts from /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}/build-packaging/
 ls -algh /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}/build-packaging/*.txt
 cp /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}/build-packaging/bundle/k9* $WORKSPACE/build/il/packages/bundle
 cp /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}/build-packaging/rawimg/*lxc* $WORKSPACE/build/il/packages/rawimg
-echo &quot;Finished copying il_lxcfiles&quot;
+echo "Finished copying il_lxcfiles"
 rm -f /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}_packaging.txt</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>#!/bin/bash
 
 if [ -f /mnt/builds/jenkins/il_qemu_yocto-${BRANCH_NAME}_promoting.txt ]; then
-echo &quot;Promotion is in progress, wait for 5 minutes&quot;
+echo "Promotion is in progress, wait for 5 minutes"
 sleep 300
 else
-echo &quot;No promotion is in progress, proceeding with packaging&quot;
+echo "No promotion is in progress, proceeding with packaging"
 fi
 
-echo &quot;Packaging started&quot; &gt; /mnt/builds/jenkins/il_qemu_yocto-${BRANCH_NAME}_packaging.txt
+echo "Packaging started" &gt; /mnt/builds/jenkins/il_qemu_yocto-${BRANCH_NAME}_packaging.txt
 echo Copying il_qemu build artifacts from /mnt/builds/jenkins/il_qemu_yocto-${BRANCH_NAME}/build-packaging/
 ls -algh /mnt/builds/jenkins/il_qemu_yocto-${BRANCH_NAME}/build-packaging/*.txt
 # cp /mnt/builds/jenkins/il_qemu_yocto-${BRANCH_NAME}/build-packaging/rawimg/yocto* $WORKSPACE/build/il/packages/rawimg
 cp /mnt/builds/jenkins/il_qemu_yocto-${BRANCH_NAME}/build-packaging/qemu*.tgz $WORKSPACE/build/il/packages/rawimg
-echo &quot;Finished copying il_qemu files&quot;
+echo "Finished copying il_qemu files"
 rm -f /mnt/builds/jenkins/il_qemu_yocto-${BRANCH_NAME}_packaging.txt</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>#!/bin/bash
 
 if [ -f /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}_promoting.txt ]; then
-echo &quot;Promotion is in progress, wait for 5 minutes&quot;
+echo "Promotion is in progress, wait for 5 minutes"
 sleep 300
 else
-echo &quot;No promotion is in progress, proceeding with packaging&quot;
+echo "No promotion is in progress, proceeding with packaging"
 fi
 
-echo &quot;Packaging started&quot; &gt; /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}_packaging.txt
+echo "Packaging started" &gt; /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}_packaging.txt
 echo Copying il_chhvm_yocto build artifacts from /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}/build-packaging/
 ls -algh /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}/build-packaging/*.txt
 
@@ -302,18 +301,18 @@ rm -f /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}_packaging.txt
       <command>#!/bin/bash
 
 if [ -f /mnt/builds/jenkins/il_testmodule_contents-${BRANCH_NAME}_promoting.txt ]; then
-echo &quot;Promotion is in progress, wait for 5 minutes&quot;
+echo "Promotion is in progress, wait for 5 minutes"
 sleep 300
 else
-echo &quot;No promotion is in progress, proceeding with packaging&quot;
+echo "No promotion is in progress, proceeding with packaging"
 fi
 
 
-echo &quot;Packaging started&quot; &gt; /mnt/builds/jenkins/il_testmodule_contents-${BRANCH_NAME}_packaging.txt
+echo "Packaging started" &gt; /mnt/builds/jenkins/il_testmodule_contents-${BRANCH_NAME}_packaging.txt
 echo Copying il_testmodule_contents build artifacts from /mnt/builds/jenkins/il_testmodule_contents-$BRANCH_NAME/build-packaging/
 ls -algh /mnt/builds/jenkins/il_testmodule_contents-${BRANCH_NAME}/build-packaging/*.txt
 cp -r /mnt/builds/jenkins/il_testmodule_contents-$BRANCH_NAME/build-packaging/* $WORKSPACE/build/il/packages
-echo &quot;Finished copying il_testmodule_contents files&quot;
+echo "Finished copying il_testmodule_contents files"
 rm -f /mnt/builds/jenkins/il_testmodule_contents-${BRANCH_NAME}_packaging.txt
 
 cp $WORKSPACE/build/il/packages/fsimg/rawimage.map $WORKSPACE/build/il/packages/fsimg/main_rawimage.map
@@ -322,11 +321,11 @@ cat $WORKSPACE/build/il/packages/fsimg/virtual_rawimage.map &gt;&gt; $WORKSPACE/
 cat $WORKSPACE/build/il/packages/fsimg/vtc_rawimage.map &gt;&gt; $WORKSPACE/build/il/packages/fsimg/rawimage.map
 cat $WORKSPACE/build/il/packages/fsimg/main_rawimage.map &gt;&gt; $WORKSPACE/build/il/packages/fsimg/rawimage.map
 rm $WORKSPACE/build/il/packages/fsimg/*_rawimage.map
-echo &quot;Finished copying all il ci build artifacts&quot;</command>
+echo "Finished copying all il ci build artifacts"</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>export DEPENDENT_JOB_NAME=integration_il_centralboot_packaging
-echo &quot;Removing extra l4l7 bundle package: $WORKSPACE/build/il/packages/bundle/l4l7-*..zip&quot;
+echo "Removing extra l4l7 bundle package: $WORKSPACE/build/il/packages/bundle/l4l7-*..zip"
 rm -rf $WORKSPACE/build/il/packages/bundle/l4l7-*.zip
 python $WORKSPACE/Build_Scripts/Scripts/ci_run_jenkins_steps.py --createpropfile=yes --runcimaketarballs=no --runsetver=no --runciftpcentralboot=no --runcimakelstarballs=no --runcopyl4l7=yes --createversionfile=no</command>
     </hudson.tasks.Shell>
@@ -335,13 +334,13 @@ python $WORKSPACE/Build_Scripts/Scripts/ci_run_jenkins_steps.py --createpropfile
 sudo scons target=centralboot_yoctovm packaging=1</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command>echo &quot;Creating Amara C3 image file&quot;
+      <command>echo "Creating Amara C3 image file"
 sudo scons target=c3_pkg_yocto_vm packaging=1
 # $WORKSPACE/build/il/scripts/phxbld -j8 c3_yocto  # run this target after a clean build
 # sudo scons target=c3_pkg_yocto packaging=1</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command>echo &quot;Copying tmos bundle from vtc job for Avalanche build ...&quot;
+      <command>echo "Copying tmos bundle from vtc job for Avalanche build ..."
 rm -rf $WORKSPACE/build/il/packages/tmos-av
 mkdir $WORKSPACE/build/il/packages/tmos-av
 cp /mnt/builds/jenkins/il_stca-$BRANCH_NAME/build-packaging/bundle/tmos*.zip .
@@ -351,26 +350,26 @@ cp -f $WORKSPACE/tmos-${filever}.zip $WORKSPACE/build/il/packages/bundle/tmosvtc
 rm -f $WORKSPACE/tmos-*.zip</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command># echo &quot;Copying chassisvm files ...&quot; 
+      <command># echo "Copying chassisvm files ..." 
 # rm -rf $WORKSPACE/build/il/packages/chassisvm 
 # mkdir $WORKSPACE/build/il/packages/chassisvm 
 # cp $WORKSPACE/framework/il/platform/scripts/chassis/i686/c3_vm_patch/testcenter_c3* $WORKSPACE/build/il/packages/chassisvm 
 </command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command>echo &quot;Creating place holder &apos;Spirent TestCenter Application.exe&apos;  file ...&quot;
+      <command>echo "Creating place holder 'Spirent TestCenter Application.exe'  file ..."
 mkdir -p $WORKSPACE/build/stc/setup
 echo testcenter &gt; $WORKSPACE/build/stc/setup/Spirent\ TestCenter\ Application.exe
 echo ${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}6 &gt; $WORKSPACE/build/stc/setup/version
 
-echo &quot;Creating controller3 fsimg file to be use for Amara recovery USB disk ...&quot;
+echo "Creating controller3 fsimg file to be use for Amara recovery USB disk ..."
 ln -s $WORKSPACE/ChassisImage/chassis.img.gz $WORKSPACE/build/il/packages/rawimg/chassis.img.gz
 # sudo $WORKSPACE/build/il/scripts/phxbld -j32 c3_yocto
 sudo $WORKSPACE/build/il/scripts/phxbld -j0 amara_yocto</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>export DEPENDENT_JOB_NAME=integration_il_centralboot_packaging
-echo &quot;Running reversion_il.sh script ...&quot;
+echo "Running reversion_il.sh script ..."
 python $WORKSPACE/Build_Scripts/Scripts/ci_run_jenkins_steps.py --runilreversion=yes</command>
     </hudson.tasks.Shell>
   </builders>
@@ -392,16 +391,16 @@ python $WORKSPACE/Build_Scripts/Scripts/ci_run_jenkins_steps.py --runilreversion
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
           <email>
-            <recipientList></recipientList>
+            <recipientList/>
             <subject>$PROJECT_DEFAULT_SUBJECT</subject>
             <body>$PROJECT_DEFAULT_CONTENT</body>
             <recipientProviders>
               <hudson.plugins.emailext.plugins.recipients.DevelopersRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern></attachmentsPattern>
+            <attachmentsPattern/>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
-            <replyTo></replyTo>
+            <replyTo/>
             <contentType>project</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.FailureTrigger>
@@ -409,8 +408,8 @@ python $WORKSPACE/Build_Scripts/Scripts/ci_run_jenkins_steps.py --runilreversion
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern></attachmentsPattern>
-      <presendScript></presendScript>
+      <attachmentsPattern/>
+      <presendScript/>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
       <replyTo>$DEFAULT_RECIPIENTS</replyTo>
