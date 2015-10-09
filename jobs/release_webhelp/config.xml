@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>Uses MadCap Flare tool to compile webhelp files&lt;br&gt;
-Creates STC and Server Manager help files&lt;br&gt;
-Archives output as tar files for use during packaging jobs&lt;br&gt;
+  <description>Uses MadCap Flare tool to compile webhelp files&lt;br&gt;&#xd;
+Creates STC and Server Manager help files&lt;br&gt;&#xd;
+Archives output as tar files for use during packaging jobs&lt;br&gt;&#xd;
 Triggers release_bll_win_pkg_webhelp&lt;br&gt;</description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
@@ -21,13 +21,8 @@ Triggers release_bll_win_pkg_webhelp&lt;br&gt;</description>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description></description>
-          <defaultValue>4.57_rel</defaultValue>
+          <defaultValue>release</defaultValue>
         </hudson.model.StringParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>P4CLEANWORKSPACE</name>
-          <description></description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.22">
@@ -87,16 +82,17 @@ Triggers release_bll_win_pkg_webhelp&lt;br&gt;</description>
   </scm>
   <assignedNode>techpubbld</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>&quot;c:\Program Files (x86)\MadCap Software\MadCap Flare V10\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\Spirent_TestCenter\StcHelp.flprj&quot; -target &quot;WebHelp.fltar&quot; -log true&#xd;
-&quot;c:\Program Files (x86)\MadCap Software\MadCap Flare V10\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\Session_Manager\StcSMHelp.flprj&quot; -target &quot;WebHelp.fltar&quot; -log true&#xd;
-&quot;c:\Program Files (x86)\MadCap Software\MadCap Flare V10\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\CTS\cts.flprj&quot; -target &quot;WebHelp.fltar&quot; -log true</command>
+      <command>&quot;c:\Program Files (x86)\MadCap Software\MadCap Flare V11\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\Spirent_TestCenter\StcHelp.flprj&quot; -target &quot;WebHelp.fltar&quot; -log true&#xd;
+&quot;c:\Program Files (x86)\MadCap Software\MadCap Flare V11\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\Session_Manager\StcSMHelp.flprj&quot; -target &quot;WebHelp.fltar&quot; -log true&#xd;
+&quot;c:\Program Files (x86)\MadCap Software\MadCap Flare V11\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\CTS\cts.flprj&quot; -target &quot;WebHelp.fltar&quot; -log true&#xd;
+</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
       <command>7z a -ttar CTS_WebHelp.tar %WORKSPACE%\online_help\CTS\Output\spirent\WebHelp&#xd;
@@ -131,6 +127,7 @@ paramfile.write(&quot;BLL_BUILD_NUMBER=&quot; + bll_build_number)</command>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
       <artifacts>TestCenter_WebHelp.tar.gz, WebHelp_mclog.tar.gz,  ServerManager_WebHelp.tar.gz, CTS_WebHelp.tar.gz</artifacts>
+      <latestOnly>false</latestOnly>
       <allowEmptyArchive>false</allowEmptyArchive>
       <onlyIfSuccessful>false</onlyIfSuccessful>
       <fingerprint>false</fingerprint>
