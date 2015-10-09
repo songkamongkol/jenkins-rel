@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>CI IL Build job for chos2:&lt;br&gt;
-$WORKSPACE/build/il/scripts/phxbld -j8 chos2_yocto&lt;br&gt;
-$WORKSPACE/build/il/scripts/phxbld -j8 controller3_yocto_yocto&lt;br&gt;
-$WORKSPACE/build/il/scripts/phxbld idltarball&lt;br&gt;
-Archive il_chos2_*.tar&lt;br&gt;
+  <description>CI IL Build job for chos2:&lt;br&gt;&#xd;
+$WORKSPACE/build/il/scripts/phxbld -j8 chos2_yocto&lt;br&gt;&#xd;
+$WORKSPACE/build/il/scripts/phxbld -j8 controller3_yocto_yocto&lt;br&gt;&#xd;
+$WORKSPACE/build/il/scripts/phxbld idltarball&lt;br&gt;&#xd;
+Archive il_chos2_*.tar&lt;br&gt;&#xd;
 Wait 10 minutes&lt;br&gt;</description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
@@ -80,7 +80,6 @@ Wait 10 minutes&lt;br&gt;</description>
 +//TestCenter/${BRANCH_NAME}/framework/bll/unittestdrv/... //ws/framework/bll/unittestdrv/...
 +//TestCenter/${BRANCH_NAME}/framework/bll/vendor/... //ws/framework/bll/vendor/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -160,11 +159,14 @@ sudo scons target=kernelclean</command>
     <hudson.tasks.Shell>
       <command>env
 p4 info
-$WORKSPACE/build/il/scripts/phxbld -j8 chos2_yocto2
-$WORKSPACE/build/il/scripts/phxbld -j8 controller3_yocto_chhvvm 
+# $WORKSPACE/build/il/scripts/phxbld -j8 chos2_yocto2
+# $WORKSPACE/build/il/scripts/phxbld -j8 controller3_yocto_chhvvm 
 # sudo -S rm -rf $WORKSPACE/build/il/bld_*
-$WORKSPACE/build/il/scripts/phxbld idltarball
-# sudo -S rm -rf $WORKSPACE/build/il/bld_*</command>
+# $WORKSPACE/build/il/scripts/phxbld idltarball
+# sudo -S rm -rf $WORKSPACE/build/il/bld_*
+$WORKSPACE/build/il/scripts/phxbld -j8 chos2_yocto2
+$WORKSPACE/build/il/scripts/phxbld -j8 yocto_ver=1.5 controller3_yocto_chhvvm
+$WORKSPACE/build/il/scripts/phxbld idltarball</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command># rm -f il_chos2_$STC_MAJ_MIN_VERSION.tar
@@ -240,7 +242,6 @@ cp -r $WORKSPACE/build/il/packages/idltar $STORAGE_DIR
       <scriptOnlyIfSuccess>true</scriptOnlyIfSuccess>
       <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
       <markBuildUnstable>false</markBuildUnstable>
-      <executeOn>BOTH</executeOn>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
   </publishers>
   <buildWrappers>
