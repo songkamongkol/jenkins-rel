@@ -19,6 +19,7 @@
     <p4Client>rel-config-backup</p4Client>
     <projectPath>//devops/mainline/JenkinsConfig/* //rel-config-backup/*</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
+    <clientOwner></clientOwner>
     <p4SysDrive></p4SysDrive>
     <p4SysRoot></p4SysRoot>
     <p4Tool>p4</p4Tool>
