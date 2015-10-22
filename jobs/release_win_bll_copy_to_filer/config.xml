@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
   <description>Copy build output raw files to \\filer.caw.com\home\qabuild\TestCenter\2.00\engineering_builds\GUI_BLL as per request from Nicolas
 
@@ -19,7 +20,7 @@ NOTE: This job must be setup to run on the same machine as the Windows </descrip
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.57_rel</defaultValue>
+          <defaultValue>4.58_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BUILD_OUTPUT_DIR</name>
@@ -29,11 +30,11 @@ NOTE: This job must be setup to run on the same machine as the Windows </descrip
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description>major minor version</description>
-          <defaultValue>4.57</defaultValue>
+          <defaultValue>4.58</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
-          <description/>
+          <description></description>
           <defaultValue>BAD_BUILD_NUMBER</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -53,21 +54,21 @@ NOTE: This job must be setup to run on the same machine as the Windows </descrip
   <customWorkspace>${JOB_NAME}</customWorkspace>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>set BRANCH_ID=6
-set FILER_DIR=L:TestCenter\2.00\engineering_builds\GUI_BLL\%STC_MAJ_MIN_VERSION%.%BLL_BUILD_NUMBER%%BRANCH_ID%
-echo "Copying raw files from %BUILD_OUTPUT_DIR%\bin\Release to %FILER_DIR% ..."
-mkdir %FILER_DIR%
-xcopy %BUILD_OUTPUT_DIR%\bin\Release\Model %FILER_DIR%\Model /e /i /y
-xcopy %BUILD_OUTPUT_DIR%\bin\Release\PDUs %FILER_DIR%\PDUs /e /i /y
-xcopy %BUILD_OUTPUT_DIR%\bin\Release\RcmDb %FILER_DIR%\RcmDb /e /i /y
-xcopy %BUILD_OUTPUT_DIR%\bin\Release\Resources %FILER_DIR%\Resources /e /i /y
-xcopy %BUILD_OUTPUT_DIR%\bin\Release\stclib %FILER_DIR%\ stclib /e /i /y
-xcopy %BUILD_OUTPUT_DIR%\bin\Release\Templates %FILER_DIR%\Templates /e /i /y
-xcopy %BUILD_OUTPUT_DIR%\bin\Release\Tcl %FILER_DIR%\Tcl /e /i /y
-xcopy %BUILD_OUTPUT_DIR%\bin\Release\Python %FILER_DIR%\Python /e /i /y
-xcopy %BUILD_OUTPUT_DIR%\bin\Release\STAKCommands %FILER_DIR%\STAKCommands /e /i /y
-copy %BUILD_OUTPUT_DIR%\bin\Release\*.* %FILER_DIR% /y
-
+      <command>set BRANCH_ID=6&#xd;
+set FILER_DIR=L:TestCenter\2.00\engineering_builds\GUI_BLL\%STC_MAJ_MIN_VERSION%.%BLL_BUILD_NUMBER%%BRANCH_ID%&#xd;
+echo &quot;Copying raw files from %BUILD_OUTPUT_DIR%\bin\Release to %FILER_DIR% ...&quot;&#xd;
+mkdir %FILER_DIR%&#xd;
+xcopy %BUILD_OUTPUT_DIR%\bin\Release\Model %FILER_DIR%\Model /e /i /y&#xd;
+xcopy %BUILD_OUTPUT_DIR%\bin\Release\PDUs %FILER_DIR%\PDUs /e /i /y&#xd;
+xcopy %BUILD_OUTPUT_DIR%\bin\Release\RcmDb %FILER_DIR%\RcmDb /e /i /y&#xd;
+xcopy %BUILD_OUTPUT_DIR%\bin\Release\Resources %FILER_DIR%\Resources /e /i /y&#xd;
+xcopy %BUILD_OUTPUT_DIR%\bin\Release\stclib %FILER_DIR%\ stclib /e /i /y&#xd;
+xcopy %BUILD_OUTPUT_DIR%\bin\Release\Templates %FILER_DIR%\Templates /e /i /y&#xd;
+xcopy %BUILD_OUTPUT_DIR%\bin\Release\Tcl %FILER_DIR%\Tcl /e /i /y&#xd;
+xcopy %BUILD_OUTPUT_DIR%\bin\Release\Python %FILER_DIR%\Python /e /i /y&#xd;
+xcopy %BUILD_OUTPUT_DIR%\bin\Release\STAKCommands %FILER_DIR%\STAKCommands /e /i /y&#xd;
+copy %BUILD_OUTPUT_DIR%\bin\Release\*.* %FILER_DIR% /y&#xd;
+&#xd;
 </command>
     </hudson.tasks.BatchFile>
   </builders>
@@ -83,16 +84,16 @@ copy %BUILD_OUTPUT_DIR%\bin\Release\*.* %FILER_DIR% /y
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
           <email>
-            <recipientList/>
+            <recipientList></recipientList>
             <subject>$PROJECT_DEFAULT_SUBJECT</subject>
             <body>$PROJECT_DEFAULT_CONTENT</body>
             <recipientProviders>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
-            <replyTo/>
+            <replyTo></replyTo>
             <contentType>project</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.FailureTrigger>
@@ -100,11 +101,11 @@ copy %BUILD_OUTPUT_DIR%\bin\Release\*.* %FILER_DIR% /y
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern/>
-      <presendScript/>
+      <attachmentsPattern></attachmentsPattern>
+      <presendScript></presendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
-      <replyTo/>
+      <replyTo></replyTo>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
