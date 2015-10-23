@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>Copy build output raw files to \\filer.caw.com\home\qabuild\TestCenter\2.00\engineering_builds\GUI_BLL as per request from Nicolas
-
+  <description>Copy build output raw files to \\filer.caw.com\home\qabuild\TestCenter\2.00\engineering_builds\GUI_BLL as per request from Nicolas&#xd;
+&#xd;
 NOTE: This job must be setup to run on the same machine as the Windows </description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
@@ -56,6 +56,20 @@ NOTE: This job must be setup to run on the same machine as the Windows </descrip
     <hudson.tasks.BatchFile>
       <command>set BRANCH_ID=6&#xd;
 set FILER_DIR=L:TestCenter\2.00\engineering_builds\GUI_BLL\%STC_MAJ_MIN_VERSION%.%BLL_BUILD_NUMBER%%BRANCH_ID%&#xd;
+echo &quot;Copying raw files from %BUILD_OUTPUT_DIR%\bin\Release to %FILER_DIR% ...&quot;&#xd;
+mkdir %FILER_DIR%&#xd;
+xcopy %BUILD_OUTPUT_DIR%\bin\Release\Model %FILER_DIR%\Model /e /i /y&#xd;
+xcopy %BUILD_OUTPUT_DIR%\bin\Release\PDUs %FILER_DIR%\PDUs /e /i /y&#xd;
+xcopy %BUILD_OUTPUT_DIR%\bin\Release\RcmDb %FILER_DIR%\RcmDb /e /i /y&#xd;
+xcopy %BUILD_OUTPUT_DIR%\bin\Release\Resources %FILER_DIR%\Resources /e /i /y&#xd;
+xcopy %BUILD_OUTPUT_DIR%\bin\Release\stclib %FILER_DIR%\ stclib /e /i /y&#xd;
+xcopy %BUILD_OUTPUT_DIR%\bin\Release\Templates %FILER_DIR%\Templates /e /i /y&#xd;
+xcopy %BUILD_OUTPUT_DIR%\bin\Release\Tcl %FILER_DIR%\Tcl /e /i /y&#xd;
+xcopy %BUILD_OUTPUT_DIR%\bin\Release\Python %FILER_DIR%\Python /e /i /y&#xd;
+xcopy %BUILD_OUTPUT_DIR%\bin\Release\STAKCommands %FILER_DIR%\STAKCommands /e /i /y&#xd;
+copy %BUILD_OUTPUT_DIR%\bin\Release\*.* %FILER_DIR% /y&#xd;
+&#xd;
+set FILER_DIR=K:TestCenter\2.00\engineering_builds\GUI_BLL\%STC_MAJ_MIN_VERSION%.%BLL_BUILD_NUMBER%%BRANCH_ID%&#xd;
 echo &quot;Copying raw files from %BUILD_OUTPUT_DIR%\bin\Release to %FILER_DIR% ...&quot;&#xd;
 mkdir %FILER_DIR%&#xd;
 xcopy %BUILD_OUTPUT_DIR%\bin\Release\Model %FILER_DIR%\Model /e /i /y&#xd;
