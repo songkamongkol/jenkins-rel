@@ -91,7 +91,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>set JAVA_HOME=C:\Program Files (x86)\Java\jdk1.6.35&#xd;
+      <command>set JAVA_HOME=C:\Program Files (x86)\Java\jdk1.6.0_35&#xd;
 set JAVACMD=C:\Program Files (x86)\Java\jdk1.6.0_35\bin\java.exe&#xd;
 cd framework\ui\resultsanalysis&#xd;
 ant</command>
