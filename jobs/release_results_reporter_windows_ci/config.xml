@@ -43,7 +43,6 @@
 +//TestCenter/${BRANCH_NAME}/framework/ui/resultsanalysis/tools/jvm/windows_x86_1.6.0_35/... //ws/framework/ui/resultsanalysis/tools/jvm/windows_x86_1.6.0_35/...
 +//TestCenter/${BRANCH_NAME}/framework/tools/buildUtil/... //ws/framework/tools/buildUtil/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <p4Tool>p4</p4Tool>
@@ -67,7 +66,7 @@
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -92,8 +91,8 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>set JAVA_HOME=C:\Program Files (x86)\Java\jdk1.6.0_03&#xd;
-set JAVACMD=C:\Program Files (x86)\Java\jdk1.6.0_03\bin\java.exe&#xd;
+      <command>set JAVA_HOME=C:\Program Files (x86)\Java\jdk1.6.35&#xd;
+set JAVACMD=C:\Program Files (x86)\Java\jdk1.6.0_35\bin\java.exe&#xd;
 cd framework\ui\resultsanalysis&#xd;
 ant</command>
     </hudson.tasks.BatchFile>
