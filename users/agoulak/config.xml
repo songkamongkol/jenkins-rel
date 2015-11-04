@@ -32,5 +32,8 @@
       <emailAddress>alex.goulak@spirent.com</emailAddress>
     </hudson.tasks.Mailer_-UserProperty>
     <hudson.plugins.perforce.PerforceUserProperty plugin="perforce@1.3.34"/>
+    <jenkins.security.LastGrantedAuthoritiesProperty>
+      <timestamp>0</timestamp>
+    </jenkins.security.LastGrantedAuthoritiesProperty>
   </properties>
 </user>
