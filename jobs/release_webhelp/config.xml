@@ -39,7 +39,6 @@ Triggers release_bll_win_pkg_webhelp&lt;br&gt;</description>
 //tech_pubs/online_help/Session_Manager/... //ws/online_help/Session_Manager/...
 //tech_pubs/online_help/CTS/... //ws/online_help/CTS/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -85,7 +84,13 @@ Triggers release_bll_win_pkg_webhelp&lt;br&gt;</description>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <triggers/>
+  <triggers>
+    <hudson.triggers.SCMTrigger>
+      <spec>
+5 * * * *</spec>
+      <ignorePostCommitHooks>false</ignorePostCommitHooks>
+    </hudson.triggers.SCMTrigger>
+  </triggers>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
@@ -127,7 +132,6 @@ paramfile.write(&quot;BLL_BUILD_NUMBER=&quot; + bll_build_number)</command>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
       <artifacts>TestCenter_WebHelp.tar.gz, WebHelp_mclog.tar.gz,  ServerManager_WebHelp.tar.gz, CTS_WebHelp.tar.gz</artifacts>
-      <latestOnly>false</latestOnly>
       <allowEmptyArchive>false</allowEmptyArchive>
       <onlyIfSuccessful>false</onlyIfSuccessful>
       <fingerprint>false</fingerprint>
