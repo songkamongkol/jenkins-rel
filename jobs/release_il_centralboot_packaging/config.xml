@@ -104,7 +104,7 @@ Then runs Centralboot to generate centralboot image and run reversion script to 
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -116,7 +116,7 @@ Then runs Centralboot to generate centralboot image and run reversion script to 
     <pollOnlyOnMaster>true</pollOnlyOnMaster>
   </scm>
   <quietPeriod>120</quietPeriod>
-  <assignedNode>ilpkg-03</assignedNode>
+  <assignedNode>ilpkg-01</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
