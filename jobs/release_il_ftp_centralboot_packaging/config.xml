@@ -114,7 +114,7 @@ net use I: \\martin\archive\pv&#xd;
 net use&#xd;
 &#xd;
 rem SET ILHOST=10.2.19.55&#xd;
-SET ILHOST=ilpkg-03.cal.ci.spirentcom.com&#xd;
+SET ILHOST=ilpkg-01.cal.ci.spirentcom.com&#xd;
 &#xd;
 rem SET ILWORKSPACE=/home/scmbuild/jenkins-rel/workspace/release_il_centralboot_packaging&#xd;
 SET ILWORKSPACE=/home/spirent/jenkins-rel/workspace/release_il_centralboot_packaging&#xd;
