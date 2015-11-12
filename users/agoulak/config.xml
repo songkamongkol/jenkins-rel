@@ -31,12 +31,12 @@
     <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.15">
       <emailAddress>alex.goulak@spirent.com</emailAddress>
     </hudson.tasks.Mailer_-UserProperty>
-    <hudson.plugins.perforce.PerforceUserProperty plugin="perforce@1.3.34"/>
     <jenkins.security.LastGrantedAuthoritiesProperty>
       <roles>
         <string>authenticated</string>
       </roles>
       <timestamp>1446659930674</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
+    <hudson.plugins.perforce.PerforceUserProperty plugin="perforce@1.3.34"/>
   </properties>
 </user>
