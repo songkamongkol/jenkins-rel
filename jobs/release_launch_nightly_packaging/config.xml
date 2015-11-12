@@ -71,6 +71,7 @@ release_ccp&lt;br&gt;&#xd;
 -//TestCenter/*/framework/il/freebsd/sys/dev/digi/...
 -//TestCenter/*/framework/il/platform/scripts/chassis/i686/filesys/etc/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
+    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <p4Tool>p4</p4Tool>
@@ -107,7 +108,7 @@ release_ccp&lt;br&gt;&#xd;
   </scm>
   <assignedNode>spccalengec02</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
