@@ -104,7 +104,7 @@ Then runs Centralboot to generate centralboot image and run reversion script to 
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -366,7 +366,7 @@ echo ${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}6 &gt; $WORKSPACE/build/stc/setup
 echo &quot;Creating controller3 fsimg file to be use for Amara recovery USB disk ...&quot;
 ln -s $WORKSPACE/ChassisImage/chassis.img.gz $WORKSPACE/build/il/packages/rawimg/chassis.img.gz
 # sudo $WORKSPACE/build/il/scripts/phxbld -j32 c3_yocto
-sudo $WORKSPACE/build/il/scripts/phxbld -j0 amara_yocto</command>
+# sudo $WORKSPACE/build/il/scripts/phxbld -j0 amara_yocto</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>export DEPENDENT_JOB_NAME=integration_il_centralboot_packaging
