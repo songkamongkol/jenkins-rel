@@ -818,12 +818,6 @@
       <userId>somboon</userId>
     </slave>
     <slave>
-      <temporaryOfflineCause class="hudson.node_monitors.DiskSpaceMonitorDescriptor$DiskSpace">
-        <path>/home/spirent/jenkins-rel</path>
-        <size>186875904</size>
-        <triggered>true</triggered>
-        <trigger>hudson.node_monitors.DiskSpaceMonitor</trigger>
-      </temporaryOfflineCause>
       <name>ilpkg-03</name>
       <description>builds IL targets</description>
       <remoteFS>/home/spirent/jenkins-rel</remoteFS>
