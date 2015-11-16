@@ -930,27 +930,20 @@
             <string>release_bll_linux_ci</string>
             <string>release_bll_linux_x64_ci</string>
             <string>release_bll_windows_ci</string>
-            <string>release_bll_windows_debug_ci</string>
-            <string>release_ccp_webhelp</string>
             <string>release_cts_linux_ci</string>
             <string>release_cts_windows_ci</string>
             <string>release_il_changeling_all_ci</string>
             <string>release_il_changeling_all_yocto_ci</string>
-            <string>release_il_changeling_ci</string>
             <string>release_il_changeling_yocto_ci</string>
-            <string>release_il_chassisvm_ci</string>
             <string>release_il_chhvm_yocto_ci</string>
-            <string>release_il_chos2_ci</string>
             <string>release_il_chos2_yocto_ci</string>
             <string>release_il_ci</string>
             <string>release_il_ci_join</string>
             <string>release_il_lxc_yocto_ci</string>
-            <string>release_il_qemu_ci</string>
             <string>release_il_qemu_yocto_ci</string>
             <string>release_il_stca_ci</string>
             <string>release_il_testmodule_contents_ci</string>
             <string>release_il_unit_test</string>
-            <string>release_il_virtual_ci</string>
             <string>release_il_virtual_yocto_ci</string>
             <string>release_regression_changeling_ci</string>
             <string>release_regression_ci</string>
@@ -983,7 +976,7 @@
           <rightPortlets/>
           <topPortlets>
             <hudson.plugins.view.dashboard.stats.StatBuilds>
-              <id>dashboard_portlet_7954</id>
+              <id>dashboard_portlet_5664</id>
               <name>Build statistics</name>
             </hudson.plugins.view.dashboard.stats.StatBuilds>
           </topPortlets>
