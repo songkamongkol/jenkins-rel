@@ -1,14 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>IL Build job for virtual targets:&lt;br&gt;
-$WORKSPACE/build/il/scripts/phxbld -j8 vtc&lt;br&gt;
-$WORKSPACE/build/il/scripts/phxbld -j8 stca&lt;br&gt;
-and BoF
-$WORKSPACE/build/il/scripts/phxbld -j4 tsvm&lt;br&gt;
-sudo $WORKSPACE/build/il/scripts/phxbld tsvm_raw&lt;br&gt;
-Archive il_vtc_*.tar&lt;br&gt;
-
+  <description>IL Build job for virtual targets:&lt;br&gt;&#xd;
+$WORKSPACE/build/il/scripts/phxbld -j8 vtc&lt;br&gt;&#xd;
+$WORKSPACE/build/il/scripts/phxbld -j8 stca&lt;br&gt;&#xd;
+and BoF&#xd;
+$WORKSPACE/build/il/scripts/phxbld -j4 tsvm&lt;br&gt;&#xd;
+sudo $WORKSPACE/build/il/scripts/phxbld tsvm_raw&lt;br&gt;&#xd;
+Archive il_vtc_*.tar&lt;br&gt;&#xd;
+&#xd;
 </description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
@@ -26,7 +26,7 @@ Archive il_vtc_*.tar&lt;br&gt;
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.59_rel</defaultValue>
+          <defaultValue>4.61_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -46,7 +46,7 @@ Archive il_vtc_*.tar&lt;br&gt;
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description></description>
-          <defaultValue>4.59</defaultValue>
+          <defaultValue>4.61</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -88,7 +88,6 @@ Archive il_vtc_*.tar&lt;br&gt;
 //LandSlide_Binaries/bof/content/traffic/mobi/il/blink/GlueServer //ws/content/traffic/mobi/il/blink/GlueServer
 //TARDIS/Studio/pretardis/4.17_studio/il/vm/studio.qcow2.gz //ws/content/traffic/studio/il/vm/studio.qcow2.gz</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -276,7 +275,6 @@ cp -r $WORKSPACE/build/il/packages/stca $STORAGE_DIR
       <scriptOnlyIfSuccess>true</scriptOnlyIfSuccess>
       <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
       <markBuildUnstable>false</markBuildUnstable>
-      <executeOn>BOTH</executeOn>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
   </publishers>
   <buildWrappers>

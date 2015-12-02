@@ -79,7 +79,7 @@ Triggers release_bll_win_pkg_webhelp&lt;br&gt;</description>
     <useViewMaskForChangeLog>false</useViewMaskForChangeLog>
     <pollOnlyOnMaster>false</pollOnlyOnMaster>
   </scm>
-  <assignedNode>techpubbld</assignedNode>
+  <assignedNode>techpubbld-v01</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>

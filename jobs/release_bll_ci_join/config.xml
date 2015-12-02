@@ -30,7 +30,7 @@
       <command>echo &quot;BLL build complete on all OS&apos;s&quot;&#xd;
 del /f /q BLL_changelist*.txt BLL_Linux_changelist*.txt</command>
     </hudson.tasks.BatchFile>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.33">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
       <project>release_bll_windows_ci</project>
       <filter>BLL_changelist*.txt</filter>
       <target></target>
@@ -41,7 +41,7 @@ del /f /q BLL_changelist*.txt BLL_Linux_changelist*.txt</command>
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.33">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
       <project>release_bll_linux_ci</project>
       <filter>BLL_Linux_changelist*.txt</filter>
       <target></target>
@@ -72,6 +72,6 @@ del /f /q BLL_changelist*.txt BLL_Linux_changelist*.txt</command>
     </hudson.tasks.Fingerprinter>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.5.15"/>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.5.16"/>
   </buildWrappers>
 </project>

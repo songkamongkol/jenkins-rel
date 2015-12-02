@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<hudson.plugins.promoted__builds.PromotionProcess plugin="promoted-builds@2.20">
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <conditions>
+    <hudson.plugins.promoted__builds.conditions.UpstreamPromotionCondition>
+      <requiredPromotionNames>rlease_bll_freebsd63_packaging,release_bll_freebsd71_packaging,release_bll_linux_packaging,release_bll_windows_packaging_new,release_il_ftp_centralboot_packaging</requiredPromotionNames>
+    </hudson.plugins.promoted__builds.conditions.UpstreamPromotionCondition>
+  </conditions>
+  <icon>star-red</icon>
+  <assignedLabel>spccalengec02</assignedLabel>
+  <buildSteps>
+    <hudson.plugins.parameterizedtrigger.BuildTrigger plugin="parameterized-trigger@2.25">
+      <configs>
+        <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+          <configs>
+            <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+              <properties>BLL_BUILD_NUMBER=${PROMOTED_NUMBER}
+PROMOTED_URL_PARAM=${PROMOTED_URL}
+MODE=${MODE}</properties>
+            </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+          </configs>
+          <projects>release_copy_to_spccalfs03_packaging</projects>
+          <condition>SUCCESS</condition>
+          <triggerWithNoParameters>false</triggerWithNoParameters>
+        </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+      </configs>
+    </hudson.plugins.parameterizedtrigger.BuildTrigger>
+  </buildSteps>
+</hudson.plugins.promoted__builds.PromotionProcess>

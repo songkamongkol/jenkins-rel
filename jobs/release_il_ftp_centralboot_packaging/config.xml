@@ -21,12 +21,12 @@ Triggers integration_set_status job to create entry in build database&lt;br&gt;<
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description></description>
-          <defaultValue>4.59_rel</defaultValue>
+          <defaultValue>4.61_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description></description>
-          <defaultValue>4.59</defaultValue>
+          <defaultValue>4.61</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
@@ -114,7 +114,7 @@ net use I: \\martin\archive\pv&#xd;
 net use&#xd;
 &#xd;
 rem SET ILHOST=10.2.19.55&#xd;
-SET ILHOST=ilpkg-01.cal.ci.spirentcom.com&#xd;
+SET ILHOST=ilpkg-02.cal.ci.spirentcom.com&#xd;
 &#xd;
 rem SET ILWORKSPACE=/home/scmbuild/jenkins-rel/workspace/release_il_centralboot_packaging&#xd;
 SET ILWORKSPACE=/home/spirent/jenkins-rel/workspace/release_il_centralboot_packaging&#xd;
