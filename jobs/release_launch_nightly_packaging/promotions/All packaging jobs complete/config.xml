@@ -11,7 +11,7 @@
   <concurrentBuild>false</concurrentBuild>
   <conditions>
     <hudson.plugins.promoted__builds.conditions.UpstreamPromotionCondition>
-      <requiredPromotionNames>rlease_bll_freebsd63_packaging,release_bll_freebsd71_packaging,release_bll_linux_packaging,release_bll_windows_packaging_new,release_il_ftp_centralboot_packaging</requiredPromotionNames>
+      <requiredPromotionNames>rlease_bll_freebsd63_packaging,release_bll_freebsd71_packaging,release_bll_linux_packaging,release_bll_windows_packaging_new,release_il_ftp_centralboot_packaging,release_cts_linux_packaging,release_cts_windows_packaging</requiredPromotionNames>
     </hudson.plugins.promoted__builds.conditions.UpstreamPromotionCondition>
   </conditions>
   <icon>star-red</icon>

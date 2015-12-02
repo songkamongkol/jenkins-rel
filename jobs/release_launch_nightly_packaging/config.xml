@@ -42,6 +42,7 @@ release_ccp&lt;br&gt;&#xd;
     <hudson.plugins.promoted__builds.JobPropertyImpl plugin="promoted-builds@2.20">
       <activeProcessNames>
         <string>release Ready for SmartTest</string>
+        <string>All packaging jobs complete</string>
       </activeProcessNames>
     </hudson.plugins.promoted__builds.JobPropertyImpl>
     <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.22">
@@ -94,7 +95,7 @@ release_ccp&lt;br&gt;&#xd;
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
