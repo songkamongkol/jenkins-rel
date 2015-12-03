@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>Sync SCM build scripts,help files and other files as needed for packaging.&lt;br&gt;
-Retrieve tar.gz files from CTS build.&lt;br&gt;
-Extract CTS.Windows.all.tar.gz files to build root folder.&lt;br&gt;
-Run setver.py to set the version of the TestCenter and CTS binary files.&lt;br&gt;
-Run ci_packageinstaller.pl to create CTS installer .&lt;br&gt;
-Copy build results to \\martin\archive\pv\TestCenter\4.10\Engineering_Builds\integration\BUILDVERSION&lt;br&gt;
-Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02&lt;br&gt;
+  <description>Sync SCM build scripts,help files and other files as needed for packaging.&lt;br&gt;&#xd;
+Retrieve tar.gz files from CTS build.&lt;br&gt;&#xd;
+Extract CTS.Windows.all.tar.gz files to build root folder.&lt;br&gt;&#xd;
+Run setver.py to set the version of the TestCenter and CTS binary files.&lt;br&gt;&#xd;
+Run ci_packageinstaller.pl to create CTS installer .&lt;br&gt;&#xd;
+Copy build results to \\martin\archive\pv\TestCenter\4.10\Engineering_Builds\integration\BUILDVERSION&lt;br&gt;&#xd;
+Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02&lt;br&gt;&#xd;
 5 minute quiet period.&lt;br&gt;</description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
@@ -88,7 +88,6 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02&lt;br&gt;
 //TestCenter/${BRANCH_NAME}/content/traffic/l4l7/tools/DpgUpdate/... //ws/bin/Release/Dpg/DpgUpdate/...
 //TestCenter/${BRANCH_NAME}/common/lib/pduEditor/... //ws/common/lib/pduEditor/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -118,7 +117,7 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02&lt;br&gt;
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -130,7 +129,7 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02&lt;br&gt;
     <pollOnlyOnMaster>true</pollOnlyOnMaster>
   </scm>
   <quietPeriod>320</quietPeriod>
-  <assignedNode>spccalengec01</assignedNode>
+  <assignedNode>spccalengec02</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
