@@ -76,7 +76,7 @@ Triggers integration_set_status job to create entry in build database&lt;br&gt;<
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -138,6 +138,14 @@ c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --c
             </hudson.plugins.parameterizedtrigger.FileBuildParameters>
           </configs>
           <projects>release_set_status,release_reset_tag_file</projects>
+          <condition>SUCCESS</condition>
+          <triggerWithNoParameters>false</triggerWithNoParameters>
+        </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+        <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+          <configs>
+            <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
+          </configs>
+          <projects>release_cxx_amara_usb_yocto1.5</projects>
           <condition>SUCCESS</condition>
           <triggerWithNoParameters>false</triggerWithNoParameters>
         </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
