@@ -852,6 +852,7 @@
             <string>release_copy_to_spccalfs03_packaging</string>
             <string>release_cts_linux_packaging</string>
             <string>release_cts_windows_packaging</string>
+            <string>release_cxx_amara_usb_yocto1.5</string>
             <string>release_ftp_tarball_packaging</string>
             <string>release_il_centralboot_packaging</string>
             <string>release_il_ftp_centralboot_packaging</string>
