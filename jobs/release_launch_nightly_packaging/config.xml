@@ -72,6 +72,7 @@ release_ccp&lt;br&gt;&#xd;
 -//TestCenter/*/framework/il/freebsd/sys/dev/digi/...
 -//TestCenter/*/framework/il/platform/scripts/chassis/i686/filesys/etc/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
+    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <p4Tool>p4</p4Tool>
@@ -95,7 +96,7 @@ release_ccp&lt;br&gt;&#xd;
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>0</firstChange>
+    <firstChange>-1</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
