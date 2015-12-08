@@ -10,9 +10,10 @@
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <conditions>
-    <hudson.plugins.promoted__builds.conditions.UpstreamPromotionCondition>
-      <requiredPromotionNames>release_bll_freebsd63_packaging,release_bll_freebsd71_packaging,release_bll_linux_packaging,release_bll_windows_packaging_new,release_il_ftp_centralboot_packaging,release_cts_linux_packaging,release_cts_windows_packaging</requiredPromotionNames>
-    </hudson.plugins.promoted__builds.conditions.UpstreamPromotionCondition>
+    <hudson.plugins.promoted__builds.conditions.DownstreamPassCondition>
+      <jobs>release_bll_freebsd63_packaging,release_bll_freebsd71_packaging,release_bll_linux_packaging,release_bll_windows_packaging_new,release_il_ftp_centralboot_packaging,release_cts_linux_packaging,release_cts_windows_packaging</jobs>
+      <evenIfUnstable>false</evenIfUnstable>
+    </hudson.plugins.promoted__builds.conditions.DownstreamPassCondition>
   </conditions>
   <icon>star-red</icon>
   <assignedLabel>spccalengec02</assignedLabel>
