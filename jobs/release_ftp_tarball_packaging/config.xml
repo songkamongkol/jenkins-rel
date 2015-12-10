@@ -128,7 +128,7 @@ release_bll_freebsd_packaging</description>
     <pollOnlyOnMaster>true</pollOnlyOnMaster>
   </scm>
   <quietPeriod>5</quietPeriod>
-  <assignedNode>spccalengec02</assignedNode>
+  <assignedNode>spccalengec06</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
