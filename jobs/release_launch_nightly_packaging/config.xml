@@ -113,7 +113,7 @@ release_ccp&lt;br&gt;&#xd;
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
     <hudson.triggers.SCMTrigger>
-      <spec>00 20 * * *</spec>
+      <spec>00 22 * * *</spec>
       <ignorePostCommitHooks>false</ignorePostCommitHooks>
     </hudson.triggers.SCMTrigger>
   </triggers>
