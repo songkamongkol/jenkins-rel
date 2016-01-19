@@ -46,14 +46,9 @@
           <defaultValue>6</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>AV_MAJ_MIN_VERSION</name>
-          <description></description>
-          <defaultValue>4.61</defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
           <name>AV_BUILD_NUMBER</name>
           <description></description>
-          <defaultValue>1156</defaultValue>
+          <defaultValue>4.61.1156</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -153,7 +148,11 @@ rm -rf $WORKSPACE/build/il/repos/*
 rm -rf $WORKSPACE/build/il/bld_appliance
 sudo scons target=packageclean
 
-rm -f $WORKSPACE/*.txt</command>
+rm -f $WORKSPACE/*.txt
+
+# 2016-01-18: Temporary for 4.61, unshelve Ramana&apos;s change to fix AV l4l7vm version issue
+echo &quot;Unshelving 767120&quot;
+p4 unshelve -s 767120</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>#!/bin/bash
@@ -204,7 +203,7 @@ fi;
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command># update version file
-python $WORKSPACE/Build_Scripts/Scripts/ci_run_jenkins_steps.py --createversionfile=yes</command>
+# python $WORKSPACE/Build_Scripts/Scripts/ci_run_jenkins_steps.py --createversionfile=yes</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>echo &apos;Creating C1/C100 USB image (Appliance)&apos;
@@ -213,7 +212,7 @@ rm -rf $WORKSPACE/framework/il/kernel/yocto/spirent-linux
 # 2016-01-18: -- no longer needed per Ramana&apos;s suggestion -- $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_hypervisor
 
 $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_usb
-sudo $WORKSPACE/build/il/scripts/reversion_il.sh ${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}
+sudo $WORKSPACE/build/il/scripts/reversion_il.sh ${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID} ${AV_BUILD_NUMBER}
 sudo $WORKSPACE/build/il/scripts/phxbld yocto_ver=1.5 usbimg_cxxx
 rm -rf $WORKSPACE/framework/il/kernel/yocto/Install/usbimg_cxxx-1.5.img.gz
 gzip $WORKSPACE/framework/il/kernel/yocto/Install/usbimg_cxxx-1.5.img</command>
