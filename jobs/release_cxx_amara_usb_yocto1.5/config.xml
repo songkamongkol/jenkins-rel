@@ -113,7 +113,7 @@
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -151,8 +151,7 @@ sudo scons target=packageclean
 rm -f $WORKSPACE/*.txt
 
 # 2016-01-18: Temporary for 4.61, unshelve Ramana&apos;s change to fix AV l4l7vm version issue
-echo &quot;Unshelving 767120&quot;
-p4 unshelve -s 767120</command>
+cp -f /home/spirent/appliance_usb /home/spirent/jenkins-rel/workspace/release_cxx_amara_usb_yocto1.5/build/il/scripts/targets/appliance_usb</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>#!/bin/bash
