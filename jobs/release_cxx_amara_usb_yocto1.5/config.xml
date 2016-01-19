@@ -113,7 +113,7 @@
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -208,7 +208,7 @@ fi;
       <command>echo &apos;Creating C1/C100 USB image (Appliance)&apos;
 rm -rf $WORKSPACE/framework/il/kernel/yocto/spirent-linux
 
-# 2016-01-18: -- no longer needed per Ramana&apos;s suggestion -- $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_hypervisor
+$WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_hypervisor
 
 $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_usb
 sudo $WORKSPACE/build/il/scripts/reversion_il.sh ${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID} ${AV_BUILD_NUMBER}
