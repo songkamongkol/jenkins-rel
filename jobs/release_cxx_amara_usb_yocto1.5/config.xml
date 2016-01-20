@@ -113,7 +113,7 @@
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -210,18 +210,18 @@ rm -rf $WORKSPACE/framework/il/kernel/yocto/spirent-linux
 $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_hypervisor
 $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_usb
 sudo $WORKSPACE/build/il/scripts/reversion_il.sh ${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID} ${AV_BUILD_NUMBER}
-# sudo $WORKSPACE/build/il/scripts/phxbld yocto_ver=1.5 usbimg_cxxx
-# rm -rf $WORKSPACE/framework/il/kernel/yocto/Install/usbimg_cxxx-1.5.img.gz
-# gzip $WORKSPACE/framework/il/kernel/yocto/Install/usbimg_cxxx-1.5.img</command>
+$WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 il_version=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID} usbimg_cxxx
+rm -rf $WORKSPACE/framework/il/kernel/yocto/Install/usbimg_cxxx-1.5.img.gz
+gzip $WORKSPACE/framework/il/kernel/yocto/Install/usbimg_cxxx-1.5.img</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command># echo &apos;Creating Amara/Controller3 USB image (Yocto 1.5)&apos;
-# $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 c3_hypervisor
-# $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 c3_usb   
-# rm -rf $WORKSPACE/framework/il/kernel/yocto/Install/usb_amara-1.5.img.gz
-# gzip $WORKSPACE/framework/il/kernel/yocto/Install/usb_amara-1.5.img
-# rm -rf $WORKSPACE/framework/il/kernel/yocto/Install/usbimg_cxxx_x11-1.5.img.gz 
-# gzip $WORKSPACE/framework/il/kernel/yocto/Install/usbimg_cxxx_x11-1.5.img
+      <command>echo &apos;Creating Amara/Controller3 USB image (Yocto 1.5)&apos;
+$WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 c3_hypervisor
+$WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 c3_usb   
+rm -rf $WORKSPACE/framework/il/kernel/yocto/Install/usb_amara-1.5.img.gz
+gzip $WORKSPACE/framework/il/kernel/yocto/Install/usb_amara-1.5.img
+rm -rf $WORKSPACE/framework/il/kernel/yocto/Install/usbimg_cxxx_x11-1.5.img.gz 
+gzip $WORKSPACE/framework/il/kernel/yocto/Install/usbimg_cxxx_x11-1.5.img
 </command>
     </hudson.tasks.Shell>
   </builders>
