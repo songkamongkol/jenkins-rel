@@ -112,7 +112,7 @@ Jenkins Node(s): spccalengec01,spccalengec02</description>
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>0</firstChange>
+    <firstChange>-1</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -137,9 +137,7 @@ Jenkins Node(s): spccalengec01,spccalengec02</description>
       <filter>build/il/bld_bll-el3-64_x86_64/Release/bin/TestCenter.Linux.x64.full.tar.gz</filter>
       <target></target>
       <excludes></excludes>
-      <selector class="hudson.plugins.copyartifact.PermalinkBuildSelector">
-        <id>Release Build Passed Regression</id>
-      </selector>
+      <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
@@ -189,18 +187,6 @@ del EAT.Unix.tar&#xd;
 7z x ResultsReporter.Unix.tar.gz &gt; 7zextract_ResultsReporter.Unix.tar.txt&#xd;
 7z x -y -o&quot;%WORKSPACE%\Results Reporter - Unix&quot; ResultsReporter.Unix.tar &gt;&gt; 7zextract_ResultsReporter.Unix.tar.txt&#xd;
 del ResultsReporter.Unix.tar</command>
-    </hudson.tasks.BatchFile>
-    <hudson.tasks.BatchFile>
-      <command>cd Spirent_TestCenter_Application_Linux_Server&#xd;
-attrib /s -r *&#xd;
-&#xd;
-if &quot;%BLL_BUILD_NUMBER%&quot;==&quot;BAD_BUILD_NUMBER&quot; SET BLL_BUILD_NUMBER=%BUILD_NUMBER%&#xd;
-echo BLL_BUILD_NUMBER is %BLL_BUILD_NUMBER%&#xd;
-SET FULLVER=00%BLL_BUILD_NUMBER%6&#xd;
-if %BLL_BUILD_NUMBER% gtr 9 SET FULLVER=0%BLL_BUILD_NUMBER%6&#xd;
-if %BLL_BUILD_NUMBER% gtr 99 SET FULLVER=%BLL_BUILD_NUMBER%6&#xd;
-echo FULLVER is %FULLVER%&#xd;
-xcopy &quot;%WORKSPACE%\Extreme Automation Toolkit - Linux&quot; &quot;\\martin\archive\pv\TestCenter\%STC_MAJ_MIN_VERSION%\Engineering_Builds\GUI_BLL\%STC_MAJ_MIN_VERSION%.%FULLVER%\Extreme Automation Toolkit - Linux&quot; /i /e /Y /H</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
       <command>SET DEPENDENT_JOB_NAME=%JOB_NAME%&#xd;
