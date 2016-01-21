@@ -112,7 +112,7 @@ Jenkins Node(s): spccalengec01,spccalengec02</description>
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -213,10 +213,6 @@ local_restapi_py = open(install_stcapi_filename,&apos;wb&apos;)
 local_restapi_py.write(html)
 local_restapi_py.close()</command>
     </hudson.plugins.python.Python>
-    <hudson.tasks.BatchFile>
-      <command>SET SOURCE_OS=EL3LinuxServer&#xd;
-c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --createpropfile=no --runcimakelstarballs=yes --runsetver=no</command>
-    </hudson.tasks.BatchFile>
   </builders>
   <publishers>
     <hudson.plugins.logparser.LogParserPublisher plugin="log-parser@1.0.8">
