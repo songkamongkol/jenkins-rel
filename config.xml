@@ -876,6 +876,7 @@
             <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../../../../slaves/slave[2]/nodeProperties/hudson.slaves.EnvironmentVariablesNodeProperty/envVars/tree-map/default/comparator"/>
             <string>release_bll_freebsd63_packaging</string>
             <string>release_bll_freebsd71_packaging</string>
+            <string>release_bll_linux_64_packaging</string>
             <string>release_bll_linux_packaging</string>
             <string>release_bll_linux_rpm_packaging</string>
             <string>release_bll_linux_x64_packaging</string>
