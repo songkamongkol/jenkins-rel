@@ -145,7 +145,7 @@ Jenkins Node(s): spccalengec01,spccalengec02</description>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.BatchFile>
       <command>del /f /q BUILD_*.txt&#xd;
-echo extracting TestCenter.Linux.tar.gz file from job %COPYARTIFACT_BUILD_NUMBER_BLL_LINUX%&#xd;
+echo extracting TestCenter.Linux.x64.full.tar.gz file from job %COPYARTIFACT_BUILD_NUMBER_BLL_LINUX%&#xd;
 rem python framework\tools\buildUtil\package.py --install TestCenter.Linux.x64.full.tar.gz&#xd;
 &#xd;
 rd /s /q Spirent_TestCenter_Application_Linux_Server&#xd;
