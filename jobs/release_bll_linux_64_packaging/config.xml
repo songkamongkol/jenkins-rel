@@ -172,7 +172,7 @@ perl %WORKSPACE%\Build_Scripts\Scripts\ci_cleanup_by_date.pl</command>
       <command>SET DEPENDENT_JOB_NAME=%JOB_NAME%&#xd;
 c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --createpropfile=no --runsetver=no --runcopyeattomartin=no --updatepkgindextcl=yes --updatespirenttestcentertcl=yes --updatestclibtcl=yes --updategemspecversion=yes --runcimaketarballs=no --updateilversionxml=yes&#xd;
 &#xd;
-c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --createpropfile=yes --runcimaketarballs=yes --runsetver=no --runcopyeattomartin=yes</command>
+c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --createpropfile=yes --runcimaketarballs=yes --runsetver=no --runcopyeattomartin=no</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.python.Python plugin="python@1.2">
       <command>import urllib2
