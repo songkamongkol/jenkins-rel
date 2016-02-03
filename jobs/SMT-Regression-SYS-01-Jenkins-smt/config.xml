@@ -1,5 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<project>
+<?xml version="1.0" encoding="UTF-8"?><project>
   <actions/>
   <description>remotely trigger smarttest job on http://jenkins-smt.cal.ci.spirentcom.com:8080/job/release_patch_launch_smarttest/</description>
   <logRotator class="hudson.tasks.LogRotator">
@@ -17,8 +16,8 @@
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
-          <description></description>
-          <defaultValue>4.61_rel</defaultValue>
+          <description/>
+          <defaultValue>4.62_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -46,10 +45,10 @@ import urllib2
 
 
  
-job = &apos;SMT-Remote-Regression-SYS-01&apos;
-url = &quot;http://jenkins-smt.cal.ci.spirentcom.com:8080/job/&quot; + job +&quot;/build&quot;
+job = 'SMT-Remote-Regression-SYS-01'
+url = "http://jenkins-smt.cal.ci.spirentcom.com:8080/job/" + job +"/build"
 print url
-data=&quot;token=mosheallowedtodothis&quot;
+data="token=mosheallowedtodothis"
 #creating HTTP Req
 req = urllib2.Request(url,data)
 f = urllib2.urlopen(req)
