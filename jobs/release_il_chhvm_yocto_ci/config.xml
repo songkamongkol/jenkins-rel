@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
   <description>CI IL Build job for chassis VM yocto:&lt;br&gt;
 $WORKSPACE/build/il/scripts/phxbld -j32 c3_y3&lt;br&gt;
@@ -49,8 +50,8 @@ The latest build is stored at \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>CHANGELIST</name>
-          <description/>
-          <defaultValue/>
+          <description></description>
+          <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -66,7 +67,7 @@ The latest build is stored at \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_
   <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.34">
     <configVersion>2</configVersion>
     <p4User>scmbuild</p4User>
-    <p4Passwd/>
+    <p4Passwd></p4Passwd>
     <p4Port>perforceproxy.cal.ci.spirentcom.com:1999</p4Port>
     <p4Client>${JOB_NAME}_${BRANCH_NAME}</p4Client>
     <projectPath>//SCM/Scripts/ci_* //ws/Build_Scripts/Scripts/ci_*
@@ -89,6 +90,7 @@ The latest build is stored at \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_
 //hypervisor/mainline/amara/ChassisImage/... //ws/ChassisImage/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
     <p4Label>${CHANGELIST}</p4Label>
+    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -184,7 +186,7 @@ python $HOME/jenkins/build_cleanup.py --n=50 --file=/mnt/builds/jenkins/il_chhvm
           <command># copy the build output to storage server
 export STORAGE_DIR=/mnt/builds/jenkins/il_chhvm_yocto-$BRANCH_NAME/build-$P4_CHANGELIST
 
-if [ ! -d "$STORAGE_DIR" ]; then
+if [ ! -d &quot;$STORAGE_DIR&quot; ]; then
   mkdir -p $STORAGE_DIR
   mkdir -p $STORAGE_DIR/fsimg
 fi
@@ -199,6 +201,7 @@ cp -r $WORKSPACE/build/il/packages/fsimg/*chassis_installer* $STORAGE_DIR/fsimg<
       <scriptOnlyIfSuccess>true</scriptOnlyIfSuccess>
       <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
       <markBuildUnstable>false</markBuildUnstable>
+      <executeOn>BOTH</executeOn>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
     <hudson.plugins.claim.ClaimPublisher plugin="claim@2.5"/>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.39">
@@ -206,7 +209,7 @@ cp -r $WORKSPACE/build/il/packages/fsimg/*chassis_installer* $STORAGE_DIR/fsimg<
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.UnstableTrigger>
           <email>
-            <recipientList/>
+            <recipientList></recipientList>
             <subject>$PROJECT_DEFAULT_SUBJECT</subject>
             <body>$PROJECT_DEFAULT_CONTENT</body>
             <recipientProviders>
@@ -215,16 +218,16 @@ cp -r $WORKSPACE/build/il/packages/fsimg/*chassis_installer* $STORAGE_DIR/fsimg<
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
-            <replyTo/>
+            <replyTo></replyTo>
             <contentType>project</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.UnstableTrigger>
         <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
           <email>
-            <recipientList/>
+            <recipientList></recipientList>
             <subject>$PROJECT_DEFAULT_SUBJECT</subject>
             <body>$PROJECT_DEFAULT_CONTENT</body>
             <recipientProviders>
@@ -233,16 +236,16 @@ cp -r $WORKSPACE/build/il/packages/fsimg/*chassis_installer* $STORAGE_DIR/fsimg<
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
-            <replyTo/>
+            <replyTo></replyTo>
             <contentType>project</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.FailureTrigger>
         <hudson.plugins.emailext.plugins.trigger.FixedTrigger>
           <email>
-            <recipientList/>
+            <recipientList></recipientList>
             <subject>$PROJECT_DEFAULT_SUBJECT</subject>
             <body>$PROJECT_DEFAULT_CONTENT</body>
             <recipientProviders>
@@ -251,10 +254,10 @@ cp -r $WORKSPACE/build/il/packages/fsimg/*chassis_installer* $STORAGE_DIR/fsimg<
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
-            <replyTo/>
+            <replyTo></replyTo>
             <contentType>project</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.FixedTrigger>
@@ -262,11 +265,11 @@ cp -r $WORKSPACE/build/il/packages/fsimg/*chassis_installer* $STORAGE_DIR/fsimg<
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern/>
-      <presendScript/>
+      <attachmentsPattern></attachmentsPattern>
+      <presendScript></presendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
-      <replyTo/>
+      <replyTo></replyTo>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
