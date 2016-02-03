@@ -40,7 +40,7 @@
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
-  <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.33">
+  <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.34">
     <configVersion>2</configVersion>
     <p4User>tableuser</p4User>
     <p4Passwd></p4Passwd>
@@ -92,7 +92,7 @@
   </scm>
   <assignedNode>CIRegressionAgents</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
@@ -101,7 +101,7 @@
     <hudson.tasks.BatchFile>
       <command>python regression\jenkins\detect_changelist.py</command>
     </hudson.tasks.BatchFile>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.33">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
       <project>release_bll_windows_ci</project>
       <filter>bin/Release/TestCenter.Windows.bll.tar.gz, bll_idl_crc.txt</filter>
       <target></target>
@@ -111,7 +111,7 @@
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.33">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
       <project>release_bll_windows_ci</project>
       <filter>bin/Release/STAKCommands.beta.Windows.tar.gz</filter>
       <target></target>
@@ -127,7 +127,7 @@ del BLL_Linux_changelist_*.txt&#xd;
 del *il_changeling*changelist_*.txt&#xd;
 exit /B 0</command>
     </hudson.tasks.BatchFile>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.33">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
       <project>release_il_changeling_yocto_ci</project>
       <filter>*il_changeling*changelist_*.txt</filter>
       <target></target>
@@ -137,7 +137,7 @@ exit /B 0</command>
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.33">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
       <project>release_ui_ci</project>
       <filter>UI_changelist_*.txt</filter>
       <target></target>
@@ -145,7 +145,7 @@ exit /B 0</command>
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.33">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
       <project>release_bll_linux_ci</project>
       <filter>BLL_Linux_changelist*.txt</filter>
       <target></target>
@@ -213,7 +213,7 @@ python regression\jenkins\removeResults.py --location %WORKSPACE%\regression</co
       <failBuildOnError>true</failBuildOnError>
       <parsingRulesPath>/var/lib/jenkins/regression_log_parse_rule</parsingRulesPath>
     </hudson.plugins.logparser.LogParserPublisher>
-    <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.3">
+    <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.4">
       <testResults>*.junit.xml</testResults>
       <keepLongStdio>false</keepLongStdio>
       <testDataPublishers>
@@ -225,7 +225,7 @@ python regression\jenkins\removeResults.py --location %WORKSPACE%\regression</co
       <recordBuildArtifacts>false</recordBuildArtifacts>
     </hudson.tasks.Fingerprinter>
     <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.2">
-      <script plugin="script-security@1.12">
+      <script plugin="script-security@1.13">
         <script>import hudson.model.*
 
 if(manager.logContains(&quot;.*Aborting regression as.*&quot;)) {
@@ -292,6 +292,6 @@ Check test result at ${BUILD_URL}testReport/ .</defaultContent>
     </hudson.plugins.blame__upstream__commiters.BlameUpstreamCommitersPublisher>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.5.15"/>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.5.16"/>
   </buildWrappers>
 </project>
