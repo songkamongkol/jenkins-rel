@@ -26,7 +26,7 @@ Archive il_vtc_*.tar&lt;br&gt;&#xd;
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.62_rel</defaultValue>
+          <defaultValue>4.61_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -46,7 +46,7 @@ Archive il_vtc_*.tar&lt;br&gt;&#xd;
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description></description>
-          <defaultValue>4.62</defaultValue>
+          <defaultValue>4.61</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
