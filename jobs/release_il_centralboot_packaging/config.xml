@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>IL Build job for centralboot image targets:&lt;br&gt;
-target=centralboot packaging=1&lt;br&gt;
-Copies artfacts from ci jobs: il_changeling_all, il_chos2, il_virtual, il_vtc, il_testmodule_contents&lt;br&gt;
-Then runs Centralboot to generate centralboot image and run reversion script to update the version info.&lt;br&gt;
+  <description>IL Build job for centralboot image targets:&lt;br&gt;&#xd;
+target=centralboot packaging=1&lt;br&gt;&#xd;
+Copies artfacts from ci jobs: il_changeling_all, il_chos2, il_virtual, il_vtc, il_testmodule_contents&lt;br&gt;&#xd;
+Then runs Centralboot to generate centralboot image and run reversion script to update the version info.&lt;br&gt;&#xd;
 </description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
@@ -75,7 +75,6 @@ Then runs Centralboot to generate centralboot image and run reversion script to 
 +//TestCenter/${BRANCH_NAME}/framework/bll/vendor/... //ws/framework/bll/vendor/...
 //hypervisor/mainline/amara/ChassisImage/...  //ws/ChassisImage/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -290,9 +289,9 @@ echo &quot;Packaging started&quot; &gt; /mnt/builds/jenkins/il_chhvm_yocto-${BRA
 echo Copying il_chhvm_yocto build artifacts from /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}/build-packaging/
 ls -algh /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}/build-packaging/*.txt
 
-cp /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}/build-packaging/bundle/*.zip $WORKSPACE/build/il/packages/bundle
-cp /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}/build-packaging/rawimg/*.map $WORKSPACE/build/il/packages/rawimg
-cp /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}/build-packaging/rawimg/*.img.gz* $WORKSPACE/build/il/packages/rawimg
+cp -v /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}/build-packaging/bundle/*.zip $WORKSPACE/build/il/packages/bundle
+cp -v /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}/build-packaging/rawimg/*.map $WORKSPACE/build/il/packages/rawimg
+cp -v /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}/build-packaging/rawimg/*.img.gz* $WORKSPACE/build/il/packages/rawimg
 cp -v /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}/build-packaging/fsimg/*chassis_hypervisor* $WORKSPACE/build/il/packages/fsimg
 cp -v /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}/build-packaging/fsimg/yocto_version $WORKSPACE/build/il/packages/fsimg
 cp -v /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}/build-packaging/fsimg/*chassis_installer* $WORKSPACE/build/il/packages/fsimg

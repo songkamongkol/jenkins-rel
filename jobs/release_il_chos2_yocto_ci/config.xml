@@ -28,7 +28,7 @@ Wait 10 minutes&lt;br&gt;</description>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
           <description>clean build</description>
-          <defaultValue>false</defaultValue>
+          <defaultValue>true</defaultValue>
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>UTEST_OUTPUT_DIR</name>

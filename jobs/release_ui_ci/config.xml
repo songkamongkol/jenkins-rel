@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>Startup error problem with TestCenter.Windows.tar.gz?
-
+  <description>Startup error problem with TestCenter.Windows.tar.gz?&#xd;
+&#xd;
 Install the latest vcredist from http://www.microsoft.com/download/en/details.aspx?displaylang=en&amp;id=26347</description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
@@ -25,7 +25,7 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
           <description>clean build</description>
-          <defaultValue>false</defaultValue>
+          <defaultValue>true</defaultValue>
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>BUILD_RUN_UNITTEST</name>
@@ -86,7 +86,6 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
 +//TestCenter/${BRANCH_NAME}/build/il/scripts/... //ws/build/il/scripts/...
 +//TestCenter/${BRANCH_NAME}/build/il/configs/scripts/... //ws/build/il/configs/scripts/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -129,7 +128,7 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
   </scm>
   <assignedNode>uibldwin-03</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>true</disabled>
+  <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>true</blockBuildWhenUpstreamBuilding>
   <triggers>
