@@ -35,7 +35,7 @@ Archive il_virtual_*.tar&lt;br&gt;&#xd;
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
           <description>clean build</description>
-          <defaultValue>true</defaultValue>
+          <defaultValue>false</defaultValue>
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>UTEST_OUTPUT_DIR</name>
