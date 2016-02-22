@@ -94,7 +94,7 @@
     <p4Tool>p4</p4Tool>
     <useClientSpec>false</useClientSpec>
     <useStreamDepot>false</useStreamDepot>
-    <forceSync>false</forceSync>
+    <forceSync>true</forceSync>
     <alwaysForceSync>false</alwaysForceSync>
     <dontUpdateServer>false</dontUpdateServer>
     <disableAutoSync>false</disableAutoSync>
@@ -112,7 +112,7 @@
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
