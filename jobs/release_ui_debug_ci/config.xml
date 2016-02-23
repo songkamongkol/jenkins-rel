@@ -14,7 +14,7 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
   </logRotator>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
       <useBuildBlocker>false</useBuildBlocker>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
     <hudson.model.ParametersDefinitionProperty>
@@ -22,7 +22,7 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.62_rel</defaultValue>
+          <defaultValue>4.61_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -47,7 +47,7 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description>major minor version TODO: get this from a file</description>
-          <defaultValue>4.62</defaultValue>
+          <defaultValue>4.61</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BUILD_LABEL</name>
@@ -56,11 +56,12 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.22">
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.25">
       <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
   </properties>
-  <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.34">
+  <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.36">
     <configVersion>2</configVersion>
     <p4User>tableuser</p4User>
     <p4Passwd></p4Passwd>
@@ -143,7 +144,7 @@ mkdir __ui_only_build__&#xd;
 del /Q TestCenterDebug.Windows.bll.tar.gz&#xd;
 exit /B 0</command>
     </hudson.tasks.BatchFile>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.37">
       <project>release_bll_windows_debug_ci</project>
       <filter>TestCenterDebug.Windows.bll.tar.gz</filter>
       <target></target>
@@ -152,7 +153,7 @@ exit /B 0</command>
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.37">
       <project>release_bll_windows_debug_ci</project>
       <filter>STAKCommands.beta.Windows.tar.gz</filter>
       <target></target>
@@ -203,17 +204,20 @@ python ..\..\framework\tools\testRunner\testRunner.py --runInParallel=2 --ui --a
       <onlyIfSuccessful>false</onlyIfSuccessful>
       <fingerprint>false</fingerprint>
       <defaultExcludes>true</defaultExcludes>
+      <caseSensitive>true</caseSensitive>
     </hudson.tasks.ArtifactArchiver>
-    <hudson.plugins.logparser.LogParserPublisher plugin="log-parser@1.0.8">
+    <hudson.plugins.logparser.LogParserPublisher plugin="log-parser@2.0">
       <unstableOnWarning>false</unstableOnWarning>
       <failBuildOnError>true</failBuildOnError>
+      <showGraphs>false</showGraphs>
       <parsingRulesPath>/var/lib/jenkins/log_parse_rule</parsingRulesPath>
+      <useProjectRule>false</useProjectRule>
     </hudson.plugins.logparser.LogParserPublisher>
     <hudson.tasks.Fingerprinter>
       <targets>TestCenterDebug.Windows*.tar.gz, ${BUILD_OUTPUT_DIR}/UnitTestLogs.tar.gz</targets>
     </hudson.tasks.Fingerprinter>
-    <hudson.plugins.claim.ClaimPublisher plugin="claim@2.5"/>
-    <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.39">
+    <hudson.plugins.claim.ClaimPublisher plugin="claim@2.8"/>
+    <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.40.5">
       <recipientList>engstciteam@spirent.com, ENGCIFirstResponderTeam@spirent.com</recipientList>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.UnstableTrigger>
@@ -284,8 +288,8 @@ python ..\..\framework\tools\testRunner\testRunner.py --runInParallel=2 --ui --a
     </hudson.plugins.emailext.ExtendedEmailPublisher>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.5.16"/>
-    <EnvInjectBuildWrapper plugin="envinject@1.90">
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.6.2"/>
+    <EnvInjectBuildWrapper plugin="envinject@1.92.1">
       <info>
         <propertiesContent>STC_BUILD_ROOT=c:\jenkins-rel\workspace\release_ui_debug_ci</propertiesContent>
         <loadFilesFromMaster>false</loadFilesFromMaster>
