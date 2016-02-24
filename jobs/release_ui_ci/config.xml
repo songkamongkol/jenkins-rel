@@ -12,7 +12,7 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
   </logRotator>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
       <useBuildBlocker>false</useBuildBlocker>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
     <hudson.model.ParametersDefinitionProperty>
@@ -20,7 +20,7 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.62_rel</defaultValue>
+          <defaultValue>4.61_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -45,20 +45,21 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description>major minor version TODO: get this from a file</description>
-          <defaultValue>4.62</defaultValue>
+          <defaultValue>4.61</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
-    <hudson.plugins.promoted__builds.JobPropertyImpl plugin="promoted-builds@2.20">
+    <hudson.plugins.promoted__builds.JobPropertyImpl plugin="promoted-builds@2.25">
       <activeProcessNames>
         <string>Release Build Passed Regression</string>
       </activeProcessNames>
     </hudson.plugins.promoted__builds.JobPropertyImpl>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.22">
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.25">
       <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
   </properties>
-  <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.34">
+  <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.36">
     <configVersion>2</configVersion>
     <p4User>tableuser</p4User>
     <p4Passwd></p4Passwd>
@@ -86,6 +87,7 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
 +//TestCenter/${BRANCH_NAME}/build/il/scripts/... //ws/build/il/scripts/...
 +//TestCenter/${BRANCH_NAME}/build/il/configs/scripts/... //ws/build/il/configs/scripts/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
+    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -150,7 +152,7 @@ del BLL_changelist*.txt&#xd;
 rd /s /q bin\Release\STAKCommands&#xd;
 exit /B 0</command>
     </hudson.tasks.BatchFile>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.37">
       <project>release_bll_windows_ci</project>
       <filter>bin/Release/TestCenter.Windows.bll.tar.gz, BLL_changelist*.txt</filter>
       <target></target>
@@ -161,7 +163,7 @@ exit /B 0</command>
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.37">
       <project>release_bll_windows_ci</project>
       <filter>bin/Release/STAKCommands.beta.Windows.tar.gz</filter>
       <target></target>
@@ -223,6 +225,7 @@ REM -- coverage report no longer needed # mv *_CoverageReport unit_test_report&#
       <onlyIfSuccessful>false</onlyIfSuccessful>
       <fingerprint>false</fingerprint>
       <defaultExcludes>true</defaultExcludes>
+      <caseSensitive>true</caseSensitive>
     </hudson.tasks.ArtifactArchiver>
     <hudson.tasks.BuildTrigger>
       <childProjects>release_regression_ci,release_regression_changeling_ci,release_bll_windows_debug_ci</childProjects>
@@ -233,34 +236,37 @@ REM -- coverage report no longer needed # mv *_CoverageReport unit_test_report&#
         <completeBuild>true</completeBuild>
       </threshold>
     </hudson.tasks.BuildTrigger>
-    <hudson.plugins.logparser.LogParserPublisher plugin="log-parser@1.0.8">
+    <hudson.plugins.logparser.LogParserPublisher plugin="log-parser@2.0">
       <unstableOnWarning>false</unstableOnWarning>
       <failBuildOnError>true</failBuildOnError>
+      <showGraphs>false</showGraphs>
       <parsingRulesPath>/var/lib/jenkins/log_parse_rule</parsingRulesPath>
+      <useProjectRule>false</useProjectRule>
     </hudson.plugins.logparser.LogParserPublisher>
-    <htmlpublisher.HtmlPublisher plugin="htmlpublisher@1.3">
+    <htmlpublisher.HtmlPublisher plugin="htmlpublisher@1.11">
       <reportTargets>
         <htmlpublisher.HtmlPublisherTarget>
           <reportName>Coverage Report</reportName>
           <reportDir>bin/Release/unit_test_report</reportDir>
           <reportFiles>index.html</reportFiles>
+          <alwaysLinkToLastBuild>false</alwaysLinkToLastBuild>
           <keepAll>false</keepAll>
           <allowMissing>false</allowMissing>
-          <wrapperName>htmlpublisher-wrapper.html</wrapperName>
         </htmlpublisher.HtmlPublisherTarget>
       </reportTargets>
     </htmlpublisher.HtmlPublisher>
-    <hudson.plugins.nunit.NUnitPublisher plugin="nunit@0.16">
+    <hudson.plugins.nunit.NUnitPublisher plugin="nunit@0.17">
       <testResultsPattern>bin/Release/*.nunit.xml</testResultsPattern>
       <debug>false</debug>
       <keepJUnitReports>false</keepJUnitReports>
       <skipJUnitArchiver>false</skipJUnitArchiver>
+      <failIfNoResults>false</failIfNoResults>
     </hudson.plugins.nunit.NUnitPublisher>
     <hudson.tasks.Fingerprinter>
       <targets>${BUILD_OUTPUT_DIR}/TestCenter.Windows*.tar.gz, UI_changelist_*.txt, BLL_changelist*.txt</targets>
     </hudson.tasks.Fingerprinter>
-    <hudson.plugins.claim.ClaimPublisher plugin="claim@2.5"/>
-    <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.39">
+    <hudson.plugins.claim.ClaimPublisher plugin="claim@2.8"/>
+    <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.40.5">
       <recipientList>engstciteam@spirent.com, ENGCIFirstResponderTeam@spirent.com,$EMAIL_DEV</recipientList>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.UnstableTrigger>
@@ -331,8 +337,8 @@ REM -- coverage report no longer needed # mv *_CoverageReport unit_test_report&#
     </hudson.plugins.emailext.ExtendedEmailPublisher>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.5.16"/>
-    <EnvInjectBuildWrapper plugin="envinject@1.90">
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.6.2"/>
+    <EnvInjectBuildWrapper plugin="envinject@1.92.1">
       <info>
         <propertiesContent>STC_BUILD_ROOT=c:\jenkins-rel\workspace\release_ui_ci</propertiesContent>
         <loadFilesFromMaster>false</loadFilesFromMaster>

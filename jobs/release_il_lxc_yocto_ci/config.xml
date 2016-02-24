@@ -10,7 +10,7 @@
   </logRotator>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
       <useBuildBlocker>false</useBuildBlocker>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
     <hudson.model.ParametersDefinitionProperty>
@@ -18,7 +18,7 @@
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.62_rel</defaultValue>
+          <defaultValue>4.61_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -43,7 +43,7 @@
         <hudson.model.StringParameterDefinition>
           <name>RELEASE_NUM</name>
           <description>release number</description>
-          <defaultValue>4.62</defaultValue>
+          <defaultValue>4.61</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>CHANGELIST</name>
@@ -52,16 +52,17 @@
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
-    <hudson.plugins.promoted__builds.JobPropertyImpl plugin="promoted-builds@2.20">
+    <hudson.plugins.promoted__builds.JobPropertyImpl plugin="promoted-builds@2.25">
       <activeProcessNames>
         <string>Release IL Build Passed on all platforms</string>
       </activeProcessNames>
     </hudson.plugins.promoted__builds.JobPropertyImpl>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.22">
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.25">
       <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
   </properties>
-  <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.34">
+  <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.36">
     <configVersion>2</configVersion>
     <p4User>scmbuild</p4User>
     <p4Passwd></p4Passwd>
@@ -85,6 +86,7 @@
 +//TestCenter/${BRANCH_NAME}/framework/bll/vendor/... //ws/framework/bll/vendor/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
     <p4Label>${CHANGELIST}</p4Label>
+    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -172,11 +174,14 @@ sudo scons target=k9vm
       <onlyIfSuccessful>false</onlyIfSuccessful>
       <fingerprint>false</fingerprint>
       <defaultExcludes>true</defaultExcludes>
+      <caseSensitive>true</caseSensitive>
     </hudson.tasks.ArtifactArchiver>
-    <hudson.plugins.logparser.LogParserPublisher plugin="log-parser@1.0.8">
+    <hudson.plugins.logparser.LogParserPublisher plugin="log-parser@2.0">
       <unstableOnWarning>false</unstableOnWarning>
       <failBuildOnError>true</failBuildOnError>
+      <showGraphs>false</showGraphs>
       <parsingRulesPath>/var/lib/jenkins/il_log_parse_rule</parsingRulesPath>
+      <useProjectRule>false</useProjectRule>
     </hudson.plugins.logparser.LogParserPublisher>
     <hudson.tasks.Fingerprinter>
       <targets>build/il/packages/central/testcenter*.*, build/il/packages/central/rawimage.map,*_changelist_*.txt</targets>
@@ -199,9 +204,10 @@ cp -r $WORKSPACE/build/il/packages/rawimg $STORAGE_DIR</command>
       <scriptOnlyIfSuccess>true</scriptOnlyIfSuccess>
       <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
       <markBuildUnstable>false</markBuildUnstable>
+      <executeOn>BOTH</executeOn>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
-    <hudson.plugins.claim.ClaimPublisher plugin="claim@2.5"/>
-    <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.39">
+    <hudson.plugins.claim.ClaimPublisher plugin="claim@2.8"/>
+    <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.40.5">
       <recipientList>somboon.ongkamongkol@spirent.com</recipientList>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
@@ -233,6 +239,6 @@ cp -r $WORKSPACE/build/il/packages/rawimg $STORAGE_DIR</command>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.5.16"/>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.6.2"/>
   </buildWrappers>
 </project>

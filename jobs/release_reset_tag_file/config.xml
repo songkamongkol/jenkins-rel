@@ -12,7 +12,7 @@ pw_packages_to_test and clean out the same file in \\spccalfs04\SCM\SCMSmartTest
   </logRotator>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
       <useBuildBlocker>false</useBuildBlocker>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
     <hudson.model.ParametersDefinitionProperty>
@@ -20,12 +20,12 @@ pw_packages_to_test and clean out the same file in \\spccalfs04\SCM\SCMSmartTest
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description></description>
-          <defaultValue>4.62_rel</defaultValue>
+          <defaultValue>4.61_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description></description>
-          <defaultValue>4.62</defaultValue>
+          <defaultValue>4.61</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
@@ -65,18 +65,20 @@ rem touch \\spccalfs04\SCM\SCMSmartTest\%STC_MAJ_MIN_VERSION%\pw_packages_to_tes
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
-    <hudson.plugins.logparser.LogParserPublisher plugin="log-parser@1.0.8">
+    <hudson.plugins.logparser.LogParserPublisher plugin="log-parser@2.0">
       <unstableOnWarning>false</unstableOnWarning>
       <failBuildOnError>true</failBuildOnError>
+      <showGraphs>false</showGraphs>
       <parsingRulesPath>/var/lib/jenkins/log_parse_rule</parsingRulesPath>
+      <useProjectRule>false</useProjectRule>
     </hudson.plugins.logparser.LogParserPublisher>
-    <hudson.tasks.Mailer plugin="mailer@1.15">
+    <hudson.tasks.Mailer plugin="mailer@1.16">
       <recipients>somboon.ongkamongkol@spirent.com</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.5.16"/>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.6.2"/>
   </buildWrappers>
 </project>
