@@ -18,7 +18,7 @@
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description></description>
-          <defaultValue></defaultValue>
+          <defaultValue>4.62_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
@@ -63,8 +63,8 @@ output_dir=os.environ[&apos;OUTPUT_DIR&apos;]
 ilhost=&apos;ilpkg-03.cal.ci.spirentcom.com&apos;
 user=&apos;spirent&apos;
 passwd=&apos;spirent&apos;
-c1_usb=&apos;/home/spirent/jenkins/workspace/integration_cxx_amara_usb/framework/il/kernel/yocto/Install/usbimg_cxxx-1.0.img.gz&apos;
-amara_usb=&apos;/home/spirent/jenkins/workspace/integration_cxx_amara_usb/framework/il/kernel/yocto/Install/usb_amara-1.0.img.gz&apos;
+c1_usb=&apos;/home/spirent/jenkins-rel/workspace/integration_cxx_amara_usb/framework/il/kernel/yocto/Install/usbimg_cxxx-1.0.img.gz&apos;
+amara_usb=&apos;/home/spirent/jenkins-rel/workspace/integration_cxx_amara_usb/framework/il/kernel/yocto/Install/usb_amara-1.0.img.gz&apos;
 ftp = FTP(ilhost)     # connect to host, default port
 ftp.login(user,passwd)                     # user anonymous, passwd anonymous@
 os.chdir(output_dir)
