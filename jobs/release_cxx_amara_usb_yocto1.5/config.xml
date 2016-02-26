@@ -50,6 +50,11 @@
           <description></description>
           <defaultValue>4.61.1156</defaultValue>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>OUTPUT_DIR</name>
+          <description></description>
+          <defaultValue>\\storage\gr\TestCenter\4.62\SR_Builds\SR462.1.2</defaultValue>
+        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.22">
