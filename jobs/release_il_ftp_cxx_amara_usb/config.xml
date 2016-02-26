@@ -1,15 +1,92 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
+  <actions/>
+  <description></description>
+  <logRotator class="hudson.tasks.LogRotator">
+    <daysToKeep>-1</daysToKeep>
+    <numToKeep>20</numToKeep>
+    <artifactDaysToKeep>-1</artifactDaysToKeep>
+    <artifactNumToKeep>-1</artifactNumToKeep>
+  </logRotator>
   <keepDependencies>false</keepDependencies>
-  <properties/>
+  <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
+      <useBuildBlocker>false</useBuildBlocker>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>BRANCH_NAME</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>STC_MAJ_MIN_VERSION</name>
+          <description></description>
+          <defaultValue>4.62</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BLL_BUILD_NUMBER</name>
+          <description></description>
+          <defaultValue>BAD_BUILD_NUMBER</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>OUTPUT_DIR</name>
+          <description></description>
+          <defaultValue>\\storage\gr\TestCenter\4.47\SR_Builds\SR447.1.1\Manufacturing</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BRANCH_ID</name>
+          <description></description>
+          <defaultValue>6</defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.22">
+      <autoRebuild>false</autoRebuild>
+    </com.sonyericsson.rebuild.RebuildSettings>
+  </properties>
   <scm class="hudson.scm.NullSCM"/>
-  <canRoam>true</canRoam>
+  <assignedNode>spccalengec06</assignedNode>
+  <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
-  <builders/>
+  <builders>
+    <hudson.plugins.python.Python plugin="python@1.2">
+      <command>from ftplib import FTP
+import os
+
+output_dir=os.environ[&apos;OUTPUT_DIR&apos;]
+ilhost=&apos;ilpkg-03.cal.ci.spirentcom.com&apos;
+user=&apos;spirent&apos;
+passwd=&apos;spirent&apos;
+c1_usb=&apos;/home/spirent/jenkins/workspace/integration_cxx_amara_usb/framework/il/kernel/yocto/Install/usbimg_cxxx-1.0.img.gz&apos;
+amara_usb=&apos;/home/spirent/jenkins/workspace/integration_cxx_amara_usb/framework/il/kernel/yocto/Install/usb_amara-1.0.img.gz&apos;
+ftp = FTP(ilhost)     # connect to host, default port
+ftp.login(user,passwd)                     # user anonymous, passwd anonymous@
+os.chdir(output_dir)
+stc_version = os.environ[&apos;STC_MAJ_MIN_VERSION&apos;]
+buildno = os.environ[&apos;BLL_BUILD_NUMBER&apos;]
+branchid = os.environ[&apos;BRANCH_ID&apos;]
+fullbuildno = stc_version + &quot;.&quot; + buildno + branchid
+c1_img = &quot;spt-c1_&quot;+ fullbuildno +&quot;.img.gz&quot;
+amara_img = &quot;ctl3image-&quot; + fullbuildno + &quot;.img.gz&quot;
+# ftp.retrbinary(&apos;RETR &apos;+amara_usb, open(os.path.basename(amara_usb), &apos;wb&apos;).write)
+# ftp.retrbinary(&apos;RETR &apos;+c1_usb, open(os.path.basename(c1_usb), &apos;wb&apos;).write)
+ftp.retrbinary(&apos;RETR &apos;+amara_usb, open(amara_img, &apos;wb&apos;).write)
+ftp.retrbinary(&apos;RETR &apos;+c1_usb, open(c1_img, &apos;wb&apos;).write)
+ftp.quit()</command>
+    </hudson.plugins.python.Python>
+    <hudson.tasks.BatchFile>
+      <command>md5sum.exe %OUTPUT_DIR%\\spt-c1_%STC_MAJ_MIN_VERSION%.%BLL_BUILD_NUMBER%%BRANCH_ID%.img.gz &gt; %OUTPUT_DIR%\\spt-c1_%STC_MAJ_MIN_VERSION%.%BLL_BUILD_NUMBER%%BRANCH_ID%.img.gz.md5sum&#xd;
+md5sum.exe %OUTPUT_DIR%\\ctl3image-%STC_MAJ_MIN_VERSION%.%BLL_BUILD_NUMBER%%BRANCH_ID%.img.gz &gt; %OUTPUT_DIR%\\ctl3image-%STC_MAJ_MIN_VERSION%.%BLL_BUILD_NUMBER%%BRANCH_ID%.img.gz.md5sum</command>
+    </hudson.tasks.BatchFile>
+  </builders>
   <publishers/>
-  <buildWrappers/>
+  <buildWrappers>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.5.16"/>
+  </buildWrappers>
 </project>
