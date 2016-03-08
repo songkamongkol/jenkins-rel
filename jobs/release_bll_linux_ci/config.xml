@@ -153,7 +153,9 @@ rm -rf $WORKSPACE/$BUILD_OUTPUT_DIR/STAKCommands</command>
 fi</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command>python genSln.py
+      <command>export LD_LIBRARY_PATH=/usr/gcc_4_9/lib:$LD_LIBRARY_PATH
+export PATH=/usr/gcc_4_9/bin:$PATH
+python genSln.py
 scons -f SConstruct.bll -j 12 --debug=time debug=0 coverage=0 target=bll-el3 2&gt;&amp;1 | tee compile_output.txt
 python $WORKSPACE/framework/tools/buildUtil/gcc_warning_detect.py compile_output.txt
 python $WORKSPACE/common/idl/crc.py -f bll_idl_crc.txt --desc &quot;$JOB_NAME $BUILD_NUMBER&quot;
