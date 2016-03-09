@@ -17,18 +17,7 @@
       <autoRebuild>false</autoRebuild>
     </com.sonyericsson.rebuild.RebuildSettings>
   </properties>
-  <scm class="hudson.plugins.mercurial.MercurialSCM" plugin="mercurial@1.51">
-    <source>http://mercurial.cal.ci.spirentcom.com/StcRestApi</source>
-    <modules></modules>
-    <revisionType>BRANCH</revisionType>
-    <revision>default</revision>
-    <clean>false</clean>
-    <browser class="hudson.plugins.mercurial.browser.HgWeb">
-      <url>http://mercurial.cal.ci.spirentcom.com/StcRestApi/</url>
-    </browser>
-    <credentialsId></credentialsId>
-    <disableChangeLog>false</disableChangeLog>
-  </scm>
+  <scm class="hudson.scm.NullSCM"/>
   <assignedNode>ilbuild-01</assignedNode>
   <canRoam>false</canRoam>
   <disabled>true</disabled>
@@ -50,7 +39,8 @@ python $WORKSPACE/deployment/makepackage.py</command>
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
-      <artifacts>deployment/stcapi_linux*.tgz,deployment/install_stcapi*.py</artifacts>
+      <artifacts>deployment/install_stcapi*.py, deployment/linux/etc/init.d/stcapi</artifacts>
+      <latestOnly>false</latestOnly>
       <allowEmptyArchive>false</allowEmptyArchive>
       <onlyIfSuccessful>false</onlyIfSuccessful>
       <fingerprint>false</fingerprint>
