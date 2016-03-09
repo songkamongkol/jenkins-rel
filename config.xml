@@ -891,6 +891,7 @@
             <string>release_il_ftp_centralboot_packaging</string>
             <string>release_il_ftp_cxx_amara_usb</string>
             <string>release_launch_nightly_packaging</string>
+            <string>release_ls_vm_packaging</string>
             <string>release_reset_tag_file</string>
             <string>release_set_status</string>
             <string>release_win_bll_copy_to_filer</string>
