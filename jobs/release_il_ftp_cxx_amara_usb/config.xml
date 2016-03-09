@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
-  <description/>
+  <description></description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
     <numToKeep>20</numToKeep>
@@ -16,27 +17,27 @@
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
-          <description/>
+          <description></description>
           <defaultValue>4.63_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
-          <description/>
+          <description></description>
           <defaultValue>4.63</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
-          <description/>
+          <description></description>
           <defaultValue>BAD_BUILD_NUMBER</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>OUTPUT_DIR</name>
-          <description/>
+          <description></description>
           <defaultValue>\\storage\gr\TestCenter\4.62\SR_Builds\SR462.1.2</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_ID</name>
-          <description/>
+          <description></description>
           <defaultValue>6</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -48,7 +49,7 @@
   <scm class="hudson.scm.NullSCM"/>
   <assignedNode>spccalengec06</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
@@ -58,29 +59,29 @@
       <command>from ftplib import FTP
 import os
 
-output_dir=os.environ['OUTPUT_DIR']
-ilhost='ilpkg-03.cal.ci.spirentcom.com'
-user='spirent'
-passwd='spirent'
-c1_usb='/home/spirent/jenkins-rel/workspace/integration_cxx_amara_usb/framework/il/kernel/yocto/Install/usbimg_cxxx-1.0.img.gz'
-amara_usb='/home/spirent/jenkins-rel/workspace/integration_cxx_amara_usb/framework/il/kernel/yocto/Install/usb_amara-1.0.img.gz'
+output_dir=os.environ[&apos;OUTPUT_DIR&apos;]
+ilhost=&apos;ilpkg-03.cal.ci.spirentcom.com&apos;
+user=&apos;spirent&apos;
+passwd=&apos;spirent&apos;
+c1_usb=&apos;/home/spirent/jenkins-rel/workspace/integration_cxx_amara_usb/framework/il/kernel/yocto/Install/usbimg_cxxx-1.0.img.gz&apos;
+amara_usb=&apos;/home/spirent/jenkins-rel/workspace/integration_cxx_amara_usb/framework/il/kernel/yocto/Install/usb_amara-1.0.img.gz&apos;
 ftp = FTP(ilhost)     # connect to host, default port
 ftp.login(user,passwd)                     # user anonymous, passwd anonymous@
 os.chdir(output_dir)
-stc_version = os.environ['STC_MAJ_MIN_VERSION']
-buildno = os.environ['BLL_BUILD_NUMBER']
-branchid = os.environ['BRANCH_ID']
-fullbuildno = stc_version + "." + buildno + branchid
-c1_img = "spt-c1_"+ fullbuildno +".img.gz"
-amara_img = "ctl3image-" + fullbuildno + ".img.gz"
-# ftp.retrbinary('RETR '+amara_usb, open(os.path.basename(amara_usb), 'wb').write)
-# ftp.retrbinary('RETR '+c1_usb, open(os.path.basename(c1_usb), 'wb').write)
-ftp.retrbinary('RETR '+amara_usb, open(amara_img, 'wb').write)
-ftp.retrbinary('RETR '+c1_usb, open(c1_img, 'wb').write)
+stc_version = os.environ[&apos;STC_MAJ_MIN_VERSION&apos;]
+buildno = os.environ[&apos;BLL_BUILD_NUMBER&apos;]
+branchid = os.environ[&apos;BRANCH_ID&apos;]
+fullbuildno = stc_version + &quot;.&quot; + buildno + branchid
+c1_img = &quot;spt-c1_&quot;+ fullbuildno +&quot;.img.gz&quot;
+amara_img = &quot;ctl3image-&quot; + fullbuildno + &quot;.img.gz&quot;
+# ftp.retrbinary(&apos;RETR &apos;+amara_usb, open(os.path.basename(amara_usb), &apos;wb&apos;).write)
+# ftp.retrbinary(&apos;RETR &apos;+c1_usb, open(os.path.basename(c1_usb), &apos;wb&apos;).write)
+ftp.retrbinary(&apos;RETR &apos;+amara_usb, open(amara_img, &apos;wb&apos;).write)
+ftp.retrbinary(&apos;RETR &apos;+c1_usb, open(c1_img, &apos;wb&apos;).write)
 ftp.quit()</command>
     </hudson.plugins.python.Python>
     <hudson.tasks.BatchFile>
-      <command>md5sum.exe %OUTPUT_DIR%\\spt-c1_%STC_MAJ_MIN_VERSION%.%BLL_BUILD_NUMBER%%BRANCH_ID%.img.gz &gt; %OUTPUT_DIR%\\spt-c1_%STC_MAJ_MIN_VERSION%.%BLL_BUILD_NUMBER%%BRANCH_ID%.img.gz.md5sum
+      <command>md5sum.exe %OUTPUT_DIR%\\spt-c1_%STC_MAJ_MIN_VERSION%.%BLL_BUILD_NUMBER%%BRANCH_ID%.img.gz &gt; %OUTPUT_DIR%\\spt-c1_%STC_MAJ_MIN_VERSION%.%BLL_BUILD_NUMBER%%BRANCH_ID%.img.gz.md5sum&#xd;
 md5sum.exe %OUTPUT_DIR%\\ctl3image-%STC_MAJ_MIN_VERSION%.%BLL_BUILD_NUMBER%%BRANCH_ID%.img.gz &gt; %OUTPUT_DIR%\\ctl3image-%STC_MAJ_MIN_VERSION%.%BLL_BUILD_NUMBER%%BRANCH_ID%.img.gz.md5sum</command>
     </hudson.tasks.BatchFile>
   </builders>
