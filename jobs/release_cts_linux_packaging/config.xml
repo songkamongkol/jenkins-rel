@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>Extracts CTS.Linux.x64.tar.gz from integration_cts_linux build job&lt;br&gt;
-Runs setver.py using python script ci_run_jenkins_steps.py script&lt;br&gt;
-Creates a new tarball&lt;br&gt;
+  <description>Extracts CTS.Linux.x64.tar.gz from integration_cts_linux build job&lt;br&gt;&#xd;
+Runs setver.py using python script ci_run_jenkins_steps.py script&lt;br&gt;&#xd;
+Creates a new tarball&lt;br&gt;&#xd;
 Triggers integration_ftp_tarball which restructures the tarball and copies the output to Martin&lt;br&gt;</description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
@@ -69,7 +69,6 @@ Triggers integration_ftp_tarball which restructures the tarball and copies the o
 //SCM/Scripts/ci_* //ws/Build_Scripts/Scripts/ci_*
 //TestCenter/${BRANCH_NAME}/framework/tools/buildUtil/... //ws/framework/tools/buildUtil/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -99,7 +98,7 @@ Triggers integration_ftp_tarball which restructures the tarball and copies the o
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -111,7 +110,7 @@ Triggers integration_ftp_tarball which restructures the tarball and copies the o
     <pollOnlyOnMaster>true</pollOnlyOnMaster>
   </scm>
   <quietPeriod>330</quietPeriod>
-  <assignedNode>bllbldlnx-07</assignedNode>
+  <assignedNode>bllbldlnx-25</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
