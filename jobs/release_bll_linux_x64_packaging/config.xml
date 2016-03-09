@@ -93,7 +93,7 @@ Triggers integration_ftp_tarball which restructures the tarball and copies the o
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -127,7 +127,7 @@ Triggers integration_ftp_tarball which restructures the tarball and copies the o
 rm -rf Spirent_TestCenter_Application_Linux_Server
 tar xvfz TestCenter.Linux.AutomationClient.x64.tar.gz
 cd Spirent_TestCenter_Application_Linux_Server
-/usr/bin/python2.6 ../Build_Scripts/Scripts/ci_run_jenkins_steps.py --createpropfile=yes --runcimaketarballs=no  --runcimakelstarballs=no --runciftpcentralboot=no --runsetver=yes --runcopyl4l7=no --createversionfile=no
+python ../Build_Scripts/Scripts/ci_run_jenkins_steps.py --createpropfile=yes --runcimaketarballs=no  --runcimakelstarballs=no --runciftpcentralboot=no --runsetver=yes --runcopyl4l7=no --createversionfile=no
 rm -f Spirent_TestCenter_Auto_Linux64Client_$STC_MAJ_MIN_VERSION.tar.gz
 tar cvf Spirent_TestCenter_Auto_Linux64Client_$STC_MAJ_MIN_VERSION.tar *
 gzip Spirent_TestCenter_Auto_Linux64Client_$STC_MAJ_MIN_VERSION.tar
