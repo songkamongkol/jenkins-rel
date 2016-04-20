@@ -40,7 +40,6 @@ python $WORKSPACE/deployment/makepackage.py</command>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
       <artifacts>deployment/install_stcapi*.py, deployment/linux/etc/init.d/stcapi</artifacts>
-      <latestOnly>false</latestOnly>
       <allowEmptyArchive>false</allowEmptyArchive>
       <onlyIfSuccessful>false</onlyIfSuccessful>
       <fingerprint>false</fingerprint>
