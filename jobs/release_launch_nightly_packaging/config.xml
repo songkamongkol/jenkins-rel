@@ -150,6 +150,10 @@ rem c:\python27\python %WORKSPACE%\Scripts\ci_run_jenkins_steps.py --createchang
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
+    <hudson.tasks.BatchFile>
+      <command>del /f /q %WORKSPACE%\stc_version.txt&#xd;
+echo STC_MAJ_MIN_VERSION=%STC_MAJ_MIN_VERSION% &gt; %WORKSPACE%\stc_version.txt</command>
+    </hudson.tasks.BatchFile>
     <hudson.plugins.python.Python plugin="python@1.2">
       <command>import os
 import glob
@@ -191,7 +195,7 @@ exit /B 0</command>
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
-      <artifacts>Report_*${BUILD_NUMBER}${BRANCH_ID}.txt, BLL_changelist_*.txt, UI_changelist_*.txt, *il_*changelist*.txt, BUILD_*.txt</artifacts>
+      <artifacts>Report_*${BUILD_NUMBER}${BRANCH_ID}.txt, BLL_changelist_*.txt, UI_changelist_*.txt, *il_*changelist*.txt, BUILD_*.txt, stc_version.txt</artifacts>
       <allowEmptyArchive>false</allowEmptyArchive>
       <onlyIfSuccessful>false</onlyIfSuccessful>
       <fingerprint>true</fingerprint>

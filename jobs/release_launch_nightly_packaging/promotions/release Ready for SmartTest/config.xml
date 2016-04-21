@@ -19,6 +19,20 @@
   <icon>star-gold</icon>
   <assignedLabel>spccalengec06</assignedLabel>
   <buildSteps>
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
+      <project>release_launch_nightly_packaging</project>
+      <filter>stc_version.txt</filter>
+      <target></target>
+      <excludes></excludes>
+      <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
+      <flatten>true</flatten>
+      <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
+    </hudson.plugins.copyartifact.CopyArtifact>
+    <EnvInjectBuilder plugin="envinject@1.90">
+      <info>
+        <propertiesFilePath>stc_version.txt</propertiesFilePath>
+      </info>
+    </EnvInjectBuilder>
     <hudson.plugins.parameterizedtrigger.BuildTrigger plugin="parameterized-trigger@2.25">
       <configs>
         <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
@@ -34,7 +48,7 @@
         <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
           <configs>
             <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-              <properties>STC_MAJ_MIN_VERSION=4.64</properties>
+              <properties>STC_MAJ_MIN_VERSION=${STC_MAJ_MIN_VERSION}</properties>
             </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
           </configs>
           <projects>SMT-Regression-SYS-01-Jenkins-smt</projects>
