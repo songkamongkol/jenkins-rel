@@ -133,7 +133,7 @@ Jenkins Node(s): spccalengec01,spccalengec02</description>
   <customWorkspace>${JOB_NAME}</customWorkspace>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>del /f /q TestCenter.Linux.x64.full.tar.gz</command>
+      <command>del /f /q TestCenter.Linux.x64.full.tar*</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
       <project>release_bll_linux_x64_ci</project>
