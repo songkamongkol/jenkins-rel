@@ -18,13 +18,13 @@
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description></description>
-          <defaultValue>4.64_rel</defaultValue>
+          <defaultValue>4.63_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
-        <hudson.model.TextParameterDefinition>
+        <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description></description>
-          <defaultValue>4.64</defaultValue>
-        </hudson.model.TextParameterDefinition>
+          <defaultValue>4.63</defaultValue>
+        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.22">
