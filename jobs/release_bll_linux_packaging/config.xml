@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
   <description>Sync SCM build scripts and other files as needed for packaging.&lt;br&gt;
 Retrieve TestCenter.Linux.tar.gz files from bll_linux build.&lt;br&gt;
@@ -25,7 +26,7 @@ Jenkins Node(s): spccalengec01,spccalengec02</description>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.65_rel</defaultValue>
+          <defaultValue>4.64_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -40,26 +41,26 @@ Jenkins Node(s): spccalengec01,spccalengec02</description>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description>major minor version</description>
-          <defaultValue>4.65</defaultValue>
+          <defaultValue>4.64</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
-          <description/>
+          <description></description>
           <defaultValue>BAD_BUILD_NUMBER</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>SOURCE_OS</name>
-          <description/>
+          <description></description>
           <defaultValue>EL3Linux</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>DEPENDENT_JOB_NAME</name>
-          <description/>
+          <description></description>
           <defaultValue>release_bll_linux_packaging</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>RELEASE_TYPE</name>
-          <description/>
+          <description></description>
           <defaultValue>RELEASE</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -71,7 +72,7 @@ Jenkins Node(s): spccalengec01,spccalengec02</description>
   <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.34">
     <configVersion>2</configVersion>
     <p4User>tableuser</p4User>
-    <p4Passwd/>
+    <p4Passwd></p4Passwd>
     <p4Port>perforce.spirentcom.com:1666</p4Port>
     <p4Client>${JOB_NAME}_${BRANCH_NAME}</p4Client>
     <projectPath>//SCM/Build_Scripts/STC_Build_Scripts/... //ws/Build_Scripts/STC_Build_Scripts/...
@@ -82,7 +83,7 @@ Jenkins Node(s): spccalengec01,spccalengec02</description>
 //TestCenter/${BRANCH_NAME}/content/traffic/l4l7/tools/DpgUpdate/... //ws/Spirent_TestCenter_Application_Linux_Server/Dpg/DpgUpdate/...
 //TestCenter/profx_iso/Labserver/rpms/sessionLicensing/RPMS/x86/postinstall //ws/session_licensing/postinstall</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner/>
+    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -135,8 +136,8 @@ Jenkins Node(s): spccalengec01,spccalengec02</description>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
       <project>release_bll_linux_ci</project>
       <filter>build/il/bld_bll-el3_x86/Release/bin/TestCenter.Linux.tar.gz</filter>
-      <target/>
-      <excludes/>
+      <target></target>
+      <excludes></excludes>
       <selector class="hudson.plugins.copyartifact.PermalinkBuildSelector">
         <id>Release Build Passed Regression</id>
       </selector>
@@ -144,25 +145,25 @@ Jenkins Node(s): spccalengec01,spccalengec02</description>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.BatchFile>
-      <command>del /f /q BUILD_*.txt
-echo extracting TestCenter.Linux.tar.gz file from job %COPYARTIFACT_BUILD_NUMBER_BLL_LINUX%
-rem python framework\tools\buildUtil\package.py --install TestCenter.Linux.tar.gz
-
-rd /s /q Spirent_TestCenter_Application_Linux_Server
-
-7z x TestCenter.Linux.tar.gz &gt; 7zextract_TestCenter.Linux.tar.txt
-7z x -y TestCenter.Linux.tar &gt;&gt; 7zextract_TestCenter.Linux.tar.txt
-del TestCenter.Linux.tar
-del /f /q stcapi_linux*.tgz
-del /f /q install_stcapi*.py
-
+      <command>del /f /q BUILD_*.txt&#xd;
+echo extracting TestCenter.Linux.tar.gz file from job %COPYARTIFACT_BUILD_NUMBER_BLL_LINUX%&#xd;
+rem python framework\tools\buildUtil\package.py --install TestCenter.Linux.tar.gz&#xd;
+&#xd;
+rd /s /q Spirent_TestCenter_Application_Linux_Server&#xd;
+&#xd;
+7z x TestCenter.Linux.tar.gz &gt; 7zextract_TestCenter.Linux.tar.txt&#xd;
+7z x -y TestCenter.Linux.tar &gt;&gt; 7zextract_TestCenter.Linux.tar.txt&#xd;
+del TestCenter.Linux.tar&#xd;
+del /f /q stcapi_linux*.tgz&#xd;
+del /f /q install_stcapi*.py&#xd;
+&#xd;
 copy session_licensing\postinstall Spirent_TestCenter_Application_Linux_Server\postinstall</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
       <project>release_bll_windows_packaging_new</project>
       <filter>ResultsReporter.Unix.tar.gz, EAT.Unix.tar.gz</filter>
-      <target/>
-      <excludes/>
+      <target></target>
+      <excludes></excludes>
       <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
@@ -170,69 +171,69 @@ copy session_licensing\postinstall Spirent_TestCenter_Application_Linux_Server\p
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
       <project>release_launch_nightly_packaging</project>
       <filter>BUILD_*.txt</filter>
-      <target/>
-      <excludes/>
+      <target></target>
+      <excludes></excludes>
       <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.BatchFile>
-      <command>echo "Running ci_cleanup_by_date.pl."
+      <command>echo &quot;Running ci_cleanup_by_date.pl.&quot;&#xd;
 perl %WORKSPACE%\Build_Scripts\Scripts\ci_cleanup_by_date.pl</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>echo extracting EAT.Unix.tar.gz and ResultsReporter.Unix.tar.gz file from job %COPYARTIFACT_BUILD_NUMBER_INTEGRATION_PACKAGE_BLL_WINDOWS%
-
-7z x EAT.Unix.tar.gz &gt; 7zextract_EAT.Unix.tar.txt
-7z x -y -o"%WORKSPACE%\Extreme Automation Toolkit - Linux" EAT.Unix.tar &gt;&gt; 7zextract_EAT.Unix.tar.txt
-del EAT.Unix.tar
-
-7z x ResultsReporter.Unix.tar.gz &gt; 7zextract_ResultsReporter.Unix.tar.txt
-7z x -y -o"%WORKSPACE%\Results Reporter - Unix" ResultsReporter.Unix.tar &gt;&gt; 7zextract_ResultsReporter.Unix.tar.txt
+      <command>echo extracting EAT.Unix.tar.gz and ResultsReporter.Unix.tar.gz file from job %COPYARTIFACT_BUILD_NUMBER_INTEGRATION_PACKAGE_BLL_WINDOWS%&#xd;
+&#xd;
+7z x EAT.Unix.tar.gz &gt; 7zextract_EAT.Unix.tar.txt&#xd;
+7z x -y -o&quot;%WORKSPACE%\Extreme Automation Toolkit - Linux&quot; EAT.Unix.tar &gt;&gt; 7zextract_EAT.Unix.tar.txt&#xd;
+del EAT.Unix.tar&#xd;
+&#xd;
+7z x ResultsReporter.Unix.tar.gz &gt; 7zextract_ResultsReporter.Unix.tar.txt&#xd;
+7z x -y -o&quot;%WORKSPACE%\Results Reporter - Unix&quot; ResultsReporter.Unix.tar &gt;&gt; 7zextract_ResultsReporter.Unix.tar.txt&#xd;
 del ResultsReporter.Unix.tar</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>cd Spirent_TestCenter_Application_Linux_Server
-attrib /s -r *
-
-if "%BLL_BUILD_NUMBER%"=="BAD_BUILD_NUMBER" SET BLL_BUILD_NUMBER=%BUILD_NUMBER%
-echo BLL_BUILD_NUMBER is %BLL_BUILD_NUMBER%
-SET FULLVER=00%BLL_BUILD_NUMBER%6
-if %BLL_BUILD_NUMBER% gtr 9 SET FULLVER=0%BLL_BUILD_NUMBER%6
-if %BLL_BUILD_NUMBER% gtr 99 SET FULLVER=%BLL_BUILD_NUMBER%6
-echo FULLVER is %FULLVER%
-xcopy "%WORKSPACE%\Extreme Automation Toolkit - Linux" "\\martin\archive\pv\TestCenter\%STC_MAJ_MIN_VERSION%\Engineering_Builds\GUI_BLL\%STC_MAJ_MIN_VERSION%.%FULLVER%\Extreme Automation Toolkit - Linux" /i /e /Y /H
-
-cd ..
+      <command>cd Spirent_TestCenter_Application_Linux_Server&#xd;
+attrib /s -r *&#xd;
+&#xd;
+if &quot;%BLL_BUILD_NUMBER%&quot;==&quot;BAD_BUILD_NUMBER&quot; SET BLL_BUILD_NUMBER=%BUILD_NUMBER%&#xd;
+echo BLL_BUILD_NUMBER is %BLL_BUILD_NUMBER%&#xd;
+SET FULLVER=00%BLL_BUILD_NUMBER%6&#xd;
+if %BLL_BUILD_NUMBER% gtr 9 SET FULLVER=0%BLL_BUILD_NUMBER%6&#xd;
+if %BLL_BUILD_NUMBER% gtr 99 SET FULLVER=%BLL_BUILD_NUMBER%6&#xd;
+echo FULLVER is %FULLVER%&#xd;
+xcopy &quot;%WORKSPACE%\Extreme Automation Toolkit - Linux&quot; &quot;\\martin\archive\pv\TestCenter\%STC_MAJ_MIN_VERSION%\Engineering_Builds\GUI_BLL\%STC_MAJ_MIN_VERSION%.%FULLVER%\Extreme Automation Toolkit - Linux&quot; /i /e /Y /H&#xd;
+&#xd;
+cd ..&#xd;
 echo OUTPUT_DIR=\\\\martin\\archive\\pv\\TestCenter\\%STC_MAJ_MIN_VERSION%\\Engineering_Builds\\GUI_BLL\\%STC_MAJ_MIN_VERSION%.%FULLVER%\\tar &gt; param.txt</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>SET SOURCE_OS=EL3Linux
-SET DEPENDENT_JOB_NAME=%JOB_NAME%
-c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --createpropfile=no --runsetver=no --runcopyeattomartin=no --updatepkgindextcl=yes --updatespirenttestcentertcl=yes --updatestclibtcl=yes --updategemspecversion=yes --runcimaketarballs=no --updateilversionxml=yes
-
+      <command>SET SOURCE_OS=EL3Linux&#xd;
+SET DEPENDENT_JOB_NAME=%JOB_NAME%&#xd;
+c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --createpropfile=no --runsetver=no --runcopyeattomartin=no --updatepkgindextcl=yes --updatespirenttestcentertcl=yes --updatestclibtcl=yes --updategemspecversion=yes --runcimaketarballs=no --updateilversionxml=yes&#xd;
+&#xd;
 c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --createpropfile=yes --runcimaketarballs=yes --runsetver=no --runcopyeattomartin=yes</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.python.Python plugin="python@1.2">
       <command>import urllib2
 
 # -- get the filename for latest install_stcapi*.py from main Jenkins server
-stc_restapi_job_url = 'http://jenkins.cal.ci.spirentcom.com:8080/job/stcapi_rest_api/lastSuccessfulBuild/api/xml?xpath=/*/artifact[1]/fileName'
+stc_restapi_job_url = &apos;http://jenkins.cal.ci.spirentcom.com:8080/job/stcapi_rest_api/lastSuccessfulBuild/api/xml?xpath=/*/artifact[1]/fileName&apos;
 html = urllib2.urlopen(stc_restapi_job_url)
 install_stcapi_filename = html.read()
-install_stcapi_filename = install_stcapi_filename.replace('&lt;fileName&gt;', '')
-install_stcapi_filename = install_stcapi_filename.replace('&lt;/fileName&gt;', '')
-print "Filename: %s" % install_stcapi_filename
+install_stcapi_filename = install_stcapi_filename.replace(&apos;&lt;fileName&gt;&apos;, &apos;&apos;)
+install_stcapi_filename = install_stcapi_filename.replace(&apos;&lt;/fileName&gt;&apos;, &apos;&apos;)
+print &quot;Filename: %s&quot; % install_stcapi_filename
 
 # -- Download stcapi installer python script
-stc_restapi_py = 'http://jenkins.cal.ci.spirentcom.com:8080/job/stcapi_rest_api/lastSuccessfulBuild/artifact/deployment/' + install_stcapi_filename
+stc_restapi_py = &apos;http://jenkins.cal.ci.spirentcom.com:8080/job/stcapi_rest_api/lastSuccessfulBuild/artifact/deployment/&apos; + install_stcapi_filename
 response = urllib2.urlopen(stc_restapi_py )
 html = response.read()
-local_restapi_py = open(install_stcapi_filename,'wb')
+local_restapi_py = open(install_stcapi_filename,&apos;wb&apos;)
 local_restapi_py.write(html)
 local_restapi_py.close()</command>
     </hudson.plugins.python.Python>
     <hudson.tasks.BatchFile>
-      <command>SET SOURCE_OS=EL3LinuxServer
+      <command>SET SOURCE_OS=EL3LinuxServer&#xd;
 c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --createpropfile=no --runcimakelstarballs=yes --runsetver=no</command>
     </hudson.tasks.BatchFile>
   </builders>
@@ -251,16 +252,16 @@ c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --c
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
           <email>
-            <recipientList/>
+            <recipientList></recipientList>
             <subject>$PROJECT_DEFAULT_SUBJECT</subject>
             <body>$PROJECT_DEFAULT_CONTENT</body>
             <recipientProviders>
               <hudson.plugins.emailext.plugins.recipients.DevelopersRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
-            <replyTo/>
+            <replyTo></replyTo>
             <contentType>project</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.FailureTrigger>
@@ -268,8 +269,8 @@ c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --c
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern/>
-      <presendScript/>
+      <attachmentsPattern></attachmentsPattern>
+      <presendScript></presendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
       <replyTo>$DEFAULT_RECIPIENTS</replyTo>

@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
   <description>FTP central boot image file from 10.2.19.55 machine to martin&lt;br&gt;
 Requires I: drive to be mapped to \\martin\archive\pv&lt;br&gt;
@@ -19,27 +20,27 @@ Triggers integration_set_status job to create entry in build database&lt;br&gt;<
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
-          <description/>
-          <defaultValue>4.65_rel</defaultValue>
+          <description></description>
+          <defaultValue>4.64_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
-          <description/>
-          <defaultValue>4.65</defaultValue>
+          <description></description>
+          <defaultValue>4.64</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
-          <description/>
+          <description></description>
           <defaultValue>BAD_BUILD_NUMBER</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>SOURCE_OS</name>
-          <description/>
+          <description></description>
           <defaultValue>IL</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_ID</name>
-          <description/>
+          <description></description>
           <defaultValue>6</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -51,12 +52,13 @@ Triggers integration_set_status job to create entry in build database&lt;br&gt;<
   <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.34">
     <configVersion>2</configVersion>
     <p4User>tableuser</p4User>
-    <p4Passwd/>
+    <p4Passwd></p4Passwd>
     <p4Port>perforce.spirentcom.com:1666</p4Port>
     <p4Client>${JOB_NAME}_${BRANCH_NAME}</p4Client>
     <projectPath>//SCM/Build_Scripts/STC_Build_Scripts/... //ws/Build_Scripts/STC_Build_Scripts/...
 //SCM/Scripts/... //ws/Build_Scripts/Scripts/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
+    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <p4Tool>p4</p4Tool>
@@ -100,29 +102,29 @@ Triggers integration_set_status job to create entry in build database&lt;br&gt;<
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>del /f /q BUILD_*.txt
+      <command>del /f /q BUILD_*.txt&#xd;
 del /f /q *IL_*.txt</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
       <project>release_launch_nightly_packaging</project>
       <filter>*IL_*.txt,BUILD_*.txt</filter>
-      <target/>
-      <excludes/>
+      <target></target>
+      <excludes></excludes>
       <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.BatchFile>
-      <command>net use /Delete I:
-net use I: \\martin\archive\pv
-net use
-
-rem SET ILHOST=10.2.19.55
-SET ILHOST=ilpkg-02.cal.ci.spirentcom.com
-
-rem SET ILWORKSPACE=/home/scmbuild/jenkins-rel/workspace/release_il_centralboot_packaging
-SET ILWORKSPACE=/home/spirent/jenkins-rel/workspace/release_il_centralboot_packaging
-SET DEPENDENT_JOB_NAME=release_il_ftp_centralboot_packaging
+      <command>net use /Delete I:&#xd;
+net use I: \\martin\archive\pv&#xd;
+net use&#xd;
+&#xd;
+rem SET ILHOST=10.2.19.55&#xd;
+SET ILHOST=ilpkg-02.cal.ci.spirentcom.com&#xd;
+&#xd;
+rem SET ILWORKSPACE=/home/scmbuild/jenkins-rel/workspace/release_il_centralboot_packaging&#xd;
+SET ILWORKSPACE=/home/spirent/jenkins-rel/workspace/release_il_centralboot_packaging&#xd;
+SET DEPENDENT_JOB_NAME=release_il_ftp_centralboot_packaging&#xd;
 c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --createpropfile=yes --runcimaketarballs=no --runsetver=no --runciftpcentralboot=yes --updatelatestbuildtext=yes</command>
     </hudson.tasks.BatchFile>
   </builders>
