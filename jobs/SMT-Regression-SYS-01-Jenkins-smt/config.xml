@@ -51,7 +51,8 @@ import urllib2
 
 
  
-job = &apos;SMT-Remote-Regression-SYS-01&apos;
+# temp - job = &apos;SMT-Remote-Regression-SYS-01&apos;
+job = &apos;SMT-Remote-Regression-SYS-02&apos;
 #url = &quot;http://jenkins-smt.cal.ci.spirentcom.com:8080/job/&quot; + job +&quot;/build&quot;
 url = &quot;http://jenkins-smt.cal.ci.spirentcom.com:8080/job/&quot; + job +&quot;/buildWithParameters?token=mosheallowedtodothis&amp;STC_MAJ_MIN_VERSION=&quot;+os.environ[&apos;STC_MAJ_MIN_VERSION&apos;]
 print url
