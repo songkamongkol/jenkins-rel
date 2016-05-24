@@ -57,7 +57,7 @@
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>SR</name>
-          <description>Example: 465.1.1. NOTE: SR (System Release) option is used to indicated that the usb image is to be created for a final release build. When a value other than none is specify, the job will try to upload the usb image to the directory specified by the SR number (.e.g, \\storage.cal.ci.spirentcom.com\gr\TestCenter\4.65\SR_Builds\SR465.1.1\Manufacturing)</description>
+          <description>Example: 465.1.1. &lt;BR&gt;NOTE: SR (System Release) option is used to indicated that the usb image is to be created for a final release build. When a value other than none is specify, the job will try to upload the usb image to the directory specified by the SR number (.e.g, \\storage.cal.ci.spirentcom.com\gr\TestCenter\4.65\SR_Builds\SR465.1.1\Manufacturing)</description>
           <defaultValue>NONE</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
