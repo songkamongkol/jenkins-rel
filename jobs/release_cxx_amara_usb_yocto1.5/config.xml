@@ -265,7 +265,9 @@ then
     export original_fname=$(ls usbimg*cxxx*x11*.img.gz)
     export new_fname=spt-c1-x11_${BLDNBR}.img.gz
     mv ${original_fname} ${new_fname}
+    md5sum ${new_fname} &gt; ${new_fname}.md5
     rsync -avz $BUILD_OUTPUT_DIR/framework/il/kernel/yocto/Install/${new_fname} ${RSYNCUSER}@${STORAGE}:$SR_DIR
+    rsync -avz $BUILD_OUTPUT_DIR/framework/il/kernel/yocto/Install/${new_fname}.md5 ${RSYNCUSER}@${STORAGE}:$SR_DIR
 fi
 
 </command>
