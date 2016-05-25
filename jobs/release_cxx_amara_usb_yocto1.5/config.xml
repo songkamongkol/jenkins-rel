@@ -124,7 +124,7 @@ NOTE: if any value other than none is provided, the job will try to upload the u
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -261,7 +261,9 @@ then
     export RSYNCUSER=spirent
     export STORAGE=storage.cal.ci.spirentcom.com
     export SR_DIR=/GR/TestCenter/${STC_MAJ_MIN_VERSION}/SR_Builds/SR${SR}/Manufacturing
-    rsync -avz $BUILD_OUTPUT_DIR/framework/il/kernel/yocto/Install/usb*1.5*.img.gz ${RSYNCUSER}@${STORAGE}:$SR_DIR
+    export original_fname=$(ls usbimg*cxxx*x11*.img.gz)
+    export new_fname=spt-c1-x11_${BLDNBR}.img.gz
+    rsync -avz $BUILD_OUTPUT_DIR/framework/il/kernel/yocto/Install/${new_fname} ${RSYNCUSER}@${STORAGE}:$SR_DIR
 fi
 
 </command>
