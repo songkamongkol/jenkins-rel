@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
   <description>Startup error problem with TestCenter.Windows.tar.gz?
 
@@ -60,7 +61,7 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
   <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.34">
     <configVersion>2</configVersion>
     <p4User>tableuser</p4User>
-    <p4Passwd/>
+    <p4Passwd></p4Passwd>
     <p4Port>perforceproxy.cal.ci.spirentcom.com:1999</p4Port>
     <p4Client>${JOB_NAME}_${BRANCH_NAME}</p4Client>
     <projectPath>+//TestCenter/${BRANCH_NAME}/... //ws/...
@@ -85,7 +86,7 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
 +//TestCenter/${BRANCH_NAME}/build/il/scripts/... //ws/build/il/scripts/...
 +//TestCenter/${BRANCH_NAME}/build/il/configs/scripts/... //ws/build/il/configs/scripts/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner/>
+    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -128,7 +129,7 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
   </scm>
   <assignedNode>uibldwin-03</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>true</disabled>
+  <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>true</blockBuildWhenUpstreamBuilding>
   <triggers>
@@ -140,21 +141,21 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>del UI_changelist_*.txt
+      <command>del UI_changelist_*.txt&#xd;
 echo %P4_CHANGELIST% &gt; UI_changelist_%P4_CHANGELIST%.txt</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>mkdir __ui_only_build__
-del /Q TestCenter.Windows.bll.tar.gz
-del BLL_changelist*.txt
-rd /s /q bin\Release\STAKCommands
+      <command>mkdir __ui_only_build__&#xd;
+del /Q TestCenter.Windows.bll.tar.gz&#xd;
+del BLL_changelist*.txt&#xd;
+rd /s /q bin\Release\STAKCommands&#xd;
 exit /B 0</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
       <project>release_bll_windows_ci</project>
       <filter>bin/Release/TestCenter.Windows.bll.tar.gz, BLL_changelist*.txt</filter>
-      <target/>
-      <excludes/>
+      <target></target>
+      <excludes></excludes>
       <selector class="hudson.plugins.copyartifact.PermalinkBuildSelector">
         <id>Release Build Passed on all OS</id>
       </selector>
@@ -164,8 +165,8 @@ exit /B 0</command>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
       <project>release_bll_windows_ci</project>
       <filter>bin/Release/STAKCommands.beta.Windows.tar.gz</filter>
-      <target/>
-      <excludes/>
+      <target></target>
+      <excludes></excludes>
       <selector class="hudson.plugins.copyartifact.PermalinkBuildSelector">
         <id>Release Build Passed on all OS</id>
       </selector>
@@ -173,46 +174,46 @@ exit /B 0</command>
       <doNotFingerprintArtifacts>true</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.BatchFile>
-      <command>python framework\tools\buildUtil\package.py --install TestCenter.Windows.bll.tar.gz --directory=bin/Release
+      <command>python framework\tools\buildUtil\package.py --install TestCenter.Windows.bll.tar.gz --directory=bin/Release&#xd;
 python framework\tools\buildUtil\package.py --install STAKCommands.beta.Windows.tar.gz --directory=bin/Release --append</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>python genSln.py
+      <command>python genSln.py&#xd;
 </command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>pushd C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC
-set path=%path:"=%
-call vcvarsall.bat x86
-popd
+      <command>pushd C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC&#xd;
+set path=%path:&quot;=%&#xd;
+call vcvarsall.bat x86&#xd;
+popd&#xd;
 msbuild.exe TestCenter.UI.Gen.sln /t:build /p:Configuration=Release</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>cd bin\Release
-rebase.exe -b 0x12000000 -u . *.dll
+      <command>cd bin\Release&#xd;
+rebase.exe -b 0x12000000 -u . *.dll&#xd;
 exit /B 0</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>cd bin\Release
-del TestCenter*.tar.gz
-if %BUILD_PACKAGE_BUILD% == true (
-xcopy /Y /R /D ..\..\scm\tools\devexpress .
-xcopy /Y /R /D ..\..\scm\tools\dundas .
-xcopy /Y /R /D ..\..\scm\tools\janus .
-python ..\..\framework\tools\buildUtil\package.py --package=TestCenter 
-python ..\..\framework\tools\buildUtil\package.py --package=STAKCommands.beta
-copy TestCenter.Windows.tar.gz TestCenter.Windows.no_version.tar.gz
-python ..\..\framework\tools\buildUtil\setver.py --package=TestCenter.Windows.tar.gz %STC_MAJ_MIN_VERSION% %P4_CHANGELIST%
+      <command>cd bin\Release&#xd;
+del TestCenter*.tar.gz&#xd;
+if %BUILD_PACKAGE_BUILD% == true (&#xd;
+xcopy /Y /R /D ..\..\scm\tools\devexpress .&#xd;
+xcopy /Y /R /D ..\..\scm\tools\dundas .&#xd;
+xcopy /Y /R /D ..\..\scm\tools\janus .&#xd;
+python ..\..\framework\tools\buildUtil\package.py --package=TestCenter &#xd;
+python ..\..\framework\tools\buildUtil\package.py --package=STAKCommands.beta&#xd;
+copy TestCenter.Windows.tar.gz TestCenter.Windows.no_version.tar.gz&#xd;
+python ..\..\framework\tools\buildUtil\setver.py --package=TestCenter.Windows.tar.gz %STC_MAJ_MIN_VERSION% %P4_CHANGELIST%&#xd;
 )</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>if %BUILD_RUN_UNITTEST% == true (
-cd bin\Release
-python ..\..\framework\tools\testRunner\testRunner.py --runInParallel=8 --ui --archive
-rmdir /Q /S unit_test_report
-mkdir unit_test_report
-copy *.html unit_test_report
-REM -- coverage report no longer needed # mv *_CoverageReport unit_test_report
+      <command>if %BUILD_RUN_UNITTEST% == true (&#xd;
+cd bin\Release&#xd;
+python ..\..\framework\tools\testRunner\testRunner.py --runInParallel=8 --ui --archive&#xd;
+rmdir /Q /S unit_test_report&#xd;
+mkdir unit_test_report&#xd;
+copy *.html unit_test_report&#xd;
+REM -- coverage report no longer needed # mv *_CoverageReport unit_test_report&#xd;
 )</command>
     </hudson.tasks.BatchFile>
   </builders>
@@ -265,7 +266,7 @@ REM -- coverage report no longer needed # mv *_CoverageReport unit_test_report
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.UnstableTrigger>
           <email>
-            <recipientList/>
+            <recipientList></recipientList>
             <subject>$PROJECT_DEFAULT_SUBJECT</subject>
             <body>$PROJECT_DEFAULT_CONTENT</body>
             <recipientProviders>
@@ -274,16 +275,16 @@ REM -- coverage report no longer needed # mv *_CoverageReport unit_test_report
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
-            <replyTo/>
+            <replyTo></replyTo>
             <contentType>project</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.UnstableTrigger>
         <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
           <email>
-            <recipientList/>
+            <recipientList></recipientList>
             <subject>$PROJECT_DEFAULT_SUBJECT</subject>
             <body>$PROJECT_DEFAULT_CONTENT</body>
             <recipientProviders>
@@ -292,16 +293,16 @@ REM -- coverage report no longer needed # mv *_CoverageReport unit_test_report
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
-            <replyTo/>
+            <replyTo></replyTo>
             <contentType>project</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.FailureTrigger>
         <hudson.plugins.emailext.plugins.trigger.FixedTrigger>
           <email>
-            <recipientList/>
+            <recipientList></recipientList>
             <subject>$PROJECT_DEFAULT_SUBJECT</subject>
             <body>$PROJECT_DEFAULT_CONTENT</body>
             <recipientProviders>
@@ -310,10 +311,10 @@ REM -- coverage report no longer needed # mv *_CoverageReport unit_test_report
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
-            <replyTo/>
+            <replyTo></replyTo>
             <contentType>project</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.FixedTrigger>
@@ -321,11 +322,11 @@ REM -- coverage report no longer needed # mv *_CoverageReport unit_test_report
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern/>
-      <presendScript/>
+      <attachmentsPattern></attachmentsPattern>
+      <presendScript></presendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
-      <replyTo/>
+      <replyTo></replyTo>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
