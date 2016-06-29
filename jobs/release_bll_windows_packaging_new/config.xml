@@ -126,7 +126,7 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -168,7 +168,7 @@ python framework\tools\buildUtil\package.py --install TestCenter.Windows.no_vers
 echo extracting STAKCommands.beta.Windows.tar.gz file from job %COPYARTIFACT_BUILD_NUMBER_UI%&#xd;
 python framework\tools\buildUtil\package.py --install STAKCommands.beta.Windows.tar.gz --directory=STAKCommands&#xd;
 xcopy  /S /I /E /Y  %WORKSPACE%\STAKCommands\STAKCommands\*.* M:\TestCenter\%STC_MAJ_MIN_VERSION%\Engineering_Builds\GUI_BLL\%STC_MAJ_MIN_VERSION%.%BLL_BUILD_NUMBER%6\STAKCommands&#xd;
-xcopy  /S /I /E /Y  %WORKSPACE%\framework\automation\scripting\stc\SampleScripts\*.* M:\TestCenter\%STC_MAJ_MIN_VERSION%\Engineering_Builds\GUI_BLL\%STC_MAJ_MIN_VERSION%.%FULLVER%\SampleScripts&#xd;
+xcopy  /S /I /E /Y  %WORKSPACE%\framework\automation\scripting\stc\SampleScripts\*.* M:\TestCenter\%STC_MAJ_MIN_VERSION%\Engineering_Builds\GUI_BLL\%STC_MAJ_MIN_VERSION%.%BLL_BUILD_NUMBER%6\SampleScripts&#xd;
 exit /b 1</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
