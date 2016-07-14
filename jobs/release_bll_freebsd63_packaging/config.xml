@@ -1,5 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<project>
+<?xml version="1.0" encoding="UTF-8"?><project>
   <actions/>
   <description>Build bll-freebsd6-baseonly target&lt;br&gt;
 Run Unit test testbase&lt;br&gt;
@@ -25,7 +24,7 @@ Wait 12 minutes&lt;br&gt;
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.66_rel</defaultValue>
+          <defaultValue>4.67_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -50,16 +49,16 @@ Wait 12 minutes&lt;br&gt;
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description>major minor version TODO: get this from a file</description>
-          <defaultValue>4.66</defaultValue>
+          <defaultValue>4.67</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
-          <description></description>
+          <description/>
           <defaultValue>BAD_BUILD_NUMBER</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>DEPENDENT_JOB_NAME</name>
-          <description></description>
+          <description/>
           <defaultValue>release_bll_freebsd63_packaging</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
@@ -70,7 +69,7 @@ Wait 12 minutes&lt;br&gt;
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>RELEASE_TYPE</name>
-          <description></description>
+          <description/>
           <defaultValue>RELEASE</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -82,7 +81,7 @@ Wait 12 minutes&lt;br&gt;
   <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.34">
     <configVersion>2</configVersion>
     <p4User>tableuser</p4User>
-    <p4Passwd></p4Passwd>
+    <p4Passwd/>
     <p4Port>perforce.spirentcom.com:1666</p4Port>
     <p4Client>${JOB_NAME}_${BRANCH_NAME}</p4Client>
     <projectPath>//SCM/Build_Scripts/STC_Build_Scripts/... //ws/Build_Scripts/STC_Build_Scripts/...
@@ -112,7 +111,7 @@ Wait 12 minutes&lt;br&gt;
 +//TestCenter/${BRANCH_NAME}/common/.../ui/... //ws/common/.../ui/...
 +//TestCenter/${BRANCH_NAME}/framework/ui/automation/... //ws/framework/ui/automation/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner></clientOwner>
+    <clientOwner/>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -166,7 +165,7 @@ Wait 12 minutes&lt;br&gt;
       <command>echo LD_LIBRARY_PATH is $LD_LIBRARY_PATH
 # rm -rf $WORKSPACE/build/il/bld_bll-freebsd6-baseonly_x86/Release/bin/API
 
-if [ &quot;$RELEASE_BUILD&quot; = &quot;true&quot; ]; then
+if [ "$RELEASE_BUILD" = "true" ]; then
     cp -f $WORKSPACE/framework/bll/core/include/licensing/ga_release/ControlledReleaseCheck.h $WORKSPACE/framework/bll/core/include/licensing/ControlledReleaseCheck.h
 fi
 
@@ -175,12 +174,12 @@ python genSln.py</command>
     <com.thalesgroup.hudson.plugins.scons.SConsBuilderScriptFile plugin="scons@0.4">
       <options>-j 8 -k -f SConstruct.bll </options>
       <variables>target=bll-freebsd6-baseonly</variables>
-      <targets></targets>
-      <rootSconsscriptDirectory></rootSconsscriptDirectory>
-      <sconsscript></sconsscript>
+      <targets/>
+      <rootSconsscriptDirectory/>
+      <sconsscript/>
     </com.thalesgroup.hudson.plugins.scons.SConsBuilderScriptFile>
     <hudson.tasks.Shell>
-      <command>if [ &quot;$BUILD_RUN_UNITTEST&quot; = &quot;true&quot; ]; then
+      <command>if [ "$BUILD_RUN_UNITTEST" = "true" ]; then
     echo $WORKSPACE/$BUILD_OUTPUT_DIR
     cd $WORKSPACE/$BUILD_OUTPUT_DIR
     export LD_LIBRARY_PATH=$WORKSPACE/$BUILD_OUTPUT_DIR:.:
@@ -196,49 +195,49 @@ python $WORKSPACE/Build_Scripts/Scripts/ci_run_jenkins_steps.py --createpropfile
     <hudson.plugins.python.Python plugin="python@1.2">
       <command>import os
 
-if os.environ[&apos;BLL_BUILD_NUMBER&apos;]==&apos;BAD_BUILD_NUMBER&apos;:      
-    os.environ[&apos;BLL_BUILD_NUMBER&apos; ]= os.environ[&apos;BUILD_NUMBER&apos;]
+if os.environ['BLL_BUILD_NUMBER']=='BAD_BUILD_NUMBER':      
+    os.environ['BLL_BUILD_NUMBER' ]= os.environ['BUILD_NUMBER']
 
-bll_build_number=os.environ[&apos;BLL_BUILD_NUMBER&apos; ]
-fullnum= &quot;00&quot; + bll_build_number  + &quot;60000&quot;
-fullver = &quot;00&quot; + bll_build_number + &quot;6&quot;
-print &quot;bll build number is &quot; + bll_build_number
+bll_build_number=os.environ['BLL_BUILD_NUMBER' ]
+fullnum= "00" + bll_build_number  + "60000"
+fullver = "00" + bll_build_number + "6"
+print "bll build number is " + bll_build_number
 if  int(bll_build_number)  &gt; 9:
-    print &quot;bll_build_number: greater than 9&quot;
-    fullnum = &quot;0&quot; + bll_build_number + &quot;30000&quot;
-    fullver = &quot;0&quot; + bll_build_number + &quot;6&quot;
+    print "bll_build_number: greater than 9"
+    fullnum = "0" + bll_build_number + "30000"
+    fullver = "0" + bll_build_number + "6"
 if  int(bll_build_number)  &gt; 99:
-    print &quot;bll_build_number: greater than 9&quot;
-    fullnum = bll_build_number + &quot;30000&quot;
-    fullver = bll_build_number + &quot;6&quot;
+    print "bll_build_number: greater than 9"
+    fullnum = bll_build_number + "30000"
+    fullver = bll_build_number + "6"
     
-print &quot;fullnum: &quot; +  fullnum
-print &quot;fullver: &quot; + fullver
+print "fullnum: " +  fullnum
+print "fullver: " + fullver
 
-# paramfile = open(os.environ[&apos;WORKSPACE&apos;] + &quot;/properties.txt&quot;, &quot;w&quot;)
-# paramfile.write(&quot;SOURCE_OS=FreeBSD63\n&quot;)
-# paramfile.write(&quot;BLL_BUILD_NUMBER=&quot; + bll_build_number + &quot;\n&quot;)
+# paramfile = open(os.environ['WORKSPACE'] + "/properties.txt", "w")
+# paramfile.write("SOURCE_OS=FreeBSD63\n")
+# paramfile.write("BLL_BUILD_NUMBER=" + bll_build_number + "\n")
 # paramfile.close()
 
-stc_maj_min_version=os.environ[&apos;STC_MAJ_MIN_VERSION&apos; ]
-build_output_dir=os.environ[&apos;BUILD_OUTPUT_DIR&apos; ]
-print &quot;build_output_dir: &quot; + build_output_dir
-os.system(&quot;cd&quot;)
+stc_maj_min_version=os.environ['STC_MAJ_MIN_VERSION' ]
+build_output_dir=os.environ['BUILD_OUTPUT_DIR' ]
+print "build_output_dir: " + build_output_dir
+os.system("cd")
 os.chdir(build_output_dir)
-os.system(&quot;cd&quot;)
-# print &quot;python ../../../../../framework/tools/buildUtil/setver.py &quot; + stc_maj_min_version + &quot; &quot; + fullnum
-# os.system(&quot;python ../../../../../framework/tools/buildUtil/setver.py &quot; + stc_maj_min_version + &quot; &quot; + fullnum);</command>
+os.system("cd")
+# print "python ../../../../../framework/tools/buildUtil/setver.py " + stc_maj_min_version + " " + fullnum
+# os.system("python ../../../../../framework/tools/buildUtil/setver.py " + stc_maj_min_version + " " + fullnum);</command>
     </hudson.plugins.python.Python>
     <hudson.tasks.Shell>
       <command>if [ -d Spirent_TestCenter_$STC_MAJ_MIN_VERSION ]; then
-	echo &quot;Spirent_TestCenter_$STC_MAJ_MIN_VERSION exists!&quot;
+	echo "Spirent_TestCenter_$STC_MAJ_MIN_VERSION exists!"
 else
 	mkdir Spirent_TestCenter_$STC_MAJ_MIN_VERSION
 fi
 cd Spirent_TestCenter_$STC_MAJ_MIN_VERSION
 
 if [ -d Spirent_TestCenter_Application_FreeBSD63 ]; then
-	echo &quot;Spirent_TestCenter_Application_FreeBSD63 exists!&quot;
+	echo "Spirent_TestCenter_Application_FreeBSD63 exists!"
 else
 	mkdir Spirent_TestCenter_Application_FreeBSD63
 fi
@@ -256,19 +255,19 @@ cp -f $WORKSPACE/$BUILD_OUTPUT_DIR/stcbll.ini $WORKSPACE/Spirent_TestCenter_$STC
 
 for file in .tcl .pl .pm .py .a .so .xml .so* ;do
  if ( ls $WORKSPACE/$BUILD_OUTPUT_DIR/*$file &gt;/dev/null) then
-    echo &quot;$file file exists!&quot;
+    echo "$file file exists!"
     cp -f $WORKSPACE/$BUILD_OUTPUT_DIR/*$file $WORKSPACE/Spirent_TestCenter_$STC_MAJ_MIN_VERSION/Spirent_TestCenter_Application_FreeBSD63/
   else
-    echo &quot;There are no files matching the pattern: $file to copy!&quot;
+    echo "There are no files matching the pattern: $file to copy!"
   fi
 done
 
 for file in test*.xml correct*.xml source*.xml test*.tcl correct*.tcl unused*.tcl lib*.a stcFtpd.tcl tclCmdline.tcl tclFtpd.tcl ;do
  if ( ls $WORKSPACE/Spirent_TestCenter_$STC_MAJ_MIN_VERSION/Spirent_TestCenter_Application_FreeBSD63/$file &gt;/dev/null) then
-    echo &quot;$file file exists!&quot;
+    echo "$file file exists!"
     rm -f $WORKSPACE/Spirent_TestCenter_$STC_MAJ_MIN_VERSION/Spirent_TestCenter_Application_FreeBSD63/$file
   else
-    echo &quot;There are no files matching the pattern: $file to delete!&quot;
+    echo "There are no files matching the pattern: $file to delete!"
   fi
 done
 
@@ -286,7 +285,7 @@ else
 fi
 tar cvf Spirent_TestCenter_Auto_FreeBSD63_$STC_MAJ_MIN_VERSION.tar Spirent_TestCenter_$STC_MAJ_MIN_VERSION
 gzip Spirent_TestCenter_Auto_FreeBSD63_$STC_MAJ_MIN_VERSION.tar
-echo &quot;Finished creating tar files&quot;</command>
+echo "Finished creating tar files"</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
@@ -301,16 +300,16 @@ echo &quot;Finished creating tar files&quot;</command>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
           <email>
-            <recipientList></recipientList>
+            <recipientList/>
             <subject>$PROJECT_DEFAULT_SUBJECT</subject>
             <body>$PROJECT_DEFAULT_CONTENT</body>
             <recipientProviders>
               <hudson.plugins.emailext.plugins.recipients.DevelopersRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern></attachmentsPattern>
+            <attachmentsPattern/>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
-            <replyTo></replyTo>
+            <replyTo/>
             <contentType>project</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.FailureTrigger>
@@ -318,8 +317,8 @@ echo &quot;Finished creating tar files&quot;</command>
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern></attachmentsPattern>
-      <presendScript></presendScript>
+      <attachmentsPattern/>
+      <presendScript/>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
       <replyTo>$DEFAULT_RECIPIENTS</replyTo>
