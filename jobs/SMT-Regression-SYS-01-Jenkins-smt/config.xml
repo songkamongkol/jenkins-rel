@@ -17,12 +17,12 @@
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description/>
-          <defaultValue>4.66_rel</defaultValue>
+          <defaultValue>4.67_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description/>
-          <defaultValue>4.66</defaultValue>
+          <defaultValue>4.67</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
