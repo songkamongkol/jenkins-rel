@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>IL Build job for centralboot image targets:&lt;br&gt;
-target=centralboot packaging=1&lt;br&gt;
-Copies artfacts from ci jobs: il_changeling_all, il_chos2, il_virtual, il_vtc, il_testmodule_contents&lt;br&gt;
-Then runs Centralboot to generate centralboot image and run reversion script to update the version info.&lt;br&gt;
+  <description>IL Build job for centralboot image targets:&lt;br&gt;&#xd;
+target=centralboot packaging=1&lt;br&gt;&#xd;
+Copies artfacts from ci jobs: il_changeling_all, il_chos2, il_virtual, il_vtc, il_testmodule_contents&lt;br&gt;&#xd;
+Then runs Centralboot to generate centralboot image and run reversion script to update the version info.&lt;br&gt;&#xd;
 </description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
@@ -80,7 +80,6 @@ Then runs Centralboot to generate centralboot image and run reversion script to 
 +//TestCenter/${BRANCH_NAME}/framework/bll/vendor/... //ws/framework/bll/vendor/...
 //hypervisor/mainline/amara/ChassisImage/...  //ws/ChassisImage/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -110,7 +109,7 @@ Then runs Centralboot to generate centralboot image and run reversion script to 
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -338,7 +337,10 @@ python $WORKSPACE/Build_Scripts/Scripts/ci_run_jenkins_steps.py --createpropfile
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>echo Creating Central Boot image file
-sudo scons target=centralboot_yoctovm packaging=1</command>
+sudo scons target=centralboot_yoctovm packaging=1
+
+echo Create ttwb bundle file
+scons -j0 target=ttwb_pkg</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>echo &quot;Creating Amara C3 image file&quot;

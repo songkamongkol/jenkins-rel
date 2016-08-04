@@ -44,7 +44,7 @@ IF EXIST \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_changeling_all_yocto-
 ) ELSE (&#xd;
 	echo No packaging is in progress, promoting build&#xd;
 )&#xd;
-echo &quot;Promoting build for %P4_CHANGESET%&quot; &gt; \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_changeling_all_yocto-%BRANCH_NAME%_packaging.txt&#xd;
+echo &quot;Promoting build for %P4_CHANGESET%&quot; &gt; \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_changeling_all_yocto-%BRANCH_NAME%_promoting.txt&#xd;
 rd /s /q \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_changeling_all_yocto-%BRANCH_NAME%\build-packaging&#xd;
 xcopy \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_changeling_all_yocto-%BRANCH_NAME%\build-%P4_CHANGESET% \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_changeling_all_yocto-%BRANCH_NAME%\build-packaging /e /d /i&#xd;
 echo &quot;changelist %P4_CHANGESET%, build number %PROMOTED_NUMBER%&quot; &gt; \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_changeling_all_yocto-%BRANCH_NAME%\build-packaging\il_changeling_all_yocto-%BRANCH_NAME%_%P4_CHANGESET%.txt&#xd;
