@@ -133,7 +133,10 @@ Jenkins Node(s): spccalengec01,spccalengec02</description>
   <customWorkspace>${JOB_NAME}</customWorkspace>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>del /f /q TestCenter.Linux.x64.full.tar*</command>
+      <command># Make sure TestCenter.Linux.x64.tar is removed otherwise &#xd;
+# the untar command will not work&#xd;
+del TestCenter.Linux.x64.tar TestCenter.Linux.x64.full.tar.gz&#xd;
+</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
       <project>release_bll_linux_x64_ci</project>
@@ -152,8 +155,6 @@ rd /s /q Spirent_TestCenter_Application_Linux_Server&#xd;
 7z x TestCenter.Linux.x64.full.tar.gz &gt; 7zextract_TestCenter.Linux.x64.full.tar.txt&#xd;
 7z x -y TestCenter.Linux.x64.tar &gt;&gt; 7zextract_TestCenter.Linux.x64.full.tar.txt&#xd;
 &#xd;
-del TestCenter.Linux.x64.full.tar.gz&#xd;
-del TestCenter.Linux.x64.full.tar&#xd;
 del /f /q stcapi_linux*.tgz&#xd;
 del /f /q install_stcapi*.py&#xd;
 &#xd;
