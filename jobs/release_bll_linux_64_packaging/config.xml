@@ -135,7 +135,7 @@ Jenkins Node(s): spccalengec01,spccalengec02</description>
     <hudson.tasks.BatchFile>
       <command># Make sure TestCenter.Linux.x64.tar is removed otherwise &#xd;
 # the untar command will not work&#xd;
-del TestCenter.Linux.x64.tar TestCenter.Linux.x64.full.tar.gz&#xd;
+del /f /q TestCenter.Linux.x64.tar TestCenter.Linux.x64.full.tar.gz&#xd;
 </command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
