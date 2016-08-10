@@ -1,5 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<project>
+<?xml version="1.0" encoding="UTF-8"?><project>
   <actions/>
   <description>Build bll-freebsd7-baseonly target&lt;br&gt;
 Run Unit test testbase&lt;br&gt;
@@ -25,7 +24,7 @@ Wait 20 minutes to stagger builds (1200) seconds.&lt;br&gt;
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.67_rel</defaultValue>
+          <defaultValue>4.68_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -45,11 +44,11 @@ Wait 20 minutes to stagger builds (1200) seconds.&lt;br&gt;
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description>major minor version TODO: get this from a file</description>
-          <defaultValue>4.67</defaultValue>
+          <defaultValue>4.68</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
-          <description></description>
+          <description/>
           <defaultValue>BAD_BUILD_NUMBER</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
@@ -72,7 +71,7 @@ Wait 20 minutes to stagger builds (1200) seconds.&lt;br&gt;
   <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.34">
     <configVersion>2</configVersion>
     <p4User>tableuser</p4User>
-    <p4Passwd></p4Passwd>
+    <p4Passwd/>
     <p4Port>perforce.spirentcom.com:1666</p4Port>
     <p4Client>${JOB_NAME}_${BRANCH_NAME}</p4Client>
     <projectPath>//SCM/Scripts/ci_* //ws/Build_Scripts/Scripts/ci_*
@@ -101,7 +100,7 @@ Wait 20 minutes to stagger builds (1200) seconds.&lt;br&gt;
 +//TestCenter/${BRANCH_NAME}/common/.../ui/... //ws/common/.../ui/...
 +//TestCenter/${BRANCH_NAME}/framework/ui/automation/... //ws/framework/ui/automation/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner></clientOwner>
+    <clientOwner/>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -155,7 +154,7 @@ Wait 20 minutes to stagger builds (1200) seconds.&lt;br&gt;
       <command>echo LD_LIBRARY_PATH is $LD_LIBRARY_PATH
 # rm -rf $WORKSPACE/$BUILD_OUTPUT_DIR/API
 
-if [ &quot;$RELEASE_BUILD&quot; = &quot;true&quot; ]; then
+if [ "$RELEASE_BUILD" = "true" ]; then
     cp -f $WORKSPACE/framework/bll/core/include/licensing/ga_release/ControlledReleaseCheck.h $WORKSPACE/framework/bll/core/include/licensing/ControlledReleaseCheck.h
 fi
 
@@ -164,12 +163,12 @@ python genSln.py</command>
     <com.thalesgroup.hudson.plugins.scons.SConsBuilderScriptFile plugin="scons@0.4">
       <options>-j 8 -k -f SConstruct.bll </options>
       <variables>target=bll-freebsd7-baseonly</variables>
-      <targets></targets>
-      <rootSconsscriptDirectory></rootSconsscriptDirectory>
-      <sconsscript></sconsscript>
+      <targets/>
+      <rootSconsscriptDirectory/>
+      <sconsscript/>
     </com.thalesgroup.hudson.plugins.scons.SConsBuilderScriptFile>
     <hudson.tasks.Shell>
-      <command>if [ &quot;$BUILD_RUN_UNITTEST&quot; = &quot;true&quot; ]; then
+      <command>if [ "$BUILD_RUN_UNITTEST" = "true" ]; then
     echo $WORKSPACE/$BUILD_OUTPUT_DIR
     cd $WORKSPACE/$BUILD_OUTPUT_DIR
     export LD_LIBRARY_PATH=$WORKSPACE/$BUILD_OUTPUT_DIR:.:
@@ -184,14 +183,14 @@ python $WORKSPACE/Build_Scripts/Scripts/ci_run_jenkins_steps.py --createpropfile
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>if [ -d Spirent_TestCenter_$STC_MAJ_MIN_VERSION ]; then
-	echo &quot;Spirent_TestCenter_$STC_MAJ_MIN_VERSION exists!&quot;
+	echo "Spirent_TestCenter_$STC_MAJ_MIN_VERSION exists!"
 else
 	mkdir Spirent_TestCenter_$STC_MAJ_MIN_VERSION
 fi
 cd Spirent_TestCenter_$STC_MAJ_MIN_VERSION
 
 if [ -d Spirent_TestCenter_Application_FreeBSD71 ]; then
-	echo &quot;Spirent_TestCenter_Application_FreeBSD71 exists!&quot;
+	echo "Spirent_TestCenter_Application_FreeBSD71 exists!"
 else
 	mkdir Spirent_TestCenter_Application_FreeBSD71
 fi
@@ -208,19 +207,19 @@ cp -f $WORKSPACE/$BUILD_OUTPUT_DIR/stcbll.ini $WORKSPACE/Spirent_TestCenter_$STC
 
 for file in .tcl .pl .pm .py .a .so .xml .so* ;do
  if ( ls $WORKSPACE/$BUILD_OUTPUT_DIR/*$file &gt;/dev/null) then
-    echo &quot;$file file exists!&quot;
+    echo "$file file exists!"
     cp -f $WORKSPACE/$BUILD_OUTPUT_DIR/*$file $WORKSPACE/Spirent_TestCenter_$STC_MAJ_MIN_VERSION/Spirent_TestCenter_Application_FreeBSD71/
   else
-    echo &quot;There are no files matching the pattern: $file to copy!&quot;
+    echo "There are no files matching the pattern: $file to copy!"
   fi
 done
 
 for file in test*.xml correct*.xml source*.xml test*.tcl correct*.tcl unused*.tcl lib*.a stcFtpd.tcl tclCmdline.tcl tclFtpd.tcl ;do
  if ( ls $WORKSPACE/Spirent_TestCenter_$STC_MAJ_MIN_VERSION/Spirent_TestCenter_Application_FreeBSD71/$file &gt;/dev/null) then
-    echo &quot;$file file exists!&quot;
+    echo "$file file exists!"
     rm -f $WORKSPACE/Spirent_TestCenter_$STC_MAJ_MIN_VERSION/Spirent_TestCenter_Application_FreeBSD71/$file
   else
-    echo &quot;There are no files matching the pattern: $file to delete!&quot;
+    echo "There are no files matching the pattern: $file to delete!"
   fi
 done
 
@@ -238,7 +237,7 @@ else
 fi
 tar cvf Spirent_TestCenter_Auto_FreeBSD71_$STC_MAJ_MIN_VERSION.tar Spirent_TestCenter_$STC_MAJ_MIN_VERSION
 gzip Spirent_TestCenter_Auto_FreeBSD71_$STC_MAJ_MIN_VERSION.tar
-echo &quot;Finished creating tar files&quot;</command>
+echo "Finished creating tar files"</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
@@ -253,16 +252,16 @@ echo &quot;Finished creating tar files&quot;</command>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
           <email>
-            <recipientList></recipientList>
+            <recipientList/>
             <subject>$PROJECT_DEFAULT_SUBJECT</subject>
             <body>$PROJECT_DEFAULT_CONTENT</body>
             <recipientProviders>
               <hudson.plugins.emailext.plugins.recipients.DevelopersRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern></attachmentsPattern>
+            <attachmentsPattern/>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
-            <replyTo></replyTo>
+            <replyTo/>
             <contentType>project</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.FailureTrigger>
@@ -270,8 +269,8 @@ echo &quot;Finished creating tar files&quot;</command>
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern></attachmentsPattern>
-      <presendScript></presendScript>
+      <attachmentsPattern/>
+      <presendScript/>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
       <replyTo>$DEFAULT_RECIPIENTS</replyTo>
