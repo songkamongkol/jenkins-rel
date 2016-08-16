@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>Build bll-freebsd6-baseonly target&lt;br&gt;
-Run Unit test testbase&lt;br&gt;
-Create directory structure needed for the Tarball&lt;br&gt;
-Create tar.gz file&lt;br&gt;
-Call the FTP tarball job which copies the Tarball over to Martin&lt;br&gt;
-Jenkins Node(s): 10.1.20.22&lt;br&gt;
-Wait 12 minutes&lt;br&gt;
+  <description>Build bll-freebsd6-baseonly target&lt;br&gt;&#xd;
+Run Unit test testbase&lt;br&gt;&#xd;
+Create directory structure needed for the Tarball&lt;br&gt;&#xd;
+Create tar.gz file&lt;br&gt;&#xd;
+Call the FTP tarball job which copies the Tarball over to Martin&lt;br&gt;&#xd;
+Jenkins Node(s): 10.1.20.22&lt;br&gt;&#xd;
+Wait 12 minutes&lt;br&gt;&#xd;
 </description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>

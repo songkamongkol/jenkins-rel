@@ -300,6 +300,7 @@ cp -v /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}/build-packaging/rawimg/*
 cp -v /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}/build-packaging/fsimg/*chassis_hypervisor* $WORKSPACE/build/il/packages/fsimg
 cp -v /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}/build-packaging/fsimg/yocto_version $WORKSPACE/build/il/packages/fsimg
 cp -v /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}/build-packaging/fsimg/*chassis_installer* $WORKSPACE/build/il/packages/fsimg
+cp -v /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}/build-packaging/rawimg/chassisController_test.tgz $WORKSPACE/build/il/packages/rawimg
 rm -f /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}_packaging.txt
 </command>
     </hudson.tasks.Shell>
