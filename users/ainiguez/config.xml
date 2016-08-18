@@ -3,9 +3,7 @@
   <fullName>aaron</fullName>
   <properties>
     <hudson.model.PaneStatusProperties>
-      <collapsed>
-        <string>executors</string>
-      </collapsed>
+      <collapsed/>
     </hudson.model.PaneStatusProperties>
     <jenkins.security.ApiTokenProperty>
       <apiToken>YPYUcyZVnibKPCkDwmqcWWb/icOKn+35kySj01MLtR6j2SGnAO6/rDRfFdaxvytg</apiToken>
