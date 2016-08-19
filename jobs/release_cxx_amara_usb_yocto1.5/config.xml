@@ -124,7 +124,7 @@ NOTE: if any value other than none is provided, the job will try to upload the u
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -219,9 +219,8 @@ fi;
       <command>if [ &quot;$AV_BUILD_NUMBER&quot; = &quot;BAD_BUILD_NUMBER&quot; ]; then
     export DESC=`p4 describe $(p4 changes -m1 content/traffic/l4l7vm/... | awk &apos;{print $2}&apos;) |grep Description\:`
     export AV_BUILD_NUMBER=${DESC: -9}
-    echo $DESC
-    echo $AV_BUILD_NUMBER
-    sleep 2000
+    echo &quot;No explicit AV build number has been specified in the job parameter, obtaining AV build number from Perforce check-in ...&quot;
+    echo &quot;Setting AV Build number to $AV_BUILD_NUMBER&quot;
 fi
 
 echo &apos;Creating C1/C100 USB image (Appliance)&apos;
