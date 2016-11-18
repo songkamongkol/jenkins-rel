@@ -17,7 +17,7 @@
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.69_rel</defaultValue>
+          <defaultValue>4.71_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -32,7 +32,7 @@
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description/>
-          <defaultValue>4.69</defaultValue>
+          <defaultValue>4.71</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>MODE</name>
@@ -58,6 +58,7 @@
     <p4Client>${JOB_NAME}_${BRANCH_NAME}</p4Client>
     <projectPath>+//TestCenter/${BRANCH_NAME}/framework/il/common/utils/docker_run/... //ws/framework/il/common/utils/docker_run/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
+    <clientOwner/>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -162,6 +163,7 @@ export OUTDIR=$WORKSPACE/build/il/packages/rawimg
 
 # -- rsync docker image to martin
 rsync -avz $OUTDIR/Spirent_TestCenter_Docker_${STC_VERSION}.zip ${RSYNCUSER}@${MARTIN}:${BUILD_DIR}/rawimg
+rsync -avz $OUTDIR/Spirent_TestCenter_Lxc_${STC_VERSION}.zip ${RSYNCUSER}@${MARTIN}:${BUILD_DIR}/rawimg
 
 fi</command>
         </hudson.tasks.Shell>
@@ -169,6 +171,7 @@ fi</command>
       <scriptOnlyIfSuccess>true</scriptOnlyIfSuccess>
       <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
       <markBuildUnstable>false</markBuildUnstable>
+      <executeOn>BOTH</executeOn>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
     <hudson.plugins.claim.ClaimPublisher plugin="claim@2.5"/>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.39">
