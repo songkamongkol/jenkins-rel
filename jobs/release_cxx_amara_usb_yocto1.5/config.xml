@@ -17,7 +17,7 @@
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.69_rel</defaultValue>
+          <defaultValue>4.71_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -32,7 +32,7 @@
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description/>
-          <defaultValue>4.69</defaultValue>
+          <defaultValue>4.71</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>SOURCE_OS</name>
@@ -154,7 +154,7 @@ p4 info
 echo Clean up prior to extracting tarballs
 
 # make the version file writeable
-chmod 777 $WORKSPACE/build/il/version
+[ -f $WORKSPACE/build/il/version ] &amp;&amp; chmod 777 $WORKSPACE/build/il/version
 
 # need to remove information in repos directory and packages directory
 rm -rf $WORKSPACE/build/il/repos/*
