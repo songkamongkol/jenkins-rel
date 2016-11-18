@@ -221,7 +221,7 @@ python regression\jenkins\removeResults.py --location %WORKSPACE%\regression</co
       <recordBuildArtifacts>false</recordBuildArtifacts>
     </hudson.tasks.Fingerprinter>
     <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.2">
-      <script plugin="script-security@1.13">
+      <script plugin="script-security@1.21">
         <script>import hudson.model.*
 
 if(manager.logContains(&quot;.*Aborting regression as.*&quot;)) {
