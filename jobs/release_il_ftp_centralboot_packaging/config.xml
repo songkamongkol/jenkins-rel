@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>FTP central boot image file from 10.2.19.55 machine to martin&lt;br&gt;
-Requires I: drive to be mapped to \\martin\archive\pv&lt;br&gt;
-Update latestbuild.txt file in \\martin\archive\pv\TestCenter\&lt;version&gt;\Engineering_Builds to include the latest build number (for SmartTest)
+  <description>FTP central boot image file from 10.2.19.55 machine to martin&lt;br&gt;&#xd;
+Requires I: drive to be mapped to \\martin\archive\pv&lt;br&gt;&#xd;
+Update latestbuild.txt file in \\martin\archive\pv\TestCenter\&lt;version&gt;\Engineering_Builds to include the latest build number (for SmartTest)&#xd;
 Triggers integration_set_status job to create entry in build database&lt;br&gt;</description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
@@ -58,7 +58,6 @@ Triggers integration_set_status job to create entry in build database&lt;br&gt;<
     <projectPath>//SCM/Build_Scripts/STC_Build_Scripts/... //ws/Build_Scripts/STC_Build_Scripts/...
 //SCM/Scripts/... //ws/Build_Scripts/Scripts/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <p4Tool>p4</p4Tool>
@@ -82,7 +81,7 @@ Triggers integration_set_status job to create entry in build database&lt;br&gt;<
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -106,7 +105,7 @@ Triggers integration_set_status job to create entry in build database&lt;br&gt;<
 del /f /q *IL_*.txt</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
-      <project>release_launch_nightly_packaging_old</project>
+      <project>release_launch_nightly_packaging</project>
       <filter>*IL_*.txt,BUILD_*.txt</filter>
       <target></target>
       <excludes></excludes>
