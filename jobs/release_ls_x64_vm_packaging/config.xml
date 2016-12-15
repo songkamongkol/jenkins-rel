@@ -282,6 +282,8 @@ export BUILD_DIR=$MARTIN_ROOT/$STC_MAJ_MIN_VERSION/Engineering_Builds/GUI_BLL/$B
 ssh ${RSYNCUSER}@${MARTIN} mkdir -p $BUILD_DIR/tar
 rsync -avz $BUILD_OUTPUT_DIR/labServer_x64.* ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/tar
 rsync -avz $BUILD_OUTPUT_DIR/labServerVM_x64.img.gz* ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/tar
+ssh ${RSYNCUSER}@${MARTIN} chmod a+w $BUILD_DIR/tar/labServer_x64*
+ssh ${RSYNCUSER}@${MARTIN} chmod a+w $BUILD_DIR/tar/labServerVM_x64.img.gz*
 </command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
