@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>IL Build job for centralboot image targets:&lt;br&gt;&#xd;
-target=centralboot packaging=1&lt;br&gt;&#xd;
-Copies artfacts from ci jobs: il_changeling_all, il_chos2, il_virtual, il_vtc, il_testmodule_contents&lt;br&gt;&#xd;
-Then runs Centralboot to generate centralboot image and run reversion script to update the version info.&lt;br&gt;&#xd;
+  <description>IL Build job for centralboot image targets:&lt;br&gt;
+target=centralboot packaging=1&lt;br&gt;
+Copies artfacts from ci jobs: il_changeling_all, il_chos2, il_virtual, il_vtc, il_testmodule_contents&lt;br&gt;
+Then runs Centralboot to generate centralboot image and run reversion script to update the version info.&lt;br&gt;
 </description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
@@ -49,11 +49,6 @@ Then runs Centralboot to generate centralboot image and run reversion script to 
           <description></description>
           <defaultValue>6</defaultValue>
         </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>MODE</name>
-          <description></description>
-          <defaultValue>NIGHLTY</defaultValue>
-        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.22">
@@ -85,6 +80,7 @@ Then runs Centralboot to generate centralboot image and run reversion script to 
 +//TestCenter/${BRANCH_NAME}/framework/bll/vendor/... //ws/framework/bll/vendor/...
 //hypervisor/mainline/amara/ChassisImage/...  //ws/ChassisImage/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
+    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -114,7 +110,7 @@ Then runs Centralboot to generate centralboot image and run reversion script to 
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>0</firstChange>
+    <firstChange>-1</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -401,125 +397,6 @@ python $WORKSPACE/Build_Scripts/Scripts/ci_run_jenkins_steps.py --runilreversion
       <failBuildOnError>true</failBuildOnError>
       <parsingRulesPath>/var/lib/jenkins/il_log_parse_rule</parsingRulesPath>
     </hudson.plugins.logparser.LogParserPublisher>
-    <org.jenkinsci.plugins.postbuildscript.PostBuildScript plugin="postbuildscript@0.17">
-      <buildSteps>
-        <hudson.tasks.Shell>
-          <command>export RSYNCUSER=scm
-export BUILD_OUTPUT_DIR=$WORKSPACE
-export MARTIN_ROOT=/spirent/data/archive/pv/TestCenter
-export MARTIN=martin.spirentcom.com
-export RAW_BLDSTR=${BLL_BUILD_NUMBER}${BRANCH_ID}
-printf -v BLDNUMBER &quot;%04d&quot; $RAW_BLDSTR
-export BLDNBR=${STC_MAJ_MIN_VERSION}.${BLDNUMBER}
-
-# -- rename build output files in fsimg directory
-cd $BUILD_OUTPUT_DIR/build/il/packages/fsimg
-for i in $(ls *testcenter*yoctovm*); do 
-    newname=`echo $i | sed &apos;s/_yoctovm//&apos;`; 
-    echo Renaming: $i to $newname;
-    mv $i $newname;
-done;
-
-for i in $(ls yocto_cloud*); do 
-    newname=`echo $i | sed &apos;s/yocto_cloud/qemu/&apos;`; 
-    echo Renaming: $i to $newname;
-    mv $i $newname;
-done;
-
-# -- create rawimage.map file
-cd $BUILD_OUTPUT_DIR/build/il/packages/fsimg
-mv rawimage.map rawimage.map.yocto
-echo &quot;DX-10G-S8 512 changeling_64-${BLDNBR}-fs&quot; &gt; rawimage.map
-echo &quot;SPT-C100-YOCTO 512 yocto-${BLDNBR}-fs&quot; &gt;&gt; rawimage.map
-echo &quot;SPT-C1-YOCTO 512 yocto-${BLDNBR}-fs&quot; &gt;&gt; rawimage.map
-
-if ls *stc_appliance* 1&gt; /dev/null 2&gt;&amp;1; then
-    echo &quot;SPT-C100 512 stc_appliance-${BLDNBR}-fs&quot; &gt;&gt; rawimage.map
-    echo &quot;SPT-C100-S3 512 stc_appliance-${BLDNBR}-fs&quot; &gt;&gt; rawimage.map
-    echo &quot;SPT-C1 512 stc_appliance-${BLDNBR}-fs&quot; &gt;&gt; rawimage.map
-    echo &quot;SPT-C50 512 stc_appliance-${BLDNBR}-fs&quot; &gt;&gt; rawimage.map
-else
-    echo &quot;SPT-C100 512 appliance-${BLDNBR}-fs&quot; &gt;&gt; rawimage.map
-    echo &quot;SPT-C100-S3 512 appliance-${BLDNBR}-fs&quot; &gt;&gt; rawimage.map
-    echo &quot;SPT-C1 512 appliance-${BLDNBR}-fs&quot; &gt;&gt; rawimage.map
-    echo &quot;SPT-C50 512 appliance-${BLDNBR}-fs&quot; &gt;&gt; rawimage.map
-fi
-
-echo &quot;STC-ANY-V1 512 stca-${BLDNBR}-fs&quot; &gt;&gt; rawimage.map
-echo &quot;SPT-ANYWHERE 512 stca-${BLDNBR}-fs&quot; &gt;&gt; rawimage.map
-echo &quot;SPT-QEMU 512 qemu-${BLDNBR}-fs&quot; &gt;&gt; rawimage.map
-echo &quot;CPU-5001B 512 qemu-${BLDNBR}-fs&quot; &gt;&gt; rawimage.map
-echo &quot;SPT-VIRTUAL 512 qemu-${BLDNBR}-fs&quot; &gt;&gt; rawimage.map
-echo &quot;VM-1G-V1 512 qemu-${BLDNBR}-fs&quot; &gt;&gt; rawimage.map
-echo &quot;CPU-5004A 512 iceboy-${BLDNBR}-fs&quot; &gt;&gt; rawimage.map
-
-# -- rename build output files in rawimg directory
-cd $BUILD_OUTPUT_DIR/build/il/packages/rawimg
-for i in $(ls yocto_cloud*); do 
-    newname=`echo $i | sed &apos;s/yocto_cloud/qemu/&apos;`; 
-    echo Renaming: $i to $newname;
-    mv $i $newname;
-done;
-
-if [[ $MODE == *NIGHTLY* ]] 
-then
-export BUILD_DIR=$MARTIN_ROOT/$STC_MAJ_MIN_VERSION/Engineering_Builds/IL/$BLDNBR
-
-# -- transfer (via rsync) build output files to martin
-ssh ${RSYNCUSER}@${MARTIN} mkdir -p $BUILD_DIR
-ssh ${RSYNCUSER}@${MARTIN} mkdir -p $BUILD_DIR/rawimg
-ssh ${RSYNCUSER}@${MARTIN} mkdir -p $BUILD_DIR/mfgbld
-rsync -avz --exclude=iceboy* --exclude=changeling* --exclude=stca* --exclude=yocto* $BUILD_OUTPUT_DIR/build/il/packages/fsimg ${RSYNCUSER}@${MARTIN}:$BUILD_DIR
-rsync -avz $BUILD_OUTPUT_DIR/build/il/packages/fsimg/yocto_version ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/fsimg
-rsync -avz $BUILD_OUTPUT_DIR/build/il/packages/fsimg/yocto_signature ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/fsimg
-rsync -avz $BUILD_OUTPUT_DIR/build/il/packages/rawimg/qemu*.img.gz ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/rawimg
-rsync -avz $BUILD_OUTPUT_DIR/build/il/packages/idltar/p2CliTarBall.tar ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/mfgbld/p2CliTarBall.tar
-rsync -avz  $BUILD_OUTPUT_DIR/.changelists ${RSYNCUSER}@${MARTIN}:$BUILD_DIR
-rsync -avz  $BUILD_OUTPUT_DIR/IL_*.txt ${RSYNCUSER}@${MARTIN}:$BUILD_DIR
-# ssh ${RSYNCUSER}@${MARTIN} mkdir -p $BUILD_DIR/chassisvm
-# ssh ${RSYNCUSER}@${MARTIN} mkdir -p $BUILD_DIR/stca
-
-fi
-
-if [[ $MODE == *INC* ]] 
-then
-export MARTIN=storage.cal.ci.spirentcom.com
-export MARTIN_ROOT=/mnt/storage/builds/TestCenter
-export BUILD_DIR=$MARTIN_ROOT/$STC_MAJ_MIN_VERSION/CI_Builds/IL/$BLDNBR
-export RSYNCUSER=spirent
-
-# -- transfer (via rsync) build output files to martin
-ssh ${RSYNCUSER}@${MARTIN} mkdir -p $BUILD_DIR
-ssh ${RSYNCUSER}@${MARTIN} mkdir -p $BUILD_DIR/rawimg
-rsync -avz --exclude=iceboy* --exclude=changeling* --exclude=stca* --exclude=yocto* --exclude *testcenter-* $BUILD_OUTPUT_DIR/build/il/packages/fsimg ${RSYNCUSER}@${MARTIN}:$BUILD_DIR
-rsync -avz $BUILD_OUTPUT_DIR/build/il/packages/fsimg/yocto_version ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/fsimg
-rsync -avz $BUILD_OUTPUT_DIR/build/il/packages/fsimg/yocto_signature ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/fsimg
-rsync -avz $BUILD_OUTPUT_DIR/build/il/packages/rawimg/qemu*.img.gz ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/rawimg
-rsync -avz $BUILD_OUTPUT_DIR/build/il/packages/rawimg/Spirent_TestCenter_Virtual_ESX*.ova ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/rawimg
-rsync -avz  $BUILD_OUTPUT_DIR/.changelists ${RSYNCUSER}@${MARTIN}:$BUILD_DIR
-rsync -avz  $BUILD_OUTPUT_DIR/IL_*.txt ${RSYNCUSER}@${MARTIN}:$BUILD_DIR
-# ssh ${RSYNCUSER}@${MARTIN} mkdir -p $BUILD_DIR/chassisvm
-# ssh ${RSYNCUSER}@${MARTIN} mkdir -p $BUILD_DIR/stca
-fi
-
-
-
-# -- temporary workaround for QManager
-export RSYNCUSER=scm
-export BUILD_OUTPUT_DIR=$WORKSPACE
-export MARTIN_ROOT=/spirent/data/archive/pv/TestCenter
-export MARTIN=martin.spirentcom.com
-export BUILD_DIR=$MARTIN_ROOT/$STC_MAJ_MIN_VERSION/CI_Builds/IL/$BLDNBR
-
-ssh ${RSYNCUSER}@${MARTIN} mkdir -p $BUILD_DIR/rawimg
-rsync -avz $BUILD_OUTPUT_DIR/build/il/packages/rawimg/qemu*.img.gz ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/rawimg
-</command>
-        </hudson.tasks.Shell>
-      </buildSteps>
-      <scriptOnlyIfSuccess>true</scriptOnlyIfSuccess>
-      <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
-      <markBuildUnstable>false</markBuildUnstable>
-    </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.39">
       <recipientList>$DEFAULT_RECIPIENTS</recipientList>
       <configuredTriggers>
