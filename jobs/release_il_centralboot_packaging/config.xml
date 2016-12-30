@@ -109,7 +109,7 @@ Then runs Centralboot to generate centralboot image and run reversion script to 
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -466,7 +466,6 @@ rsync -avz --exclude=iceboy* --exclude=changeling* --exclude=stca* --exclude=yoc
 rsync -avz $BUILD_OUTPUT_DIR/build/il/packages/fsimg/yocto_version ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/fsimg
 rsync -avz $BUILD_OUTPUT_DIR/build/il/packages/fsimg/yocto_signature ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/fsimg
 rsync -avz $BUILD_OUTPUT_DIR/build/il/packages/rawimg/qemu*.img.gz ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/rawimg
-rsync -avz $BUILD_OUTPUT_DIR/build/il/packages/idltar/p2CliTarBall.tar ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/mfgbld/p2CliTarBall.tar
 rsync -avz  $BUILD_OUTPUT_DIR/.changelists ${RSYNCUSER}@${MARTIN}:$BUILD_DIR
 rsync -avz  $BUILD_OUTPUT_DIR/IL_*.txt ${RSYNCUSER}@${MARTIN}:$BUILD_DIR
 # ssh ${RSYNCUSER}@${MARTIN} mkdir -p $BUILD_DIR/chassisvm
