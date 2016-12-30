@@ -411,6 +411,7 @@ export MARTIN=martin.spirentcom.com
 export RAW_BLDSTR=${BLL_BUILD_NUMBER}${BRANCH_ID}
 printf -v BLDNUMBER &quot;%04d&quot; $RAW_BLDSTR
 export BLDNBR=${STC_MAJ_MIN_VERSION}.${BLDNUMBER}
+export BUILD_DIR=$MARTIN_ROOT/$STC_MAJ_MIN_VERSION/Engineering_Builds/IL/$BLDNBR
 
 # -- rename build output files in fsimg directory
 cd $BUILD_OUTPUT_DIR/build/il/packages/fsimg
@@ -461,9 +462,6 @@ for i in $(ls yocto_cloud*); do
     mv $i $newname;
 done;
 
-if [[ $MODE == *NIGHTLY* ]] 
-then
-export BUILD_DIR=$MARTIN_ROOT/$STC_MAJ_MIN_VERSION/Engineering_Builds/IL/$BLDNBR
 
 # -- transfer (via rsync) build output files to martin
 ssh ${RSYNCUSER}@${MARTIN} mkdir -p $BUILD_DIR
@@ -479,41 +477,20 @@ rsync -avz  $BUILD_OUTPUT_DIR/IL_*.txt ${RSYNCUSER}@${MARTIN}:$BUILD_DIR
 # ssh ${RSYNCUSER}@${MARTIN} mkdir -p $BUILD_DIR/chassisvm
 # ssh ${RSYNCUSER}@${MARTIN} mkdir -p $BUILD_DIR/stca
 
-fi
-
-if [[ $MODE == *INC* ]] 
-then
-export MARTIN=storage.cal.ci.spirentcom.com
-export MARTIN_ROOT=/mnt/storage/builds/TestCenter
-export BUILD_DIR=$MARTIN_ROOT/$STC_MAJ_MIN_VERSION/CI_Builds/IL/$BLDNBR
-export RSYNCUSER=spirent
+ssh ${RSYNCUSER}@${MARTIN} mkdir -p $BUILD_DIR/rawimg
+rsync -avz $BUILD_OUTPUT_DIR/build/il/packages/rawimg/qemu*.img.gz ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/rawimg
 
 # -- transfer (via rsync) build output files to martin
-ssh ${RSYNCUSER}@${MARTIN} mkdir -p $BUILD_DIR
-ssh ${RSYNCUSER}@${MARTIN} mkdir -p $BUILD_DIR/rawimg
-rsync -avz --exclude=iceboy* --exclude=changeling* --exclude=stca* --exclude=yocto* --exclude *testcenter-* $BUILD_OUTPUT_DIR/build/il/packages/fsimg ${RSYNCUSER}@${MARTIN}:$BUILD_DIR
-rsync -avz $BUILD_OUTPUT_DIR/build/il/packages/fsimg/yocto_version ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/fsimg
-rsync -avz $BUILD_OUTPUT_DIR/build/il/packages/fsimg/yocto_signature ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/fsimg
-rsync -avz $BUILD_OUTPUT_DIR/build/il/packages/rawimg/qemu*.img.gz ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/rawimg
-rsync -avz $BUILD_OUTPUT_DIR/build/il/packages/rawimg/Spirent_TestCenter_Virtual_ESX*.ova ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/rawimg
-rsync -avz  $BUILD_OUTPUT_DIR/.changelists ${RSYNCUSER}@${MARTIN}:$BUILD_DIR
-rsync -avz  $BUILD_OUTPUT_DIR/IL_*.txt ${RSYNCUSER}@${MARTIN}:$BUILD_DIR
-# ssh ${RSYNCUSER}@${MARTIN} mkdir -p $BUILD_DIR/chassisvm
-# ssh ${RSYNCUSER}@${MARTIN} mkdir -p $BUILD_DIR/stca
-fi
-
-
-
-# -- temporary workaround for QManager
-export RSYNCUSER=scm
-export BUILD_OUTPUT_DIR=$WORKSPACE
-export MARTIN_ROOT=/spirent/data/archive/pv/TestCenter
-export MARTIN=martin.spirentcom.com
-export BUILD_DIR=$MARTIN_ROOT/$STC_MAJ_MIN_VERSION/CI_Builds/IL/$BLDNBR
-
-ssh ${RSYNCUSER}@${MARTIN} mkdir -p $BUILD_DIR/rawimg
-rsync -avz $BUILD_OUTPUT_DIR/build/il/packages/rawimg/qemu*.img.gz ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/rawimg
-</command>
+rsync -avz $BUILD_OUTPUT_DIR/build/il/packages/fsimg/stca* scm@martin.spirentcom.com:$BUILD_DIR/fsimg
+rsync -avz $BUILD_OUTPUT_DIR/build/il/packages/fsimg/changeling* scm@martin.spirentcom.com:$BUILD_DIR/fsimg
+rsync -avz $BUILD_OUTPUT_DIR/build/il/packages/fsimg/yocto* scm@martin.spirentcom.com:$BUILD_DIR/fsimg
+rsync -avz --exclude=rawimage.map --exclude=qemu*.img.gz $BUILD_OUTPUT_DIR/build/il/packages/rawimg scm@martin.spirentcom.com:$BUILD_DIR
+rsync -avz --exclude=rpm* --exclude=spec* $BUILD_OUTPUT_DIR/build/il/packages/stca scm@martin.spirentcom.com:$BUILD_DIR
+rsync -avz  $BUILD_OUTPUT_DIR/build/il/packages/mfgbld scm@martin.spirentcom.com:$BUILD_DIR
+rsync -avz  $BUILD_OUTPUT_DIR/build/il/packages/bundle scm@martin.spirentcom.com:$BUILD_DIR
+ssh scm@martin.spirentcom.com mkdir -p $BUILD_DIR/chassisvm
+ssh scm@martin.spirentcom.com chmod 777 $BUILD_DIR/mfgbld
+ssh scm@martin.spirentcom.com chmod 777 $BUILD_DIR/mfgbld/*</command>
         </hudson.tasks.Shell>
       </buildSteps>
       <scriptOnlyIfSuccess>true</scriptOnlyIfSuccess>
