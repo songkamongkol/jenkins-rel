@@ -80,7 +80,6 @@ Then runs Centralboot to generate centralboot image and run reversion script to 
 +//TestCenter/${BRANCH_NAME}/framework/bll/vendor/... //ws/framework/bll/vendor/...
 //hypervisor/mainline/amara/ChassisImage/...  //ws/ChassisImage/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -110,7 +109,7 @@ Then runs Centralboot to generate centralboot image and run reversion script to 
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -149,6 +148,15 @@ sudo scons target=kernelclean
 
 rm -f $WORKSPACE/*.txt</command>
     </hudson.tasks.Shell>
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
+      <project>release_launch_nightly_packaging</project>
+      <filter>*IL_*.txt,BUILD_*.txt</filter>
+      <target></target>
+      <excludes></excludes>
+      <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
+      <flatten>true</flatten>
+      <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
+    </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.Shell>
       <command>#!/bin/bash
 
@@ -162,6 +170,12 @@ fi
 echo &quot;Packaging started&quot; &gt; /mnt/builds/jenkins/il_changeling_all_yocto-${BRANCH_NAME}_packaging.txt
 echo Copying il_changeling_all build artifacts from /mnt/builds/jenkins/il_changeling_all_yocto-$BRANCH_NAME/build-packaging/
 ls -algh /mnt/builds/jenkins/il_changeling_all_yocto-$BRANCH_NAME/build-packaging/*.txt
+filename=`/mnt/builds/jenkins/il_changeling_all_yocto-$BRANCH_NAME/build-packaging/*.txt`
+changelist=${filename: -10:6}
+content=`cat $filename`
+content=${content//\&quot;/}
+buildno=${content#*number}
+echo $changelist il_changeling_all_yocto $buildno &gt; .changelists
 mkdir -p $WORKSPACE/build/il/packages
 cp -r /mnt/builds/jenkins/il_changeling_all_yocto-$BRANCH_NAME/build-packaging/* $WORKSPACE/build/il/packages
 cp $WORKSPACE/build/il/packages/fsimg/rawimage.map $WORKSPACE/build/il/packages/fsimg/changeling_rawimage.map
@@ -181,6 +195,12 @@ fi
 echo &quot;Packaging started&quot; &gt; /mnt/builds/jenkins/il_changeling_yocto-${BRANCH_NAME}_packaging.txt
 echo Copying il_changeling_yocto build artifacts from /mnt/builds/jenkins/il_changeling_yocto-${BRANCH_NAME}/build-packaging/
 ls -algh /mnt/builds/jenkins/il_changeling_yocto-${BRANCH_NAME}/build-packaging/*.txt
+filename=`ls /mnt/builds/jenkins/il_changeling_yocto-${BRANCH_NAME}/build-packaging/il_changeling_yocto-${BRANCH_NAME}_[0-9]*.txt`
+changelist=${filename: -10:6}
+content=`cat $filename`
+content=${content//\&quot;/}
+buildno=${content#*number}
+echo $changelist il_changeling_yocto $buildno &gt;&gt; .changelists
 mkdir -p $WORKSPACE/build/il/packages
 cp -r /mnt/builds/jenkins/il_changeling_yocto-${BRANCH_NAME}/build-packaging/* $WORKSPACE/build/il/packages
 cp $WORKSPACE/build/il/packages/fsimg/rawimage.map $WORKSPACE/build/il/packages/fsimg/changeling_rawimage.map
@@ -200,6 +220,12 @@ fi
 echo &quot;Packaging started&quot; &gt; /mnt/builds/jenkins/il_chos2_yocto-${BRANCH_NAME}_packaging.txt
 echo Copying il_chos2 build artifacts from /mnt/builds/jenkins/il_chos2_yocto-$BRANCH_NAME/build-packaging/
 ls -algh /mnt/builds/jenkins/il_chos2_yocto-${BRANCH_NAME}/build-packaging/*.txt
+filename=`ls /mnt/builds/jenkins/il_chos2_yocto-${BRANCH_NAME}/build-packaging/*.txt`
+changelist=${filename: -10:6}
+content=`cat $filename`
+content=${content//\&quot;/}
+buildno=${content#*number}
+echo $changelist il_chos2_yocto $buildno &gt;&gt; .changelists
 cp -r /mnt/builds/jenkins/il_chos2_yocto-$BRANCH_NAME/build-packaging/* $WORKSPACE/build/il/packages
 echo &quot;Finished copying il_chos2 files&quot;
 rm -f /mnt/builds/jenkins/il_chos2_yocto-${BRANCH_NAME}_packaging.txt</command>
@@ -217,6 +243,12 @@ fi
 echo &quot;Packaging started&quot; &gt; /mnt/builds/jenkins/il_virtual_yocto-${BRANCH_NAME}_packaging.txt
 echo Copying il_virtual build artifacts from /mnt/builds/jenkins/il_virtual_yocto-$BRANCH_NAME/build-packaging/
 ls -algh /mnt/builds/jenkins/il_virtual_yocto-${BRANCH_NAME}/build-packaging/*.txt
+filename=`ls /mnt/builds/jenkins/il_virtual_yocto-${BRANCH_NAME}/build-packaging/*.txt`
+changelist=${filename: -10:6}
+content=`cat $filename`
+content=${content//\&quot;/}
+buildno=${content#*number}
+echo $changelist il_virtual_yocto $buildno &gt;&gt; .changelists
 cp -r -v /mnt/builds/jenkins/il_virtual_yocto-$BRANCH_NAME/build-packaging/* $WORKSPACE/build/il/packages
 if [ &quot;$?&quot; -ne &quot;0&quot; ]; then
   echo &quot;error: cp failed for il_virtual_yocto&quot;
@@ -240,6 +272,12 @@ fi
 echo &quot;Packaging started&quot; &gt; /mnt/builds/jenkins/il_stca-${BRANCH_NAME}_packaging.txt
 echo Copying il_stca build artifacts from /mnt/builds/jenkins/il_stca-$BRANCH_NAME/build-packaging/
 ls -algh /mnt/builds/jenkins/il_stca-${BRANCH_NAME}/build-packaging/*.txt
+filename=`ls /mnt/builds/jenkins/il_stca-${BRANCH_NAME}/build-packaging/*.txt`
+changelist=${filename: -10:6}
+content=`cat $filename`
+content=${content//\&quot;/}
+buildno=${content#*number}
+echo $changelist il_stca $buildno &gt;&gt; .changelists
 cp -r /mnt/builds/jenkins/il_stca-$BRANCH_NAME/build-packaging/* $WORKSPACE/build/il/packages
 cp $WORKSPACE/build/il/packages/fsimg/rawimage.map $WORKSPACE/build/il/packages/fsimg/stca_rawimage.map
 echo &quot;Finished copying il_stca files&quot;
@@ -258,6 +296,12 @@ fi
 echo &quot;Packaging started&quot; &gt; /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}_packaging.txt
 echo Copying il_lxcbuild artifacts from /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}/build-packaging/
 ls -algh /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}/build-packaging/*.txt
+filename=`ls /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}/build-packaging/*.txt`
+changelist=${filename: -10:6}
+content=`cat $filename`
+content=${content//\&quot;/}
+buildno=${content#*number}
+echo $changelist il_lxc_yocto $buildno &gt;&gt; .changelists
 cp /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}/build-packaging/bundle/k9* $WORKSPACE/build/il/packages/bundle
 cp /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}/build-packaging/rawimg/*lxc* $WORKSPACE/build/il/packages/rawimg
 echo &quot;Finished copying il_lxcfiles&quot;
@@ -276,6 +320,12 @@ fi
 echo &quot;Packaging started&quot; &gt; /mnt/builds/jenkins/il_qemu_yocto-${BRANCH_NAME}_packaging.txt
 echo Copying il_qemu build artifacts from /mnt/builds/jenkins/il_qemu_yocto-${BRANCH_NAME}/build-packaging/
 ls -algh /mnt/builds/jenkins/il_qemu_yocto-${BRANCH_NAME}/build-packaging/*.txt
+filename=`ls /mnt/builds/jenkins/il_qemu_yocto-${BRANCH_NAME}/build-packaging/il_qemu_yocto-${BRANCH_NAME}_[0-9]*.txt`
+changelist=${filename: -10:6}
+content=`cat $filename`
+content=${content//\&quot;/}
+buildno=${content#*number}
+echo $changelist il_qemu_yocto $buildno &gt;&gt; .changelists
 # cp /mnt/builds/jenkins/il_qemu_yocto-${BRANCH_NAME}/build-packaging/rawimg/yocto* $WORKSPACE/build/il/packages/rawimg
 cp /mnt/builds/jenkins/il_qemu_yocto-${BRANCH_NAME}/build-packaging/qemu*.tgz $WORKSPACE/build/il/packages/rawimg
 echo &quot;Finished copying il_qemu files&quot;
@@ -294,7 +344,12 @@ fi
 echo &quot;Packaging started&quot; &gt; /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}_packaging.txt
 echo Copying il_chhvm_yocto build artifacts from /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}/build-packaging/
 ls -algh /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}/build-packaging/*.txt
-
+filename=`ls /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}/build-packaging/*.txt`
+changelist=${filename: -10:6}
+content=`cat $filename`
+content=${content//\&quot;/}
+buildno=${content#*number}
+echo $changelist il_chhvm_yocto $buildno &gt;&gt; .changelists
 cp -v /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}/build-packaging/bundle/*.zip $WORKSPACE/build/il/packages/bundle
 cp -v /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}/build-packaging/rawimg/*.map $WORKSPACE/build/il/packages/rawimg
 cp -v /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}/build-packaging/rawimg/*.img.gz* $WORKSPACE/build/il/packages/rawimg
@@ -319,6 +374,12 @@ fi
 echo &quot;Packaging started&quot; &gt; /mnt/builds/jenkins/il_testmodule_contents-${BRANCH_NAME}_packaging.txt
 echo Copying il_testmodule_contents build artifacts from /mnt/builds/jenkins/il_testmodule_contents-$BRANCH_NAME/build-packaging/
 ls -algh /mnt/builds/jenkins/il_testmodule_contents-${BRANCH_NAME}/build-packaging/*.txt
+filename=`ls /mnt/builds/jenkins/il_testmodule_contents-${BRANCH_NAME}/build-packaging/*.txt`
+changelist=${filename: -10:6}
+content=`cat $filename`
+content=${content//\&quot;/}
+buildno=${content#*number}
+echo $changelist il_testmodule_contents $buildno &gt;&gt; .changelists
 cp -r /mnt/builds/jenkins/il_testmodule_contents-$BRANCH_NAME/build-packaging/* $WORKSPACE/build/il/packages
 echo &quot;Finished copying il_testmodule_contents files&quot;
 rm -f /mnt/builds/jenkins/il_testmodule_contents-${BRANCH_NAME}_packaging.txt
@@ -386,7 +447,7 @@ python $WORKSPACE/Build_Scripts/Scripts/ci_run_jenkins_steps.py --runilreversion
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
-      <artifacts>properties.txt</artifacts>
+      <artifacts>properties.txt,.changelists,IL_*.txt,BUILD_*.txt</artifacts>
       <allowEmptyArchive>false</allowEmptyArchive>
       <onlyIfSuccessful>false</onlyIfSuccessful>
       <fingerprint>false</fingerprint>
@@ -492,7 +553,6 @@ ssh scm@martin.spirentcom.com chmod 777 $BUILD_DIR/mfgbld/*</command>
       <scriptOnlyIfSuccess>true</scriptOnlyIfSuccess>
       <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
       <markBuildUnstable>false</markBuildUnstable>
-      <executeOn>BOTH</executeOn>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.39">
       <recipientList>$DEFAULT_RECIPIENTS</recipientList>
