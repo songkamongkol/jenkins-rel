@@ -601,6 +601,7 @@ ssh scm@martin.spirentcom.com chmod 777 $BUILD_DIR/mfgbld/*</command>
         </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
         <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
           <configs>
+            <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
             <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
               <properties>STC_VERSION=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}</properties>
             </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
