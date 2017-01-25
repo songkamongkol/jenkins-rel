@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
-  <description/>
+  <description></description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
     <numToKeep>25</numToKeep>
@@ -17,7 +18,7 @@
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.71_rel</defaultValue>
+          <defaultValue>4.72_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -27,26 +28,26 @@
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description>major minor version</description>
-          <defaultValue>4.71</defaultValue>
+          <defaultValue>4.72</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
-          <description/>
+          <description></description>
           <defaultValue>BAD_BUILD_NUMBER</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>SOURCE_OS</name>
-          <description/>
+          <description></description>
           <defaultValue>EL3RPM</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>DEPENDENT_JOB_NAME</name>
-          <description/>
+          <description></description>
           <defaultValue>release_bll_linux_rpm_packaging</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>RELEASE_TYPE</name>
-          <description/>
+          <description></description>
           <defaultValue>RELEASE</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -58,12 +59,12 @@
   <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.34">
     <configVersion>2</configVersion>
     <p4User>tableuser</p4User>
-    <p4Passwd/>
+    <p4Passwd>0f0kqlwa+WPDFs3o+uuTnxHPvpHAog==</p4Passwd>
     <p4Port>perforce.spirentcom.com:1666</p4Port>
     <p4Client>${JOB_NAME}_${BRANCH_NAME}</p4Client>
     <projectPath>//SCM/Installer/tar2rpm/... //ws/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner/>
+    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -117,28 +118,27 @@
       <command>#!/bin/bash -ex
 
 # -- setup build number and path based on the branch name
-if [ "$BRANCH_NAME" = "release" ]; then
-     export BRANCH_ID='6'
+if [ &quot;$BRANCH_NAME&quot; = &quot;release&quot; ]; then
+     export BRANCH_ID=&apos;6&apos;
 fi
 
-if [ "$BRANCH_NAME" = "4.45_rel" ]; then
-     export BRANCH_ID='6'
+if [ &quot;$BRANCH_NAME&quot; = &quot;4.45_rel&quot; ]; then
+     export BRANCH_ID=&apos;6&apos;
 fi
 
 if [[ $BRANCH_NAME == *_rel* ]]
 then
-    export BRANCH_ID='6';
+    export BRANCH_ID=&apos;6&apos;;
 fi
 
-
-
 # check if the build specified in the parameter exists
-export FULL_BUILD=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}
+printf -v BLDNUMBER &quot;%04d&quot; ${BLL_BUILD_NUMBER}${BRANCH_ID}
+export FULL_BUILD=${STC_MAJ_MIN_VERSION}.${BLDNUMBER}
 export tar_file=/mnt/gibson/TestCenter/${STC_MAJ_MIN_VERSION}/Engineering_Builds/GUI_BLL/${FULL_BUILD}/tar/Spirent_TestCenter_Auto_Linux_${STC_MAJ_MIN_VERSION}.tar.gz
 if [ -f $tar_file ]; then
-echo "Tar file: $tar_file"
+echo &quot;Tar file: $tar_file&quot;
 else
-echo "Tar file '$tar_file'  not found, aborting"
+echo &quot;Tar file &apos;$tar_file&apos;  not found, aborting&quot;
 exit 1
 fi
 
@@ -171,16 +171,16 @@ scp stc-${STC_MAJ_MIN_VERSION}-linux.x86_64.rpm scm@martin.spirentcom.com:/expor
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
           <email>
-            <recipientList/>
+            <recipientList></recipientList>
             <subject>$PROJECT_DEFAULT_SUBJECT</subject>
             <body>$PROJECT_DEFAULT_CONTENT</body>
             <recipientProviders>
               <hudson.plugins.emailext.plugins.recipients.DevelopersRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
-            <replyTo/>
+            <replyTo></replyTo>
             <contentType>project</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.FailureTrigger>
@@ -188,8 +188,8 @@ scp stc-${STC_MAJ_MIN_VERSION}-linux.x86_64.rpm scm@martin.spirentcom.com:/expor
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern/>
-      <presendScript/>
+      <attachmentsPattern></attachmentsPattern>
+      <presendScript></presendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
       <replyTo>$DEFAULT_RECIPIENTS</replyTo>

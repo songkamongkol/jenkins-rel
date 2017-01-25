@@ -26,7 +26,7 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.71_rel</defaultValue>
+          <defaultValue>4.72_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -46,7 +46,7 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description>major minor version</description>
-          <defaultValue>4.71</defaultValue>
+          <defaultValue>4.72</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
@@ -96,7 +96,6 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
 //ISDE_China/SDE/Java/... //ws/framework/ui/EAT/...
 //TestCenter/${BRANCH_NAME}/framework/bll/serverManager/scripts/... //ws/framework/bll/serverManager/scripts/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner/>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -167,8 +166,15 @@ exit /B 0</command>
 python framework\tools\buildUtil\package.py --install TestCenter.Windows.no_version.tar.gz --directory=bin/Release
 echo extracting STAKCommands.beta.Windows.tar.gz file from job %COPYARTIFACT_BUILD_NUMBER_UI%
 python framework\tools\buildUtil\package.py --install STAKCommands.beta.Windows.tar.gz --directory=STAKCommands
-xcopy  /S /I /E /Y  %WORKSPACE%\STAKCommands\STAKCommands\*.* M:\TestCenter\%STC_MAJ_MIN_VERSION%\Engineering_Builds\GUI_BLL\%STC_MAJ_MIN_VERSION%.%BLL_BUILD_NUMBER%6\STAKCommands
-xcopy  /S /I /E /Y  %WORKSPACE%\framework\automation\scripting\stc\SampleScripts\*.* M:\TestCenter\%STC_MAJ_MIN_VERSION%\Engineering_Builds\GUI_BLL\%STC_MAJ_MIN_VERSION%.%BLL_BUILD_NUMBER%6\SampleScripts</command>
+
+REM 0-padding build number
+SET FULLVER=00%BLL_BUILD_NUMBER%6
+if %BLL_BUILD_NUMBER% gtr 9 SET FULLVER=0%BLL_BUILD_NUMBER%6
+if %BLL_BUILD_NUMBER% gtr 99 SET FULLVER=%BLL_BUILD_NUMBER%6
+echo FULLVER is %FULLVER%
+
+xcopy  /S /I /E /Y  %WORKSPACE%\STAKCommands\STAKCommands\*.* M:\TestCenter\%STC_MAJ_MIN_VERSION%\Engineering_Builds\GUI_BLL\%STC_MAJ_MIN_VERSION%.%FULLVER%\STAKCommands
+xcopy  /S /I /E /Y  %WORKSPACE%\framework\automation\scripting\stc\SampleScripts\*.* M:\TestCenter\%STC_MAJ_MIN_VERSION%\Engineering_Builds\GUI_BLL\%STC_MAJ_MIN_VERSION%.%FULLVER%\SampleScripts</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
       <project>release_webhelp</project>

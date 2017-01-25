@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>&lt;STRONG&gt;This job upload stca and stcv images from nightly build into S3 bucket in Orion.&lt;/STRONG&gt;&#xd;
+&lt;BR&gt;&#xd;
+&lt;B&gt;Pre-Requisite:&lt;/B&gt;&lt;BR&gt;&#xd;
+- orion-cli.tgz from s3://spirent-orion-artifacts/deploys/test must be extracted and installed (path to datautil must be in the PATH environment variable)&lt;BR&gt;&#xd;
+- jq must be installed&lt;BR&gt;&#xd;
+&#xd;
+&lt;I&gt;NOTE: ORION_TOKEN value used in this job is retrieved from jenkins.oriondev.net (it&apos;s configured as global environment variable there)&lt;/I&gt;</description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
+      <useBuildBlocker>false</useBuildBlocker>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>STC_MAJ_MIN_VERSION</name>
+          <description></description>
+          <defaultValue>4.72</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BLL_BUILD_NUMBER</name>
+          <description></description>
+          <defaultValue>BAD_BUILD_NUMBER</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BRANCH_ID</name>
+          <description></description>
+          <defaultValue>6</defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.22">
+      <autoRebuild>false</autoRebuild>
+    </com.sonyericsson.rebuild.RebuildSettings>
+  </properties>
+  <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.34">
+    <configVersion>2</configVersion>
+    <p4User>scmbuild</p4User>
+    <p4Passwd></p4Passwd>
+    <p4Port>perforce.spirentcom.com:1666</p4Port>
+    <p4Client>${JOB_NAME}</p4Client>
+    <projectPath>//SCM/Scripts/upload_stca_stcv_orion.sh //ws/upload_stca_stcv_orion.sh</projectPath>
+    <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
+    <p4SysDrive></p4SysDrive>
+    <p4SysRoot></p4SysRoot>
+    <p4Tool>p4</p4Tool>
+    <useClientSpec>false</useClientSpec>
+    <useStreamDepot>false</useStreamDepot>
+    <forceSync>false</forceSync>
+    <alwaysForceSync>false</alwaysForceSync>
+    <dontUpdateServer>false</dontUpdateServer>
+    <disableAutoSync>false</disableAutoSync>
+    <disableChangeLogOnly>false</disableChangeLogOnly>
+    <disableSyncOnly>false</disableSyncOnly>
+    <showIntegChanges>false</showIntegChanges>
+    <useOldClientName>false</useOldClientName>
+    <createWorkspace>true</createWorkspace>
+    <updateView>true</updateView>
+    <dontRenameClient>false</dontRenameClient>
+    <updateCounterValue>false</updateCounterValue>
+    <dontUpdateClient>false</dontUpdateClient>
+    <exposeP4Passwd>false</exposeP4Passwd>
+    <wipeBeforeBuild>false</wipeBeforeBuild>
+    <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
+    <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
+    <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
+    <firstChange>-1</firstChange>
+    <fileLimit>0</fileLimit>
+    <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
+    <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
+    <lineEndValue>local</lineEndValue>
+    <useViewMask>false</useViewMask>
+    <useViewMaskForPolling>true</useViewMaskForPolling>
+    <useViewMaskForSyncing>false</useViewMaskForSyncing>
+    <useViewMaskForChangeLog>false</useViewMaskForChangeLog>
+    <pollOnlyOnMaster>false</pollOnlyOnMaster>
+  </scm>
+  <assignedNode>ilpkg-02</assignedNode>
+  <canRoam>false</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command># $ORION_CLI_PATH/datautil get-folder -id=a31b64186ec24391a1482a92674610e4
+./upload_stca_stcv_orion.sh</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers/>
+  <buildWrappers>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.5.16"/>
+    <EnvInjectBuildWrapper plugin="envinject@1.90">
+      <info>
+        <propertiesContent>IL_WORKSPACE=/home/spirent/jenkins-rel/workspace/release_il_centralboot_packaging
+FOLDER_ID=a31b64186ec24391a1482a92674610e4 
+APP_ID=e8c43606b3924efbaa86f82bc47dd279
+CATEGORY=product-image
+STCA_NAME=stca
+STCV_NAME=stcv
+STCA_DESCRIPTION=Spirent TestCenter Anywhere
+STCV_DESCRIPTION=Spirent TestCenter Virtual
+</propertiesContent>
+        <loadFilesFromMaster>false</loadFilesFromMaster>
+      </info>
+    </EnvInjectBuildWrapper>
+    <EnvInjectPasswordWrapper plugin="envinject@1.90">
+      <injectGlobalPasswords>false</injectGlobalPasswords>
+      <maskPasswordParameters>true</maskPasswordParameters>
+      <passwordEntries>
+        <EnvInjectPasswordEntry>
+          <name>ORION_TOKEN</name>
+          <value>ZLtb/252P7vo3zS5z3BUofKWaN2L/ADpKI7KoEEDanBsPKAkdbhRXdskoYcM933JwbtOcoT9oniAvLC2kSbdmnEXNCybh8RsCjS4Cf2P1mTREy5NlLDrSNJoWeSi86NfO8v8EY6QIKjJuraFkLFO4qw7QIbf8DDi7/uk37D1rclc7XkG8NIU9/CDjzz67dH4JixSb7GTcFn23fcKQDRnemmYksCxxd4ev7a49EIxUYfYWyA+yR3vozOpTTdpJq3BSpDtNPaexqP4LFQnfx6uWukrMC3uDt3164npgLR7K5pcBOSqhEY4RxtRlPfOQvwqHM9IEjGzQmn/Nk2/BMwI1WBd7QydrLL4BuQwskGJUH+FbxpC5ZxsiGE+E6xKC3lVFfWH0b4gmIKFgLOor8hoKxWkAgZxQ0bVUvcGh29Apr0Ju32h+F6bLrIf7WtKkojyg4pGao8S/wbFw0kjndDpTy6IqM9WGz4wf1EyFtLqwBaxXoLwT20yzDGvnSgsCqEdVRufQw2c9AvutzsnNrzSiHAxlLlGYTaTua7niWzj9PfOLJpk7eDbkTckxE3mh2rX2W4DYQLVbXRihtEgTUFb+wgG0VCjB2b5leVJILHChaKsQTZpPwcHoW0z/3YKCm2sqmBvRJwzf5pgGONBL5GPcuzXzanVNN5cUBR284X8UoSPa2EExx1r/oZDcVGeCBnaJk79XfRo7nXPg7EAUbFmM9/kakp0mRCF3p4gPqzL8AkL+z7yB9fbz1y4EbjvWsTs69kjcZe+prDykj/XkP4OJx3eIjMFsZEXpPUs4f7ijE2LzTfis6BhzpCF+wDB9DfMASb+dwZLgDbl4Gy2AeN+WCVsO+pfkbEfXC/Kf7qenjZmoNkVd7inTkLri1Lupdhn</value>
+        </EnvInjectPasswordEntry>
+      </passwordEntries>
+    </EnvInjectPasswordWrapper>
+  </buildWrappers>
+</project>

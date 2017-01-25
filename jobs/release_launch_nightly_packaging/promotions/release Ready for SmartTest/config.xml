@@ -42,7 +42,7 @@
               <properties>BLL_BUILD_NUMBER=${PROMOTED_NUMBER}</properties>
             </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
           </configs>
-          <projects>release_win_bll_copy_to_filer</projects>
+          <projects>release_win_bll_copy_to_filer,release_update_latestbuild, </projects>
           <condition>SUCCESS</condition>
           <triggerWithNoParameters>false</triggerWithNoParameters>
         </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>

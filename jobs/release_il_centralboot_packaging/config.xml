@@ -22,7 +22,7 @@ Then runs Centralboot to generate centralboot image and run reversion script to 
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.71_rel</defaultValue>
+          <defaultValue>4.72_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -37,7 +37,7 @@ Then runs Centralboot to generate centralboot image and run reversion script to 
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description></description>
-          <defaultValue>4.71</defaultValue>
+          <defaultValue>4.72</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>SOURCE_OS</name>
@@ -109,7 +109,7 @@ Then runs Centralboot to generate centralboot image and run reversion script to 
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>0</firstChange>
+    <firstChange>-1</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -595,7 +595,7 @@ ssh scm@martin.spirentcom.com chmod 777 $BUILD_DIR/mfgbld/*</command>
               <onlyExactRuns>false</onlyExactRuns>
             </hudson.plugins.parameterizedtrigger.FileBuildParameters>
           </configs>
-          <projects>release_set_status,release_reset_tag_file,release_cxx_amara_usb_yocto1.5</projects>
+          <projects>release_set_status,release_reset_tag_file,release_cxx_amara_usb_yocto1.5,release_upload_stca_stcv_orion</projects>
           <condition>SUCCESS</condition>
           <triggerWithNoParameters>false</triggerWithNoParameters>
         </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>

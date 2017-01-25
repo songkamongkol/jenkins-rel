@@ -18,12 +18,12 @@
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description></description>
-          <defaultValue>4.71_rel</defaultValue>
+          <defaultValue>4.72_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description></description>
-          <defaultValue>4.71</defaultValue>
+          <defaultValue>4.72</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -32,6 +32,7 @@
     </com.sonyericsson.rebuild.RebuildSettings>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
+  <quietPeriod>120</quietPeriod>
   <assignedNode>spccalengec02</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>

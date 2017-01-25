@@ -19,7 +19,7 @@ NOTE: This job must be setup to run on the same machine as the Windows </descrip
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.71_rel</defaultValue>
+          <defaultValue>4.72_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BUILD_OUTPUT_DIR</name>
@@ -29,7 +29,7 @@ NOTE: This job must be setup to run on the same machine as the Windows </descrip
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description>major minor version</description>
-          <defaultValue>4.71</defaultValue>
+          <defaultValue>4.72</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
@@ -68,9 +68,14 @@ rem -- xcopy %BUILD_OUTPUT_DIR%\bin\Release\Python %FILER_DIR%\Python /e /i /y
 rem -- xcopy %BUILD_OUTPUT_DIR%\bin\Release\STAKCommands %FILER_DIR%\STAKCommands /e /i /y
 rem -- copy %BUILD_OUTPUT_DIR%\bin\Release\*.* %FILER_DIR% /y
 
+REM 0-padding build number
+SET FULLVER=00%BLL_BUILD_NUMBER%%BRANCH_ID%
+if %BLL_BUILD_NUMBER% gtr 9 SET FULLVER=0%BLL_BUILD_NUMBER%%BRANCH_ID%
+if %BLL_BUILD_NUMBER% gtr 99 SET FULLVER=%BLL_BUILD_NUMBER%%BRANCH_ID%
+echo FULLVER is %FULLVER%
 net use K: /delete
 net use K: \\10.40.52.42\home\qabuild Spirent8 /USER:SPIRENTCOM\qabuild
-set FILER_DIR=K:\TestCenter\2.00\engineering_builds\GUI_BLL\%STC_MAJ_MIN_VERSION%.%BLL_BUILD_NUMBER%%BRANCH_ID%
+set FILER_DIR=K:\TestCenter\2.00\engineering_builds\GUI_BLL\%STC_MAJ_MIN_VERSION%.%FULLVER%
 echo "Copying raw files from %BUILD_OUTPUT_DIR%\bin\Release to %FILER_DIR% ..."
 mkdir %FILER_DIR%
 xcopy %BUILD_OUTPUT_DIR%\bin\Release\Model %FILER_DIR%\Model /e /i /y

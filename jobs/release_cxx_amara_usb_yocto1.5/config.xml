@@ -18,7 +18,7 @@
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.71_rel</defaultValue>
+          <defaultValue>4.72_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -33,7 +33,7 @@
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description></description>
-          <defaultValue>4.71</defaultValue>
+          <defaultValue>4.72</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>SOURCE_OS</name>
@@ -146,7 +146,7 @@ NOTE: if any value other than none is provided, the job will try to upload the u
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>p4 sync -f //TARDIS/avalanche_release/...@796337</command>
+      <command># p4 sync -f //TARDIS/avalanche_release/...@796337</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>env
@@ -232,6 +232,12 @@ $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_hypervisor_mix
 $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_usb
 export RAW_BLDSTR=${BLL_BUILD_NUMBER}${BRANCH_ID}
 printf -v BLDNUMBER &quot;%04d&quot; ${RAW_BLDSTR#0}
+
+if [ &quot;$AV_BUILD_NUMBER&quot; = &quot;&quot; ]; then
+    export AV_BUILD_NUMBER=${STC_MAJ_MIN_VERSION}.${BLDNUMBER}
+    echo &quot;Setting AV Build number to ${STC_MAJ_MIN_VERSION}.${BLDNUMBER}&quot;
+fi
+
 sudo $WORKSPACE/build/il/scripts/reversion_il.sh ${STC_MAJ_MIN_VERSION}.${BLDNUMBER} ${AV_BUILD_NUMBER}
 $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 il_version=${STC_MAJ_MIN_VERSION}.${BLDNUMBER} usbimg_cxxx
 # rm -rf $WORKSPACE/framework/il/kernel/yocto/Install/usbimg_cxxx-1.5.img.gz

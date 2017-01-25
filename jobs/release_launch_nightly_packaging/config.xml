@@ -25,12 +25,12 @@ release_ccp&lt;br&gt;&#xd;
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description></description>
-          <defaultValue>4.71_rel</defaultValue>
+          <defaultValue>4.72_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description></description>
-          <defaultValue>4.71</defaultValue>
+          <defaultValue>4.72</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_ID</name>
@@ -112,10 +112,9 @@ release_ccp&lt;br&gt;&#xd;
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
-    <hudson.triggers.SCMTrigger>
-      <spec>00 18 * * *</spec>
-      <ignorePostCommitHooks>false</ignorePostCommitHooks>
-    </hudson.triggers.SCMTrigger>
+    <hudson.triggers.TimerTrigger>
+      <spec>30 16 * * *</spec>
+    </hudson.triggers.TimerTrigger>
   </triggers>
   <concurrentBuild>false</concurrentBuild>
   <builders>
