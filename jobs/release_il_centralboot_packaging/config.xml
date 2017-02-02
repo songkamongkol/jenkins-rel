@@ -109,7 +109,7 @@ Then runs Centralboot to generate centralboot image and run reversion script to 
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -515,6 +515,14 @@ echo &quot;CPU-5004A 512 iceboy-${BLDNBR}-fs&quot; &gt;&gt; rawimage.map
 cd $BUILD_OUTPUT_DIR/build/il/packages/rawimg
 for i in $(ls yocto_cloud*); do 
     newname=`echo $i | sed &apos;s/yocto_cloud/qemu/&apos;`; 
+    echo Renaming: $i to $newname;
+    mv $i $newname;
+done;
+
+# -- rename yocto*.tgz build output files in rawimg directory
+cd $BUILD_OUTPUT_DIR/build/il/packages/rawimg
+for i in $(ls yocto*tgz); do 
+    newname=`echo $i | sed &apos;s/[0-9].[0-9][0-9].[0-9][0-9][0-9][0-9]/${BLDNBR}/&apos;`; 
     echo Renaming: $i to $newname;
     mv $i $newname;
 done;
