@@ -522,7 +522,7 @@ done;
 # -- rename yocto*.tgz build output files in rawimg directory
 cd $BUILD_OUTPUT_DIR/build/il/packages/rawimg
 for i in $(ls yocto*tgz); do 
-    newname=`echo $i | sed &apos;s/[0-9].[0-9][0-9].[0-9][0-9][0-9][0-9]/${BLDNBR}/&apos;`; 
+    newname=`echo $i | sed &quot;s/[0-9].[0-9][0-9].[0-9][0-9][0-9][0-9]/${BLDNBR}/&quot;`; 
     echo Renaming: $i to $newname;
     mv $i $newname;
 done;
