@@ -496,11 +496,13 @@ if ls *stc_appliance* 1&gt; /dev/null 2&gt;&amp;1; then
     echo &quot;SPT-C100-S3 512 stc_appliance-${BLDNBR}-fs&quot; &gt;&gt; rawimage.map
     echo &quot;SPT-C1 512 stc_appliance-${BLDNBR}-fs&quot; &gt;&gt; rawimage.map
     echo &quot;SPT-C50 512 stc_appliance-${BLDNBR}-fs&quot; &gt;&gt; rawimage.map
+    echo &quot;SPT-S50 512 stc_appliance-${BLDNBR}-fs&quot; &gt;&gt; rawimage.map
 else
     echo &quot;SPT-C100 512 appliance-${BLDNBR}-fs&quot; &gt;&gt; rawimage.map
     echo &quot;SPT-C100-S3 512 appliance-${BLDNBR}-fs&quot; &gt;&gt; rawimage.map
     echo &quot;SPT-C1 512 appliance-${BLDNBR}-fs&quot; &gt;&gt; rawimage.map
     echo &quot;SPT-C50 512 appliance-${BLDNBR}-fs&quot; &gt;&gt; rawimage.map
+    echo &quot;SPT-S50 512 appliance-${BLDNBR}-fs&quot; &gt;&gt; rawimage.map
 fi
 
 echo &quot;STC-ANY-V1 512 stca-${BLDNBR}-fs&quot; &gt;&gt; rawimage.map
