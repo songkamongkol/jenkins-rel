@@ -93,7 +93,7 @@
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -359,7 +359,7 @@ sudo chmod 755 $BUILD_OUTPUT_DIR/labServer*
 ssh ${RSYNCUSER}@${MARTIN} mkdir -p $BUILD_DIR
 rsync -avz $BUILD_OUTPUT_DIR/labServerVM.img.gz* ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/
 rsync -avz $BUILD_OUTPUT_DIR/labServer.ova* ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/
-rsync -avz $BUILD_OUTPUT_DIR/labServer.zip* ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/
+rsync -avz $BUILD_OUTPUT_DIR/labServer*.zip* ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/
 
 
 </command>
