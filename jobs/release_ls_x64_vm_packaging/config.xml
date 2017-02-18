@@ -93,7 +93,7 @@
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -242,8 +242,8 @@ printf -v BLDNUMBER &quot;%04d&quot; ${RAW_BLDSTR#0}
 # Create tardis package
 sudo rm -f labServer.tgz
 sudo rm -f labServer.zip
-sudo rm -f labServer-${STC_MAJ_MIN_VERSION}*.tgz
-sudo rm -f labServer-${STC_MAJ_MIN_VERSION}*.zip
+sudo rm -f labServer_x64-${STC_MAJ_MIN_VERSION}*.tgz
+sudo rm -f labServer_x64-${STC_MAJ_MIN_VERSION}*.zip
 tar cvzf labServer-${STC_MAJ_MIN_VERSION}.${BLDNUMBER}.tgz labServerVM.img package.xml
 zip labServer_x64-${STC_MAJ_MIN_VERSION}.${BLDNUMBER}.zip labServer-${STC_MAJ_MIN_VERSION}.${BLDNUMBER}.tgz
 
@@ -286,7 +286,7 @@ export BUILD_DIR=$MARTIN_ROOT/$STC_MAJ_MIN_VERSION/Engineering_Builds/GUI_BLL/$B
 
 # -- transfer (via rsync) build output files to martin
 ssh ${RSYNCUSER}@${MARTIN} mkdir -p $BUILD_DIR/tar
-rsync -avz $BUILD_OUTPUT_DIR/labServer_x64.* ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/tar
+rsync -avz $BUILD_OUTPUT_DIR/labServer_x64* ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/tar
 rsync -avz $BUILD_OUTPUT_DIR/labServerVM_x64.img.gz* ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/tar
 ssh ${RSYNCUSER}@${MARTIN} chmod a+w $BUILD_DIR/tar/labServer_x64*
 ssh ${RSYNCUSER}@${MARTIN} chmod a+w $BUILD_DIR/tar/labServerVM_x64.img.gz*
