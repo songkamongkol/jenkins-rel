@@ -236,17 +236,14 @@ sudo qemu-nbd -d $Dev
 sudo mv labServerBaseVm.img labServerVM.img
 sudo chown spirent:spirent labServerVM.img
 
-# Create tardis package
-sudo rm -f labServer.tgz
-sudo rm -f labServer.zip
-# tar cvzf labServer.tgz labServerVM.img package.xml
-# zip labServer.zip labServer.tgz
+export RAW_BLDSTR=${BLL_BUILD_NUMBER}${BRANCH_ID}
+printf -v BLDNUMBER &quot;%04d&quot; ${RAW_BLDSTR#0}
 
 # Create tardis package
 sudo rm -f labServer-${STC_MAJ_MIN_VERSION}*.tgz
 sudo rm -f labServer-${STC_MAJ_MIN_VERSION}*.zip
-tar cvzf labServer-${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}.tgz labServerVM.img package.xml
-zip labServer-${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}.zip labServer-${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}.tgz
+tar cvzf labServer-${STC_MAJ_MIN_VERSION}.${BLDNUMBER}.tgz labServerVM.img package.xml
+zip labServer-${STC_MAJ_MIN_VERSION}.${BLDNUMBER}.zip labServer-${STC_MAJ_MIN_VERSION}.${BLDNUMBER}.tgz
 
 # create the vmdk version for vmware
 sudo qemu-img convert -f qcow2 labServerVM.img -O vmdk labServerVM.vmdk
@@ -261,7 +258,7 @@ gzip -f labServerVM.vmdk
 
 
 # create md5sum
-md5sum labServer-${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}.zip &gt; labServer-${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}.zip.md5
+md5sum labServer-${STC_MAJ_MIN_VERSION}.${BLDNUMBER}.zip &gt; labServer-${STC_MAJ_MIN_VERSION}.${BLDNUMBER}.zip.md5
 
 # Create Lab Server VM image MD5 sums for build server.
 md5sum labServerVM.img.gz &gt; labServerVM.img.gz.md5
@@ -349,7 +346,7 @@ export BUILD_OUTPUT_DIR=$WORKSPACE
 export MARTIN_ROOT=/spirent/data/archive/pv/TestCenter
 export MARTIN=martin.spirentcom.com
 export RAW_BLDSTR=${BLL_BUILD_NUMBER}${BRANCH_ID}
-printf -v BLDNUMBER &quot;%04d&quot; $RAW_BLDSTR
+printf -v BLDNUMBER &quot;%04d&quot; ${RAW_BLDSTR#0}
 export BLDNBR=${STC_MAJ_MIN_VERSION}.${BLDNUMBER}
 
 
