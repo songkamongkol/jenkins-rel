@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
   <description>Build STC IL docker container image</description>
   <logRotator class="hudson.tasks.LogRotator">
@@ -31,18 +32,18 @@
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
-          <description/>
+          <description></description>
           <defaultValue>4.73</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>MODE</name>
-          <description/>
+          <description></description>
           <defaultValue>NIGHTLY</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>STC_VERSION</name>
           <description>Full STC version e.g. 9.90.9903</description>
-          <defaultValue/>
+          <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -53,12 +54,12 @@
   <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.34">
     <configVersion>2</configVersion>
     <p4User>scmbuild</p4User>
-    <p4Passwd/>
+    <p4Passwd></p4Passwd>
     <p4Port>perforce.spirentcom.com:1666</p4Port>
     <p4Client>${JOB_NAME}_${BRANCH_NAME}</p4Client>
     <projectPath>+//TestCenter/${BRANCH_NAME}/framework/il/common/utils/docker_run/... //ws/framework/il/common/utils/docker_run/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner/>
+    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -117,7 +118,7 @@ export RSYNCUSER=scm
 export MARTIN_ROOT=/spirent/data/archive/pv/TestCenter
 export MARTIN=martin.spirentcom.com
 
-IFS='.' read -r -a array &lt;&lt;&lt; "$STC_VERSION"
+IFS=&apos;.&apos; read -r -a array &lt;&lt;&lt; &quot;$STC_VERSION&quot;
 printf -v BLDNUMBER %04g ${array[2]}
 export PADDED_STC_VERSION=${STC_MAJ_MIN_VERSION}.${BLDNUMBER}
 export BUILD_DIR=$MARTIN_ROOT/$STC_MAJ_MIN_VERSION/Engineering_Builds/IL/${PADDED_STC_VERSION}
@@ -137,8 +138,8 @@ rsync -avz ${RSYNCUSER}@${MARTIN}:$RAWIMAGE_SRC $OUTDIR
 
 export RAWIMAGE=$OUTDIR/qemu.512-${PADDED_STC_VERSION}.img.gz
 
-echo "RAWIMAGE=$RAWIMAGE"
-echo "OUTDIR=$OUTDIR"
+echo &quot;RAWIMAGE=$RAWIMAGE&quot;
+echo &quot;OUTDIR=$OUTDIR&quot;
 
 # -- create the docker image
 sudo python $WORKSPACE/framework/il/common/utils/docker_run/build_dist.py --rawimage $RAWIMAGE --outdir $OUTDIR 
@@ -162,7 +163,7 @@ then
 export RSYNCUSER=scm
 export MARTIN_ROOT=/spirent/data/archive/pv/TestCenter
 export MARTIN=martin.spirentcom.com
-IFS='.' read -r -a array &lt;&lt;&lt; "$STC_VERSION"
+IFS=&apos;.&apos; read -r -a array &lt;&lt;&lt; &quot;$STC_VERSION&quot;
 printf -v BLDNUMBER %04g ${array[2]}
 export PADDED_STC_VERSION=${STC_MAJ_MIN_VERSION}.${BLDNUMBER}
 export BUILD_DIR=$MARTIN_ROOT/$STC_MAJ_MIN_VERSION/Engineering_Builds/IL/${PADDED_STC_VERSION}
@@ -186,7 +187,7 @@ fi</command>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
           <email>
-            <recipientList/>
+            <recipientList></recipientList>
             <subject>$PROJECT_DEFAULT_SUBJECT</subject>
             <body>$PROJECT_DEFAULT_CONTENT</body>
             <recipientProviders>
@@ -195,10 +196,10 @@ fi</command>
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
-            <replyTo/>
+            <replyTo></replyTo>
             <contentType>project</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.FailureTrigger>
@@ -206,11 +207,11 @@ fi</command>
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern/>
-      <presendScript/>
+      <attachmentsPattern></attachmentsPattern>
+      <presendScript></presendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
-      <replyTo/>
+      <replyTo></replyTo>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
