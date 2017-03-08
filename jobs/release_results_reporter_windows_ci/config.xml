@@ -38,7 +38,7 @@
     <p4Port>perforceproxy.cal.ci.spirentcom.com:1999</p4Port>
     <p4Client>${JOB_NAME}_${BRANCH_NAME}</p4Client>
     <projectPath>+//TestCenter/${BRANCH_NAME}/framework/ui/resultsanalysis/... //ws/framework/ui/resultsanalysis/...
--//TestCenter/*/framework/ui/resultsanalysis/tools/jvm/...
+-//TestCenter/${BRANCH_NAME}//framework/ui/resultsanalysis/tools/jvm/linux_x86/man/... //ws/framework/ui/resultsanalysis/tools/jvm/linux_x86/man/...
 +//TestCenter/${BRANCH_NAME}/framework/ui/resultsanalysis/tools/jvm/windows_x86/... //ws/framework/ui/resultsanalysis/tools/jvm/windows_x86/...
 +//TestCenter/${BRANCH_NAME}/framework/ui/resultsanalysis/tools/jvm/windows_x86_1.6.0_35/... //ws/framework/ui/resultsanalysis/tools/jvm/windows_x86_1.6.0_35/...
 +//TestCenter/${BRANCH_NAME}/framework/tools/buildUtil/... //ws/framework/tools/buildUtil/...</projectPath>
@@ -66,7 +66,7 @@
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
