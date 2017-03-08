@@ -1,7 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<project>
+<?xml version="1.0" encoding="UTF-8"?><project>
   <actions/>
-  <description></description>
+  <description/>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
     <numToKeep>15</numToKeep>
@@ -18,7 +17,7 @@
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.73_rel</defaultValue>
+          <defaultValue>4.74_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -43,7 +42,7 @@
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description>major minor version TODO: get this from a file</description>
-          <defaultValue>4.73</defaultValue>
+          <defaultValue>4.74</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>RELEASE_BUILD</name>
@@ -60,7 +59,7 @@
   <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.34">
     <configVersion>2</configVersion>
     <p4User>tableuser</p4User>
-    <p4Passwd></p4Passwd>
+    <p4Passwd/>
     <p4Port>perforceproxy.cal.ci.spirentcom.com:1999</p4Port>
     <p4Client>${JOB_NAME}_${BRANCH_NAME}</p4Client>
     <projectPath>+//TestCenter/${BRANCH_NAME}/... //ws/...
@@ -86,7 +85,7 @@
 +//TestCenter/${BRANCH_NAME}/common/.../ui/... //ws/common/.../ui/...
 +//TestCenter/${BRANCH_NAME}/framework/ui/automation/... //ws/framework/ui/automation/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner></clientOwner>
+    <clientOwner/>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -141,7 +140,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>if [ &quot;$RELEASE_BUILD&quot; = &quot;true&quot; ]; then
+      <command>if [ "$RELEASE_BUILD" = "true" ]; then
     cp -f $WORKSPACE/framework/bll/core/include/licensing/ga_release/ControlledReleaseCheck.h $WORKSPACE/framework/bll/core/include/licensing/ControlledReleaseCheck.h
 fi</command>
     </hudson.tasks.Shell>
@@ -151,21 +150,21 @@ fi</command>
     <com.thalesgroup.hudson.plugins.scons.SConsBuilderScriptFile plugin="scons@0.4">
       <options>-j 12 -f SConstruct.bll --debug=time</options>
       <variables>debug=0 coverage=0 target=bll-el3</variables>
-      <targets></targets>
-      <rootSconsscriptDirectory></rootSconsscriptDirectory>
-      <sconsscript></sconsscript>
+      <targets/>
+      <rootSconsscriptDirectory/>
+      <sconsscript/>
     </com.thalesgroup.hudson.plugins.scons.SConsBuilderScriptFile>
     <com.thalesgroup.hudson.plugins.scons.SConsBuilderScriptFile plugin="scons@0.4">
       <options>-j 12  -f SConstruct.bll --debug=time</options>
       <variables>debug=0 coverage=0 target=cts-bll-el3</variables>
-      <targets></targets>
-      <rootSconsscriptDirectory></rootSconsscriptDirectory>
-      <sconsscript></sconsscript>
+      <targets/>
+      <rootSconsscriptDirectory/>
+      <sconsscript/>
     </com.thalesgroup.hudson.plugins.scons.SConsBuilderScriptFile>
     <hudson.tasks.Shell>
       <command>cd $WORKSPACE/$BUILD_OUTPUT_DIR
 rm -f CTS*.tar.gz
-if [ &quot;$BUILD_PACKAGE_BUILD&quot; = &quot;true&quot; ]; then
+if [ "$BUILD_PACKAGE_BUILD" = "true" ]; then
     python $WORKSPACE/framework/tools/buildUtil/package.py --package=CTS
 fi</command>
     </hudson.tasks.Shell>
@@ -192,46 +191,46 @@ fi</command>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.UnstableTrigger>
           <email>
-            <recipientList></recipientList>
+            <recipientList/>
             <subject>$PROJECT_DEFAULT_SUBJECT</subject>
             <body>$PROJECT_DEFAULT_CONTENT</body>
             <recipientProviders>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern></attachmentsPattern>
+            <attachmentsPattern/>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
-            <replyTo></replyTo>
+            <replyTo/>
             <contentType>project</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.UnstableTrigger>
         <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
           <email>
-            <recipientList></recipientList>
+            <recipientList/>
             <subject>$PROJECT_DEFAULT_SUBJECT</subject>
             <body>$PROJECT_DEFAULT_CONTENT</body>
             <recipientProviders>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern></attachmentsPattern>
+            <attachmentsPattern/>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
-            <replyTo></replyTo>
+            <replyTo/>
             <contentType>project</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.FailureTrigger>
         <hudson.plugins.emailext.plugins.trigger.FixedTrigger>
           <email>
-            <recipientList></recipientList>
+            <recipientList/>
             <subject>$PROJECT_DEFAULT_SUBJECT</subject>
             <body>$PROJECT_DEFAULT_CONTENT</body>
             <recipientProviders>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern></attachmentsPattern>
+            <attachmentsPattern/>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
-            <replyTo></replyTo>
+            <replyTo/>
             <contentType>project</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.FixedTrigger>
@@ -239,11 +238,11 @@ fi</command>
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern></attachmentsPattern>
-      <presendScript></presendScript>
+      <attachmentsPattern/>
+      <presendScript/>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
-      <replyTo></replyTo>
+      <replyTo/>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
