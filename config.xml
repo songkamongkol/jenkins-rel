@@ -859,6 +859,7 @@
             <string>release_bll_ci_join</string>
             <string>release_bll_linux_ci</string>
             <string>release_bll_linux_x64_ci</string>
+            <string>release_bll_linux_x86client</string>
             <string>release_bll_windows_ci</string>
             <string>release_cts_linux_ci</string>
             <string>release_cts_windows_ci</string>
