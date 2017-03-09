@@ -112,7 +112,7 @@ Jenkins Node(s): spccalengec01,spccalengec02</description>
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -144,19 +144,7 @@ Jenkins Node(s): spccalengec01,spccalengec02</description>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.BatchFile>
-      <command>del /f /q BUILD_*.txt&#xd;
-echo extracting TestCenter.Linux.tar.gz file from job %COPYARTIFACT_BUILD_NUMBER_BLL_LINUX%&#xd;
-rem python framework\tools\buildUtil\package.py --install TestCenter.Linux.tar.gz&#xd;
-&#xd;
-rd /s /q Spirent_TestCenter_Application_Linux_Server&#xd;
-&#xd;
-7z x TestCenter.Linux.tar.gz &gt; 7zextract_TestCenter.Linux.tar.txt&#xd;
-7z x -y TestCenter.Linux.tar &gt;&gt; 7zextract_TestCenter.Linux.tar.txt&#xd;
-del TestCenter.Linux.tar&#xd;
-del /f /q stcapi_linux*.tgz&#xd;
-del /f /q install_stcapi*.py&#xd;
-&#xd;
-copy session_licensing\postinstall Spirent_TestCenter_Application_Linux_Server\postinstall</command>
+      <command></command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
       <project>release_results_reporter_windows_ci</project>
