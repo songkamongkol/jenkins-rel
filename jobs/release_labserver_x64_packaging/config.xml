@@ -4,6 +4,7 @@
   <description>Sync SCM build scripts and other files as needed for packaging.&lt;br&gt;&#xd;
 Run ci_make_tarballs.pl to create LabServer x64 Linux BLL tarballs&lt;br&gt;&#xd;
 Copy build results to \\martin\archive\pv\TestCenter\4.10\Engineering_Builds\integration\BUILDVERSION\tar&lt;br&gt;&#xd;
+Trigger http://jenkins-talisman.cal.ci.spirentcom.com:8080/job/stc-bll-debs-64bit&lt;br&gt;&#xd;
 Jenkins Node(s): bldmisclnx-v11</description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
