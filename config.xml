@@ -919,11 +919,12 @@
             <string>release_bll_linux_64_packaging</string>
             <string>release_bll_linux_packaging</string>
             <string>release_bll_linux_rpm_packaging</string>
-            <string>release_bll_linux_x64_packaging</string>
+            <string>release_bll_linux_x64_client_packaging</string>
             <string>release_bll_linux_x86_client_packaging</string>
             <string>release_bll_win_pkg_webhelp</string>
             <string>release_bll_windows_packaging_new</string>
             <string>release_copy_to_spccalfs03_packaging</string>
+            <string>release_core_labserver_packaging</string>
             <string>release_cts_linux_packaging</string>
             <string>release_cts_windows_packaging</string>
             <string>release_cxx_amara_usb_yocto1.5</string>
