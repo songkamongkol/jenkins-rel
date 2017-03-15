@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
-  <description>Sync SCM build scripts and other files as needed for packaging.&lt;br&gt;
-Run ci_make_tarballs.pl to create LabServer x64 Linux BLL tarballs&lt;br&gt;
-Copy build results to \\martin\archive\pv\TestCenter\4.10\Engineering_Builds\integration\BUILDVERSION\tar&lt;br&gt;
+  <description>Sync SCM build scripts and other files as needed for packaging.&lt;br&gt;&#xd;
+Run ci_make_tarballs.pl to create LabServer x64 Linux BLL tarballs&lt;br&gt;&#xd;
+Copy build results to \\martin\archive\pv\TestCenter\4.10\Engineering_Builds\integration\BUILDVERSION\tar&lt;br&gt;&#xd;
 Jenkins Node(s): bldmisclnx-v11</description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
@@ -39,27 +40,27 @@ Jenkins Node(s): bldmisclnx-v11</description>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
-          <description/>
+          <description></description>
           <defaultValue>BAD_BUILD_NUMBER</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>SOURCE_OS</name>
-          <description/>
+          <description></description>
           <defaultValue>EL3Linux</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>DEPENDENT_JOB_NAME</name>
-          <description/>
+          <description></description>
           <defaultValue>integration_bll_linux_packaging</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>RELEASE_TYPE</name>
-          <description/>
+          <description></description>
           <defaultValue>Alpha</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>MODE</name>
-          <description/>
+          <description></description>
           <defaultValue>NIGHTLY</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -112,7 +113,7 @@ Jenkins Node(s): bldmisclnx-v11</description>
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -135,17 +136,47 @@ Jenkins Node(s): bldmisclnx-v11</description>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
       <project>stcapi_rest_api</project>
       <filter>deployment/install_stcapi*.py</filter>
-      <target/>
-      <excludes/>
+      <target></target>
+      <excludes></excludes>
       <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.Shell>
-      <command>if [ "$MODE" = "NIGHTLY" ]; then
+      <command>if [ &quot;$MODE&quot; = &quot;NIGHTLY&quot; ]; then
     python $WORKSPACE/Build_Scripts/Scripts/ci_run_jenkins_steps.py --runcimakelsx64tarballs=yes
 fi</command>
     </hudson.tasks.Shell>
+    <org.jenkinsci.plugins.ParameterizedRemoteTrigger.RemoteBuildConfiguration plugin="Parameterized-Remote-Trigger@2.2.2">
+      <token>frivoloushopscotch</token>
+      <remoteJenkinsName>jenkins-talisman</remoteJenkinsName>
+      <job>stc-bll-debs-64bit</job>
+      <shouldNotFailBuild>true</shouldNotFailBuild>
+      <pollInterval>10</pollInterval>
+      <connectionRetryLimit>5</connectionRetryLimit>
+      <preventRemoteBuildQueue>false</preventRemoteBuildQueue>
+      <blockBuildUntilComplete>false</blockBuildUntilComplete>
+      <enhancedLogging>false</enhancedLogging>
+      <parameters>TESTCENTER_VERSION=${STC_MAJ_MIN_VERSION}
+STC_BUILD_LOCATION=Engineering_Builds
+TESTCENTER_BUILD=${BLL_BUILD_NUMBER}</parameters>
+      <parameterList>
+        <string>TESTCENTER_VERSION=${STC_MAJ_MIN_VERSION}</string>
+        <string>STC_BUILD_LOCATION=Engineering_Builds</string>
+        <string>TESTCENTER_BUILD=${BLL_BUILD_NUMBER}</string>
+      </parameterList>
+      <overrideAuth>false</overrideAuth>
+      <auth>
+        <org.jenkinsci.plugins.ParameterizedRemoteTrigger.Auth>
+          <NONE>none</NONE>
+          <API__TOKEN>apiToken</API__TOKEN>
+          <CREDENTIALS__PLUGIN>credentialsPlugin</CREDENTIALS__PLUGIN>
+        </org.jenkinsci.plugins.ParameterizedRemoteTrigger.Auth>
+      </auth>
+      <loadParamsFromFile>false</loadParamsFromFile>
+      <parameterFile></parameterFile>
+      <queryString></queryString>
+    </org.jenkinsci.plugins.ParameterizedRemoteTrigger.RemoteBuildConfiguration>
   </builders>
   <publishers>
     <hudson.plugins.logparser.LogParserPublisher plugin="log-parser@1.0.8">
@@ -159,16 +190,16 @@ fi</command>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
           <email>
-            <recipientList/>
+            <recipientList></recipientList>
             <subject>$PROJECT_DEFAULT_SUBJECT</subject>
             <body>$PROJECT_DEFAULT_CONTENT</body>
             <recipientProviders>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
-            <replyTo/>
+            <replyTo></replyTo>
             <contentType>project</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.FailureTrigger>
@@ -176,8 +207,8 @@ fi</command>
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern/>
-      <presendScript/>
+      <attachmentsPattern></attachmentsPattern>
+      <presendScript></presendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
       <replyTo>$DEFAULT_RECIPIENTS</replyTo>
