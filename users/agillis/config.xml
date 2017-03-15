@@ -32,5 +32,8 @@
     <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.17">
       <emailAddress>andrew.gillis@spirent.com</emailAddress>
     </hudson.tasks.Mailer_-UserProperty>
+    <jenkins.security.LastGrantedAuthoritiesProperty>
+      <timestamp>0</timestamp>
+    </jenkins.security.LastGrantedAuthoritiesProperty>
   </properties>
 </user>
