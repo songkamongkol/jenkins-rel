@@ -114,7 +114,7 @@ Jenkins Node(s): bldmisclnx-v11</description>
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -146,8 +146,16 @@ Jenkins Node(s): bldmisclnx-v11</description>
     <hudson.tasks.Shell>
       <command>if [ &quot;$MODE&quot; = &quot;NIGHTLY&quot; ]; then
     python $WORKSPACE/Build_Scripts/Scripts/ci_run_jenkins_steps.py --runcimakelsx64tarballs=yes
-fi</command>
+fi
+echo &quot;STC_BUILD_LOCATION = Engineering_Builds&quot; &gt; build_loc.props
+echo &quot;STC_BUILD_NUM = $(cat Spirent_TestCenter_Application_Linux_Server_x64/STCVersion.txt | cut -d&apos;.&apos; -f 3)&quot; &gt;&gt; build_loc.props
+</command>
     </hudson.tasks.Shell>
+    <EnvInjectBuilder plugin="envinject@1.90">
+      <info>
+        <propertiesFilePath>build_loc.props</propertiesFilePath>
+      </info>
+    </EnvInjectBuilder>
     <org.jenkinsci.plugins.ParameterizedRemoteTrigger.RemoteBuildConfiguration plugin="Parameterized-Remote-Trigger@2.2.2">
       <token>frivoloushopscotch</token>
       <remoteJenkinsName>jenkins-talisman</remoteJenkinsName>
@@ -160,11 +168,11 @@ fi</command>
       <enhancedLogging>false</enhancedLogging>
       <parameters>TESTCENTER_VERSION=${STC_MAJ_MIN_VERSION}
 STC_BUILD_LOCATION=Engineering_Builds
-TESTCENTER_BUILD=${BLL_BUILD_NUMBER}</parameters>
+TESTCENTER_BUILD=${STC_BUILD_NUM}</parameters>
       <parameterList>
         <string>TESTCENTER_VERSION=${STC_MAJ_MIN_VERSION}</string>
         <string>STC_BUILD_LOCATION=Engineering_Builds</string>
-        <string>TESTCENTER_BUILD=${BLL_BUILD_NUMBER}</string>
+        <string>TESTCENTER_BUILD=${STC_BUILD_NUM}</string>
       </parameterList>
       <overrideAuth>false</overrideAuth>
       <auth>
