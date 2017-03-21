@@ -158,7 +158,7 @@ echo &quot;STC_BUILD_NUM = $(cat Spirent_TestCenter_Application_Linux_Server_x64
     </EnvInjectBuilder>
     <org.jenkinsci.plugins.ParameterizedRemoteTrigger.RemoteBuildConfiguration plugin="Parameterized-Remote-Trigger@2.2.2">
       <token>frivoloushopscotch</token>
-      <remoteJenkinsName>jenkins-talisman</remoteJenkinsName>
+      <remoteJenkinsName>jenkins-oriondev</remoteJenkinsName>
       <job>stc-bll-debs-64bit</job>
       <shouldNotFailBuild>true</shouldNotFailBuild>
       <pollInterval>10</pollInterval>
