@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>*** This job is for Linux-64 Client tar ball ***&#xd;
-Extracts TestCenter.Linux.x64.tar.gz from bll_linux_x64 build job&lt;br&gt;&#xd;
+  <description>*** This job is for Linux-32 Client tar ball ***&#xd;
+Extracts TestCenter.Linux.AutomationClient.x86.tar.gz from release_bll_linux_x86client build job&lt;br&gt;&#xd;
 Runs setver.py using python script ci_run_jenkins_steps.py script&lt;br&gt;&#xd;
 Creates a new tarball&lt;br&gt;&#xd;
 Triggers integration_ftp_tarball which restructures the tarball and copies the output to Martin&lt;br&gt;</description>
@@ -22,7 +22,7 @@ Triggers integration_ftp_tarball which restructures the tarball and copies the o
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.74_rel</defaultValue>
+          <defaultValue>4.73_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -37,7 +37,7 @@ Triggers integration_ftp_tarball which restructures the tarball and copies the o
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description>major minor version TODO: get this from a file</description>
-          <defaultValue>4.74</defaultValue>
+          <defaultValue>4.73</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
@@ -47,7 +47,7 @@ Triggers integration_ftp_tarball which restructures the tarball and copies the o
         <hudson.model.StringParameterDefinition>
           <name>SOURCE_OS</name>
           <description></description>
-          <defaultValue>EL3Linux64Client</defaultValue>
+          <defaultValue>EL3Linux32Client</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -65,6 +65,7 @@ Triggers integration_ftp_tarball which restructures the tarball and copies the o
 //SCM/Scripts/ci_* //ws/Build_Scripts/Scripts/ci_*
 //TestCenter/${BRANCH_NAME}/framework/tools/buildUtil/... //ws/framework/tools/buildUtil/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
+    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -94,7 +95,7 @@ Triggers integration_ftp_tarball which restructures the tarball and copies the o
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>0</firstChange>
+    <firstChange>-1</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -115,8 +116,8 @@ Triggers integration_ftp_tarball which restructures the tarball and copies the o
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
-      <project>release_bll_linux_x64_ci</project>
-      <filter>build/il/bld_bll-el3-64-automation-client-only_x86_64/Release/bin/TestCenter.Linux.AutomationClient.x64.tar.gz</filter>
+      <project>release_bll_linux_x86client</project>
+      <filter>TestCenter.Linux.AutomationClient.x86.tar.gz</filter>
       <target></target>
       <excludes></excludes>
       <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
@@ -124,15 +125,14 @@ Triggers integration_ftp_tarball which restructures the tarball and copies the o
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.Shell>
-      <command># python framework/tools/buildUtil/package.py --install TestCenter.Linux.x64.tar.gz --remove-dir Spirent_TestCenter_Application_Linux_Server
-rm -rf Spirent_TestCenter_Application_Linux_Server
-tar xvfz TestCenter.Linux.AutomationClient.x64.tar.gz
+      <command>rm -rf Spirent_TestCenter_Application_Linux_Server
+tar xvfz TestCenter.Linux.AutomationClient.x86.tar.gz
 cd Spirent_TestCenter_Application_Linux_Server
 python ../Build_Scripts/Scripts/ci_run_jenkins_steps.py --createpropfile=yes --runcimaketarballs=no  --runcimakelstarballs=no --runciftpcentralboot=no --runsetver=yes --runcopyl4l7=no --createversionfile=no
 rm -f Spirent_TestCenter_Auto_Linux64Client_$STC_MAJ_MIN_VERSION.tar.gz
-tar cvf Spirent_TestCenter_Auto_Linux64Client_$STC_MAJ_MIN_VERSION.tar *
-gzip Spirent_TestCenter_Auto_Linux64Client_$STC_MAJ_MIN_VERSION.tar
-echo &quot;Finished creating Spirent_TestCenter_Auto_Linux64Client_$STC_MAJ_MIN_VERSION.tar.gz&quot;</command>
+tar cvf Spirent_TestCenter_Auto_Linux32Client_$STC_MAJ_MIN_VERSION.tar *
+gzip Spirent_TestCenter_Auto_Linux32Client_$STC_MAJ_MIN_VERSION.tar
+echo &quot;Finished creating Spirent_TestCenter_Auto_Linux32Client_$STC_MAJ_MIN_VERSION.tar.gz&quot;</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>

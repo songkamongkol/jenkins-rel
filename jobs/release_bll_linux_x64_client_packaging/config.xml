@@ -1,13 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>Uses MadCap Flare tool to compile webhelp files&lt;br&gt;&#xd;
-Creates STC and Server Manager help files&lt;br&gt;&#xd;
-Archives output as tar files for use during packaging jobs&lt;br&gt;&#xd;
-Triggers release_bll_win_pkg_webhelp&lt;br&gt;</description>
+  <description>*** This job is for Linux-64 Client tar ball ***&#xd;
+Extracts TestCenter.Linux.x64.tar.gz from bll_linux_x64 build job&lt;br&gt;&#xd;
+Runs setver.py using python script ci_run_jenkins_steps.py script&lt;br&gt;&#xd;
+Creates a new tarball&lt;br&gt;&#xd;
+Triggers integration_ftp_tarball which restructures the tarball and copies the output to Martin&lt;br&gt;</description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
-    <numToKeep>10</numToKeep>
+    <numToKeep>15</numToKeep>
     <artifactDaysToKeep>-1</artifactDaysToKeep>
     <artifactNumToKeep>-1</artifactNumToKeep>
   </logRotator>
@@ -20,8 +21,33 @@ Triggers release_bll_win_pkg_webhelp&lt;br&gt;</description>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
-          <description></description>
+          <description>branch name</description>
           <defaultValue>4.73_rel</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>P4CLEANWORKSPACE</name>
+          <description>clean build</description>
+          <defaultValue>true</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BUILD_OUTPUT_DIR</name>
+          <description>build output dir</description>
+          <defaultValue>Spirent_TestCenter_Application_Linux_Server</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>STC_MAJ_MIN_VERSION</name>
+          <description>major minor version TODO: get this from a file</description>
+          <defaultValue>4.73</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BLL_BUILD_NUMBER</name>
+          <description></description>
+          <defaultValue>BAD_BUILD_NUMBER</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>SOURCE_OS</name>
+          <description></description>
+          <defaultValue>EL3Linux64Client</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -31,14 +57,15 @@ Triggers release_bll_win_pkg_webhelp&lt;br&gt;</description>
   </properties>
   <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.34">
     <configVersion>2</configVersion>
-    <p4User>scmbuild</p4User>
-    <p4Passwd></p4Passwd>
+    <p4User>tableuser</p4User>
+    <p4Passwd>0f0kqlwa+WPDFs3o+uuTnxHPvpHAog==</p4Passwd>
     <p4Port>perforce.spirentcom.com:1666</p4Port>
     <p4Client>${JOB_NAME}_${BRANCH_NAME}</p4Client>
-    <projectPath>//tech_pubs/online_help/Spirent_TestCenter/... //ws/online_help/Spirent_TestCenter/...
-//tech_pubs/online_help/Session_Manager/... //ws/online_help/Session_Manager/...
-//tech_pubs/online_help/CTS/... //ws/online_help/CTS/...</projectPath>
+    <projectPath>//SCM/Build_Scripts/STC_Build_Scripts/... //ws/Build_Scripts/STC_Build_Scripts/...
+//SCM/Scripts/ci_* //ws/Build_Scripts/Scripts/ci_*
+//TestCenter/${BRANCH_NAME}/framework/tools/buildUtil/... //ws/framework/tools/buildUtil/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
+    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -68,7 +95,7 @@ Triggers release_bll_win_pkg_webhelp&lt;br&gt;</description>
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>0</firstChange>
+    <firstChange>-1</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -77,9 +104,10 @@ Triggers release_bll_win_pkg_webhelp&lt;br&gt;</description>
     <useViewMaskForPolling>true</useViewMaskForPolling>
     <useViewMaskForSyncing>false</useViewMaskForSyncing>
     <useViewMaskForChangeLog>false</useViewMaskForChangeLog>
-    <pollOnlyOnMaster>false</pollOnlyOnMaster>
+    <pollOnlyOnMaster>true</pollOnlyOnMaster>
   </scm>
-  <assignedNode>techpubbld-v01</assignedNode>
+  <quietPeriod>1320</quietPeriod>
+  <assignedNode>bllbldlnx-24</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
@@ -87,50 +115,28 @@ Triggers release_bll_win_pkg_webhelp&lt;br&gt;</description>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
-    <hudson.tasks.BatchFile>
-      <command>&quot;C:\Program Files\MadCap Software\MadCap Flare 12\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\Spirent_TestCenter\StcHelp.flprj&quot; -target &quot;WebHelp.fltar&quot; -log true&#xd;
-&quot;C:\Program Files\MadCap Software\MadCap Flare 12\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\Session_Manager\StcSMHelp.flprj&quot; -target &quot;WebHelp.fltar&quot; -log true&#xd;
-&quot;C:\Program Files\MadCap Software\MadCap Flare 12\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\CTS\cts.flprj&quot; -target &quot;WebHelp.fltar&quot; -log true&#xd;
-</command>
-    </hudson.tasks.BatchFile>
-    <hudson.tasks.BatchFile>
-      <command>7z a -ttar CTS_WebHelp.tar %WORKSPACE%\online_help\CTS\Output\spirent\WebHelp&#xd;
-7z a -ttar CTS_WebHelp.tar %WORKSPACE%\online_help\CTS\HelpResource.resx&#xd;
-7z a -tgzip CTS_WebHelp.tar.gz CTS_WebHelp.tar&#xd;
-&#xd;
-echo Creating TestCenter_WebHelp.tar.gz file&#xd;
-7z a -ttar TestCenter_WebHelp.tar %WORKSPACE%\online_help\Spirent_TestCenter\Output\spirent\WebHelp&#xd;
-7z a -ttar TestCenter_WebHelp.tar %WORKSPACE%\online_help\Spirent_TestCenter\HelpResource.resx&#xd;
-7z a -tgzip TestCenter_WebHelp.tar.gz TestCenter_WebHelp.tar&#xd;
-&#xd;
-7z a -ttar ServerManager_WebHelp.tar %WORKSPACE%\online_help\Session_Manager\Output\spirent\WebHelp&#xd;
-7z a -ttar ServerManager_WebHelp.tar %WORKSPACE%\online_help\Session_Manager\HelpResource.resx&#xd;
-7z a -tgzip ServerManager_WebHelp.tar.gz ServerManager_WebHelp.tar&#xd;
-&#xd;
-7z a -ttar WebHelp_mclog.tar %WORKSPACE%\online_help\Spirent_TestCenter\Project\Reports\WebHelp.fltar*&#xd;
-7z a -tgzip WebHelp_mclog.tar.gz WebHelp_mclog.tar&#xd;
-&#xd;
-del TestCenter_WebHelp.tar&#xd;
-del ServerManager_WebHelp.tar&#xd;
-del CTS_WebHelp.tar&#xd;
-del WebHelp_mclog.tar</command>
-    </hudson.tasks.BatchFile>
-    <hudson.plugins.python.Python plugin="python@1.2">
-      <command>import os
-bll_build_number=&quot;1&quot;
-print &quot;bll build number is &quot; + bll_build_number
-paramfile = open(os.environ[&apos;WORKSPACE&apos;] + &quot;\properties.txt&quot;, &quot;w&quot;)
-paramfile.write(&quot;BLL_BUILD_NUMBER=&quot; + bll_build_number)</command>
-    </hudson.plugins.python.Python>
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
+      <project>release_bll_linux_x64_ci</project>
+      <filter>build/il/bld_bll-el3-64-automation-client-only_x86_64/Release/bin/TestCenter.Linux.AutomationClient.x64.tar.gz</filter>
+      <target></target>
+      <excludes></excludes>
+      <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
+      <flatten>true</flatten>
+      <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
+    </hudson.plugins.copyartifact.CopyArtifact>
+    <hudson.tasks.Shell>
+      <command># python framework/tools/buildUtil/package.py --install TestCenter.Linux.x64.tar.gz --remove-dir Spirent_TestCenter_Application_Linux_Server
+rm -rf Spirent_TestCenter_Application_Linux_Server
+tar xvfz TestCenter.Linux.AutomationClient.x64.tar.gz
+cd Spirent_TestCenter_Application_Linux_Server
+python ../Build_Scripts/Scripts/ci_run_jenkins_steps.py --createpropfile=yes --runcimaketarballs=no  --runcimakelstarballs=no --runciftpcentralboot=no --runsetver=yes --runcopyl4l7=no --createversionfile=no
+rm -f Spirent_TestCenter_Auto_Linux64Client_$STC_MAJ_MIN_VERSION.tar.gz
+tar cvf Spirent_TestCenter_Auto_Linux64Client_$STC_MAJ_MIN_VERSION.tar *
+gzip Spirent_TestCenter_Auto_Linux64Client_$STC_MAJ_MIN_VERSION.tar
+echo &quot;Finished creating Spirent_TestCenter_Auto_Linux64Client_$STC_MAJ_MIN_VERSION.tar.gz&quot;</command>
+    </hudson.tasks.Shell>
   </builders>
   <publishers>
-    <hudson.tasks.ArtifactArchiver>
-      <artifacts>TestCenter_WebHelp.tar.gz, WebHelp_mclog.tar.gz,  ServerManager_WebHelp.tar.gz, CTS_WebHelp.tar.gz</artifacts>
-      <allowEmptyArchive>false</allowEmptyArchive>
-      <onlyIfSuccessful>false</onlyIfSuccessful>
-      <fingerprint>false</fingerprint>
-      <defaultExcludes>true</defaultExcludes>
-    </hudson.tasks.ArtifactArchiver>
     <hudson.plugins.logparser.LogParserPublisher plugin="log-parser@1.0.8">
       <unstableOnWarning>false</unstableOnWarning>
       <failBuildOnError>true</failBuildOnError>
@@ -147,7 +153,7 @@ paramfile.write(&quot;BLL_BUILD_NUMBER=&quot; + bll_build_number)</command>
               <onlyExactRuns>false</onlyExactRuns>
             </hudson.plugins.parameterizedtrigger.FileBuildParameters>
           </configs>
-          <projects>release_bll_win_pkg_webhelp</projects>
+          <projects>release_ftp_tarball_packaging</projects>
           <condition>SUCCESS</condition>
           <triggerWithNoParameters>false</triggerWithNoParameters>
         </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>

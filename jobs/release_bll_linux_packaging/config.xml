@@ -26,7 +26,7 @@ Jenkins Node(s): spccalengec01,spccalengec02</description>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.74_rel</defaultValue>
+          <defaultValue>4.73_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -41,7 +41,7 @@ Jenkins Node(s): spccalengec01,spccalengec02</description>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description>major minor version</description>
-          <defaultValue>4.74</defaultValue>
+          <defaultValue>4.73</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
@@ -84,6 +84,7 @@ Jenkins Node(s): spccalengec01,spccalengec02</description>
 //TestCenter/${BRANCH_NAME}/content/traffic/l4l7/tools/DpgUpdate/... //ws/Spirent_TestCenter_Application_Linux_Server/Dpg/DpgUpdate/...
 //TestCenter/profx_iso/Labserver/rpms/sessionLicensing/RPMS/x86/postinstall //ws/session_licensing/postinstall</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
+    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -151,7 +152,19 @@ PATH=C:\Tcl\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windo
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.BatchFile>
-      <command></command>
+      <command>del /f /q BUILD_*.txt&#xd;
+echo extracting TestCenter.Linux.tar.gz file from job %COPYARTIFACT_BUILD_NUMBER_BLL_LINUX%&#xd;
+rem python framework\tools\buildUtil\package.py --install TestCenter.Linux.tar.gz&#xd;
+&#xd;
+rd /s /q Spirent_TestCenter_Application_Linux_Server&#xd;
+&#xd;
+7z x TestCenter.Linux.tar.gz &gt; 7zextract_TestCenter.Linux.tar.txt&#xd;
+7z x -y TestCenter.Linux.tar &gt;&gt; 7zextract_TestCenter.Linux.tar.txt&#xd;
+del TestCenter.Linux.tar&#xd;
+del /f /q stcapi_linux*.tgz&#xd;
+del /f /q install_stcapi*.py&#xd;
+&#xd;
+copy session_licensing\postinstall Spirent_TestCenter_Application_Linux_Server\postinstall</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
       <project>release_results_reporter_windows_ci</project>
