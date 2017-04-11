@@ -1,15 +1,14 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<project>
+<?xml version="1.0" encoding="UTF-8"?><project>
   <actions/>
-  <description>Sync SCM build scripts, EAT, help files and other files as needed for packaging.&lt;br&gt;&#xd;
-Retrieve tar.gz files from UI and RR build.&lt;br&gt;&#xd;
-Extract TestCenter.Windows.no_version.tar.gz, ResultsReporter.tar.gz UI and RR tar.gz files to bin/release folder.&lt;br&gt;&#xd;
-Retrieve TestCenter_WebHelp.tar.gz, Provisioning_WebHelp.tar.gz, ServerManager_WebHelp.tar.gz from webhelp build.&lt;br&gt;&#xd;
-Run EAT ANT build&lt;br&gt;&#xd;
-Run setver.py to set the version of the TestCenter binary files.&lt;br&gt;&#xd;
-Run ci_packageinstaller.pl to create P2_installer and FORTHOT installer files.&lt;br&gt;&#xd;
-Run ci_packageinstaller.pl to create DMCP installer files.&lt;br&gt;&#xd;
-Copy build results to \\martin\archive\pv\TestCenter\4.44\Engineering_Builds\integration\BUILDVERSION&lt;br&gt;&#xd;
+  <description>Sync SCM build scripts, EAT, help files and other files as needed for packaging.&lt;br&gt;
+Retrieve tar.gz files from UI and RR build.&lt;br&gt;
+Extract TestCenter.Windows.no_version.tar.gz, ResultsReporter.tar.gz UI and RR tar.gz files to bin/release folder.&lt;br&gt;
+Retrieve TestCenter_WebHelp.tar.gz, Provisioning_WebHelp.tar.gz, ServerManager_WebHelp.tar.gz from webhelp build.&lt;br&gt;
+Run EAT ANT build&lt;br&gt;
+Run setver.py to set the version of the TestCenter binary files.&lt;br&gt;
+Run ci_packageinstaller.pl to create P2_installer and FORTHOT installer files.&lt;br&gt;
+Run ci_packageinstaller.pl to create DMCP installer files.&lt;br&gt;
+Copy build results to \\martin\archive\pv\TestCenter\4.44\Engineering_Builds\integration\BUILDVERSION&lt;br&gt;
 Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
@@ -27,7 +26,7 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.74_rel</defaultValue>
+          <defaultValue>4.75_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -47,16 +46,16 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description>major minor version</description>
-          <defaultValue>4.74</defaultValue>
+          <defaultValue>4.75</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
-          <description></description>
+          <description/>
           <defaultValue>BAD_BUILD_NUMBER</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>SOURCE_OS</name>
-          <description></description>
+          <description/>
           <defaultValue>BLLWindows</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -64,7 +63,7 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
           <description>The release type tag displayed in STC GUI Help-About and splash screen. Available option are:
 - Alpha
 - Beta
-- RELEASE (no release type tag will be displayed in the GUI if set to &apos;RELEASE&apos;)</description>
+- RELEASE (no release type tag will be displayed in the GUI if set to 'RELEASE')</description>
           <defaultValue>Alpha</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -76,7 +75,7 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
   <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.34">
     <configVersion>2</configVersion>
     <p4User>tableuser</p4User>
-    <p4Passwd></p4Passwd>
+    <p4Passwd/>
     <p4Port>perforce.spirentcom.com:1666</p4Port>
     <p4Client>${JOB_NAME}_${BRANCH_NAME}</p4Client>
     <projectPath>//SCM/Build_Scripts/STC_Build_Scripts/... //ws/Build_Scripts/STC_Build_Scripts/...
@@ -147,15 +146,15 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
   <customWorkspace>${JOB_NAME}</customWorkspace>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>del BLL_changelist*.txt&#xd;
-del UI_changelist*.txt&#xd;
+      <command>del BLL_changelist*.txt
+del UI_changelist*.txt
 exit /B 0</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
       <project>release_ui_ci</project>
       <filter>bin/Release/TestCenter.Windows.no_version.tar.gz, BLL_changelist*.txt, UI_changelist*.txt</filter>
-      <target></target>
-      <excludes></excludes>
+      <target/>
+      <excludes/>
       <selector class="hudson.plugins.copyartifact.PermalinkBuildSelector">
         <id>lastSuccessfulBuild</id>
       </selector>
@@ -163,14 +162,14 @@ exit /B 0</command>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.BatchFile>
-      <command>echo extracting TestCenter.Windows.no_version.tar.gz file from job %COPYARTIFACT_BUILD_NUMBER_UI%&#xd;
+      <command>echo extracting TestCenter.Windows.no_version.tar.gz file from job %COPYARTIFACT_BUILD_NUMBER_UI%
 python framework\tools\buildUtil\package.py --install TestCenter.Windows.no_version.tar.gz --directory=bin/Release</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
       <project>release_webhelp</project>
       <filter>TestCenter_WebHelp.tar.gz, Provisioning_WebHelp.tar.gz, ServerManager_WebHelp.tar.gz</filter>
-      <target></target>
-      <excludes></excludes>
+      <target/>
+      <excludes/>
       <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
@@ -178,52 +177,52 @@ python framework\tools\buildUtil\package.py --install TestCenter.Windows.no_vers
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
       <project>release_results_reporter_windows_ci</project>
       <filter>Win32ResultsReporter.tar.gz,Unix32ResultsReporter.Unix.tar.gz</filter>
-      <target></target>
-      <excludes></excludes>
+      <target/>
+      <excludes/>
       <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.BatchFile>
-      <command>echo extracting ResultsReporter.tar.gz file from job %COPYARTIFACT_BUILD_NUMBER_RESULTS_REPORTER_WINDOWS%&#xd;
-python framework\tools\buildUtil\package.py --install Win32ResultsReporter.tar.gz --directory=framework/ui/resultsanalysis/dist&#xd;
-p4 info&#xd;
+      <command>echo extracting ResultsReporter.tar.gz file from job %COPYARTIFACT_BUILD_NUMBER_RESULTS_REPORTER_WINDOWS%
+python framework\tools\buildUtil\package.py --install Win32ResultsReporter.tar.gz --directory=framework/ui/resultsanalysis/dist
+p4 info
 set</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>echo Running EAT Ant build&#xd;
-cd framework\ui\EAT&#xd;
+      <command>echo Running EAT Ant build
+cd framework\ui\EAT
 ant -f build_windows.xml&amp;&amp;ant -f build_linux.xml</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>REM echo Running Results Reporter ant unix distribution build&#xd;
-REM cd framework\ui\resultsanalysis&#xd;
+      <command>REM echo Running Results Reporter ant unix distribution build
+REM cd framework\ui\resultsanalysis
 REM ant unixDist</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>cd %WORKSPACE%\bin\release&#xd;
-SET DEPENDENT_JOB_NAME=release_cts_windows_packaging&#xd;
-c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --createpropfile=yes --runcimaketarballs=no --runsetver=yes --updateilversionxml=yes --updatereleasetag=yes&#xd;
-&#xd;
-perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% STC_APP_COPY_ONLY&#xd;
-perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% COMPILE_FORTHOT&#xd;
-perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% PACKAGE_P2_INSTALLER&#xd;
-perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% COPY_P2_INSTALLER&#xd;
+      <command>cd %WORKSPACE%\bin\release
+SET DEPENDENT_JOB_NAME=release_cts_windows_packaging
+c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --createpropfile=yes --runcimaketarballs=no --runsetver=yes --updateilversionxml=yes --updatereleasetag=yes
+
+perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% STC_APP_COPY_ONLY
+perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% COMPILE_FORTHOT
+perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% PACKAGE_P2_INSTALLER
+perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% COPY_P2_INSTALLER
 rem exit /B 0</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>REM echo Creating Results Reporter tar.gz for unix distribution&#xd;
-REM 7z a -ttar ResultsReporter.Unix.tar %WORKSPACE%\framework\ui\resultsanalysis\unix_dist\*&#xd;
-REM 7z a -tgzip ResultsReporter.Unix.tar.gz ResultsReporter.Unix.tar&#xd;
+      <command>REM echo Creating Results Reporter tar.gz for unix distribution
+REM 7z a -ttar ResultsReporter.Unix.tar %WORKSPACE%\framework\ui\resultsanalysis\unix_dist\*
+REM 7z a -tgzip ResultsReporter.Unix.tar.gz ResultsReporter.Unix.tar
 REM del ResultsReporter.Unix.tar</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>echo Creating EAT.Unix.tar.gz for unix distribution&#xd;
-7z a -ttar EAT.Unix.tar %WORKSPACE%\framework\ui\EAT\Release_Linux\*&#xd;
-7z a -ttar EAT.Unix.tar %WORKSPACE%\framework\ui\EAT\Build_Linux\configuration&#xd;
-7z a -ttar EAT.Unix.tar %WORKSPACE%\framework\ui\EAT\Build_Linux\plugins&#xd;
-7z a -ttar EAT.Unix.tar %WORKSPACE%\framework\ui\EAT\Build_Linux\.eclipseproduct&#xd;
-7z a -tgzip EAT.Unix.tar.gz EAT.Unix.tar&#xd;
+      <command>echo Creating EAT.Unix.tar.gz for unix distribution
+7z a -ttar EAT.Unix.tar %WORKSPACE%\framework\ui\EAT\Release_Linux\*
+7z a -ttar EAT.Unix.tar %WORKSPACE%\framework\ui\EAT\Build_Linux\configuration
+7z a -ttar EAT.Unix.tar %WORKSPACE%\framework\ui\EAT\Build_Linux\plugins
+7z a -ttar EAT.Unix.tar %WORKSPACE%\framework\ui\EAT\Build_Linux\.eclipseproduct
+7z a -tgzip EAT.Unix.tar.gz EAT.Unix.tar
 del EAT.Unix.tar</command>
     </hudson.tasks.BatchFile>
   </builders>
