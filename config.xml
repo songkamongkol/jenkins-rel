@@ -419,8 +419,9 @@
       <mode>NORMAL</mode>
       <retentionStrategy class="hudson.slaves.RetentionStrategy$Always"/>
       <launcher class="hudson.os.windows.ManagedWindowsServiceLauncher" plugin="windows-slaves@1.0">
-        <userName>spirent</userName>
+        <userName>TECHPUBBLD-V01\spirent</userName>
         <password>mvZUSoz7R1ibODLqzinyPRvrWDGSZdkSX0wmJWXwKaE=</password>
+        <javaPath>C:\Program Files\Java\jre7\bin\java</javaPath>
         <account class="hudson.os.windows.ManagedWindowsServiceAccount$Administrator"/>
         <host>techpubbld-v01.cal.ci.spirentcom.com</host>
       </launcher>
