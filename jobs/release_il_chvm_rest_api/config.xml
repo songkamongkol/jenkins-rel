@@ -63,7 +63,8 @@ $GOROOT/bin/go get github.com/onsi/ginkgo/ginkgo
 $GOROOT/bin/go get github.com/onsi/gomega
 cd $HOME
 rm -rf swagger-codegen
-git clone http://github.com/SpirentOrion/swagger-codegen
+# git clone http://github.com/SpirentOrion/swagger-codegen
+git clone http://github.com/SpirentOrion/swagger-codegen -b chassis-codegen
 cd swagger-codegen
 mvn package
 rm -rf  $GOPATH/src/github.com/yvasiyarov/swagger
