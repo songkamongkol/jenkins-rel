@@ -68,7 +68,7 @@ Triggers release_bll_win_pkg_webhelp&lt;br&gt;</description>
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>0</firstChange>
+    <firstChange>-1</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -88,10 +88,9 @@ Triggers release_bll_win_pkg_webhelp&lt;br&gt;</description>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>&quot;C:\Program Files\MadCap Software\MadCap Flare 12\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\Spirent_TestCenter\StcHelp.flprj&quot; -target &quot;WebHelp.fltar&quot; -log true&#xd;
-&quot;C:\Program Files\MadCap Software\MadCap Flare 12\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\Session_Manager\StcSMHelp.flprj&quot; -target &quot;WebHelp.fltar&quot; -log true&#xd;
-&quot;C:\Program Files\MadCap Software\MadCap Flare 12\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\CTS\cts.flprj&quot; -target &quot;WebHelp.fltar&quot; -log true&#xd;
-</command>
+      <command>&quot;C:\Program Files\MadCap Software\MadCap Flare 13\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\Spirent_TestCenter\StcHelp.flprj&quot; -target &quot;WebHelp.fltar&quot; -log true&#xd;
+&quot;C:\Program Files\MadCap Software\MadCap Flare 13\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\Session_Manager\StcSMHelp.flprj&quot; -target &quot;WebHelp.fltar&quot; -log true&#xd;
+&quot;C:\Program Files\MadCap Software\MadCap Flare 13\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\CTS\cts.flprj&quot; -target &quot;WebHelp.fltar&quot; -log true</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
       <command>7z a -ttar CTS_WebHelp.tar %WORKSPACE%\online_help\CTS\Output\spirent\WebHelp&#xd;
