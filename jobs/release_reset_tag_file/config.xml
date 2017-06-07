@@ -19,12 +19,12 @@ pw_packages_to_test and clean out the same file in \\spccalfs04\SCM\SCMSmartTest
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description/>
-          <defaultValue>4.75_rel</defaultValue>
+          <defaultValue>4.76_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description/>
-          <defaultValue>4.75</defaultValue>
+          <defaultValue>4.76</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
