@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
-  <description/>
+  <description></description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
     <numToKeep>15</numToKeep>
@@ -31,22 +32,22 @@
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
-          <description/>
+          <description></description>
           <defaultValue>4.76</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>SOURCE_OS</name>
-          <description/>
+          <description></description>
           <defaultValue>IL</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>OUTPUT_DIR</name>
-          <description/>
+          <description></description>
           <defaultValue>\\storage\gr\TestCenter\4.47\SR_Builds\SR447.1.1\Manufacturing</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_ID</name>
-          <description/>
+          <description></description>
           <defaultValue>6</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -58,11 +59,12 @@
   <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.34">
     <configVersion>2</configVersion>
     <p4User>scmbuild</p4User>
-    <p4Passwd/>
+    <p4Passwd></p4Passwd>
     <p4Port>perforce.spirentcom.com:1666</p4Port>
     <p4Client>${JOB_NAME}_${BRANCH_NAME}</p4Client>
     <projectPath>//TestCenter/profx_iso/Labserver/... //ws/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
+    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -126,8 +128,8 @@ gunzip labServerBaseVm.img.gz
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
       <project>stcapi_rest_api</project>
       <filter>deployment/linux/etc/init.d/stcapi</filter>
-      <target/>
-      <excludes/>
+      <target></target>
+      <excludes></excludes>
       <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
@@ -136,24 +138,24 @@ gunzip labServerBaseVm.img.gz
       <command>#!/bin/bash -ex
 
 # -- setup build number and path based on the branch name
-if [ "$BRANCH_NAME" = "integration" ]; then
-     export BRANCH_ID='3'
+if [ &quot;$BRANCH_NAME&quot; = &quot;integration&quot; ]; then
+     export BRANCH_ID=&apos;3&apos;
 fi
 
-if [ "$BRANCH_NAME" = "4.40_rel" ]; then
-     export BRANCH_ID='6'
+if [ &quot;$BRANCH_NAME&quot; = &quot;4.40_rel&quot; ]; then
+     export BRANCH_ID=&apos;6&apos;
 fi
 
 if [[ $BRANCH_NAME = *_rel* ]]; then
-     export BRANCH_ID='6'
+     export BRANCH_ID=&apos;6&apos;
 fi
 
-if [ "$BRANCH_NAME" = "release" ]; then
-     export BRANCH_ID='6'
+if [ &quot;$BRANCH_NAME&quot; = &quot;release&quot; ]; then
+     export BRANCH_ID=&apos;6&apos;
 fi
 
 export RAW_BLDSTR=${BLL_BUILD_NUMBER}${BRANCH_ID}
-printf -v BLDNUMBER "%04d" $RAW_BLDSTR
+printf -v BLDNUMBER &quot;%04d&quot; $RAW_BLDSTR
 export FULL_BUILD=${STC_MAJ_MIN_VERSION}.${BLDNUMBER}
 export MARTIN_TAR_DIR=/gibson/TestCenter/${STC_MAJ_MIN_VERSION}/Engineering_Builds/GUI_BLL/${FULL_BUILD}/tar
 
@@ -176,17 +178,17 @@ tar cvfz Spirent_TestCenter_LS_${STC_MAJ_MIN_VERSION}.tar.gz Spirent_TestCenter_
 
 baseimg=$WORKSPACE/labServerBaseVm.img
 lstarball=$WORKSPACE/Spirent_TestCenter_LS_${STC_MAJ_MIN_VERSION}.tar.gz
-echo "STC API Linux filename is $filename"
+echo &quot;STC API Linux filename is $filename&quot;
 
 # -- mount the qcow image
 TmpDir=/tmp/vm
 Dev=/dev/nbd0
-echo "Updating server $lstarball on image file: $baseimg"
+echo &quot;Updating server $lstarball on image file: $baseimg&quot;
 sudo modprobe nbd max_part=8
 sudo qemu-nbd -d $Dev
 sudo qemu-nbd -c $Dev $baseimg
 mkdir -p $TmpDir
-echo "Device $Dev"
+echo &quot;Device $Dev&quot;
 # TODO Takes a bit to mount need to check if the device exists first
 sleep 5
 # make sure the devices mounted
@@ -213,7 +215,7 @@ sudo cp $WORKSPACE/rpms/labServerVM/SOURCES/admin_sh $TmpDir/home/admin/admin_sh
 popd
 # Set vm to dhcp by default
 pushd $TmpDir/etc/sysconfig/network-scripts
-sudo echo -e "DEVICE=eth0\nTYPE=Ethernet\nNM_CONTROLLED=no\nONBOOT=yes\nBOOTPROTO=dhcp\nPEERDNS=yes" &gt; /tmp/ifcfg-eth0.new
+sudo echo -e &quot;DEVICE=eth0\nTYPE=Ethernet\nNM_CONTROLLED=no\nONBOOT=yes\nBOOTPROTO=dhcp\nPEERDNS=yes&quot; &gt; /tmp/ifcfg-eth0.new
 sudo rm -f ifcfg-eth0
 sudo mv /tmp/ifcfg-eth0.new ifcfg-eth0
 sudo sudo chown root:root ifcfg-eth0
@@ -236,7 +238,7 @@ sudo mv labServerBaseVm.img labServerVM.img
 sudo chown spirent:spirent labServerVM.img
 
 export RAW_BLDSTR=${BLL_BUILD_NUMBER}${BRANCH_ID}
-printf -v BLDNUMBER "%04d" ${RAW_BLDSTR#0}
+printf -v BLDNUMBER &quot;%04d&quot; ${RAW_BLDSTR#0}
 
 # Create tardis package
 sudo rm -f labServer-${STC_MAJ_MIN_VERSION}*.tgz
@@ -274,29 +276,29 @@ wget -N http://qmanager.cal.ci.spirentcom.com/html/python/tools/qmupload.py
 import sys
 import xmlrpclib
 
-WORKSPACE=os.environ['WORKSPACE']
+WORKSPACE=os.environ[&apos;WORKSPACE&apos;]
 sys.path.insert(0, WORKSPACE)
 import qmupload
 
-LS_IMAGE = os.path.join(WORKSPACE, 'labServerVM.img.gz')
-QMUSER = 'regression_labserver'
-QMSERVER = 'qmanager.cal.ci.spirentcom.com'
-QMURL = 'http://%s:8080' % (QMSERVER,)
+LS_IMAGE = os.path.join(WORKSPACE, &apos;labServerVM.img.gz&apos;)
+QMUSER = &apos;regression_labserver&apos;
+QMSERVER = &apos;qmanager.cal.ci.spirentcom.com&apos;
+QMURL = &apos;http://%s:8080&apos; % (QMSERVER,)
 
 qm = xmlrpclib.ServerProxy(QMURL, allow_none=True)
 
 
 def upload_image(image_path):
     if not os.path.isfile(image_path):
-        raise RuntimeError('missing image file: ' + image_path)
+        raise RuntimeError(&apos;missing image file: &apos; + image_path)
 
-    print &gt;&gt; sys.stderr, '===&gt; uploading', os.path.basename(image_path), 'to QManager'
+    print &gt;&gt; sys.stderr, &apos;===&gt; uploading&apos;, os.path.basename(image_path), &apos;to QManager&apos;
     qmupload.send_file_to_qmanager(QMUSER, image_path, False, QMSERVER, False)
 
 
 def qm_image_current(image):
-    new_md5_file = image + '.md5'
-    uploaded_md5_file = image + '.uploaded.md5'
+    new_md5_file = image + &apos;.md5&apos;
+    uploaded_md5_file = image + &apos;.uploaded.md5&apos;
 
     if not os.path.isfile(uploaded_md5_file):
         return False
@@ -315,7 +317,7 @@ def qm_image_current(image):
 
     if old_hash != new_hash:
         qm.delete_file(QMUSER, LS_IMAGE)
-        with open(uploaded_md5_file, 'w') as out_file:
+        with open(uploaded_md5_file, &apos;w&apos;) as out_file:
             out_file.write(new_hash)
         return False
 
@@ -345,7 +347,7 @@ export BUILD_OUTPUT_DIR=$WORKSPACE
 export MARTIN_ROOT=/spirent/data/archive/pv/TestCenter
 export MARTIN=martin.spirentcom.com
 export RAW_BLDSTR=${BLL_BUILD_NUMBER}${BRANCH_ID}
-printf -v BLDNUMBER "%04d" ${RAW_BLDSTR#0}
+printf -v BLDNUMBER &quot;%04d&quot; ${RAW_BLDSTR#0}
 export BLDNBR=${STC_MAJ_MIN_VERSION}.${BLDNUMBER}
 
 
@@ -364,22 +366,23 @@ rsync -avz $BUILD_OUTPUT_DIR/labServer*.zip* ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/
       <scriptOnlyIfSuccess>true</scriptOnlyIfSuccess>
       <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
       <markBuildUnstable>false</markBuildUnstable>
+      <executeOn>BOTH</executeOn>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.39">
       <recipientList>somboon.ongkamongkol@spirent.com</recipientList>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
           <email>
-            <recipientList/>
+            <recipientList></recipientList>
             <subject>$PROJECT_DEFAULT_SUBJECT</subject>
             <body>$PROJECT_DEFAULT_CONTENT</body>
             <recipientProviders>
               <hudson.plugins.emailext.plugins.recipients.DevelopersRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
-            <replyTo/>
+            <replyTo></replyTo>
             <contentType>project</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.FailureTrigger>
@@ -387,8 +390,8 @@ rsync -avz $BUILD_OUTPUT_DIR/labServer*.zip* ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern/>
-      <presendScript/>
+      <attachmentsPattern></attachmentsPattern>
+      <presendScript></presendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
       <replyTo>$DEFAULT_RECIPIENTS</replyTo>
