@@ -26,7 +26,7 @@ Archive il_vtc_*.tar&lt;br&gt;
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.76_rel</defaultValue>
+          <defaultValue>4.76_rel_new</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
