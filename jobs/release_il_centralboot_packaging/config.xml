@@ -166,6 +166,10 @@ rm -f $WORKSPACE/*.txt</command>
     <hudson.tasks.Shell>
       <command>#!/bin/bash
 
+if [[ $INCLUDE_APPSEC_PKG == &quot;FALSE&quot; ]]; then 
+    exit 0
+fi
+
 if [ -f /mnt/builds/jenkins/il_changeling_all_yocto-${BRANCH_NAME}_promoting.txt ]; then
 echo &quot;Promotion is in progress, wait for 5 minutes&quot;
 sleep 300
@@ -402,7 +406,12 @@ echo &quot;Finished copying all il ci build artifacts&quot;</command>
       <command>export DEPENDENT_JOB_NAME=integration_il_centralboot_packaging
 echo &quot;Removing extra l4l7 bundle package: $WORKSPACE/build/il/packages/bundle/l4l7-*..zip&quot;
 rm -rf $WORKSPACE/build/il/packages/bundle/l4l7-*.zip
-python $WORKSPACE/Build_Scripts/Scripts/ci_run_jenkins_steps.py --createpropfile=yes --runcimaketarballs=no --runsetver=no --runciftpcentralboot=no --runcimakelstarballs=no --runcopyl4l7=yes --createversionfile=no</command>
+if [[ $INCLUDE_APPSEC_PKG == &quot;TRUE&quot; ]]; then 
+    export l4l7pkg=&quot;yes&quot;
+else
+    export l4l7pkg=&quot;no&quot;
+fi
+python $WORKSPACE/Build_Scripts/Scripts/ci_run_jenkins_steps.py --createpropfile=yes --runcimaketarballs=no --runsetver=no --runciftpcentralboot=no --runcimakelstarballs=no --runcopyl4l7=$l4l7pkg --createversionfile=no</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>echo Creating Central Boot image file
