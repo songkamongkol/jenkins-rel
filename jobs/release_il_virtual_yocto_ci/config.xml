@@ -55,7 +55,7 @@ Archive il_virtual_*.tar&lt;br&gt;&#xd;
         <hudson.model.StringParameterDefinition>
           <name>INCLUDE_APPSEC_PKG</name>
           <description></description>
-          <defaultValue>TRUE</defaultValue>
+          <defaultValue>FALSE</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
