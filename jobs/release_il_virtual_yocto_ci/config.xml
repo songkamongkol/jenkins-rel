@@ -123,7 +123,7 @@ Archive il_virtual_*.tar&lt;br&gt;&#xd;
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -193,7 +193,6 @@ if [[ $INCLUDE_APPSEC_PKG == &quot;TRUE&quot; ]]; then
     $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_hypervisor_mix
     $WORKSPACE/build/il/scripts/phxbld -j32 yocto_lxc_ose
 else
-    $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_stc_only
     $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_hypervisor_stc_only
 fi
 
