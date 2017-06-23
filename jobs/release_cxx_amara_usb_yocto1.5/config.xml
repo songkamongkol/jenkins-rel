@@ -61,6 +61,11 @@
 NOTE: if any value other than none is provided, the job will try to upload the usb image to the directory specified by the SR number (.e.g, \\storage.cal.ci.spirentcom.com\gr\TestCenter\4.65\SR_Builds\SR465.1.1\Manufacturing)</description>
           <defaultValue>NONE</defaultValue>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>INCLUDE_APPSEC_PKG</name>
+          <description></description>
+          <defaultValue>FALSE</defaultValue>
+        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.22">
@@ -124,7 +129,7 @@ NOTE: if any value other than none is provided, the job will try to upload the u
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -228,8 +233,14 @@ fi
 
 echo &apos;Creating C1/C100 USB image (Appliance)&apos;
 rm -rf $WORKSPACE/framework/il/kernel/yocto/spirent-linux
-$WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_hypervisor_mix
-$WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_usb
+if [ &quot;$INCLUDE_APPSEC_PKG&quot; = &quot;TRUE&quot; ]; then
+    $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_hypervisor_mix
+    $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_usb
+else
+    $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_hypervisor_stc_only
+    $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_usb_stc_only
+fi
+
 export RAW_BLDSTR=${BLL_BUILD_NUMBER}${BRANCH_ID}
 printf -v BLDNUMBER &quot;%04d&quot; ${RAW_BLDSTR#0}
 
