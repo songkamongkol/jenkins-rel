@@ -21,7 +21,7 @@ Triggers release_bll_win_pkg_webhelp&lt;br&gt;</description>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description></description>
-          <defaultValue>4.76_rel_new</defaultValue>
+          <defaultValue>4.77_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
