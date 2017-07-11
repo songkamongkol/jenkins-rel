@@ -364,7 +364,7 @@ sudo chmod 755 $BUILD_OUTPUT_DIR/labServer*
 ssh ${RSYNCUSER}@${MARTIN} mkdir -p $BUILD_DIR
 rsync -avz $BUILD_OUTPUT_DIR/labServerVM.img.gz* ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/
 rsync -avz $BUILD_OUTPUT_DIR/labServer.ova* ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/
-rsync -avz $BUILD_OUTPUT_DIR/labServer*.zip* ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/
+rsync -avz $BUILD_OUTPUT_DIR/labServer*${BLDNBR}*.zip* ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/
 
 
 </command>
