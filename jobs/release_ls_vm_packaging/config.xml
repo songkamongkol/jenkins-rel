@@ -119,6 +119,7 @@
 rm -rf labServer*.md5
 rm -rf labServer*.tgz
 rm -rf labServer*.ova
+rm -rf labServer*.zip
 rm -rf Spirent_TestCenter_LS_*.tar.gz</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
