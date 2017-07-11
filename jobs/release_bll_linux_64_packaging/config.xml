@@ -1,15 +1,15 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>*** ---- This job is for Full STC Linux 64-bit BLL packaging --- ***
-Sync SCM build scripts and other files as needed for packaging.&lt;br&gt;
-Retrieve TestCenter.Linux.x64.full.tar.gz files from bll_linux build.&lt;br&gt;
-Retrieve ResultsReporter.Unix.tar.gz file from integration_package_bll_windows build.&lt;br&gt;
-Extract TestCenter.Linux.x64.full.tar.gz.&lt;br&gt;
-Extract ResultsReporter.Unix.tar.gz&lt;br&gt;
-Run setver.py to set the version of the TestCenter binary files.&lt;br&gt;
-Run ci_make_tarballs.pl to create Linux BLL tarballs&lt;br&gt;
-Copy build results to \\martin\archive\pv\TestCenter\4.10\Engineering_Builds\integration\BUILDVERSION&lt;br&gt;
+  <description>*** ---- This job is for Full STC Linux 64-bit BLL packaging --- ***&#xd;
+Sync SCM build scripts and other files as needed for packaging.&lt;br&gt;&#xd;
+Retrieve TestCenter.Linux.x64.full.tar.gz files from bll_linux build.&lt;br&gt;&#xd;
+Retrieve ResultsReporter.Unix.tar.gz file from integration_package_bll_windows build.&lt;br&gt;&#xd;
+Extract TestCenter.Linux.x64.full.tar.gz.&lt;br&gt;&#xd;
+Extract ResultsReporter.Unix.tar.gz&lt;br&gt;&#xd;
+Run setver.py to set the version of the TestCenter binary files.&lt;br&gt;&#xd;
+Run ci_make_tarballs.pl to create Linux BLL tarballs&lt;br&gt;&#xd;
+Copy build results to \\martin\archive\pv\TestCenter\4.10\Engineering_Builds\integration\BUILDVERSION&lt;br&gt;&#xd;
 Jenkins Node(s): spccalengec01,spccalengec02</description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
@@ -85,7 +85,6 @@ Jenkins Node(s): spccalengec01,spccalengec02</description>
 //TestCenter/${BRANCH_NAME}/content/traffic/l4l7/tools/DpgUpdate/... //ws/Spirent_TestCenter_Application_Linux_Server/Dpg/DpgUpdate/...
 //TestCenter/profx_iso/Labserver/rpms/sessionLicensing/RPMS/x86/postinstall //ws/session_licensing/postinstall</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -115,7 +114,7 @@ Jenkins Node(s): spccalengec01,spccalengec02</description>
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -198,9 +197,9 @@ c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --u
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
       <command>del /f /q stc-rest*.tar*&#xd;
-copy \\storage.cal.ci.spirentcom.com\builds\stcweb\linux64\stc-rest-linux64.tar.gz stc-rest-linux64.tar.gz&#xd;
-7z x stc-rest-linux64.tar.gz&#xd;
-7z x -y -o&quot;%WORKSPACE%\Spirent_TestCenter_Application_Linux_Server&quot; stc-rest-linux64.tar</command>
+REM -- not required for 4.77 -- copy \\storage.cal.ci.spirentcom.com\builds\stcweb\linux64\stc-rest-linux64.tar.gz stc-rest-linux64.tar.gz&#xd;
+REM -- not required for 4.77 -- 7z x stc-rest-linux64.tar.gz&#xd;
+REM -- not required for 4.77 -- 7z x -y -o&quot;%WORKSPACE%\Spirent_TestCenter_Application_Linux_Server&quot; stc-rest-linux64.tar</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
       <command>echo &quot;Running ci_cleanup_by_date.pl.&quot;&#xd;
