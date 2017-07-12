@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>&lt;STRONG&gt;This job upload stca and stcv images from nightly build into S3 bucket in Orion.&lt;/STRONG&gt;
-&lt;BR&gt;
-&lt;B&gt;Pre-Requisite:&lt;/B&gt;&lt;BR&gt;
-- orion-cli.tgz from s3://spirent-orion-artifacts/deploys/test must be extracted and installed (path to datautil must be in the PATH environment variable)&lt;BR&gt;
-- jq must be installed&lt;BR&gt;
-
+  <description>&lt;STRONG&gt;This job upload stca and stcv images from nightly build into S3 bucket in Orion.&lt;/STRONG&gt;&#xd;
+&lt;BR&gt;&#xd;
+&lt;B&gt;Pre-Requisite:&lt;/B&gt;&lt;BR&gt;&#xd;
+- orion-cli.tgz from s3://spirent-orion-artifacts/deploys/test must be extracted and installed (path to datautil must be in the PATH environment variable)&lt;BR&gt;&#xd;
+- jq must be installed&lt;BR&gt;&#xd;
+&#xd;
 &lt;I&gt;NOTE: ORION_TOKEN value used in this job is retrieved from jenkins.oriondev.net (it&apos;s configured as global environment variable there)&lt;/I&gt;</description>
   <keepDependencies>false</keepDependencies>
   <properties>
@@ -44,7 +44,6 @@
     <p4Client>${JOB_NAME}</p4Client>
     <projectPath>//SCM/Scripts/upload_stca_stcv_orion.sh //ws/upload_stca_stcv_orion.sh</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner></clientOwner>
     <p4SysDrive></p4SysDrive>
     <p4SysRoot></p4SysRoot>
     <p4Tool>p4</p4Tool>
@@ -68,7 +67,7 @@
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -105,6 +104,9 @@ STCA_NAME=stca
 STCV_NAME=stcv
 STCA_DESCRIPTION=Spirent TestCenter Anywhere
 STCV_DESCRIPTION=Spirent TestCenter Virtual
+STC_DESCRIPTION=Spirent TestCenter Application
+STC_NAME=STC
+BLL_ROOT_PATH=/gibson
 </propertiesContent>
         <loadFilesFromMaster>false</loadFilesFromMaster>
       </info>
