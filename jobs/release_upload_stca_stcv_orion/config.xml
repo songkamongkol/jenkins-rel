@@ -42,7 +42,8 @@
     <p4Passwd></p4Passwd>
     <p4Port>perforce.spirentcom.com:1666</p4Port>
     <p4Client>${JOB_NAME}</p4Client>
-    <projectPath>//SCM/Scripts/upload_stca_stcv_orion.sh //ws/upload_stca_stcv_orion.sh</projectPath>
+    <projectPath>//SCM/Scripts/upload_stca_stcv_orion.sh //ws/upload_stca_stcv_orion.sh
+//SCM/Scripts/upload_stc_bll_orion.sh //ws/upload_stc_bll_orion.sh</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
     <p4SysDrive></p4SysDrive>
     <p4SysRoot></p4SysRoot>
@@ -67,7 +68,7 @@
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -88,7 +89,9 @@
   <builders>
     <hudson.tasks.Shell>
       <command># $ORION_CLI_PATH/datautil get-folder -id=a31b64186ec24391a1482a92674610e4
-./upload_stca_stcv_orion.sh</command>
+# ./upload_stca_stcv_orion.sh
+./upload_stc_bll_orion.sh
+</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers/>
