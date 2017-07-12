@@ -12,7 +12,8 @@
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
       <useBuildBlocker>true</useBuildBlocker>
-      <blockingJobs>release_bll_linux_packaging</blockingJobs>
+      <blockingJobs>release_bll_linux_packaging
+release_bll_windows_packaging_new</blockingJobs>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
