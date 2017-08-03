@@ -837,8 +837,8 @@
     </slave>
     <slave>
       <name>relpkg-04</name>
-      <description>Windows Server 2008 Standard R2 64 bit</description>
-      <remoteFS>d:\jenkins-rel</remoteFS>
+      <description>Windows 8.1</description>
+      <remoteFS>c:\jenkins-rel</remoteFS>
       <numExecutors>3</numExecutors>
       <mode>NORMAL</mode>
       <retentionStrategy class="hudson.slaves.RetentionStrategy$Always"/>
