@@ -12,7 +12,7 @@
     </com.sonyericsson.rebuild.RebuildSettings>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
-  <assignedNode>spccalengec02</assignedNode>
+  <assignedNode>relpkg-04</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
@@ -20,6 +20,10 @@
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
+    <hudson.tasks.BatchFile>
+      <command>java -version&#xd;
+jar -version</command>
+    </hudson.tasks.BatchFile>
     <hudson.plugins.python.Python plugin="python@1.2">
       <command>import urllib2
 
