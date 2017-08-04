@@ -126,7 +126,7 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -156,7 +156,7 @@ exit /B 0</command>
     <EnvInjectBuilder plugin="envinject@1.90">
       <info>
         <propertiesContent>PYTHONUNBUFFERED=1
-PATH=C:\Tcl\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files\Perforce;d:\utils;c:\python27;&quot;D:\Program Files(x86)\Microsoft Visual Studio 8\Common7\IDE&quot;;d:\utils;d:\perl64\bin;c:\apache-ant-1.6.5\bin;&quot;C:\Program Files (x86)\Java\jre7\bin&quot;;&quot;C:\Program Files\7-Zip&quot;;C:\Program Files (x86)\NCover\;D:\Program Files (x86)\Perforce;D:\Program Files (x86)\Java\jdk1.6.0_35\bin</propertiesContent>
+</propertiesContent>
       </info>
     </EnvInjectBuilder>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
