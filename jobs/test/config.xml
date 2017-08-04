@@ -21,8 +21,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>java -version&#xd;
-jar -version</command>
+      <command>python c:\\users\\spirent\\desktop\\test.py</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.python.Python plugin="python@1.2">
       <command>import urllib2
