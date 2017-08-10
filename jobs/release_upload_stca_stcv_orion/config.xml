@@ -76,7 +76,7 @@ release_bll_windows_packaging_new</blockingJobs>
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -97,8 +97,8 @@ release_bll_windows_packaging_new</blockingJobs>
   <builders>
     <hudson.tasks.Shell>
       <command># $ORION_CLI_PATH/datautil get-folder -id=a31b64186ec24391a1482a92674610e4
-# ./upload_stca_stcv_orion.sh
-# ./upload_stc_bll_orion.sh
+./upload_stca_stcv_orion.sh
+./upload_stc_bll_orion.sh
 </command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
