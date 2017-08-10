@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>&lt;STRONG&gt;This job upload stca and stcv images from nightly build into S3 bucket in Orion.&lt;/STRONG&gt;
-&lt;BR&gt;
-&lt;B&gt;Pre-Requisite:&lt;/B&gt;&lt;BR&gt;
-- orion-cli.tgz from s3://spirent-orion-artifacts/deploys/test must be extracted and installed (path to datautil must be in the PATH environment variable)&lt;BR&gt;
-- jq must be installed&lt;BR&gt;
-
+  <description>&lt;STRONG&gt;This job upload stca and stcv images from nightly build into S3 bucket in Orion.&lt;/STRONG&gt;&#xd;
+&lt;BR&gt;&#xd;
+&lt;B&gt;Pre-Requisite:&lt;/B&gt;&lt;BR&gt;&#xd;
+- orion-cli.tgz from s3://spirent-orion-artifacts/deploys/test must be extracted and installed (path to datautil must be in the PATH environment variable)&lt;BR&gt;&#xd;
+- jq must be installed&lt;BR&gt;&#xd;
+&#xd;
 &lt;I&gt;NOTE: ORION_TOKEN value used in this job is retrieved from jenkins.oriondev.net (it&apos;s configured as global environment variable there)&lt;/I&gt;</description>
   <keepDependencies>false</keepDependencies>
   <properties>
@@ -53,13 +53,12 @@ release_bll_windows_packaging_new</blockingJobs>
 //SCM/Scripts/upload_stc_bll_orion.sh //ws/upload_stc_bll_orion.sh
 //SCM/Scripts/temeva_test_s3_artifacts_cleanup.py //ws/temeva_test_s3_artifacts_cleanup.py</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner></clientOwner>
     <p4SysDrive></p4SysDrive>
     <p4SysRoot></p4SysRoot>
     <p4Tool>p4</p4Tool>
     <useClientSpec>false</useClientSpec>
     <useStreamDepot>false</useStreamDepot>
-    <forceSync>false</forceSync>
+    <forceSync>true</forceSync>
     <alwaysForceSync>false</alwaysForceSync>
     <dontUpdateServer>false</dontUpdateServer>
     <disableAutoSync>false</disableAutoSync>
@@ -77,7 +76,7 @@ release_bll_windows_packaging_new</blockingJobs>
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
