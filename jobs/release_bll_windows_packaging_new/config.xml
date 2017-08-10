@@ -1,15 +1,15 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>cSync SCM build scripts, EAT, help files and other files as needed for packaging.&lt;br&gt;
-Retrieve tar.gz files from UI and RR build.&lt;br&gt;
-Extract TestCenter.Windows.no_version.tar.gz, ResultsReporter.tar.gz UI and RR tar.gz files to bin/release folder.&lt;br&gt;
-Retrieve TestCenter_WebHelp.tar.gz, Provisioning_WebHelp.tar.gz, ServerManager_WebHelp.tar.gz from webhelp build.&lt;br&gt;
-Run EAT ANT build&lt;br&gt;
-Run setver.py to set the version of the TestCenter binary files.&lt;br&gt;
-Run ci_packageinstaller.pl to create P2_installer and FORTHOT installer files.&lt;br&gt;
-Run ci_packageinstaller.pl to create DMCP installer files.&lt;br&gt;
-Copy build results to \\martin\archive\pv\TestCenter\4.10\Engineering_Builds\integration\BUILDVERSION&lt;br&gt;
+  <description>cSync SCM build scripts, EAT, help files and other files as needed for packaging.&lt;br&gt;&#xd;
+Retrieve tar.gz files from UI and RR build.&lt;br&gt;&#xd;
+Extract TestCenter.Windows.no_version.tar.gz, ResultsReporter.tar.gz UI and RR tar.gz files to bin/release folder.&lt;br&gt;&#xd;
+Retrieve TestCenter_WebHelp.tar.gz, Provisioning_WebHelp.tar.gz, ServerManager_WebHelp.tar.gz from webhelp build.&lt;br&gt;&#xd;
+Run EAT ANT build&lt;br&gt;&#xd;
+Run setver.py to set the version of the TestCenter binary files.&lt;br&gt;&#xd;
+Run ci_packageinstaller.pl to create P2_installer and FORTHOT installer files.&lt;br&gt;&#xd;
+Run ci_packageinstaller.pl to create DMCP installer files.&lt;br&gt;&#xd;
+Copy build results to \\martin\archive\pv\TestCenter\4.10\Engineering_Builds\integration\BUILDVERSION&lt;br&gt;&#xd;
 Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
@@ -97,7 +97,6 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
 //ISDE_China/SDE/Java/... //ws/framework/ui/EAT/...
 //TestCenter/${BRANCH_NAME}/framework/bll/serverManager/scripts/... //ws/framework/bll/serverManager/scripts/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -127,7 +126,7 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -138,7 +137,7 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
     <useViewMaskForChangeLog>false</useViewMaskForChangeLog>
     <pollOnlyOnMaster>true</pollOnlyOnMaster>
   </scm>
-  <assignedNode>relpkg-04</assignedNode>
+  <assignedNode>spccalengec02</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
