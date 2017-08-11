@@ -2,7 +2,7 @@
 <project>
   <actions/>
   <description>&lt;STRONG&gt;This job upload stca and stcv images from nightly build into S3 bucket in Orion. It also cleans up old images that are older than &lt;DAYS_TO_KEEP_IMAGES&gt; parameter &lt;/STRONG&gt;&#xd;
-&lt;BR&gt;&#xd;
+&lt;BR&gt;&lt;BR&gt;&#xd;
 &lt;B&gt;Pre-Requisite:&lt;/B&gt;&lt;BR&gt;&#xd;
 - orion-cli.tgz from s3://spirent-orion-artifacts/deploys/test must be extracted and installed (path to datautil must be in the PATH environment variable)&lt;BR&gt;&#xd;
 - jq must be installed&lt;BR&gt;&#xd;
