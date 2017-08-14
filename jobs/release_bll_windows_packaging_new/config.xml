@@ -126,7 +126,7 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -243,6 +243,11 @@ del /f /q stc-rest-win32.tar.gz&#xd;
 REM -- not required for 4.77 -- copy \\storage.cal.ci.spirentcom.com\builds\stcweb\windows\stc-rest-win32.tar.gz stc-rest-win32.tar.gz &#xd;
 REM -- not required for 4.77 --  7z x stc-rest-win32.tar.gz&#xd;
 REM -- not required for 4.77 --  7z x -y -o&quot;%WORKSPACE%\bin\Release&quot; stc-rest-win32.tar&#xd;
+&#xd;
+set URL=https://jenkins.oriondev.net/job/stc-web/lastSuccessfulBuild/s3/download/stc-rest-win32.tar.gz&#xd;
+python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --downloadfilefromurl=%URL%&#xd;
+7z x stc-rest-win32.tar.gz&#xd;
+7z x -y -o&quot;%WORKSPACE%\bin\Release&quot; stc-rest-win32.tar&#xd;
 </command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
