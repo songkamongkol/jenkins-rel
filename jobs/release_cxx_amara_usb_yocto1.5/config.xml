@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
-  <description/>
+  <description></description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
     <numToKeep>15</numToKeep>
@@ -31,27 +32,27 @@
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
-          <description/>
+          <description></description>
           <defaultValue>4.79</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>SOURCE_OS</name>
-          <description/>
+          <description></description>
           <defaultValue>IL</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_ID</name>
-          <description/>
+          <description></description>
           <defaultValue>6</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>AV_BUILD_NUMBER</name>
-          <description/>
+          <description></description>
           <defaultValue>BAD_BUILD_NUMBER</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>OUTPUT_DIR</name>
-          <description/>
+          <description></description>
           <defaultValue>\\storage\gr\TestCenter\4.62\SR_Builds\SR462.1.2</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -62,7 +63,7 @@ NOTE: if any value other than none is provided, the job will try to upload the u
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>INCLUDE_APPSEC_PKG</name>
-          <description/>
+          <description></description>
           <defaultValue>TRUE</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -74,7 +75,7 @@ NOTE: if any value other than none is provided, the job will try to upload the u
   <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.34">
     <configVersion>2</configVersion>
     <p4User>scmbuild</p4User>
-    <p4Passwd/>
+    <p4Passwd></p4Passwd>
     <p4Port>perforce.spirentcom.com:1666</p4Port>
     <p4Client>${JOB_NAME}_${BRANCH_NAME}</p4Client>
     <projectPath>//SCM/Scripts/ci_* //ws/Build_Scripts/Scripts/ci_*
@@ -99,7 +100,7 @@ NOTE: if any value other than none is provided, the job will try to upload the u
 //TARDIS/avalanche_release/... //ws/content/traffic/l4l7vm/...
 //TARDIS/Studio_release/avanext/... //ws/content/traffic/studio_perf/avanext/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner/>
+    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -169,32 +170,32 @@ sudo scons target=packageclean
 
 rm -f $WORKSPACE/*.txt
 
-# 2016-01-18: Temporary for 4.61, unshelve Ramana's change to fix AV l4l7vm version issue
+# 2016-01-18: Temporary for 4.61, unshelve Ramana&apos;s change to fix AV l4l7vm version issue
 # cp -f /home/spirent/appliance_usb /home/spirent/jenkins-rel/workspace/release_cxx_amara_usb_yocto1.5/build/il/scripts/targets/appliance_usb</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>#!/bin/bash
 
 # -- setup build number and path based on the branch name
-if [ "$BRANCH_NAME" = "integration" ]; then
-     export BRANCH_ID='3'
+if [ &quot;$BRANCH_NAME&quot; = &quot;integration&quot; ]; then
+     export BRANCH_ID=&apos;3&apos;
 fi
 
-if [ "$BRANCH_NAME" = "release" ]; then
-     export BRANCH_ID='6'
+if [ &quot;$BRANCH_NAME&quot; = &quot;release&quot; ]; then
+     export BRANCH_ID=&apos;6&apos;
 fi
 
 if [[ $BRANCH_NAME = *_rel* ]]; then
-     export BRANCH_ID='6'
+     export BRANCH_ID=&apos;6&apos;
 fi
-export PADDING=''
+export PADDING=&apos;&apos;
 
 if [ $BLL_BUILD_NUMBER -lt 100 ]; then 
-   export PADDING='0'
+   export PADDING=&apos;0&apos;
 fi;
 
 if [ $BLL_BUILD_NUMBER -lt 10 ]; then 
-   export PADDING='00'
+   export PADDING=&apos;00&apos;
 fi;
 
 
@@ -207,9 +208,9 @@ fi;
 # export c3_file=/gibson/TestCenter/${STC_MAJ_MIN_VERSION}/Engineering_Builds/IL/${FULL_BUILD}/fsimg/controller3-${FULL_BUILD}-fs-1.1.tgz
 # export c3_md5_file=/gibson/TestCenter/${STC_MAJ_MIN_VERSION}/Engineering_Builds/IL/${FULL_BUILD}/fsimg/controller3-${FULL_BUILD}-fs-1.1.tgz.md5
 # if [ -f $aonic_file ]; then
-# echo "Applicance file: $aonic_file"
+# echo &quot;Applicance file: $aonic_file&quot;
 # else
-# echo "Applicance file '$aonic_file'  not found, aborting"
+# echo &quot;Applicance file &apos;$aonic_file&apos;  not found, aborting&quot;
 # exit 1
 # fi
 
@@ -224,16 +225,16 @@ fi;
 # python $WORKSPACE/Build_Scripts/Scripts/ci_run_jenkins_steps.py --createversionfile=yes</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command>if [ "$AV_BUILD_NUMBER" = "BAD_BUILD_NUMBER" ]; then
-    export DESC=`p4 describe $(p4 changes -m1 content/traffic/l4l7vm/... | awk '{print $2}') |grep Description\:`
+      <command>if [ &quot;$AV_BUILD_NUMBER&quot; = &quot;BAD_BUILD_NUMBER&quot; ]; then
+    export DESC=`p4 describe $(p4 changes -m1 content/traffic/l4l7vm/... | awk &apos;{print $2}&apos;) |grep Description\:`
     export AV_BUILD_NUMBER=${DESC: -9}
-    echo "No explicit AV build number has been specified in the job parameter, obtaining AV build number from Perforce check-in ..."
-    echo "Setting AV Build number to $AV_BUILD_NUMBER"
+    echo &quot;No explicit AV build number has been specified in the job parameter, obtaining AV build number from Perforce check-in ...&quot;
+    echo &quot;Setting AV Build number to $AV_BUILD_NUMBER&quot;
 fi
 
-echo 'Creating C1/C100 USB image (Appliance)'
+echo &apos;Creating C1/C100 USB image (Appliance)&apos;
 rm -rf $WORKSPACE/framework/il/kernel/yocto/spirent-linux
-if [ "$INCLUDE_APPSEC_PKG" = "TRUE" ]; then
+if [ &quot;$INCLUDE_APPSEC_PKG&quot; = &quot;TRUE&quot; ]; then
     $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_hypervisor_mix
     $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_usb
 else
@@ -242,11 +243,11 @@ else
 fi
 
 export RAW_BLDSTR=${BLL_BUILD_NUMBER}${BRANCH_ID}
-printf -v BLDNUMBER "%04d" ${RAW_BLDSTR#0}
+printf -v BLDNUMBER &quot;%04d&quot; ${RAW_BLDSTR#0}
 
-if [ "$AV_BUILD_NUMBER" = "" ]; then
+if [ &quot;$AV_BUILD_NUMBER&quot; = &quot;&quot; ]; then
     export AV_BUILD_NUMBER=${STC_MAJ_MIN_VERSION}.${BLDNUMBER}
-    echo "Setting AV Build number to ${STC_MAJ_MIN_VERSION}.${BLDNUMBER}"
+    echo &quot;Setting AV Build number to ${STC_MAJ_MIN_VERSION}.${BLDNUMBER}&quot;
 fi
 
 sudo $WORKSPACE/build/il/scripts/reversion_il.sh ${STC_MAJ_MIN_VERSION}.${BLDNUMBER} ${AV_BUILD_NUMBER}
@@ -255,7 +256,7 @@ $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 il_version=${STC_MAJ_MIN_V
 # gzip $WORKSPACE/framework/il/kernel/yocto/Install/usbimg_cxxx-1.5.img</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command>echo 'Creating Amara/Controller3 USB image (Yocto 1.5)'
+      <command>echo &apos;Creating Amara/Controller3 USB image (Yocto 1.5)&apos;
 $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 c3_hypervisor
 $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 c3_usb   
 rm -rf $WORKSPACE/framework/il/kernel/yocto/Install/usb_amara-1.5.img.gz
@@ -274,7 +275,7 @@ export BUILD_OUTPUT_DIR=$WORKSPACE
 export MARTIN_ROOT=/spirent/data/archive/pv/TestCenter
 export MARTIN=martin.spirentcom.com
 export RAW_BLDSTR=${BLL_BUILD_NUMBER}${BRANCH_ID}
-printf -v BLDNUMBER "%04d" ${RAW_BLDSTR#0}
+printf -v BLDNUMBER &quot;%04d&quot; ${RAW_BLDSTR#0}
 export BLDNBR=${STC_MAJ_MIN_VERSION}.${BLDNUMBER}
 export BUILD_DIR=$MARTIN_ROOT/$STC_MAJ_MIN_VERSION/Engineering_Builds/IL/$BLDNBR
 
@@ -282,11 +283,11 @@ ssh ${RSYNCUSER}@${MARTIN} mkdir -p $BUILD_DIR/usbimg
 rsync -avz $BUILD_OUTPUT_DIR/framework/il/kernel/yocto/Install/usb*1.5*.img.gz ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/usbimg
 
 # trim white space from SR
-export SR="$(echo -e "${SR}" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
+export SR=&quot;$(echo -e &quot;${SR}&quot; | sed -e &apos;s/^[[:space:]]*//&apos; -e &apos;s/[[:space:]]*$//&apos;)&quot;
 
-if [ "$SR" != "NONE" ];
+if [ &quot;$SR&quot; != &quot;NONE&quot; ];
 then
-    echo "Rsync USB image to -SR{$SR}-"
+    echo &quot;Rsync USB image to -SR{$SR}-&quot;
     export RSYNCUSER=spirent
     export STORAGE=storage.cal.ci.spirentcom.com
     export SR_DIR=/GR/TestCenter/${STC_MAJ_MIN_VERSION}/SR_Builds/SR${SR}/Manufacturing
@@ -324,17 +325,17 @@ fi
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
           <email>
-            <recipientList/>
+            <recipientList></recipientList>
             <subject>$PROJECT_DEFAULT_SUBJECT</subject>
             <body>$PROJECT_DEFAULT_CONTENT</body>
             <recipientProviders>
               <hudson.plugins.emailext.plugins.recipients.DevelopersRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
-            <replyTo/>
+            <replyTo></replyTo>
             <contentType>project</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.FailureTrigger>
@@ -342,8 +343,8 @@ fi
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern/>
-      <presendScript/>
+      <attachmentsPattern></attachmentsPattern>
+      <presendScript></presendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
       <replyTo>$DEFAULT_RECIPIENTS</replyTo>
