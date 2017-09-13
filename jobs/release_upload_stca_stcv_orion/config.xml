@@ -76,7 +76,7 @@ release_bll_windows_packaging_new</blockingJobs>
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -106,7 +106,13 @@ release_bll_windows_packaging_new</blockingJobs>
 python ./temeva_test_s3_artifacts_cleanup.py -t $DAYS_TO_KEEP_IMAGES</command>
     </hudson.tasks.Shell>
   </builders>
-  <publishers/>
+  <publishers>
+    <hudson.tasks.Mailer plugin="mailer@1.17">
+      <recipients>somboon.ongkamongkol@spirent.com</recipients>
+      <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
+      <sendToIndividuals>false</sendToIndividuals>
+    </hudson.tasks.Mailer>
+  </publishers>
   <buildWrappers>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.5.16"/>
     <EnvInjectBuildWrapper plugin="envinject@1.90">
