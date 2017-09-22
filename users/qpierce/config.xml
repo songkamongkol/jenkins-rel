@@ -8,7 +8,7 @@
     <jenkins.security.ApiTokenProperty>
       <apiToken>kmFkxgI2gciA9Jp0YnmG514nixuitMDrNmAYi7mb3luj2SGnAO6/rDRfFdaxvytg</apiToken>
     </jenkins.security.ApiTokenProperty>
-    <com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty plugin="credentials@1.14">
+    <com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty plugin="credentials@1.28">
       <domainCredentialsMap class="hudson.util.CopyOnWriteMap$Hash"/>
     </com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty>
     <hudson.model.MyViewsProperty>
@@ -28,7 +28,7 @@
     <hudson.security.HudsonPrivateSecurityRealm_-Details>
       <passwordHash>#jbcrypt:$2a$10$wpOBjYRB/j8XLhLupz6Y7uAswUrv6hM3dflIBJ1KQmyz/nIq7vNYu</passwordHash>
     </hudson.security.HudsonPrivateSecurityRealm_-Details>
-    <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.8">
+    <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.17">
       <emailAddress>quinten.pierce@spirent.com</emailAddress>
     </hudson.tasks.Mailer_-UserProperty>
     <jenkins.security.LastGrantedAuthoritiesProperty>
@@ -37,6 +37,6 @@
       </roles>
       <timestamp>1412621372013</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
-    <hudson.plugins.perforce.PerforceUserProperty plugin="perforce@1.3.27"/>
+    <hudson.plugins.perforce.PerforceUserProperty plugin="perforce@1.3.34"/>
   </properties>
 </user>
