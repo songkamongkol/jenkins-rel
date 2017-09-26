@@ -156,7 +156,7 @@ Wait 12 minutes&lt;br&gt;
   <quietPeriod>720</quietPeriod>
   <assignedNode>bllbldbsd63-02</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
