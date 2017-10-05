@@ -35,7 +35,7 @@ release_bll_windows_packaging_new</blockingJobs>
         <hudson.model.StringParameterDefinition>
           <name>DAYS_TO_KEEP_IMAGES</name>
           <description></description>
-          <defaultValue>14</defaultValue>
+          <defaultValue>30</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -76,7 +76,7 @@ release_bll_windows_packaging_new</blockingJobs>
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
