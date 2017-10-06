@@ -25,7 +25,7 @@ Wait 20 minutes to stagger builds (1200) seconds.&lt;br&gt;
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.78_rel</defaultValue>
+          <defaultValue>4.79_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -45,7 +45,7 @@ Wait 20 minutes to stagger builds (1200) seconds.&lt;br&gt;
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description>major minor version TODO: get this from a file</description>
-          <defaultValue>4.78</defaultValue>
+          <defaultValue>4.79</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
