@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
   <description>*** This job is for Linux-64 Client tar ball ***
 Extracts TestCenter.Linux.x64.tar.gz from bll_linux_x64 build job&lt;br&gt;
@@ -40,12 +41,12 @@ Triggers integration_ftp_tarball which restructures the tarball and copies the o
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
-          <description/>
+          <description></description>
           <defaultValue>BAD_BUILD_NUMBER</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>SOURCE_OS</name>
-          <description/>
+          <description></description>
           <defaultValue>EL3Linux64Client</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -64,6 +65,7 @@ Triggers integration_ftp_tarball which restructures the tarball and copies the o
 //SCM/Scripts/ci_* //ws/Build_Scripts/Scripts/ci_*
 //TestCenter/${BRANCH_NAME}/framework/tools/buildUtil/... //ws/framework/tools/buildUtil/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
+    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -116,8 +118,8 @@ Triggers integration_ftp_tarball which restructures the tarball and copies the o
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
       <project>release_bll_linux_x64_ci</project>
       <filter>build/il/bld_bll-el3-64-automation-client-only_x86_64/Release/bin/TestCenter.Linux.AutomationClient.x64.tar.gz</filter>
-      <target/>
-      <excludes/>
+      <target></target>
+      <excludes></excludes>
       <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
@@ -131,7 +133,7 @@ python ../Build_Scripts/Scripts/ci_run_jenkins_steps.py --createpropfile=yes --r
 rm -f Spirent_TestCenter_Auto_Linux64Client_$STC_MAJ_MIN_VERSION.tar.gz
 tar cvf Spirent_TestCenter_Auto_Linux64Client_$STC_MAJ_MIN_VERSION.tar *
 gzip Spirent_TestCenter_Auto_Linux64Client_$STC_MAJ_MIN_VERSION.tar
-echo "Finished creating Spirent_TestCenter_Auto_Linux64Client_$STC_MAJ_MIN_VERSION.tar.gz"</command>
+echo &quot;Finished creating Spirent_TestCenter_Auto_Linux64Client_$STC_MAJ_MIN_VERSION.tar.gz&quot;</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
