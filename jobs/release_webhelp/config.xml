@@ -1,9 +1,8 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<project>
+<?xml version="1.0" encoding="UTF-8"?><project>
   <actions/>
-  <description>Uses MadCap Flare tool to compile webhelp files&lt;br&gt;&#xd;
-Creates STC and Server Manager help files&lt;br&gt;&#xd;
-Archives output as tar files for use during packaging jobs&lt;br&gt;&#xd;
+  <description>Uses MadCap Flare tool to compile webhelp files&lt;br&gt;
+Creates STC and Server Manager help files&lt;br&gt;
+Archives output as tar files for use during packaging jobs&lt;br&gt;
 Triggers release_bll_win_pkg_webhelp&lt;br&gt;</description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
@@ -20,8 +19,8 @@ Triggers release_bll_win_pkg_webhelp&lt;br&gt;</description>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
-          <description></description>
-          <defaultValue>4.79_rel</defaultValue>
+          <description/>
+          <defaultValue>4.80_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -32,7 +31,7 @@ Triggers release_bll_win_pkg_webhelp&lt;br&gt;</description>
   <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.34">
     <configVersion>2</configVersion>
     <p4User>scmbuild</p4User>
-    <p4Passwd></p4Passwd>
+    <p4Passwd/>
     <p4Port>perforce.spirentcom.com:1666</p4Port>
     <p4Client>${JOB_NAME}_${BRANCH_NAME}</p4Client>
     <projectPath>//tech_pubs/online_help/Spirent_TestCenter/... //ws/online_help/Spirent_TestCenter/...
@@ -88,38 +87,38 @@ Triggers release_bll_win_pkg_webhelp&lt;br&gt;</description>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>&quot;C:\Program Files\MadCap Software\MadCap Flare 13\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\Spirent_TestCenter\StcHelp.flprj&quot; -target &quot;WebHelp.fltar&quot; -log true&#xd;
-&quot;C:\Program Files\MadCap Software\MadCap Flare 13\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\Session_Manager\StcSMHelp.flprj&quot; -target &quot;WebHelp.fltar&quot; -log true&#xd;
-&quot;C:\Program Files\MadCap Software\MadCap Flare 13\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\CTS\cts.flprj&quot; -target &quot;WebHelp.fltar&quot; -log true</command>
+      <command>"C:\Program Files\MadCap Software\MadCap Flare 13\Flare.app\madbuild" -project "%WORKSPACE%\online_help\Spirent_TestCenter\StcHelp.flprj" -target "WebHelp.fltar" -log true
+"C:\Program Files\MadCap Software\MadCap Flare 13\Flare.app\madbuild" -project "%WORKSPACE%\online_help\Session_Manager\StcSMHelp.flprj" -target "WebHelp.fltar" -log true
+"C:\Program Files\MadCap Software\MadCap Flare 13\Flare.app\madbuild" -project "%WORKSPACE%\online_help\CTS\cts.flprj" -target "WebHelp.fltar" -log true</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>7z a -ttar CTS_WebHelp.tar %WORKSPACE%\online_help\CTS\Output\spirent\WebHelp&#xd;
-7z a -ttar CTS_WebHelp.tar %WORKSPACE%\online_help\CTS\HelpResource.resx&#xd;
-7z a -tgzip CTS_WebHelp.tar.gz CTS_WebHelp.tar&#xd;
-&#xd;
-echo Creating TestCenter_WebHelp.tar.gz file&#xd;
-7z a -ttar TestCenter_WebHelp.tar %WORKSPACE%\online_help\Spirent_TestCenter\Output\spirent\WebHelp&#xd;
-7z a -ttar TestCenter_WebHelp.tar %WORKSPACE%\online_help\Spirent_TestCenter\HelpResource.resx&#xd;
-7z a -tgzip TestCenter_WebHelp.tar.gz TestCenter_WebHelp.tar&#xd;
-&#xd;
-7z a -ttar ServerManager_WebHelp.tar %WORKSPACE%\online_help\Session_Manager\Output\spirent\WebHelp&#xd;
-7z a -ttar ServerManager_WebHelp.tar %WORKSPACE%\online_help\Session_Manager\HelpResource.resx&#xd;
-7z a -tgzip ServerManager_WebHelp.tar.gz ServerManager_WebHelp.tar&#xd;
-&#xd;
-7z a -ttar WebHelp_mclog.tar %WORKSPACE%\online_help\Spirent_TestCenter\Project\Reports\WebHelp.fltar*&#xd;
-7z a -tgzip WebHelp_mclog.tar.gz WebHelp_mclog.tar&#xd;
-&#xd;
-del TestCenter_WebHelp.tar&#xd;
-del ServerManager_WebHelp.tar&#xd;
-del CTS_WebHelp.tar&#xd;
+      <command>7z a -ttar CTS_WebHelp.tar %WORKSPACE%\online_help\CTS\Output\spirent\WebHelp
+7z a -ttar CTS_WebHelp.tar %WORKSPACE%\online_help\CTS\HelpResource.resx
+7z a -tgzip CTS_WebHelp.tar.gz CTS_WebHelp.tar
+
+echo Creating TestCenter_WebHelp.tar.gz file
+7z a -ttar TestCenter_WebHelp.tar %WORKSPACE%\online_help\Spirent_TestCenter\Output\spirent\WebHelp
+7z a -ttar TestCenter_WebHelp.tar %WORKSPACE%\online_help\Spirent_TestCenter\HelpResource.resx
+7z a -tgzip TestCenter_WebHelp.tar.gz TestCenter_WebHelp.tar
+
+7z a -ttar ServerManager_WebHelp.tar %WORKSPACE%\online_help\Session_Manager\Output\spirent\WebHelp
+7z a -ttar ServerManager_WebHelp.tar %WORKSPACE%\online_help\Session_Manager\HelpResource.resx
+7z a -tgzip ServerManager_WebHelp.tar.gz ServerManager_WebHelp.tar
+
+7z a -ttar WebHelp_mclog.tar %WORKSPACE%\online_help\Spirent_TestCenter\Project\Reports\WebHelp.fltar*
+7z a -tgzip WebHelp_mclog.tar.gz WebHelp_mclog.tar
+
+del TestCenter_WebHelp.tar
+del ServerManager_WebHelp.tar
+del CTS_WebHelp.tar
 del WebHelp_mclog.tar</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.python.Python plugin="python@1.2">
       <command>import os
-bll_build_number=&quot;1&quot;
-print &quot;bll build number is &quot; + bll_build_number
-paramfile = open(os.environ[&apos;WORKSPACE&apos;] + &quot;\properties.txt&quot;, &quot;w&quot;)
-paramfile.write(&quot;BLL_BUILD_NUMBER=&quot; + bll_build_number)</command>
+bll_build_number="1"
+print "bll build number is " + bll_build_number
+paramfile = open(os.environ['WORKSPACE'] + "\properties.txt", "w")
+paramfile.write("BLL_BUILD_NUMBER=" + bll_build_number)</command>
     </hudson.plugins.python.Python>
   </builders>
   <publishers>
@@ -137,8 +136,8 @@ paramfile.write(&quot;BLL_BUILD_NUMBER=&quot; + bll_build_number)</command>
     </hudson.plugins.logparser.LogParserPublisher>
     <hudson.plugins.perforce.PerforceTagNotifier plugin="perforce@1.3.34">
       <rawLabelName>${BRANCH_NAME}_webhelp_${BUILD_ID}</rawLabelName>
-      <rawLabelOwner></rawLabelOwner>
-      <rawLabelDesc></rawLabelDesc>
+      <rawLabelOwner/>
+      <rawLabelDesc/>
       <onlyOnSuccess>true</onlyOnSuccess>
     </hudson.plugins.perforce.PerforceTagNotifier>
     <hudson.plugins.parameterizedtrigger.BuildTrigger plugin="parameterized-trigger@2.25">
