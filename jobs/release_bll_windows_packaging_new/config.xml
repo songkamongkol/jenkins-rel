@@ -126,7 +126,7 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -253,6 +253,7 @@ python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --downloadfilef
     <hudson.tasks.BatchFile>
       <command>cd %WORKSPACE%\bin\release&#xd;
 SET DEPENDENT_JOB_NAME=%JOB_NAME%&#xd;
+attrib -r %WORKSPACE%\bin\release\pkgIndex.tcl&#xd;
 copy /y \\storage.cal.ci.spirentcom.com\builds\temp\pkgIndex.tcl %WORKSPACE%\bin\release\&#xd;
 copy  D:\jenkins-rel\release_bll_windows_packaging_new\bin\Release\NTAF\tool\Stc420Publication.xml  D:\jenkins-rel\release_bll_windows_packaging_new\bin\Release\NTAF\tool\Stc474Publication.xml /y&#xd;
 c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --createpropfile=yes --runcimaketarballs=no --runsetver=yes --updateilversionxml=yes --updatereleasetag=yes --updatepkgindextcl=yes --updatespirenttestcentertcl=yes --updatestclibtcl=yes --updategemspecversion=yes --updatentafxml=yes&#xd;
