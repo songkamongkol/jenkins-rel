@@ -626,12 +626,6 @@
       <userId>somboon</userId>
     </slave>
     <slave>
-      <temporaryOfflineCause class="hudson.node_monitors.DiskSpaceMonitorDescriptor$DiskSpace">
-        <path>/home/spirent/jenkins-rel</path>
-        <size>102957056</size>
-        <triggered>true</triggered>
-        <trigger>hudson.node_monitors.DiskSpaceMonitor</trigger>
-      </temporaryOfflineCause>
       <name>bllbldlnx-24</name>
       <description></description>
       <remoteFS>/home/spirent/jenkins-rel</remoteFS>
