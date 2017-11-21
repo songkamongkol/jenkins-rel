@@ -1,5 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<project>
+<?xml version="1.0" encoding="UTF-8"?><project>
   <actions/>
   <description>CI IL Build job for chos2:&lt;br&gt;
 $WORKSPACE/build/il/scripts/phxbld -j8 chos2_yocto&lt;br&gt;
@@ -23,7 +22,7 @@ Wait 10 minutes&lt;br&gt;</description>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.80_rel</defaultValue>
+          <defaultValue>4.81_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -42,8 +41,8 @@ Wait 10 minutes&lt;br&gt;</description>
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
-          <description></description>
-          <defaultValue>4.80</defaultValue>
+          <description/>
+          <defaultValue>4.81</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -59,7 +58,7 @@ Wait 10 minutes&lt;br&gt;</description>
   <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.34">
     <configVersion>2</configVersion>
     <p4User>scmbuild</p4User>
-    <p4Passwd></p4Passwd>
+    <p4Passwd/>
     <p4Port>perforceproxy.cal.ci.spirentcom.com:1999</p4Port>
     <p4Client>${JOB_NAME}_${BRANCH_NAME}</p4Client>
     <projectPath>//SCM/Scripts/ci_* //ws/Build_Scripts/Scripts/ci_*
@@ -80,7 +79,7 @@ Wait 10 minutes&lt;br&gt;</description>
 +//TestCenter/${BRANCH_NAME}/framework/bll/unittestdrv/... //ws/framework/bll/unittestdrv/...
 +//TestCenter/${BRANCH_NAME}/framework/bll/vendor/... //ws/framework/bll/vendor/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner></clientOwner>
+    <clientOwner/>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -139,7 +138,7 @@ echo BRANCH_NAME=$BRANCH_NAME &gt;&gt; $WORKSPACE/changelist.properties</command
     <hudson.tasks.Shell>
       <command># sync the latest cross compiler tool using a pre-defined p4 workspace 
 # if echo $HOSTNAME | grep SCM-IL-Build ; then
-#     echo &quot;Part of CI Build Cluster, no crosstool sync is required&quot;
+#     echo "Part of CI Build Cluster, no crosstool sync is required"
 # else
 #     p4 -c $HOSTNAME sync //$HOSTNAME/...
 # fi
@@ -172,7 +171,7 @@ $WORKSPACE/build/il/scripts/phxbld idltarball</command>
     <hudson.tasks.Shell>
       <command># rm -f il_chos2_$STC_MAJ_MIN_VERSION.tar
 # tar cvf il_chos2_$STC_MAJ_MIN_VERSION.tar ./build/il/packages
-echo &quot;Finished creating il_chos2_$STC_MAJ_MIN_VERSION.tar&quot;
+echo "Finished creating il_chos2_$STC_MAJ_MIN_VERSION.tar"
 # python $HOME/jenkins/ftp.py --ip=storage.cal.ci.spirentcom.com --n=30 --file=jenkins/il_chos2_yocto-$BRANCH_NAME/
 python $HOME/jenkins/build_cleanup.py --n=50 --file=/mnt/builds/jenkins/il_chos2_yocto-$BRANCH_NAME</command>
     </hudson.tasks.Shell>
@@ -199,17 +198,17 @@ python $HOME/jenkins/build_cleanup.py --n=50 --file=/mnt/builds/jenkins/il_chos2
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
           <email>
-            <recipientList></recipientList>
+            <recipientList/>
             <subject>$PROJECT_DEFAULT_SUBJECT</subject>
             <body>$PROJECT_DEFAULT_CONTENT</body>
             <recipientProviders>
               <hudson.plugins.emailext.plugins.recipients.DevelopersRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern></attachmentsPattern>
+            <attachmentsPattern/>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
-            <replyTo></replyTo>
+            <replyTo/>
             <contentType>project</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.FailureTrigger>
@@ -217,11 +216,11 @@ python $HOME/jenkins/build_cleanup.py --n=50 --file=/mnt/builds/jenkins/il_chos2
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern></attachmentsPattern>
-      <presendScript></presendScript>
+      <attachmentsPattern/>
+      <presendScript/>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
-      <replyTo></replyTo>
+      <replyTo/>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
@@ -231,7 +230,7 @@ python $HOME/jenkins/build_cleanup.py --n=50 --file=/mnt/builds/jenkins/il_chos2
           <command># copy the build output to storage server
 export STORAGE_DIR=/mnt/builds/jenkins/il_chos2_yocto-$BRANCH_NAME/build-$P4_CHANGELIST
 
-if [ ! -d &quot;$STORAGE_DIR&quot; ]; then
+if [ ! -d "$STORAGE_DIR" ]; then
   mkdir -p $STORAGE_DIR
 fi
 
