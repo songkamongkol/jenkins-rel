@@ -1,18 +1,18 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>IL Build job for virtual targets:&lt;br&gt;
-$WORKSPACE/build/il/scripts/phxbld -j8 aonic&lt;br&gt;
-$WORKSPACE/build/il/scripts/phxbld -j8 aonic_raw&lt;br&gt;
-$WORKSPACE/build/il/scripts/phxbld -j8 aonic_64&lt;br&gt;
-$WORKSPACE/build/il/scripts/phxbld -j8 aonic_64_raw&lt;br&gt;
-sudo rm $WORKSPACE/build/il/packages/fsimg/aonic-*&lt;br&gt;
-$WORKSPACE/build/il/scripts/phxbld -j8 appliance&lt;br&gt;
-$WORKSPACE/build/il/scripts/phxbld -j16 qemu&lt;br&gt;
-$WORKSPACE/build/il/scripts/phxbld -j16 qemu_raw&lt;br&gt;
-$WORKSPACE/build/il/scripts/phxbld -j16 stca&lt;br&gt;
-Archive il_virtual_*.tar&lt;br&gt;
-
+  <description>IL Build job for virtual targets:&lt;br&gt;&#xd;
+$WORKSPACE/build/il/scripts/phxbld -j8 aonic&lt;br&gt;&#xd;
+$WORKSPACE/build/il/scripts/phxbld -j8 aonic_raw&lt;br&gt;&#xd;
+$WORKSPACE/build/il/scripts/phxbld -j8 aonic_64&lt;br&gt;&#xd;
+$WORKSPACE/build/il/scripts/phxbld -j8 aonic_64_raw&lt;br&gt;&#xd;
+sudo rm $WORKSPACE/build/il/packages/fsimg/aonic-*&lt;br&gt;&#xd;
+$WORKSPACE/build/il/scripts/phxbld -j8 appliance&lt;br&gt;&#xd;
+$WORKSPACE/build/il/scripts/phxbld -j16 qemu&lt;br&gt;&#xd;
+$WORKSPACE/build/il/scripts/phxbld -j16 qemu_raw&lt;br&gt;&#xd;
+$WORKSPACE/build/il/scripts/phxbld -j16 stca&lt;br&gt;&#xd;
+Archive il_virtual_*.tar&lt;br&gt;&#xd;
+&#xd;
 </description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
@@ -94,7 +94,6 @@ Archive il_virtual_*.tar&lt;br&gt;
 //TARDIS/avalanche_release/... //ws/content/traffic/l4l7vm/...
 //TARDIS/Studio_release/avanext/... //ws/content/traffic/studio_perf/avanext/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -124,7 +123,7 @@ Archive il_virtual_*.tar&lt;br&gt;
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -184,13 +183,15 @@ p4 info
 # -- set environment variable to build VirtualMini
 export VM_PROFILE=all
 
-#$WORKSPACE/build/il/scripts/phxbld -j32 appliance_yocto_tardis3
-#$WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.0 appliance_hypervisor
-#$WORKSPACE/build/il/scripts/phxbld -j32 yocto_lxc_ose
-
-# $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_yocto_tardis3_mix
-
 if [[ $INCLUDE_APPSEC_PKG == &quot;TRUE&quot; ]]; then 
+    $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_yocto_tardis3_mix
+
+    l4l7lxc_storage=/mnt/builds/jenkins/l4l7lxc
+    mkdir -p $WORKSPACE/build/il/packages/rawimg
+    l4l7lxc_buildno=$(ls ${l4l7lxc_storage}/l4l7lxc*.tgz | awk -F &apos;-&apos; &apos;{print $2}&apos; | sed &apos;s/\.tgz//g&apos;)
+    cp -f ${l4l7lxc_storage}/l4l7lxc*.tgz $WORKSPACE/build/il/packages/rawimg
+
+    $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 av_version=${l4l7lxc_buildno} appliance_packaging  
     $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_hypervisor_mix
     $WORKSPACE/build/il/scripts/phxbld -j32 yocto_lxc_ose
 else
@@ -274,7 +275,6 @@ cp -r $WORKSPACE/build/il/packages/rawimg $STORAGE_DIR
       <scriptOnlyIfSuccess>true</scriptOnlyIfSuccess>
       <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
       <markBuildUnstable>false</markBuildUnstable>
-      <executeOn>BOTH</executeOn>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
   </publishers>
   <buildWrappers>
