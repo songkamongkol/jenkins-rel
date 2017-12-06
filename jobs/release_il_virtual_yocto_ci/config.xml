@@ -123,7 +123,7 @@ Archive il_virtual_*.tar&lt;br&gt;&#xd;
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -189,7 +189,7 @@ if [[ $INCLUDE_APPSEC_PKG == &quot;TRUE&quot; ]]; then
     l4l7lxc_storage=/mnt/builds/jenkins/l4l7lxc
     mkdir -p $WORKSPACE/build/il/packages/rawimg
     l4l7lxc_buildno=$(ls ${l4l7lxc_storage}/l4l7lxc*.tgz | awk -F &apos;-&apos; &apos;{print $2}&apos; | sed &apos;s/\.tgz//g&apos;)
-    cp -f ${l4l7lxc_storage}/l4l7lxc*.tgz $WORKSPACE/build/il/packages/rawimg
+    cp -f ${l4l7lxc_storage}/*.tgz $WORKSPACE/build/il/packages/rawimg
 
     $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 av_version=${l4l7lxc_buildno} appliance_packaging  
     $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_hypervisor_mix
