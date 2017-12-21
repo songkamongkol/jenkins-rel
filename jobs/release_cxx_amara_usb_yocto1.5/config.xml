@@ -129,7 +129,7 @@ NOTE: if any value other than none is provided, the job will try to upload the u
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -237,10 +237,12 @@ if [ &quot;$INCLUDE_APPSEC_PKG&quot; = &quot;TRUE&quot; ]; then
     export VM_PROFILE=all
     $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_yocto_tardis3_mix
 
+    l4l7lxc_storage=/mnt/builds/jenkins/l4l7lxc
     mkdir -p $WORKSPACE/build/il/packages/rawimg
-    cp -r /mnt/builds/temp/l4l7lxc-4.79.0769.tgz $WORKSPACE/build/il/packages/rawimg
+    l4l7lxc_buildno=$(ls ${l4l7lxc_storage}/l4l7lxc*.tgz | awk -F &apos;-&apos; &apos;{print $2}&apos; | sed &apos;s/\.tgz//g&apos;)
+    cp -f ${l4l7lxc_storage}/*.tgz $WORKSPACE/build/il/packages/rawimg
 
-    $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 av_version=4.79.0769 appliance_packaging  
+    $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 av_version=${l4l7lxc_buildno} appliance_packaging  
     rm -rf $WORKSPACE/framework/il/kernel/yocto/spirent-linux
     $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_hypervisor_mix
     $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_usb
