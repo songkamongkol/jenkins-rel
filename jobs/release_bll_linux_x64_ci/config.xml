@@ -87,7 +87,6 @@
 +//TestCenter/${BRANCH_NAME}/common/.../ui/... //ws/common/.../ui/...
 +//TestCenter/${BRANCH_NAME}/framework/ui/automation/... //ws/framework/ui/automation/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -117,7 +116,7 @@
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -149,22 +148,10 @@ fi
 rm -rf $WORKSPACE/build/il/bld_bll-el3-64_x86_64/Release/bin/STAKCommands</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command>python genSln.py</command>
+      <command>python genSln.py
+./scons.sh -f SConstruct.bll -j 12 --debug=time debug=0 coverage=0 target=bll-el3-64
+./scons.sh -f SConstruct.bll  -j 12 --debug=time debug=0 coverage=0 target=bll-el3-64-automation-client-only</command>
     </hudson.tasks.Shell>
-    <com.thalesgroup.hudson.plugins.scons.SConsBuilderScriptFile plugin="scons@0.4">
-      <options>-f SConstruct.bll -j 12 --debug=time</options>
-      <variables>debug=0 coverage=0 target=bll-el3-64</variables>
-      <targets></targets>
-      <rootSconsscriptDirectory></rootSconsscriptDirectory>
-      <sconsscript></sconsscript>
-    </com.thalesgroup.hudson.plugins.scons.SConsBuilderScriptFile>
-    <com.thalesgroup.hudson.plugins.scons.SConsBuilderScriptFile plugin="scons@0.4">
-      <options>-f SConstruct.bll  -j 12 --debug=time</options>
-      <variables>debug=0 coverage=0 target=bll-el3-64-automation-client-only</variables>
-      <targets></targets>
-      <rootSconsscriptDirectory></rootSconsscriptDirectory>
-      <sconsscript></sconsscript>
-    </com.thalesgroup.hudson.plugins.scons.SConsBuilderScriptFile>
     <hudson.tasks.Shell>
       <command>if [ &quot;$BUILD_RUN_UNITTEST&quot; = &quot;true&quot; ]; then
     cd $WORKSPACE/$BUILD_OUTPUT_DIR
