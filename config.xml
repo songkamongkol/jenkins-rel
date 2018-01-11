@@ -962,6 +962,7 @@
             <string>release_bll_linux_x86_client_packaging</string>
             <string>release_bll_win_pkg_webhelp</string>
             <string>release_bll_windows_packaging_new</string>
+            <string>release_bll_windows_x64_packaging</string>
             <string>release_copy_to_spccalfs03_packaging</string>
             <string>release_core_labserver_packaging</string>
             <string>release_cts_linux_packaging</string>
