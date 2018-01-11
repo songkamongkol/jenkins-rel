@@ -1,0 +1,303 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>Startup error problem with TestCenter.Windows.tar.gz?&#xd;
+&#xd;
+Install the latest vcredist from http://www.microsoft.com/download/en/details.aspx?displaylang=en&amp;id=26347</description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
+      <useBuildBlocker>false</useBuildBlocker>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>BRANCH_NAME</name>
+          <description>branch name</description>
+          <defaultValue>4.82_rel</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>P4CLEANWORKSPACE</name>
+          <description>clean build</description>
+          <defaultValue>true</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>RUN_BLL_UI_UNITTEST</name>
+          <description>run unittest</description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>BUILD_PACKAGE_BUILD</name>
+          <description>package build</description>
+          <defaultValue>true</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BUILD_OUTPUT_DIR</name>
+          <description>build output dir</description>
+          <defaultValue>bin/Release_x64</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>STC_MAJ_MIN_VERSION</name>
+          <description>major minor version TODO: get this from a file</description>
+          <defaultValue>4.82</defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.22">
+      <autoRebuild>false</autoRebuild>
+    </com.sonyericsson.rebuild.RebuildSettings>
+  </properties>
+  <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.34">
+    <configVersion>2</configVersion>
+    <p4User>tableuser</p4User>
+    <p4Passwd>0f0kqlwa+WPDFs3o+uuTnxHPvpHAog==</p4Passwd>
+    <p4Port>perforceproxy.cal.ci.spirentcom.com:1999</p4Port>
+    <p4Client>${JOB_NAME}_${BRANCH_NAME}</p4Client>
+    <projectPath>+//TestCenter/${BRANCH_NAME}/... //ws/...
+-//TestCenter/*/Layer1/...
+-//TestCenter/*/userdocauto/...
+-//TestCenter/*/sandbox/...
+-//TestCenter/*/.../il/...
+-//TestCenter/*/.../hw/...
+-//TestCenter/*/.../WebHelp/...
+-//TestCenter/*/content/cts/...
+-//TestCenter/*/common/lib/java/...
+-//TestCenter/*/common/tools/scons/...
+-//TestCenter/*/framework/ui/resultsanalysis/...
+-//TestCenter/*/common/lib/boost_1_34_0/...
+-//TestCenter/*/Bakeoff_TestCaseScripts/...
+-//TestCenter/*/other/...
+-//TestCenter/*/documents/...
+-//TestCenter/*/schedules/...
+-//TestCenter/*/scm/...
+-//TestCenter/*/regression/...
++//TestCenter/${BRANCH_NAME}/scm/tools/... //ws/scm/tools/...
++//TestCenter/${BRANCH_NAME}/build/il/scripts/... //ws/build/il/scripts/...
++//TestCenter/${BRANCH_NAME}/build/il/configs/scripts/... //ws/build/il/configs/scripts/...</projectPath>
+    <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
+    <p4SysDrive>C:</p4SysDrive>
+    <p4SysRoot>C:\WINDOWS</p4SysRoot>
+    <browser class="hudson.plugins.perforce.browsers.P4Web">
+      <url>http://jenkins.ad.spirentcom.com:5104/</url>
+      <p4WebEndShite>?ac=22</p4WebEndShite>
+      <p4DifEndShite>?ac=19</p4DifEndShite>
+      <p4ClEndShite>?ac=10</p4ClEndShite>
+    </browser>
+    <p4Tool>p4</p4Tool>
+    <useClientSpec>false</useClientSpec>
+    <useStreamDepot>false</useStreamDepot>
+    <forceSync>false</forceSync>
+    <alwaysForceSync>false</alwaysForceSync>
+    <dontUpdateServer>false</dontUpdateServer>
+    <disableAutoSync>false</disableAutoSync>
+    <disableChangeLogOnly>false</disableChangeLogOnly>
+    <disableSyncOnly>false</disableSyncOnly>
+    <showIntegChanges>false</showIntegChanges>
+    <useOldClientName>false</useOldClientName>
+    <createWorkspace>true</createWorkspace>
+    <updateView>true</updateView>
+    <dontRenameClient>false</dontRenameClient>
+    <updateCounterValue>false</updateCounterValue>
+    <dontUpdateClient>false</dontUpdateClient>
+    <exposeP4Passwd>false</exposeP4Passwd>
+    <wipeBeforeBuild>false</wipeBeforeBuild>
+    <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
+    <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
+    <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
+    <firstChange>0</firstChange>
+    <fileLimit>0</fileLimit>
+    <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
+    <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
+    <lineEndValue>local</lineEndValue>
+    <useViewMask>true</useViewMask>
+    <useViewMaskForPolling>true</useViewMaskForPolling>
+    <useViewMaskForSyncing>false</useViewMaskForSyncing>
+    <useViewMaskForChangeLog>false</useViewMaskForChangeLog>
+    <pollOnlyOnMaster>true</pollOnlyOnMaster>
+  </scm>
+  <quietPeriod>60</quietPeriod>
+  <assignedNode>bllbuild-win-04</assignedNode>
+  <canRoam>false</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.BatchFile>
+      <command>del UI_changelist_*.txt&#xd;
+echo %P4_CHANGELIST% %JOB_NAME% %BUILD_NUMBER% &gt; UI_changelist_%P4_CHANGELIST%.txt&#xd;
+del properties.txt</command>
+    </hudson.tasks.BatchFile>
+    <hudson.tasks.BatchFile>
+      <command>echo STC BUILD ROOT is %STC_BUILD_ROOT%&#xd;
+mkdir __ui_only_build__&#xd;
+del /Q TestCenter.Windows.x64.bll.tar.gz&#xd;
+del BLL_changelist*.txt&#xd;
+rd /s /q bin\Release_x64\STAKCommands&#xd;
+&#xd;
+exit /B 0</command>
+    </hudson.tasks.BatchFile>
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
+      <project>release_bll_windows_x64_ci</project>
+      <filter>bin/Release_x64/TestCenter.Windows.x64.bll.tar.gz, BLL_changelist*.txt</filter>
+      <target></target>
+      <excludes></excludes>
+      <selector class="hudson.plugins.copyartifact.TriggeredBuildSelector">
+        <fallbackToLastSuccessful>true</fallbackToLastSuccessful>
+        <upstreamFilterStrategy>UseGlobalSetting</upstreamFilterStrategy>
+      </selector>
+      <flatten>true</flatten>
+      <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
+    </hudson.plugins.copyartifact.CopyArtifact>
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
+      <project>release_bll_windows_x64_ci</project>
+      <filter>bin/Release_x64/STAKCommands.beta.Windows.x64.tar.gz</filter>
+      <target></target>
+      <excludes></excludes>
+      <selector class="hudson.plugins.copyartifact.TriggeredBuildSelector">
+        <fallbackToLastSuccessful>true</fallbackToLastSuccessful>
+        <upstreamFilterStrategy>UseGlobalSetting</upstreamFilterStrategy>
+      </selector>
+      <flatten>true</flatten>
+      <doNotFingerprintArtifacts>true</doNotFingerprintArtifacts>
+    </hudson.plugins.copyartifact.CopyArtifact>
+    <hudson.tasks.BatchFile>
+      <command>python framework\tools\buildUtil\package.py --install TestCenter.Windows.x64.bll.tar.gz --directory=bin/Release_x64&#xd;
+attrib -r C:\jenkins\workspace\ui_x64\bin\Release_x64\phxrpc.dll&#xd;
+&#xd;
+python framework\tools\buildUtil\package.py --install STAKCommands.beta.Windows.x64.tar.gz --directory=bin/Release_x64 --append</command>
+    </hudson.tasks.BatchFile>
+    <hudson.tasks.BatchFile>
+      <command>python genSln.py</command>
+    </hudson.tasks.BatchFile>
+    <hudson.tasks.BatchFile>
+      <command>pushd C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\Tools&#xd;
+call VsDevCmd.bat -arch=x64&#xd;
+popd&#xd;
+msbuild.exe TestCenter.UI.Gen.sln /t:build /p:Configuration=Release /p:Platform=x64&#xd;
+</command>
+    </hudson.tasks.BatchFile>
+    <hudson.tasks.BatchFile>
+      <command>REM cd bin\Release_x64&#xd;
+REM rebase.exe -b 0x12000000 -u . *.dll&#xd;
+REM exit /B 0</command>
+    </hudson.tasks.BatchFile>
+    <hudson.tasks.BatchFile>
+      <command>if %RUN_BLL_UI_UNITTEST% == true (&#xd;
+cd bin\Release_x64&#xd;
+python ..\..\framework\tools\testRunner\testRunner.py --runInParallel=8 --ui --archive&#xd;
+rmdir /Q /S unit_test_report&#xd;
+mkdir unit_test_report&#xd;
+copy *.html unit_test_report&#xd;
+echo move *_CoverageReport unit_test_report&#xd;
+)</command>
+    </hudson.tasks.BatchFile>
+    <hudson.tasks.BatchFile>
+      <command>cd bin\Release_x64&#xd;
+del TestCenter*.tar.gz&#xd;
+if %BUILD_PACKAGE_BUILD% == true (&#xd;
+xcopy /Y /R /D ..\..\scm\tools\devexpress .&#xd;
+xcopy /Y /R /D ..\..\scm\tools\dundas .&#xd;
+xcopy /Y /R /D ..\..\scm\tools\janus .&#xd;
+python ..\..\framework\tools\buildUtil\package.py --package=TestCenter &#xd;
+python ..\..\framework\tools\buildUtil\package.py --package=STAKCommands.beta&#xd;
+copy TestCenter.Windows.x64.tar.gz TestCenter.Windows.x64.no_version.tar.gz&#xd;
+python ..\..\framework\tools\buildUtil\setver.py --package=TestCenter.Windows.x64.tar.gz %STC_MAJ_MIN_VERSION% %P4_CHANGELIST%&#xd;
+)</command>
+    </hudson.tasks.BatchFile>
+  </builders>
+  <publishers>
+    <hudson.tasks.ArtifactArchiver>
+      <artifacts>${BUILD_OUTPUT_DIR}/TestCenter.Windows*.tar.gz, UI_changelist_*.txt, BLL_changelist*.txt, ${BUILD_OUTPUT_DIR}/UnitTestLogs.tar.gz, ${BUILD_OUTPUT_DIR}/STAKCommands.beta.Windows.tar.gz</artifacts>
+      <allowEmptyArchive>false</allowEmptyArchive>
+      <onlyIfSuccessful>false</onlyIfSuccessful>
+      <fingerprint>false</fingerprint>
+      <defaultExcludes>true</defaultExcludes>
+    </hudson.tasks.ArtifactArchiver>
+    <hudson.plugins.logparser.LogParserPublisher plugin="log-parser@1.0.8">
+      <unstableOnWarning>false</unstableOnWarning>
+      <failBuildOnError>true</failBuildOnError>
+      <parsingRulesPath>/var/lib/jenkins/log_parse_rule</parsingRulesPath>
+    </hudson.plugins.logparser.LogParserPublisher>
+    <hudson.tasks.Fingerprinter>
+      <targets>${BUILD_OUTPUT_DIR}/TestCenter.Windows*.tar.gz, UI_changelist_*.txt, BLL_changelist*.txt,properties.txt</targets>
+    </hudson.tasks.Fingerprinter>
+    <org.jenkinsci.plugins.postbuildscript.PostBuildScript plugin="postbuildscript@0.17">
+      <scriptOnlyIfSuccess>false</scriptOnlyIfSuccess>
+      <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
+      <markBuildUnstable>false</markBuildUnstable>
+    </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
+    <hudson.plugins.claim.ClaimPublisher plugin="claim@2.5"/>
+    <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.39">
+      <recipientList>engstciteam@spirent.com,ENGCIFirstResponderTeam@spirent.com,sandeepsingh.gangwar@spirent.com,vivek.agarwal@spirent.com,krishna.kamath@spirent.com,praveena.kn@spirent.com,sujeet.kumar@spirent.com</recipientList>
+      <configuredTriggers>
+        <hudson.plugins.emailext.plugins.trigger.UnstableTrigger>
+          <email>
+            <recipientList></recipientList>
+            <subject>$PROJECT_DEFAULT_SUBJECT</subject>
+            <body>$PROJECT_DEFAULT_CONTENT</body>
+            <recipientProviders>
+              <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
+              <hudson.plugins.emailext.plugins.recipients.DevelopersRecipientProvider/>
+            </recipientProviders>
+            <attachmentsPattern></attachmentsPattern>
+            <attachBuildLog>false</attachBuildLog>
+            <compressBuildLog>false</compressBuildLog>
+            <replyTo></replyTo>
+            <contentType>project</contentType>
+          </email>
+        </hudson.plugins.emailext.plugins.trigger.UnstableTrigger>
+        <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
+          <email>
+            <recipientList></recipientList>
+            <subject>$PROJECT_DEFAULT_SUBJECT</subject>
+            <body>$PROJECT_DEFAULT_CONTENT</body>
+            <recipientProviders>
+              <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
+            </recipientProviders>
+            <attachmentsPattern></attachmentsPattern>
+            <attachBuildLog>false</attachBuildLog>
+            <compressBuildLog>false</compressBuildLog>
+            <replyTo></replyTo>
+            <contentType>project</contentType>
+          </email>
+        </hudson.plugins.emailext.plugins.trigger.FailureTrigger>
+        <hudson.plugins.emailext.plugins.trigger.FixedTrigger>
+          <email>
+            <recipientList></recipientList>
+            <subject>$PROJECT_DEFAULT_SUBJECT</subject>
+            <body>$PROJECT_DEFAULT_CONTENT</body>
+            <recipientProviders>
+              <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
+            </recipientProviders>
+            <attachmentsPattern></attachmentsPattern>
+            <attachBuildLog>false</attachBuildLog>
+            <compressBuildLog>false</compressBuildLog>
+            <replyTo></replyTo>
+            <contentType>project</contentType>
+          </email>
+        </hudson.plugins.emailext.plugins.trigger.FixedTrigger>
+      </configuredTriggers>
+      <contentType>default</contentType>
+      <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
+      <defaultContent>$DEFAULT_CONTENT</defaultContent>
+      <attachmentsPattern></attachmentsPattern>
+      <presendScript></presendScript>
+      <attachBuildLog>false</attachBuildLog>
+      <compressBuildLog>false</compressBuildLog>
+      <replyTo></replyTo>
+      <saveOutput>false</saveOutput>
+      <disabled>false</disabled>
+    </hudson.plugins.emailext.ExtendedEmailPublisher>
+  </publishers>
+  <buildWrappers>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.5.16"/>
+    <EnvInjectBuildWrapper plugin="envinject@1.90">
+      <info>
+        <propertiesContent>STC_BUILD_ROOT=c:\jenkins\workspace\release_ui_x64_ci</propertiesContent>
+        <loadFilesFromMaster>false</loadFilesFromMaster>
+      </info>
+    </EnvInjectBuildWrapper>
+  </buildWrappers>
+</project>
