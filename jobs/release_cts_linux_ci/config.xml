@@ -86,7 +86,6 @@
 +//TestCenter/${BRANCH_NAME}/common/.../ui/... //ws/common/.../ui/...
 +//TestCenter/${BRANCH_NAME}/framework/ui/automation/... //ws/framework/ui/automation/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -116,7 +115,7 @@
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -146,22 +145,11 @@
 fi</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command>python genSln.py</command>
+      <command>python genSln.py
+./scons.sh -j 12 -f SConstruct.bll --debug=time debug=0 coverage=0 target=bll-el3
+python $WORKSPACE/common/idl/crc.py -f bll_idl_crc.txt --desc &quot;$JOB_NAME $BUILD_NUMBER&quot;
+./scons.sh -j 12 -f SConstruct.bll --debug=time debug=0 coverage=0 distcc=0 target=cts-bll-el3</command>
     </hudson.tasks.Shell>
-    <com.thalesgroup.hudson.plugins.scons.SConsBuilderScriptFile plugin="scons@0.4">
-      <options>-j 12 -f SConstruct.bll --debug=time</options>
-      <variables>debug=0 coverage=0 target=bll-el3</variables>
-      <targets></targets>
-      <rootSconsscriptDirectory></rootSconsscriptDirectory>
-      <sconsscript></sconsscript>
-    </com.thalesgroup.hudson.plugins.scons.SConsBuilderScriptFile>
-    <com.thalesgroup.hudson.plugins.scons.SConsBuilderScriptFile plugin="scons@0.4">
-      <options>-j 12  -f SConstruct.bll --debug=time</options>
-      <variables>debug=0 coverage=0 target=cts-bll-el3</variables>
-      <targets></targets>
-      <rootSconsscriptDirectory></rootSconsscriptDirectory>
-      <sconsscript></sconsscript>
-    </com.thalesgroup.hudson.plugins.scons.SConsBuilderScriptFile>
     <hudson.tasks.Shell>
       <command>cd $WORKSPACE/$BUILD_OUTPUT_DIR
 rm -f CTS*.tar.gz
@@ -175,7 +163,7 @@ fi</command>
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
-      <artifacts>${BUILD_OUTPUT_DIR}/CTS*.tar.gz</artifacts>
+      <artifacts>${BUILD_OUTPUT_DIR}/CTS*.tar.gz,bll_idl_crc.txt</artifacts>
       <allowEmptyArchive>false</allowEmptyArchive>
       <onlyIfSuccessful>false</onlyIfSuccessful>
       <fingerprint>false</fingerprint>
