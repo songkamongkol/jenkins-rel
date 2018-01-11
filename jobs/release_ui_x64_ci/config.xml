@@ -164,7 +164,7 @@ exit /B 0</command>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.BatchFile>
       <command>python framework\tools\buildUtil\package.py --install TestCenter.Windows.x64.bll.tar.gz --directory=bin/Release_x64&#xd;
-attrib -r C:\jenkins\workspace\ui_x64\bin\Release_x64\phxrpc.dll&#xd;
+attrib -r C:\jenkins\workspace\release_ui_x64_ci\bin\Release_x64\phxrpc.dll&#xd;
 &#xd;
 python framework\tools\buildUtil\package.py --install STAKCommands.beta.Windows.x64.tar.gz --directory=bin/Release_x64 --append</command>
     </hudson.tasks.BatchFile>
