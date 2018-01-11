@@ -899,6 +899,7 @@
             <string>release_bll_linux_x64_ci</string>
             <string>release_bll_linux_x86client</string>
             <string>release_bll_windows_ci</string>
+            <string>release_bll_windows_x64_ci</string>
             <string>release_cts_linux_ci</string>
             <string>release_cts_windows_ci</string>
             <string>release_il_changeling_all_yocto_ci</string>
@@ -938,7 +939,7 @@
           <rightPortlets/>
           <topPortlets>
             <hudson.plugins.view.dashboard.stats.StatBuilds>
-              <id>dashboard_portlet_8683</id>
+              <id>dashboard_portlet_10007</id>
               <name>Build statistics</name>
             </hudson.plugins.view.dashboard.stats.StatBuilds>
           </topPortlets>
