@@ -123,7 +123,7 @@
     <useViewMaskForChangeLog>false</useViewMaskForChangeLog>
     <pollOnlyOnMaster>true</pollOnlyOnMaster>
   </scm>
-  <assignedNode>bllbuild-win-09</assignedNode>
+  <assignedNode>bllbuild-win-04</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
@@ -224,94 +224,6 @@ cd bin\Release_x64&#xd;
 python ..\..\framework\tools\testRunner\testRunner.py --runInParallel=8 --bll --stak --archive&#xd;
 )</command>
     </hudson.tasks.BatchFile>
-    <hudson.plugins.python.Python plugin="python@1.2">
-      <command>import os
-import zipfile
-import urllib2
-import tarfile
-import shutil
-
-def _download_file_from_url(url=None):
-    file_name = url.split(&apos;/&apos;)[-1]
-    u = urllib2.urlopen(url)
-    f = open(file_name, &apos;wb&apos;)
-    meta = u.info()
-    file_size = int(meta.getheaders(&quot;Content-Length&quot;)[0])
-    print &quot;Downloading: %s Bytes: %s&quot; % (file_name, file_size)
-
-    file_size_dl = 0
-    block_sz = 8192
-    while True:
-        buffer = u.read(block_sz)
-        if not buffer:
-            break
-
-        file_size_dl += len(buffer)
-        f.write(buffer)
-        status = r&quot;%10d  [%3.2f%%]&quot; % (file_size_dl, file_size_dl * 100. / file_size)
-        status = status + chr(8)*(len(status)+1)
-        print status,
-
-    f.close()
-
-def unzip(fname,dir_name):
-    if (fname.endswith(&quot;zip&quot;)):
-        zip_ref = zipfile.ZipFile(fname, &apos;r&apos;)
-        zip_ref.extractall(dir_name)
-        zip_ref.close()
-        print &quot;Extracted in %s Directory&quot; % dir_name
-    else:
-        print &quot;Not a zip file: &apos;%s &apos;&quot; % fname
-
-def extract_tarball(fname):
-    if (fname.endswith(&quot;tgz&quot;)):
-        tar = tarfile.open(fname, &quot;r:gz&quot;)
-        tar.extractall()
-        tar.close()
-    elif (fname.endswith(&quot;tar&quot;)):
-       tar = tarfile.open(fname, &quot;r:&quot;)
-       tar.extractall()
-       tar.close()
-        
-# -- download and extract orion-res*.zip file if 
-# -- specified in the job parameter
-try:
-    orion_res_url = os.environ[&apos;ORION_RES_URL&apos;]
-except Exception, e:
-    print &quot;Cannot find ORION_RES_URL in environment variable, skipping orion-res zip file download&quot;
-    exit(0)
-    
-if len(orion_res_url) &gt; 0:
-    print &quot;Downloading from %s&quot; % orion_res_url 
-    zip_filename = os.path.basename(orion_res_url)
-    if os.path.exists(zip_filename):
-        os.remove(zip_filename) # clean up previous file if exists
-    orion_res_output_dir = os.path.join(os.environ[&apos;WORKSPACE&apos;], &apos;bin&apos;, &apos;Release_x64&apos;, &apos;orion-res&apos;)
-    if os.path.exists(orion_res_output_dir):
-        shutil.rmtree(orion_res_output_dir) # clean up previous output dir if exists
-    _download_file_from_url(orion_res_url)
-    unzip(zip_filename, orion_res_output_dir)
-
-# -- download and extract magellan-frontend*.tgz file if 
-# -- specified in the job parameter
-try:
-    magellan_frontend_url = os.environ[&apos;MAGELLAN_FRONTEND_URL&apos;]
-except Exception, e:
-    print &quot;Cannot find MAGELLAN_FRONTEND_URL in environment variable, skipping MAGELLAN_FRONTEND_URL tar file download&quot;
-    exit(0)
-    
-if len(magellan_frontend_url) &gt; 0:
-    print &quot;Downloading from %s&quot; % magellan_frontend_url 
-    os.chdir(&apos;bin&apos;)
-    tgz_filename = os.path.basename(magellan_frontend_url)
-    if os.path.exists(tgz_filename):
-        os.remove(tgz_filename) # clean up previous file if exists
-    if os.path.exists(&apos;build&apos;):
-        shutil.rmtree(&apos;build&apos;) # clean up previous output dir from tgz file if exists
-    _download_file_from_url(magellan_frontend_url)
-    extract_tarball(tgz_filename)
-    shutil.move(&apos;build&apos;, os.path.join(orion_res_output_dir, &apos;content&apos;))</command>
-    </hudson.plugins.python.Python>
     <hudson.tasks.BatchFile>
       <command>cd bin\Release_x64&#xd;
 del TestCenter*.tar.gz&#xd;
@@ -329,15 +241,6 @@ python ..\..\framework\tools\buildUtil\package.py --package=STAKCommands.beta&#x
       <fingerprint>false</fingerprint>
       <defaultExcludes>true</defaultExcludes>
     </hudson.tasks.ArtifactArchiver>
-    <hudson.tasks.BuildTrigger>
-      <childProjects>regression_windows_x64</childProjects>
-      <threshold>
-        <name>SUCCESS</name>
-        <ordinal>0</ordinal>
-        <color>BLUE</color>
-        <completeBuild>true</completeBuild>
-      </threshold>
-    </hudson.tasks.BuildTrigger>
     <hudson.plugins.logparser.LogParserPublisher plugin="log-parser@1.0.8">
       <unstableOnWarning>false</unstableOnWarning>
       <failBuildOnError>true</failBuildOnError>
@@ -415,7 +318,7 @@ python ..\..\framework\tools\buildUtil\package.py --package=STAKCommands.beta&#x
           <configs>
             <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
           </configs>
-          <projects>ui_x64</projects>
+          <projects>release_ui_x64_ci, </projects>
           <condition>SUCCESS</condition>
           <triggerWithNoParameters>false</triggerWithNoParameters>
         </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
@@ -424,12 +327,5 @@ python ..\..\framework\tools\buildUtil\package.py --package=STAKCommands.beta&#x
   </publishers>
   <buildWrappers>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.5.16"/>
-    <EnvInjectBuildWrapper plugin="envinject@1.90">
-      <info>
-        <propertiesContent>ORION_RES_URL=https://jenkins.oriondev.net/job/magellan-backend-commit/lastSuccessfulBuild/artifact/res/dist/orion-res-windows-amd64.zip
-MAGELLAN_FRONTEND_URL=https://jenkins.oriondev.net/job/magellan-frontend-commit/lastSuccessfulBuild/artifact/app/magellan-frontend.tgz</propertiesContent>
-        <loadFilesFromMaster>false</loadFilesFromMaster>
-      </info>
-    </EnvInjectBuildWrapper>
   </buildWrappers>
 </project>
