@@ -916,6 +916,7 @@
             <string>release_il_virtual_yocto_ci</string>
             <string>release_results_reporter_windows_ci</string>
             <string>release_ui_ci</string>
+            <string>release_ui_x64_ci</string>
             <string>release_webhelp</string>
           </jobNames>
           <jobFilters/>
@@ -939,7 +940,7 @@
           <rightPortlets/>
           <topPortlets>
             <hudson.plugins.view.dashboard.stats.StatBuilds>
-              <id>dashboard_portlet_10007</id>
+              <id>dashboard_portlet_1068</id>
               <name>Build statistics</name>
             </hudson.plugins.view.dashboard.stats.StatBuilds>
           </topPortlets>
