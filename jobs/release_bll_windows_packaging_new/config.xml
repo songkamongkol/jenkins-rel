@@ -1,11 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>cSync SCM build scripts, EAT, help files and other files as needed for packaging.&lt;br&gt;&#xd;
+  <description>cSync SCM build scripts, help files and other files as needed for packaging.&lt;br&gt;&#xd;
 Retrieve tar.gz files from UI and RR build.&lt;br&gt;&#xd;
 Extract TestCenter.Windows.no_version.tar.gz, ResultsReporter.tar.gz UI and RR tar.gz files to bin/release folder.&lt;br&gt;&#xd;
 Retrieve TestCenter_WebHelp.tar.gz, Provisioning_WebHelp.tar.gz, ServerManager_WebHelp.tar.gz from webhelp build.&lt;br&gt;&#xd;
-Run EAT ANT build&lt;br&gt;&#xd;
 Run setver.py to set the version of the TestCenter binary files.&lt;br&gt;&#xd;
 Run ci_packageinstaller.pl to create P2_installer and FORTHOT installer files.&lt;br&gt;&#xd;
 Run ci_packageinstaller.pl to create DMCP installer files.&lt;br&gt;&#xd;
@@ -94,13 +93,11 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
 //TestCenter/${BRANCH_NAME}/common/lib/hexViewCtrl/... //ws/common/lib/hexViewCtrl/...
 //TestCenter/${BRANCH_NAME}/content/traffic/l4l7/tools/DpgUpdate/... //ws/bin/Release/Dpg/DpgUpdate/...
 //TestCenter/${BRANCH_NAME}/common/lib/pduEditor/... //ws/common/lib/pduEditor/...
-//ISDE_China/SDE/Java/... //ws/framework/ui/EAT/...
 //TestCenter/${BRANCH_NAME}/framework/bll/serverManager/scripts/... //ws/framework/bll/serverManager/scripts/...
 //TestCenter/${BRANCH_NAME}/content/HltAPI/SampleScripts/... //ws/content/HltAPI/SampleScripts/...
 //TestCenter/${BRANCH_NAME}/content/HltAPI/SourceCode/... //ws/content/HltAPI/SourceCode/...
 //TestCenter/${BRANCH_NAME}/content/HltAPI/build/... //ws/content/HltAPI/build/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -130,7 +127,7 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -236,12 +233,6 @@ c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --r
 </command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>echo Running EAT Ant build&#xd;
-c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --updateeatversion=yes&#xd;
-cd framework\ui\EAT&#xd;
-ant -f build_windows.xml&amp;&amp;ant -f build_linux.xml</command>
-    </hudson.tasks.BatchFile>
-    <hudson.tasks.BatchFile>
       <command>del /f /q stc-rest-win32.tar&#xd;
 del /f /q stc-rest-win32.tar.gz&#xd;
 REM -- not required for 4.77 -- copy \\storage.cal.ci.spirentcom.com\builds\stcweb\windows\stc-rest-win32.tar.gz stc-rest-win32.tar.gz &#xd;
@@ -266,19 +257,10 @@ perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPA
 perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% COPY_P2_INSTALLER&#xd;
 rem exit /B 0</command>
     </hudson.tasks.BatchFile>
-    <hudson.tasks.BatchFile>
-      <command>echo Creating EAT.Unix.tar.gz for unix distribution&#xd;
-7z a -ttar EAT.Unix.tar %WORKSPACE%\framework\ui\EAT\Release_Linux\*&#xd;
-7z a -ttar EAT.Unix.tar %WORKSPACE%\framework\ui\EAT\Build_Linux\configuration&#xd;
-7z a -ttar EAT.Unix.tar %WORKSPACE%\framework\ui\EAT\Build_Linux\plugins&#xd;
-7z a -ttar EAT.Unix.tar %WORKSPACE%\framework\ui\EAT\Build_Linux\.eclipseproduct&#xd;
-7z a -tgzip EAT.Unix.tar.gz EAT.Unix.tar&#xd;
-del EAT.Unix.tar</command>
-    </hudson.tasks.BatchFile>
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
-      <artifacts>Win64ResultsReporter.tar.gz, EAT.Unix.tar.gz, BLL_changelist*.txt, UI_changelist*.txt</artifacts>
+      <artifacts>Win64ResultsReporter.tar.gz, BLL_changelist*.txt, UI_changelist*.txt</artifacts>
       <allowEmptyArchive>false</allowEmptyArchive>
       <onlyIfSuccessful>false</onlyIfSuccessful>
       <fingerprint>false</fingerprint>
