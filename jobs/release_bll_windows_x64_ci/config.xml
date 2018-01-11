@@ -53,6 +53,12 @@
         </hudson.model.BooleanParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.promoted__builds.JobPropertyImpl plugin="promoted-builds@2.27">
+      <activeProcessNames>
+        <string>Release Build Passed Regression</string>
+        <string>Release Build Passed on all OS</string>
+      </activeProcessNames>
+    </hudson.plugins.promoted__builds.JobPropertyImpl>
     <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.22">
       <autoRebuild>false</autoRebuild>
     </com.sonyericsson.rebuild.RebuildSettings>
@@ -118,7 +124,7 @@
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>0</firstChange>
+    <firstChange>-1</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -134,17 +140,12 @@
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <triggers>
-    <hudson.triggers.SCMTrigger>
-      <spec>H * * * *</spec>
-      <ignorePostCommitHooks>false</ignorePostCommitHooks>
-    </hudson.triggers.SCMTrigger>
-  </triggers>
+  <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>del BLL_changelist_*.txt&#xd;
-echo %P4_CHANGELIST% %JOB_NAME% %BUILD_NUMBER% &gt; BLL_changelist_%P4_CHANGELIST%.txt</command>
+      <command>del BLL_x64_changelist_*.txt&#xd;
+echo %P4_CHANGELIST% %JOB_NAME% %BUILD_NUMBER% &gt; BLL_x64_changelist_%P4_CHANGELIST%.txt</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
       <command>if &quot;%RELEASE_BUILD%&quot; == &quot;true&quot; (&#xd;
@@ -241,7 +242,7 @@ python ..\..\framework\tools\buildUtil\package.py --package=STAKCommands.beta&#x
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
-      <artifacts>${BUILD_OUTPUT_DIR}/TestCenter.Windows.x64.bll.tar.gz, ${BUILD_OUTPUT_DIR}/UnitTestLogs.tar.gz, ${BUILD_OUTPUT_DIR}/pw_packages_to_test_report, ${BUILD_OUTPUT_DIR}/pw_packages_to_test, ${BUILD_OUTPUT_DIR}/pw_unknown_files_report, BLL_changelist*.txt, bll_idl_crc.txt, ${BUILD_OUTPUT_DIR}/STAKCommands.beta.Windows.x64.tar.gz</artifacts>
+      <artifacts>${BUILD_OUTPUT_DIR}/TestCenter.Windows.x64.bll.tar.gz, ${BUILD_OUTPUT_DIR}/UnitTestLogs.tar.gz, ${BUILD_OUTPUT_DIR}/pw_packages_to_test_report, ${BUILD_OUTPUT_DIR}/pw_packages_to_test, ${BUILD_OUTPUT_DIR}/pw_unknown_files_report, BLL_x64_changelist*.txt, bll_idl_crc.txt, ${BUILD_OUTPUT_DIR}/STAKCommands.beta.Windows.x64.tar.gz</artifacts>
       <allowEmptyArchive>false</allowEmptyArchive>
       <onlyIfSuccessful>false</onlyIfSuccessful>
       <fingerprint>false</fingerprint>
@@ -253,7 +254,7 @@ python ..\..\framework\tools\buildUtil\package.py --package=STAKCommands.beta&#x
       <parsingRulesPath>/var/lib/jenkins/log_parse_rule</parsingRulesPath>
     </hudson.plugins.logparser.LogParserPublisher>
     <hudson.tasks.Fingerprinter>
-      <targets>${BUILD_OUTPUT_DIR}/TestCenter.Windows.x64.bll.tar.gz, BLL_changelist*.txt, bll_idl_crc.txt</targets>
+      <targets>${BUILD_OUTPUT_DIR}/TestCenter.Windows.x64.bll.tar.gz, BLL_x64_changelist*.txt, bll_idl_crc.txt</targets>
     </hudson.tasks.Fingerprinter>
     <hudson.plugins.claim.ClaimPublisher plugin="claim@2.5"/>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.39">

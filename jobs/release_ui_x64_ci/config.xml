@@ -43,6 +43,11 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.promoted__builds.JobPropertyImpl plugin="promoted-builds@2.27">
+      <activeProcessNames>
+        <string>Release Build Passed Regression</string>
+      </activeProcessNames>
+    </hudson.plugins.promoted__builds.JobPropertyImpl>
     <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.22">
       <autoRebuild>false</autoRebuild>
     </com.sonyericsson.rebuild.RebuildSettings>

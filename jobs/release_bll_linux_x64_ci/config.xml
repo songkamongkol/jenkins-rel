@@ -87,7 +87,6 @@
 +//TestCenter/${BRANCH_NAME}/common/.../ui/... //ws/common/.../ui/...
 +//TestCenter/${BRANCH_NAME}/framework/ui/automation/... //ws/framework/ui/automation/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -133,12 +132,7 @@
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <triggers>
-    <hudson.triggers.SCMTrigger>
-      <spec>0,10,20,30,40,50 * * * *</spec>
-      <ignorePostCommitHooks>false</ignorePostCommitHooks>
-    </hudson.triggers.SCMTrigger>
-  </triggers>
+  <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
@@ -146,7 +140,11 @@
     cp -f $WORKSPACE/framework/bll/core/include/licensing/ga_release/ControlledReleaseCheck.h $WORKSPACE/framework/bll/core/include/licensing/ControlledReleaseCheck.h
 fi
 
-rm -rf $WORKSPACE/build/il/bld_bll-el3-64_x86_64/Release/bin/STAKCommands</command>
+rm -rf $WORKSPACE/build/il/bld_bll-el3-64_x86_64/Release/bin/STAKCommands
+
+rm -f BLL_Linux_x64_changelist_*.txt
+echo $P4_CHANGELIST $JOB_NAME $BUILD_NUMBER &gt; BLL_Linux_x64_changelist_$P4_CHANGELIST.txt
+</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>python genSln.py
@@ -182,7 +180,7 @@ fi</command>
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
-      <artifacts>${BUILD_OUTPUT_DIR}/TestCenter*.tar.gz, build/il/bld_bll-el3-64_x86_64/Release/bin/TestCenter.Linux.x64.full.tar.gz, build/il/bld_bll-el3-64_x86_64/Release/bin/STAKCommands.beta.Linux.x64.tar.gz</artifacts>
+      <artifacts>${BUILD_OUTPUT_DIR}/TestCenter*.tar.gz, build/il/bld_bll-el3-64_x86_64/Release/bin/TestCenter.Linux.x64.full.tar.gz, build/il/bld_bll-el3-64_x86_64/Release/bin/STAKCommands.beta.Linux.x64.tar.gz,BLL_Linux_x64_changelist*.txt</artifacts>
       <allowEmptyArchive>false</allowEmptyArchive>
       <onlyIfSuccessful>false</onlyIfSuccessful>
       <fingerprint>false</fingerprint>
@@ -202,7 +200,7 @@ fi</command>
       <healthScaleFactor>1.0</healthScaleFactor>
     </hudson.tasks.junit.JUnitResultArchiver>
     <hudson.tasks.Fingerprinter>
-      <targets>${BUILD_OUTPUT_DIR}/TestCenter*.tar.gz, build/il/bld_bll-el3-64_x86_64/Release/bin/TestCenter.Linux.x64.full.tar.gz</targets>
+      <targets>${BUILD_OUTPUT_DIR}/TestCenter*.tar.gz, build/il/bld_bll-el3-64_x86_64/Release/bin/TestCenter.Linux.x64.full.tar.gz,BLL_Linux_x64_changelist*.txt</targets>
     </hudson.tasks.Fingerprinter>
     <hudson.plugins.claim.ClaimPublisher plugin="claim@2.5"/>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.39">

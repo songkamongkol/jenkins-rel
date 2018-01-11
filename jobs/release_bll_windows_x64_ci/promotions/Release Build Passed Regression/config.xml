@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<hudson.plugins.promoted__builds.PromotionProcess plugin="promoted-builds@2.27">
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <conditions>
+    <hudson.plugins.promoted__builds.conditions.SelfPromotionCondition>
+      <evenIfUnstable>false</evenIfUnstable>
+    </hudson.plugins.promoted__builds.conditions.SelfPromotionCondition>
+  </conditions>
+  <icon>star-gold</icon>
+  <isVisible></isVisible>
+  <buildSteps>
+    <hudson.tasks.BatchFile>
+      <command>echo &quot;Promoted ID: %PROMOTED_ID%&quot;&#xd;
+echo &quot;Promoted Job: %PROMOTED_JOB_NAME%&quot;&#xd;
+echo &quot;Promoted URL: %PROMOTED_URL%&quot;&#xd;
+echo &quot;Promoted NUMBER: %PROMOTED_NUMBER%&quot;</command>
+    </hudson.tasks.BatchFile>
+  </buildSteps>
+</hudson.plugins.promoted__builds.PromotionProcess>
