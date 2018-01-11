@@ -94,7 +94,6 @@
 +//TestCenter/${BRANCH_NAME}/common/.../ui/... //ws/common/.../ui/...
 +//TestCenter/${BRANCH_NAME}/framework/ui/automation/... //ws/framework/ui/automation/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -124,7 +123,7 @@
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -157,7 +156,7 @@ fi</command>
       <command>export LD_LIBRARY_PATH=/usr/gcc_4_9/lib:$LD_LIBRARY_PATH
 export PATH=/usr/gcc_4_9/bin:$PATH
 python genSln.py
-scons -f SConstruct.bll -j 12 --debug=time debug=0 coverage=0 target=bll-el3 2&gt;&amp;1 | tee compile_output.txt
+./scons.sh -f SConstruct.bll -j 12 --debug=time debug=0 coverage=0 target=bll-el3 2&gt;&amp;1 | tee compile_output.txt
 python $WORKSPACE/framework/tools/buildUtil/gcc_warning_detect.py compile_output.txt
 python $WORKSPACE/common/idl/crc.py -f bll_idl_crc.txt --desc &quot;$JOB_NAME $BUILD_NUMBER&quot;
 
