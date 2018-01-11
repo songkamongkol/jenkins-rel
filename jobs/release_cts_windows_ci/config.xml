@@ -76,7 +76,6 @@
 -//TestCenter/${BRANCH_NAME}/.../WebHelp/...
 +//TestCenter/${BRANCH_NAME}/scm/tools/... //ws/scm/tools/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -106,7 +105,7 @@
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -149,32 +148,32 @@ copy framework\bll\core\include\licensing\ga_release\ControlledReleaseCheck.h fr
 rem devenv /build Release Plugins.BLL.Gen.sln&#xd;
 rem devenv /build Release TestCenter.Automation.Gen.sln&#xd;
 &#xd;
-scons -j 4 -f SConstruct.bll debug=0 target=bll-win32&#xd;
+.\scons.cmd -j 4 -f SConstruct.bll debug=0 target=bll-win32&#xd;
 </command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
       <command>rem devenv /build Release TestCenter.UI.Gen.sln&#xd;
-pushd C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC&#xd;
-call vcvarsall.bat x86&#xd;
+pushd C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\Tools&#xd;
+call VsDevCmd.bat -arch=x86&#xd;
 popd&#xd;
 msbuild.exe TestCenter.UI.Gen.sln /t:build /p:Configuration=Release</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
       <command>rem devenv /build Release CTS.sln&#xd;
-scons -j 4 -f SConstruct.bll debug=0 target=cts-bll-win32&#xd;
+.\scons.cmd -j 4 -f SConstruct.bll debug=0 target=cts-bll-win32&#xd;
 </command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
       <command>rem devenv /build Release CTS.UI.Gen.sln&#xd;
-pushd C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC&#xd;
-call vcvarsall.bat x86&#xd;
+pushd C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\Tools&#xd;
+call VsDevCmd.bat -arch=x86&#xd;
 popd&#xd;
 msbuild.exe CTS.UI.Gen.sln /t:build /p:Configuration=Release</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>cd bin\Release&#xd;
-rebase.exe -b 0x12000000 -u . *.dll&#xd;
-exit /B 0</command>
+      <command>REM cd bin\Release&#xd;
+REM rebase.exe -b 0x12000000 -u . *.dll&#xd;
+REM exit /B 0</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
       <command>rem cd %WORKSPACE%&#xd;
