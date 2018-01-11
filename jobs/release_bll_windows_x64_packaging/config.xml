@@ -157,7 +157,7 @@ exit /B 0</command>
       </condition>
       <buildStep class="hudson.plugins.copyartifact.CopyArtifact" plugin="copyartifact@1.35">
         <project>release_ui_x64_ci</project>
-        <filter>bin/Release_x64/TestCenter.Windows.x64.no_version.tar.gz, BLL_changelist*.txt, UI_changelist*.txt</filter>
+        <filter>bin/Release_x64/TestCenter.Windows.x64.no_version.tar.gz, *BLL_changelist*.txt,*UI_changelist*.txt</filter>
         <target></target>
         <excludes></excludes>
         <selector class="hudson.plugins.copyartifact.StatusBuildSelector">
@@ -169,7 +169,7 @@ exit /B 0</command>
       <runner class="org.jenkins_ci.plugins.run_condition.BuildStepRunner$Fail" plugin="run-condition@1.0"/>
     </org.jenkinsci.plugins.conditionalbuildstep.singlestep.SingleConditionalBuilder>
     <hudson.tasks.BatchFile>
-      <command>echo extracting TestCenter.Windows.x64.no_version.tar.gz file from job %COPYARTIFACT_BUILD_NUMBER_UI_X64%&#xd;
+      <command>echo extracting TestCenter.Windows.x64.no_version.tar.gz file from job %COPYARTIFACT_BUILD_NUMBER_RELEASE_UI_X64_CI%&#xd;
 python framework\tools\buildUtil\package.py --install TestCenter.Windows.x64.no_version.tar.gz --directory=bin/Release_x64</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
@@ -245,7 +245,7 @@ perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPA
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
-      <artifacts>BLL_changelist*.txt, UI_changelist*.txt</artifacts>
+      <artifacts>*BLL_changelist*.txt, *UI_changelist*.txt</artifacts>
       <allowEmptyArchive>false</allowEmptyArchive>
       <onlyIfSuccessful>false</onlyIfSuccessful>
       <fingerprint>false</fingerprint>
@@ -313,11 +313,8 @@ if(manager.logContains(&quot;.*getFileVer.vbs(.*) (null): The system cannot find
               <useMatrixChild>false</useMatrixChild>
               <onlyExactRuns>false</onlyExactRuns>
             </hudson.plugins.parameterizedtrigger.FileBuildParameters>
-            <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-              <properties>MODE=${MODE}</properties>
-            </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
           </configs>
-          <projects>integration_set_status</projects>
+          <projects>release_set_status</projects>
           <condition>SUCCESS</condition>
           <triggerWithNoParameters>false</triggerWithNoParameters>
         </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
