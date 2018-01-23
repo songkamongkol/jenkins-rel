@@ -3,7 +3,7 @@
   <actions/>
   <description></description>
   <logRotator class="hudson.tasks.LogRotator">
-    <daysToKeep>25</daysToKeep>
+    <daysToKeep>20</daysToKeep>
     <numToKeep>-1</numToKeep>
     <artifactDaysToKeep>-1</artifactDaysToKeep>
     <artifactNumToKeep>-1</artifactNumToKeep>
@@ -124,7 +124,7 @@
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
