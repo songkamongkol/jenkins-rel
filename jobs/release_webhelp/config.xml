@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>Uses MadCap Flare tool to compile webhelp files&lt;br&gt;
-Creates STC and Server Manager help files&lt;br&gt;
-Archives output as tar files for use during packaging jobs&lt;br&gt;
+  <description>Uses MadCap Flare tool to compile webhelp files&lt;br&gt;&#xd;
+Creates STC and Server Manager help files&lt;br&gt;&#xd;
+Archives output as tar files for use during packaging jobs&lt;br&gt;&#xd;
 Triggers release_bll_win_pkg_webhelp&lt;br&gt;</description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
@@ -31,15 +31,14 @@ Triggers release_bll_win_pkg_webhelp&lt;br&gt;</description>
   </properties>
   <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.34">
     <configVersion>2</configVersion>
-    <p4User>scmbuild</p4User>
-    <p4Passwd></p4Passwd>
+    <p4User>swilliams</p4User>
+    <p4Passwd>0f0kqlwa++gi6mdBtLvfa3AlrK8xqw==</p4Passwd>
     <p4Port>perforce.spirentcom.com:1666</p4Port>
     <p4Client>${JOB_NAME}_${BRANCH_NAME}</p4Client>
     <projectPath>//tech_pubs/online_help/Spirent_TestCenter/... //ws/online_help/Spirent_TestCenter/...
 //tech_pubs/online_help/Session_Manager/... //ws/online_help/Session_Manager/...
 //tech_pubs/online_help/CTS/... //ws/online_help/CTS/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -69,7 +68,7 @@ Triggers release_bll_win_pkg_webhelp&lt;br&gt;</description>
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
