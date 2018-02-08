@@ -36,7 +36,10 @@
       <perforceEmail>praveena.kn@spirent.com</perforceEmail>
     </hudson.plugins.perforce.PerforceUserProperty>
     <jenkins.security.LastGrantedAuthoritiesProperty>
-      <timestamp>0</timestamp>
+      <roles>
+        <string>authenticated</string>
+      </roles>
+      <timestamp>1518103307416</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
   </properties>
 </user>
