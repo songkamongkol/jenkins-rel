@@ -25,12 +25,12 @@
     <hudson.search.UserSearchProperty>
       <insensitiveSearch>false</insensitiveSearch>
     </hudson.search.UserSearchProperty>
-    <hudson.plugins.perforce.PerforceUserProperty plugin="perforce@1.3.34"/>
     <hudson.security.HudsonPrivateSecurityRealm_-Details>
       <passwordHash>#jbcrypt:$2a$10$TAT9ORSG1xwDX5X3I6sYIOZf1dizTT00rA5jKtKh.wFE0muJ3dDl.</passwordHash>
     </hudson.security.HudsonPrivateSecurityRealm_-Details>
     <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.17">
       <emailAddress>praveena.kn@spirent.com</emailAddress>
     </hudson.tasks.Mailer_-UserProperty>
+    <hudson.plugins.perforce.PerforceUserProperty plugin="perforce@1.3.34"/>
   </properties>
 </user>
