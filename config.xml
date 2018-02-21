@@ -795,7 +795,7 @@
       <name>spccalengec02</name>
       <description>Windows Server 2008 Standard R2 64 bit</description>
       <remoteFS>d:\jenkins-rel</remoteFS>
-      <numExecutors>2</numExecutors>
+      <numExecutors>3</numExecutors>
       <mode>NORMAL</mode>
       <retentionStrategy class="hudson.slaves.RetentionStrategy$Always"/>
       <launcher class="hudson.slaves.JNLPLauncher"/>
