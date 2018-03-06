@@ -912,7 +912,7 @@
     </hudson.model.AllView>
     <hudson.plugins.nested__view.NestedView plugin="nested-view@1.14">
       <owner class="hudson" reference="../../.."/>
-      <name>release(4.83_rel)</name>
+      <name>release(4.84_rel)</name>
       <filterExecutors>true</filterExecutors>
       <filterQueue>true</filterQueue>
       <properties class="hudson.model.View$PropertyList"/>
