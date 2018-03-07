@@ -30,7 +30,7 @@ Archive il_virtual_*.tar&lt;br&gt;
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.84_rel</defaultValue>
+          <defaultValue>4.83_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -50,7 +50,7 @@ Archive il_virtual_*.tar&lt;br&gt;
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description></description>
-          <defaultValue>4.84</defaultValue>
+          <defaultValue>4.83</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>INCLUDE_APPSEC_PKG</name>

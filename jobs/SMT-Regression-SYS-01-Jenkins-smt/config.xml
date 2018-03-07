@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
   <description>remotely trigger smarttest job on http://jenkins-smt.cal.ci.spirentcom.com:8080/job/release_patch_launch_smarttest/</description>
   <logRotator class="hudson.tasks.LogRotator">
@@ -16,13 +17,13 @@
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
-          <description/>
-          <defaultValue>4.84_rel</defaultValue>
+          <description></description>
+          <defaultValue>4.83_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
-          <description/>
-          <defaultValue>4.84</defaultValue>
+          <description></description>
+          <defaultValue>4.83</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -51,11 +52,11 @@ import urllib2
 
 
  
-job = 'SMT-Remote-Regression-SYS-01'
-#url = "http://jenkins-smt.cal.ci.spirentcom.com:8080/job/" + job +"/build"
-url = "http://jenkins-smt.cal.ci.spirentcom.com:8080/job/" + job +"/buildWithParameters?token=mosheallowedtodothis&amp;STC_MAJ_MIN_VERSION="+os.environ['STC_MAJ_MIN_VERSION']
+job = &apos;SMT-Remote-Regression-SYS-01&apos;
+#url = &quot;http://jenkins-smt.cal.ci.spirentcom.com:8080/job/&quot; + job +&quot;/build&quot;
+url = &quot;http://jenkins-smt.cal.ci.spirentcom.com:8080/job/&quot; + job +&quot;/buildWithParameters?token=mosheallowedtodothis&amp;STC_MAJ_MIN_VERSION=&quot;+os.environ[&apos;STC_MAJ_MIN_VERSION&apos;]
 print url
-#data="token=mosheallowedtodothis"
+#data=&quot;token=mosheallowedtodothis&quot;
 #creating HTTP Req
 req = urllib2.Request(url)
 f = urllib2.urlopen(req)

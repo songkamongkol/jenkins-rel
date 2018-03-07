@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
   <description>Update latestbuild.txt file in \\martin\archive\pv\TestCenter\&lt;version&gt;\Engineering_Builds to include the latest build number (for SmartTest)
 </description>
@@ -17,32 +18,32 @@
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
-          <description/>
-          <defaultValue>4.84_rel</defaultValue>
+          <description></description>
+          <defaultValue>4.83_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
-          <description/>
-          <defaultValue>4.84</defaultValue>
+          <description></description>
+          <defaultValue>4.83</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
-          <description/>
+          <description></description>
           <defaultValue>BAD_BUILD_NUMBER</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>SOURCE_OS</name>
-          <description/>
+          <description></description>
           <defaultValue>IL</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>MODE</name>
-          <description/>
+          <description></description>
           <defaultValue>NIGHTLY</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>PROMOTED_URL_PARAM</name>
-          <description/>
+          <description></description>
           <defaultValue>http://jenkins-rel.cal.ci.spirentcom.com:8080/job/release_launch_nightly_packaging/lastSuccessfulBuild</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -60,7 +61,7 @@
     <projectPath>//SCM/Build_Scripts/STC_Build_Scripts/... //ws/Build_Scripts/STC_Build_Scripts/...
 //SCM/Scripts/... //ws/Build_Scripts/Scripts/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner/>
+    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <p4Tool>p4</p4Tool>
@@ -104,17 +105,17 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>del /f /q IL_*.txt
-del /f /q BUILD_*.txt
+      <command>del /f /q IL_*.txt&#xd;
+del /f /q BUILD_*.txt&#xd;
 del /f /q .changelist</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>net use /Delete I:
-net use M: /delete
-net use M: \\martin\archive\pv Spirent8 /USER:SPIRENTCOM\qabuild
-net use F: \\filer.spirentcom.com\home\qabuild Spirent8 /USER:SPIRENTCOM\qabuild
-net use
-
+      <command>net use /Delete I:&#xd;
+net use M: /delete&#xd;
+net use M: \\martin\archive\pv Spirent8 /USER:SPIRENTCOM\qabuild&#xd;
+net use F: \\filer.spirentcom.com\home\qabuild Spirent8 /USER:SPIRENTCOM\qabuild&#xd;
+net use&#xd;
+&#xd;
 c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --updatelatestbuildtext=yes</command>
     </hudson.tasks.BatchFile>
   </builders>

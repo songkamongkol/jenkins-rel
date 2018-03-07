@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
-  <description/>
+  <description></description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
     <numToKeep>50</numToKeep>
@@ -17,7 +18,7 @@
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.84_rel</defaultValue>
+          <defaultValue>4.83_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -33,7 +34,7 @@
   <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.34">
     <configVersion>2</configVersion>
     <p4User>tableuser</p4User>
-    <p4Passwd/>
+    <p4Passwd></p4Passwd>
     <p4Port>perforceproxy.cal.ci.spirentcom.com:1999</p4Port>
     <p4Client>${JOB_NAME}_${BRANCH_NAME}</p4Client>
     <projectPath>+//TestCenter/${BRANCH_NAME}/framework/ui/resultsanalysis/... //ws/framework/ui/resultsanalysis/...
@@ -41,7 +42,7 @@
 +//TestCenter/${BRANCH_NAME}/framework/ui/resultsanalysis/tools/jvm/windows_x86_1.6.0_35/... //ws/framework/ui/resultsanalysis/tools/jvm/windows_x86_1.6.0_35/...
 +//TestCenter/${BRANCH_NAME}/framework/tools/buildUtil/... //ws/framework/tools/buildUtil/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner/>
+    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <p4Tool>p4</p4Tool>
@@ -90,31 +91,31 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>set JAVA_HOME=C:\Program Files (x86)\Java\jdk1.6.0_35
-set JAVACMD=C:\Program Files (x86)\Java\jdk1.6.0_35\bin\java.exe
-cd framework\ui\resultsanalysis
+      <command>set JAVA_HOME=C:\Program Files (x86)\Java\jdk1.6.0_35&#xd;
+set JAVACMD=C:\Program Files (x86)\Java\jdk1.6.0_35\bin\java.exe&#xd;
+cd framework\ui\resultsanalysis&#xd;
 ant</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>set JAVA_HOME=C:\Program Files (x86)\Java\jdk1.6.0_35
-set JAVACMD=C:\Program Files (x86)\Java\jdk1.6.0_35\bin\java.exe
-cd framework\ui\resultsanalysis
+      <command>set JAVA_HOME=C:\Program Files (x86)\Java\jdk1.6.0_35&#xd;
+set JAVACMD=C:\Program Files (x86)\Java\jdk1.6.0_35\bin\java.exe&#xd;
+cd framework\ui\resultsanalysis&#xd;
 ant unixDist</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>echo Creating Results Reporter tar.gz for Windows x86 distribution
-python framework\tools\buildUtil\package.py --create=Win32ResultsReporter.tar.gz --directory=framework/ui/resultsanalysis/windows_dist/windows_x86 **
-
-echo Creating Results Reporter tar.gz for Windows x64 distribution
-python framework\tools\buildUtil\package.py --create=Win64ResultsReporter.tar.gz --directory=framework/ui/resultsanalysis/windows_dist/windows_x64 **
+      <command>echo Creating Results Reporter tar.gz for Windows x86 distribution&#xd;
+python framework\tools\buildUtil\package.py --create=Win32ResultsReporter.tar.gz --directory=framework/ui/resultsanalysis/windows_dist/windows_x86 **&#xd;
+&#xd;
+echo Creating Results Reporter tar.gz for Windows x64 distribution&#xd;
+python framework\tools\buildUtil\package.py --create=Win64ResultsReporter.tar.gz --directory=framework/ui/resultsanalysis/windows_dist/windows_x64 **&#xd;
 </command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>echo Creating Results Reporter tar.gz for unix x86 distribution
-python framework\tools\buildUtil\package.py --create=Unix32ResultsReporter.Unix.tar.gz --directory=framework/ui/resultsanalysis/unix_dist/unix_x86
-
-echo Creating Results Reporter tar.gz for unix x64 distribution
-python framework\tools\buildUtil\package.py --create=Unix64ResultsReporter.Unix.tar.gz --directory=framework/ui/resultsanalysis/unix_dist/unix_x64
+      <command>echo Creating Results Reporter tar.gz for unix x86 distribution&#xd;
+python framework\tools\buildUtil\package.py --create=Unix32ResultsReporter.Unix.tar.gz --directory=framework/ui/resultsanalysis/unix_dist/unix_x86&#xd;
+&#xd;
+echo Creating Results Reporter tar.gz for unix x64 distribution&#xd;
+python framework\tools\buildUtil\package.py --create=Unix64ResultsReporter.Unix.tar.gz --directory=framework/ui/resultsanalysis/unix_dist/unix_x64&#xd;
 </command>
     </hudson.tasks.BatchFile>
   </builders>
@@ -137,7 +138,7 @@ python framework\tools\buildUtil\package.py --create=Unix64ResultsReporter.Unix.
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
           <email>
-            <recipientList/>
+            <recipientList></recipientList>
             <subject>$PROJECT_DEFAULT_SUBJECT</subject>
             <body>$PROJECT_DEFAULT_CONTENT</body>
             <recipientProviders>
@@ -146,16 +147,16 @@ python framework\tools\buildUtil\package.py --create=Unix64ResultsReporter.Unix.
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
-            <replyTo/>
+            <replyTo></replyTo>
             <contentType>project</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.FailureTrigger>
         <hudson.plugins.emailext.plugins.trigger.FixedTrigger>
           <email>
-            <recipientList/>
+            <recipientList></recipientList>
             <subject>$PROJECT_DEFAULT_SUBJECT</subject>
             <body>$PROJECT_DEFAULT_CONTENT</body>
             <recipientProviders>
@@ -164,10 +165,10 @@ python framework\tools\buildUtil\package.py --create=Unix64ResultsReporter.Unix.
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
-            <replyTo/>
+            <replyTo></replyTo>
             <contentType>project</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.FixedTrigger>
@@ -175,11 +176,11 @@ python framework\tools\buildUtil\package.py --create=Unix64ResultsReporter.Unix.
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern/>
-      <presendScript/>
+      <attachmentsPattern></attachmentsPattern>
+      <presendScript></presendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
-      <replyTo/>
+      <replyTo></replyTo>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
