@@ -129,7 +129,7 @@ NOTE: if any value other than none is provided, the job will try to upload the u
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -329,7 +329,7 @@ fi
       <markBuildUnstable>false</markBuildUnstable>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.39">
-      <recipientList>meenu.pandey@spirent.com</recipientList>
+      <recipientList>devopsteam@spirent.com,emil.mihaylov@spirent.com</recipientList>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
           <email>
