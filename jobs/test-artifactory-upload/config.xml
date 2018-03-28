@@ -115,9 +115,17 @@
         <spec>{
   &quot;files&quot;: [
     {
-      &quot;pattern&quot;: &quot;$IL_WORKSPACE/build/il/packages/rawimg/Spirent_TestCenter_Virtual_*${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}*.*&quot;,
+      &quot;pattern&quot;: &quot;$IL_WORKSPACE/build/il/packages/rawimg/Spirent_TestCenter_Virtual_*${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}*.ova&quot;,
       &quot;target&quot;: &quot;stc/stcv/&quot;,
-      &quot;props&quot;: &quot;status=ready;ver=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID};category=${CATEGORY};app_id=${APP_ID}&quot;,
+      &quot;props&quot;: &quot;name=${STCV_NAME};version=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID};category=${CATEGORY};application_id=${APP_ID};description=${STCV_DESCRIPTION};os=VMware - ESX/ESXi;format=ova&quot;,
+      &quot;recursive&quot;: &quot;true&quot;,
+      &quot;flat&quot;: &quot;true&quot;,
+      &quot;excludePatterns&quot;: [&quot;*HyperV*&quot;]
+    },
+    {
+      &quot;pattern&quot;: &quot;$IL_WORKSPACE/build/il/packages/rawimg/Spirent_TestCenter_Virtual_qcow2*${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}*.zip&quot;,
+      &quot;target&quot;: &quot;stc/stcv/&quot;,
+      &quot;props&quot;: &quot;name=${STCV_NAME};version=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID};category=${CATEGORY};application_id=${APP_ID};description=${STCV_DESCRIPTION};os=OpenStack - QEMU/KVM;format=zip&quot;,
       &quot;recursive&quot;: &quot;true&quot;,
       &quot;flat&quot;: &quot;true&quot;,
       &quot;excludePatterns&quot;: [&quot;*HyperV*&quot;]
