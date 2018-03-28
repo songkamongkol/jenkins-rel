@@ -116,7 +116,7 @@
   &quot;files&quot;: [
     {
       &quot;pattern&quot;: &quot;$IL_WORKSPACE/build/il/packages/rawimg/Spirent*.ova&quot;,
-      &quot;target&quot;: &quot;stc/stcv&quot;,
+      &quot;target&quot;: &quot;stc/stcv/&quot;,
       &quot;props&quot;: &quot;status=ready;ver=${BUILD_NUMBER}&quot;,
       &quot;recursive&quot;: &quot;true&quot;,
       &quot;flat&quot;: &quot;false&quot;
