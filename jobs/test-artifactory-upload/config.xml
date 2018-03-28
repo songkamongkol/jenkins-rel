@@ -150,6 +150,13 @@
       &quot;props&quot;: &quot;name=${STCA_NAME};version=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID};category=${CATEGORY};application_id=${APP_ID};description=${STCA_DESCRIPTION};os=Fedora, CentOS;format=rpm&quot;,
       &quot;recursive&quot;: &quot;true&quot;,
       &quot;flat&quot;: &quot;true&quot;
+    },
+    {
+      &quot;pattern&quot;: &quot;$BLL_ROOT_PATH/TestCenter/${STC_MAJ_MIN_VERSION}/Engineering_Builds/GUI_BLL/${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}/Spirent TestCenter Application.exe&quot;,
+      &quot;target&quot;: &quot;stc/bll/&quot;,
+      &quot;props&quot;: &quot;name=${STC_NAME};version=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID};category=${CATEGORY};application_id=${APP_ID};description=${STC_DESCRIPTION};os=Windows - 32 bit;format=exe&quot;,
+      &quot;recursive&quot;: &quot;true&quot;,
+      &quot;flat&quot;: &quot;true&quot;
     }
   ]
 }</spec>
