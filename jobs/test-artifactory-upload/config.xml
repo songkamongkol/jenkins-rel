@@ -129,7 +129,7 @@
       &quot;recursive&quot;: &quot;true&quot;,
       &quot;flat&quot;: &quot;true&quot;,
       &quot;excludePatterns&quot;: [&quot;*run*&quot;]
-    },
+    }
   ]
 }</spec>
       </uploadSpec>
