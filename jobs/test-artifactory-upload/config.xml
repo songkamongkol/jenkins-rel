@@ -121,35 +121,6 @@
       &quot;recursive&quot;: &quot;true&quot;,
       &quot;flat&quot;: &quot;true&quot;,
       &quot;excludePatterns&quot;: [&quot;*HyperV*&quot;]
-    },
-    {
-      &quot;pattern&quot;: &quot;$IL_WORKSPACE/build/il/packages/rawimg/Spirent_TestCenter_Virtual_qcow2*${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}*.zip&quot;,
-      &quot;target&quot;: &quot;stc/stcv/&quot;,
-      &quot;props&quot;: &quot;name=${STCV_NAME};version=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID};category=${CATEGORY};application_id=${APP_ID};description=&quot;${STCV_DESCRIPTION}&quot;;os=&quot;OpenStack - QEMU/KVM&quot;;format=&quot;zip&quot;&quot;,
-      &quot;recursive&quot;: &quot;true&quot;,
-      &quot;flat&quot;: &quot;true&quot;,
-      &quot;excludePatterns&quot;: [&quot;*HyperV*&quot;]
-    },
-    {
-      &quot;pattern&quot;: &quot;$IL_WORKSPACE/build/il/packages/stca/stca*${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}*i386*.deb&quot;,
-      &quot;target&quot;: &quot;stc/stca/&quot;,
-      &quot;props&quot;: &quot;name=${STCA_NAME};version=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID};category=${CATEGORY};application_id=${APP_ID};description=&quot;${STCA_DESCRIPTION}&quot;;os=&quot;Linux - 32 bit&quot;;format=&quot;deb&quot;&quot;,
-      &quot;recursive&quot;: &quot;true&quot;,
-      &quot;flat&quot;: &quot;true&quot;,
-    },
-    {
-      &quot;pattern&quot;: &quot;$IL_WORKSPACE/build/il/packages/stca/stca*${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}*amd64*.deb&quot;,
-      &quot;target&quot;: &quot;stc/stca/&quot;,
-      &quot;props&quot;: &quot;name=${STCA_NAME};version=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID};category=${CATEGORY};application_id=${APP_ID};description=&quot;${STCA_DESCRIPTION}&quot;;os=&quot;Linux - 64 bit&quot;;format=&quot;deb&quot;&quot;,
-      &quot;recursive&quot;: &quot;true&quot;,
-      &quot;flat&quot;: &quot;true&quot;,
-    },
-    {
-      &quot;pattern&quot;: &quot;$IL_WORKSPACE/build/il/packages/stca/stca*${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}*.rpm&quot;,
-      &quot;target&quot;: &quot;stc/stca/&quot;,
-      &quot;props&quot;: &quot;name=${STCA_NAME};version=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID};category=${CATEGORY};application_id=${APP_ID};description=&quot;${STCA_DESCRIPTION}&quot;;os=&quot;Fedora, CentOS&quot;;format=&quot;rpm&quot;&quot;,
-      &quot;recursive&quot;: &quot;true&quot;,
-      &quot;flat&quot;: &quot;true&quot;,
     }
   ]
 }</spec>
