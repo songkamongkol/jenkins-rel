@@ -46,6 +46,12 @@
       <userId>somboon</userId>
     </slave>
     <slave>
+      <temporaryOfflineCause class="hudson.node_monitors.DiskSpaceMonitorDescriptor$DiskSpace">
+        <path>C:\jenkins-rel</path>
+        <size>334422016</size>
+        <triggered>true</triggered>
+        <trigger>hudson.node_monitors.DiskSpaceMonitor</trigger>
+      </temporaryOfflineCause>
       <name>bllbuild-win-07</name>
       <description>Windows BLL build machine (Windows 7)</description>
       <remoteFS>c:\jenkins-rel</remoteFS>
