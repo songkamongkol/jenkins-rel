@@ -117,7 +117,7 @@
     {
       &quot;pattern&quot;: &quot;$IL_WORKSPACE/build/il/packages/rawimg/Spirent_TestCenter_Virtual_*${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}*.ova&quot;,
       &quot;target&quot;: &quot;stc/stcv/&quot;,
-      &quot;props&quot;: &quot;name=${STCV_NAME};version=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID};category=${CATEGORY};application_id=${APP_ID};description=&apos;${STCV_DESCRIPTION}&apos;;os=&apos;VMware - ESX/ESXi&apos;;format=&apos;ova&apos;&quot;,
+      &quot;props&quot;: &quot;name=${STCV_NAME};version=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID};category=${CATEGORY};application_id=${APP_ID};description=${STCV_DESCRIPTION};os=&apos;VMware - ESX/ESXi&apos;;format=&apos;ova&apos;&quot;,
       &quot;recursive&quot;: &quot;true&quot;,
       &quot;flat&quot;: &quot;true&quot;,
       &quot;excludePatterns&quot;: [&quot;*HyperV*&quot;]
@@ -181,8 +181,8 @@ APP_ID=e8c43606b3924efbaa86f82bc47dd279
 CATEGORY=product-image
 STCA_NAME=stca
 STCV_NAME=stcv
-STCA_DESCRIPTION=Spirent TestCenter Anywhere
-STCV_DESCRIPTION=Zpirent TestCenter Virtual
+STCA_DESCRIPTION=Spirent\ TestCenter Anywhere
+STCV_DESCRIPTION=Zpirent\ TestCenter\ Virtual
 STC_DESCRIPTION=Spirent TestCenter Application
 STC_NAME=STC
 BLL_ROOT_PATH=/gibson
