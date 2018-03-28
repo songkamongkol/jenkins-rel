@@ -11,10 +11,28 @@
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
-      <useBuildBlocker>true</useBuildBlocker>
-      <blockingJobs>release_bll_linux_packaging
-release_bll_windows_packaging_new</blockingJobs>
+      <useBuildBlocker>false</useBuildBlocker>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <hudson.plugins.libvirt.BeforeJobSnapshotJobProperty plugin="libvirt-slave@1.8.5"/>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.25">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
+      <teamDomain></teamDomain>
+      <token></token>
+      <room></room>
+      <startNotification>false</startNotification>
+      <notifySuccess>false</notifySuccess>
+      <notifyAborted>false</notifyAborted>
+      <notifyNotBuilt>false</notifyNotBuilt>
+      <notifyUnstable>false</notifyUnstable>
+      <notifyFailure>false</notifyFailure>
+      <notifyBackToNormal>false</notifyBackToNormal>
+      <notifyRepeatedFailure>false</notifyRepeatedFailure>
+      <includeTestSummary>false</includeTestSummary>
+      <showCommitList>false</showCommitList>
+    </jenkins.plugins.slack.SlackNotifier_-SlackJobProperty>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
@@ -44,56 +62,8 @@ release_bll_windows_packaging_new</blockingJobs>
         </hudson.model.BooleanParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.25">
-      <autoRebuild>false</autoRebuild>
-      <rebuildDisabled>false</rebuildDisabled>
-    </com.sonyericsson.rebuild.RebuildSettings>
   </properties>
-  <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.36">
-    <configVersion>2</configVersion>
-    <p4User>scmbuild</p4User>
-    <p4Passwd></p4Passwd>
-    <p4Port>perforce.spirentcom.com:1666</p4Port>
-    <p4Client>${JOB_NAME}</p4Client>
-    <projectPath>//SCM/Scripts/upload_stca_stcv_orion.sh //ws/upload_stca_stcv_orion.sh
-//SCM/Scripts/upload_stc_bll_orion.sh //ws/upload_stc_bll_orion.sh
-//SCM/Scripts/temeva_test_s3_artifacts_cleanup.py //ws/temeva_test_s3_artifacts_cleanup.py</projectPath>
-    <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner></clientOwner>
-    <p4SysDrive></p4SysDrive>
-    <p4SysRoot></p4SysRoot>
-    <p4Tool>p4</p4Tool>
-    <useClientSpec>false</useClientSpec>
-    <useStreamDepot>false</useStreamDepot>
-    <forceSync>false</forceSync>
-    <alwaysForceSync>false</alwaysForceSync>
-    <dontUpdateServer>false</dontUpdateServer>
-    <disableAutoSync>false</disableAutoSync>
-    <disableChangeLogOnly>false</disableChangeLogOnly>
-    <disableSyncOnly>false</disableSyncOnly>
-    <showIntegChanges>false</showIntegChanges>
-    <useOldClientName>false</useOldClientName>
-    <createWorkspace>true</createWorkspace>
-    <updateView>true</updateView>
-    <dontRenameClient>false</dontRenameClient>
-    <updateCounterValue>false</updateCounterValue>
-    <dontUpdateClient>false</dontUpdateClient>
-    <exposeP4Passwd>false</exposeP4Passwd>
-    <wipeBeforeBuild>false</wipeBeforeBuild>
-    <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
-    <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
-    <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
-    <fileLimit>0</fileLimit>
-    <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
-    <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
-    <lineEndValue>local</lineEndValue>
-    <useViewMask>false</useViewMask>
-    <useViewMaskForPolling>true</useViewMaskForPolling>
-    <useViewMaskForSyncing>false</useViewMaskForSyncing>
-    <useViewMaskForChangeLog>false</useViewMaskForChangeLog>
-    <pollOnlyOnMaster>false</pollOnlyOnMaster>
-  </scm>
+  <scm class="hudson.scm.NullSCM"/>
   <assignedNode>ilpkg-02</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
@@ -101,18 +71,7 @@ release_bll_windows_packaging_new</blockingJobs>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
-  <builders>
-    <hudson.tasks.Shell>
-      <command># $ORION_CLI_PATH/datautil get-folder -id=a31b64186ec24391a1482a92674610e4
-./upload_stca_stcv_orion.sh
-./upload_stc_bll_orion.sh
-</command>
-    </hudson.tasks.Shell>
-    <hudson.tasks.Shell>
-      <command>export PATH=/home/spirent/bin:$PATH
-python ./temeva_test_s3_artifacts_cleanup.py -t $DAYS_TO_KEEP_IMAGES</command>
-    </hudson.tasks.Shell>
-  </builders>
+  <builders/>
   <publishers>
     <hudson.tasks.Mailer plugin="mailer@1.19">
       <recipients>somboon.ongkamongkol@spirent.com</recipients>
@@ -122,6 +81,68 @@ python ./temeva_test_s3_artifacts_cleanup.py -t $DAYS_TO_KEEP_IMAGES</command>
   </publishers>
   <buildWrappers>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.8"/>
+    <org.jfrog.hudson.generic.ArtifactoryGenericConfigurator plugin="artifactory@2.13.1">
+      <details>
+        <artifactoryName>artifactory.srv.orionprod.net</artifactoryName>
+        <artifactoryUrl>https://artifactory.srv.orionprod.net/artifactory</artifactoryUrl>
+        <stagingPlugin/>
+      </details>
+      <resolverDetails>
+        <artifactoryName>artifactory.srv.orionprod.net</artifactoryName>
+        <artifactoryUrl>https://artifactory.srv.orionprod.net/artifactory</artifactoryUrl>
+        <stagingPlugin/>
+      </resolverDetails>
+      <deployerCredentialsConfig>
+        <credentials>
+          <username></username>
+          <password></password>
+        </credentials>
+        <credentialsId></credentialsId>
+        <overridingCredentials>false</overridingCredentials>
+        <ignoreCredentialPluginDisabled>false</ignoreCredentialPluginDisabled>
+      </deployerCredentialsConfig>
+      <resolverCredentialsConfig>
+        <credentials>
+          <username></username>
+          <password></password>
+        </credentials>
+        <credentialsId></credentialsId>
+        <overridingCredentials>false</overridingCredentials>
+        <ignoreCredentialPluginDisabled>false</ignoreCredentialPluginDisabled>
+      </resolverCredentialsConfig>
+      <useSpecs>true</useSpecs>
+      <uploadSpec>
+        <spec>{
+  &quot;files&quot;: [
+    {
+      &quot;pattern&quot;: &quot;$IL_WORKSPACE/build/il/packages/rawimg/Spirent*.ova&quot;,
+      &quot;target&quot;: &quot;stc/stcv&quot;,
+      &quot;props&quot;: &quot;status=ready;ver=${BUILD_NUMBER}&quot;,
+      &quot;recursive&quot;: &quot;true&quot;,
+      &quot;flat&quot;: &quot;false&quot;
+    }
+  ]
+}</spec>
+      </uploadSpec>
+      <downloadSpec>
+        <spec></spec>
+      </downloadSpec>
+      <deployPattern></deployPattern>
+      <resolvePattern></resolvePattern>
+      <matrixParams></matrixParams>
+      <deployBuildInfo>true</deployBuildInfo>
+      <includeEnvVars>false</includeEnvVars>
+      <envVarsPatterns>
+        <includePatterns></includePatterns>
+        <excludePatterns>*password*,*secret*,*key*</excludePatterns>
+      </envVarsPatterns>
+      <discardOldBuilds>false</discardOldBuilds>
+      <discardBuildArtifacts>true</discardBuildArtifacts>
+      <asyncBuildRetention>false</asyncBuildRetention>
+      <multiConfProject>false</multiConfProject>
+      <customBuildName></customBuildName>
+      <overrideBuildName>false</overrideBuildName>
+    </org.jfrog.hudson.generic.ArtifactoryGenericConfigurator>
     <EnvInjectBuildWrapper plugin="envinject@1.89">
       <info>
         <propertiesContent>IL_WORKSPACE=/home/spirent/jenkins-rel/workspace/release_il_centralboot_packaging
