@@ -119,7 +119,7 @@
       &quot;target&quot;: &quot;stc/stcv/&quot;,
       &quot;props&quot;: &quot;status=ready;ver=${BUILD_NUMBER}&quot;,
       &quot;recursive&quot;: &quot;true&quot;,
-      &quot;flat&quot;: &quot;false&quot;
+      &quot;flat&quot;: &quot;true&quot;
     }
   ]
 }</spec>
