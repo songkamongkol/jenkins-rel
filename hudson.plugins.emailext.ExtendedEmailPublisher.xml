@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<hudson.plugins.emailext.ExtendedEmailPublisherDescriptor plugin="email-ext@2.39">
+<hudson.plugins.emailext.ExtendedEmailPublisherDescriptor plugin="email-ext@2.57">
   <useSsl>false</useSsl>
   <charset>UTF-8</charset>
   <defaultContentType>text/plain</defaultContentType>
@@ -8,7 +8,11 @@
 &#xd;
 Check console output at $BUILD_URL to view the results.</defaultBody>
   <defaultPresendScript></defaultPresendScript>
+  <defaultPostsendScript></defaultPostsendScript>
   <defaultClasspath/>
+  <defaultTriggerIds>
+    <string>hudson.plugins.emailext.plugins.trigger.FailureTrigger</string>
+  </defaultTriggerIds>
   <maxAttachmentSize>-1</maxAttachmentSize>
   <recipientList></recipientList>
   <defaultReplyTo></defaultReplyTo>
@@ -16,7 +20,6 @@ Check console output at $BUILD_URL to view the results.</defaultBody>
   <overrideGlobalSettings>false</overrideGlobalSettings>
   <precedenceBulk>false</precedenceBulk>
   <debugMode>false</debugMode>
-  <enableSecurity>false</enableSecurity>
   <requireAdminForTemplateTesting>false</requireAdminForTemplateTesting>
   <enableWatching>false</enableWatching>
 </hudson.plugins.emailext.ExtendedEmailPublisherDescriptor>
