@@ -32,17 +32,18 @@
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
-    <hudson.plugins.promoted__builds.JobPropertyImpl plugin="promoted-builds@2.27">
+    <hudson.plugins.promoted__builds.JobPropertyImpl plugin="promoted-builds@2.28.1">
       <activeProcessNames>
         <string>release Ready for SmartTest</string>
         <string>All packaging jobs complete</string>
       </activeProcessNames>
     </hudson.plugins.promoted__builds.JobPropertyImpl>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.22">
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.25">
       <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
   </properties>
-  <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.34">
+  <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.36">
     <configVersion>2</configVersion>
     <p4User>scmbuild</p4User>
     <p4Passwd></p4Passwd>
@@ -65,6 +66,7 @@
 -//TestCenter/*/framework/il/freebsd/sys/dev/digi/...
 -//TestCenter/*/framework/il/platform/scripts/chassis/i686/filesys/etc/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
+    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <p4Tool>p4</p4Tool>
@@ -101,7 +103,7 @@
   </scm>
   <assignedNode>spccalengec02</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
@@ -120,7 +122,7 @@ del Report_*.txt&#xd;
 del Build_*.txt&#xd;
 rem c:\python27\python %WORKSPACE%\Scripts\ci_run_jenkins_steps.py --createchangereport=yes</command>
     </hudson.tasks.BatchFile>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
       <project>release_ui_ci</project>
       <filter>BLL_changelist_*.txt, UI_changelist_*.txt</filter>
       <target></target>
@@ -131,7 +133,7 @@ rem c:\python27\python %WORKSPACE%\Scripts\ci_run_jenkins_steps.py --createchang
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.35">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
       <project>release_il_testmodule_contents_ci</project>
       <filter>*il_testmodule_contents*changelist_*.txt</filter>
       <target></target>
@@ -146,7 +148,7 @@ rem c:\python27\python %WORKSPACE%\Scripts\ci_run_jenkins_steps.py --createchang
       <command>del /f /q %WORKSPACE%\stc_version.txt&#xd;
 echo STC_MAJ_MIN_VERSION=%STC_MAJ_MIN_VERSION% &gt; %WORKSPACE%\stc_version.txt</command>
     </hudson.tasks.BatchFile>
-    <hudson.plugins.python.Python plugin="python@1.2">
+    <hudson.plugins.python.Python plugin="python@1.3">
       <command>import os
 import glob
 import re
@@ -192,6 +194,7 @@ exit /B 0</command>
       <onlyIfSuccessful>false</onlyIfSuccessful>
       <fingerprint>true</fingerprint>
       <defaultExcludes>true</defaultExcludes>
+      <caseSensitive>true</caseSensitive>
     </hudson.tasks.ArtifactArchiver>
     <org.jenkinsci.plugins.postbuildscript.PostBuildScript plugin="postbuildscript@0.17">
       <buildSteps>
@@ -225,8 +228,9 @@ exit /B 0</command>
       <scriptOnlyIfSuccess>true</scriptOnlyIfSuccess>
       <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
       <markBuildUnstable>false</markBuildUnstable>
+      <executeOn>BOTH</executeOn>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
-    <hudson.plugins.claim.ClaimPublisher plugin="claim@2.5"/>
+    <hudson.plugins.claim.ClaimPublisher plugin="claim@2.9"/>
     <hudson.plugins.parameterizedtrigger.BuildTrigger plugin="parameterized-trigger@2.25">
       <configs>
         <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
@@ -243,6 +247,6 @@ exit /B 0</command>
     </hudson.plugins.parameterizedtrigger.BuildTrigger>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.5.16"/>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.8"/>
   </buildWrappers>
 </project>
