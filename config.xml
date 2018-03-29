@@ -135,6 +135,7 @@
             <string>release_il_ftp_centralboot_packaging</string>
             <string>release_labserver_x64_packaging</string>
             <string>release_launch_nightly_packaging</string>
+            <string>release_linux_installer_packaging</string>
             <string>release_ls_vm_packaging</string>
             <string>release_ls_x64_vm_packaging</string>
             <string>release_reset_tag_file</string>
