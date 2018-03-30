@@ -1,8 +1,7 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<project>
+<?xml version="1.0" encoding="UTF-8"?><project>
   <actions/>
-  <description>Startup error problem with TestCenter.Windows.tar.gz?&#xd;
-&#xd;
+  <description>Startup error problem with TestCenter.Windows.tar.gz?
+
 Install the latest vcredist from http://www.microsoft.com/download/en/details.aspx?displaylang=en&amp;id=26347</description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
@@ -20,7 +19,7 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.84_rel</defaultValue>
+          <defaultValue>4.85_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -45,7 +44,7 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description>major minor version TODO: get this from a file</description>
-          <defaultValue>4.84</defaultValue>
+          <defaultValue>4.85</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -87,7 +86,7 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
 +//TestCenter/${BRANCH_NAME}/build/il/scripts/... //ws/build/il/scripts/...
 +//TestCenter/${BRANCH_NAME}/build/il/configs/scripts/... //ws/build/il/configs/scripts/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner></clientOwner>
+    <clientOwner/>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -143,24 +142,24 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>del UI_changelist_*.txt&#xd;
-echo %P4_CHANGELIST% %JOB_NAME% %BUILD_NUMBER% &gt; UI_changelist_%P4_CHANGELIST%.txt&#xd;
+      <command>del UI_changelist_*.txt
+echo %P4_CHANGELIST% %JOB_NAME% %BUILD_NUMBER% &gt; UI_changelist_%P4_CHANGELIST%.txt
 del properties.txt</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>echo STC BUILD ROOT is %STC_BUILD_ROOT%&#xd;
-mkdir __ui_only_build__&#xd;
-del /Q TestCenter.Windows.x64.bll.tar.gz&#xd;
-del BLL_changelist*.txt&#xd;
-rd /s /q bin\Release_x64\STAKCommands&#xd;
-&#xd;
+      <command>echo STC BUILD ROOT is %STC_BUILD_ROOT%
+mkdir __ui_only_build__
+del /Q TestCenter.Windows.x64.bll.tar.gz
+del BLL_changelist*.txt
+rd /s /q bin\Release_x64\STAKCommands
+
 exit /B 0</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
       <project>release_bll_windows_x64_ci</project>
       <filter>bin/Release_x64/TestCenter.Windows.x64.bll.tar.gz,*BLL_changelist*.txt</filter>
-      <target></target>
-      <excludes></excludes>
+      <target/>
+      <excludes/>
       <selector class="hudson.plugins.copyartifact.TriggeredBuildSelector">
         <fallbackToLastSuccessful>true</fallbackToLastSuccessful>
         <upstreamFilterStrategy>UseGlobalSetting</upstreamFilterStrategy>
@@ -172,8 +171,8 @@ exit /B 0</command>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
       <project>release_bll_windows_x64_ci</project>
       <filter>bin/Release_x64/STAKCommands.beta.Windows.x64.tar.gz</filter>
-      <target></target>
-      <excludes></excludes>
+      <target/>
+      <excludes/>
       <selector class="hudson.plugins.copyartifact.TriggeredBuildSelector">
         <fallbackToLastSuccessful>true</fallbackToLastSuccessful>
         <upstreamFilterStrategy>UseGlobalSetting</upstreamFilterStrategy>
@@ -183,47 +182,47 @@ exit /B 0</command>
       <doNotFingerprintArtifacts>true</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.BatchFile>
-      <command>python framework\tools\buildUtil\package.py --install TestCenter.Windows.x64.bll.tar.gz --directory=bin/Release_x64&#xd;
-attrib -r C:\jenkins-rel\workspace\release_ui_x64_ci\bin\Release_x64\phxrpc.dll&#xd;
-&#xd;
+      <command>python framework\tools\buildUtil\package.py --install TestCenter.Windows.x64.bll.tar.gz --directory=bin/Release_x64
+attrib -r C:\jenkins-rel\workspace\release_ui_x64_ci\bin\Release_x64\phxrpc.dll
+
 python framework\tools\buildUtil\package.py --install STAKCommands.beta.Windows.x64.tar.gz --directory=bin/Release_x64 --append</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
       <command>python genSln.py</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>pushd C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\Tools&#xd;
-call VsDevCmd.bat -arch=x64&#xd;
-popd&#xd;
-msbuild.exe TestCenter.UI.Gen.sln /t:build /p:Configuration=Release /p:Platform=x64&#xd;
+      <command>pushd C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\Tools
+call VsDevCmd.bat -arch=x64
+popd
+msbuild.exe TestCenter.UI.Gen.sln /t:build /p:Configuration=Release /p:Platform=x64
 </command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>REM cd bin\Release_x64&#xd;
-REM rebase.exe -b 0x12000000 -u . *.dll&#xd;
+      <command>REM cd bin\Release_x64
+REM rebase.exe -b 0x12000000 -u . *.dll
 REM exit /B 0</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>if %RUN_BLL_UI_UNITTEST% == true (&#xd;
-cd bin\Release_x64&#xd;
-python ..\..\framework\tools\testRunner\testRunner.py --runInParallel=8 --ui --archive&#xd;
-rmdir /Q /S unit_test_report&#xd;
-mkdir unit_test_report&#xd;
-copy *.html unit_test_report&#xd;
-echo move *_CoverageReport unit_test_report&#xd;
+      <command>if %RUN_BLL_UI_UNITTEST% == true (
+cd bin\Release_x64
+python ..\..\framework\tools\testRunner\testRunner.py --runInParallel=8 --ui --archive
+rmdir /Q /S unit_test_report
+mkdir unit_test_report
+copy *.html unit_test_report
+echo move *_CoverageReport unit_test_report
 )</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>cd bin\Release_x64&#xd;
-del TestCenter*.tar.gz&#xd;
-if %BUILD_PACKAGE_BUILD% == true (&#xd;
-xcopy /Y /R /D ..\..\scm\tools\devexpress .&#xd;
-xcopy /Y /R /D ..\..\scm\tools\dundas .&#xd;
-xcopy /Y /R /D ..\..\scm\tools\janus .&#xd;
-python ..\..\framework\tools\buildUtil\package.py --package=TestCenter &#xd;
-python ..\..\framework\tools\buildUtil\package.py --package=STAKCommands.beta&#xd;
-copy TestCenter.Windows.x64.tar.gz TestCenter.Windows.x64.no_version.tar.gz&#xd;
-python ..\..\framework\tools\buildUtil\setver.py --package=TestCenter.Windows.x64.tar.gz %STC_MAJ_MIN_VERSION% %P4_CHANGELIST%&#xd;
+      <command>cd bin\Release_x64
+del TestCenter*.tar.gz
+if %BUILD_PACKAGE_BUILD% == true (
+xcopy /Y /R /D ..\..\scm\tools\devexpress .
+xcopy /Y /R /D ..\..\scm\tools\dundas .
+xcopy /Y /R /D ..\..\scm\tools\janus .
+python ..\..\framework\tools\buildUtil\package.py --package=TestCenter 
+python ..\..\framework\tools\buildUtil\package.py --package=STAKCommands.beta
+copy TestCenter.Windows.x64.tar.gz TestCenter.Windows.x64.no_version.tar.gz
+python ..\..\framework\tools\buildUtil\setver.py --package=TestCenter.Windows.x64.tar.gz %STC_MAJ_MIN_VERSION% %P4_CHANGELIST%
 )</command>
     </hudson.tasks.BatchFile>
   </builders>
@@ -258,47 +257,47 @@ python ..\..\framework\tools\buildUtil\setver.py --package=TestCenter.Windows.x6
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.UnstableTrigger>
           <email>
-            <recipientList></recipientList>
+            <recipientList/>
             <subject>$PROJECT_DEFAULT_SUBJECT</subject>
             <body>$PROJECT_DEFAULT_CONTENT</body>
             <recipientProviders>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.DevelopersRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern></attachmentsPattern>
+            <attachmentsPattern/>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
-            <replyTo></replyTo>
+            <replyTo/>
             <contentType>project</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.UnstableTrigger>
         <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
           <email>
-            <recipientList></recipientList>
+            <recipientList/>
             <subject>$PROJECT_DEFAULT_SUBJECT</subject>
             <body>$PROJECT_DEFAULT_CONTENT</body>
             <recipientProviders>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern></attachmentsPattern>
+            <attachmentsPattern/>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
-            <replyTo></replyTo>
+            <replyTo/>
             <contentType>project</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.FailureTrigger>
         <hudson.plugins.emailext.plugins.trigger.FixedTrigger>
           <email>
-            <recipientList></recipientList>
+            <recipientList/>
             <subject>$PROJECT_DEFAULT_SUBJECT</subject>
             <body>$PROJECT_DEFAULT_CONTENT</body>
             <recipientProviders>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern></attachmentsPattern>
+            <attachmentsPattern/>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
-            <replyTo></replyTo>
+            <replyTo/>
             <contentType>project</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.FixedTrigger>
@@ -306,11 +305,11 @@ python ..\..\framework\tools\buildUtil\setver.py --package=TestCenter.Windows.x6
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern></attachmentsPattern>
-      <presendScript></presendScript>
+      <attachmentsPattern/>
+      <presendScript/>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
-      <replyTo></replyTo>
+      <replyTo/>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
