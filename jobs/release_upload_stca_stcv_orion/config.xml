@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
   <description>&lt;STRONG&gt;This job upload stca and stcv images from nightly build into S3 bucket in Orion. It also cleans up old images that are older than &lt;DAYS_TO_KEEP_IMAGES&gt; parameter &lt;/STRONG&gt;
 &lt;BR&gt;&lt;BR&gt;
@@ -6,7 +7,7 @@
 - orion-cli.tgz from s3://spirent-orion-artifacts/deploys/test must be extracted and installed (path to datautil must be in the PATH environment variable)&lt;BR&gt;
 - jq must be installed&lt;BR&gt;
 
-&lt;I&gt;NOTE: ORION_TOKEN value used in this job is retrieved from jenkins.oriondev.net (it's configured as global environment variable there)&lt;/I&gt;</description>
+&lt;I&gt;NOTE: ORION_TOKEN value used in this job is retrieved from jenkins.oriondev.net (it&apos;s configured as global environment variable there)&lt;/I&gt;</description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
@@ -20,9 +21,9 @@ release_bll_windows_packaging_new</blockingJobs>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain/>
-      <token/>
-      <room/>
+      <teamDomain></teamDomain>
+      <token></token>
+      <room></room>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -38,27 +39,27 @@ release_bll_windows_packaging_new</blockingJobs>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
-          <description/>
+          <description></description>
           <defaultValue>4.85</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
-          <description/>
+          <description></description>
           <defaultValue>BAD_BUILD_NUMBER</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_ID</name>
-          <description/>
+          <description></description>
           <defaultValue>6</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>DAYS_TO_KEEP_IMAGES</name>
-          <description/>
+          <description></description>
           <defaultValue>30</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
-          <description/>
+          <description></description>
           <defaultValue>true</defaultValue>
         </hudson.model.BooleanParameterDefinition>
       </parameterDefinitions>
@@ -67,15 +68,16 @@ release_bll_windows_packaging_new</blockingJobs>
   <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.36">
     <configVersion>2</configVersion>
     <p4User>scmbuild</p4User>
-    <p4Passwd/>
+    <p4Passwd></p4Passwd>
     <p4Port>perforce.spirentcom.com:1666</p4Port>
     <p4Client>${JOB_NAME}</p4Client>
     <projectPath>//SCM/Scripts/upload_stca_stcv_orion.sh //ws/upload_stca_stcv_orion.sh
 //SCM/Scripts/upload_stc_bll_orion.sh //ws/upload_stc_bll_orion.sh
 //SCM/Scripts/temeva_test_s3_artifacts_cleanup.py //ws/temeva_test_s3_artifacts_cleanup.py</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <p4SysDrive/>
-    <p4SysRoot/>
+    <clientOwner></clientOwner>
+    <p4SysDrive></p4SysDrive>
+    <p4SysRoot></p4SysRoot>
     <p4Tool>p4</p4Tool>
     <useClientSpec>false</useClientSpec>
     <useStreamDepot>false</useStreamDepot>
@@ -97,7 +99,7 @@ release_bll_windows_packaging_new</blockingJobs>
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>0</firstChange>
+    <firstChange>-1</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -149,104 +151,104 @@ python ./temeva_test_s3_artifacts_cleanup.py -t $DAYS_TO_KEEP_IMAGES</command>
       </resolverDetails>
       <deployerCredentialsConfig>
         <credentials>
-          <username/>
-          <password/>
+          <username></username>
+          <password></password>
         </credentials>
-        <credentialsId/>
+        <credentialsId></credentialsId>
         <overridingCredentials>false</overridingCredentials>
         <ignoreCredentialPluginDisabled>false</ignoreCredentialPluginDisabled>
       </deployerCredentialsConfig>
       <resolverCredentialsConfig>
         <credentials>
-          <username/>
-          <password/>
+          <username></username>
+          <password></password>
         </credentials>
-        <credentialsId/>
+        <credentialsId></credentialsId>
         <overridingCredentials>false</overridingCredentials>
         <ignoreCredentialPluginDisabled>false</ignoreCredentialPluginDisabled>
       </resolverCredentialsConfig>
       <useSpecs>true</useSpecs>
       <uploadSpec>
         <spec>{
-  "files": [
+  &quot;files&quot;: [
     {
-      "pattern": "$IL_WORKSPACE/build/il/packages/rawimg/Spirent_TestCenter_Virtual_*${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}*.ova",
-      "target": "stc/stcv/",
-      "props": "name=${STCV_NAME};version=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID};category=${CATEGORY};application_id=${APP_ID};description=${STCV_DESCRIPTION};os=VMware - ESX/ESXi;format=ova",
-      "recursive": "true",
-      "flat": "true",
-      "excludePatterns": ["*HyperV*"]
+      &quot;pattern&quot;: &quot;$IL_WORKSPACE/build/il/packages/rawimg/Spirent_TestCenter_Virtual_*${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}*.ova&quot;,
+      &quot;target&quot;: &quot;stc/stcv/&quot;,
+      &quot;props&quot;: &quot;name=${STCV_NAME};version=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID};category=${CATEGORY};application_id=${APP_ID};description=${STCV_DESCRIPTION};os=VMware - ESX/ESXi;format=ova&quot;,
+      &quot;recursive&quot;: &quot;true&quot;,
+      &quot;flat&quot;: &quot;true&quot;,
+      &quot;excludePatterns&quot;: [&quot;*HyperV*&quot;]
     },
     {
-      "pattern": "$IL_WORKSPACE/build/il/packages/rawimg/Spirent_TestCenter_Virtual_qcow2*${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}*.zip",
-      "target": "stc/stcv/",
-      "props": "name=${STCV_NAME};version=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID};category=${CATEGORY};application_id=${APP_ID};description=${STCV_DESCRIPTION};os=OpenStack - QEMU/KVM;format=zip",
-      "recursive": "true",
-      "flat": "true",
-      "excludePatterns": ["*HyperV*"]
+      &quot;pattern&quot;: &quot;$IL_WORKSPACE/build/il/packages/rawimg/Spirent_TestCenter_Virtual_qcow2*${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}*.zip&quot;,
+      &quot;target&quot;: &quot;stc/stcv/&quot;,
+      &quot;props&quot;: &quot;name=${STCV_NAME};version=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID};category=${CATEGORY};application_id=${APP_ID};description=${STCV_DESCRIPTION};os=OpenStack - QEMU/KVM;format=zip&quot;,
+      &quot;recursive&quot;: &quot;true&quot;,
+      &quot;flat&quot;: &quot;true&quot;,
+      &quot;excludePatterns&quot;: [&quot;*HyperV*&quot;]
     },
     {
-      "pattern": "$IL_WORKSPACE/build/il/packages/stca/stca*${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}*i386*.deb",
-      "target": "stc/stca/",
-      "props": "name=${STCA_NAME};version=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID};category=${CATEGORY};application_id=${APP_ID};description=${STCA_DESCRIPTION};os=Linux - 32 bit;format=deb",
-      "recursive": "true",
-      "flat": "true"
+      &quot;pattern&quot;: &quot;$IL_WORKSPACE/build/il/packages/stca/stca*${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}*i386*.deb&quot;,
+      &quot;target&quot;: &quot;stc/stca/&quot;,
+      &quot;props&quot;: &quot;name=${STCA_NAME};version=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID};category=${CATEGORY};application_id=${APP_ID};description=${STCA_DESCRIPTION};os=Linux - 32 bit;format=deb&quot;,
+      &quot;recursive&quot;: &quot;true&quot;,
+      &quot;flat&quot;: &quot;true&quot;
     },
     {
-      "pattern": "$IL_WORKSPACE/build/il/packages/stca/stca*${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}*amd64*.deb",
-      "target": "stc/stca/",
-      "props": "name=${STCA_NAME};version=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID};category=${CATEGORY};application_id=${APP_ID};description=${STCA_DESCRIPTION};os=Linux - 64 bit;format=deb",
-      "recursive": "true",
-      "flat": "true"
+      &quot;pattern&quot;: &quot;$IL_WORKSPACE/build/il/packages/stca/stca*${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}*amd64*.deb&quot;,
+      &quot;target&quot;: &quot;stc/stca/&quot;,
+      &quot;props&quot;: &quot;name=${STCA_NAME};version=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID};category=${CATEGORY};application_id=${APP_ID};description=${STCA_DESCRIPTION};os=Linux - 64 bit;format=deb&quot;,
+      &quot;recursive&quot;: &quot;true&quot;,
+      &quot;flat&quot;: &quot;true&quot;
     },
     {
-      "pattern": "$IL_WORKSPACE/build/il/packages/stca/stca*${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}*.rpm",
-      "target": "stc/stca/",
-      "props": "name=${STCA_NAME};version=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID};category=${CATEGORY};application_id=${APP_ID};description=${STCA_DESCRIPTION};os=Fedora, CentOS;format=rpm",
-      "recursive": "true",
-      "flat": "true"
+      &quot;pattern&quot;: &quot;$IL_WORKSPACE/build/il/packages/stca/stca*${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}*.rpm&quot;,
+      &quot;target&quot;: &quot;stc/stca/&quot;,
+      &quot;props&quot;: &quot;name=${STCA_NAME};version=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID};category=${CATEGORY};application_id=${APP_ID};description=${STCA_DESCRIPTION};os=Fedora, CentOS;format=rpm&quot;,
+      &quot;recursive&quot;: &quot;true&quot;,
+      &quot;flat&quot;: &quot;true&quot;
     },
     {
-      "pattern": "$BLL_ROOT_PATH/TestCenter/${STC_MAJ_MIN_VERSION}/Engineering_Builds/GUI_BLL/${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}/Spirent TestCenter Application.exe",
-      "target": "stc/bll/Spirent TestCenter Application ${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}.exe",
-      "props": "name=${STC_NAME};version=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID};category=${CATEGORY};application_id=${APP_ID};description=${STC_DESCRIPTION};os=Windows - 32 bit;format=exe",
-      "recursive": "true",
-      "flat": "true"
+      &quot;pattern&quot;: &quot;$BLL_ROOT_PATH/TestCenter/${STC_MAJ_MIN_VERSION}/Engineering_Builds/GUI_BLL/${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}/Spirent TestCenter Application.exe&quot;,
+      &quot;target&quot;: &quot;stc/bll/Spirent TestCenter Application ${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}.exe&quot;,
+      &quot;props&quot;: &quot;name=${STC_NAME};version=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID};category=${CATEGORY};application_id=${APP_ID};description=${STC_DESCRIPTION};os=Windows - 32 bit;format=exe&quot;,
+      &quot;recursive&quot;: &quot;true&quot;,
+      &quot;flat&quot;: &quot;true&quot;
     },
     {
-      "pattern": "$BLL_ROOT_PATH/TestCenter/${STC_MAJ_MIN_VERSION}/Engineering_Builds/GUI_BLL/${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}/tar/Spirent_TestCenter_Auto_Linux_${STC_MAJ_MIN_VERSION}.tar.gz",
-      "target": "stc/bll/Spirent_TestCenter_Auto_Linux_${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}.tar.gz",
-      "props": "name=${STC_NAME};version=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID};category=${CATEGORY};application_id=${APP_ID};description=${STC_DESCRIPTION};os=Linux - 32 bit;format=gz",
-      "recursive": "true",
-      "flat": "true"
+      &quot;pattern&quot;: &quot;$BLL_ROOT_PATH/TestCenter/${STC_MAJ_MIN_VERSION}/Engineering_Builds/GUI_BLL/${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}/tar/Spirent_TestCenter_Auto_Linux_${STC_MAJ_MIN_VERSION}.tar.gz&quot;,
+      &quot;target&quot;: &quot;stc/bll/Spirent_TestCenter_Auto_Linux_${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}.tar.gz&quot;,
+      &quot;props&quot;: &quot;name=${STC_NAME};version=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID};category=${CATEGORY};application_id=${APP_ID};description=${STC_DESCRIPTION};os=Linux - 32 bit;format=gz&quot;,
+      &quot;recursive&quot;: &quot;true&quot;,
+      &quot;flat&quot;: &quot;true&quot;
     },
     {
-      "pattern": "$BLL_ROOT_PATH/TestCenter/${STC_MAJ_MIN_VERSION}/Engineering_Builds/GUI_BLL/${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}/tar/Spirent_TestCenter_Auto_Linux64_${STC_MAJ_MIN_VERSION}.tar.gz",
-      "target": "stc/bll/Spirent_TestCenter_Auto_Linux64_${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}.tar.gz",
-      "props": "name=${STC_NAME};version=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID};category=${CATEGORY};application_id=${APP_ID};description=${STC_DESCRIPTION};os=Linux - 64 bit;format=gz",
-      "recursive": "true",
-      "flat": "true"
+      &quot;pattern&quot;: &quot;$BLL_ROOT_PATH/TestCenter/${STC_MAJ_MIN_VERSION}/Engineering_Builds/GUI_BLL/${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}/tar/Spirent_TestCenter_Auto_Linux64_${STC_MAJ_MIN_VERSION}.tar.gz&quot;,
+      &quot;target&quot;: &quot;stc/bll/Spirent_TestCenter_Auto_Linux64_${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}.tar.gz&quot;,
+      &quot;props&quot;: &quot;name=${STC_NAME};version=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID};category=${CATEGORY};application_id=${APP_ID};description=${STC_DESCRIPTION};os=Linux - 64 bit;format=gz&quot;,
+      &quot;recursive&quot;: &quot;true&quot;,
+      &quot;flat&quot;: &quot;true&quot;
     }
   ]
 }</spec>
       </uploadSpec>
       <downloadSpec>
-        <spec/>
+        <spec></spec>
       </downloadSpec>
-      <deployPattern/>
-      <resolvePattern/>
-      <matrixParams/>
+      <deployPattern></deployPattern>
+      <resolvePattern></resolvePattern>
+      <matrixParams></matrixParams>
       <deployBuildInfo>true</deployBuildInfo>
       <includeEnvVars>false</includeEnvVars>
       <envVarsPatterns>
-        <includePatterns/>
+        <includePatterns></includePatterns>
         <excludePatterns>*password*,*secret*,*key*</excludePatterns>
       </envVarsPatterns>
       <discardOldBuilds>false</discardOldBuilds>
       <discardBuildArtifacts>true</discardBuildArtifacts>
       <asyncBuildRetention>false</asyncBuildRetention>
       <multiConfProject>false</multiConfProject>
-      <customBuildName/>
+      <customBuildName></customBuildName>
       <overrideBuildName>false</overrideBuildName>
     </org.jfrog.hudson.generic.ArtifactoryGenericConfigurator>
     <EnvInjectBuildWrapper plugin="envinject@1.89">
