@@ -114,8 +114,6 @@
           <properties class="hudson.model.View$PropertyList"/>
           <jobNames>
             <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../hudson.plugins.view.dashboard.Dashboard/jobNames/comparator"/>
-            <string>release_bll_freebsd63_packaging</string>
-            <string>release_bll_freebsd71_packaging</string>
             <string>release_bll_linux_64_packaging</string>
             <string>release_bll_linux_packaging</string>
             <string>release_bll_linux_rpm_packaging</string>
