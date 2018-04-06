@@ -104,7 +104,7 @@ The latest build is stored at \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_
     <p4Tool>p4</p4Tool>
     <useClientSpec>false</useClientSpec>
     <useStreamDepot>false</useStreamDepot>
-    <forceSync>true</forceSync>
+    <forceSync>false</forceSync>
     <alwaysForceSync>false</alwaysForceSync>
     <dontUpdateServer>false</dontUpdateServer>
     <disableAutoSync>false</disableAutoSync>
