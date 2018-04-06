@@ -22,7 +22,7 @@ Triggers integration_ftp_tarball which restructures the tarball and copies the o
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.85_rel</defaultValue>
+          <defaultValue>4.85_rel_staging</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>

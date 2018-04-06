@@ -36,7 +36,7 @@ release_bll_windows_packaging_new</blockingJobs>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.85_rel</defaultValue>
+          <defaultValue>4.85_rel_staging</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
