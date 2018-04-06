@@ -23,7 +23,7 @@ Wait 10 minutes&lt;br&gt;</description>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.85_rel_staging</defaultValue>
+          <defaultValue>4.85_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -93,7 +93,7 @@ Wait 10 minutes&lt;br&gt;</description>
     <p4Tool>p4</p4Tool>
     <useClientSpec>false</useClientSpec>
     <useStreamDepot>false</useStreamDepot>
-    <forceSync>false</forceSync>
+    <forceSync>true</forceSync>
     <alwaysForceSync>false</alwaysForceSync>
     <dontUpdateServer>false</dontUpdateServer>
     <disableAutoSync>false</disableAutoSync>

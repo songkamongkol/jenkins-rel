@@ -21,7 +21,7 @@ The latest build is stored at \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.85_rel_staging</defaultValue>
+          <defaultValue>4.85_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -104,7 +104,7 @@ The latest build is stored at \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_
     <p4Tool>p4</p4Tool>
     <useClientSpec>false</useClientSpec>
     <useStreamDepot>false</useStreamDepot>
-    <forceSync>false</forceSync>
+    <forceSync>true</forceSync>
     <alwaysForceSync>false</alwaysForceSync>
     <dontUpdateServer>false</dontUpdateServer>
     <disableAutoSync>false</disableAutoSync>
