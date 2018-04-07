@@ -6,9 +6,7 @@
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
       <useBuildBlocker>true</useBuildBlocker>
-      <blockingJobs>release_webhelp
-release_cts_windows_ci
-release_cts_windows_packaging
+      <blockingJobs>release_cts_windows_packaging
 release_bll_windows_packaging_new</blockingJobs>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
     <hudson.plugins.libvirt.BeforeJobSnapshotJobProperty plugin="libvirt-slave@1.8.5"/>
@@ -138,7 +136,7 @@ release_bll_windows_packaging_new</blockingJobs>
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
