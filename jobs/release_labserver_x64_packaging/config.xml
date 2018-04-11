@@ -100,9 +100,10 @@ Jenkins Node(s): bldmisclnx-v11</description>
 //TestCenter/${BRANCH_NAME}/framework/tools/buildUtil/... //ws/framework/tools/buildUtil/...
 //TestCenter/profx_iso/Labserver/rpms/sessionLicensing/RPMS/x86/postinstall //ws/session_licensing/postinstall
 //TestCenter/profx_iso/Labserver/iso/isolinux/Packages/labServerVM-1.0-0.i386.rpm //ws/labServerVM-1.0-0.i386.rpm
-//TestCenter/integration/framework/bll/serverManager/scripts/stcFtpd.tcl //ws/stcFtpd.tcl
-//TestCenter/integration/framework/bll/serverManager/scripts/tclCmdline.tcl //ws/tclCmdline.tcl
-//TestCenter/integration/framework/bll/serverManager/scripts/tclFtpd.tcl //ws/tclFtpd.tcl</projectPath>
+//TestCenter/${BRANCH_NAME}/framework/bll/serverManager/scripts/stcFtpd.tcl //ws/stcFtpd.tcl
+//TestCenter/${BRANCH_NAME}/framework/bll/serverManager/scripts/tclCmdline.tcl //ws/tclCmdline.tcl
+//TestCenter/${BRANCH_NAME}/framework/bll/serverManager/scripts/tclFtpd.tcl //ws/tclFtpd.tcl
+//TestCenter/${BRANCH_NAME}/framework/bll/base/install/release/stcbll.server.ini //ws/stcbll.server.ini</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
@@ -133,7 +134,7 @@ Jenkins Node(s): bldmisclnx-v11</description>
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
