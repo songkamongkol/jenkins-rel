@@ -1,49 +1,27 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>Sync SCM build scripts, EAT, help files and other files as needed for packaging.&lt;br&gt;&#xd;
-Retrieve tar.gz files from UI and RR build.&lt;br&gt;&#xd;
-Extract TestCenter.Windows.no_version.tar.gz, ResultsReporter.tar.gz UI and RR tar.gz files to bin/release folder.&lt;br&gt;&#xd;
-Retrieve TestCenter_WebHelp.tar.gz, Provisioning_WebHelp.tar.gz, ServerManager_WebHelp.tar.gz from webhelp build.&lt;br&gt;&#xd;
-Run EAT ANT build&lt;br&gt;&#xd;
-Run setver.py to set the version of the TestCenter binary files.&lt;br&gt;&#xd;
-Run ci_packageinstaller.pl to create P2_installer and FORTHOT installer files.&lt;br&gt;&#xd;
-Run ci_packageinstaller.pl to create DMCP installer files.&lt;br&gt;&#xd;
-Copy build results to \\martin\archive\pv\TestCenter\4.44\Engineering_Builds\integration\BUILDVERSION&lt;br&gt;&#xd;
+  <description>Sync SCM build scripts, EAT, help files and other files as needed for packaging.&lt;br&gt;
+Retrieve tar.gz files from UI and RR build.&lt;br&gt;
+Extract TestCenter.Windows.no_version.tar.gz, ResultsReporter.tar.gz UI and RR tar.gz files to bin/release folder.&lt;br&gt;
+Retrieve TestCenter_WebHelp.tar.gz, Provisioning_WebHelp.tar.gz, ServerManager_WebHelp.tar.gz from webhelp build.&lt;br&gt;
+Run EAT ANT build&lt;br&gt;
+Run setver.py to set the version of the TestCenter binary files.&lt;br&gt;
+Run ci_packageinstaller.pl to create P2_installer and FORTHOT installer files.&lt;br&gt;
+Run ci_packageinstaller.pl to create DMCP installer files.&lt;br&gt;
+Copy build results to \\martin\archive\pv\TestCenter\4.44\Engineering_Builds\integration\BUILDVERSION&lt;br&gt;
 Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
+  <logRotator class="hudson.tasks.LogRotator">
+    <daysToKeep>-1</daysToKeep>
+    <numToKeep>20</numToKeep>
+    <artifactDaysToKeep>-1</artifactDaysToKeep>
+    <artifactNumToKeep>-1</artifactNumToKeep>
+  </logRotator>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
       <useBuildBlocker>false</useBuildBlocker>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
-    <jenkins.model.BuildDiscarderProperty>
-      <strategy class="hudson.tasks.LogRotator">
-        <daysToKeep>-1</daysToKeep>
-        <numToKeep>20</numToKeep>
-        <artifactDaysToKeep>-1</artifactDaysToKeep>
-        <artifactNumToKeep>-1</artifactNumToKeep>
-      </strategy>
-    </jenkins.model.BuildDiscarderProperty>
-    <hudson.plugins.libvirt.BeforeJobSnapshotJobProperty plugin="libvirt-slave@1.8.5"/>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.25">
-      <autoRebuild>false</autoRebuild>
-      <rebuildDisabled>false</rebuildDisabled>
-    </com.sonyericsson.rebuild.RebuildSettings>
-    <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain></teamDomain>
-      <token></token>
-      <room></room>
-      <startNotification>false</startNotification>
-      <notifySuccess>false</notifySuccess>
-      <notifyAborted>false</notifyAborted>
-      <notifyNotBuilt>false</notifyNotBuilt>
-      <notifyUnstable>false</notifyUnstable>
-      <notifyFailure>false</notifyFailure>
-      <notifyBackToNormal>false</notifyBackToNormal>
-      <notifyRepeatedFailure>false</notifyRepeatedFailure>
-      <includeTestSummary>false</includeTestSummary>
-      <showCommitList>false</showCommitList>
-    </jenkins.plugins.slack.SlackNotifier_-SlackJobProperty>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
@@ -91,11 +69,15 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.25">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
   </properties>
   <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.36">
     <configVersion>2</configVersion>
-    <p4User>swilliams</p4User>
-    <p4Passwd>0f0kqlwa++gi6mdBtLvfa3AlrK8xqw==</p4Passwd>
+    <p4User>tableuser</p4User>
+    <p4Passwd></p4Passwd>
     <p4Port>perforce.spirentcom.com:1666</p4Port>
     <p4Client>${JOB_NAME}_${BRANCH_NAME}</p4Client>
     <projectPath>//SCM/Build_Scripts/STC_Build_Scripts/... //ws/Build_Scripts/STC_Build_Scripts/...
@@ -116,6 +98,7 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
 //ISDE_China/SDE/Java/... //ws/framework/ui/EAT/...
 //TestCenter/${BRANCH_NAME}/framework/bll/serverManager/scripts/... //ws/framework/bll/serverManager/scripts/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
+    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -161,12 +144,7 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>true</blockBuildWhenUpstreamBuilding>
-  <triggers>
-    <hudson.triggers.SCMTrigger>
-      <spec>5 * * * *</spec>
-      <ignorePostCommitHooks>false</ignorePostCommitHooks>
-    </hudson.triggers.SCMTrigger>
-  </triggers>
+  <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <customWorkspace>${JOB_NAME}</customWorkspace>
   <builders>
