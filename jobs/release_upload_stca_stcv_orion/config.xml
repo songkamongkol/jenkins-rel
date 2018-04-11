@@ -98,7 +98,7 @@ release_bll_windows_packaging_new</blockingJobs>
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -109,7 +109,7 @@ release_bll_windows_packaging_new</blockingJobs>
     <useViewMaskForChangeLog>false</useViewMaskForChangeLog>
     <pollOnlyOnMaster>false</pollOnlyOnMaster>
   </scm>
-  <quietPeriod>60</quietPeriod>
+  <quietPeriod>5</quietPeriod>
   <assignedNode>ilpkg-02</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
