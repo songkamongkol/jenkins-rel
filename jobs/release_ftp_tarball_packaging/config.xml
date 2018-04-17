@@ -1,10 +1,9 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<project>
+<?xml version="1.0" encoding="UTF-8"?><project>
   <actions/>
-  <description>Copy the tar.gz file created on FreeBSD or other os to windows system&lt;br&gt;&#xd;
-Extract the tarball&lt;br&gt;&#xd;
-Copy the tar.gz file to martin server&lt;br&gt;&#xd;
-Copy the extracted contents of the tarball to martin server&lt;br&gt;&#xd;
+  <description>Copy the tar.gz file created on FreeBSD or other os to windows system&lt;br&gt;
+Extract the tarball&lt;br&gt;
+Copy the tar.gz file to martin server&lt;br&gt;
+Copy the extracted contents of the tarball to martin server&lt;br&gt;
 Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
   <keepDependencies>false</keepDependencies>
   <properties>
@@ -25,9 +24,9 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain></teamDomain>
-      <token></token>
-      <room></room>
+      <teamDomain/>
+      <token/>
+      <room/>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -44,7 +43,7 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.85_rel</defaultValue>
+          <defaultValue>4.86_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -69,16 +68,16 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description>major minor version</description>
-          <defaultValue>4.85</defaultValue>
+          <defaultValue>4.86</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
-          <description></description>
+          <description/>
           <defaultValue>BAD_BUILD_NUMBER</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>SOURCE_OS</name>
-          <description></description>
+          <description/>
           <defaultValue>BAD_SOURCE_OS</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -157,7 +156,7 @@ release_bll_freebsd_packaging</description>
   <customWorkspace>${JOB_NAME}</customWorkspace>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>echo &quot;Running ci_cleanup_by_date.pl.&quot;&#xd;
+      <command>echo "Running ci_cleanup_by_date.pl."
 perl %WORKSPACE%\Build_Scripts\Scripts\ci_cleanup_by_date.pl</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
