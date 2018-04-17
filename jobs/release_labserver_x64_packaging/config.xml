@@ -1,10 +1,9 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<project>
+<?xml version="1.0" encoding="UTF-8"?><project>
   <actions/>
-  <description>Sync SCM build scripts and other files as needed for packaging.&lt;br&gt;&#xd;
-Run ci_make_tarballs.pl to create LabServer x64 Linux BLL tarballs&lt;br&gt;&#xd;
-Copy build results to \\martin\archive\pv\TestCenter\4.10\Engineering_Builds\integration\BUILDVERSION\tar&lt;br&gt;&#xd;
-Trigger https://jenkins.oriondev.net/job/stc-bll-debs-64bit&lt;br&gt;&#xd;
+  <description>Sync SCM build scripts and other files as needed for packaging.&lt;br&gt;
+Run ci_make_tarballs.pl to create LabServer x64 Linux BLL tarballs&lt;br&gt;
+Copy build results to \\martin\archive\pv\TestCenter\4.10\Engineering_Builds\integration\BUILDVERSION\tar&lt;br&gt;
+Trigger https://jenkins.oriondev.net/job/stc-bll-debs-64bit&lt;br&gt;
 Jenkins Node(s): bldmisclnx-v11</description>
   <keepDependencies>false</keepDependencies>
   <properties>
@@ -25,9 +24,9 @@ Jenkins Node(s): bldmisclnx-v11</description>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain></teamDomain>
-      <token></token>
-      <room></room>
+      <teamDomain/>
+      <token/>
+      <room/>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -44,7 +43,7 @@ Jenkins Node(s): bldmisclnx-v11</description>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.85_rel</defaultValue>
+          <defaultValue>4.86_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -59,31 +58,31 @@ Jenkins Node(s): bldmisclnx-v11</description>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description>major minor version</description>
-          <defaultValue>4.85</defaultValue>
+          <defaultValue>4.86</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
-          <description></description>
+          <description/>
           <defaultValue>BAD_BUILD_NUMBER</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>SOURCE_OS</name>
-          <description></description>
+          <description/>
           <defaultValue>EL3Linux</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>DEPENDENT_JOB_NAME</name>
-          <description></description>
+          <description/>
           <defaultValue>integration_bll_linux_packaging</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>RELEASE_TYPE</name>
-          <description></description>
+          <description/>
           <defaultValue>Alpha</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>MODE</name>
-          <description></description>
+          <description/>
           <defaultValue>NIGHTLY</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -157,18 +156,18 @@ Jenkins Node(s): bldmisclnx-v11</description>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
       <project>stcapi_rest_api</project>
       <filter>deployment/install_stcapi*.py</filter>
-      <target></target>
-      <excludes></excludes>
+      <target/>
+      <excludes/>
       <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.Shell>
-      <command>if [ &quot;$MODE&quot; = &quot;NIGHTLY&quot; ]; then
+      <command>if [ "$MODE" = "NIGHTLY" ]; then
     python $WORKSPACE/Build_Scripts/Scripts/ci_run_jenkins_steps.py --runcimakelsx64tarballs=yes
 fi
-echo &quot;STC_BUILD_LOCATION = Engineering_Builds&quot; &gt; build_loc.props
-echo &quot;STC_BUILD_NUM = $(cat Spirent_TestCenter_Application_Linux_Server_x64/STCVersion.txt | cut -d&apos;.&apos; -f 3)&quot; &gt;&gt; build_loc.props
+echo "STC_BUILD_LOCATION = Engineering_Builds" &gt; build_loc.props
+echo "STC_BUILD_NUM = $(cat Spirent_TestCenter_Application_Linux_Server_x64/STCVersion.txt | cut -d'.' -f 3)" &gt;&gt; build_loc.props
 </command>
     </hudson.tasks.Shell>
     <EnvInjectBuilder plugin="envinject@1.89">
@@ -203,8 +202,8 @@ TESTCENTER_BUILD=${STC_BUILD_NUM}</parameters>
         </org.jenkinsci.plugins.ParameterizedRemoteTrigger.Auth>
       </auth>
       <loadParamsFromFile>false</loadParamsFromFile>
-      <parameterFile></parameterFile>
-      <queryString></queryString>
+      <parameterFile/>
+      <queryString/>
     </org.jenkinsci.plugins.ParameterizedRemoteTrigger.RemoteBuildConfiguration>
   </builders>
   <publishers>
@@ -226,7 +225,7 @@ TESTCENTER_BUILD=${STC_BUILD_NUM}</parameters>
             <recipientProviders>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern></attachmentsPattern>
+            <attachmentsPattern/>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -236,9 +235,9 @@ TESTCENTER_BUILD=${STC_BUILD_NUM}</parameters>
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern></attachmentsPattern>
-      <presendScript></presendScript>
-      <postsendScript></postsendScript>
+      <attachmentsPattern/>
+      <presendScript/>
+      <postsendScript/>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
       <replyTo>$DEFAULT_RECIPIENTS</replyTo>
