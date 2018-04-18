@@ -136,7 +136,7 @@ Jenkins Node(s): spccalengec01,spccalengec02</description>
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -316,7 +316,7 @@ local_restapi_py.close()</command>
             <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
               <properties>MODE=NIGHTLY
 TARNAME=Spirent_TestCenter_Auto_Linux64_${STC_MAJ_MIN_VERSION}.tar.gz
-OUTPUT_INSTALLER_NAME=Spirent_TestCenter_Auto_Linux64_${STC_MAJ_MIN_VERSION}.tar.gz
+OUTPUT_INSTALLER_NAME=install_Spirent_TestCenter_Auto_Linux64_${STC_MAJ_MIN_VERSION}.sh
 STC_SUBDIR=Spirent_TestCenter_Application_Linux</properties>
             </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
           </configs>
