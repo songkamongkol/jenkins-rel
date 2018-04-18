@@ -347,7 +347,7 @@ c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --c
             <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
               <properties>MODE=NIGHTLY
 TARNAME=Spirent_TestCenter_Auto_Linux_${STC_MAJ_MIN_VERSION}.tar.gz
-OUTPUT_INSTALLER_NAME=Spirent_TestCenter_Auto_Linux_${STC_MAJ_MIN_VERSION}.tar.gz
+OUTPUT_INSTALLER_NAME=install_Spirent_TestCenter_Auto_Linux_${STC_MAJ_MIN_VERSION}.sh
 STC_SUBDIR=Spirent_TestCenter_Application_Linux</properties>
             </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
           </configs>
