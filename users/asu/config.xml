@@ -8,7 +8,7 @@
     <jenkins.security.ApiTokenProperty>
       <apiToken>B5beJBcQUHBRVZJ8ind0Ab7+heZ4R14uboz+4C5uwb+j2SGnAO6/rDRfFdaxvytg</apiToken>
     </jenkins.security.ApiTokenProperty>
-    <com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty plugin="credentials@1.28">
+    <com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty plugin="credentials@2.1.13">
       <domainCredentialsMap class="hudson.util.CopyOnWriteMap$Hash"/>
     </com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty>
     <hudson.model.MyViewsProperty>
@@ -28,7 +28,7 @@
     <hudson.security.HudsonPrivateSecurityRealm_-Details>
       <passwordHash>#jbcrypt:$2a$10$qQy8FijhOJbtpKSKa0ypEOQODCBEiO3EyU1x.g.Dm.qxnnmuFUV4u</passwordHash>
     </hudson.security.HudsonPrivateSecurityRealm_-Details>
-    <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.17">
+    <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.19">
       <emailAddress>alex.su@spirent.com</emailAddress>
     </hudson.tasks.Mailer_-UserProperty>
     <jenkins.security.LastGrantedAuthoritiesProperty>
@@ -37,6 +37,13 @@
       </roles>
       <timestamp>1418491745240</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
-    <hudson.plugins.perforce.PerforceUserProperty plugin="perforce@1.3.34"/>
+    <hudson.plugins.emailext.watching.EmailExtWatchAction_-UserProperty plugin="email-ext@2.57">
+      <triggers/>
+    </hudson.plugins.emailext.watching.EmailExtWatchAction_-UserProperty>
+    <org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty plugin="display-url-api@1.1.1">
+      <providerId>default</providerId>
+    </org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty>
+    <org.jenkinsci.plugins.p4.email.P4UserProperty plugin="p4@1.7.7"/>
+    <hudson.plugins.perforce.PerforceUserProperty plugin="perforce@1.3.36"/>
   </properties>
 </user>

@@ -283,7 +283,7 @@ REM -- coverage report no longer needed # mv *_CoverageReport unit_test_report&#
     </hudson.tasks.Fingerprinter>
     <hudson.plugins.claim.ClaimPublisher plugin="claim@2.9"/>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.57">
-      <recipientList>engstciteam@spirent.com, ENGCIFirstResponderTeam@spirent.com,$EMAIL_DEV</recipientList>
+      <recipientList>meenu.pandey@spirent.com</recipientList>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.UnstableTrigger>
           <email>
