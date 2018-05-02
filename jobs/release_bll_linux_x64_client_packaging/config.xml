@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>*** This job is for Linux-64 Client tar ball ***
-Extracts TestCenter.Linux.x64.tar.gz from bll_linux_x64 build job&lt;br&gt;
-Runs setver.py using python script ci_run_jenkins_steps.py script&lt;br&gt;
-Creates a new tarball&lt;br&gt;
+  <description>*** This job is for Linux-64 Client tar ball ***&#xd;
+Extracts TestCenter.Linux.x64.tar.gz from bll_linux_x64 build job&lt;br&gt;&#xd;
+Runs setver.py using python script ci_run_jenkins_steps.py script&lt;br&gt;&#xd;
+Creates a new tarball&lt;br&gt;&#xd;
 Triggers integration_ftp_tarball which restructures the tarball and copies the output to Martin&lt;br&gt;</description>
   <keepDependencies>false</keepDependencies>
   <properties>
@@ -49,7 +49,7 @@ Triggers integration_ftp_tarball which restructures the tarball and copies the o
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
           <description>clean build</description>
-          <defaultValue>true</defaultValue>
+          <defaultValue>false</defaultValue>
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BUILD_OUTPUT_DIR</name>
@@ -84,7 +84,6 @@ Triggers integration_ftp_tarball which restructures the tarball and copies the o
 //SCM/Scripts/ci_* //ws/Build_Scripts/Scripts/ci_*
 //TestCenter/${BRANCH_NAME}/framework/tools/buildUtil/... //ws/framework/tools/buildUtil/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -114,7 +113,7 @@ Triggers integration_ftp_tarball which restructures the tarball and copies the o
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
