@@ -108,30 +108,30 @@ cd $WS
 # $WS/build/il/scripts/phxbld -j16 changeling_64_raw
  
 # release_il_changeling_yocto_ci
-export SCONSFLAGS=&quot;-j16 ccache=1 distcc=1&quot;
-scons target=raw_yocto arch=yocto_i686
-$WS/build/il/scripts/phxbld centralboot_changeling_yocto2
+# export SCONSFLAGS=&quot;-j16 ccache=1 distcc=1&quot;
+# scons target=raw_yocto arch=yocto_i686
+# $WS/build/il/scripts/phxbld centralboot_changeling_yocto2
  
 # release_il_chhvm_yocto_ci
-$WS/build/il/scripts/phxbld -j16 yocto_ver=1.5 c3_y3_mix
-$WS/build/il/scripts/phxbld -j16 yocto_ver=1.5 c3_hypervisor
+# $WS/build/il/scripts/phxbld -j16 yocto_ver=1.5 c3_y3_mix
+# $WS/build/il/scripts/phxbld -j16 yocto_ver=1.5 c3_hypervisor
  
 # release_il_chos2_yocto_ci
-$WS/build/il/scripts/phxbld -j8 chos2_yocto2
-$WS/build/il/scripts/phxbld idltarball
+# $WS/build/il/scripts/phxbld -j8 chos2_yocto2
+# $WS/build/il/scripts/phxbld idltarball
  
 # release_il_lxc_yocto_ci
-$WS/build/il/scripts/phxbld yocto_lxc
+# $WS/build/il/scripts/phxbld yocto_lxc
  
 # release_il_qemu_yocto_ci
-$WS/build/il/scripts/phxbld -j32 qemu_yocto
+# $WS/build/il/scripts/phxbld -j32 qemu_yocto
  
 # release_il_stca_ci
-$WS/build/il/scripts/phxbld -j8 stca
-$WS/build/il/scripts/phxbld -j8 vtc
-$WS/build/il/scripts/phxbld -j4 tsvm
-sudo $WS/build/il/scripts/phxbld tsvm_raw
-sudo $WS/build/il/scripts/phxbld studio
+# $WS/build/il/scripts/phxbld -j8 stca
+# $WS/build/il/scripts/phxbld -j8 vtc
+# $WS/build/il/scripts/phxbld -j4 tsvm
+# sudo $WS/build/il/scripts/phxbld tsvm_raw
+# sudo $WS/build/il/scripts/phxbld studio
  
 # release_il_testmodule_contents_ci
 $WS/build/il/scripts/phxbld -j32 testmodule_contents</command>
