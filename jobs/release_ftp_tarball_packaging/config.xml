@@ -135,7 +135,7 @@ release_bll_freebsd_packaging</description>
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -187,6 +187,33 @@ perl %WORKSPACE%\Build_Scripts\Scripts\ci_cleanup_by_date.pl</command>
                   <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
                 </configs>
                 <projects>release_core_labserver_packaging</projects>
+                <condition>ALWAYS</condition>
+                <triggerWithNoParameters>false</triggerWithNoParameters>
+                <buildAllNodesWithLabel>false</buildAllNodesWithLabel>
+              </hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+            </configs>
+          </buildStep>
+          <runner class="org.jenkins_ci.plugins.run_condition.BuildStepRunner$Fail" plugin="run-condition@1.0"/>
+        </org.jenkinsci.plugins.conditionalbuildstep.singlestep.SingleConditionalBuilder>
+        <org.jenkinsci.plugins.conditionalbuildstep.singlestep.SingleConditionalBuilder plugin="conditional-buildstep@1.3.5">
+          <condition class="org.jenkins_ci.plugins.run_condition.core.StringsMatchCondition" plugin="run-condition@1.0">
+            <arg1>$SOURCE_OS</arg1>
+            <arg2>EL3Linux64Client</arg2>
+            <ignoreCase>false</ignoreCase>
+          </condition>
+          <buildStep class="hudson.plugins.parameterizedtrigger.TriggerBuilder" plugin="parameterized-trigger@2.25">
+            <configs>
+              <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+                <configs>
+                  <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
+                  <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+                    <properties>TARNAME=Spirent_TestCenter_Auto_Linux64Client_${STC_MAJ_MIN_VERSION}.tar.gz
+OUTPUT_INSTALLER_NAME=install_Spirent_TestCenter_Auto_Linux64Client_${STC_MAJ_MIN_VERSION}.sh
+STC_SUBDIR=Spirent_TestCenter_Application_Linux64Client
+P4CLEANWORKSPACE=true</properties>
+                  </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+                </configs>
+                <projects>release_linux_installer_packaging</projects>
                 <condition>ALWAYS</condition>
                 <triggerWithNoParameters>false</triggerWithNoParameters>
                 <buildAllNodesWithLabel>false</buildAllNodesWithLabel>
