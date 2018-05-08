@@ -98,7 +98,7 @@ Archive il_virtual_*.tar&lt;br&gt;&#xd;
 # release_il_virtual_yocto_ci
 export VM_PROFILE=all
 $WS/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_yocto_tardis3_mix
-$WS/build/il/scripts/phxbld -j32 yocto_ver=1.5 av_version=${l4l7lxc_buildno} appliance_packaging 
+$WS/build/il/scripts/phxbld -j32 yocto_ver=1.5 av_version=9.90.0123 appliance_packaging 
 $WS/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_hypervisor_mix
 $WS/build/il/scripts/phxbld -j32 yocto_lxc_ose
  
