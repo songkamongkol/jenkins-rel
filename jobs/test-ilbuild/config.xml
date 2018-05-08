@@ -134,7 +134,11 @@ cd $WS
 # sudo $WS/build/il/scripts/phxbld studio
  
 # release_il_testmodule_contents_ci
-$WS/build/il/scripts/phxbld -j32 testmodule_contents</command>
+# $WS/build/il/scripts/phxbld -j32 testmodule_contents
+
+# packaging
+sudo scons target=centralboot_yoctovm packaging=1
+sudo scons target=c3_pkg_yocto_vm packaging=1</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
