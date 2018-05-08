@@ -95,6 +95,7 @@ Archive il_virtual_*.tar&lt;br&gt;&#xd;
     <hudson.tasks.Shell>
       <command>export WS=/home/spirent
 
+cd $WS
 # release_il_virtual_yocto_ci
 # export VM_PROFILE=all
 # $WS/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_yocto_tardis3_mix
