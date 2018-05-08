@@ -96,15 +96,15 @@ Archive il_virtual_*.tar&lt;br&gt;&#xd;
       <command>export WS=/home/spirent
 
 # release_il_virtual_yocto_ci
-export VM_PROFILE=all
-$WS/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_yocto_tardis3_mix
-$WS/build/il/scripts/phxbld -j32 yocto_ver=1.5 av_version=9.90.0123 appliance_packaging 
-$WS/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_hypervisor_mix
-$WS/build/il/scripts/phxbld -j32 yocto_lxc_ose
+# export VM_PROFILE=all
+# $WS/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_yocto_tardis3_mix
+# $WS/build/il/scripts/phxbld -j32 yocto_ver=1.5 av_version=9.90.0123 appliance_packaging 
+# $WS/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_hypervisor_mix
+# $WS/build/il/scripts/phxbld -j32 yocto_lxc_ose
  
 # release_il_changeling_all_yocto_ci
-$WS/build/il/scripts/phxbld -j16 changeling_64
-$WS/build/il/scripts/phxbld -j16 changeling_64_raw
+# $WS/build/il/scripts/phxbld -j16 changeling_64
+# $WS/build/il/scripts/phxbld -j16 changeling_64_raw
  
 # release_il_changeling_yocto_ci
 export SCONSFLAGS=&quot;-j16 ccache=1 distcc=1&quot;
