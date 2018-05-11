@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>Copy build output raw files to \\filer.caw.com\home\qabuild\TestCenter\2.00\engineering_builds\GUI_BLL as per request from Nicolas
+
+NOTE: This job must be setup to run on the same machine as the Windows </description>
+  <logRotator class="hudson.tasks.LogRotator">
+    <daysToKeep>-1</daysToKeep>
+    <numToKeep>20</numToKeep>
+    <artifactDaysToKeep>-1</artifactDaysToKeep>
+    <artifactNumToKeep>-1</artifactNumToKeep>
+  </logRotator>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
+      <useBuildBlocker>false</useBuildBlocker>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>BRANCH_NAME</name>
+          <description>branch name</description>
+          <defaultValue>4.86_rel</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BUILD_OUTPUT_DIR</name>
+          <description>build output dir</description>
+          <defaultValue>D:\jenkins-rel\release_bll_windows_packaging_new</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>STC_MAJ_MIN_VERSION</name>
+          <description>major minor version</description>
+          <defaultValue>4.86</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BLL_BUILD_NUMBER</name>
+          <description></description>
+          <defaultValue>BAD_BUILD_NUMBER</defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.25">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <assignedNode>spccalengec02</assignedNode>
+  <canRoam>false</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>true</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <customWorkspace>${JOB_NAME}</customWorkspace>
+  <builders>
+    <hudson.tasks.BatchFile>
+      <command>set BRANCH_ID=6&#xd;
+rem -- set FILER_DIR=L:TestCenter\2.00\engineering_builds\GUI_BLL\%STC_MAJ_MIN_VERSION%.%BLL_BUILD_NUMBER%%BRANCH_ID%&#xd;
+rem -- echo &quot;Copying raw files from %BUILD_OUTPUT_DIR%\bin\Release to %FILER_DIR% ...&quot;&#xd;
+rem -- mkdir %FILER_DIR%&#xd;
+rem -- xcopy %BUILD_OUTPUT_DIR%\bin\Release\Model %FILER_DIR%\Model /e /i /y&#xd;
+rem -- xcopy %BUILD_OUTPUT_DIR%\bin\Release\PDUs %FILER_DIR%\PDUs /e /i /y&#xd;
+rem -- xcopy %BUILD_OUTPUT_DIR%\bin\Release\RcmDb %FILER_DIR%\RcmDb /e /i /y&#xd;
+rem -- xcopy %BUILD_OUTPUT_DIR%\bin\Release\Resources %FILER_DIR%\Resources /e /i /y&#xd;
+rem -- xcopy %BUILD_OUTPUT_DIR%\bin\Release\stclib %FILER_DIR%\ stclib /e /i /y&#xd;
+rem -- xcopy %BUILD_OUTPUT_DIR%\bin\Release\Templates %FILER_DIR%\Templates /e /i /y&#xd;
+rem -- xcopy %BUILD_OUTPUT_DIR%\bin\Release\Tcl %FILER_DIR%\Tcl /e /i /y&#xd;
+rem -- xcopy %BUILD_OUTPUT_DIR%\bin\Release\Python %FILER_DIR%\Python /e /i /y&#xd;
+rem -- xcopy %BUILD_OUTPUT_DIR%\bin\Release\STAKCommands %FILER_DIR%\STAKCommands /e /i /y&#xd;
+rem -- copy %BUILD_OUTPUT_DIR%\bin\Release\*.* %FILER_DIR% /y&#xd;
+&#xd;
+REM 0-padding build number&#xd;
+SET FULLVER=00%BLL_BUILD_NUMBER%%BRANCH_ID%&#xd;
+if %BLL_BUILD_NUMBER% gtr 9 SET FULLVER=0%BLL_BUILD_NUMBER%%BRANCH_ID%&#xd;
+if %BLL_BUILD_NUMBER% gtr 99 SET FULLVER=%BLL_BUILD_NUMBER%%BRANCH_ID%&#xd;
+echo FULLVER is %FULLVER%&#xd;
+net use K: /delete&#xd;
+net use K: \\10.40.52.42\home\qabuild Spirent8 /USER:SPIRENTCOM\qabuild&#xd;
+set FILER_DIR=K:\TestCenter\2.00\engineering_builds\GUI_BLL\%STC_MAJ_MIN_VERSION%.%FULLVER%&#xd;
+echo &quot;Copying raw files from %BUILD_OUTPUT_DIR%\bin\Release to %FILER_DIR% ...&quot;&#xd;
+mkdir %FILER_DIR%&#xd;
+xcopy %BUILD_OUTPUT_DIR%\bin\Release\Model %FILER_DIR%\Model /e /i /y&#xd;
+xcopy %BUILD_OUTPUT_DIR%\bin\Release\PDUs %FILER_DIR%\PDUs /e /i /y&#xd;
+xcopy %BUILD_OUTPUT_DIR%\bin\Release\RcmDb %FILER_DIR%\RcmDb /e /i /y&#xd;
+xcopy %BUILD_OUTPUT_DIR%\bin\Release\Resources %FILER_DIR%\Resources /e /i /y&#xd;
+xcopy %BUILD_OUTPUT_DIR%\bin\Release\stclib %FILER_DIR%\ stclib /e /i /y&#xd;
+xcopy %BUILD_OUTPUT_DIR%\bin\Release\Templates %FILER_DIR%\Templates /e /i /y&#xd;
+xcopy %BUILD_OUTPUT_DIR%\bin\Release\Tcl %FILER_DIR%\Tcl /e /i /y&#xd;
+xcopy %BUILD_OUTPUT_DIR%\bin\Release\Python %FILER_DIR%\Python /e /i /y&#xd;
+xcopy %BUILD_OUTPUT_DIR%\bin\Release\STAKCommands %FILER_DIR%\STAKCommands /e /i /y&#xd;
+xcopy %BUILD_OUTPUT_DIR%\bin\Release\STAKvirtualenvs %FILER_DIR%\STAKvirtualenvs/e /i /y&#xd;
+copy %BUILD_OUTPUT_DIR%\bin\Release\*.* %FILER_DIR% /y&#xd;
+&#xd;
+</command>
+    </hudson.tasks.BatchFile>
+  </builders>
+  <publishers>
+    <hudson.plugins.logparser.LogParserPublisher plugin="log-parser@2.0">
+      <unstableOnWarning>false</unstableOnWarning>
+      <failBuildOnError>true</failBuildOnError>
+      <showGraphs>false</showGraphs>
+      <parsingRulesPath>/var/lib/jenkins/log_parse_rule</parsingRulesPath>
+      <useProjectRule>false</useProjectRule>
+    </hudson.plugins.logparser.LogParserPublisher>
+    <hudson.plugins.claim.ClaimPublisher plugin="claim@2.9"/>
+    <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.57">
+      <recipientList>somboon.ongkamongkol@spirent.com</recipientList>
+      <configuredTriggers>
+        <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
+          <email>
+            <recipientList></recipientList>
+            <subject>$PROJECT_DEFAULT_SUBJECT</subject>
+            <body>$PROJECT_DEFAULT_CONTENT</body>
+            <recipientProviders>
+              <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
+            </recipientProviders>
+            <attachmentsPattern></attachmentsPattern>
+            <attachBuildLog>false</attachBuildLog>
+            <compressBuildLog>false</compressBuildLog>
+            <replyTo></replyTo>
+            <contentType>project</contentType>
+          </email>
+        </hudson.plugins.emailext.plugins.trigger.FailureTrigger>
+      </configuredTriggers>
+      <contentType>default</contentType>
+      <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
+      <defaultContent>$DEFAULT_CONTENT</defaultContent>
+      <attachmentsPattern></attachmentsPattern>
+      <presendScript></presendScript>
+      <attachBuildLog>false</attachBuildLog>
+      <compressBuildLog>false</compressBuildLog>
+      <replyTo></replyTo>
+      <saveOutput>false</saveOutput>
+      <disabled>false</disabled>
+    </hudson.plugins.emailext.ExtendedEmailPublisher>
+  </publishers>
+  <buildWrappers>
+    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.18">
+      <strategy class="hudson.plugins.build_timeout.impl.AbsoluteTimeOutStrategy">
+        <timeoutMinutes>360</timeoutMinutes>
+      </strategy>
+      <operationList>
+        <hudson.plugins.build__timeout.operations.AbortOperation/>
+      </operationList>
+    </hudson.plugins.build__timeout.BuildTimeoutWrapper>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.8"/>
+  </buildWrappers>
+</project>
