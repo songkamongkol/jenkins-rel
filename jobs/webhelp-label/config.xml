@@ -73,7 +73,7 @@
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -95,15 +95,20 @@
     <hudson.tasks.Shell>
       <command>env
 p4 info
-#p4 -u p4admin -P SpirentSCM reload -f -l 4.86_rel_webhelp_255
-p4 -u p4admin -P SpirentSCM tag -l $TARGET_LABEL //...@$SOURCE_LABEL</command>
+p4 -u p4admin -P $password reload -f -l 4.86_rel_webhelp_255
+#p4 -u p4admin -P $password tag -l $TARGET_LABEL //...@$SOURCE_LABEL</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers/>
   <buildWrappers>
     <EnvInjectPasswordWrapper plugin="envinject@1.89">
       <injectGlobalPasswords>false</injectGlobalPasswords>
-      <passwordEntries/>
+      <passwordEntries>
+        <EnvInjectPasswordEntry>
+          <name>password</name>
+          <value>GV9ukwik9MkJttLLMKQViamd9j/+waJxPrWR6OrGD+k=</value>
+        </EnvInjectPasswordEntry>
+      </passwordEntries>
     </EnvInjectPasswordWrapper>
   </buildWrappers>
 </project>
