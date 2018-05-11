@@ -95,7 +95,7 @@ example: &quot;38&quot; &quot;FreeBSD&quot; &quot;integration_ftp_tarball&quot; 
   </scm>
   <assignedNode>windows_x64_scm_bll</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>

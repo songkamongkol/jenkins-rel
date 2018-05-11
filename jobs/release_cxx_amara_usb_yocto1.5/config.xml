@@ -119,6 +119,7 @@ NOTE: if any value other than none is provided, the job will try to upload the u
 //TARDIS/avalanche_release/... //ws/content/traffic/l4l7vm/...
 //TARDIS/Studio_release/avanext/... //ws/content/traffic/studio_perf/avanext/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
+    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -162,7 +163,7 @@ NOTE: if any value other than none is provided, the job will try to upload the u
   <quietPeriod>120</quietPeriod>
   <assignedNode>ilpkg-v01</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>true</blockBuildWhenUpstreamBuilding>
   <authToken>meenuallowedtodothis</authToken>
@@ -346,6 +347,7 @@ fi
       <scriptOnlyIfSuccess>true</scriptOnlyIfSuccess>
       <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
       <markBuildUnstable>false</markBuildUnstable>
+      <executeOn>BOTH</executeOn>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.57">
       <recipientList>devopsteam@spirent.com,emil.mihaylov@spirent.com</recipientList>

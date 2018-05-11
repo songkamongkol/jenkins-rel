@@ -107,6 +107,7 @@ release_bll_windows_packaging_new</blockingJobs>
 //TestCenter/integration/content/HltAPI/SourceCode/... //ws/content/HltAPI/SourceCode/...
 //TestCenter/integration/content/HltAPI/build/... //ws/content/HltAPI/build/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
+    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -149,7 +150,7 @@ release_bll_windows_packaging_new</blockingJobs>
   </scm>
   <assignedNode>spccalengec02</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>true</blockBuildWhenUpstreamBuilding>
   <triggers/>

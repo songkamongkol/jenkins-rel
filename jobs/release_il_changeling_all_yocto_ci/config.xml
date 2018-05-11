@@ -132,7 +132,7 @@ Archive il_changeling_*.tar&lt;br&gt;
   <quietPeriod>30</quietPeriod>
   <assignedNode>ilbuild-17</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>

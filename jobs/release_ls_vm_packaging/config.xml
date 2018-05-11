@@ -127,7 +127,7 @@
   <quietPeriod>120</quietPeriod>
   <assignedNode>ilpkg-03</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>true</blockBuildWhenUpstreamBuilding>
   <authToken>meenuallowedtodothis</authToken>

@@ -43,7 +43,7 @@ pw_packages_to_test and clean out the same file in \\spccalfs04\SCM\SCMSmartTest
   <scm class="hudson.scm.NullSCM"/>
   <assignedNode>windows_x64_scm_bll</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>

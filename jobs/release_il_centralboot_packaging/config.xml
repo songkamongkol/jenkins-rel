@@ -149,7 +149,7 @@ Then runs Centralboot to generate centralboot image and run reversion script to 
   <quietPeriod>120</quietPeriod>
   <assignedNode>ilpkg-02</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>true</blockBuildWhenUpstreamBuilding>
   <triggers/>

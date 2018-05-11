@@ -84,6 +84,7 @@ Triggers integration_ftp_tarball which restructures the tarball and copies the o
 //SCM/Scripts/ci_* //ws/Build_Scripts/Scripts/ci_*
 //TestCenter/${BRANCH_NAME}/framework/tools/buildUtil/... //ws/framework/tools/buildUtil/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
+    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -127,7 +128,7 @@ Triggers integration_ftp_tarball which restructures the tarball and copies the o
   <quietPeriod>1320</quietPeriod>
   <assignedNode>bllbldlnx-v25</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>

@@ -105,6 +105,7 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
 +//TestCenter/${BRANCH_NAME}/build/il/scripts/... //ws/build/il/scripts/...
 +//TestCenter/${BRANCH_NAME}/build/il/configs/scripts/... //ws/build/il/configs/scripts/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
+    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -148,7 +149,7 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
   <quietPeriod>60</quietPeriod>
   <assignedNode>bllbuild-win-04</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>true</blockBuildWhenUpstreamBuilding>
   <triggers>
@@ -267,6 +268,7 @@ python ..\..\framework\tools\buildUtil\setver.py --package=TestCenter.Windows.x6
       <scriptOnlyIfSuccess>false</scriptOnlyIfSuccess>
       <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
       <markBuildUnstable>false</markBuildUnstable>
+      <executeOn>BOTH</executeOn>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
     <hudson.plugins.claim.ClaimPublisher plugin="claim@2.9"/>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.57">

@@ -10,7 +10,7 @@
   </logRotator>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
       <useBuildBlocker>true</useBuildBlocker>
       <blockingJobs>release_regression_ci</blockingJobs>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
@@ -19,7 +19,7 @@
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.61_rel</defaultValue>
+          <defaultValue>4.62_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>INSTALL_DIR</name>
@@ -112,7 +112,7 @@ del BLL_Linux_changelist_*.txt&#xd;
 del il_qemu_changelist_*.txt&#xd;
 exit /B 0</command>
     </hudson.tasks.BatchFile>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.37">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
       <project>release_bll_windows_ci</project>
       <filter>bin/Release/TestCenter.Windows.bll.tar.gz, bll_idl_crc.txt</filter>
       <target></target>
@@ -122,7 +122,7 @@ exit /B 0</command>
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.37">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
       <project>release_bll_windows_ci</project>
       <filter>bin/Release/STAKCommands.beta.Windows.tar.gz</filter>
       <target></target>
@@ -132,7 +132,7 @@ exit /B 0</command>
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>true</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.37">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
       <project>release_il_qemu_ci</project>
       <filter>*il_qemu*changelist_*.txt</filter>
       <target></target>
@@ -140,7 +140,7 @@ exit /B 0</command>
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.37">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
       <project>release_ui_ci</project>
       <filter>UI_changelist_*.txt</filter>
       <target></target>
@@ -148,7 +148,7 @@ exit /B 0</command>
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.37">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
       <project>release_bll_linux_ci</project>
       <filter>BLL_Linux_changelist*.txt</filter>
       <target></target>
@@ -186,7 +186,7 @@ exit /B 0</command>
     <hudson.tasks.BatchFile>
       <command>python regression\jenkins\junitEmail.py --junit result.junit.xml --output-file email.properties</command>
     </hudson.tasks.BatchFile>
-    <EnvInjectBuilder plugin="envinject@1.92.1">
+    <EnvInjectBuilder plugin="envinject@1.89">
       <info>
         <propertiesFilePath>email.properties</propertiesFilePath>
       </info>
@@ -208,11 +208,11 @@ exit /B 0</command>
       <parsingRulesPath>/opt/jenkins/jenkins-root/regression_log_parse_rule</parsingRulesPath>
       <useProjectRule>false</useProjectRule>
     </hudson.plugins.logparser.LogParserPublisher>
-    <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.10">
+    <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.20">
       <testResults>*.junit.xml</testResults>
       <keepLongStdio>false</keepLongStdio>
       <testDataPublishers>
-        <hudson.plugins.claim.ClaimTestDataPublisher plugin="claim@2.8"/>
+        <hudson.plugins.claim.ClaimTestDataPublisher plugin="claim@2.9"/>
       </testDataPublishers>
       <allowEmptyResults>false</allowEmptyResults>
     </hudson.tasks.junit.JUnitResultArchiver>
@@ -220,8 +220,8 @@ exit /B 0</command>
       <targets>regression/il_img/*.gz</targets>
       <recordBuildArtifacts>false</recordBuildArtifacts>
     </hudson.tasks.Fingerprinter>
-    <hudson.plugins.claim.ClaimPublisher plugin="claim@2.8"/>
-    <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.40.5">
+    <hudson.plugins.claim.ClaimPublisher plugin="claim@2.9"/>
+    <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.57">
       <recipientList>engstciteam@spirent.com,ENGCIFirstResponderTeam@spirent.com,$EMAIL_DEV</recipientList>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
@@ -257,6 +257,6 @@ exit /B 0</command>
     </hudson.plugins.blame__upstream__commiters.BlameUpstreamCommitersPublisher>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.6.2"/>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.8"/>
   </buildWrappers>
 </project>

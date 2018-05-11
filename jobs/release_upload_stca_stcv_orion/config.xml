@@ -75,6 +75,7 @@ release_bll_windows_packaging_new</blockingJobs>
 //SCM/Scripts/upload_stc_bll_orion.sh //ws/upload_stc_bll_orion.sh
 //SCM/Scripts/temeva_test_s3_artifacts_cleanup.py //ws/temeva_test_s3_artifacts_cleanup.py</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
+    <clientOwner></clientOwner>
     <p4SysDrive></p4SysDrive>
     <p4SysRoot></p4SysRoot>
     <p4Tool>p4</p4Tool>
@@ -112,7 +113,7 @@ release_bll_windows_packaging_new</blockingJobs>
   <quietPeriod>3600</quietPeriod>
   <assignedNode>ilpkg-02</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>

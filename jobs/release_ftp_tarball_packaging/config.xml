@@ -106,6 +106,7 @@ release_bll_freebsd_packaging</description>
 //TestCenter/${BRANCH_NAME}/content/traffic/l4l7/templates/... //ws/Spirent_TestCenter_Application_Linux_Server/Dpg/...
 //TestCenter/${BRANCH_NAME}/content/traffic/l4l7/tools/DpgUpdate/... //ws/Spirent_TestCenter_Application_Linux_Server/Dpg/DpgUpdate/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
+    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -149,7 +150,7 @@ release_bll_freebsd_packaging</description>
   <quietPeriod>5</quietPeriod>
   <assignedNode>spccalengec02</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
@@ -226,6 +227,7 @@ P4CLEANWORKSPACE=true</properties>
       <scriptOnlyIfSuccess>true</scriptOnlyIfSuccess>
       <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
       <markBuildUnstable>false</markBuildUnstable>
+      <executeOn>BOTH</executeOn>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
     <hudson.plugins.claim.ClaimPublisher plugin="claim@2.9"/>
     <hudson.plugins.parameterizedtrigger.BuildTrigger plugin="parameterized-trigger@2.25">

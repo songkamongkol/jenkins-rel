@@ -86,7 +86,7 @@ Archive il_virtual_*.tar&lt;br&gt;&#xd;
   <quietPeriod>45</quietPeriod>
   <assignedNode>ilbuild-04</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>

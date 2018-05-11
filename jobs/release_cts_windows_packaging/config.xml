@@ -109,6 +109,7 @@ release_bll_windows_x64_packaging</blockingJobs>
 //TestCenter/${BRANCH_NAME}/content/traffic/l4l7/tools/DpgUpdate/... //ws/bin/Release/Dpg/DpgUpdate/...
 //TestCenter/${BRANCH_NAME}/common/lib/pduEditor/... //ws/common/lib/pduEditor/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
+    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -152,7 +153,7 @@ release_bll_windows_x64_packaging</blockingJobs>
   <quietPeriod>320</quietPeriod>
   <assignedNode>spccalengec02</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>true</blockBuildWhenUpstreamBuilding>
   <triggers/>
