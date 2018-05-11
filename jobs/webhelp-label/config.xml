@@ -73,7 +73,7 @@
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -97,7 +97,10 @@
 p4 info
 p4 -u p4admin -P $password unload -f -l $SOURCE_LABEL
 p4 -u p4admin -P $password reload -f -l $SOURCE_LABEL
-p4 -u p4admin -P $password tag -l $TARGET_LABEL //...@$SOURCE_LABEL</command>
+p4 -u p4admin -P $password tag -l $TARGET_LABEL //...@$SOURCE_LABEL
+
+echo Verify the difference
+p4 -u p4admin -P $password diff2 -q //...@$TARGET_LABEL //...@$SOURCE_LABEL</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers/>
