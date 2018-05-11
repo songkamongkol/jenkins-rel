@@ -73,7 +73,7 @@
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -96,7 +96,7 @@
       <command>env
 p4 info
 #p4 -u p4admin -P SpirentSCM reload -f -l 4.86_rel_webhelp_255
-p4 -u p4admin -P SpirentSCM tag -l test_webhelp //...@4.86_rel_webhelp_255</command>
+p4 -u p4admin -P SpirentSCM tag -l $TARGET_LABEL //...@$SOURCE_LABEL</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers/>
