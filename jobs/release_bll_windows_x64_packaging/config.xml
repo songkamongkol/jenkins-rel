@@ -339,9 +339,7 @@ if(manager.logContains(&quot;.*getFileVer.vbs(.*) (null): The system cannot find
         </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
         <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
           <configs>
-            <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-              <properties>BLL_BUILD_NUMBER=${BLL_BUILD_NUMBER}</properties>
-            </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+            <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
           </configs>
           <projects>release_win_bll_x64_copy_to_filer, </projects>
           <condition>SUCCESS</condition>
