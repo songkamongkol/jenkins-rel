@@ -73,7 +73,7 @@
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -95,7 +95,7 @@
     <hudson.tasks.Shell>
       <command>env
 p4 info
-p4 -u p4admin -P $password unload 4.86_rel_webhelp_255
+p4 -u p4admin -P $password unload -l 4.86_rel_webhelp_255
 p4 -u p4admin -P $password reload -f -l 4.86_rel_webhelp_255
 #p4 -u p4admin -P $password tag -l $TARGET_LABEL //...@$SOURCE_LABEL</command>
     </hudson.tasks.Shell>
