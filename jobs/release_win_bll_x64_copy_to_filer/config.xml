@@ -46,7 +46,7 @@ NOTE: This job must be setup to run on the same machine as the Windows </descrip
           <defaultValue>4.86_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>BUILD_OUTPUT_DIR</name>
+          <name>PKG_BUILD_OUTPUT_DIR</name>
           <description>build output dir</description>
           <defaultValue>D:\jenkins-rel\release_bll_windows_x64_packaging</defaultValue>
         </hudson.model.StringParameterDefinition>
@@ -84,19 +84,19 @@ echo FULLVER is %FULLVER%&#xd;
 net use K: /delete&#xd;
 net use K: \\10.40.52.42\home\qabuild Spirent8 /USER:SPIRENTCOM\qabuild&#xd;
 set FILER_DIR=K:\TestCenter\2.00\engineering_builds\GUI_BLL64\%STC_MAJ_MIN_VERSION%.%FULLVER%&#xd;
-echo &quot;Copying raw files from %BUILD_OUTPUT_DIR%\bin\Release_x64 to %FILER_DIR% ...&quot;&#xd;
+echo &quot;Copying raw files from %PKG_BUILD_OUTPUT_DIR%\bin\Release_x64 to %FILER_DIR% ...&quot;&#xd;
 mkdir %FILER_DIR%&#xd;
-xcopy %BUILD_OUTPUT_DIR%\bin\Release_x64\Model %FILER_DIR%\Model /e /i /y&#xd;
-xcopy %BUILD_OUTPUT_DIR%\bin\Release_x64\PDUs %FILER_DIR%\PDUs /e /i /y&#xd;
-xcopy %BUILD_OUTPUT_DIR%\bin\Release_x64\RcmDb %FILER_DIR%\RcmDb /e /i /y&#xd;
-xcopy %BUILD_OUTPUT_DIR%\bin\Release_x64\Resources %FILER_DIR%\Resources /e /i /y&#xd;
-xcopy %BUILD_OUTPUT_DIR%\bin\Release_x64\stclib %FILER_DIR%\ stclib /e /i /y&#xd;
-xcopy %BUILD_OUTPUT_DIR%\bin\Release_x64\Templates %FILER_DIR%\Templates /e /i /y&#xd;
-xcopy %BUILD_OUTPUT_DIR%\bin\Release_x64\Tcl %FILER_DIR%\Tcl /e /i /y&#xd;
-xcopy %BUILD_OUTPUT_DIR%\bin\Release_x64\Python %FILER_DIR%\Python /e /i /y&#xd;
-xcopy %BUILD_OUTPUT_DIR%\bin\Release_x64\STAKCommands %FILER_DIR%\STAKCommands /e /i /y&#xd;
-xcopy %BUILD_OUTPUT_DIR%\bin\Release_x64\STAKvirtualenvs %FILER_DIR%\STAKvirtualenvs/e /i /y&#xd;
-copy %BUILD_OUTPUT_DIR%\bin\Release_x64\*.* %FILER_DIR% /y&#xd;
+xcopy %PKG_BUILD_OUTPUT_DIR%\bin\Release_x64\Model %FILER_DIR%\Model /e /i /y&#xd;
+xcopy %PKG_BUILD_OUTPUT_DIR%\bin\Release_x64\PDUs %FILER_DIR%\PDUs /e /i /y&#xd;
+xcopy %PKG_BUILD_OUTPUT_DIR%\bin\Release_x64\RcmDb %FILER_DIR%\RcmDb /e /i /y&#xd;
+xcopy %PKG_BUILD_OUTPUT_DIR%\bin\Release_x64\Resources %FILER_DIR%\Resources /e /i /y&#xd;
+xcopy %PKG_BUILD_OUTPUT_DIR%\bin\Release_x64\stclib %FILER_DIR%\ stclib /e /i /y&#xd;
+xcopy %PKG_BUILD_OUTPUT_DIR%\bin\Release_x64\Templates %FILER_DIR%\Templates /e /i /y&#xd;
+xcopy %PKG_BUILD_OUTPUT_DIR%\bin\Release_x64\Tcl %FILER_DIR%\Tcl /e /i /y&#xd;
+xcopy %PKG_BUILD_OUTPUT_DIR%\bin\Release_x64\Python %FILER_DIR%\Python /e /i /y&#xd;
+xcopy %PKG_BUILD_OUTPUT_DIR%\bin\Release_x64\STAKCommands %FILER_DIR%\STAKCommands /e /i /y&#xd;
+xcopy %PKG_BUILD_OUTPUT_DIR%\bin\Release_x64\STAKvirtualenvs %FILER_DIR%\STAKvirtualenvs/e /i /y&#xd;
+copy %PKG_BUILD_OUTPUT_DIR%\bin\Release_x64\*.* %FILER_DIR% /y&#xd;
 &#xd;
 </command>
     </hudson.tasks.BatchFile>
