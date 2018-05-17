@@ -44,8 +44,8 @@
   </properties>
   <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.36">
     <configVersion>2</configVersion>
-    <p4User>scmbuild</p4User>
-    <p4Passwd></p4Passwd>
+    <p4User>swilliams</p4User>
+    <p4Passwd>0f0kqlwa++gi6mdBtLvfa3AlrK8xqw==</p4Passwd>
     <p4Port>perforce.spirentcom.com:1666</p4Port>
     <p4Client>${JOB_NAME}_ws</p4Client>
     <projectPath>//SCM/Scripts/ci_* //ws/Build_Scripts/Scripts/ci_*</projectPath>
@@ -73,7 +73,7 @@
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
