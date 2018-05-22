@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
-  <description>*** This job is for Linux-32 Client tar ball ***
-Extracts TestCenter.Linux.AutomationClient.x86.tar.gz from release_bll_linux_x86client build job&lt;br&gt;
-Runs setver.py using python script ci_run_jenkins_steps.py script&lt;br&gt;
-Creates a new tarball&lt;br&gt;
+  <description>*** This job is for Linux-32 Client tar ball ***&#xd;
+Extracts TestCenter.Linux.AutomationClient.x86.tar.gz from release_bll_linux_x86client build job&lt;br&gt;&#xd;
+Runs setver.py using python script ci_run_jenkins_steps.py script&lt;br&gt;&#xd;
+Creates a new tarball&lt;br&gt;&#xd;
 Triggers integration_ftp_tarball which restructures the tarball and copies the output to Martin&lt;br&gt;</description>
   <keepDependencies>false</keepDependencies>
   <properties>
@@ -24,9 +25,9 @@ Triggers integration_ftp_tarball which restructures the tarball and copies the o
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain/>
-      <token/>
-      <room/>
+      <teamDomain></teamDomain>
+      <token></token>
+      <room></room>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -48,7 +49,7 @@ Triggers integration_ftp_tarball which restructures the tarball and copies the o
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
           <description>clean build</description>
-          <defaultValue>false</defaultValue>
+          <defaultValue>true</defaultValue>
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BUILD_OUTPUT_DIR</name>
@@ -62,12 +63,12 @@ Triggers integration_ftp_tarball which restructures the tarball and copies the o
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
-          <description/>
+          <description></description>
           <defaultValue>BAD_BUILD_NUMBER</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>SOURCE_OS</name>
-          <description/>
+          <description></description>
           <defaultValue>EL3Linux32Client</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -112,7 +113,7 @@ Triggers integration_ftp_tarball which restructures the tarball and copies the o
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -135,8 +136,8 @@ Triggers integration_ftp_tarball which restructures the tarball and copies the o
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
       <project>release_bll_linux_x86client</project>
       <filter>TestCenter.Linux.AutomationClient.x86.tar.gz</filter>
-      <target/>
-      <excludes/>
+      <target></target>
+      <excludes></excludes>
       <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
@@ -149,7 +150,7 @@ python ../Build_Scripts/Scripts/ci_run_jenkins_steps.py --createpropfile=yes --r
 rm -f Spirent_TestCenter_Auto_Linux64Client_$STC_MAJ_MIN_VERSION.tar.gz
 tar cvf Spirent_TestCenter_Auto_Linux32Client_$STC_MAJ_MIN_VERSION.tar *
 gzip Spirent_TestCenter_Auto_Linux32Client_$STC_MAJ_MIN_VERSION.tar
-echo "Finished creating Spirent_TestCenter_Auto_Linux32Client_$STC_MAJ_MIN_VERSION.tar.gz"</command>
+echo &quot;Finished creating Spirent_TestCenter_Auto_Linux32Client_$STC_MAJ_MIN_VERSION.tar.gz&quot;</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>

@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
   <description>IL Build job for virtual targets:&lt;br&gt;
 $WORKSPACE/build/il/scripts/phxbld -j8 vtc&lt;br&gt;
@@ -33,9 +34,9 @@ Archive il_vtc_*.tar&lt;br&gt;
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain/>
-      <token/>
-      <room/>
+      <teamDomain></teamDomain>
+      <token></token>
+      <room></room>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -71,7 +72,7 @@ Archive il_vtc_*.tar&lt;br&gt;
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
-          <description/>
+          <description></description>
           <defaultValue>4.87</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -80,7 +81,7 @@ Archive il_vtc_*.tar&lt;br&gt;
   <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.36">
     <configVersion>2</configVersion>
     <p4User>scmbuild</p4User>
-    <p4Passwd/>
+    <p4Passwd></p4Passwd>
     <p4Port>perforceproxy.cal.ci.spirentcom.com:1999</p4Port>
     <p4Client>${JOB_NAME}_${BRANCH_NAME}</p4Client>
     <projectPath>//SCM/Scripts/ci_* //ws/Build_Scripts/Scripts/ci_*
@@ -106,6 +107,7 @@ Archive il_vtc_*.tar&lt;br&gt;
 //LandSlide_Binaries/bof/content/traffic/mobi/il/blink/GlueServer //ws/content/traffic/mobi/il/blink/GlueServer
 //TARDIS/Studio/pretardis/4.17_studio/il/vm/studio.qcow2.gz //ws/content/traffic/studio/il/vm/studio.qcow2.gz</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
+    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -187,9 +189,9 @@ lbd=`sudo losetup -a`
 for line in $lbd; do
         echo $line | grep dev
         if [ $? -eq 0 ] ; then
-                # echo $line | awk '{ print substr ($0, 0, 10) }';
-                echo "Cleaning up loopback device ..."
-                sudo losetup -d `echo $line | awk '{ print substr ($0, 0, 10) }i'`
+                # echo $line | awk &apos;{ print substr ($0, 0, 10) }&apos;;
+                echo &quot;Cleaning up loopback device ...&quot;
+                sudo losetup -d `echo $line | awk &apos;{ print substr ($0, 0, 10) }i&apos;`
         fi
 done</command>
     </hudson.tasks.Shell>
@@ -220,7 +222,7 @@ sudo rm -rf $WORKSPACE/build/il/bld_*</command>
     <hudson.tasks.Shell>
       <command># rm -f il_vtc_$STC_MAJ_MIN_VERSION.tar
 # tar cvf il_vtc_$STC_MAJ_MIN_VERSION.tar ./build/il/packages
-echo "Finished creating il_stca_$STC_MAJ_MIN_VERSION.tar"
+echo &quot;Finished creating il_stca_$STC_MAJ_MIN_VERSION.tar&quot;
 # python $HOME/jenkins/ftp.py --ip=storage.cal.ci.spirentcom.com --n=30 --file=jenkins/il_stca-$BRANCH_NAME/
 python $HOME/jenkins/build_cleanup.py --n=50 --file=/mnt/builds/jenkins/il_stca-$BRANCH_NAME</command>
     </hudson.tasks.Shell>
@@ -255,7 +257,7 @@ python $HOME/jenkins/build_cleanup.py --n=50 --file=/mnt/builds/jenkins/il_stca-
               <hudson.plugins.emailext.plugins.recipients.DevelopersRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -265,12 +267,12 @@ python $HOME/jenkins/build_cleanup.py --n=50 --file=/mnt/builds/jenkins/il_stca-
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern/>
-      <presendScript/>
-      <postsendScript/>
+      <attachmentsPattern></attachmentsPattern>
+      <presendScript></presendScript>
+      <postsendScript></postsendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
-      <replyTo/>
+      <replyTo></replyTo>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
@@ -280,7 +282,7 @@ python $HOME/jenkins/build_cleanup.py --n=50 --file=/mnt/builds/jenkins/il_stca-
           <command># copy the build output to storage server
 export STORAGE_DIR=/mnt/builds/jenkins/il_stca-$BRANCH_NAME/build-$P4_CHANGELIST/
 
-if [ ! -d "$STORAGE_DIR" ]; then
+if [ ! -d &quot;$STORAGE_DIR&quot; ]; then
   mkdir -p $STORAGE_DIR
   mkdir -p $STORAGE_DIR/rawimg
 fi
@@ -295,6 +297,7 @@ cp -r $WORKSPACE/build/il/packages/stca $STORAGE_DIR
       <scriptOnlyIfSuccess>true</scriptOnlyIfSuccess>
       <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
       <markBuildUnstable>false</markBuildUnstable>
+      <executeOn>BOTH</executeOn>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
   </publishers>
   <buildWrappers>
