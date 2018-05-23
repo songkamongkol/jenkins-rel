@@ -137,7 +137,7 @@ release_win_bll_x64_copy_to_filer</blockingJobs>
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -251,7 +251,7 @@ REM :skipstcweb&#xd;
       <command>cd %WORKSPACE%\bin\release_x64&#xd;
 rem SET DEPENDENT_JOB_NAME=integration_package_cts_windows&#xd;
 SET DEPENDENT_JOB_NAME=%JOB_NAME%&#xd;
-copy  %WIN_WORKSPACE%\%JOB_NAME%\bin\Release_x64\NTAF\tool\Stc450Publication.xml %WIN_WORKSPACE%\%JOB_NAME%\bin\Release_x64\NTAF\tool\Stc460Publication.xml /y&#xd;
+copy  %WIN_WORKSPACE%\%JOB_NAME%\bin\Release_x64\NTAF\tool\Stc420Publication.xml %WIN_WORKSPACE%\%JOB_NAME%\bin\Release_x64\NTAF\tool\Stc486Publication.xml /y&#xd;
 c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --createpropfile=yes --runcimaketarballs=no --runsetver=yes --updateilversionxml=yes --updatereleasetag=yes --updatepkgindextcl=yes --updatespirenttestcentertcl=yes --updatestclibtcl=yes --updatentafxml=yes --updatehltapiversion=yes&#xd;
 &#xd;
 perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% STC_X64_APP_COPY_ONLY&#xd;
