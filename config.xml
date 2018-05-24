@@ -39,7 +39,7 @@
     </hudson.model.AllView>
     <hudson.plugins.nested__view.NestedView plugin="nested-view@1.14">
       <owner class="hudson" reference="../../.."/>
-      <name>release(4.86_rel)</name>
+      <name>release(4.87_rel)</name>
       <filterExecutors>true</filterExecutors>
       <filterQueue>true</filterQueue>
       <properties class="hudson.model.View$PropertyList"/>
@@ -141,6 +141,7 @@
             <string>release_win_bll_copy_to_filer</string>
             <string>release_win_bll_x64_copy_to_filer</string>
             <string>SMT-Regression-SYS-01-Jenkins-smt</string>
+            <string>Unset-P4CleanupWorkspace</string>
           </jobNames>
           <jobFilters/>
           <columns>

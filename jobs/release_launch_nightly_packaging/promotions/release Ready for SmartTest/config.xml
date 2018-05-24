@@ -52,7 +52,7 @@
               <properties>STC_MAJ_MIN_VERSION=${STC_MAJ_MIN_VERSION}</properties>
             </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
           </configs>
-          <projects>SMT-Regression-SYS-01-Jenkins-smt</projects>
+          <projects>SMT-Regression-SYS-01-Jenkins-smt,Unset-P4CleanupWorkspace</projects>
           <condition>SUCCESS</condition>
           <triggerWithNoParameters>false</triggerWithNoParameters>
         </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
