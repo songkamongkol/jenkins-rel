@@ -137,7 +137,7 @@ release_win_bll_x64_copy_to_filer</blockingJobs>
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -236,10 +236,11 @@ set&#xd;
     <hudson.tasks.BatchFile>
       <command>REM if &quot;%MODE%&quot; == &quot;INC&quot; goto skipstcweb&#xd;
 REM del /f /q %WORKSPACE%\stc-rest*.tar*&#xd;
+REM del /f /q stc-rest-win64.tar.gz&#xd;
+REM set URL=https://jenkins.oriondev.net/job/stc-web/lastSuccessfulBuild/s3/download/stc-rest-win64.tar.gz&#xd;
+REM python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --downloadfilefromurl=%URL%&#xd;
+&#xd;
 del /f /q stc-rest-win64.tar&#xd;
-del /f /q stc-rest-win64.tar.gz&#xd;
-set URL=https://jenkins.oriondev.net/job/stc-web/lastSuccessfulBuild/s3/download/stc-rest-win64.tar.gz&#xd;
-python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --downloadfilefromurl=%URL%&#xd;
 7z x stc-rest-win64.tar.gz&#xd;
 7z x -y -o&quot;%WORKSPACE%\bin\Release_x64&quot; stc-rest-win64.tar&#xd;
 &#xd;
@@ -356,6 +357,66 @@ if(manager.logContains(&quot;.*getFileVer.vbs(.*) (null): The system cannot find
       <operationList/>
     </hudson.plugins.build__timeout.BuildTimeoutWrapper>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.8"/>
+    <org.jfrog.hudson.generic.ArtifactoryGenericConfigurator plugin="artifactory@2.13.1">
+      <details>
+        <artifactoryName>artifactory.srv.orionprod.net</artifactoryName>
+        <artifactoryUrl>https://artifactory.srv.orionprod.net/artifactory</artifactoryUrl>
+        <stagingPlugin/>
+      </details>
+      <resolverDetails>
+        <artifactoryName>artifactory.srv.orionprod.net</artifactoryName>
+        <artifactoryUrl>https://artifactory.srv.orionprod.net/artifactory</artifactoryUrl>
+        <stagingPlugin/>
+      </resolverDetails>
+      <deployerCredentialsConfig>
+        <credentials>
+          <username></username>
+          <password></password>
+        </credentials>
+        <credentialsId></credentialsId>
+        <overridingCredentials>false</overridingCredentials>
+        <ignoreCredentialPluginDisabled>false</ignoreCredentialPluginDisabled>
+      </deployerCredentialsConfig>
+      <resolverCredentialsConfig>
+        <credentials>
+          <username></username>
+          <password></password>
+        </credentials>
+        <credentialsId></credentialsId>
+        <overridingCredentials>false</overridingCredentials>
+        <ignoreCredentialPluginDisabled>false</ignoreCredentialPluginDisabled>
+      </resolverCredentialsConfig>
+      <useSpecs>true</useSpecs>
+      <uploadSpec>
+        <spec></spec>
+      </uploadSpec>
+      <downloadSpec>
+        <spec>{
+    &quot;files&quot;: [
+        {
+            &quot;pattern&quot;: &quot;stc-web/stc-rest-win64.tar.gz&quot;,
+            &quot;target&quot;: &quot;./stc-rest-win64.tar.gz&quot;,
+            &quot;flat&quot;: &quot;true&quot;
+        }
+    ]
+}</spec>
+      </downloadSpec>
+      <deployPattern></deployPattern>
+      <resolvePattern></resolvePattern>
+      <matrixParams></matrixParams>
+      <deployBuildInfo>true</deployBuildInfo>
+      <includeEnvVars>false</includeEnvVars>
+      <envVarsPatterns>
+        <includePatterns></includePatterns>
+        <excludePatterns>*password*,*secret*,*key*</excludePatterns>
+      </envVarsPatterns>
+      <discardOldBuilds>false</discardOldBuilds>
+      <discardBuildArtifacts>true</discardBuildArtifacts>
+      <asyncBuildRetention>false</asyncBuildRetention>
+      <multiConfProject>false</multiConfProject>
+      <customBuildName></customBuildName>
+      <overrideBuildName>false</overrideBuildName>
+    </org.jfrog.hudson.generic.ArtifactoryGenericConfigurator>
     <EnvInjectBuildWrapper plugin="envinject@1.89">
       <info>
         <propertiesContent>WIN_WORKSPACE=C:\jenkins
