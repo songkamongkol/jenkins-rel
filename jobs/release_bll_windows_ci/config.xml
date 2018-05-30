@@ -148,7 +148,7 @@
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -274,8 +274,8 @@ rmdir /q /s pdb&#xd;
 )</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>c:\Python26\python.exe framework\tools\buildUtil\pw_build_tracker.py --build_dir=&quot;c:\jenkins\workspace\release_bll_windows_ci\bin\Release&quot;&#xd;
-c:\Python26\python.exe common\idl\crc.py -f bll_idl_crc.txt --desc &quot;%JOB_NAME% %BUILD_NUMBER%&quot;</command>
+      <command>python.exe framework\tools\buildUtil\pw_build_tracker.py --build_dir=&quot;c:\jenkins\workspace\release_bll_windows_ci\bin\Release&quot;&#xd;
+python.exe common\idl\crc.py -f bll_idl_crc.txt --desc &quot;%JOB_NAME% %BUILD_NUMBER%&quot;</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
       <command>if %BUILD_RUN_UNITTEST% == true (&#xd;
