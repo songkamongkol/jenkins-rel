@@ -163,6 +163,7 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
 echo %P4_CHANGELIST% &gt; UI_changelist_%P4_CHANGELIST%.txt&#xd;
 &#xd;
 REM remove me&#xd;
+p4 revert //...&#xd;
 p4 unshelve -s 880572&#xd;
 </command>
     </hudson.tasks.BatchFile>
