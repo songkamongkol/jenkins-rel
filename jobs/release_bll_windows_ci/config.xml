@@ -148,7 +148,7 @@
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -169,7 +169,12 @@
   <builders>
     <hudson.tasks.BatchFile>
       <command>del BLL_changelist_*.txt&#xd;
-echo %P4_CHANGELIST% %JOB_NAME% %BUILD_NUMBER% &gt; BLL_changelist_%P4_CHANGELIST%.txt</command>
+echo %P4_CHANGELIST% %JOB_NAME% %BUILD_NUMBER% &gt; BLL_changelist_%P4_CHANGELIST%.txt&#xd;
+&#xd;
+REM remove me&#xd;
+p4 revert //...&#xd;
+p4 unshelve -s 880572&#xd;
+</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
       <command>echo P4CHANGESTART %P4_CHANGELIST% P4CHANGEEND&#xd;
