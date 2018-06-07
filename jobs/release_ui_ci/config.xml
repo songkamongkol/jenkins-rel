@@ -134,7 +134,7 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -164,7 +164,7 @@ echo %P4_CHANGELIST% &gt; UI_changelist_%P4_CHANGELIST%.txt&#xd;
 &#xd;
 REM remove me&#xd;
 p4 revert //...&#xd;
-p4 unshelve -s 880572&#xd;
+&#xd;
 </command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
