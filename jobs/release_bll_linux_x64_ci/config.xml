@@ -173,7 +173,7 @@ echo $P4_CHANGELIST $JOB_NAME $BUILD_NUMBER &gt; BLL_Linux_x64_changelist_$P4_CH
     <hudson.tasks.Shell>
       <command>if [ &quot;$BUILD_RUN_UNITTEST&quot; = &quot;true&quot; ]; then
     cd $WORKSPACE/$BUILD_OUTPUT_DIR
-    python $WORKSPACE/framework/tools/testRunner/testRunner.py
+    python $WORKSPACE/framework/tools/testRunner/testRunner.py --runInParallel=4 --bll --stak --archive
 fi</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
