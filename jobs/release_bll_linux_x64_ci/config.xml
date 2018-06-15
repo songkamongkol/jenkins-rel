@@ -135,7 +135,7 @@
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -204,7 +204,7 @@ fi</command>
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
-      <artifacts>${BUILD_OUTPUT_DIR}/TestCenter*.tar.gz, build/il/bld_bll-el3-64_x86_64/Release/bin/TestCenter.Linux.x64.full.tar.gz, build/il/bld_bll-el3-64_x86_64/Release/bin/STAKCommands.beta.Linux.x64.tar.gz,BLL_Linux_x64_changelist*.txt</artifacts>
+      <artifacts>build/il/bld_bll-el3-64-automation-client-only_x86_64/Release/bin/TestCenter*.tar.gz, build/il/bld_bll-el3-64_x86_64/Release/bin/TestCenter.Linux.x64.full.tar.gz, build/il/bld_bll-el3-64_x86_64/Release/bin/STAKCommands.beta.Linux.x64.tar.gz,BLL_Linux_x64_changelist*.txt</artifacts>
       <allowEmptyArchive>false</allowEmptyArchive>
       <onlyIfSuccessful>false</onlyIfSuccessful>
       <fingerprint>false</fingerprint>
