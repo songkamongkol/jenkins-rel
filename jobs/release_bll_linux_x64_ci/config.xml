@@ -135,7 +135,7 @@
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -182,7 +182,7 @@ echo $P4_CHANGELIST $JOB_NAME $BUILD_NUMBER &gt; BLL_Linux_x64_changelist_$P4_CH
 fi</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command>cd $WORKSPACE/$BUILD_OUTPUT_DIR
+      <command>cd $WORKSPACE/build/il/bld_bll-el3-64-automation-client-only_x86_64/Release/bin
 rm -f TestCenter*.tar.gz
 if [ &quot;$BUILD_PACKAGE_BUILD&quot; = &quot;true&quot; ]; then
     python $WORKSPACE/framework/tools/buildUtil/package.py --arch-dir=Spirent_TestCenter_Application_Linux_Server --package=TestCenter 
