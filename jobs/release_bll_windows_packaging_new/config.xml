@@ -147,7 +147,7 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -285,6 +285,7 @@ c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --c
 perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% STC_APP_COPY_ONLY&#xd;
 REM -- temp --  perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% COMPILE_FORTHOT&#xd;
 REM -- Remove the following --&#xd;
+copy /y &quot;d:\jenkins-rel\workspace\release_launch_nightly_packaging\scm\installer\Files\Setup\ChromeSetup.exe&quot; d:\p2_installer\files\setup&#xd;
 copy /y &quot;d:\jenkins-rel\workspace\release_launch_nightly_packaging\scm\installer\Files\Setup\MagellanInstall.bat&quot; d:\p2_installer\files\setup&#xd;
 copy /y &quot;d:\jenkins-rel\workspace\release_launch_nightly_packaging\scm\installer\Files\Setup\postgres_setup_win.py&quot; d:\p2_installer\files\setup&#xd;
 copy /y &quot;d:\jenkins-rel\workspace\release_launch_nightly_packaging\scm\installer\Files\Setup\postgresql-10.3-2-windows.exe&quot; d:\p2_installer\files\setup&#xd;
@@ -295,6 +296,7 @@ copy /y &quot;d:\jenkins-rel\workspace\release_launch_nightly_packaging\scm\inst
 copy /y &quot;d:\jenkins-rel\workspace\release_launch_nightly_packaging\scm\installer\Installer Code\Spirent TestCenter Application\Script Files\Setup.Rul&quot; &quot;d:\p2_installer\Installer Code\Spirent TestCenter Application\Script Files\Setup.Rul&quot;&#xd;
 copy /y &quot;d:\jenkins-rel\workspace\release_launch_nightly_packaging\scm\installer\Installer Code\Spirent TestCenter Application x64\Spirent TestCenter Application x64.ism&quot; &quot;d:\p2_installer\Installer Code\Spirent TestCenter Application x64\Spirent TestCenter Application x64.ism&quot;&#xd;
 copy /y &quot;d:\jenkins-rel\workspace\release_launch_nightly_packaging\scm\installer\Installer Code\Spirent TestCenter Application x64\Script Files\Setup.Rul&quot; &quot;d:\p2_installer\Installer Code\Spirent TestCenter Application x64\Script Files\Setup.Rul&quot;&#xd;
+xcopy &quot;\\storage.cal.ci.spirentcom.com\builds\temp\orion-res-x86&quot; &quot;d:\p2_installer\files\Spirent TestCenter Application\installdir\orion-res&quot; /e /i /y&#xd;
 REM -- temp&#xd;
 perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% PACKAGE_P2_INSTALLER&#xd;
 REM -- temp -- perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% COPY_P2_INSTALLER&#xd;
