@@ -147,7 +147,7 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -296,6 +296,7 @@ copy /y &quot;d:\jenkins-rel\workspace\release_launch_nightly_packaging\scm\inst
 copy /y &quot;d:\jenkins-rel\workspace\release_launch_nightly_packaging\scm\installer\Installer Code\Spirent TestCenter Application\Script Files\Setup.Rul&quot; &quot;d:\p2_installer\Installer Code\Spirent TestCenter Application\Script Files\Setup.Rul&quot;&#xd;
 copy /y &quot;d:\jenkins-rel\workspace\release_launch_nightly_packaging\scm\installer\Installer Code\Spirent TestCenter Application x64\Spirent TestCenter Application x64.ism&quot; &quot;d:\p2_installer\Installer Code\Spirent TestCenter Application x64\Spirent TestCenter Application x64.ism&quot;&#xd;
 copy /y &quot;d:\jenkins-rel\workspace\release_launch_nightly_packaging\scm\installer\Installer Code\Spirent TestCenter Application x64\Script Files\Setup.Rul&quot; &quot;d:\p2_installer\Installer Code\Spirent TestCenter Application x64\Script Files\Setup.Rul&quot;&#xd;
+copy /y &quot;D:\jenkins-rel\workspace\release_launch_nightly_packaging\framework\bll\core\STAKCommands\core\results\UpdateChromePath.py&quot; &quot;D:\p2_installer\files\Spirent TestCenter Application\common appdir\STAKCommands\spirent\results\&quot;&#xd;
 xcopy &quot;d:\temp\orion-res-x86&quot; &quot;d:\p2_installer\files\Spirent TestCenter Application\installdir\orion-res&quot; /e /i /y&#xd;
 REM -- temp&#xd;
 perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% PACKAGE_P2_INSTALLER&#xd;
