@@ -147,7 +147,7 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -279,28 +279,19 @@ del /f /q stc-rest-win32.tar&#xd;
       <command>cd %WORKSPACE%\bin\release&#xd;
 SET DEPENDENT_JOB_NAME=%JOB_NAME%&#xd;
 copy  D:\jenkins-rel\release_bll_windows_packaging_new\bin\Release\NTAF\tool\Stc420Publication.xml  D:\jenkins-rel\release_bll_windows_packaging_new\bin\Release\NTAF\tool\Stc487Publication.xml /y&#xd;
+&#xd;
 copy  D:\jenkins-rel\release_bll_windows_packaging_new\bin\Release\NTAF\tool\Stc420Publication.xml  D:\jenkins-rel\release_bll_windows_packaging_new\bin\Release\NTAF\tool\Stc486Publication.xml /y&#xd;
+&#xd;
 c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --createpropfile=yes --runcimaketarballs=no --runsetver=yes --updateilversionxml=yes --updatereleasetag=yes --updatepkgindextcl=yes --updatespirenttestcentertcl=yes --updatestclibtcl=yes --updategemspecversion=yes --updatentafxml=yes&#xd;
 &#xd;
 perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer\ %STC_MAJ_MIN_VERSION%.%FULLVER% STC_APP_COPY_ONLY&#xd;
-REM -- temp --  perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% COMPILE_FORTHOT&#xd;
-REM -- Remove the following --&#xd;
-copy /y &quot;d:\jenkins-rel\workspace\release_launch_nightly_packaging\scm\installer\Files\Setup\ChromeSetup.exe&quot; d:\p2_installer\files\setup&#xd;
-copy /y &quot;d:\jenkins-rel\workspace\release_launch_nightly_packaging\scm\installer\Files\Setup\MagellanInstall.bat&quot; d:\p2_installer\files\setup&#xd;
-copy /y &quot;d:\jenkins-rel\workspace\release_launch_nightly_packaging\scm\installer\Files\Setup\postgres_setup_win.py&quot; d:\p2_installer\files\setup&#xd;
-copy /y &quot;d:\jenkins-rel\workspace\release_launch_nightly_packaging\scm\installer\Files\Setup\postgresql-10.3-2-windows.exe&quot; d:\p2_installer\files\setup&#xd;
-copy /y &quot;d:\jenkins-rel\workspace\release_launch_nightly_packaging\scm\installer\Files\Setup\postgresql-10.3-2-windows-x64.exe&quot; d:\p2_installer\files\setup&#xd;
-copy /y &quot;d:\jenkins-rel\workspace\release_launch_nightly_packaging\scm\installer\Installer Code\Common\suite.rul&quot; &quot;d:\p2_installer\Installer Code\Common\suite.rul&quot; &#xd;
-copy /y &quot;d:\jenkins-rel\workspace\release_launch_nightly_packaging\scm\installer\Installer Code\Common\utils.rul&quot; &quot;d:\p2_installer\Installer Code\Common\utils.rul&quot; &#xd;
-copy /y &quot;d:\jenkins-rel\workspace\release_launch_nightly_packaging\scm\installer\Installer Code\Spirent TestCenter Application\Spirent TestCenter Application.ism&quot; &quot;d:\p2_installer\Installer Code\Spirent TestCenter Application\Spirent TestCenter Application.ism&quot;&#xd;
-copy /y &quot;d:\jenkins-rel\workspace\release_launch_nightly_packaging\scm\installer\Installer Code\Spirent TestCenter Application\Script Files\Setup.Rul&quot; &quot;d:\p2_installer\Installer Code\Spirent TestCenter Application\Script Files\Setup.Rul&quot;&#xd;
-copy /y &quot;d:\jenkins-rel\workspace\release_launch_nightly_packaging\scm\installer\Installer Code\Spirent TestCenter Application x64\Spirent TestCenter Application x64.ism&quot; &quot;d:\p2_installer\Installer Code\Spirent TestCenter Application x64\Spirent TestCenter Application x64.ism&quot;&#xd;
-copy /y &quot;d:\jenkins-rel\workspace\release_launch_nightly_packaging\scm\installer\Installer Code\Spirent TestCenter Application x64\Script Files\Setup.Rul&quot; &quot;d:\p2_installer\Installer Code\Spirent TestCenter Application x64\Script Files\Setup.Rul&quot;&#xd;
-copy /y &quot;D:\temp\UpdateChromePath.pyc&quot; &quot;D:\p2_installer\files\Spirent TestCenter Application\common appdir\STAKCommands\spirent\results\&quot;&#xd;
-xcopy &quot;d:\temp\orion-res-x86&quot; &quot;d:\p2_installer\files\Spirent TestCenter Application\installdir\orion-res&quot; /e /i /y&#xd;
-REM -- temp&#xd;
+&#xd;
+perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% COMPILE_FORTHOT&#xd;
+&#xd;
+&#xd;
 perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer\ %STC_MAJ_MIN_VERSION%.%FULLVER% PACKAGE_P2_INSTALLER&#xd;
-REM -- temp -- perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% COPY_P2_INSTALLER&#xd;
+&#xd;
+perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% COPY_P2_INSTALLER&#xd;
 rem exit /B 0</command>
     </hudson.tasks.BatchFile>
   </builders>
