@@ -293,12 +293,12 @@ copy /y &quot;d:\jenkins-rel\workspace\release_launch_nightly_packaging\scm\inst
 copy /y &quot;d:\jenkins-rel\workspace\release_launch_nightly_packaging\scm\installer\Installer Code\Spirent TestCenter Application\Script Files\Setup.rul&quot; &quot;D:\p2_installer\Installer Code\Spirent TestCenter Application\Script Files\Setup.rul&quot;&#xd;
 xcopy &quot;d:\temp\orion-res-x86&quot; &quot;d:\p2_installer\files\Spirent TestCenter Application\installdir\orion-res&quot; /e /i /y&#xd;
 &#xd;
-perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% COMPILE_FORTHOT&#xd;
+REM -- TEMP -- perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% COMPILE_FORTHOT&#xd;
 &#xd;
 &#xd;
 perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% PACKAGE_P2_INSTALLER&#xd;
-&#xd;
-perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% COPY_P2_INSTALLER&#xd;
+exit /B 1&#xd;
+REM -- perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% COPY_P2_INSTALLER&#xd;
 rem exit /B 0</command>
     </hudson.tasks.BatchFile>
   </builders>
