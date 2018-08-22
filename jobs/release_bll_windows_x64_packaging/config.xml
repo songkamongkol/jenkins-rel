@@ -108,6 +108,7 @@ release_win_bll_x64_copy_to_filer</blockingJobs>
 //TestCenter/integration/content/HltAPI/SourceCode/... //ws/content/HltAPI/SourceCode/...
 //TestCenter/integration/content/HltAPI/build/... //ws/content/HltAPI/build/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
+    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -137,7 +138,7 @@ release_win_bll_x64_copy_to_filer</blockingJobs>
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>0</firstChange>
+    <firstChange>-1</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -257,19 +258,9 @@ c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --c
 &#xd;
 perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% STC_X64_APP_COPY_ONLY&#xd;
 &#xd;
-REM for Magellan beta installer&#xd;
-copy /y &quot;d:\jenkins-rel\workspace\release_launch_nightly_packaging\scm\installer\Installer Code\Spirent TestCenter Application\Spirent TestCenter Application.ism&quot; &quot;D:\p2_installer\Installer Code\Spirent TestCenter Application\Spirent TestCenter Application.ism&quot;&#xd;
-copy /y &quot;d:\jenkins-rel\workspace\release_launch_nightly_packaging\scm\installer\Installer Code\Spirent TestCenter Application x64\Spirent TestCenter Application x64.ism&quot; &quot;D:\p2_installer\Installer Code\Spirent TestCenter Application x64\Spirent TestCenter Application x64.ism&quot; &#xd;
-copy /y &quot;d:\jenkins-rel\workspace\release_launch_nightly_packaging\scm\installer\Installer Code\Spirent TestCenter Application x64\Script Files\Setup.rul&quot; &quot;D:\p2_installer\Installer Code\Spirent TestCenter Application x64\Script Files\Setup.rul&quot;&#xd;
-copy /y &quot;d:\jenkins-rel\workspace\release_launch_nightly_packaging\scm\installer\Installer Code\Spirent TestCenter Application\Script Files\Setup.rul&quot; &quot;D:\p2_installer\Installer Code\Spirent TestCenter Application\Script Files\Setup.rul&quot;&#xd;
-copy /y &quot;d:\jenkins-rel\workspace\release_launch_nightly_packaging\scm\installer\Installer Code\Common\suite.rul&quot; &quot;D:\p2_installer\Installer Code\common\suite.rul&quot;&#xd;
-copy /y &quot;d:\jenkins-rel\workspace\release_launch_nightly_packaging\scm\installer\Installer Code\Common\utils.rul&quot; &quot;D:\p2_installer\Installer Code\common\utils.rul&quot;&#xd;
-xcopy &quot;d:\temp\orion-res-x64&quot; &quot;d:\p2_installer\files\Spirent TestCenter Application x64\installdir\orion-res&quot; /e /i /y&#xd;
-&#xd;
 perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% PACKAGE_X64_P2_INSTALLER&#xd;
 &#xd;
-exit /B 1&#xd;
-REM -- perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% COPY_X64_P2_INSTALLER&#xd;
+perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% COPY_X64_P2_INSTALLER&#xd;
 </command>
     </hudson.tasks.BatchFile>
   </builders>
