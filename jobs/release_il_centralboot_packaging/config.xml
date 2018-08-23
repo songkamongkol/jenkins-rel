@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>IL Build job for centralboot image targets:&lt;br&gt;
-target=centralboot packaging=1&lt;br&gt;
-Copies artfacts from ci jobs: il_changeling_all, il_chos2, il_virtual, il_vtc, il_testmodule_contents&lt;br&gt;
-Then runs Centralboot to generate centralboot image and run reversion script to update the version info.&lt;br&gt;
+  <description>IL Build job for centralboot image targets:&lt;br&gt;&#xd;
+target=centralboot packaging=1&lt;br&gt;&#xd;
+Copies artfacts from ci jobs: il_changeling_all, il_chos2, il_virtual, il_vtc, il_testmodule_contents&lt;br&gt;&#xd;
+Then runs Centralboot to generate centralboot image and run reversion script to update the version info.&lt;br&gt;&#xd;
 </description>
   <keepDependencies>false</keepDependencies>
   <properties>
@@ -115,7 +115,6 @@ Then runs Centralboot to generate centralboot image and run reversion script to 
 +//TestCenter/${BRANCH_NAME}/framework/bll/vendor/... //ws/framework/bll/vendor/...
 //hypervisor/mainline/amara/ChassisImage/...  //ws/ChassisImage/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -145,7 +144,7 @@ Then runs Centralboot to generate centralboot image and run reversion script to 
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -217,7 +216,7 @@ content=${content//\&quot;/}
 buildno=${content#*number}
 echo $changelist il_changeling_all_yocto $buildno &gt; .changelists
 mkdir -p $WORKSPACE/build/il/packages
-cp -r /mnt/builds/jenkins/il_changeling_all_yocto-$BRANCH_NAME/build-packaging/* $WORKSPACE/build/il/packages
+cp -r -v /mnt/builds/jenkins/il_changeling_all_yocto-$BRANCH_NAME/build-packaging/* $WORKSPACE/build/il/packages
 cp $WORKSPACE/build/il/packages/fsimg/rawimage.map $WORKSPACE/build/il/packages/fsimg/changeling_rawimage.map
 echo &quot;Finished copying il_changeling_all files&quot;
 rm -f /mnt/builds/jenkins/il_changeling_all_yocto-${BRANCH_NAME}_packaging.txt</command>
@@ -242,7 +241,7 @@ content=${content//\&quot;/}
 buildno=${content#*number}
 echo $changelist il_changeling_yocto $buildno &gt;&gt; .changelists
 mkdir -p $WORKSPACE/build/il/packages
-cp -r /mnt/builds/jenkins/il_changeling_yocto-${BRANCH_NAME}/build-packaging/* $WORKSPACE/build/il/packages
+cp -r -v /mnt/builds/jenkins/il_changeling_yocto-${BRANCH_NAME}/build-packaging/* $WORKSPACE/build/il/packages
 cp $WORKSPACE/build/il/packages/fsimg/rawimage.map $WORKSPACE/build/il/packages/fsimg/changeling_rawimage.map
 echo &quot;Finished copying il_changeling files&quot;
 rm -f /mnt/builds/jenkins/il_changeling_yocto-${BRANCH_NAME}_packaging.txt</command>
@@ -266,7 +265,7 @@ content=`cat $filename`
 content=${content//\&quot;/}
 buildno=${content#*number}
 echo $changelist il_chos2_yocto $buildno &gt;&gt; .changelists
-cp -r /mnt/builds/jenkins/il_chos2_yocto-$BRANCH_NAME/build-packaging/* $WORKSPACE/build/il/packages
+cp -r -v /mnt/builds/jenkins/il_chos2_yocto-$BRANCH_NAME/build-packaging/* $WORKSPACE/build/il/packages
 echo &quot;Finished copying il_chos2 files&quot;
 rm -f /mnt/builds/jenkins/il_chos2_yocto-${BRANCH_NAME}_packaging.txt</command>
     </hudson.tasks.Shell>
@@ -318,7 +317,7 @@ content=`cat $filename`
 content=${content//\&quot;/}
 buildno=${content#*number}
 echo $changelist il_stca $buildno &gt;&gt; .changelists
-cp -r /mnt/builds/jenkins/il_stca-$BRANCH_NAME/build-packaging/* $WORKSPACE/build/il/packages
+cp -r -v /mnt/builds/jenkins/il_stca-$BRANCH_NAME/build-packaging/* $WORKSPACE/build/il/packages
 cp $WORKSPACE/build/il/packages/fsimg/rawimage.map $WORKSPACE/build/il/packages/fsimg/stca_rawimage.map
 echo &quot;Finished copying il_stca files&quot;
 rm -f /mnt/builds/jenkins/il_stca-${BRANCH_NAME}_packaging.txt</command>
@@ -342,8 +341,8 @@ content=`cat $filename`
 content=${content//\&quot;/}
 buildno=${content#*number}
 echo $changelist il_lxc_yocto $buildno &gt;&gt; .changelists
-cp /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}/build-packaging/bundle/k9* $WORKSPACE/build/il/packages/bundle
-cp /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}/build-packaging/rawimg/*lxc* $WORKSPACE/build/il/packages/rawimg
+cp -v /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}/build-packaging/bundle/k9* $WORKSPACE/build/il/packages/bundle
+cp -v /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}/build-packaging/rawimg/*lxc* $WORKSPACE/build/il/packages/rawimg
 echo &quot;Finished copying il_lxcfiles&quot;
 rm -f /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}_packaging.txt</command>
     </hudson.tasks.Shell>
@@ -420,7 +419,7 @@ content=`cat $filename`
 content=${content//\&quot;/}
 buildno=${content#*number}
 echo $changelist il_testmodule_contents $buildno &gt;&gt; .changelists
-cp -r /mnt/builds/jenkins/il_testmodule_contents-$BRANCH_NAME/build-packaging/* $WORKSPACE/build/il/packages
+cp -r -v /mnt/builds/jenkins/il_testmodule_contents-$BRANCH_NAME/build-packaging/* $WORKSPACE/build/il/packages
 echo &quot;Finished copying il_testmodule_contents files&quot;
 rm -f /mnt/builds/jenkins/il_testmodule_contents-${BRANCH_NAME}_packaging.txt
 
@@ -452,9 +451,11 @@ scons -j0 target=ttwb_pkg</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>echo &quot;Creating Amara C3 image file&quot;
-sudo scons target=c3_pkg_yocto_vm packaging=1
-# $WORKSPACE/build/il/scripts/phxbld -j8 c3_yocto  # run this target after a clean build
-# sudo scons target=c3_pkg_yocto packaging=1</command>
+if [ $APP_ARCH == &quot;x86_64&quot; ]; then
+    sudo scons target=c3_pkg_yocto_vm packaging=1 yocto_ver=${YOCTO_VERSION}
+else
+    sudo scons target=c3_pkg_yocto_vm packaging=1
+fi</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>echo &quot;Copying tmos bundle from vtc job for Avalanche build ...&quot;
@@ -489,6 +490,40 @@ ln -s $WORKSPACE/ChassisImage/chassis.img.gz $WORKSPACE/build/il/packages/rawimg
 echo &quot;Running reversion_il.sh script ...&quot;
 python $WORKSPACE/Build_Scripts/Scripts/ci_run_jenkins_steps.py --runilreversion=yes</command>
     </hudson.tasks.Shell>
+    <hudson.plugins.python.Python plugin="python@1.3">
+      <command>import os
+import glob
+
+# -- rename the output files 
+
+workspace_dir = os.environ[&apos;WORKSPACE&apos;]
+fsimg_dir = os.path.join(workspace_dir, &apos;build&apos;, &apos;il&apos;, &apos;packages&apos;, &apos;fsimg&apos;)
+rawimg_dir = os.path.join(workspace_dir, &apos;build&apos;, &apos;il&apos;, &apos;packages&apos;, &apos;rawimg&apos;)
+
+
+qemu_ptrn = os.path.join(rawimg_dir, &apos;yocto_cloud.512*&apos;)
+qemu_images = glob.glob(qemu_ptrn)
+qemu_2048_ptrn = os.path.join(rawimg_dir, &apos;yocto_cloud.2048*.img.gz&apos;)
+qemu_2048_images = glob.glob(qemu_2048_ptrn)
+
+if qemu_2048_images:
+    for image in qemu_2048_images:
+        new_name = image.replace(&apos;yocto_cloud.2048&apos;, &apos;qemu.512&apos;)
+        new_image = os.path.join(rawimg_dir, new_name)
+        print &quot;Renaming &quot; + image + &quot; to &quot; + new_image
+        os.rename(image, new_image)
+
+
+qemu_tgz_2048_ptrn = os.path.join(rawimg_dir, &apos;qemu.2048*.tgz&apos;)
+qemu_tgz_2048_images = glob.glob(qemu_tgz_2048_ptrn)
+
+if qemu_tgz_2048_images:
+    for image in qemu_tgz_2048_images:
+        new_name = image.replace(&apos;qemu.2048&apos;, &apos;qemu.512&apos;)
+        new_image = os.path.join(rawimg_dir, new_name)
+        print &quot;Renaming &quot; + image + &quot; to &quot; + new_image
+        os.rename(image, new_image)</command>
+    </hudson.plugins.python.Python>
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
@@ -612,7 +647,6 @@ ssh scm@martin.spirentcom.com chmod 777 $BUILD_DIR/mfgbld/*</command>
       <scriptOnlyIfSuccess>true</scriptOnlyIfSuccess>
       <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
       <markBuildUnstable>false</markBuildUnstable>
-      <executeOn>BOTH</executeOn>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.57">
       <recipientList>$DEFAULT_RECIPIENTS</recipientList>
