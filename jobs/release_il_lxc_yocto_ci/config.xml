@@ -55,6 +55,11 @@
           <description></description>
           <defaultValue>x86_64</defaultValue>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>YOCTO_VERSION</name>
+          <description>1.0 or 1.5</description>
+          <defaultValue>1.5</defaultValue>
+        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.promoted__builds.JobPropertyImpl plugin="promoted-builds@2.28.1">
