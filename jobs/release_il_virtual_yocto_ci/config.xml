@@ -1,30 +1,57 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>IL Build job for virtual targets:&lt;br&gt;
-$WORKSPACE/build/il/scripts/phxbld -j8 aonic&lt;br&gt;
-$WORKSPACE/build/il/scripts/phxbld -j8 aonic_raw&lt;br&gt;
-$WORKSPACE/build/il/scripts/phxbld -j8 aonic_64&lt;br&gt;
-$WORKSPACE/build/il/scripts/phxbld -j8 aonic_64_raw&lt;br&gt;
-sudo rm $WORKSPACE/build/il/packages/fsimg/aonic-*&lt;br&gt;
-$WORKSPACE/build/il/scripts/phxbld -j8 appliance&lt;br&gt;
-$WORKSPACE/build/il/scripts/phxbld -j16 qemu&lt;br&gt;
-$WORKSPACE/build/il/scripts/phxbld -j16 qemu_raw&lt;br&gt;
-$WORKSPACE/build/il/scripts/phxbld -j16 stca&lt;br&gt;
-Archive il_virtual_*.tar&lt;br&gt;
-
+  <description>IL Build job for virtual targets:&lt;br&gt;&#xd;
+$WORKSPACE/build/il/scripts/phxbld -j8 aonic&lt;br&gt;&#xd;
+$WORKSPACE/build/il/scripts/phxbld -j8 aonic_raw&lt;br&gt;&#xd;
+$WORKSPACE/build/il/scripts/phxbld -j8 aonic_64&lt;br&gt;&#xd;
+$WORKSPACE/build/il/scripts/phxbld -j8 aonic_64_raw&lt;br&gt;&#xd;
+sudo rm $WORKSPACE/build/il/packages/fsimg/aonic-*&lt;br&gt;&#xd;
+$WORKSPACE/build/il/scripts/phxbld -j8 appliance&lt;br&gt;&#xd;
+$WORKSPACE/build/il/scripts/phxbld -j16 qemu&lt;br&gt;&#xd;
+$WORKSPACE/build/il/scripts/phxbld -j16 qemu_raw&lt;br&gt;&#xd;
+$WORKSPACE/build/il/scripts/phxbld -j16 stca&lt;br&gt;&#xd;
+Archive il_virtual_*.tar&lt;br&gt;&#xd;
+&#xd;
 </description>
-  <logRotator class="hudson.tasks.LogRotator">
-    <daysToKeep>-1</daysToKeep>
-    <numToKeep>10</numToKeep>
-    <artifactDaysToKeep>-1</artifactDaysToKeep>
-    <artifactNumToKeep>-1</artifactNumToKeep>
-  </logRotator>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
       <useBuildBlocker>false</useBuildBlocker>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>-1</daysToKeep>
+        <numToKeep>10</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+    <hudson.plugins.libvirt.BeforeJobSnapshotJobProperty plugin="libvirt-slave@1.8.5"/>
+    <hudson.plugins.promoted__builds.JobPropertyImpl plugin="promoted-builds@2.28.1">
+      <activeProcessNames>
+        <string>Release IL Build Passed on all platforms</string>
+      </activeProcessNames>
+    </hudson.plugins.promoted__builds.JobPropertyImpl>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.25">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
+      <teamDomain></teamDomain>
+      <token></token>
+      <room></room>
+      <startNotification>false</startNotification>
+      <notifySuccess>false</notifySuccess>
+      <notifyAborted>false</notifyAborted>
+      <notifyNotBuilt>false</notifyNotBuilt>
+      <notifyUnstable>false</notifyUnstable>
+      <notifyFailure>false</notifyFailure>
+      <notifyBackToNormal>false</notifyBackToNormal>
+      <notifyRepeatedFailure>false</notifyRepeatedFailure>
+      <includeTestSummary>false</includeTestSummary>
+      <showCommitList>false</showCommitList>
+    </jenkins.plugins.slack.SlackNotifier_-SlackJobProperty>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
@@ -69,15 +96,6 @@ Archive il_virtual_*.tar&lt;br&gt;
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
-    <hudson.plugins.promoted__builds.JobPropertyImpl plugin="promoted-builds@2.28.1">
-      <activeProcessNames>
-        <string>Release IL Build Passed on all platforms</string>
-      </activeProcessNames>
-    </hudson.plugins.promoted__builds.JobPropertyImpl>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.25">
-      <autoRebuild>false</autoRebuild>
-      <rebuildDisabled>false</rebuildDisabled>
-    </com.sonyericsson.rebuild.RebuildSettings>
   </properties>
   <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.36">
     <configVersion>2</configVersion>
@@ -105,7 +123,6 @@ Archive il_virtual_*.tar&lt;br&gt;
 //TARDIS/avalanche_release/... //ws/content/traffic/l4l7vm/...
 //TARDIS/Studio_release/avanext/... //ws/content/traffic/studio_perf/avanext/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -135,7 +152,7 @@ Archive il_virtual_*.tar&lt;br&gt;
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -147,7 +164,7 @@ Archive il_virtual_*.tar&lt;br&gt;
     <pollOnlyOnMaster>true</pollOnlyOnMaster>
   </scm>
   <quietPeriod>45</quietPeriod>
-  <assignedNode>ilbuild-01</assignedNode>
+  <assignedNode>ilbuild-v120</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
@@ -244,7 +261,6 @@ python $HOME/jenkins/build_cleanup.py --n=30 --file=/mnt/builds/jenkins/il_virtu
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
           <email>
-            <recipientList></recipientList>
             <subject>$PROJECT_DEFAULT_SUBJECT</subject>
             <body>$PROJECT_DEFAULT_CONTENT</body>
             <recipientProviders>
@@ -254,7 +270,6 @@ python $HOME/jenkins/build_cleanup.py --n=30 --file=/mnt/builds/jenkins/il_virtu
             <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
-            <replyTo></replyTo>
             <contentType>project</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.FailureTrigger>
@@ -264,6 +279,7 @@ python $HOME/jenkins/build_cleanup.py --n=30 --file=/mnt/builds/jenkins/il_virtu
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
       <attachmentsPattern></attachmentsPattern>
       <presendScript></presendScript>
+      <postsendScript></postsendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
       <replyTo></replyTo>
@@ -290,7 +306,6 @@ cp -r $WORKSPACE/build/il/packages/rawimg $STORAGE_DIR
       <scriptOnlyIfSuccess>true</scriptOnlyIfSuccess>
       <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
       <markBuildUnstable>false</markBuildUnstable>
-      <executeOn>BOTH</executeOn>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
   </publishers>
   <buildWrappers>
