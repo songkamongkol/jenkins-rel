@@ -75,6 +75,11 @@ Archive il_vtc_*.tar&lt;br&gt;
           <description></description>
           <defaultValue>4.90</defaultValue>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>APP_ARCH</name>
+          <description></description>
+          <defaultValue>x86_64</defaultValue>
+        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
