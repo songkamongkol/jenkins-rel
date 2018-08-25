@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>Uses MadCap Flare tool to compile webhelp files&lt;br&gt;
-Creates STC and Server Manager help files&lt;br&gt;
-Archives output as tar files for use during packaging jobs&lt;br&gt;
+  <description>Uses MadCap Flare tool to compile webhelp files&lt;br&gt;&#xd;
+Creates STC and Server Manager help files&lt;br&gt;&#xd;
+Archives output as tar files for use during packaging jobs&lt;br&gt;&#xd;
 Triggers release_bll_win_pkg_webhelp&lt;br&gt;</description>
   <keepDependencies>false</keepDependencies>
   <properties>
@@ -56,9 +56,9 @@ Triggers release_bll_win_pkg_webhelp&lt;br&gt;</description>
     <p4Client>${JOB_NAME}_${BRANCH_NAME}</p4Client>
     <projectPath>//tech_pubs/online_help/Spirent_TestCenter/... //ws/online_help/Spirent_TestCenter/...
 //tech_pubs/online_help/Session_Manager/... //ws/online_help/Session_Manager/...
-//tech_pubs/online_help/CTS/... //ws/online_help/CTS/...</projectPath>
+//tech_pubs/online_help/CTS/... //ws/online_help/CTS/...
+//tech_pubs/online_help/EnhancedResults/... //ws/online_help/EnhancedResults/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -110,10 +110,14 @@ Triggers release_bll_win_pkg_webhelp&lt;br&gt;</description>
     <hudson.tasks.BatchFile>
       <command>&quot;C:\Program Files\MadCap Software\MadCap Flare 14\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\Spirent_TestCenter\StcHelp.flprj&quot; -target &quot;WebHelp.fltar&quot; -log true&#xd;
 &quot;C:\Program Files\MadCap Software\MadCap Flare 14\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\Session_Manager\StcSMHelp.flprj&quot; -target &quot;WebHelp.fltar&quot; -log true&#xd;
+&quot;C:\Program Files\MadCap Software\MadCap Flare 14\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\EnhancedResults\EnResHelp.flprj&quot; -target &quot;HTML5.fltar&quot; -log true&#xd;
 &quot;C:\Program Files\MadCap Software\MadCap Flare 14\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\CTS\cts.flprj&quot; -target &quot;WebHelp.fltar&quot; -log true</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>7z a -ttar CTS_WebHelp.tar %WORKSPACE%\online_help\CTS\Output\spirent\WebHelp&#xd;
+      <command>7z a -ttar EnhancedResults_WebHelp.tar %WORKSPACE%\online_help\EnhancedResults\Output\spirent\HTML5&#xd;
+7z a -tgzip EnhancedResults_WebHelp.tar.gz EnhancedResults_WebHelp.tar&#xd;
+&#xd;
+7z a -ttar CTS_WebHelp.tar %WORKSPACE%\online_help\CTS\Output\spirent\WebHelp&#xd;
 7z a -ttar CTS_WebHelp.tar %WORKSPACE%\online_help\CTS\HelpResource.resx&#xd;
 7z a -tgzip CTS_WebHelp.tar.gz CTS_WebHelp.tar&#xd;
 &#xd;
@@ -144,7 +148,7 @@ paramfile.write(&quot;BLL_BUILD_NUMBER=&quot; + bll_build_number)</command>
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
-      <artifacts>TestCenter_WebHelp.tar.gz, WebHelp_mclog.tar.gz,  ServerManager_WebHelp.tar.gz, CTS_WebHelp.tar.gz</artifacts>
+      <artifacts>TestCenter_WebHelp.tar.gz, WebHelp_mclog.tar.gz,  ServerManager_WebHelp.tar.gz, CTS_WebHelp.tar.gz, EnhancedResults_WebHelp.tar.gz</artifacts>
       <allowEmptyArchive>false</allowEmptyArchive>
       <onlyIfSuccessful>false</onlyIfSuccessful>
       <fingerprint>false</fingerprint>
