@@ -119,7 +119,7 @@ Triggers release_bll_win_pkg_webhelp&lt;br&gt;</description>
 &quot;C:\Program Files\MadCap Software\MadCap Flare 14\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\CTS\cts.flprj&quot; -target &quot;WebHelp.fltar&quot; -log true</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>7z a -ttar EnhancedResults_WebHelp.tar %WORKSPACE%\online_help\EnhancedResults\Output\spirent\HTML5&#xd;
+      <command>7z a -ttar EnhancedResults_WebHelp.tar %WORKSPACE%\online_help\stciq\Output\spirent\HTML5&#xd;
 7z a -tgzip EnhancedResults_WebHelp.tar.gz EnhancedResults_WebHelp.tar&#xd;
 &#xd;
 7z a -ttar CTS_WebHelp.tar %WORKSPACE%\online_help\CTS\Output\spirent\WebHelp&#xd;
