@@ -88,7 +88,7 @@ Triggers release_bll_win_pkg_webhelp&lt;br&gt;</description>
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -115,7 +115,7 @@ Triggers release_bll_win_pkg_webhelp&lt;br&gt;</description>
     <hudson.tasks.BatchFile>
       <command>&quot;C:\Program Files\MadCap Software\MadCap Flare 14\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\Spirent_TestCenter\StcHelp.flprj&quot; -target &quot;WebHelp.fltar&quot; -log true&#xd;
 &quot;C:\Program Files\MadCap Software\MadCap Flare 14\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\Session_Manager\StcSMHelp.flprj&quot; -target &quot;WebHelp.fltar&quot; -log true&#xd;
-&quot;C:\Program Files\MadCap Software\MadCap Flare 14\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\EnhancedResults\EnResHelp.flprj&quot; -target &quot;HTML5.fltar&quot; -log true&#xd;
+&quot;C:\Program Files\MadCap Software\MadCap Flare 14\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\stciq\StcIqHelp.flprj&quot; -target &quot;HTML5.fltar&quot; -log true&#xd;
 &quot;C:\Program Files\MadCap Software\MadCap Flare 14\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\CTS\cts.flprj&quot; -target &quot;WebHelp.fltar&quot; -log true</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
