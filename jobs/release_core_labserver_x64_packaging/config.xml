@@ -91,7 +91,7 @@
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -116,7 +116,7 @@
 if [ &quot;$MODE&quot; = &quot;NIGHTLY&quot; ]; then
     if [ &quot;$BRANCH_NAME&quot; = &quot;integration&quot; ]; then
         BRANCH_ID=&apos;3&apos;
-    elif [ &quot;$BRANCH_NAME&quot; = *&quot;rel&quot;* ]; then
+    elif [[ $BRANCH_NAME = *&quot;rel&quot;* ]]; then
         BRANCH_ID=&apos;6&apos;
     fi
 
