@@ -124,6 +124,7 @@
             <string>release_bll_windows_x64_packaging</string>
             <string>release_copy_to_spccalfs03_packaging</string>
             <string>release_core_labserver_packaging</string>
+            <string>release_core_labserver_x64_packaging</string>
             <string>release_cts_linux_packaging</string>
             <string>release_cts_windows_packaging</string>
             <string>release_cxx_amara_usb_yocto1.5</string>
