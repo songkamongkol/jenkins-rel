@@ -137,7 +137,7 @@ release_win_bll_x64_copy_to_filer</blockingJobs>
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -176,8 +176,8 @@ exit /B 0</command>
         <filter>bin/Release_x64/TestCenter.Windows.x64.no_version.tar.gz, *BLL_changelist*.txt,*UI_changelist*.txt</filter>
         <target></target>
         <excludes></excludes>
-        <selector class="hudson.plugins.copyartifact.StatusBuildSelector">
-          <stable>true</stable>
+        <selector class="hudson.plugins.copyartifact.SpecificBuildSelector">
+          <buildNumber>695</buildNumber>
         </selector>
         <flatten>true</flatten>
         <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
@@ -193,7 +193,9 @@ python framework\tools\buildUtil\package.py --install TestCenter.Windows.x64.no_
       <filter>TestCenter_WebHelp.tar.gz, Provisioning_WebHelp.tar.gz, ServerManager_WebHelp.tar.gz,EnhancedResults_WebHelp.tar.gz</filter>
       <target></target>
       <excludes></excludes>
-      <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
+      <selector class="hudson.plugins.copyartifact.SpecificBuildSelector">
+        <buildNumber>284</buildNumber>
+      </selector>
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
