@@ -118,6 +118,7 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
 //TestCenter/${BRANCH_NAME}/content/HltAPI/SourceCode/... //ws/content/HltAPI/SourceCode/...
 //TestCenter/${BRANCH_NAME}/content/HltAPI/build/... //ws/content/HltAPI/build/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
+    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -185,8 +186,8 @@ PATH=C:\Tcl\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windo
       <filter>bin/Release/TestCenter.Windows.no_version.tar.gz, BLL_changelist*.txt, UI_changelist*.txt,bin/Release/STAKCommands.beta.Windows.tar.gz</filter>
       <target></target>
       <excludes></excludes>
-      <selector class="hudson.plugins.copyartifact.SpecificBuildSelector">
-        <buildNumber>1985</buildNumber>
+      <selector class="hudson.plugins.copyartifact.PermalinkBuildSelector">
+        <id>Release Build Passed Regression</id>
       </selector>
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
@@ -221,9 +222,7 @@ xcopy  /S /I /E /Y  %WORKSPACE%\framework\automation\scripting\stc\SampleScripts
       <filter>TestCenter_WebHelp.tar.gz, Provisioning_WebHelp.tar.gz, ServerManager_WebHelp.tar.gz, EnhancedResults_WebHelp.tar.gz</filter>
       <target></target>
       <excludes></excludes>
-      <selector class="hudson.plugins.copyartifact.SpecificBuildSelector">
-        <buildNumber>284</buildNumber>
-      </selector>
+      <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
