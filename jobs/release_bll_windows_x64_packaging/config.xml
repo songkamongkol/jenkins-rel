@@ -108,6 +108,7 @@ release_win_bll_x64_copy_to_filer</blockingJobs>
 //TestCenter/integration/content/HltAPI/SourceCode/... //ws/content/HltAPI/SourceCode/...
 //TestCenter/integration/content/HltAPI/build/... //ws/content/HltAPI/build/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
+    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -176,8 +177,8 @@ exit /B 0</command>
         <filter>bin/Release_x64/TestCenter.Windows.x64.no_version.tar.gz, *BLL_changelist*.txt,*UI_changelist*.txt</filter>
         <target></target>
         <excludes></excludes>
-        <selector class="hudson.plugins.copyartifact.SpecificBuildSelector">
-          <buildNumber>695</buildNumber>
+        <selector class="hudson.plugins.copyartifact.StatusBuildSelector">
+          <stable>true</stable>
         </selector>
         <flatten>true</flatten>
         <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
@@ -193,9 +194,7 @@ python framework\tools\buildUtil\package.py --install TestCenter.Windows.x64.no_
       <filter>TestCenter_WebHelp.tar.gz, Provisioning_WebHelp.tar.gz, ServerManager_WebHelp.tar.gz,EnhancedResults_WebHelp.tar.gz</filter>
       <target></target>
       <excludes></excludes>
-      <selector class="hudson.plugins.copyartifact.SpecificBuildSelector">
-        <buildNumber>284</buildNumber>
-      </selector>
+      <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
