@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
   <description>The latest build is stored at \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_qemu\build-latest</description>
   <keepDependencies>false</keepDependencies>
@@ -25,9 +26,9 @@
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain/>
-      <token/>
-      <room/>
+      <teamDomain></teamDomain>
+      <token></token>
+      <room></room>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -73,7 +74,7 @@
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>APP_ARCH</name>
-          <description/>
+          <description></description>
           <defaultValue>x86_64</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -87,7 +88,7 @@
   <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.36">
     <configVersion>2</configVersion>
     <p4User>scmbuild</p4User>
-    <p4Passwd/>
+    <p4Passwd></p4Passwd>
     <p4Port>perforceproxy.cal.ci.spirentcom.com:1999</p4Port>
     <p4Client>${JOB_NAME}_${BRANCH_NAME}</p4Client>
     <projectPath>+//TestCenter/${BRANCH_NAME}/... //ws/...
@@ -107,6 +108,7 @@
 +//TestCenter/${BRANCH_NAME}/framework/bll/unittestdrv/... //ws/framework/bll/unittestdrv/...
 +//TestCenter/${BRANCH_NAME}/framework/bll/vendor/... //ws/framework/bll/vendor/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
+    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <browser class="hudson.plugins.perforce.browsers.P4Web">
@@ -168,12 +170,12 @@ echo BRANCH_NAME=$BRANCH_NAME &gt;&gt; $WORKSPACE/changelist.properties</command
       <command>$WORKSPACE/build/il/scripts/phxbld -j32 qemu_yocto</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command>if [ "$BUILD_IMAGE" = "true" ]; then
-    export SCONSFLAGS="-j8 ccache=1 distcc=1"
+      <command>if [ &quot;$BUILD_IMAGE&quot; = &quot;true&quot; ]; then
+    export SCONSFLAGS=&quot;-j8 ccache=1 distcc=1&quot;
 
     # $WORKSPACE/build/il/scripts/phxbld qemu_raw
 
-    export PAD_BUILD_NUMBER=`printf '%04i' $BUILD_NUMBER`
+    export PAD_BUILD_NUMBER=`printf &apos;%04i&apos; $BUILD_NUMBER`
 
     # sudo scons reversion_il $RELEASE_NUM.$PAD_BUILD_NUMBER $RELEASE_NUM.$PAD_BUILD_NUMBER
     sudo scons target=reversion_il il_version=$RELEASE_NUM.$PAD_BUILD_NUMBER av_version=$RELEASE_NUM.$PAD_BUILD_NUMBER
@@ -182,7 +184,7 @@ echo BRANCH_NAME=$BRANCH_NAME &gt;&gt; $WORKSPACE/changelist.properties</command
     cd $WORKSPACE/build/il/packages/rawimg
     # export OLDNAME=`ls yocto.512*.img.gz`
     export OLDNAME=`ls yocto_cloud*.img.gz`
-    export NEWNAME=`echo $OLDNAME | sed 's/yocto/qemu/'`
+    export NEWNAME=`echo $OLDNAME | sed &apos;s/yocto/qemu/&apos;`
     mv $OLDNAME $NEWNAME
 fi</command>
     </hudson.tasks.Shell>
@@ -227,7 +229,7 @@ python $WORKSPACE/common/idl/crc.py -f il_idl_crc.txt</command>
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -243,7 +245,7 @@ python $WORKSPACE/common/idl/crc.py -f il_idl_crc.txt</command>
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -259,7 +261,7 @@ python $WORKSPACE/common/idl/crc.py -f il_idl_crc.txt</command>
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -269,12 +271,12 @@ python $WORKSPACE/common/idl/crc.py -f il_idl_crc.txt</command>
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern/>
-      <presendScript/>
-      <postsendScript/>
+      <attachmentsPattern></attachmentsPattern>
+      <presendScript></presendScript>
+      <postsendScript></postsendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
-      <replyTo/>
+      <replyTo></replyTo>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
@@ -284,7 +286,7 @@ python $WORKSPACE/common/idl/crc.py -f il_idl_crc.txt</command>
           <command># copy the build output to storage server
 export STORAGE_DIR=/mnt/builds/jenkins/il_qemu_yocto-$BRANCH_NAME/build-$BUILD_NUMBER
 
-if [ ! -d "$STORAGE_DIR" ]; then
+if [ ! -d &quot;$STORAGE_DIR&quot; ]; then
   mkdir -p $STORAGE_DIR
 fi
 
@@ -300,6 +302,7 @@ cp $WORKSPACE/${JOB_NAME}_changelist_${P4_CHANGELIST}.txt $STORAGE_DIR</command>
       <scriptOnlyIfSuccess>true</scriptOnlyIfSuccess>
       <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
       <markBuildUnstable>false</markBuildUnstable>
+      <executeOn>BOTH</executeOn>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
   </publishers>
   <buildWrappers>
