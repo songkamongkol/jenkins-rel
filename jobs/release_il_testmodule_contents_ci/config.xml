@@ -198,7 +198,6 @@ done</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>env
-p4 info
 
 # export SCONSFLAGS=&quot;-j16 ccache=1 distcc=1&quot;
 $WORKSPACE/build/il/scripts/phxbld -j32 testmodule_contents
