@@ -36,7 +36,7 @@
     <hudson.tasks.BatchFile>
       <command>echo Promoted Job: %PROMOTED_JOB_NAME%&#xd;
 echo Promoted Build Number: %PROMOTED_NUMBER%&#xd;
-echo P4 Changelist: %P4_CHANGESET%&#xd;
+echo P4 Changelist: %P4_CHANGELIST%&#xd;
 &#xd;
 IF EXIST \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_changeling_yocto-%BRANCH_NAME%_packaging.txt (&#xd;
 	echo Packaging in progress, wait for 5 minutes before proceeding with the build promotion&#xd;
