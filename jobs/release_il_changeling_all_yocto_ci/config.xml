@@ -183,7 +183,7 @@ which scons
 scons --version
 which python
 python -V
-p4 info
+
 
 $WORKSPACE/build/il/scripts/phxbld -j16 changeling_64
 $WORKSPACE/build/il/scripts/phxbld -j16 changeling_64_raw
