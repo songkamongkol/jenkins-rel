@@ -88,13 +88,14 @@
   <builders>
     <hudson.tasks.Shell>
       <command>env
+echo $password | p4 -u p4admin login
 p4 info
-p4 -u p4admin -P $password unload -f -l $SOURCE_LABEL
-p4 -u p4admin -P $password reload -f -l $SOURCE_LABEL
-p4 -u p4admin -P $password tag -l $TARGET_LABEL //...@$SOURCE_LABEL
+p4 -u p4admin unload -f -l $SOURCE_LABEL
+p4 -u p4admin reload -f -l $SOURCE_LABEL
+p4 -u p4admin tag -l $TARGET_LABEL //...@$SOURCE_LABEL
 
 echo Verify the difference
-p4 -u p4admin -P $password diff2 -q //...@$TARGET_LABEL //...@$SOURCE_LABEL</command>
+p4 -u p4admin diff2 -q //...@$TARGET_LABEL //...@$SOURCE_LABEL</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers/>
