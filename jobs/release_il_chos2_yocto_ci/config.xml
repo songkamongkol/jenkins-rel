@@ -177,7 +177,7 @@ sudo scons target=kernelclean</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>env
-p4 info
+
 # $WORKSPACE/build/il/scripts/phxbld -j8 chos2_yocto2
 # $WORKSPACE/build/il/scripts/phxbld -j8 controller3_yocto_chhvvm 
 # sudo -S rm -rf $WORKSPACE/build/il/bld_*
