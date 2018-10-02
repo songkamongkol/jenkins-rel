@@ -120,9 +120,9 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
         <backup>false</backup>
       </spec>
     </workspace>
-    <populate class="org.jenkinsci.plugins.p4.populate.ForceCleanImpl">
-      <have>false</have>
-      <force>true</force>
+    <populate class="org.jenkinsci.plugins.p4.populate.AutoCleanImpl">
+      <have>true</have>
+      <force>false</force>
       <modtime>false</modtime>
       <quiet>true</quiet>
       <pin></pin>
@@ -132,6 +132,9 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
         <minfiles>1</minfiles>
         <minbytes>1024</minbytes>
       </parallel>
+      <replace>true</replace>
+      <delete>true</delete>
+      <tidy>false</tidy>
     </populate>
   </scm>
   <assignedNode>bllbuild-win-04</assignedNode>
