@@ -160,8 +160,7 @@
       <command>del BLL_changelist_*.txt&#xd;
 echo %P4_CHANGELIST% %JOB_NAME% %BUILD_NUMBER% &gt; BLL_changelist_%P4_CHANGELIST%.txt&#xd;
 &#xd;
-REM remove me&#xd;
-p4 revert //...&#xd;
+&#xd;
 &#xd;
 </command>
     </hudson.tasks.BatchFile>
