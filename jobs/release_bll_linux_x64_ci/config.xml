@@ -121,9 +121,9 @@
         <backup>false</backup>
       </spec>
     </workspace>
-    <populate class="org.jenkinsci.plugins.p4.populate.SyncOnlyImpl">
-      <have>true</have>
-      <force>false</force>
+    <populate class="org.jenkinsci.plugins.p4.populate.ForceCleanImpl">
+      <have>false</have>
+      <force>true</force>
       <modtime>false</modtime>
       <quiet>true</quiet>
       <pin></pin>
@@ -133,7 +133,6 @@
         <minfiles>1</minfiles>
         <minbytes>1024</minbytes>
       </parallel>
-      <revert>false</revert>
     </populate>
   </scm>
   <assignedNode>bllbldlnx-v26</assignedNode>
