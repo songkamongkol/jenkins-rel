@@ -208,7 +208,7 @@ ln -s /opt/lib/vmware-vix-disklib/bin64/vmware-vdiskmanager $WORKSPACE/common/to
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>env
-p4 info
+
 
 $WORKSPACE/build/il/scripts/phxbld -j8 stca
 $WORKSPACE/build/il/scripts/phxbld -j8 vtc
