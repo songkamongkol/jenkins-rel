@@ -197,7 +197,7 @@ sudo scons target=kernelclean</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>env
-p4 info
+
 
 # -- set environment variable to build VirtualMini
 export VM_PROFILE=all
