@@ -2,17 +2,39 @@
 <project>
   <actions/>
   <description></description>
-  <logRotator class="hudson.tasks.LogRotator">
-    <daysToKeep>-1</daysToKeep>
-    <numToKeep>10</numToKeep>
-    <artifactDaysToKeep>-1</artifactDaysToKeep>
-    <artifactNumToKeep>-1</artifactNumToKeep>
-  </logRotator>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
       <useBuildBlocker>false</useBuildBlocker>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>-1</daysToKeep>
+        <numToKeep>10</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+    <hudson.plugins.libvirt.BeforeJobSnapshotJobProperty plugin="libvirt-slave@1.8.5"/>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.25">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
+      <teamDomain></teamDomain>
+      <token></token>
+      <room></room>
+      <startNotification>false</startNotification>
+      <notifySuccess>false</notifySuccess>
+      <notifyAborted>false</notifyAborted>
+      <notifyNotBuilt>false</notifyNotBuilt>
+      <notifyUnstable>false</notifyUnstable>
+      <notifyFailure>false</notifyFailure>
+      <notifyBackToNormal>false</notifyBackToNormal>
+      <notifyRepeatedFailure>false</notifyRepeatedFailure>
+      <includeTestSummary>false</includeTestSummary>
+      <showCommitList>false</showCommitList>
+    </jenkins.plugins.slack.SlackNotifier_-SlackJobProperty>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
@@ -22,18 +44,23 @@
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.25">
-      <autoRebuild>false</autoRebuild>
-      <rebuildDisabled>false</rebuildDisabled>
-    </com.sonyericsson.rebuild.RebuildSettings>
   </properties>
-  <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.36">
-    <configVersion>2</configVersion>
-    <p4User>tableuser</p4User>
-    <p4Passwd></p4Passwd>
-    <p4Port>perforceproxy.cal.ci.spirentcom.com:1999</p4Port>
-    <p4Client>${JOB_NAME}_${BRANCH_NAME}</p4Client>
-    <projectPath>+//TestCenter/${BRANCH_NAME}/... //ws/...
+  <scm class="org.jenkinsci.plugins.p4.PerforceScm" plugin="p4@1.7.7">
+    <credential>tableuser</credential>
+    <workspace class="org.jenkinsci.plugins.p4.workspace.ManualWorkspaceImpl">
+      <charset>none</charset>
+      <pinHost>false</pinHost>
+      <name>jenkins-${NODE_NAME}-${JOB_NAME}</name>
+      <spec>
+        <allwrite>false</allwrite>
+        <clobber>false</clobber>
+        <compress>false</compress>
+        <locked>false</locked>
+        <modtime>false</modtime>
+        <rmdir>false</rmdir>
+        <streamName></streamName>
+        <line>LOCAL</line>
+        <view>+//TestCenter/${BRANCH_NAME}/... //jenkins-${NODE_NAME}-${JOB_NAME}/...
 -//TestCenter/*/Layer1/...
 -//TestCenter/*/userdocauto/...
 -//TestCenter/*/sandbox/...
@@ -52,58 +79,36 @@
 -//TestCenter/*/schedules/...
 -//TestCenter/*/scm/...
 -//TestCenter/*/regression/...
-+//TestCenter/${BRANCH_NAME}/build/il/... //ws/build/il/...
--//TestCenter/${BRANCH_NAME}/build/il/cli/... //ws/build/il/cli/...
--//TestCenter/${BRANCH_NAME}/build/il/testframework/... //ws/build/il/testframework/...
++//TestCenter/${BRANCH_NAME}/build/il/... //jenkins-${NODE_NAME}-${JOB_NAME}/build/il/...
+-//TestCenter/${BRANCH_NAME}/build/il/cli/... //jenkins-${NODE_NAME}-${JOB_NAME}/build/il/cli/...
+-//TestCenter/${BRANCH_NAME}/build/il/testframework/... //jenkins-${NODE_NAME}-${JOB_NAME}/build/il/testframework/...
 -//TestCenter/*/build/il/version
 -//TestCenter/*/.../ui/...
-+//TestCenter/${BRANCH_NAME}/common/.../ui/... //ws/common/.../ui/...
-+//TestCenter/${BRANCH_NAME}/framework/ui/automation/... //ws/framework/ui/automation/...</projectPath>
-    <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <clientOwner></clientOwner>
-    <p4SysDrive>C:</p4SysDrive>
-    <p4SysRoot>C:\WINDOWS</p4SysRoot>
-    <browser class="hudson.plugins.perforce.browsers.P4Web">
-      <url>http://jenkins.ad.spirentcom.com:5104/</url>
-      <p4WebEndShite>?ac=22</p4WebEndShite>
-      <p4DifEndShite>?ac=19</p4DifEndShite>
-      <p4ClEndShite>?ac=10</p4ClEndShite>
-    </browser>
-    <p4Tool>p4</p4Tool>
-    <useClientSpec>false</useClientSpec>
-    <useStreamDepot>false</useStreamDepot>
-    <forceSync>false</forceSync>
-    <alwaysForceSync>false</alwaysForceSync>
-    <dontUpdateServer>false</dontUpdateServer>
-    <disableAutoSync>false</disableAutoSync>
-    <disableChangeLogOnly>false</disableChangeLogOnly>
-    <disableSyncOnly>true</disableSyncOnly>
-    <showIntegChanges>false</showIntegChanges>
-    <useOldClientName>false</useOldClientName>
-    <createWorkspace>true</createWorkspace>
-    <updateView>true</updateView>
-    <dontRenameClient>false</dontRenameClient>
-    <updateCounterValue>false</updateCounterValue>
-    <dontUpdateClient>false</dontUpdateClient>
-    <exposeP4Passwd>false</exposeP4Passwd>
-    <wipeBeforeBuild>false</wipeBeforeBuild>
-    <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
-    <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
-    <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
-    <fileLimit>0</fileLimit>
-    <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
-    <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
-    <lineEndValue>local</lineEndValue>
-    <useViewMask>false</useViewMask>
-    <useViewMaskForPolling>true</useViewMaskForPolling>
-    <useViewMaskForSyncing>false</useViewMaskForSyncing>
-    <useViewMaskForChangeLog>false</useViewMaskForChangeLog>
-    <pollOnlyOnMaster>true</pollOnlyOnMaster>
++//TestCenter/${BRANCH_NAME}/common/.../ui/... //jenkins-${NODE_NAME}-${JOB_NAME}/common/.../ui/...
++//TestCenter/${BRANCH_NAME}/framework/ui/automation/... //jenkins-${NODE_NAME}-${JOB_NAME}/framework/ui/automation/...</view>
+        <type>WRITABLE</type>
+        <serverID></serverID>
+        <backup>false</backup>
+      </spec>
+    </workspace>
+    <populate class="org.jenkinsci.plugins.p4.populate.SyncOnlyImpl">
+      <have>true</have>
+      <force>false</force>
+      <modtime>false</modtime>
+      <quiet>true</quiet>
+      <pin></pin>
+      <parallel>
+        <enable>false</enable>
+        <threads>4</threads>
+        <minfiles>1</minfiles>
+        <minbytes>1024</minbytes>
+      </parallel>
+      <revert>false</revert>
+    </populate>
   </scm>
   <assignedNode>spccalengec02</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
@@ -142,7 +147,6 @@
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.UnstableTrigger>
           <email>
-            <recipientList></recipientList>
             <subject>$PROJECT_DEFAULT_SUBJECT</subject>
             <body>$PROJECT_DEFAULT_CONTENT</body>
             <recipientProviders>
@@ -154,13 +158,11 @@
             <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
-            <replyTo></replyTo>
             <contentType>project</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.UnstableTrigger>
         <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
           <email>
-            <recipientList></recipientList>
             <subject>$PROJECT_DEFAULT_SUBJECT</subject>
             <body>$PROJECT_DEFAULT_CONTENT</body>
             <recipientProviders>
@@ -172,13 +174,11 @@
             <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
-            <replyTo></replyTo>
             <contentType>project</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.FailureTrigger>
         <hudson.plugins.emailext.plugins.trigger.FixedTrigger>
           <email>
-            <recipientList></recipientList>
             <subject>$PROJECT_DEFAULT_SUBJECT</subject>
             <body>$PROJECT_DEFAULT_CONTENT</body>
             <recipientProviders>
@@ -190,7 +190,6 @@
             <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
-            <replyTo></replyTo>
             <contentType>project</contentType>
           </email>
         </hudson.plugins.emailext.plugins.trigger.FixedTrigger>
@@ -200,6 +199,7 @@
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
       <attachmentsPattern></attachmentsPattern>
       <presendScript></presendScript>
+      <postsendScript></postsendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
       <replyTo></replyTo>
