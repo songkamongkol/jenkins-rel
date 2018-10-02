@@ -266,6 +266,8 @@ del /f /q stc-rest-win32.tar&#xd;
     <hudson.tasks.BatchFile>
       <command>cd %WORKSPACE%\bin\release&#xd;
 SET DEPENDENT_JOB_NAME=%JOB_NAME%&#xd;
+SET P4USER=scmbuild&#xd;
+SET P4PORT=perforce.spirentcom.com:1666&#xd;
 copy  D:\jenkins-rel\release_bll_windows_packaging_new\bin\Release\NTAF\tool\Stc420Publication.xml  D:\jenkins-rel\release_bll_windows_packaging_new\bin\Release\NTAF\tool\Stc487Publication.xml /y&#xd;
 &#xd;
 copy  D:\jenkins-rel\release_bll_windows_packaging_new\bin\Release\NTAF\tool\Stc420Publication.xml  D:\jenkins-rel\release_bll_windows_packaging_new\bin\Release\NTAF\tool\Stc486Publication.xml /y&#xd;
