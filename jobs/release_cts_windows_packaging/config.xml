@@ -173,6 +173,8 @@ python framework\tools\buildUtil\package.py --install CTS.Windows.all.tar.gz  --
     <hudson.tasks.BatchFile>
       <command>cd %WORKSPACE%\bin\release&#xd;
 SET DEPENDENT_JOB_NAME=integration_package_cts_windows&#xd;
+SET P4USER=scmbuild&#xd;
+SET P4PORT=perforce.spirentcom.com:1666&#xd;
 rem set CI_PACKAGE_OPT which ci_run_jenkins_steps.py uses to call ci_packageinstaller.pl script now&#xd;
 rem ADD --runcipackageinstaller=yes&#xd;
 SET CI_PACKAGE_OPT=PACKAGE_CTS&#xd;
