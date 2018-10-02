@@ -239,6 +239,8 @@ REM :skipstcweb&#xd;
       <command>cd %WORKSPACE%\bin\release_x64&#xd;
 rem SET DEPENDENT_JOB_NAME=integration_package_cts_windows&#xd;
 SET DEPENDENT_JOB_NAME=%JOB_NAME%&#xd;
+SET P4USER=scmbuild&#xd;
+SET P4PORT=perforce.spirentcom.com:1666&#xd;
 copy  %WIN_WORKSPACE%\%JOB_NAME%\bin\Release_x64\NTAF\tool\Stc420Publication.xml %WIN_WORKSPACE%\%JOB_NAME%\bin\Release_x64\NTAF\tool\Stc487Publication.xml /y&#xd;
 c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --createpropfile=yes --runcimaketarballs=no --runsetver=yes --updateilversionxml=yes --updatereleasetag=yes --updatepkgindextcl=yes --updatespirenttestcentertcl=yes --updatestclibtcl=yes --updatentafxml=yes --updatehltapiversion=yes --updatemagellanversion=yes&#xd;
 &#xd;
