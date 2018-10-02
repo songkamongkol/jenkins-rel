@@ -90,7 +90,7 @@ Then runs Centralboot to generate centralboot image and run reversion script to 
     </hudson.model.ParametersDefinitionProperty>
   </properties>
   <scm class="org.jenkinsci.plugins.p4.PerforceScm" plugin="p4@1.7.7">
-    <credential></credential>
+    <credential>scmbuild</credential>
     <workspace class="org.jenkinsci.plugins.p4.workspace.ManualWorkspaceImpl">
       <charset>none</charset>
       <pinHost>false</pinHost>
