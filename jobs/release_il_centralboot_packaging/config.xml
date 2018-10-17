@@ -331,6 +331,7 @@ content=${content//\&quot;/}
 buildno=${content#*number}
 echo $changelist il_lxc_yocto $buildno &gt;&gt; .changelists
 cp -v /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}/build-packaging/bundle/k9* $WORKSPACE/build/il/packages/bundle
+cp -v /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}/build-packaging/*flexe* $WORKSPACE/build/il/packages/bundle
 cp -v /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}/build-packaging/rawimg/*lxc* $WORKSPACE/build/il/packages/rawimg
 echo &quot;Finished copying il_lxcfiles&quot;
 rm -f /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}_packaging.txt</command>
