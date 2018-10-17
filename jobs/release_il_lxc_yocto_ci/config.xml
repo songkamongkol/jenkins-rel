@@ -169,6 +169,7 @@ export SCONSFLAGS=&quot;-j8 ccache=1 distcc=1&quot;
 
 # $WORKSPACE/build/il/scripts/phxbld centralboot_changeling
 $WORKSPACE/build/il/scripts/phxbld yocto_lxc
+$WORKSPACE/build/il/scripts/phxbld  -j16 yocto_ver=1.5 flexevm
 
 # export PAD_BUILD_NUMBER=`printf &apos;%04i&apos; $BUILD_NUMBER`
 
@@ -177,6 +178,7 @@ $WORKSPACE/build/il/scripts/phxbld yocto_lxc
     <hudson.tasks.Shell>
       <command>export SCONSFLAGS=&quot;-j8 ccache=1 distcc=1&quot;
 sudo scons target=k9vm
+
 </command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
