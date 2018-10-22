@@ -177,7 +177,8 @@ $WORKSPACE/build/il/scripts/phxbld  -j16 yocto_ver=1.5 flexevm
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>export SCONSFLAGS=&quot;-j8 ccache=1 distcc=1&quot;
-sudo scons target=k9vm
+# sudo scons target=k9vm
+$WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 k9vm
 
 </command>
     </hudson.tasks.Shell>
