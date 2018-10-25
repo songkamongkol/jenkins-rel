@@ -706,7 +706,7 @@ ssh scm@martin.spirentcom.com chmod 777 $BUILD_DIR/mfgbld/*</command>
 if [[ $P4CLEANWORKSPACE = &quot;true&quot; ]]; then 
     sudo rm -rf $WORKSPACE/
     echo 3LoQdl*vYiz3| p4 -p perforce.spirentcom.com:1666 -u scmbuild login
-    p4 -c jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME} -p perforce.spirentcom.com:1666 -u scmbuild login sync //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/...#none
+    p4 -c jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME} -p perforce.spirentcom.com:1666 -u scmbuild sync //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/...#none
 fi</command>
         </hudson.tasks.Shell>
       </buildSteps>
