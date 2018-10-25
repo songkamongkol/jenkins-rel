@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
-  <description/>
+  <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
@@ -20,9 +21,9 @@
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain/>
-      <token/>
-      <room/>
+      <teamDomain></teamDomain>
+      <token></token>
+      <room></room>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -38,7 +39,7 @@
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
-          <description/>
+          <description></description>
           <defaultValue>4.92_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -49,7 +50,7 @@
     <workspace class="org.jenkinsci.plugins.p4.workspace.ManualWorkspaceImpl">
       <charset>none</charset>
       <pinHost>false</pinHost>
-      <name>jenkins-${NODE_NAME}-${JOB_NAME}</name>
+      <name>jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}</name>
       <spec>
         <allwrite>false</allwrite>
         <clobber>false</clobber>
@@ -57,36 +58,36 @@
         <locked>false</locked>
         <modtime>false</modtime>
         <rmdir>false</rmdir>
-        <streamName/>
+        <streamName></streamName>
         <line>LOCAL</line>
-        <view>+//TestCenter/4.91_rel/... //jenkins-${NODE_NAME}-${JOB_NAME}/...
--//TestCenter/*/Layer1/... //jenkins-${NODE_NAME}-${JOB_NAME}/*/Layer1/...
--//TestCenter/*/userdocauto/... //jenkins-${NODE_NAME}-${JOB_NAME}/*/userdocauto/...
--//TestCenter/*/sandbox/... //jenkins-${NODE_NAME}-${JOB_NAME}/*/sandbox/...
--//TestCenter/*/.../il/... //jenkins-${NODE_NAME}-${JOB_NAME}/*/.../il/...
--//TestCenter/*/.../hw/... //jenkins-${NODE_NAME}-${JOB_NAME}/*/.../hw/...
--//TestCenter/*/.../WebHelp/... //jenkins-${NODE_NAME}-${JOB_NAME}/*/.../WebHelp/...
--//TestCenter/*/content/cts/... //jenkins-${NODE_NAME}-${JOB_NAME}/*/content/cts/...
--//TestCenter/*/common/lib/java/... //jenkins-${NODE_NAME}-${JOB_NAME}/*/common/lib/java/... 
--//TestCenter/*/common/tools/scons/... //jenkins-${NODE_NAME}-${JOB_NAME}/*/common/tools/scons/... 
--//TestCenter/*/framework/ui/resultsanalysis/tools/jvm/... //jenkins-${NODE_NAME}-${JOB_NAME}/*/framework/ui/resultsanalysis/tools/jvm/...
--//TestCenter/*/common/lib/boost_1_34_0/... //jenkins-${NODE_NAME}-${JOB_NAME}/*/common/lib/boost_1_34_0/...
--//TestCenter/*/Bakeoff_TestCaseScripts/... //jenkins-${NODE_NAME}-${JOB_NAME}/*/Bakeoff_TestCaseScripts/... 
--//TestCenter/*/other/... //jenkins-${NODE_NAME}-${JOB_NAME}/*/other/...
--//TestCenter/*/documents/... //jenkins-${NODE_NAME}-${JOB_NAME}/*/documents/... 
--//TestCenter/*/dmcp/... //jenkins-${NODE_NAME}-${JOB_NAME}/*/dmcp/...
--//TestCenter/*/schedules/... //jenkins-${NODE_NAME}-${JOB_NAME}/*/schedules/...
--//TestCenter/*/scm/... //jenkins-${NODE_NAME}-${JOB_NAME}/*/scm/...
--//TestCenter/*/regression/... //jenkins-${NODE_NAME}-${JOB_NAME}/*/regression/... 
-+//TestCenter/4.91_rel/build/il/... //jenkins-${NODE_NAME}-${JOB_NAME}/build/il/...
--//TestCenter/4.91_rel/build/il/cli/... //jenkins-${NODE_NAME}-${JOB_NAME}/build/il/cli/...
--//TestCenter/4.91_rel/build/il/testframework/... //jenkins-${NODE_NAME}-${JOB_NAME}/build/il/testframework/...
--//TestCenter/*/build/il/version //jenkins-${NODE_NAME}-${JOB_NAME}/*/build/il/version
--//TestCenter/*/.../ui/... //jenkins-${NODE_NAME}-${JOB_NAME}/*/.../ui/... 
-+//TestCenter/4.91_rel/common/.../ui/... //jenkins-${NODE_NAME}-${JOB_NAME}/common/.../ui/...
-+//TestCenter/4.91_rel/framework/ui/automation/... //jenkins-${NODE_NAME}-${JOB_NAME}/framework/ui/automation/...</view>
+        <view>+//TestCenter/4.92_rel/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/...
+-//TestCenter/*/Layer1/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/*/Layer1/...
+-//TestCenter/*/userdocauto/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/*/userdocauto/...
+-//TestCenter/*/sandbox/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/*/sandbox/...
+-//TestCenter/*/.../il/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/*/.../il/...
+-//TestCenter/*/.../hw/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/*/.../hw/...
+-//TestCenter/*/.../WebHelp/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/*/.../WebHelp/...
+-//TestCenter/*/content/cts/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/*/content/cts/...
+-//TestCenter/*/common/lib/java/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/*/common/lib/java/... 
+-//TestCenter/*/common/tools/scons/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/*/common/tools/scons/... 
+-//TestCenter/*/framework/ui/resultsanalysis/tools/jvm/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/*/framework/ui/resultsanalysis/tools/jvm/...
+-//TestCenter/*/common/lib/boost_1_34_0/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/*/common/lib/boost_1_34_0/...
+-//TestCenter/*/Bakeoff_TestCaseScripts/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/*/Bakeoff_TestCaseScripts/... 
+-//TestCenter/*/other/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/*/other/...
+-//TestCenter/*/documents/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/*/documents/... 
+-//TestCenter/*/dmcp/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/*/dmcp/...
+-//TestCenter/*/schedules/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/*/schedules/...
+-//TestCenter/*/scm/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/*/scm/...
+-//TestCenter/*/regression/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/*/regression/... 
++//TestCenter/4.92_rel/build/il/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/build/il/...
+-//TestCenter/4.92_rel/build/il/cli/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/build/il/cli/...
+-//TestCenter/4.92_rel/build/il/testframework/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/build/il/testframework/...
+-//TestCenter/*/build/il/version //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/*/build/il/version
+-//TestCenter/*/.../ui/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/*/.../ui/... 
++//TestCenter/4.92_rel/common/.../ui/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/common/.../ui/...
++//TestCenter/4.92_rel/framework/ui/automation/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/framework/ui/automation/...</view>
         <type>WRITABLE</type>
-        <serverID/>
+        <serverID></serverID>
         <backup>false</backup>
       </spec>
     </workspace>
@@ -95,12 +96,12 @@
       <force>false</force>
       <modtime>false</modtime>
       <quiet>true</quiet>
-      <pin/>
+      <pin></pin>
     </populate>
   </scm>
   <assignedNode>spccalengec02</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>true</disabled>
+  <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
@@ -147,7 +148,7 @@
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -163,7 +164,7 @@
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -179,7 +180,7 @@
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -189,12 +190,12 @@
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern/>
-      <presendScript/>
-      <postsendScript/>
+      <attachmentsPattern></attachmentsPattern>
+      <presendScript></presendScript>
+      <postsendScript></postsendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
-      <replyTo/>
+      <replyTo></replyTo>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
