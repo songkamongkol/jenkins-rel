@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>Startup error problem with TestCenter.Windows.tar.gz?
-
+  <description>Startup error problem with TestCenter.Windows.tar.gz?&#xd;
+&#xd;
 Install the latest vcredist from http://www.microsoft.com/download/en/details.aspx?displaylang=en&amp;id=26347</description>
   <keepDependencies>false</keepDependencies>
   <properties>
@@ -350,5 +350,21 @@ REM -- coverage report no longer needed # mv *_CoverageReport unit_test_report&#
         <loadFilesFromMaster>false</loadFilesFromMaster>
       </info>
     </EnvInjectBuildWrapper>
+    <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
+      <buildSteps>
+        <hudson.tasks.BatchFile>
+          <command>setlocal enabledelayedexpansion&#xd;
+SET modified=%WORKSPACE:/=\%&#xd;
+if &quot;%P4CLEANWORKSPACE%&quot; == &quot;true&quot; (&#xd;
+&#xd;
+echo &quot;Removing %modified%&quot;&#xd;
+rd /s /q %modified%&#xd;
+echo 3LoQdl*vYiz3|p4 -u scmbuild -p perforce.spirentcom.com:1666 login&#xd;
+p4 -u scmbuild -p perforce.spirentcom.com:1666 -c jenkins-%NODE_NAME%-%JOB_NAME%-%BRANCH_NAME% sync //jenkins-%NODE_NAME%-%JOB_NAME%-%BRANCH_NAME%/...#none&#xd;
+)</command>
+        </hudson.tasks.BatchFile>
+      </buildSteps>
+      <failOnError>false</failOnError>
+    </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
   </buildWrappers>
 </project>
