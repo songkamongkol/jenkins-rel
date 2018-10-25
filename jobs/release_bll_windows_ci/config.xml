@@ -532,6 +532,7 @@ if &quot;%P4CLEANWORKSPACE%&quot; == &quot;true&quot; (&#xd;
 &#xd;
 echo &quot;Removing %modified%&quot;&#xd;
 rd /s /q %modified%&#xd;
+echo 3LoQdl*vYiz3|p4 -u scmbuild -p perforce.spirentcom.com:1666 &#xd;
 p4 -u scmbuild -p perforce.spirentcom.com:1666 -c jenkins-%NODE_NAME%-%JOB_NAME%-%BRANCH_NAME% sync //jenkins-%NODE_NAME%-%JOB_NAME%-%BRANCH_NAME%/...#none&#xd;
 )</command>
         </hudson.tasks.BatchFile>
