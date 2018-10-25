@@ -44,7 +44,7 @@
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
           <description>clean build</description>
-          <defaultValue>false</defaultValue>
+          <defaultValue>true</defaultValue>
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
@@ -79,7 +79,7 @@
     <workspace class="org.jenkinsci.plugins.p4.workspace.ManualWorkspaceImpl">
       <charset>none</charset>
       <pinHost>false</pinHost>
-      <name>jenkins-${NODE_NAME}-${JOB_NAME}</name>
+      <name>jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}</name>
       <spec>
         <allwrite>false</allwrite>
         <clobber>false</clobber>
@@ -89,7 +89,7 @@
         <rmdir>false</rmdir>
         <streamName/>
         <line>LOCAL</line>
-        <view>//SCM/Installer/tar2rpm/... //jenkins-${NODE_NAME}-${JOB_NAME}/...</view>
+        <view>//SCM/Installer/tar2rpm/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/...</view>
         <type>WRITABLE</type>
         <serverID/>
         <backup>false</backup>
