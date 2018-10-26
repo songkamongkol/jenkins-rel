@@ -45,7 +45,10 @@
       <email>zhifeng.lin@spirent.com</email>
     </org.jenkinsci.plugins.p4.email.P4UserProperty>
     <jenkins.security.LastGrantedAuthoritiesProperty>
-      <timestamp>0</timestamp>
+      <roles>
+        <string>authenticated</string>
+      </roles>
+      <timestamp>1540571037560</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
   </properties>
 </user>
