@@ -35,14 +35,14 @@
       <perforceId>zlin</perforceId>
       <perforceEmail>zhifeng.lin@spirent.com</perforceEmail>
     </hudson.plugins.perforce.PerforceUserProperty>
-    <org.jenkinsci.plugins.p4.email.P4UserProperty plugin="p4@1.7.7">
-      <email>zhifeng.lin@spirent.com</email>
-    </org.jenkinsci.plugins.p4.email.P4UserProperty>
     <hudson.security.HudsonPrivateSecurityRealm_-Details>
       <passwordHash>#jbcrypt:$2a$10$AJ3gIMZwViEKDy2AL0xEXO09ELO3b2I2u9fJpd5DHVart/EdbV78q</passwordHash>
     </hudson.security.HudsonPrivateSecurityRealm_-Details>
     <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.19">
       <emailAddress>zhifeng.lin@spirent.com</emailAddress>
     </hudson.tasks.Mailer_-UserProperty>
+    <org.jenkinsci.plugins.p4.email.P4UserProperty plugin="p4@1.7.7">
+      <email>zhifeng.lin@spirent.com</email>
+    </org.jenkinsci.plugins.p4.email.P4UserProperty>
   </properties>
 </user>
