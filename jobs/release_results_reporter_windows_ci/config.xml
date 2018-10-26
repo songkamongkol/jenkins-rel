@@ -55,7 +55,7 @@
     <workspace class="org.jenkinsci.plugins.p4.workspace.ManualWorkspaceImpl">
       <charset>none</charset>
       <pinHost>false</pinHost>
-      <name>jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}</name>
+      <name>jenkins-${NODE_NAME}-${JOB_NAME}</name>
       <spec>
         <allwrite>false</allwrite>
         <clobber>false</clobber>
@@ -65,10 +65,10 @@
         <rmdir>false</rmdir>
         <streamName></streamName>
         <line>LOCAL</line>
-        <view>+//TestCenter/${BRANCH_NAME}/framework/ui/resultsanalysis/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/framework/ui/resultsanalysis/...
--//TestCenter/${BRANCH_NAME}/framework/ui/resultsanalysis/tools/jvm/linux_x86/man/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/framework/ui/resultsanalysis/tools/jvm/linux_x86/man/...
-+//TestCenter/${BRANCH_NAME}/framework/ui/resultsanalysis/tools/jvm/windows_x86_1.6.0_35/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/framework/ui/resultsanalysis/tools/jvm/windows_x86_1.6.0_35/...
-+//TestCenter/${BRANCH_NAME}/framework/tools/buildUtil/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/framework/tools/buildUtil/...</view>
+        <view>+//TestCenter/${BRANCH_NAME}/framework/ui/resultsanalysis/... //jenkins-${NODE_NAME}-${JOB_NAME}/framework/ui/resultsanalysis/...
+-//TestCenter/${BRANCH_NAME}/framework/ui/resultsanalysis/tools/jvm/linux_x86/man/... //jenkins-${NODE_NAME}-${JOB_NAME}/framework/ui/resultsanalysis/tools/jvm/linux_x86/man/...
++//TestCenter/${BRANCH_NAME}/framework/ui/resultsanalysis/tools/jvm/windows_x86_1.6.0_35/... //jenkins-${NODE_NAME}-${JOB_NAME}/framework/ui/resultsanalysis/tools/jvm/windows_x86_1.6.0_35/...
++//TestCenter/${BRANCH_NAME}/framework/tools/buildUtil/... //jenkins-${NODE_NAME}-${JOB_NAME}/framework/tools/buildUtil/...</view>
         <type>WRITABLE</type>
         <serverID></serverID>
         <backup>false</backup>
