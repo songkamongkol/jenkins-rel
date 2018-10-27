@@ -361,7 +361,7 @@ shutil.make_archive(output_filename, &apos;zip&apos;, dir_name)</command>
         <hudson.plugins.claim.ClaimTestDataPublisher plugin="claim@2.9"/>
       </testDataPublishers>
       <healthScaleFactor>1.0</healthScaleFactor>
-      <allowEmptyResults>false</allowEmptyResults>
+      <allowEmptyResults>true</allowEmptyResults>
     </hudson.tasks.junit.JUnitResultArchiver>
     <hudson.tasks.Fingerprinter>
       <targets>${BUILD_OUTPUT_DIR}/TestCenter*.tar.gz, BLL_Linux_changelist*.txt, bll_idl_crc.txt</targets>
@@ -413,8 +413,8 @@ shutil.make_archive(output_filename, &apos;zip&apos;, dir_name)</command>
       </resolverDetails>
       <deployerCredentialsConfig>
         <credentials>
-          <username></username>
-          <password></password>
+          <username>spirent</username>
+          <password>c3BpcmVudA==</password>
         </credentials>
         <credentialsId></credentialsId>
         <overridingCredentials>false</overridingCredentials>
@@ -422,8 +422,8 @@ shutil.make_archive(output_filename, &apos;zip&apos;, dir_name)</command>
       </deployerCredentialsConfig>
       <resolverCredentialsConfig>
         <credentials>
-          <username></username>
-          <password></password>
+          <username>spirent</username>
+          <password>c3BpcmVudA==</password>
         </credentials>
         <credentialsId></credentialsId>
         <overridingCredentials>false</overridingCredentials>
