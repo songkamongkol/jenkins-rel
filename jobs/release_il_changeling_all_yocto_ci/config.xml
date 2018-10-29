@@ -270,5 +270,19 @@ cp -r $WORKSPACE/build/il/packages/rawimg $STORAGE_DIR
   </publishers>
   <buildWrappers>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.8"/>
+    <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
+      <buildSteps>
+        <hudson.tasks.Shell>
+          <command># remove files using sudo for files that may be
+# owned by root
+if [[ $P4CLEANWORKSPACE = &quot;true&quot; ]]; then
+    if [ ! -z &quot;$WORKSPACE&quot; ]; then
+        sudo rm -rf $WORKSPACE/*
+    fi
+fi</command>
+        </hudson.tasks.Shell>
+      </buildSteps>
+      <failOnError>false</failOnError>
+    </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
   </buildWrappers>
 </project>
