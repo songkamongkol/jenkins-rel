@@ -159,6 +159,8 @@ The latest build is stored at \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_
   <builders>
     <hudson.tasks.Shell>
       <command>rm -rf ${JOB_NAME}_changelist_*.txt
+sudo rm -rf /tmp/*.log
+sudo rm -rf $WORKSPACE/framework/il/platform/hypervisor/tardis/temp
 echo $JOB_NAME $P4_CHANGELIST $BUILD_NUMBER &gt; $WORKSPACE/${JOB_NAME}_changelist_${P4_CHANGELIST}.txt
 echo P4_CHANGESET=$P4_CHANGELIST &gt; $WORKSPACE/changelist.properties
 echo BRANCH_NAME=$BRANCH_NAME &gt;&gt; $WORKSPACE/changelist.properties</command>
