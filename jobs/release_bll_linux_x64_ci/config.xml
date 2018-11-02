@@ -436,12 +436,12 @@ PATH=/usr/gcc_4_9/bin:$PATH</propertiesContent>
     </EnvInjectBuildWrapper>
     <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
       <buildSteps>
-        <hudson.tasks.BatchFile>
-          <command>if [[ $P4CLEANWORKSPACE = &quot;true&quot; ]]; then&#xd;
-  rm -rf $WORKSPACE/*&#xd;
-  p4 -u scmbuild -p perforce.spirentcom.com:1666 -c jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME} sync //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/...#none&#xd;
+        <hudson.tasks.Shell>
+          <command>if [[ $P4CLEANWORKSPACE = &quot;true&quot; ]]; then
+  rm -rf $WORKSPACE/*
+  p4 -u scmbuild -p perforce.spirentcom.com:1666 -c jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME} sync //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/...#none
 fi</command>
-        </hudson.tasks.BatchFile>
+        </hudson.tasks.Shell>
       </buildSteps>
       <failOnError>false</failOnError>
     </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
