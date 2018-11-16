@@ -65,7 +65,7 @@
         <hudson.model.BooleanParameterDefinition>
           <name>BUILD_SAVE_PDB</name>
           <description>save pdb</description>
-          <defaultValue>true</defaultValue>
+          <defaultValue>false</defaultValue>
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>RELEASE_BUILD</name>
