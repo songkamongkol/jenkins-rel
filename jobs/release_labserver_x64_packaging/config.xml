@@ -43,7 +43,7 @@ Jenkins Node(s): bldmisclnx-v11</description>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.92_rel</defaultValue>
+          <defaultValue>4.93_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -58,7 +58,7 @@ Jenkins Node(s): bldmisclnx-v11</description>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description>major minor version</description>
-          <defaultValue>4.92</defaultValue>
+          <defaultValue>4.93</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
@@ -93,7 +93,7 @@ Jenkins Node(s): bldmisclnx-v11</description>
     <workspace class="org.jenkinsci.plugins.p4.workspace.ManualWorkspaceImpl">
       <charset>none</charset>
       <pinHost>false</pinHost>
-      <name>jenkins-${NODE_NAME}-${JOB_NAME}</name>
+      <name>jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}</name>
       <spec>
         <allwrite>false</allwrite>
         <clobber>false</clobber>
@@ -103,15 +103,15 @@ Jenkins Node(s): bldmisclnx-v11</description>
         <rmdir>false</rmdir>
         <streamName/>
         <line>LOCAL</line>
-        <view>//SCM/Build_Scripts/STC_Build_Scripts/... //jenkins-${NODE_NAME}-${JOB_NAME}/Build_Scripts/STC_Build_Scripts/...
-//SCM/Scripts/... //jenkins-${NODE_NAME}-${JOB_NAME}/Build_Scripts/Scripts/...
-//TestCenter/${BRANCH_NAME}/framework/tools/buildUtil/... //jenkins-${NODE_NAME}-${JOB_NAME}/framework/tools/buildUtil/...
-//TestCenter/profx_iso/Labserver/rpms/sessionLicensing/RPMS/x86/postinstall //jenkins-${NODE_NAME}-${JOB_NAME}/session_licensing/postinstall
-//TestCenter/profx_iso/Labserver/iso/isolinux/Packages/labServerVM-1.0-0.i386.rpm //jenkins-${NODE_NAME}-${JOB_NAME}/labServerVM-1.0-0.i386.rpm
-//TestCenter/${BRANCH_NAME}/framework/bll/serverManager/scripts/stcFtpd.tcl //jenkins-${NODE_NAME}-${JOB_NAME}/stcFtpd.tcl
-//TestCenter/${BRANCH_NAME}/framework/bll/serverManager/scripts/tclCmdline.tcl //jenkins-${NODE_NAME}-${JOB_NAME}/tclCmdline.tcl
-//TestCenter/${BRANCH_NAME}/framework/bll/serverManager/scripts/tclFtpd.tcl //jenkins-${NODE_NAME}-${JOB_NAME}/tclFtpd.tcl
-//TestCenter/${BRANCH_NAME}/framework/bll/base/install/release/stcbll.server.ini //jenkins-${NODE_NAME}-${JOB_NAME}/stcbll.server.ini</view>
+        <view>//SCM/Build_Scripts/STC_Build_Scripts/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/Build_Scripts/STC_Build_Scripts/...
+//SCM/Scripts/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/Build_Scripts/Scripts/...
+//TestCenter/${BRANCH_NAME}/framework/tools/buildUtil/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/framework/tools/buildUtil/...
+//TestCenter/profx_iso/Labserver/rpms/sessionLicensing/RPMS/x86/postinstall //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/session_licensing/postinstall
+//TestCenter/profx_iso/Labserver/iso/isolinux/Packages/labServerVM-1.0-0.i386.rpm //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/labServerVM-1.0-0.i386.rpm
+//TestCenter/${BRANCH_NAME}/framework/bll/serverManager/scripts/stcFtpd.tcl //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/stcFtpd.tcl
+//TestCenter/${BRANCH_NAME}/framework/bll/serverManager/scripts/tclCmdline.tcl //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/tclCmdline.tcl
+//TestCenter/${BRANCH_NAME}/framework/bll/serverManager/scripts/tclFtpd.tcl //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/tclFtpd.tcl
+//TestCenter/${BRANCH_NAME}/framework/bll/base/install/release/stcbll.server.ini //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/stcbll.server.ini</view>
         <type>WRITABLE</type>
         <serverID/>
         <backup>false</backup>
