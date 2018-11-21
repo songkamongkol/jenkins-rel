@@ -43,7 +43,7 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.92_rel</defaultValue>
+          <defaultValue>4.93_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -68,7 +68,7 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description>major minor version</description>
-          <defaultValue>4.92</defaultValue>
+          <defaultValue>4.93</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
@@ -97,7 +97,7 @@ release_bll_freebsd_packaging</description>
     <workspace class="org.jenkinsci.plugins.p4.workspace.ManualWorkspaceImpl">
       <charset>none</charset>
       <pinHost>false</pinHost>
-      <name>jenkins-${NODE_NAME}-${JOB_NAME}</name>
+      <name>jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}</name>
       <spec>
         <allwrite>false</allwrite>
         <clobber>false</clobber>
@@ -107,12 +107,12 @@ release_bll_freebsd_packaging</description>
         <rmdir>false</rmdir>
         <streamName/>
         <line>LOCAL</line>
-        <view>//SCM/Build_Scripts/STC_Build_Scripts/... //jenkins-${NODE_NAME}-${JOB_NAME}/Build_Scripts/STC_Build_Scripts/...
-//SCM/Scripts/... //jenkins-${NODE_NAME}-${JOB_NAME}/Build_Scripts/Scripts/...
-//TestCenter/${BRANCH_NAME}/framework/tools/buildUtil/... //jenkins-${NODE_NAME}-${JOB_NAME}/framework/tools/buildUtil/...
-//TestCenter/${BRANCH_NAME}/framework/automation/scripting/stc/SampleScripts/... //jenkins-${NODE_NAME}-${JOB_NAME}/SampleScripts/...
-//TestCenter/${BRANCH_NAME}/content/traffic/l4l7/templates/... //jenkins-${NODE_NAME}-${JOB_NAME}/Spirent_TestCenter_Application_Linux_Server/Dpg/...
-//TestCenter/${BRANCH_NAME}/content/traffic/l4l7/tools/DpgUpdate/... //jenkins-${NODE_NAME}-${JOB_NAME}/Spirent_TestCenter_Application_Linux_Server/Dpg/DpgUpdate/...</view>
+        <view>//SCM/Build_Scripts/STC_Build_Scripts/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/Build_Scripts/STC_Build_Scripts/...
+//SCM/Scripts/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/Build_Scripts/Scripts/...
+//TestCenter/${BRANCH_NAME}/framework/tools/buildUtil/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/framework/tools/buildUtil/...
+//TestCenter/${BRANCH_NAME}/framework/automation/scripting/stc/SampleScripts/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/SampleScripts/...
+//TestCenter/${BRANCH_NAME}/content/traffic/l4l7/templates/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/Spirent_TestCenter_Application_Linux_Server/Dpg/...
+//TestCenter/${BRANCH_NAME}/content/traffic/l4l7/tools/DpgUpdate/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/Spirent_TestCenter_Application_Linux_Server/Dpg/DpgUpdate/...</view>
         <type>WRITABLE</type>
         <serverID/>
         <backup>false</backup>
