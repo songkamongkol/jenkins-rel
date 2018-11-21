@@ -57,7 +57,7 @@ example: "38" "FreeBSD" "integration_ftp_tarball" "integration"&lt;br&gt;
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description/>
-          <defaultValue>4.92_rel</defaultValue>
+          <defaultValue>4.93_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_ID</name>
@@ -72,7 +72,7 @@ example: "38" "FreeBSD" "integration_ftp_tarball" "integration"&lt;br&gt;
     <workspace class="org.jenkinsci.plugins.p4.workspace.ManualWorkspaceImpl">
       <charset>none</charset>
       <pinHost>false</pinHost>
-      <name>jenkins-${NODE_NAME}-${JOB_NAME}</name>
+      <name>jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}</name>
       <spec>
         <allwrite>false</allwrite>
         <clobber>false</clobber>
@@ -82,7 +82,7 @@ example: "38" "FreeBSD" "integration_ftp_tarball" "integration"&lt;br&gt;
         <rmdir>false</rmdir>
         <streamName/>
         <line>LOCAL</line>
-        <view>//SCM/Scripts/ci_* //jenkins-${NODE_NAME}-${JOB_NAME}/Scripts/ci_*</view>
+        <view>//SCM/Scripts/ci_* //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/Scripts/ci_*</view>
         <type>WRITABLE</type>
         <serverID/>
         <backup>false</backup>
