@@ -39,7 +39,7 @@
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description/>
-          <defaultValue>4.92</defaultValue>
+          <defaultValue>4.93</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>STC_SUBDIR</name>
@@ -74,7 +74,7 @@
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description/>
-          <defaultValue>4.92_rel</defaultValue>
+          <defaultValue>4.93_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -89,7 +89,7 @@
     <workspace class="org.jenkinsci.plugins.p4.workspace.ManualWorkspaceImpl">
       <charset>none</charset>
       <pinHost>false</pinHost>
-      <name>jenkins-${NODE_NAME}-${JOB_NAME}</name>
+      <name>jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}</name>
       <spec>
         <allwrite>false</allwrite>
         <clobber>false</clobber>
@@ -99,9 +99,9 @@
         <rmdir>false</rmdir>
         <streamName/>
         <line>LOCAL</line>
-        <view>//TestCenter/${BRANCH_NAME}/scm/linux_installer/build //jenkins-${NODE_NAME}-${JOB_NAME}/build
-//TestCenter/${BRANCH_NAME}/scm/linux_installer/decompress //jenkins-${NODE_NAME}-${JOB_NAME}/decompress
-//TestCenter/${BRANCH_NAME}/scm/linux_installer/installer //jenkins-${NODE_NAME}-${JOB_NAME}/payload/installer</view>
+        <view>//TestCenter/${BRANCH_NAME}/scm/linux_installer/build //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/build
+//TestCenter/${BRANCH_NAME}/scm/linux_installer/decompress //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/decompress
+//TestCenter/${BRANCH_NAME}/scm/linux_installer/installer //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/payload/installer</view>
         <type>WRITABLE</type>
         <serverID/>
         <backup>false</backup>
