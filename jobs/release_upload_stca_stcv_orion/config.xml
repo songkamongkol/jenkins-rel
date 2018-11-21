@@ -39,7 +39,7 @@ release_bll_windows_packaging_new</blockingJobs>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description/>
-          <defaultValue>4.92</defaultValue>
+          <defaultValue>4.93</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
@@ -69,7 +69,7 @@ release_bll_windows_packaging_new</blockingJobs>
     <workspace class="org.jenkinsci.plugins.p4.workspace.ManualWorkspaceImpl">
       <charset>none</charset>
       <pinHost>false</pinHost>
-      <name>jenkins-${NODE_NAME}-${JOB_NAME}</name>
+      <name>jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}</name>
       <spec>
         <allwrite>false</allwrite>
         <clobber>false</clobber>
@@ -79,9 +79,9 @@ release_bll_windows_packaging_new</blockingJobs>
         <rmdir>false</rmdir>
         <streamName/>
         <line>LOCAL</line>
-        <view>//SCM/Scripts/upload_stca_stcv_orion.sh //jenkins-${NODE_NAME}-${JOB_NAME}/upload_stca_stcv_orion.sh
-//SCM/Scripts/upload_stc_bll_orion.sh //jenkins-${NODE_NAME}-${JOB_NAME}/upload_stc_bll_orion.sh
-//SCM/Scripts/temeva_test_s3_artifacts_cleanup.py //jenkins-${NODE_NAME}-${JOB_NAME}/temeva_test_s3_artifacts_cleanup.py</view>
+        <view>//SCM/Scripts/upload_stca_stcv_orion.sh //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/upload_stca_stcv_orion.sh
+//SCM/Scripts/upload_stc_bll_orion.sh //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/upload_stc_bll_orion.sh
+//SCM/Scripts/temeva_test_s3_artifacts_cleanup.py //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/temeva_test_s3_artifacts_cleanup.py</view>
         <type>WRITABLE</type>
         <serverID/>
         <backup>false</backup>
