@@ -142,7 +142,7 @@ Wait 10 minutes&lt;br&gt;</description>
   <quietPeriod>15</quietPeriod>
   <assignedNode>ilbuild-v109</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
@@ -265,6 +265,7 @@ cp -r $WORKSPACE/build/il/packages/idltar $STORAGE_DIR
       <scriptOnlyIfSuccess>true</scriptOnlyIfSuccess>
       <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
       <markBuildUnstable>false</markBuildUnstable>
+      <executeOn>BOTH</executeOn>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
   </publishers>
   <buildWrappers>
