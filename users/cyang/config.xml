@@ -28,7 +28,6 @@
     <hudson.model.PaneStatusProperties>
       <collapsed/>
     </hudson.model.PaneStatusProperties>
-    <org.jenkinsci.plugins.p4.email.P4UserProperty plugin="p4@1.7.7"/>
     <hudson.search.UserSearchProperty>
       <insensitiveSearch>false</insensitiveSearch>
     </hudson.search.UserSearchProperty>
@@ -48,5 +47,8 @@
       </roles>
       <timestamp>1536287144464</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
+    <org.jenkinsci.plugins.p4.email.P4UserProperty plugin="p4@1.7.7">
+      <email>chris.yang@spirent.com</email>
+    </org.jenkinsci.plugins.p4.email.P4UserProperty>
   </properties>
 </user>
