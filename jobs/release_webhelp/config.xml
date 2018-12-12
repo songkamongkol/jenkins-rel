@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>Uses MadCap Flare tool to compile webhelp files&lt;br&gt;
-Creates STC and Server Manager help files&lt;br&gt;
-Archives output as tar files for use during packaging jobs&lt;br&gt;
+  <description>Uses MadCap Flare tool to compile webhelp files&lt;br&gt;&#xd;
+Creates STC and Server Manager help files&lt;br&gt;&#xd;
+Archives output as tar files for use during packaging jobs&lt;br&gt;&#xd;
 Triggers release_bll_win_pkg_webhelp&lt;br&gt;</description>
   <keepDependencies>false</keepDependencies>
   <properties>
@@ -53,7 +53,7 @@ Triggers release_bll_win_pkg_webhelp&lt;br&gt;</description>
     <workspace class="org.jenkinsci.plugins.p4.workspace.ManualWorkspaceImpl">
       <charset>none</charset>
       <pinHost>false</pinHost>
-      <name>jenkins-${NODE_NAME}-${JOB_NAME}-4.92_rel</name>
+      <name>jenkins-${NODE_NAME}-${JOB_NAME}-4.93_rel</name>
       <spec>
         <allwrite>false</allwrite>
         <clobber>false</clobber>
