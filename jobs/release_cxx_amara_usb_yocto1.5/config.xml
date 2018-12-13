@@ -135,7 +135,7 @@ NOTE: if any value other than none is provided, the job will try to upload the u
     </workspace>
     <populate class="org.jenkinsci.plugins.p4.populate.SyncOnlyImpl">
       <have>true</have>
-      <force>false</force>
+      <force>true</force>
       <modtime>false</modtime>
       <quiet>true</quiet>
       <pin></pin>
