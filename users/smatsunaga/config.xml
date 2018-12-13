@@ -3,9 +3,7 @@
   <fullName>Sabrina Matsunaga</fullName>
   <properties>
     <hudson.model.PaneStatusProperties>
-      <collapsed>
-        <string>buildHistory</string>
-      </collapsed>
+      <collapsed/>
     </hudson.model.PaneStatusProperties>
     <jenkins.security.ApiTokenProperty>
       <apiToken>hgFpaG+zt3S6hk9MKjGjPuQQR4KJfs2eBwj3BsO/f2qj2SGnAO6/rDRfFdaxvytg</apiToken>
