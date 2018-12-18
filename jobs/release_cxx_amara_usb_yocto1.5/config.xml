@@ -151,7 +151,7 @@ NOTE: if any value other than none is provided, the job will try to upload the u
   <quietPeriod>120</quietPeriod>
   <assignedNode>ilpkg-v01</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>true</disabled>
+  <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>true</blockBuildWhenUpstreamBuilding>
   <authToken>meenuallowedtodothis</authToken>
