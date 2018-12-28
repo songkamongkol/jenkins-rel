@@ -1,7 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<project>
+<?xml version="1.0" encoding="UTF-8"?><project>
   <actions/>
-  <description></description>
+  <description/>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
@@ -21,9 +20,9 @@
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain></teamDomain>
-      <token></token>
-      <room></room>
+      <teamDomain/>
+      <token/>
+      <room/>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -39,8 +38,8 @@
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
-          <description></description>
-          <defaultValue>4.93_rel</defaultValue>
+          <description/>
+          <defaultValue>4.94_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -58,9 +57,9 @@
         <locked>false</locked>
         <modtime>false</modtime>
         <rmdir>false</rmdir>
-        <streamName></streamName>
+        <streamName/>
         <line>LOCAL</line>
-        <view>+//TestCenter/4.93_rel/... //jenkins-${NODE_NAME}-${JOB_NAME}/...
+        <view>+//TestCenter/4.94_rel/... //jenkins-${NODE_NAME}-${JOB_NAME}/...
 -//TestCenter/*/sandbox/... //jenkins-${NODE_NAME}-${JOB_NAME}/*/sandbox/...
 -//TestCenter/*/.../WebHelp/... //jenkins-${NODE_NAME}-${JOB_NAME}/*/.../WebHelp/...
 -//TestCenter/*/Bakeoff_TestCaseScripts/... //jenkins-${NODE_NAME}-${JOB_NAME}/*/Bakeoff_TestCaseScripts/... 
@@ -75,13 +74,13 @@
 -//TestCenter/*/framework/ui/... //jenkins-${NODE_NAME}-${JOB_NAME}/*/framework/ui/... 
 -//TestCenter/*/content/.../ui/... //jenkins-${NODE_NAME}-${JOB_NAME}/*/content/.../ui/...
 -//TestCenter/*/.../bll/... //jenkins-${NODE_NAME}-${JOB_NAME}/*/.../bll/...
-+//TestCenter/4.93_rel/framework/bll/base/... //jenkins-${NODE_NAME}-${JOB_NAME}/framework/bll/base/...
-+//TestCenter/4.93_rel/framework/bll/unittestdrv/... //jenkins-${NODE_NAME}-${JOB_NAME}/framework/bll/unittestdrv/...
-+//TestCenter/4.93_rel/framework/bll/vendor/... //jenkins-${NODE_NAME}-${JOB_NAME}/framework/bll/vendor/...
++//TestCenter/4.94_rel/framework/bll/base/... //jenkins-${NODE_NAME}-${JOB_NAME}/framework/bll/base/...
++//TestCenter/4.94_rel/framework/bll/unittestdrv/... //jenkins-${NODE_NAME}-${JOB_NAME}/framework/bll/unittestdrv/...
++//TestCenter/4.94_rel/framework/bll/vendor/... //jenkins-${NODE_NAME}-${JOB_NAME}/framework/bll/vendor/...
 //TARDIS/avalanche_release/... //jenkins-${NODE_NAME}-${JOB_NAME}/content/traffic/l4l7vm/...
 //TARDIS/Studio_release/avanext/... //jenkins-${NODE_NAME}-${JOB_NAME}/content/traffic/studio_perf/avanext/...</view>
         <type>WRITABLE</type>
-        <serverID></serverID>
+        <serverID/>
         <backup>false</backup>
       </spec>
     </workspace>
@@ -90,7 +89,7 @@
       <force>false</force>
       <modtime>false</modtime>
       <quiet>true</quiet>
-      <pin></pin>
+      <pin/>
     </populate>
   </scm>
   <assignedNode>ilpkg-02</assignedNode>
@@ -145,7 +144,7 @@ export rev=`head -1 $WORKSPACE/framework/il/kernel/yocto/revision.hg`
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern></attachmentsPattern>
+            <attachmentsPattern/>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -161,7 +160,7 @@ export rev=`head -1 $WORKSPACE/framework/il/kernel/yocto/revision.hg`
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern></attachmentsPattern>
+            <attachmentsPattern/>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -177,7 +176,7 @@ export rev=`head -1 $WORKSPACE/framework/il/kernel/yocto/revision.hg`
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern></attachmentsPattern>
+            <attachmentsPattern/>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -187,12 +186,12 @@ export rev=`head -1 $WORKSPACE/framework/il/kernel/yocto/revision.hg`
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern></attachmentsPattern>
-      <presendScript></presendScript>
-      <postsendScript></postsendScript>
+      <attachmentsPattern/>
+      <presendScript/>
+      <postsendScript/>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
-      <replyTo></replyTo>
+      <replyTo/>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
