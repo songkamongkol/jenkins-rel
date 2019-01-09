@@ -32,14 +32,14 @@
     <hudson.search.UserSearchProperty>
       <insensitiveSearch>false</insensitiveSearch>
     </hudson.search.UserSearchProperty>
-    <org.jenkinsci.plugins.p4.email.P4UserProperty plugin="p4@1.7.7">
-      <email>zhipeng.an@spirent.com</email>
-    </org.jenkinsci.plugins.p4.email.P4UserProperty>
     <hudson.security.HudsonPrivateSecurityRealm_-Details>
       <passwordHash>#jbcrypt:$2a$10$uI3F0cIcbeahcBUn7M5xrO4bs6ICqYojTegutcTH7W.gL8eH7YPvy</passwordHash>
     </hudson.security.HudsonPrivateSecurityRealm_-Details>
     <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.19">
       <emailAddress>Zhipeng.An@spirent.com</emailAddress>
     </hudson.tasks.Mailer_-UserProperty>
+    <org.jenkinsci.plugins.p4.email.P4UserProperty plugin="p4@1.7.7">
+      <email>zhipeng.an@spirent.com</email>
+    </org.jenkinsci.plugins.p4.email.P4UserProperty>
   </properties>
 </user>
