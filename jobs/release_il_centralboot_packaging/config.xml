@@ -188,12 +188,16 @@ if [[ $INCLUDE_APPSEC_PKG == &quot;FALSE&quot; ]]; then
     exit 0
 fi
 
-if [ -f /mnt/builds/jenkins/il_changeling_all_yocto-${BRANCH_NAME}_promoting.txt ]; then
-echo &quot;Promotion is in progress, wait for 5 minutes&quot;
-sleep 300
-else
-echo &quot;No promotion is in progress, proceeding with packaging&quot;
-fi
+for i in $(seq 1 3)
+   do
+      if [ -f /mnt/builds/jenkins/il_changeling_all_yocto-${BRANCH_NAME}_promoting.txt ]; then
+         echo &quot;Promotion is in progress, wait for 5 minutes&quot;
+         sleep 300
+      elif (( $i &lt; 3 )) ; then
+         echo &quot;No promotion is in progress, proceeding with packaging&quot;
+         break
+      fi
+done
 
 echo &quot;Packaging started&quot; &gt; /mnt/builds/jenkins/il_changeling_all_yocto-${BRANCH_NAME}_packaging.txt
 echo Copying il_changeling_all build artifacts from /mnt/builds/jenkins/il_changeling_all_yocto-$BRANCH_NAME/build-packaging/
@@ -213,12 +217,16 @@ rm -f /mnt/builds/jenkins/il_changeling_all_yocto-${BRANCH_NAME}_packaging.txt</
     <hudson.tasks.Shell>
       <command>#!/bin/bash
 
-if [ -f /mnt/builds/jenkins/il_changeling_yocto-${BRANCH_NAME}_promoting.txt ]; then
-echo &quot;Promotion is in progress, wait for 5 minutes&quot;
-sleep 300
-else
-echo &quot;No promotion is in progress, proceeding with packaging&quot;
-fi
+for i in $(seq 1 3)
+   do
+      if [ -f /mnt/builds/jenkins/il_changeling_yocto-${BRANCH_NAME}_promoting.txt ]; then
+         echo &quot;Promotion is in progress, wait for 5 minutes&quot;
+         sleep 300
+      elif (( $i &lt; 3 )) ; then
+         echo &quot;No promotion is in progress, proceeding with packaging&quot;
+         break
+      fi
+done
 
 echo &quot;Packaging started&quot; &gt; /mnt/builds/jenkins/il_changeling_yocto-${BRANCH_NAME}_packaging.txt
 echo Copying il_changeling_yocto build artifacts from /mnt/builds/jenkins/il_changeling_yocto-${BRANCH_NAME}/build-packaging/
@@ -238,12 +246,17 @@ rm -f /mnt/builds/jenkins/il_changeling_yocto-${BRANCH_NAME}_packaging.txt</comm
     <hudson.tasks.Shell>
       <command>#!/bin/bash
 
-if [ -f /mnt/builds/jenkins/il_chos2_yocto-${BRANCH_NAME}_promoting.txt ]; then
-echo &quot;Promotion is in progress, wait for 5 minutes&quot;
-sleep 300
-else
-echo &quot;No promotion is in progress, proceeding with packaging&quot;
-fi
+
+for i in $(seq 1 3)
+   do
+      if [ -f /mnt/builds/jenkins/il_chos2_yocto-${BRANCH_NAME}_promoting.txt ]; then
+         echo &quot;Promotion is in progress, wait for 5 minutes&quot;
+         sleep 300
+      elif (( $i &lt; 3 )) ; then
+         echo &quot;No promotion is in progress, proceeding with packaging&quot;
+         break
+      fi
+done
 
 echo &quot;Packaging started&quot; &gt; /mnt/builds/jenkins/il_chos2_yocto-${BRANCH_NAME}_packaging.txt
 echo Copying il_chos2 build artifacts from /mnt/builds/jenkins/il_chos2_yocto-$BRANCH_NAME/build-packaging/
@@ -261,12 +274,16 @@ rm -f /mnt/builds/jenkins/il_chos2_yocto-${BRANCH_NAME}_packaging.txt</command>
     <hudson.tasks.Shell>
       <command>#!/bin/bash
 
-if [ -f /mnt/builds/jenkins/il_virtual_yocto-${BRANCH_NAME}_promoting.txt ]; then
-echo &quot;Promotion is in progress, wait for 5 minutes&quot;
-sleep 300
-else
-echo &quot;No promotion is in progress, proceeding with packaging&quot;
-fi
+for i in $(seq 1 7)
+   do
+      if [ -f /mnt/builds/jenkins/il_virtual_yocto-${BRANCH_NAME}_promoting.txt ]; then
+         echo &quot;Promotion is in progress, wait for 5 minutes&quot;
+         sleep 300
+      elif (( $i &lt; 7 )) ; then
+         echo &quot;No promotion is in progress, proceeding with packaging&quot;
+         break
+      fi
+done
 
 echo &quot;Packaging started&quot; &gt; /mnt/builds/jenkins/il_virtual_yocto-${BRANCH_NAME}_packaging.txt
 echo Copying il_virtual build artifacts from /mnt/builds/jenkins/il_virtual_yocto-$BRANCH_NAME/build-packaging/
@@ -290,12 +307,16 @@ rm -f /mnt/builds/jenkins/il_virtual_yocto-${BRANCH_NAME}_packaging.txt</command
     <hudson.tasks.Shell>
       <command>#!/bin/bash
 
-if [ -f /mnt/builds/jenkins/il_stca-${BRANCH_NAME}_promoting.txt ]; then
-echo &quot;Promotion is in progress, wait for 5 minutes&quot;
-sleep 300
-else
-echo &quot;No promotion is in progress, proceeding with packaging&quot;
-fi
+for i in $(seq 1 3)
+   do
+      if [ -f /mnt/builds/jenkins/il_stca-${BRANCH_NAME}_promoting.txt ]; then
+         echo &quot;Promotion is in progress, wait for 5 minutes&quot;
+         sleep 300
+      elif (( $i &lt; 3 )) ; then
+         echo &quot;No promotion is in progress, proceeding with packaging&quot;
+         break
+      fi
+done
 
 echo &quot;Packaging started&quot; &gt; /mnt/builds/jenkins/il_stca-${BRANCH_NAME}_packaging.txt
 echo Copying il_stca build artifacts from /mnt/builds/jenkins/il_stca-$BRANCH_NAME/build-packaging/
@@ -314,12 +335,16 @@ rm -f /mnt/builds/jenkins/il_stca-${BRANCH_NAME}_packaging.txt</command>
     <hudson.tasks.Shell>
       <command>#!/bin/bash
 
-if [ -f /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}_promoting.txt ]; then
-echo &quot;Promotion is in progress, wait for 5 minutes&quot;
-sleep 300
-else
-echo &quot;No promotion is in progress, proceeding with packaging&quot;
-fi
+for i in $(seq 1 3)
+   do
+      if [ -f /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}_promoting.txt ]; then
+         echo &quot;Promotion is in progress, wait for 5 minutes&quot;
+         sleep 300
+      elif (( $i &lt; 3 )) ; then
+         echo &quot;No promotion is in progress, proceeding with packaging&quot;
+         break
+      fi
+done
 
 echo &quot;Packaging started&quot; &gt; /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}_packaging.txt
 echo Copying il_lxcbuild artifacts from /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}/build-packaging/
@@ -339,12 +364,16 @@ rm -f /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}_packaging.txt</command>
     <hudson.tasks.Shell>
       <command>#!/bin/bash
 
-if [ -f /mnt/builds/jenkins/il_qemu_yocto-${BRANCH_NAME}_promoting.txt ]; then
-echo &quot;Promotion is in progress, wait for 5 minutes&quot;
-sleep 300
-else
-echo &quot;No promotion is in progress, proceeding with packaging&quot;
-fi
+for i in $(seq 1 3)
+   do
+      if [ -f /mnt/builds/jenkins/il_qemu_yocto-${BRANCH_NAME}_promoting.txt ]; then
+         echo &quot;Promotion is in progress, wait for 5 minutes&quot;
+         sleep 300
+      elif (( $i &lt; 3 )) ; then
+         echo &quot;No promotion is in progress, proceeding with packaging&quot;
+         break
+      fi
+done
 
 echo &quot;Packaging started&quot; &gt; /mnt/builds/jenkins/il_qemu_yocto-${BRANCH_NAME}_packaging.txt
 echo Copying il_qemu build artifacts from /mnt/builds/jenkins/il_qemu_yocto-${BRANCH_NAME}/build-packaging/
@@ -363,12 +392,16 @@ rm -f /mnt/builds/jenkins/il_qemu_yocto-${BRANCH_NAME}_packaging.txt</command>
     <hudson.tasks.Shell>
       <command>#!/bin/bash
 
-if [ -f /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}_promoting.txt ]; then
-echo &quot;Promotion is in progress, wait for 5 minutes&quot;
-sleep 300
-else
-echo &quot;No promotion is in progress, proceeding with packaging&quot;
-fi
+for i in $(seq 1 3)
+   do
+      if [ -f /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}_promoting.txt ]; then
+         echo &quot;Promotion is in progress, wait for 5 minutes&quot;
+         sleep 300
+      elif (( $i &lt; 3 )) ; then
+         echo &quot;No promotion is in progress, proceeding with packaging&quot;
+         break
+      fi
+done
 
 echo &quot;Packaging started&quot; &gt; /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}_packaging.txt
 echo Copying il_chhvm_yocto build artifacts from /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}/build-packaging/
@@ -392,13 +425,16 @@ rm -f /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}_packaging.txt
     <hudson.tasks.Shell>
       <command>#!/bin/bash
 
-if [ -f /mnt/builds/jenkins/il_testmodule_contents-${BRANCH_NAME}_promoting.txt ]; then
-echo &quot;Promotion is in progress, wait for 5 minutes&quot;
-sleep 300
-else
-echo &quot;No promotion is in progress, proceeding with packaging&quot;
-fi
-
+for i in $(seq 1 3)
+   do
+      if [ -f /mnt/builds/jenkins/il_testmodule_contents-${BRANCH_NAME}_promoting.txt ]; then
+         echo &quot;Promotion is in progress, wait for 5 minutes&quot;
+         sleep 300
+      elif (( $i &lt; 3 )) ; then
+         echo &quot;No promotion is in progress, proceeding with packaging&quot;
+         break
+      fi
+done
 
 echo &quot;Packaging started&quot; &gt; /mnt/builds/jenkins/il_testmodule_contents-${BRANCH_NAME}_packaging.txt
 echo Copying il_testmodule_contents build artifacts from /mnt/builds/jenkins/il_testmodule_contents-$BRANCH_NAME/build-packaging/
