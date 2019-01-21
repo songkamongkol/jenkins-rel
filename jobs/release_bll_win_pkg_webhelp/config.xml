@@ -145,7 +145,7 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
       <revert>false</revert>
     </populate>
   </scm>
-  <assignedNode>spccalengec02</assignedNode>
+  <assignedNode>relpkg-05</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
