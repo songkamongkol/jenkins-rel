@@ -403,7 +403,7 @@ shutil.make_archive(output_filename, &apos;zip&apos;, dir_name)</command>
             &quot;flat&quot;: &quot;true&quot;
         },
         {
-            &quot;pattern&quot;: &quot;stc/temeva/magellan-frontend.tgz&quot;,
+            &quot;pattern&quot;: &quot;stc/temeva/magellan-frontend-commit/566/magellan-frontend.tgz&quot;,
             &quot;target&quot;: &quot;./bin/magellan-frontend.tgz&quot;,
             &quot;flat&quot;: &quot;true&quot;
         }
