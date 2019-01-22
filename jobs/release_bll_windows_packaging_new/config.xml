@@ -165,7 +165,8 @@ exit /B 0</command>
     <EnvInjectBuilder plugin="envinject@1.89">
       <info>
         <propertiesContent>PYTHONUNBUFFERED=1
-C:\Perl64\bin;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\;C:\salt;%SYSTEMROOT%\System32\OpenSSH\;C:\Program Files\Perforce\;C:\Program Files\7-Zip;c:\Python27</propertiesContent>
+PATH=C:\Perl64\bin;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\;C:\salt;%SYSTEMROOT%\System32\OpenSSH\;C:\Program Files\Perforce\;C:\Program Files\7-Zip;c:\Python27
+ISCMDBLD=c:\Progra~2\Instal~1\2014SA~1\system\iscmdbld.exe</propertiesContent>
       </info>
     </EnvInjectBuilder>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
