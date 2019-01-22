@@ -95,7 +95,7 @@
   </scm>
   <assignedNode>ilpkg-02</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>true</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
@@ -126,10 +126,15 @@ export rev=`head -1 $WORKSPACE/framework/il/kernel/yocto/revision.hg`
       <parsingRulesPath>/var/lib/jenkins/log_parse_rule</parsingRulesPath>
       <useProjectRule>false</useProjectRule>
     </hudson.plugins.logparser.LogParserPublisher>
-    <join.JoinTrigger plugin="join@1.19">
+    <join.JoinTrigger plugin="join@1.21">
       <joinProjects>release_il_ci_join</joinProjects>
       <joinPublishers/>
-      <evenIfDownstreamUnstable>false</evenIfDownstreamUnstable>
+      <resultThreshold>
+        <name>SUCCESS</name>
+        <ordinal>0</ordinal>
+        <color>BLUE</color>
+        <completeBuild>true</completeBuild>
+      </resultThreshold>
     </join.JoinTrigger>
     <hudson.plugins.claim.ClaimPublisher plugin="claim@2.9"/>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.57">
