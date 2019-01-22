@@ -145,8 +145,8 @@ Jenkins Node(s): spccalengec01,spccalengec02</description>
   <customWorkspace>${JOB_NAME}</customWorkspace>
   <builders>
     <hudson.tasks.BatchFile>
-      <command># Make sure TestCenter.Linux.x64.tar is removed otherwise &#xd;
-# the untar command will not work&#xd;
+      <command>echo Make sure TestCenter.Linux.x64.tar is removed otherwise &#xd;
+echo the untar command will not work&#xd;
 del /f /q TestCenter.Linux.x64.tar TestCenter.Linux.x64.full.tar.gz&#xd;
 </command>
     </hudson.tasks.BatchFile>
