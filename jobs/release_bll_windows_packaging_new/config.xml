@@ -276,6 +276,10 @@ c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --c
 &#xd;
 perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% STC_APP_COPY_ONLY&#xd;
 &#xd;
+del /f /q %WORKSPACE%\Installer&#xd;
+rd /s /q %WORKSPACE%\Installer&#xd;
+mkdir %WORKSPACE%\Installer&#xd;
+&#xd;
 perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% COMPILE_FORTHOT&#xd;
 &#xd;
 &#xd;
