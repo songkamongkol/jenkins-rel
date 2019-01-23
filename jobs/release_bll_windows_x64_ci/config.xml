@@ -51,7 +51,7 @@
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
           <description>clean build</description>
-          <defaultValue>true</defaultValue>
+          <defaultValue>false</defaultValue>
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>RUN_BLL_UI_UNITTEST</name>
@@ -79,6 +79,11 @@
 </description>
           <defaultValue>true</defaultValue>
         </hudson.model.BooleanParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>MAGELLAN_FRONTEND_PATH</name>
+          <description>Path to magellan frontend artifact in Artifactory (https://artifactory.srv.orionprod.net)</description>
+          <defaultValue>stc/temeva/magellan-frontend-commit/566/magellan-frontend.tgz</defaultValue>
+        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
@@ -154,9 +159,38 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>del BLL_x64_changelist_*.txt&#xd;
+      <command>del BLL_x64_changelist_*.txt Magellan_Frontend_Build_*.txt&#xd;
 echo %P4_CHANGELIST% %JOB_NAME% %BUILD_NUMBER% &gt; BLL_x64_changelist_%P4_CHANGELIST%.txt</command>
     </hudson.tasks.BatchFile>
+    <hudson.plugins.python.Python plugin="python@1.3">
+      <command>import urllib2
+import os
+import base64
+import json
+
+username = &apos;builder&apos;
+password = os.environ[&apos;AF_PASSWORD&apos;]
+
+af_base_url = &apos;https://artifactory.srv.orionprod.net/artifactory/api/storage&apos;
+url = af_base_url + &apos;/&apos; + os.environ[&apos;MAGELLAN_FRONTEND_PATH&apos;] + &apos;?properties&apos; # &quot;pattern&quot; from AF plugin config section above
+
+# -- creating request object with auth.
+request = urllib2.Request(url)
+base64string = base64.b64encode(&apos;%s:%s&apos; % (username, password))
+request.add_header(&quot;Authorization&quot;, &quot;Basic %s&quot; % base64string)
+
+# -- Open url and process json output
+result = urllib2.urlopen(request)
+props = json.loads(result.read())
+magellan_fe_build = props[&apos;properties&apos;][&apos;build.number&apos;][0]
+
+print &quot;Magellan FrontEnd build number: &quot; + magellan_fe_build
+
+# write out build number into a txt file
+buildno_file = &apos;Magellan_Frontend_Build_&apos; + magellan_fe_build + &apos;.txt&apos;
+with open(buildno_file, &apos;w&apos;) as outfile:
+    outfile.write(url)</command>
+    </hudson.plugins.python.Python>
     <hudson.tasks.BatchFile>
       <command>if &quot;%RELEASE_BUILD%&quot; == &quot;true&quot; (&#xd;
 attrib -r framework\bll\core\include\licensing\ControlledReleaseCheck.h&#xd;
@@ -314,7 +348,7 @@ python ..\..\framework\tools\buildUtil\package.py --package=STAKCommands.beta&#x
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
-      <artifacts>${BUILD_OUTPUT_DIR}/TestCenter.Windows.x64.bll.tar.gz, ${BUILD_OUTPUT_DIR}/UnitTestLogs.tar.gz, ${BUILD_OUTPUT_DIR}/pw_packages_to_test_report, ${BUILD_OUTPUT_DIR}/pw_packages_to_test, ${BUILD_OUTPUT_DIR}/pw_unknown_files_report, BLL_x64_changelist*.txt, bll_idl_crc.txt, ${BUILD_OUTPUT_DIR}/STAKCommands.beta.Windows.x64.tar.gz</artifacts>
+      <artifacts>${BUILD_OUTPUT_DIR}/TestCenter.Windows.x64.bll.tar.gz, ${BUILD_OUTPUT_DIR}/UnitTestLogs.tar.gz, ${BUILD_OUTPUT_DIR}/pw_packages_to_test_report, ${BUILD_OUTPUT_DIR}/pw_packages_to_test, ${BUILD_OUTPUT_DIR}/pw_unknown_files_report, BLL_x64_changelist*.txt, bll_idl_crc.txt, ${BUILD_OUTPUT_DIR}/STAKCommands.beta.Windows.x64.tar.gz,Magellan_Frontend_Build_*.txt</artifacts>
       <allowEmptyArchive>false</allowEmptyArchive>
       <onlyIfSuccessful>false</onlyIfSuccessful>
       <fingerprint>false</fingerprint>
@@ -435,7 +469,7 @@ python ..\..\framework\tools\buildUtil\package.py --package=STAKCommands.beta&#x
             &quot;flat&quot;: &quot;true&quot;
         },
         {
-            &quot;pattern&quot;: &quot;stc/temeva/magellan-frontend-commit/566/magellan-frontend.tgz&quot;,
+            &quot;pattern&quot;: &quot;${MAGELLAN_FRONTEND_PATH}&quot;,
             &quot;target&quot;: &quot;./bin/magellan-frontend.tgz&quot;,
             &quot;flat&quot;: &quot;true&quot;
         }
@@ -459,6 +493,15 @@ python ..\..\framework\tools\buildUtil\package.py --package=STAKCommands.beta&#x
       <customBuildName></customBuildName>
       <overrideBuildName>false</overrideBuildName>
     </org.jfrog.hudson.generic.ArtifactoryGenericConfigurator>
+    <EnvInjectPasswordWrapper plugin="envinject@1.89">
+      <injectGlobalPasswords>false</injectGlobalPasswords>
+      <passwordEntries>
+        <EnvInjectPasswordEntry>
+          <name>AF_PASSWORD</name>
+          <value>SfGaPrCR/jVYhw5s/Pmc56md9j/+waJxPrWR6OrGD+k=</value>
+        </EnvInjectPasswordEntry>
+      </passwordEntries>
+    </EnvInjectPasswordWrapper>
     <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
       <buildSteps>
         <hudson.tasks.BatchFile>

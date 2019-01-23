@@ -79,6 +79,11 @@
 </description>
           <defaultValue>true</defaultValue>
         </hudson.model.BooleanParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>MAGELLAN_FRONTEND_PATH</name>
+          <description>Path to magellan frontend artifact in Artifactory (https://artifactory.srv.orionprod.net)</description>
+          <defaultValue>stc/temeva/magellan-frontend-commit/566/magellan-frontend.tgz</defaultValue>
+        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
@@ -443,7 +448,7 @@ shutil.make_archive(output_filename, &apos;zip&apos;, dir_name)</command>
             &quot;flat&quot;: &quot;true&quot;
         },
         {
-            &quot;pattern&quot;: &quot;stc/temeva/magellan-frontend-commit/566/magellan-frontend.tgz&quot;,
+            &quot;pattern&quot;: &quot;${MAGELLAN_FRONTEND_PATH}&quot;,
             &quot;target&quot;: &quot;./bin/magellan-frontend.tgz&quot;,
             &quot;flat&quot;: &quot;true&quot;
         }
