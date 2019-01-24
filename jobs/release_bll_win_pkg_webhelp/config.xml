@@ -229,13 +229,13 @@ REM 7z a -tgzip ResultsReporter.Unix.tar.gz ResultsReporter.Unix.tar&#xd;
 REM del ResultsReporter.Unix.tar</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>echo Creating EAT.Unix.tar.gz for unix distribution&#xd;
-7z a -ttar EAT.Unix.tar %WORKSPACE%\framework\ui\EAT\Release_Linux\*&#xd;
-7z a -ttar EAT.Unix.tar %WORKSPACE%\framework\ui\EAT\Build_Linux\configuration&#xd;
-7z a -ttar EAT.Unix.tar %WORKSPACE%\framework\ui\EAT\Build_Linux\plugins&#xd;
-7z a -ttar EAT.Unix.tar %WORKSPACE%\framework\ui\EAT\Build_Linux\.eclipseproduct&#xd;
-7z a -tgzip EAT.Unix.tar.gz EAT.Unix.tar&#xd;
-del EAT.Unix.tar</command>
+      <command>REM echo Creating EAT.Unix.tar.gz for unix distribution&#xd;
+REM 7z a -ttar EAT.Unix.tar %WORKSPACE%\framework\ui\EAT\Release_Linux\*&#xd;
+REM 7z a -ttar EAT.Unix.tar %WORKSPACE%\framework\ui\EAT\Build_Linux\configuration&#xd;
+REM 7z a -ttar EAT.Unix.tar %WORKSPACE%\framework\ui\EAT\Build_Linux\plugins&#xd;
+REM 7z a -ttar EAT.Unix.tar %WORKSPACE%\framework\ui\EAT\Build_Linux\.eclipseproduct&#xd;
+REM 7z a -tgzip EAT.Unix.tar.gz EAT.Unix.tar&#xd;
+REM del EAT.Unix.tar</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
