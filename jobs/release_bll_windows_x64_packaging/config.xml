@@ -148,6 +148,7 @@ release_win_bll_x64_copy_to_filer</blockingJobs>
     <hudson.tasks.BatchFile>
       <command>del BLL_changelist*.txt&#xd;
 del UI_changelist*.txt&#xd;
+del Magellan_Frontend_Build_*.txt&#xd;
 del BUILD_*.txt&#xd;
 del /f Win64ResultsReporter.tar&#xd;
 del /f Win64ResultsReporter.tar.gz&#xd;
