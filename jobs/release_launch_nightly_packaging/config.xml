@@ -202,7 +202,7 @@ exit /B 0</command>
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
-      <artifacts>Report_*${BUILD_NUMBER}${BRANCH_ID}.txt, BLL_changelist_*.txt, UI_changelist_*.txt, *il_*changelist*.txt, BUILD_*.txt, stc_version.txt</artifacts>
+      <artifacts>,Report_*${BUILD_NUMBER}${BRANCH_ID}.txt, BLL_changelist_*.txt, UI_changelist_*.txt, *il_*changelist*.txt, BUILD_*.txt, stc_version.txt,Magellan_Frontend_Build_*.txt</artifacts>
       <allowEmptyArchive>false</allowEmptyArchive>
       <onlyIfSuccessful>false</onlyIfSuccessful>
       <fingerprint>true</fingerprint>
