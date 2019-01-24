@@ -250,5 +250,11 @@ REM del EAT.Unix.tar</command>
   </publishers>
   <buildWrappers>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.8"/>
+    <EnvInjectBuildWrapper plugin="envinject@1.89">
+      <info>
+        <propertiesContent>ISCMDBLD=c:\Progra~2\Instal~1\2014SA~1\system\iscmdbld.exe</propertiesContent>
+        <loadFilesFromMaster>false</loadFilesFromMaster>
+      </info>
+    </EnvInjectBuildWrapper>
   </buildWrappers>
 </project>
