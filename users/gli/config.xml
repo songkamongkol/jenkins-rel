@@ -8,7 +8,7 @@
     <jenkins.security.ApiTokenProperty>
       <apiToken>3CSk2meadud9mX6CgW46mhojd0TRtCO1uTQrWO8PUkmj2SGnAO6/rDRfFdaxvytg</apiToken>
     </jenkins.security.ApiTokenProperty>
-    <com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty plugin="credentials@1.22">
+    <com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty plugin="credentials@2.1.13">
       <domainCredentialsMap class="hudson.util.CopyOnWriteMap$Hash"/>
     </com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty>
     <hudson.model.MyViewsProperty>
@@ -25,15 +25,25 @@
     <hudson.search.UserSearchProperty>
       <insensitiveSearch>false</insensitiveSearch>
     </hudson.search.UserSearchProperty>
-    <hudson.plugins.perforce.PerforceUserProperty plugin="perforce@1.3.34">
+    <hudson.plugins.perforce.PerforceUserProperty plugin="perforce@1.3.36">
       <perforceId>gli</perforceId>
       <perforceEmail>gavin.li@spirent.com</perforceEmail>
     </hudson.plugins.perforce.PerforceUserProperty>
     <hudson.security.HudsonPrivateSecurityRealm_-Details>
       <passwordHash>#jbcrypt:$2a$10$lSstGaokrreJg6Q7dV9z..GeuMRByj82Yxr0LcpzKJKWqSgzUZpi6</passwordHash>
     </hudson.security.HudsonPrivateSecurityRealm_-Details>
-    <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.15">
+    <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.19">
       <emailAddress>gavin.li@spirent.com</emailAddress>
     </hudson.tasks.Mailer_-UserProperty>
+    <hudson.plugins.emailext.watching.EmailExtWatchAction_-UserProperty plugin="email-ext@2.57">
+      <triggers/>
+    </hudson.plugins.emailext.watching.EmailExtWatchAction_-UserProperty>
+    <org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty plugin="display-url-api@1.1.1">
+      <providerId>default</providerId>
+    </org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty>
+    <org.jenkinsci.plugins.p4.email.P4UserProperty plugin="p4@1.7.7"/>
+    <jenkins.security.LastGrantedAuthoritiesProperty>
+      <timestamp>0</timestamp>
+    </jenkins.security.LastGrantedAuthoritiesProperty>
   </properties>
 </user>
