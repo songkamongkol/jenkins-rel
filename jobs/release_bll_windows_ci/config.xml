@@ -183,6 +183,7 @@ password = os.environ[&apos;AF_PASSWORD&apos;]
 af_base_url = &apos;https://artifactory.srv.orionprod.net/artifactory/api/storage&apos;
 url = af_base_url + &apos;/&apos; + os.environ[&apos;MAGELLAN_FRONTEND_PATH&apos;] + &apos;?properties&apos; # &quot;pattern&quot; from AF plugin config section above
 
+print url
 # -- creating request object with auth.
 request = urllib2.Request(url)
 base64string = base64.b64encode(&apos;%s:%s&apos; % (username, password))
