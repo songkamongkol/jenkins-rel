@@ -52,6 +52,7 @@
           <properties class="hudson.model.View$PropertyList"/>
           <jobNames>
             <comparator class="hudson.util.CaseInsensitiveComparator"/>
+            <string>meenu-test</string>
             <string>release_bll_ci</string>
             <string>release_bll_ci_join</string>
             <string>release_bll_linux_ci</string>
