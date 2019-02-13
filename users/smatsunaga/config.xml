@@ -47,7 +47,9 @@
       <providerId>default</providerId>
     </org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty>
     <hudson.model.PaneStatusProperties>
-      <collapsed/>
+      <collapsed>
+        <string>executors</string>
+      </collapsed>
     </hudson.model.PaneStatusProperties>
     <hudson.security.HudsonPrivateSecurityRealm_-Details>
       <passwordHash>#jbcrypt:$2a$10$/MmlFotgjBYCesK5FufeIeiw6LKAnr0rYgyc709cDPUKGNHUZTyLe</passwordHash>
@@ -55,14 +57,14 @@
     <hudson.plugins.perforce.PerforceUserProperty plugin="perforce@1.3.36">
       <perforceId>smatsunaga</perforceId>
     </hudson.plugins.perforce.PerforceUserProperty>
-    <org.jenkinsci.plugins.p4.email.P4UserProperty plugin="p4@1.7.7">
-      <email>sabrina.matsunaga@spirent.com</email>
-    </org.jenkinsci.plugins.p4.email.P4UserProperty>
     <org.jenkinsci.main.modules.cli.auth.ssh.UserPropertyImpl>
       <authorizedKeys></authorizedKeys>
     </org.jenkinsci.main.modules.cli.auth.ssh.UserPropertyImpl>
     <hudson.search.UserSearchProperty>
       <insensitiveSearch>false</insensitiveSearch>
     </hudson.search.UserSearchProperty>
+    <org.jenkinsci.plugins.p4.email.P4UserProperty plugin="p4@1.7.7">
+      <email>sabrina.matsunaga@spirent.com</email>
+    </org.jenkinsci.plugins.p4.email.P4UserProperty>
   </properties>
 </user>
