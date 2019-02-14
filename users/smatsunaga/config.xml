@@ -49,6 +49,7 @@
     <hudson.model.PaneStatusProperties>
       <collapsed>
         <string>executors</string>
+        <string>buildQueue</string>
       </collapsed>
     </hudson.model.PaneStatusProperties>
     <hudson.security.HudsonPrivateSecurityRealm_-Details>
