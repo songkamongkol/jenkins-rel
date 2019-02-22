@@ -98,12 +98,12 @@ Triggers release_bll_win_pkg_webhelp&lt;br&gt;</description>
     <hudson.tasks.BatchFile>
       <command>&quot;C:\Program Files\MadCap Software\MadCap Flare 14\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\Spirent_TestCenter\StcHelp.flprj&quot; -target &quot;WebHelp.fltar&quot; -log true&#xd;
 &quot;C:\Program Files\MadCap Software\MadCap Flare 14\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\Session_Manager\StcSMHelp.flprj&quot; -target &quot;WebHelp.fltar&quot; -log true&#xd;
-REM &quot;C:\Program Files\MadCap Software\MadCap Flare 14\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\stciq\StcIqHelp.flprj&quot; -target &quot;HTML5.fltar&quot; -log true&#xd;
-&quot;C:\Program Files\MadCap Software\MadCap Flare 14\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\stciq\StcIqHelp.flprj&quot; -target &quot;HTML5_alt_free.fltar&quot; -log true&#xd;
+&quot;C:\Program Files\MadCap Software\MadCap Flare 14\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\stciq\StcIqHelp.flprj&quot; -target &quot;HTML5.fltar&quot; -log true&#xd;
+REM &quot;C:\Program Files\MadCap Software\MadCap Flare 14\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\stciq\StcIqHelp.flprj&quot; -target &quot;HTML5_alt_free.fltar&quot; -log true&#xd;
 &quot;C:\Program Files\MadCap Software\MadCap Flare 14\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\CTS\cts.flprj&quot; -target &quot;WebHelp.fltar&quot; -log true</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>7z a -ttar EnhancedResults_WebHelp.tar %WORKSPACE%\online_help\stciq\Output\spirent\HTML5_alt_free&#xd;
+      <command>7z a -ttar EnhancedResults_WebHelp.tar %WORKSPACE%\online_help\stciq\Output\spirent\HTML5&#xd;
 7z a -tgzip EnhancedResults_WebHelp.tar.gz EnhancedResults_WebHelp.tar&#xd;
 &#xd;
 7z a -ttar CTS_WebHelp.tar %WORKSPACE%\online_help\CTS\Output\spirent\WebHelp&#xd;
