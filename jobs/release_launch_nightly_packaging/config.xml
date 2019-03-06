@@ -212,7 +212,13 @@ f.write(&quot;\nCHANGELIST=&quot; + changelist + &quot; &quot; + build_number)
 f.close</command>
     </hudson.plugins.python.Python>
     <hudson.tasks.BatchFile>
-      <command>SET FULLVER=00%BUILD_NUMBER%%BRANCH_ID%&#xd;
+      <command>set P4PORT=perforce.spirentcom.com:1666&#xd;
+set P4USER=scmbuild&#xd;
+set P4CLIENT=jenkins-%NODE_NAME%-%JOB_NAME%&#xd;
+set P4PASSWD=%SCMBUILD_PASSWORD%&#xd;
+echo %SCMBUILD_PASSWORD%|p4 login&#xd;
+&#xd;
+SET FULLVER=00%BUILD_NUMBER%%BRANCH_ID%&#xd;
 if %BUILD_NUMBER% gtr 9 SET FULLVER=0%BUILD_NUMBER%%BRANCH_ID%&#xd;
 if %BUILD_NUMBER% gtr 99 SET FULLVER=%BUILD_NUMBER%%BRANCH_ID%&#xd;
 echo FULLVER is %FULLVER%&#xd;
@@ -295,5 +301,14 @@ exit /B 0</command>
   </publishers>
   <buildWrappers>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.8"/>
+    <EnvInjectPasswordWrapper plugin="envinject@1.89">
+      <injectGlobalPasswords>false</injectGlobalPasswords>
+      <passwordEntries>
+        <EnvInjectPasswordEntry>
+          <name>SCMBUILD_PASSWORD</name>
+          <value>f2Hvo1KIv8gNApnbSHftyshJpcR11yUGbEzBlpqCIDg=</value>
+        </EnvInjectPasswordEntry>
+      </passwordEntries>
+    </EnvInjectPasswordWrapper>
   </buildWrappers>
 </project>
