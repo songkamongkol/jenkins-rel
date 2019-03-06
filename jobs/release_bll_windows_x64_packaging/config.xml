@@ -35,12 +35,12 @@ release_win_bll_x64_copy_to_filer</blockingJobs>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.95_rel</defaultValue>
+          <defaultValue>4.96_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
           <description>clean build</description>
-          <defaultValue>false</defaultValue>
+          <defaultValue>true</defaultValue>
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>BUILD_RUN_UNITTEST</name>
@@ -55,7 +55,7 @@ release_win_bll_x64_copy_to_filer</blockingJobs>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description>major minor version</description>
-          <defaultValue>4.95</defaultValue>
+          <defaultValue>4.96</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
