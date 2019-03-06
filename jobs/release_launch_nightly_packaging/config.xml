@@ -99,7 +99,7 @@
     </workspace>
     <populate class="org.jenkinsci.plugins.p4.populate.SyncOnlyImpl">
       <have>true</have>
-      <force>true</force>
+      <force>false</force>
       <modtime>false</modtime>
       <quiet>true</quiet>
       <pin></pin>
@@ -214,7 +214,7 @@ f.close</command>
     <hudson.tasks.BatchFile>
       <command>set P4PORT=perforce.spirentcom.com:1666&#xd;
 set P4USER=scmbuild&#xd;
-set P4CLIENT=jenkins-%NODE_NAME%-%JOB_NAME%&#xd;
+set P4CLIENT=jenkins-%NODE_NAME%-%JOB_NAME%-%BRANCH_NAME%&#xd;
 set P4PASSWD=%SCMBUILD_PASSWORD%&#xd;
 echo %SCMBUILD_PASSWORD%|p4 login&#xd;
 &#xd;
