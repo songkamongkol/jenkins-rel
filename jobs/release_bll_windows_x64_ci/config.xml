@@ -82,7 +82,12 @@
         <hudson.model.StringParameterDefinition>
           <name>MAGELLAN_FRONTEND_PATH</name>
           <description>Path to magellan frontend artifact in Artifactory (https://artifactory.srv.orionprod.net)</description>
-          <defaultValue>stc/temeva/magellan-frontend-commit/598/magellan-frontend.tgz</defaultValue>
+          <defaultValue>stc/temeva/magellan-frontend-commit/631/magellan-frontend.tgz</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>MAGELLAN_BACKEND_PATH</name>
+          <description>Path to magellan backend artifact (orion-res) in Artifactory (https://artifactory.srv.orionprod.net)</description>
+          <defaultValue>stc/temeva/magellan-backend-commit/337/orion-res.windows-amd64.zip</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -440,8 +445,8 @@ python ..\..\framework\tools\buildUtil\package.py --package=STAKCommands.beta&#x
       </resolverDetails>
       <deployerCredentialsConfig>
         <credentials>
-          <username></username>
-          <password></password>
+          <username>spirent</username>
+          <password>c3BpcmVudA==</password>
         </credentials>
         <credentialsId></credentialsId>
         <overridingCredentials>false</overridingCredentials>
@@ -449,8 +454,8 @@ python ..\..\framework\tools\buildUtil\package.py --package=STAKCommands.beta&#x
       </deployerCredentialsConfig>
       <resolverCredentialsConfig>
         <credentials>
-          <username></username>
-          <password></password>
+          <username>spirent</username>
+          <password>c3BpcmVudA==</password>
         </credentials>
         <credentialsId></credentialsId>
         <overridingCredentials>false</overridingCredentials>
@@ -464,7 +469,7 @@ python ..\..\framework\tools\buildUtil\package.py --package=STAKCommands.beta&#x
         <spec>{
     &quot;files&quot;: [
         {
-            &quot;pattern&quot;: &quot;stc/temeva/orion-res.windows-amd64.zip&quot;,
+            &quot;pattern&quot;: &quot;${MAGELLAN_BACKEND_PATH}&quot;,
             &quot;target&quot;: &quot;./orion-res.windows-amd64.zip&quot;,
             &quot;flat&quot;: &quot;true&quot;
         },
