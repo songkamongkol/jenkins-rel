@@ -41,12 +41,14 @@
     <org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty plugin="display-url-api@1.1.1">
       <providerId>default</providerId>
     </org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty>
-    <org.jenkinsci.plugins.p4.email.P4UserProperty plugin="p4@1.7.7"/>
     <jenkins.security.LastGrantedAuthoritiesProperty>
       <roles>
         <string>authenticated</string>
       </roles>
       <timestamp>1548753228387</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
+    <org.jenkinsci.plugins.p4.email.P4UserProperty plugin="p4@1.7.7">
+      <email>gavin.li@spirent.com</email>
+    </org.jenkinsci.plugins.p4.email.P4UserProperty>
   </properties>
 </user>

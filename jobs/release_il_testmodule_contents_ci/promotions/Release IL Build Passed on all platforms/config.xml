@@ -47,9 +47,11 @@ IF EXIST \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_testmodule_contents-%
 )&#xd;
 echo &quot;Promoting build for %P4_CHANGESET%&quot; &gt; \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_testmodule_contents-%BRANCH_NAME%_promoting.txt&#xd;
 rd /s /q \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_testmodule_contents-%BRANCH_NAME%\build-packaging&#xd;
+echo Promotion Start Time : %date% %time%&#xd;
 xcopy \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_testmodule_contents-%BRANCH_NAME%\build-%P4_CHANGESET% \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_testmodule_contents-%BRANCH_NAME%\build-packaging /e /d /i&#xd;
 echo &quot;changelist %P4_CHANGESET%, build number %PROMOTED_NUMBER%&quot; &gt; \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_testmodule_contents-%BRANCH_NAME%\build-packaging\il_testmodule_contents-%BRANCH_NAME%_%P4_CHANGESET%.txt&#xd;
 del /f /q \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_testmodule_contents-%BRANCH_NAME%_promoting.txt&#xd;
+echo Promotion End Time : %date% %time%&#xd;
 </command>
     </hudson.tasks.BatchFile>
   </buildSteps>

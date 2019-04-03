@@ -1,7 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<project>
+<?xml version="1.0" encoding="UTF-8"?><project>
   <actions/>
-  <description></description>
+  <description/>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
@@ -27,9 +26,9 @@
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain></teamDomain>
-      <token></token>
-      <room></room>
+      <teamDomain/>
+      <token/>
+      <room/>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -46,12 +45,12 @@
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.96_rel</defaultValue>
+          <defaultValue>4.97_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
           <description>clean build</description>
-          <defaultValue>false</defaultValue>
+          <defaultValue>true</defaultValue>
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>RUN_BLL_UI_UNITTEST</name>
@@ -105,7 +104,7 @@
         <locked>false</locked>
         <modtime>false</modtime>
         <rmdir>false</rmdir>
-        <streamName></streamName>
+        <streamName/>
         <line>LOCAL</line>
         <view>+//TestCenter/${BRANCH_NAME}/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/...
 -//TestCenter/*/Layer1/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/*/Layer1/...
@@ -136,7 +135,7 @@
 +//TestCenter/${BRANCH_NAME}/common/.../ui/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/common/.../ui/...
 +//TestCenter/${BRANCH_NAME}/framework/ui/automation/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/framework/ui/automation/...</view>
         <type>WRITABLE</type>
-        <serverID></serverID>
+        <serverID/>
         <backup>false</backup>
       </spec>
     </workspace>
@@ -145,7 +144,7 @@
       <force>false</force>
       <modtime>false</modtime>
       <quiet>true</quiet>
-      <pin></pin>
+      <pin/>
       <parallel>
         <enable>false</enable>
         <threads>4</threads>
@@ -164,7 +163,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>del BLL_x64_changelist_*.txt Magellan_Frontend_Build_*.txt&#xd;
+      <command>del BLL_x64_changelist_*.txt Magellan_Frontend_Build_*.txt
 echo %P4_CHANGELIST% %JOB_NAME% %BUILD_NUMBER% &gt; BLL_x64_changelist_%P4_CHANGELIST%.txt</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.python.Python plugin="python@1.3">
@@ -173,42 +172,42 @@ import os
 import base64
 import json
 
-username = &apos;builder&apos;
-password = os.environ[&apos;AF_PASSWORD&apos;]
+username = 'builder'
+password = os.environ['AF_PASSWORD']
 
-af_base_url = &apos;https://artifactory.srv.orionprod.net/artifactory/api/storage&apos;
-url = af_base_url + &apos;/&apos; + os.environ[&apos;MAGELLAN_FRONTEND_PATH&apos;] + &apos;?properties&apos; # &quot;pattern&quot; from AF plugin config section above
+af_base_url = 'https://artifactory.srv.orionprod.net/artifactory/api/storage'
+url = af_base_url + '/' + os.environ['MAGELLAN_FRONTEND_PATH'] + '?properties' # "pattern" from AF plugin config section above
 
 # -- creating request object with auth.
 request = urllib2.Request(url)
-base64string = base64.b64encode(&apos;%s:%s&apos; % (username, password))
-request.add_header(&quot;Authorization&quot;, &quot;Basic %s&quot; % base64string)
+base64string = base64.b64encode('%s:%s' % (username, password))
+request.add_header("Authorization", "Basic %s" % base64string)
 
 # -- Open url and process json output
 result = urllib2.urlopen(request)
 props = json.loads(result.read())
-magellan_fe_build = props[&apos;properties&apos;][&apos;build.number&apos;][0]
+magellan_fe_build = props['properties']['build.number'][0]
 
-print &quot;Magellan FrontEnd build number: &quot; + magellan_fe_build
+print "Magellan FrontEnd build number: " + magellan_fe_build
 
 # write out build number into a txt file
-buildno_file = &apos;Magellan_Frontend_Build_&apos; + magellan_fe_build + &apos;.txt&apos;
-with open(buildno_file, &apos;w&apos;) as outfile:
+buildno_file = 'Magellan_Frontend_Build_' + magellan_fe_build + '.txt'
+with open(buildno_file, 'w') as outfile:
     outfile.write(url)</command>
     </hudson.plugins.python.Python>
     <hudson.tasks.BatchFile>
-      <command>if &quot;%RELEASE_BUILD%&quot; == &quot;true&quot; (&#xd;
-attrib -r framework\bll\core\include\licensing\ControlledReleaseCheck.h&#xd;
-copy framework\bll\core\include\licensing\ga_release\ControlledReleaseCheck.h framework\bll\core\include\licensing\ControlledReleaseCheck.h /y&#xd;
-&#xd;
+      <command>if "%RELEASE_BUILD%" == "true" (
+attrib -r framework\bll\core\include\licensing\ControlledReleaseCheck.h
+copy framework\bll\core\include\licensing\ga_release\ControlledReleaseCheck.h framework\bll\core\include\licensing\ControlledReleaseCheck.h /y
+
 )</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>echo P4CHANGESTART %P4_CHANGELIST% P4CHANGEEND&#xd;
-genSln.bat&#xd;
-&#xd;
-.\scons.cmd -v &#xd;
-rd /s /q bin\Release_x64\STAKCommands&#xd;
+      <command>echo P4CHANGESTART %P4_CHANGELIST% P4CHANGEEND
+genSln.bat
+
+.\scons.cmd -v 
+rd /s /q bin\Release_x64\STAKCommands
 exit /B 0</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.python.Python plugin="python@1.3">
@@ -221,63 +220,63 @@ import glob
 import shutil
 import re
 
-stc_maj_min_ver=&apos;4.50&apos;
-print &quot;\nIN:_run_update_ilversion_xml&quot;
-ilversion_xml_path = os.path.join(os.environ[&apos;WORKSPACE&apos;], &apos;framework&apos;, &apos;bll&apos;, &apos;core&apos;, &apos;install&apos;, &apos;release&apos;, &apos;ILVersion.xml&apos;)
-tmpfile = ilversion_xml_path + &quot;.new&quot;
-print &quot;ILVerson.xml path: &quot;, ilversion_xml_path
+stc_maj_min_ver='4.50'
+print "\nIN:_run_update_ilversion_xml"
+ilversion_xml_path = os.path.join(os.environ['WORKSPACE'], 'framework', 'bll', 'core', 'install', 'release', 'ILVersion.xml')
+tmpfile = ilversion_xml_path + ".new"
+print "ILVerson.xml path: ", ilversion_xml_path
 
-ilbuildnumber = &apos;0000&apos;
+ilbuildnumber = '0000'
 
-f1 = open(ilversion_xml_path, &apos;r&apos;) 
-f2 = open(&apos;yourBigFile.txt.tmp&apos;, &apos;w&apos;) 
+f1 = open(ilversion_xml_path, 'r') 
+f2 = open('yourBigFile.txt.tmp', 'w') 
 for line in f1.readlines(): 
-	match = re.search( &apos;StcSystem Version=&apos; , line )
+	match = re.search( 'StcSystem Version=' , line )
 	if match : 
-	    line = &apos;&lt;StcSystem Version=&quot;&apos; + stc_maj_min_ver + &apos;&quot;&gt;\n&apos;
+	    line = '&lt;StcSystem Version="' + stc_maj_min_ver + '"&gt;\n'
 
-	match = re.search( &apos;TestModule Id=&apos; , line )
+	match = re.search( 'TestModule Id=' , line )
 	if match : 
-	        line = &apos;&lt;TestModule Id=&quot;Firmware&quot; Version=\&quot;&apos; + stc_maj_min_ver + &apos;.&apos; + ilbuildnumber + &apos;&quot;&apos; + &apos; CheckExactVersion=&quot;true&quot;/&gt;\n&apos;
+	        line = '&lt;TestModule Id="Firmware" Version=\"' + stc_maj_min_ver + '.' + ilbuildnumber + '"' + ' CheckExactVersion="true"/&gt;\n'
 	
-	match = re.search( &apos;TestPackage Id=&quot;stc&quot;&apos; , line )
+	match = re.search( 'TestPackage Id="stc"' , line )
 	if match : 
-	        line = &apos;&lt;TestPackage Id=&quot;stc&quot; Version=&quot;&apos; + stc_maj_min_ver + &apos;.&apos; + ilbuildnumber + &apos;&quot;&apos; + &apos; CheckExactVersion=&quot;true&quot;/&gt;\n&apos;
+	        line = '&lt;TestPackage Id="stc" Version="' + stc_maj_min_ver + '.' + ilbuildnumber + '"' + ' CheckExactVersion="true"/&gt;\n'
 	
-	match = re.search( &apos;TestPackage Id=&quot;l2l3&quot;&apos; , line )
+	match = re.search( 'TestPackage Id="l2l3"' , line )
 	if match : 
-	        line = &apos;&lt;TestPackage Id=&quot;l2l3&quot; Version=&quot;&apos; + stc_maj_min_ver + &apos;.&apos; + ilbuildnumber + &apos;&quot;&apos; + &apos; CheckExactVersion=&quot;true&quot;/&gt;\n&apos;
+	        line = '&lt;TestPackage Id="l2l3" Version="' + stc_maj_min_ver + '.' + ilbuildnumber + '"' + ' CheckExactVersion="true"/&gt;\n'
 	f2.write(line) 
 
 f1.close() 
 f2.close() 
 
-if os.path.exists(&quot;ILVersion.old&quot;):
+if os.path.exists("ILVersion.old"):
 	sys.stdout.flush()
-	pipe = subprocess.Popen([&quot;cmd&quot;, &quot;/c&quot;, &quot;attrib&quot;,  &quot;-r&quot;, &quot;ILVersion.old&quot;], stdout=subprocess.PIPE)
+	pipe = subprocess.Popen(["cmd", "/c", "attrib",  "-r", "ILVersion.old"], stdout=subprocess.PIPE)
 	pipe.wait()
 	attrib_output = pipe.stdout.read()
-	print &quot;attrib output: &quot; + attrib_output
-	os.remove(&apos;ILVersion.old&apos;)       
+	print "attrib output: " + attrib_output
+	os.remove('ILVersion.old')       
 	
-os.rename(ilversion_xml_path, &quot;ILVersion.old&quot;)
-os.rename(&quot;yourBigFile.txt.tmp&quot;, ilversion_xml_path) 
-print &quot;_run_update_ilversion_xml: complete&quot;</command>
+os.rename(ilversion_xml_path, "ILVersion.old")
+os.rename("yourBigFile.txt.tmp", ilversion_xml_path) 
+print "_run_update_ilversion_xml: complete"</command>
     </hudson.plugins.python.Python>
     <hudson.tasks.BatchFile>
       <command>.\scons.cmd -j 12 -f SConstruct.bll debug=0 target=bll-win64</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>REM cd bin\Release_x64&#xd;
-REM rebase.exe -b 0x12000000 -u . *.dll&#xd;
+      <command>REM cd bin\Release_x64
+REM rebase.exe -b 0x12000000 -u . *.dll
 REM exit /B 0</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>python common\idl\crc.py -f bll_idl_crc.txt --desc &quot;%JOB_NAME% %BUILD_NUMBER%&quot;&#xd;
-&#xd;
-if %RUN_BLL_UI_UNITTEST% == true (&#xd;
-cd bin\Release_x64&#xd;
-python ..\..\framework\tools\testRunner\testRunner.py --runInParallel=8 --bll --stak --archive&#xd;
+      <command>python common\idl\crc.py -f bll_idl_crc.txt --desc "%JOB_NAME% %BUILD_NUMBER%"
+
+if %RUN_BLL_UI_UNITTEST% == true (
+cd bin\Release_x64
+python ..\..\framework\tools\testRunner\testRunner.py --runInParallel=8 --bll --stak --archive
 )</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.python.Python plugin="python@1.3">
@@ -288,12 +287,12 @@ import tarfile
 import shutil
 
 def _download_file_from_url(url=None):
-    file_name = url.split(&apos;/&apos;)[-1]
+    file_name = url.split('/')[-1]
     u = urllib2.urlopen(url)
-    f = open(file_name, &apos;wb&apos;)
+    f = open(file_name, 'wb')
     meta = u.info()
-    file_size = int(meta.getheaders(&quot;Content-Length&quot;)[0])
-    print &quot;Downloading: %s Bytes: %s&quot; % (file_name, file_size)
+    file_size = int(meta.getheaders("Content-Length")[0])
+    print "Downloading: %s Bytes: %s" % (file_name, file_size)
 
     file_size_dl = 0
     block_sz = 8192
@@ -304,50 +303,50 @@ def _download_file_from_url(url=None):
 
         file_size_dl += len(buffer)
         f.write(buffer)
-        status = r&quot;%10d  [%3.2f%%]&quot; % (file_size_dl, file_size_dl * 100. / file_size)
+        status = r"%10d  [%3.2f%%]" % (file_size_dl, file_size_dl * 100. / file_size)
         status = status + chr(8)*(len(status)+1)
         print status,
 
     f.close()
 
 def unzip(fname,dir_name):
-    if (fname.endswith(&quot;zip&quot;)):
-        zip_ref = zipfile.ZipFile(fname, &apos;r&apos;)
+    if (fname.endswith("zip")):
+        zip_ref = zipfile.ZipFile(fname, 'r')
         zip_ref.extractall(dir_name)
         zip_ref.close()
-        print &quot;Extracted in %s Directory&quot; % dir_name
+        print "Extracted in %s Directory" % dir_name
     else:
-        print &quot;Not a zip file: &apos;%s &apos;&quot; % fname
+        print "Not a zip file: '%s '" % fname
 
 def extract_tarball(fname):
-    if (fname.endswith(&quot;tgz&quot;)):
-        tar = tarfile.open(fname, &quot;r:gz&quot;)
+    if (fname.endswith("tgz")):
+        tar = tarfile.open(fname, "r:gz")
         tar.extractall()
         tar.close()
-    elif (fname.endswith(&quot;tar&quot;)):
-       tar = tarfile.open(fname, &quot;r:&quot;)
+    elif (fname.endswith("tar")):
+       tar = tarfile.open(fname, "r:")
        tar.extractall()
        tar.close()
         
-zip_filename = &apos;orion-res.windows-amd64.zip&apos;
-orion_res_output_dir = os.path.join(os.environ[&apos;WORKSPACE&apos;], &apos;bin&apos;, &apos;Release_x64&apos;, &apos;orion-res&apos;)
+zip_filename = 'orion-res.windows-amd64.zip'
+orion_res_output_dir = os.path.join(os.environ['WORKSPACE'], 'bin', 'Release_x64', 'orion-res')
 if os.path.exists(orion_res_output_dir):
     shutil.rmtree(orion_res_output_dir) # clean up previous output dir if exists
 unzip(zip_filename, orion_res_output_dir)
 
-os.chdir(&apos;bin&apos;)
-tgz_filename = &apos;magellan-frontend.tgz&apos;
-if os.path.exists(&apos;build&apos;):
-    shutil.rmtree(&apos;build&apos;) # clean up previous output dir from tgz file if exists
+os.chdir('bin')
+tgz_filename = 'magellan-frontend.tgz'
+if os.path.exists('build'):
+    shutil.rmtree('build') # clean up previous output dir from tgz file if exists
 extract_tarball(tgz_filename)
-shutil.move(&apos;build&apos;, os.path.join(orion_res_output_dir, &apos;content&apos;))</command>
+shutil.move('build', os.path.join(orion_res_output_dir, 'content'))</command>
     </hudson.plugins.python.Python>
     <hudson.tasks.BatchFile>
-      <command>cd bin\Release_x64&#xd;
-del TestCenter*.tar.gz&#xd;
-if %BUILD_PACKAGE_BUILD% == true (&#xd;
-python ..\..\framework\tools\buildUtil\package.py --suffix=bll --package=TestCenter &#xd;
-python ..\..\framework\tools\buildUtil\package.py --package=STAKCommands.beta&#xd;
+      <command>cd bin\Release_x64
+del TestCenter*.tar.gz
+if %BUILD_PACKAGE_BUILD% == true (
+python ..\..\framework\tools\buildUtil\package.py --suffix=bll --package=TestCenter 
+python ..\..\framework\tools\buildUtil\package.py --package=STAKCommands.beta
 )</command>
     </hudson.tasks.BatchFile>
   </builders>
@@ -383,7 +382,7 @@ python ..\..\framework\tools\buildUtil\package.py --package=STAKCommands.beta&#x
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.DevelopersRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern></attachmentsPattern>
+            <attachmentsPattern/>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -397,7 +396,7 @@ python ..\..\framework\tools\buildUtil\package.py --package=STAKCommands.beta&#x
             <recipientProviders>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern></attachmentsPattern>
+            <attachmentsPattern/>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -410,7 +409,7 @@ python ..\..\framework\tools\buildUtil\package.py --package=STAKCommands.beta&#x
             <recipientProviders>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern></attachmentsPattern>
+            <attachmentsPattern/>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -420,12 +419,12 @@ python ..\..\framework\tools\buildUtil\package.py --package=STAKCommands.beta&#x
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern></attachmentsPattern>
-      <presendScript></presendScript>
-      <postsendScript></postsendScript>
+      <attachmentsPattern/>
+      <presendScript/>
+      <postsendScript/>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
-      <replyTo></replyTo>
+      <replyTo/>
       <saveOutput>false</saveOutput>
       <disabled>true</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
@@ -448,7 +447,7 @@ python ..\..\framework\tools\buildUtil\package.py --package=STAKCommands.beta&#x
           <username>spirent</username>
           <password>c3BpcmVudA==</password>
         </credentials>
-        <credentialsId></credentialsId>
+        <credentialsId/>
         <overridingCredentials>false</overridingCredentials>
         <ignoreCredentialPluginDisabled>false</ignoreCredentialPluginDisabled>
       </deployerCredentialsConfig>
@@ -457,45 +456,45 @@ python ..\..\framework\tools\buildUtil\package.py --package=STAKCommands.beta&#x
           <username>spirent</username>
           <password>c3BpcmVudA==</password>
         </credentials>
-        <credentialsId></credentialsId>
+        <credentialsId/>
         <overridingCredentials>false</overridingCredentials>
         <ignoreCredentialPluginDisabled>false</ignoreCredentialPluginDisabled>
       </resolverCredentialsConfig>
       <useSpecs>true</useSpecs>
       <uploadSpec>
-        <spec></spec>
+        <spec/>
       </uploadSpec>
       <downloadSpec>
         <spec>{
-    &quot;files&quot;: [
+    "files": [
         {
-            &quot;pattern&quot;: &quot;${MAGELLAN_BACKEND_PATH}&quot;,
-            &quot;target&quot;: &quot;./orion-res.windows-amd64.zip&quot;,
-            &quot;flat&quot;: &quot;true&quot;
+            "pattern": "${MAGELLAN_BACKEND_PATH}",
+            "target": "./orion-res.windows-amd64.zip",
+            "flat": "true"
         },
         {
-            &quot;pattern&quot;: &quot;${MAGELLAN_FRONTEND_PATH}&quot;,
-            &quot;target&quot;: &quot;./bin/magellan-frontend.tgz&quot;,
-            &quot;flat&quot;: &quot;true&quot;
+            "pattern": "${MAGELLAN_FRONTEND_PATH}",
+            "target": "./bin/magellan-frontend.tgz",
+            "flat": "true"
         }
 
     ]
 }</spec>
       </downloadSpec>
-      <deployPattern></deployPattern>
-      <resolvePattern></resolvePattern>
-      <matrixParams></matrixParams>
+      <deployPattern/>
+      <resolvePattern/>
+      <matrixParams/>
       <deployBuildInfo>true</deployBuildInfo>
       <includeEnvVars>false</includeEnvVars>
       <envVarsPatterns>
-        <includePatterns></includePatterns>
+        <includePatterns/>
         <excludePatterns>*password*,*secret*,*key*</excludePatterns>
       </envVarsPatterns>
       <discardOldBuilds>false</discardOldBuilds>
       <discardBuildArtifacts>true</discardBuildArtifacts>
       <asyncBuildRetention>false</asyncBuildRetention>
       <multiConfProject>false</multiConfProject>
-      <customBuildName></customBuildName>
+      <customBuildName/>
       <overrideBuildName>false</overrideBuildName>
     </org.jfrog.hudson.generic.ArtifactoryGenericConfigurator>
     <EnvInjectPasswordWrapper plugin="envinject@1.89">
@@ -510,14 +509,14 @@ python ..\..\framework\tools\buildUtil\package.py --package=STAKCommands.beta&#x
     <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
       <buildSteps>
         <hudson.tasks.BatchFile>
-          <command>setlocal enabledelayedexpansion&#xd;
-SET modified=%WORKSPACE:/=\%&#xd;
-if &quot;%P4CLEANWORKSPACE%&quot; == &quot;true&quot; (&#xd;
-&#xd;
-echo &quot;Removing %modified%&quot;&#xd;
-rd /s /q %modified%&#xd;
-echo 9R1Y9fE4$PSH|p4 -u tableuser -p perforce.spirentcom.com:1666 login&#xd;
-p4 -u tableuser -p perforce.spirentcom.com:1666 -c jenkins-%NODE_NAME%-%JOB_NAME%-%BRANCH_NAME% sync //jenkins-%NODE_NAME%-%JOB_NAME%-%BRANCH_NAME%/...#none&#xd;
+          <command>setlocal enabledelayedexpansion
+SET modified=%WORKSPACE:/=\%
+if "%P4CLEANWORKSPACE%" == "true" (
+
+echo "Removing %modified%"
+rd /s /q %modified%
+echo 9R1Y9fE4$PSH|p4 -u tableuser -p perforce.spirentcom.com:1666 login
+p4 -u tableuser -p perforce.spirentcom.com:1666 -c jenkins-%NODE_NAME%-%JOB_NAME%-%BRANCH_NAME% sync //jenkins-%NODE_NAME%-%JOB_NAME%-%BRANCH_NAME%/...#none
 )</command>
         </hudson.tasks.BatchFile>
       </buildSteps>

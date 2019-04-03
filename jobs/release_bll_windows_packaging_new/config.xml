@@ -48,12 +48,12 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>4.96_rel</defaultValue>
+          <defaultValue>4.97_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
           <description>clean build</description>
-          <defaultValue>false</defaultValue>
+          <defaultValue>true</defaultValue>
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>BUILD_RUN_UNITTEST</name>
@@ -68,7 +68,7 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description>major minor version</description>
-          <defaultValue>4.96</defaultValue>
+          <defaultValue>4.97</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
@@ -359,8 +359,8 @@ rem exit /B 0</command>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.8"/>
     <org.jfrog.hudson.generic.ArtifactoryGenericConfigurator plugin="artifactory@2.13.1">
       <details>
-        <artifactoryName>artifactory.srv.orionprod.net</artifactoryName>
-        <artifactoryUrl>https://artifactory.srv.orionprod.net/artifactory</artifactoryUrl>
+        <artifactoryName>artifactory.cal.ci.spirentcom.com</artifactoryName>
+        <artifactoryUrl>https://artifactory.cal.ci.spirentcom.com/artifactory</artifactoryUrl>
         <stagingPlugin/>
       </details>
       <resolverDetails>
@@ -388,7 +388,16 @@ rem exit /B 0</command>
       </resolverCredentialsConfig>
       <useSpecs>true</useSpecs>
       <uploadSpec>
-        <spec/>
+        <spec>{
+    "files": [
+        {
+            "pattern": "$WORKSPACE/bin/Release/Resource.zip",
+            "target": "STC/DataModel/Resource.zip",
+            "flat": "true",
+            "props": "STC_MAJ_MIN_VERSION=$STC_MAJ_MIN_VERSION"
+        }
+    ]
+}</spec>
       </uploadSpec>
       <downloadSpec>
         <spec>{

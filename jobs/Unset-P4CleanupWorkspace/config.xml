@@ -54,7 +54,7 @@
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description/>
-          <defaultValue>4.96</defaultValue>
+          <defaultValue>4.97</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>LINUX_CLI_LOCATION</name>
@@ -70,6 +70,11 @@
           <name>LIST_OF_P4CLEANUP_PKG_JOBS</name>
           <description/>
           <defaultValue>release_bll_linux_64_packaging,release_bll_linux_packaging,release_bll_linux_rpm_packaging,release_bll_linux_x64_client_packaging,release_bll_linux_x86_client_packaging,release_bll_win_pkg_webhelp,release_bll_windows_packaging_new,release_bll_windows_x64_packaging,release_cts_linux_packaging,release_cts_windows_packaging,release_il_centralboot_packaging</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>LIST_OF_P4CLEANUP_IL_BLD_JOBS</name>
+          <description/>
+          <defaultValue>release_il_changeling_yocto_ci,release_il_chos2_yocto_ci,release_il_testmodule_contents_ci,release_il_changeling_all_yocto_ci,release_il_virtual_yocto_ci,release_il_stca_ci,release_il_qemu_yocto_ci,release_il_lxc_yocto_ci,release_il_chhvm_yocto_ci</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -105,7 +110,7 @@
     <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
     <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
     <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
-    <firstChange>-1</firstChange>
+    <firstChange>0</firstChange>
     <fileLimit>0</fileLimit>
     <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
     <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
@@ -132,6 +137,8 @@ python $WORKSPACE/updateP4cleanworkspace.py -s $JENKINS_SERVER -u $USER -p $PASS
 echo "set P4CLEANWORKSPACE option for packaging jobs to false"
 python $WORKSPACE/updateP4cleanworkspace.py -s $JENKINS_SERVER -u $USER -p $PASSWORD  -c $LINUX_CLI_LOCATION -v "release("${STC_MAJ_MIN_VERSION}_rel")" -j list -l $LIST_OF_P4CLEANUP_PKG_JOBS -w false
 
+echo "set P4CLEANWORKSPACE option for il build jobs to false"
+python $WORKSPACE/updateP4cleanworkspace.py -s $JENKINS_SERVER -u $USER -p $PASSWORD  -c $LINUX_CLI_LOCATION -v "release("${STC_MAJ_MIN_VERSION}_rel")" -j list -l $LIST_OF_P4CLEANUP_IL_BLD_JOBS -w false
 
 </command>
     </hudson.tasks.Shell>
