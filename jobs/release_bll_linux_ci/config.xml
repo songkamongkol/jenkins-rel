@@ -82,12 +82,12 @@
         <hudson.model.StringParameterDefinition>
           <name>MAGELLAN_FRONTEND_PATH</name>
           <description>Path to magellan frontend artifact in Artifactory (https://artifactory.srv.orionprod.net)</description>
-          <defaultValue>stc/temeva/magellan-frontend-commit/670/magellan-frontend.tgz</defaultValue>
+          <defaultValue>stc/temeva/magellan-frontend-commit/683/magellan-frontend.tgz</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>MAGELLAN_BACKEND_PATH</name>
           <description>Path to magellan backend artifact (orion-res) in Artifactory (https://artifactory.srv.orionprod.net)</description>
-          <defaultValue> stc/temeva/magellan-backend-commit/337/orion-res.linux-386.zip</defaultValue>
+          <defaultValue> stc/temeva/magellan-backend-commit/343/orion-res.linux-386.zip</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
