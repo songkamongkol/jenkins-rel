@@ -104,7 +104,6 @@ Triggers release_bll_win_pkg_webhelp&lt;br&gt;</description>
       <command>&quot;C:\Program Files\MadCap Software\MadCap Flare 14\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\Spirent_TestCenter\StcHelp.flprj&quot; -target &quot;WebHelp.fltar&quot; -log true&#xd;
 &quot;C:\Program Files\MadCap Software\MadCap Flare 14\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\Session_Manager\StcSMHelp.flprj&quot; -target &quot;WebHelp.fltar&quot; -log true&#xd;
 &quot;C:\Program Files\MadCap Software\MadCap Flare 14\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\stciq\StcIqHelp.flprj&quot; -target &quot;HTML5.fltar&quot; -log true&#xd;
-REM &quot;C:\Program Files\MadCap Software\MadCap Flare 14\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\stciq\StcIqHelp.flprj&quot; -target &quot;HTML5_alt_free.fltar&quot; -log true&#xd;
 &quot;C:\Program Files\MadCap Software\MadCap Flare 14\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\CTS\cts.flprj&quot; -target &quot;WebHelp.fltar&quot; -log true</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
