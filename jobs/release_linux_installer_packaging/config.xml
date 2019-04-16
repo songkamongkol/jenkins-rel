@@ -103,7 +103,7 @@
         <view>//TestCenter/${BRANCH_NAME}/scm/linux_installer/build //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/build
 //TestCenter/${BRANCH_NAME}/scm/linux_installer/decompress //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/decompress
 //TestCenter/${BRANCH_NAME}/scm/linux_installer/payload/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/payload/...
-+//TestCenter/${BRANCH_NAME}/scm/linux_installer/installer //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/payload/installer-orig
++//TestCenter/${BRANCH_NAME}/scm/linux_installer/installer //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/payload/installer
 +//TestCenter/${BRANCH_NAME}/framework/tools/MagellanInstallScripts/MagellanInstall.sh //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/payload/MagellanInstall.sh
 +//TestCenter/${BRANCH_NAME}/framework/tools/postgres/check_port_num.py //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/payload/check_port_num.py
 +//TestCenter/${BRANCH_NAME}/framework/tools/postgres/check_pwd.py //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/payload/check_pwd.py
