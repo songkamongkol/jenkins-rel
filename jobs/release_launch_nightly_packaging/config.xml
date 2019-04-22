@@ -157,6 +157,7 @@ del bll_*.txt&#xd;
 del *il_*changelist*.txt&#xd;
 del Report_*.txt&#xd;
 del Build_*.txt&#xd;
+del Magellan_Frontend_Build_*.txt&#xd;
 rem c:\python27\python %WORKSPACE%\Scripts\ci_run_jenkins_steps.py --createchangereport=yes</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
