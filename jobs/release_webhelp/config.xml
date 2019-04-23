@@ -43,7 +43,7 @@ Triggers release_bll_win_pkg_webhelp&lt;br&gt;</description>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description></description>
-          <defaultValue>4.96_rel</defaultValue>
+          <defaultValue>4.97_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -53,7 +53,7 @@ Triggers release_bll_win_pkg_webhelp&lt;br&gt;</description>
     <workspace class="org.jenkinsci.plugins.p4.workspace.ManualWorkspaceImpl">
       <charset>none</charset>
       <pinHost>false</pinHost>
-      <name>jenkins-${NODE_NAME}-${JOB_NAME}-4.96_rel</name>
+      <name>jenkins-${NODE_NAME}-${JOB_NAME}-4.97_rel</name>
       <spec>
         <allwrite>false</allwrite>
         <clobber>false</clobber>
