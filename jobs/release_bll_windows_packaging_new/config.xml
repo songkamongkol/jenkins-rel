@@ -350,6 +350,10 @@ rem exit /B 0</command>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
+    <jenkinsci.plugins.influxdb.InfluxDbPublisher plugin="influxdb@1.10.3">
+      <selectedTarget>http://influxdb-01.cal.ci.spirentcom.com:8086,release_jenkins_db</selectedTarget>
+      <customPrefix></customPrefix>
+    </jenkinsci.plugins.influxdb.InfluxDbPublisher>
     <hudson.plugins.parameterizedtrigger.BuildTrigger plugin="parameterized-trigger@2.35.2">
       <configs>
         <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
