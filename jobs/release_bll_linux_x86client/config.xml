@@ -1,45 +1,64 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
   <description>This job creat 32-bit Linux Client tar ball</description>
-  <logRotator class="hudson.tasks.LogRotator">
-    <daysToKeep>25</daysToKeep>
-    <numToKeep>-1</numToKeep>
-    <artifactDaysToKeep>-1</artifactDaysToKeep>
-    <artifactNumToKeep>-1</artifactNumToKeep>
-  </logRotator>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
       <useBuildBlocker>false</useBuildBlocker>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
-    <hudson.model.ParametersDefinitionProperty>
-      <parameterDefinitions>
-        <hudson.model.StringParameterDefinition>
-          <name>BRANCH_NAME</name>
-          <description/>
-          <defaultValue>4.98_rel</defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>BUILD_PACKAGE_BUILD</name>
-          <description/>
-          <defaultValue>true</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>BUILD_OUTPUT_DIR</name>
-          <description/>
-          <defaultValue>build/il/bld_bll-el3-automation-client-only_x86/Release/bin</defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>STC_MAJ_MIN_VERSION</name>
-          <description/>
-          <defaultValue>4.98</defaultValue>
-        </hudson.model.StringParameterDefinition>
-      </parameterDefinitions>
-    </hudson.model.ParametersDefinitionProperty>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>25</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+    <hudson.plugins.libvirt.BeforeJobSnapshotJobProperty plugin="libvirt-slave@1.8.5"/>
     <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.25">
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
+      <teamDomain></teamDomain>
+      <token></token>
+      <room></room>
+      <startNotification>false</startNotification>
+      <notifySuccess>false</notifySuccess>
+      <notifyAborted>false</notifyAborted>
+      <notifyNotBuilt>false</notifyNotBuilt>
+      <notifyUnstable>false</notifyUnstable>
+      <notifyFailure>false</notifyFailure>
+      <notifyBackToNormal>false</notifyBackToNormal>
+      <notifyRepeatedFailure>false</notifyRepeatedFailure>
+      <includeTestSummary>false</includeTestSummary>
+      <showCommitList>false</showCommitList>
+    </jenkins.plugins.slack.SlackNotifier_-SlackJobProperty>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>BRANCH_NAME</name>
+          <description></description>
+          <defaultValue>4.98_rel</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>BUILD_PACKAGE_BUILD</name>
+          <description></description>
+          <defaultValue>true</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BUILD_OUTPUT_DIR</name>
+          <description></description>
+          <defaultValue>build/il/bld_bll-el3-automation-client-only_x86/Release/bin</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>STC_MAJ_MIN_VERSION</name>
+          <description></description>
+          <defaultValue>4.98</defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <assignedNode>bllbldlnx-v25</assignedNode>
@@ -57,11 +76,11 @@ cd $BLL_WORKSPACE
 </command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command># this job use the workspace from 'bll_linux' job to build 
+      <command># this job use the workspace from &apos;bll_linux&apos; job to build 
 export BLL_WORKSPACE=/home/spirent/jenkins-rel/workspace/release_bll_linux_ci
 cd $BLL_WORKSPACE/$BUILD_OUTPUT_DIR
 rm -f TestCenter*.tar.gz
-if [ "$BUILD_PACKAGE_BUILD" = "true" ]; then
+if [ &quot;$BUILD_PACKAGE_BUILD&quot; = &quot;true&quot; ]; then
     python $BLL_WORKSPACE/framework/tools/buildUtil/package.py --arch-dir=Spirent_TestCenter_Application_Linux_Server --package=TestCenter 
     mv TestCenter.Linux.tar.gz $WORKSPACE/TestCenter.Linux.AutomationClient.x86.tar.gz
 fi</command>
@@ -88,7 +107,6 @@ fi</command>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
           <email>
-            <recipientList/>
             <subject>$PROJECT_DEFAULT_SUBJECT</subject>
             <body>$PROJECT_DEFAULT_CONTENT</body>
             <recipientProviders>
@@ -97,7 +115,7 @@ fi</command>
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.RequesterRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <replyTo>$PROJECT_DEFAULT_REPLYTO</replyTo>
@@ -108,14 +126,19 @@ fi</command>
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern/>
+      <attachmentsPattern></attachmentsPattern>
       <presendScript>$DEFAULT_PRESEND_SCRIPT</presendScript>
+      <postsendScript></postsendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
       <replyTo>$DEFAULT_REPLYTO</replyTo>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
+    <jenkinsci.plugins.influxdb.InfluxDbPublisher plugin="influxdb@1.10.3">
+      <selectedTarget>http://influxdb-01.cal.ci.spirentcom.com:8086,release_jenkins_db</selectedTarget>
+      <customPrefix></customPrefix>
+    </jenkinsci.plugins.influxdb.InfluxDbPublisher>
   </publishers>
   <buildWrappers>
     <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.18">
