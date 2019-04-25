@@ -29,7 +29,7 @@
     </jenkins.plugins.slack.SlackNotifier_-SlackJobProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
-  <assignedNode>relpkg-04</assignedNode>
+  <assignedNode>spccalengec06</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
