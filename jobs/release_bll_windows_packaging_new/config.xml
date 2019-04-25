@@ -187,7 +187,7 @@ python framework\tools\buildUtil\package.py --install STAKCommands.beta.Windows.
 &#xd;
 REM -- TEMP&#xd;
 rd /s /q %WORKSPACE%\bin\Release\orion-res&#xd;
-xcopy \\storage.cal.ci.spirentcom.com\builds\tmp\magellan_632\win_x86\orion-res %WORKSPACE%\bin\Release\orion-res&#xd;
+xcopy \\storage.cal.ci.spirentcom.com\builds\tmp\magellan_632\win_x86\orion-res %WORKSPACE%\bin\Release\orion-res /e /i /y&#xd;
 REM -- TEMP&#xd;
 &#xd;
 REM 0-padding build number&#xd;
