@@ -98,7 +98,12 @@ echo Verify the difference
 p4 -u p4admin diff2 -q //...@$TARGET_LABEL //...@$SOURCE_LABEL</command>
     </hudson.tasks.Shell>
   </builders>
-  <publishers/>
+  <publishers>
+    <jenkinsci.plugins.influxdb.InfluxDbPublisher plugin="influxdb@1.10.3">
+      <selectedTarget>http://influxdb-01.cal.ci.spirentcom.com:8086,release_jenkins_db</selectedTarget>
+      <customPrefix></customPrefix>
+    </jenkinsci.plugins.influxdb.InfluxDbPublisher>
+  </publishers>
   <buildWrappers>
     <EnvInjectBuildWrapper plugin="envinject@1.89">
       <info>
