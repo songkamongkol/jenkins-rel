@@ -179,7 +179,7 @@ python framework\tools\buildUtil\package.py --install TestCenter.Windows.x64.no_
 &#xd;
 REM -- TEMP&#xd;
 rd /s /q %WORKSPACE%\bin\Release_x64\orion-res&#xd;
-xcopy \\storage.cal.ci.spirentcom.com\builds\tmp\magellan_632\win_x64\orion-res %WORKSPACE%\bin\Release_x64\orion-res&#xd;
+xcopy \\storage.cal.ci.spirentcom.com\builds\tmp\magellan_632\win_x64\orion-res %WORKSPACE%\bin\Release_x64\orion-res /e /i /y&#xd;
 REM -- TEMP</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
