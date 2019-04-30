@@ -32,7 +32,6 @@
     <org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty plugin="display-url-api@1.1.1">
       <providerId>default</providerId>
     </org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty>
-    <org.jenkinsci.plugins.p4.email.P4UserProperty plugin="p4@1.7.7"/>
     <hudson.security.HudsonPrivateSecurityRealm_-Details>
       <passwordHash>#jbcrypt:$2a$10$8y3tfh.NQSoq9VCr842RpO7CmLzYkRK3.TzO1vgokpcWQukys4cjS</passwordHash>
     </hudson.security.HudsonPrivateSecurityRealm_-Details>
@@ -45,5 +44,8 @@
       </roles>
       <timestamp>1538502521329</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
+    <org.jenkinsci.plugins.p4.email.P4UserProperty plugin="p4@1.7.7">
+      <email>Rekha.Hegde@spirent.com</email>
+    </org.jenkinsci.plugins.p4.email.P4UserProperty>
   </properties>
 </user>
