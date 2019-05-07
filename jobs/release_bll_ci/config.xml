@@ -42,6 +42,16 @@
           <description></description>
           <defaultValue>4.98_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>MAGELLAN_FRONTEND_PATH</name>
+          <description>Path to magellan frontend artifact in Artifactory (https://artifactory.srv.orionprod.net)</description>
+          <defaultValue>stc/temeva/magellan-frontend-commit/719/magellan-frontend.tgz</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>MAGELLAN_BACKEND_PATH</name>
+          <description>Path to magellan backend artifact (orion-res) in Artifactory (https://artifactory.srv.orionprod.net)</description>
+          <defaultValue> stc/temeva/magellan-backend-commit/355/orion-res.linux-386.zip</defaultValue>
+        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
@@ -113,15 +123,6 @@
   <concurrentBuild>false</concurrentBuild>
   <builders/>
   <publishers>
-    <hudson.tasks.BuildTrigger>
-      <childProjects>release_bll_windows_ci,release_bll_linux_ci,release_bll_windows_x64_ci,release_bll_linux_x64_ci</childProjects>
-      <threshold>
-        <name>SUCCESS</name>
-        <ordinal>0</ordinal>
-        <color>BLUE</color>
-        <completeBuild>true</completeBuild>
-      </threshold>
-    </hudson.tasks.BuildTrigger>
     <hudson.plugins.logparser.LogParserPublisher plugin="log-parser@2.0">
       <unstableOnWarning>false</unstableOnWarning>
       <failBuildOnError>true</failBuildOnError>
@@ -204,6 +205,19 @@
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
+    <hudson.plugins.parameterizedtrigger.BuildTrigger plugin="parameterized-trigger@2.35.2">
+      <configs>
+        <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+          <configs>
+            <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
+          </configs>
+          <projects>release_bll_windows_ci,release_bll_linux_ci,release_bll_windows_x64_ci,release_bll_linux_x64_ci</projects>
+          <condition>SUCCESS</condition>
+          <triggerWithNoParameters>false</triggerWithNoParameters>
+          <triggerFromChildProjects>false</triggerFromChildProjects>
+        </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+      </configs>
+    </hudson.plugins.parameterizedtrigger.BuildTrigger>
   </publishers>
   <buildWrappers>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.8"/>
