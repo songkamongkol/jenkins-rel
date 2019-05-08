@@ -92,7 +92,7 @@
         <hudson.model.StringParameterDefinition>
           <name>MAGELLAN_BACKEND_PATH</name>
           <description>Path to magellan backend artifact (orion-res) in Artifactory (https://artifactory.srv.orionprod.net)</description>
-          <defaultValue> stc/temeva/magellan-backend-commit/345/orion-res.windows-386.zip</defaultValue>
+          <defaultValue> stc/temeva/magellan-backend-commit/345</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -537,7 +537,7 @@ shutil.make_archive(output_filename, &apos;zip&apos;, dir_name)</command>
         <spec>{
     &quot;files&quot;: [
         {
-            &quot;pattern&quot;: &quot;${MAGELLAN_BACKEND_PATH}&quot;,
+            &quot;pattern&quot;: &quot;${MAGELLAN_BACKEND_PATH}/orion-res.windows-386.zip&quot;,
             &quot;target&quot;: &quot;./orion-res.windows-386.zip&quot;,
             &quot;flat&quot;: &quot;true&quot;
         },
