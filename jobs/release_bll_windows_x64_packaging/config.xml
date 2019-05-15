@@ -166,7 +166,7 @@ exit /B 0</command>
         <target></target>
         <excludes></excludes>
         <selector class="hudson.plugins.copyartifact.PermalinkBuildSelector">
-          <id>Release Build Passed on all OS</id>
+          <id>Release Build Passed Regression</id>
         </selector>
         <flatten>true</flatten>
         <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
