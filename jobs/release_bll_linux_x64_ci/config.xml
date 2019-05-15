@@ -16,6 +16,12 @@
       </strategy>
     </jenkins.model.BuildDiscarderProperty>
     <hudson.plugins.libvirt.BeforeJobSnapshotJobProperty plugin="libvirt-slave@1.8.5"/>
+    <hudson.plugins.promoted__builds.JobPropertyImpl plugin="promoted-builds@2.28.1">
+      <activeProcessNames>
+        <string>Release Build Passed Regression</string>
+        <string>Release Build Passed on all OS</string>
+      </activeProcessNames>
+    </hudson.plugins.promoted__builds.JobPropertyImpl>
     <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.25">
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>

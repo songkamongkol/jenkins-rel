@@ -11,9 +11,10 @@
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <conditions>
-    <hudson.plugins.promoted__builds.conditions.SelfPromotionCondition>
+    <hudson.plugins.promoted__builds.conditions.DownstreamPassCondition>
+      <jobs>release_bll_ci_join</jobs>
       <evenIfUnstable>false</evenIfUnstable>
-    </hudson.plugins.promoted__builds.conditions.SelfPromotionCondition>
+    </hudson.plugins.promoted__builds.conditions.DownstreamPassCondition>
   </conditions>
   <icon>star-orange</icon>
   <isVisible></isVisible>

@@ -9,7 +9,11 @@
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
-  <conditions/>
+  <conditions>
+    <hudson.plugins.promoted__builds.conditions.SelfPromotionCondition>
+      <evenIfUnstable>false</evenIfUnstable>
+    </hudson.plugins.promoted__builds.conditions.SelfPromotionCondition>
+  </conditions>
   <icon>star-gold</icon>
   <isVisible></isVisible>
   <buildSteps/>

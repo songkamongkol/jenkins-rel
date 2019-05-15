@@ -17,12 +17,5 @@
   </conditions>
   <icon>star-gold</icon>
   <isVisible></isVisible>
-  <buildSteps>
-    <hudson.tasks.BatchFile>
-      <command>echo &quot;Promoted ID: %PROMOTED_ID%&quot;&#xd;
-echo &quot;Promoted Job: %PROMOTED_JOB_NAME%&quot;&#xd;
-echo &quot;Promoted URL: %PROMOTED_URL%&quot;&#xd;
-echo &quot;Promoted NUMBER: %PROMOTED_NUMBER%&quot;</command>
-    </hudson.tasks.BatchFile>
-  </buildSteps>
+  <buildSteps/>
 </hudson.plugins.promoted__builds.PromotionProcess>

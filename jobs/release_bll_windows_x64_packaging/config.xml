@@ -165,8 +165,8 @@ exit /B 0</command>
         <filter>bin/Release_x64/TestCenter.Windows.x64.no_version.tar.gz, *BLL_changelist*.txt,*UI_changelist*.txt,Magellan_Frontend_Build_*.txt</filter>
         <target></target>
         <excludes></excludes>
-        <selector class="hudson.plugins.copyartifact.StatusBuildSelector">
-          <stable>true</stable>
+        <selector class="hudson.plugins.copyartifact.PermalinkBuildSelector">
+          <id>Release Build Passed on all OS</id>
         </selector>
         <flatten>true</flatten>
         <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
