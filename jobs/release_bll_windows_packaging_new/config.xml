@@ -451,5 +451,22 @@ rem exit /B 0</command>
       <customBuildName></customBuildName>
       <overrideBuildName>false</overrideBuildName>
     </org.jfrog.hudson.generic.ArtifactoryGenericConfigurator>
+    <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
+      <buildSteps>
+        <hudson.tasks.BatchFile>
+          <command>setlocal enabledelayedexpansion&#xd;
+SET modified=%WORKSPACE:/=\%&#xd;
+if &quot;%P4CLEANWORKSPACE%&quot; == &quot;true&quot; (&#xd;
+&#xd;
+echo &quot;Removing %modified%&quot;&#xd;
+rd /s /q %modified%&#xd;
+REM jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}&#xd;
+echo 9R1Y9fE4$PSH|p4 -u tableuser -p perforce.spirentcom.com:1666 login&#xd;
+p4 -u tableuser -p perforce.spirentcom.com:1666 -c jenkins-%NODE_NAME%-%JOB_NAME%-%BRANCH_NAME% sync //jenkins-%NODE_NAME%-%JOB_NAME%-%BRANCH_NAME%/...#none &gt; clean.txt&#xd;
+)</command>
+        </hudson.tasks.BatchFile>
+      </buildSteps>
+      <failOnError>false</failOnError>
+    </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
   </buildWrappers>
 </project>
