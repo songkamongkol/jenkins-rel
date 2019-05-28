@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>Uses MadCap Flare tool to compile webhelp files&lt;br&gt;
-Creates STC and Server Manager help files&lt;br&gt;
-Archives output as tar files for use during packaging jobs&lt;br&gt;
+  <description>Uses MadCap Flare tool to compile webhelp files&lt;br&gt;&#xd;
+Creates STC and Server Manager help files&lt;br&gt;&#xd;
+Archives output as tar files for use during packaging jobs&lt;br&gt;&#xd;
 Triggers release_bll_win_pkg_webhelp&lt;br&gt;</description>
   <keepDependencies>false</keepDependencies>
   <properties>
@@ -96,10 +96,10 @@ Triggers release_bll_win_pkg_webhelp&lt;br&gt;</description>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>&quot;C:\Program Files\MadCap Software\MadCap Flare 14\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\Spirent_TestCenter\StcHelp.flprj&quot; -target &quot;WebHelp.fltar&quot; -log true&#xd;
-&quot;C:\Program Files\MadCap Software\MadCap Flare 14\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\Session_Manager\StcSMHelp.flprj&quot; -target &quot;WebHelp.fltar&quot; -log true&#xd;
-&quot;C:\Program Files\MadCap Software\MadCap Flare 14\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\stciq\StcIqHelp.flprj&quot; -target &quot;HTML5.fltar&quot; -log true&#xd;
-&quot;C:\Program Files\MadCap Software\MadCap Flare 14\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\CTS\cts.flprj&quot; -target &quot;WebHelp.fltar&quot; -log true</command>
+      <command>&quot;C:\Program Files\MadCap Software\MadCap Flare 15\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\Spirent_TestCenter\StcHelp.flprj&quot; -target &quot;WebHelp.fltar&quot; -log true&#xd;
+&quot;C:\Program Files\MadCap Software\MadCap Flare 15\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\Session_Manager\StcSMHelp.flprj&quot; -target &quot;WebHelp.fltar&quot; -log true&#xd;
+&quot;C:\Program Files\MadCap Software\MadCap Flare 15\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\stciq\StcIqHelp.flprj&quot; -target &quot;HTML5.fltar&quot; -log true&#xd;
+&quot;C:\Program Files\MadCap Software\MadCap Flare 15\Flare.app\madbuild&quot; -project &quot;%WORKSPACE%\online_help\CTS\cts.flprj&quot; -target &quot;WebHelp.fltar&quot; -log true</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
       <command>7z a -ttar EnhancedResults_WebHelp.tar %WORKSPACE%\online_help\stciq\Output\spirent\HTML5&#xd;
