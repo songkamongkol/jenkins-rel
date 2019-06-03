@@ -86,7 +86,7 @@ BRANCH_ID=6</properties>
       <connectionRetryLimit>5</connectionRetryLimit>
       <preventRemoteBuildQueue>false</preventRemoteBuildQueue>
       <blockBuildUntilComplete>false</blockBuildUntilComplete>
-      <enhancedLogging>false</enhancedLogging>
+      <enhancedLogging>true</enhancedLogging>
       <parameters>STC_MAJ_MIN_VERSION=${STC_MAJ_MIN_VERSION}
 BLL_BUILD_NUMBER=${PROMOTED_NUMBER}
 MODE=NIGHTLY
