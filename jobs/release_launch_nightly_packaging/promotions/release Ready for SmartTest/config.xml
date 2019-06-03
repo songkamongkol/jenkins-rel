@@ -87,13 +87,13 @@ BRANCH_ID=6</properties>
       <preventRemoteBuildQueue>false</preventRemoteBuildQueue>
       <blockBuildUntilComplete>false</blockBuildUntilComplete>
       <enhancedLogging>true</enhancedLogging>
-      <parameters>STC_MAJ_MIN_VERSION=${STC_MAJ_MIN_VERSION}
-BLL_BUILD_NUMBER=${PROMOTED_NUMBER}
+      <parameters>STC_MAJ_MIN_VERSION=4.99
+BLL_BUILD_NUMBER=774
 MODE=NIGHTLY
 BRANCH_ID=6</parameters>
       <parameterList>
-        <string>STC_MAJ_MIN_VERSION=${STC_MAJ_MIN_VERSION}</string>
-        <string>BLL_BUILD_NUMBER=${PROMOTED_NUMBER}</string>
+        <string>STC_MAJ_MIN_VERSION=4.99</string>
+        <string>BLL_BUILD_NUMBER=774</string>
         <string>MODE=NIGHTLY</string>
         <string>BRANCH_ID=6</string>
       </parameterList>
