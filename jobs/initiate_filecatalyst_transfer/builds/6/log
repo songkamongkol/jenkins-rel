@@ -1,0 +1,14 @@
+Started by user [8mha:AAAAmR+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAyREgZe/dLi1CL94vzcpPz8PAA0mgwwwgAAAA==[0mSomboon Ongkamongkol
+[EnvInject] - Loading node environment variables.
+Building remotely on [8mha:AAAAoR+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzeEgZx/eT83ILSktQi/eKC5OREkA2pyQZmAAw4uaXMAAAA[0mspccalengec06 (windows_x64_scm_bll) in workspace d:\dev\jenkins-rel\workspace\test
+[test] $ cmd /c call C:\Users\spirent\AppData\Local\Temp\hudson3721174565821861844.bat
+
+d:\dev\jenkins-rel\workspace\test>echo "hello" 
+"hello"
+
+d:\dev\jenkins-rel\workspace\test>exit 0 
+[test] $ python C:\Users\spirent\AppData\Local\Temp\hudson3340016751099329861.py
+Filename: install_stcapi-2.3.1.py
+Notifying upstream projects of job completion
+[InfluxDB Plugin] Publishing data to: [url=http://influxdb-01.cal.ci.spirentcom.com:8086, description=influxdb-01, username=jenkins, password=*****, database=release_jenkins_db]
+Finished: SUCCESS
