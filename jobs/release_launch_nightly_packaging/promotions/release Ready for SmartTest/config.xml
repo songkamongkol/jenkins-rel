@@ -12,7 +12,7 @@
   <concurrentBuild>false</concurrentBuild>
   <conditions>
     <hudson.plugins.promoted__builds.conditions.DownstreamPassCondition>
-      <jobs>release_il_centralboot_packaging, release_bll_linux_packaging</jobs>
+      <jobs>release_il_centralboot_packaging, release_bll_linux_packaging,release_bll_linux_64_packaging,release_bll_windows_x64_packaging</jobs>
       <evenIfUnstable>false</evenIfUnstable>
     </hudson.plugins.promoted__builds.conditions.DownstreamPassCondition>
   </conditions>
@@ -51,7 +51,10 @@
         <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
           <configs>
             <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-              <properties>STC_MAJ_MIN_VERSION=${STC_MAJ_MIN_VERSION}</properties>
+              <properties>STC_MAJ_MIN_VERSION=${STC_MAJ_MIN_VERSION}
+BLL_BUILD_NUMBER=${PROMOTED_NUMBER}
+MODE=NIGHTLY
+BRANCH_ID=6</properties>
               <textParamValueOnNewLine>false</textParamValueOnNewLine>
             </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
           </configs>
@@ -74,5 +77,31 @@
         </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
       </configs>
     </hudson.plugins.parameterizedtrigger.BuildTrigger>
+    <org.jenkinsci.plugins.ParameterizedRemoteTrigger.RemoteBuildConfiguration plugin="Parameterized-Remote-Trigger@2.2.2">
+      <token>remotetrigger</token>
+      <remoteJenkinsName>jenkins</remoteJenkinsName>
+      <job>integration_publish_build_rtp configuration</job>
+      <shouldNotFailBuild>false</shouldNotFailBuild>
+      <pollInterval>10</pollInterval>
+      <connectionRetryLimit>5</connectionRetryLimit>
+      <preventRemoteBuildQueue>false</preventRemoteBuildQueue>
+      <blockBuildUntilComplete>false</blockBuildUntilComplete>
+      <enhancedLogging>false</enhancedLogging>
+      <parameters>STC_MAJ_MIN_VERSION=</parameters>
+      <parameterList>
+        <string>STC_MAJ_MIN_VERSION=</string>
+      </parameterList>
+      <overrideAuth>false</overrideAuth>
+      <auth>
+        <org.jenkinsci.plugins.ParameterizedRemoteTrigger.Auth>
+          <NONE>none</NONE>
+          <API__TOKEN>apiToken</API__TOKEN>
+          <CREDENTIALS__PLUGIN>credentialsPlugin</CREDENTIALS__PLUGIN>
+        </org.jenkinsci.plugins.ParameterizedRemoteTrigger.Auth>
+      </auth>
+      <loadParamsFromFile>false</loadParamsFromFile>
+      <parameterFile></parameterFile>
+      <queryString></queryString>
+    </org.jenkinsci.plugins.ParameterizedRemoteTrigger.RemoteBuildConfiguration>
   </buildSteps>
 </hudson.plugins.promoted__builds.PromotionProcess>
