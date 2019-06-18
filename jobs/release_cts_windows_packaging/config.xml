@@ -235,7 +235,7 @@ c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --c
         <spec>{
     &quot;files&quot;: [
         {
-            &quot;pattern&quot;: &quot;stc_all/webhelp/4.99/CTS_WebHelp.tar.gz&quot;,
+            &quot;pattern&quot;: &quot;stc_all/webhelp/${STC_MAJ_MIN_VERSION}/CTS_WebHelp.tar.gz&quot;,
             &quot;target&quot;: &quot;./CTS_WebHelp.tar.gz&quot;,
             &quot;flat&quot;: &quot;true&quot;
         }
