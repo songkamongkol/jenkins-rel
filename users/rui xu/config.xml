@@ -39,5 +39,11 @@
     <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.19">
       <emailAddress>rui.xu@spirent.com</emailAddress>
     </hudson.tasks.Mailer_-UserProperty>
+    <jenkins.security.LastGrantedAuthoritiesProperty>
+      <roles>
+        <string>authenticated</string>
+      </roles>
+      <timestamp>1560229674804</timestamp>
+    </jenkins.security.LastGrantedAuthoritiesProperty>
   </properties>
 </user>

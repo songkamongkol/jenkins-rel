@@ -75,39 +75,22 @@ BRANCH_ID=6</properties>
           <triggerWithNoParameters>false</triggerWithNoParameters>
           <triggerFromChildProjects>false</triggerFromChildProjects>
         </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+        <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+          <configs>
+            <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+              <properties>STC_MAJ_MIN_VERSION=${STC_MAJ_MIN_VERSION}
+BLL_BUILD_NUMBER=${PROMOTED_NUMBER}
+MODE=NIGHTLY
+BRANCH_ID=6</properties>
+              <textParamValueOnNewLine>false</textParamValueOnNewLine>
+            </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+          </configs>
+          <projects>initiate_filecatalyst_transfer</projects>
+          <condition>SUCCESS</condition>
+          <triggerWithNoParameters>false</triggerWithNoParameters>
+          <triggerFromChildProjects>false</triggerFromChildProjects>
+        </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
       </configs>
     </hudson.plugins.parameterizedtrigger.BuildTrigger>
-    <org.jenkinsci.plugins.ParameterizedRemoteTrigger.RemoteBuildConfiguration plugin="Parameterized-Remote-Trigger@2.2.2">
-      <token>remotetrigger</token>
-      <remoteJenkinsName>jenkins</remoteJenkinsName>
-      <job>integration_filecatalyst_prep</job>
-      <shouldNotFailBuild>false</shouldNotFailBuild>
-      <pollInterval>10</pollInterval>
-      <connectionRetryLimit>5</connectionRetryLimit>
-      <preventRemoteBuildQueue>false</preventRemoteBuildQueue>
-      <blockBuildUntilComplete>false</blockBuildUntilComplete>
-      <enhancedLogging>true</enhancedLogging>
-      <parameters>STC_MAJ_MIN_VERSION=4.99
-BLL_BUILD_NUMBER=774
-MODE=NIGHTLY
-BRANCH_ID=6</parameters>
-      <parameterList>
-        <string>STC_MAJ_MIN_VERSION=4.99</string>
-        <string>BLL_BUILD_NUMBER=774</string>
-        <string>MODE=NIGHTLY</string>
-        <string>BRANCH_ID=6</string>
-      </parameterList>
-      <overrideAuth>false</overrideAuth>
-      <auth>
-        <org.jenkinsci.plugins.ParameterizedRemoteTrigger.Auth>
-          <NONE>none</NONE>
-          <API__TOKEN>apiToken</API__TOKEN>
-          <CREDENTIALS__PLUGIN>credentialsPlugin</CREDENTIALS__PLUGIN>
-        </org.jenkinsci.plugins.ParameterizedRemoteTrigger.Auth>
-      </auth>
-      <loadParamsFromFile>false</loadParamsFromFile>
-      <parameterFile></parameterFile>
-      <queryString></queryString>
-    </org.jenkinsci.plugins.ParameterizedRemoteTrigger.RemoteBuildConfiguration>
   </buildSteps>
 </hudson.plugins.promoted__builds.PromotionProcess>

@@ -94,6 +94,11 @@
           <description>Path to magellan backend artifact (orion-res) in Artifactory (https://artifactory.srv.orionprod.net)</description>
           <defaultValue> stc/temeva/magellan-backend-commit/345</defaultValue>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>ARCHANGEL_PATH</name>
+          <description>Path to archangle artifact in Artifactory (https://artifactory.srv.orionprod.net)</description>
+          <defaultValue>stc/archangel/archangel-publish/archangel-publish.tar</defaultValue>
+        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
@@ -379,7 +384,21 @@ tgz_filename = &apos;magellan-frontend.tgz&apos;
 if os.path.exists(&apos;build&apos;):
     shutil.rmtree(&apos;build&apos;) # clean up previous output dir from tgz file if exists
 extract_tarball(tgz_filename)
-shutil.move(&apos;build&apos;, os.path.join(orion_res_output_dir, &apos;content&apos;))</command>
+shutil.move(&apos;build&apos;, os.path.join(orion_res_output_dir, &apos;content&apos;))
+
+bin_rel_dir=os.path.join(os.environ[&apos;WORKSPACE&apos;],os.environ[&apos;BUILD_OUTPUT_DIR&apos;])
+os.chdir(bin_rel_dir)
+archangel_web_dir = os.path.join(bin_rel_dir, &apos;web&apos;)
+if os.path.exists(archangel_web_dir):
+    shutil.rmtree(archangel_web_dir) # clean up previous output dir if exists
+    
+for file in [&apos;advancedl4l7.exe&apos;, &apos;advancedl4l7.yaml&apos;]:
+    if os.path.exists(file):
+        os.remove(file)
+        
+tar_filename = &apos;archangel-publish.tar&apos;
+extract_tarball(tar_filename)
+</command>
     </hudson.plugins.python.Python>
     <hudson.tasks.BatchFile>
       <command>cd bin\Release&#xd;
@@ -545,8 +564,12 @@ shutil.make_archive(output_filename, &apos;zip&apos;, dir_name)</command>
             &quot;pattern&quot;: &quot;${MAGELLAN_FRONTEND_PATH}&quot;,
             &quot;target&quot;: &quot;./bin/magellan-frontend.tgz&quot;,
             &quot;flat&quot;: &quot;true&quot;
+        },
+        {
+            &quot;pattern&quot;: &quot;${ARCHANGEL_PATH}&quot;,
+            &quot;target&quot;: &quot;${BUILD_OUTPUT_DIR}/archangel-publish.tar&quot;,
+            &quot;flat&quot;: &quot;true&quot;
         }
-
     ]
 }</spec>
       </downloadSpec>
