@@ -104,7 +104,7 @@ make install
       <artifacts>src/github.com/SpirentOrion/chassis-services/install/*.tgz,src/github.com/SpirentOrion/chassis-services/chassisController/aat/install/chassisController_test.tgz,src/github.com/SpirentOrion/chassis-services/adminController/aat/install/adminController_test.tgz</artifacts>
       <allowEmptyArchive>false</allowEmptyArchive>
       <onlyIfSuccessful>false</onlyIfSuccessful>
-      <fingerprint>false</fingerprint>
+      <fingerprint>true</fingerprint>
       <defaultExcludes>true</defaultExcludes>
       <caseSensitive>true</caseSensitive>
     </hudson.tasks.ArtifactArchiver>
