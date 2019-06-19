@@ -166,7 +166,7 @@ rem c:\python27\python %WORKSPACE%\Scripts\ci_run_jenkins_steps.py --createchang
       <target></target>
       <excludes></excludes>
       <selector class="hudson.plugins.copyartifact.PermalinkBuildSelector">
-        <id>lastSuccessfulBuild</id>
+        <id>Release Build Passed Regression</id>
       </selector>
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
@@ -176,7 +176,9 @@ rem c:\python27\python %WORKSPACE%\Scripts\ci_run_jenkins_steps.py --createchang
       <filter>Magellan_Frontend_Build_*.txt</filter>
       <target></target>
       <excludes></excludes>
-      <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
+      <selector class="hudson.plugins.copyartifact.PermalinkBuildSelector">
+        <id>Release Build Passed Regression</id>
+      </selector>
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
@@ -186,7 +188,7 @@ rem c:\python27\python %WORKSPACE%\Scripts\ci_run_jenkins_steps.py --createchang
       <target></target>
       <excludes></excludes>
       <selector class="hudson.plugins.copyartifact.PermalinkBuildSelector">
-        <id>lastSuccessfulBuild</id>
+        <id>Release IL Build Passed on all platforms</id>
       </selector>
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
