@@ -178,7 +178,7 @@ python framework\tools\buildUtil\package.py --install TestCenter.Windows.no_vers
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
       <project>release_webhelp</project>
       <filter>TestCenter_WebHelp.tar.gz, Provisioning_WebHelp.tar.gz, ServerManager_WebHelp.tar.gz, EnhancedResults_WebHelp.tar.gz</filter>
-      <target></target>
+      <target>$WORKSPACE/old</target>
       <excludes></excludes>
       <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
       <flatten>true</flatten>
@@ -254,11 +254,99 @@ REM del EAT.Unix.tar</command>
   </publishers>
   <buildWrappers>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.8"/>
+    <org.jfrog.hudson.generic.ArtifactoryGenericConfigurator plugin="artifactory@2.13.1">
+      <details>
+        <artifactoryName>artifactory.srv.orionprod.net</artifactoryName>
+        <artifactoryUrl>https://artifactory.srv.orionprod.net/artifactory</artifactoryUrl>
+        <stagingPlugin/>
+      </details>
+      <resolverDetails>
+        <artifactoryName>artifactory.cal.ci.spirentcom.com</artifactoryName>
+        <artifactoryUrl>https://artifactory.cal.ci.spirentcom.com/artifactory</artifactoryUrl>
+        <stagingPlugin/>
+      </resolverDetails>
+      <deployerCredentialsConfig>
+        <credentials>
+          <username></username>
+          <password></password>
+        </credentials>
+        <credentialsId></credentialsId>
+        <overridingCredentials>false</overridingCredentials>
+        <ignoreCredentialPluginDisabled>false</ignoreCredentialPluginDisabled>
+      </deployerCredentialsConfig>
+      <resolverCredentialsConfig>
+        <credentials>
+          <username></username>
+          <password></password>
+        </credentials>
+        <credentialsId></credentialsId>
+        <overridingCredentials>false</overridingCredentials>
+        <ignoreCredentialPluginDisabled>false</ignoreCredentialPluginDisabled>
+      </resolverCredentialsConfig>
+      <useSpecs>true</useSpecs>
+      <uploadSpec>
+        <spec></spec>
+      </uploadSpec>
+      <downloadSpec>
+        <spec>{
+    &quot;files&quot;: [
+        {
+            &quot;target&quot;: &quot;$WORKSPACE/TestCenter_WebHelp.tar.gz&quot;,
+            &quot;pattern&quot;: &quot;STC/webhelp/${STC_MAJ_MIN_VERSION}/TestCenter_WebHelp.tar.gz&quot;,
+            &quot;flat&quot;: &quot;true&quot;
+        },
+        {
+            &quot;target&quot;: &quot;$WORKSPACE/WebHelp_mclog.tar.gz&quot;,
+            &quot;pattern&quot;: &quot;STC/webhelp/${STC_MAJ_MIN_VERSION}/WebHelp_mclog.tar.gz&quot;,
+            &quot;flat&quot;: &quot;true&quot;
+        },
+        {
+            &quot;target&quot;: &quot;$WORKSPACE/ServerManager_WebHelp.tar.gz&quot;,
+            &quot;pattern&quot;: &quot;STC/webhelp/${STC_MAJ_MIN_VERSION}/ServerManager_WebHelp.tar.gz&quot;,
+            &quot;flat&quot;: &quot;true&quot;
+        },
+        {
+            &quot;target&quot;: &quot;$WORKSPACE/CTS_WebHelp.tar.gz&quot;,
+            &quot;pattern&quot;: &quot;STC/webhelp/${STC_MAJ_MIN_VERSION}/CTS_WebHelp.tar.gz&quot;,
+            &quot;flat&quot;: &quot;true&quot;
+        },
+        {
+            &quot;target&quot;: &quot;$WORKSPACE/EnhancedResults_WebHelp.tar.gz&quot;,
+            &quot;pattern&quot;: &quot;STC/webhelp/${STC_MAJ_MIN_VERSION}/EnhancedResults_WebHelp.tar.gz&quot;,
+            &quot;flat&quot;: &quot;true&quot;
+        }
+    ]
+}</spec>
+      </downloadSpec>
+      <deployPattern></deployPattern>
+      <resolvePattern></resolvePattern>
+      <matrixParams></matrixParams>
+      <deployBuildInfo>true</deployBuildInfo>
+      <includeEnvVars>false</includeEnvVars>
+      <envVarsPatterns>
+        <includePatterns></includePatterns>
+        <excludePatterns>*password*,*secret*,*key*</excludePatterns>
+      </envVarsPatterns>
+      <discardOldBuilds>false</discardOldBuilds>
+      <discardBuildArtifacts>true</discardBuildArtifacts>
+      <asyncBuildRetention>false</asyncBuildRetention>
+      <multiConfProject>false</multiConfProject>
+      <customBuildName></customBuildName>
+      <overrideBuildName>false</overrideBuildName>
+    </org.jfrog.hudson.generic.ArtifactoryGenericConfigurator>
     <EnvInjectBuildWrapper plugin="envinject@1.89">
       <info>
         <propertiesContent>ISCMDBLD=c:\Progra~2\Instal~1\2014SA~1\system\iscmdbld.exe</propertiesContent>
         <loadFilesFromMaster>false</loadFilesFromMaster>
       </info>
     </EnvInjectBuildWrapper>
+    <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
+      <buildSteps>
+        <hudson.tasks.BatchFile>
+          <command>del /f /q %WORKSPACE%\*webhelp*.tar*</command>
+        </hudson.tasks.BatchFile>
+      </buildSteps>
+      <failOnError>false</failOnError>
+    </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
   </buildWrappers>
 </project>
