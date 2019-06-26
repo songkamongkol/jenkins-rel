@@ -330,6 +330,12 @@ cp $WORKSPACE/${JOB_NAME}_changelist_${P4_CHANGELIST}.txt $STORAGE_DIR</command>
   </publishers>
   <buildWrappers>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.8"/>
+    <EnvInjectBuildWrapper plugin="envinject@1.89">
+      <info>
+        <propertiesContent>APPSEC_GIT_REPO=ssh://git@git-appsec.cal.ci.spirentcom.com:2222/git-server/repos</propertiesContent>
+        <loadFilesFromMaster>false</loadFilesFromMaster>
+      </info>
+    </EnvInjectBuildWrapper>
     <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
       <buildSteps>
         <hudson.tasks.Shell>
