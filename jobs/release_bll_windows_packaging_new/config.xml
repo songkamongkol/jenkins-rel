@@ -214,7 +214,7 @@ curl -o EnhancedResults_WebHelp.tar.gz https://artifactory.cal.ci.spirentcom.com
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
       <project>release_webhelp</project>
       <filter>Provisioning_WebHelp.tar.gz, ServerManager_WebHelp.tar.gz, EnhancedResults_WebHelp.tar.gz</filter>
-      <target>$WORKSPACE\old</target>
+      <target>$WORKSPACE</target>
       <excludes></excludes>
       <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
       <flatten>true</flatten>
