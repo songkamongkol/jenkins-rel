@@ -450,7 +450,7 @@ if(manager.logContains(&quot;.*getFileVer.vbs(.*) (null): The system cannot find
     </org.jfrog.hudson.generic.ArtifactoryGenericConfigurator>
     <EnvInjectBuildWrapper plugin="envinject@1.89">
       <info>
-        <propertiesContent>WIN_WORKSPACE=C:\jenkins
+        <propertiesContent>WIN_WORKSPACE=C:\jenkins-rel
 ISCMDBLD=c:\progra~2\instal~1\2014\system\iscmdbld.exe</propertiesContent>
         <loadFilesFromMaster>false</loadFilesFromMaster>
       </info>
