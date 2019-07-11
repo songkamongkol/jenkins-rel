@@ -3,7 +3,9 @@
   <fullName>Somboon Ongkamongkol</fullName>
   <properties>
     <hudson.model.PaneStatusProperties>
-      <collapsed/>
+      <collapsed>
+        <string>buildHistory</string>
+      </collapsed>
     </hudson.model.PaneStatusProperties>
     <jenkins.security.ApiTokenProperty>
       <apiToken>WYFhFa2eYboap29phh7OVOXIG65e331bRKEERHIlqzSj2SGnAO6/rDRfFdaxvytg</apiToken>
