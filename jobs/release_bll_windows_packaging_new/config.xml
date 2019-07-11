@@ -207,9 +207,10 @@ xcopy  /S /I /E /Y  %WORKSPACE%\framework\automation\scripting\stc\SampleScripts
 &#xd;
 REM downloading webhelp files from Artifactory&#xd;
 del /f /q TestCenter_WebHelp.tar.gz ServerManager_WebHelp.tar.gz EnhancedResults_WebHelp.tar.gz&#xd;
-curl -o TestCenter_WebHelp.tar.gz https://artifactory.cal.ci.spirentcom.com/artifactory/STC/webhelp/%STC_MAJ_MIN_VERSION%/TestCenter_WebHelp.tar.gz&#xd;
-curl -o ServerManager_WebHelp.tar.gz https://artifactory.cal.ci.spirentcom.com/artifactory/STC/webhelp/%STC_MAJ_MIN_VERSION%/ServerManager_WebHelp.tar.gz&#xd;
-curl -o EnhancedResults_WebHelp.tar.gz https://artifactory.cal.ci.spirentcom.com/artifactory/STC/webhelp/%STC_MAJ_MIN_VERSION%/EnhancedResults_WebHelp.tar.gz</command>
+&#xd;
+curl -o TestCenter_WebHelp.tar.gz https://artifactory.cal.ci.spirentcom.com/artifactory/STC/webhelp/4.99/TestCenter_WebHelp.tar.gz&#xd;
+curl -o ServerManager_WebHelp.tar.gz https://artifactory.cal.ci.spirentcom.com/artifactory/STC/webhelp/4.99/ServerManager_WebHelp.tar.gz&#xd;
+curl -o EnhancedResults_WebHelp.tar.gz https://artifactory.cal.ci.spirentcom.com/artifactory/STC/webhelp/4.99/EnhancedResults_WebHelp.tar.gz</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
       <project>release_webhelp</project>
