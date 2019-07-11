@@ -284,7 +284,7 @@ del /f /q oht-rest-win32*.tar&#xd;
 SET DEPENDENT_JOB_NAME=%JOB_NAME%&#xd;
 SET P4USER=scmbuild&#xd;
 SET P4PORT=perforce.spirentcom.com:1666&#xd;
-copy  D:\jenkins-rel\release_bll_windows_packaging_new\bin\Release\NTAF\tool\Stc420Publication.xml  c:\jenkins-rel\release_bll_windows_packaging_new\bin\Release\NTAF\tool\Stc500Publication.xml /y&#xd;
+copy  c:\jenkins-rel\release_bll_windows_packaging_new\bin\Release\NTAF\tool\Stc420Publication.xml  c:\jenkins-rel\release_bll_windows_packaging_new\bin\Release\NTAF\tool\Stc500Publication.xml /y&#xd;
 &#xd;
 &#xd;
 &#xd;
