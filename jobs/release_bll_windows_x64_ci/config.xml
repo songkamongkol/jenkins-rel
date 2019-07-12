@@ -170,7 +170,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>del BLL_x64_changelist_*.txt Magellan_Frontend_Build_*.txt&#xd;
+      <command>del BLL_x64_changelist_*.txt Magellan_*end_Build_*.txt&#xd;
 echo %P4_CHANGELIST% %JOB_NAME% %BUILD_NUMBER% &gt; BLL_x64_changelist_%P4_CHANGELIST%.txt&#xd;
 python bll_cleanuptmps.py</command>
     </hudson.tasks.BatchFile>
@@ -182,6 +182,8 @@ import json
 
 username = &apos;builder&apos;
 password = os.environ[&apos;AF_PASSWORD&apos;]
+
+# -- Retrieve frontend build number
 
 af_base_url = &apos;https://artifactory.srv.orionprod.net/artifactory/api/storage&apos;
 url = af_base_url + &apos;/&apos; + os.environ[&apos;MAGELLAN_FRONTEND_PATH&apos;] + &apos;?properties&apos; # &quot;pattern&quot; from AF plugin config section above
@@ -200,6 +202,26 @@ print &quot;Magellan FrontEnd build number: &quot; + magellan_fe_build
 
 # write out build number into a txt file
 buildno_file = &apos;Magellan_Frontend_Build_&apos; + magellan_fe_build + &apos;.txt&apos;
+with open(buildno_file, &apos;w&apos;) as outfile:
+    outfile.write(url)
+
+# -- Retrieve backend build number
+url = af_base_url + &apos;/&apos; + os.environ[&apos;MAGELLAN_BACKEND_PATH&apos;] + &apos;/orion-res.windows-amd64.zip&apos; + &apos;?properties&apos; # &quot;pattern&quot; from AF plugin config section above
+
+# -- creating request object with auth.
+request = urllib2.Request(url)
+base64string = base64.b64encode(&apos;%s:%s&apos; % (username, password))
+request.add_header(&quot;Authorization&quot;, &quot;Basic %s&quot; % base64string)
+
+# -- Open url and process json output
+result = urllib2.urlopen(request)
+props = json.loads(result.read())
+magellan_be_build = props[&apos;properties&apos;][&apos;build.number&apos;][0]
+
+print &quot;Magellan BackEnd build number: &quot; + magellan_be_build
+
+# write out build number into a txt file
+buildno_file = &apos;Magellan_Backend_Build_&apos; + magellan_be_build + &apos;.txt&apos;
 with open(buildno_file, &apos;w&apos;) as outfile:
     outfile.write(url)</command>
     </hudson.plugins.python.Python>
@@ -373,7 +395,7 @@ python ..\..\framework\tools\buildUtil\package.py --package=STAKCommands.beta&#x
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
-      <artifacts>${BUILD_OUTPUT_DIR}/TestCenter.Windows.x64.bll.tar.gz, ${BUILD_OUTPUT_DIR}/UnitTestLogs.tar.gz, ${BUILD_OUTPUT_DIR}/pw_packages_to_test_report, ${BUILD_OUTPUT_DIR}/pw_packages_to_test, ${BUILD_OUTPUT_DIR}/pw_unknown_files_report, BLL_x64_changelist*.txt, bll_idl_crc.txt, ${BUILD_OUTPUT_DIR}/STAKCommands.beta.Windows.x64.tar.gz,Magellan_Frontend_Build_*.txt</artifacts>
+      <artifacts>${BUILD_OUTPUT_DIR}/TestCenter.Windows.x64.bll.tar.gz, ${BUILD_OUTPUT_DIR}/UnitTestLogs.tar.gz, ${BUILD_OUTPUT_DIR}/pw_packages_to_test_report, ${BUILD_OUTPUT_DIR}/pw_packages_to_test, ${BUILD_OUTPUT_DIR}/pw_unknown_files_report, BLL_x64_changelist*.txt, bll_idl_crc.txt, ${BUILD_OUTPUT_DIR}/STAKCommands.beta.Windows.x64.tar.gz,Magellan_*end_Build_*.txt</artifacts>
       <allowEmptyArchive>false</allowEmptyArchive>
       <onlyIfSuccessful>false</onlyIfSuccessful>
       <fingerprint>false</fingerprint>
