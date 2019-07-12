@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
+      <useBuildBlocker>false</useBuildBlocker>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <hudson.plugins.libvirt.BeforeJobSnapshotJobProperty plugin="libvirt-slave@1.8.5"/>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.25">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
+      <teamDomain></teamDomain>
+      <token></token>
+      <room></room>
+      <startNotification>false</startNotification>
+      <notifySuccess>false</notifySuccess>
+      <notifyAborted>false</notifyAborted>
+      <notifyNotBuilt>false</notifyNotBuilt>
+      <notifyUnstable>false</notifyUnstable>
+      <notifyFailure>false</notifyFailure>
+      <notifyBackToNormal>false</notifyBackToNormal>
+      <notifyRepeatedFailure>false</notifyRepeatedFailure>
+      <includeTestSummary>false</includeTestSummary>
+      <showCommitList>false</showCommitList>
+    </jenkins.plugins.slack.SlackNotifier_-SlackJobProperty>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>BRANCH_NAME</name>
+          <description></description>
+          <defaultValue>5.00_rel</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>STC_MAJ_MIN_VERSION</name>
+          <description></description>
+          <defaultValue>5.00</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BLL_BUILD_NUMBER</name>
+          <description></description>
+          <defaultValue>BAD_BUILD_NUMBER</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BRANCH_ID</name>
+          <description></description>
+          <defaultValue>6</defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <assignedNode>spccalengec06</assignedNode>
+  <canRoam>false</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.BatchFile>
+      <command>echo &quot;hello&quot;</command>
+    </hudson.tasks.BatchFile>
+    <org.jenkinsci.plugins.ParameterizedRemoteTrigger.RemoteBuildConfiguration plugin="Parameterized-Remote-Trigger@2.2.2">
+      <token>remotetrigger</token>
+      <remoteJenkinsName>jenkins</remoteJenkinsName>
+      <job>integration_filecatalyst_prep</job>
+      <shouldNotFailBuild>false</shouldNotFailBuild>
+      <pollInterval>10</pollInterval>
+      <connectionRetryLimit>5</connectionRetryLimit>
+      <preventRemoteBuildQueue>false</preventRemoteBuildQueue>
+      <blockBuildUntilComplete>false</blockBuildUntilComplete>
+      <enhancedLogging>true</enhancedLogging>
+      <parameters>BRANCH_NAME=${BRANCH_NAME}
+STC_MAJ_MIN_VERSION=${STC_MAJ_MIN_VERSION}
+BLL_BUILD_NUMBER=${BLL_BUILD_NUMBER}
+MODE=NIGHTLY
+BRANCH_ID=${BRANCH_ID}</parameters>
+      <parameterList>
+        <string>BRANCH_NAME=${BRANCH_NAME}</string>
+        <string>STC_MAJ_MIN_VERSION=${STC_MAJ_MIN_VERSION}</string>
+        <string>BLL_BUILD_NUMBER=${BLL_BUILD_NUMBER}</string>
+        <string>MODE=NIGHTLY</string>
+        <string>BRANCH_ID=${BRANCH_ID}</string>
+      </parameterList>
+      <overrideAuth>false</overrideAuth>
+      <auth>
+        <org.jenkinsci.plugins.ParameterizedRemoteTrigger.Auth>
+          <NONE>none</NONE>
+          <API__TOKEN>apiToken</API__TOKEN>
+          <CREDENTIALS__PLUGIN>credentialsPlugin</CREDENTIALS__PLUGIN>
+        </org.jenkinsci.plugins.ParameterizedRemoteTrigger.Auth>
+      </auth>
+      <loadParamsFromFile>false</loadParamsFromFile>
+      <parameterFile></parameterFile>
+      <queryString></queryString>
+    </org.jenkinsci.plugins.ParameterizedRemoteTrigger.RemoteBuildConfiguration>
+  </builders>
+  <publishers>
+    <jenkinsci.plugins.influxdb.InfluxDbPublisher plugin="influxdb@1.10.3">
+      <selectedTarget>http://influxdb-01.cal.ci.spirentcom.com:8086,release_jenkins_db</selectedTarget>
+      <customPrefix></customPrefix>
+    </jenkinsci.plugins.influxdb.InfluxDbPublisher>
+  </publishers>
+  <buildWrappers>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.8"/>
+  </buildWrappers>
+</project>
