@@ -152,7 +152,7 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>del UI_changelist_*.txt Magellan_Frontend_Build_*.txt&#xd;
+      <command>del UI_changelist_*.txt Magellan_*end_Build_*.txt&#xd;
 echo %P4_CHANGELIST% %JOB_NAME% %BUILD_NUMBER% &gt; UI_changelist_%P4_CHANGELIST%.txt&#xd;
 del properties.txt</command>
     </hudson.tasks.BatchFile>
