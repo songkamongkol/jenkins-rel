@@ -167,7 +167,7 @@ exit /B 0</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
       <project>release_bll_windows_x64_ci</project>
-      <filter>bin/Release_x64/TestCenter.Windows.x64.bll.tar.gz,*BLL_changelist*.txt,Magellan_Frontend_Build_*.txt</filter>
+      <filter>bin/Release_x64/TestCenter.Windows.x64.bll.tar.gz,*BLL_changelist*.txt,Magellan_*end_Build_*.txt</filter>
       <target></target>
       <excludes></excludes>
       <selector class="hudson.plugins.copyartifact.PermalinkBuildSelector">
