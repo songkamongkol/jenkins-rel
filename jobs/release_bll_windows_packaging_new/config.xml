@@ -206,7 +206,7 @@ echo FULLVER is %FULLVER%&#xd;
 xcopy  /S /I /E /Y  %WORKSPACE%\framework\automation\scripting\stc\SampleScripts\*.* M:\TestCenter\%STC_MAJ_MIN_VERSION%\Engineering_Builds\GUI_BLL\%STC_MAJ_MIN_VERSION%.%FULLVER%\SampleScripts&#xd;
 &#xd;
 REM downloading webhelp files from Artifactory&#xd;
-del /f /q TestCenter_WebHelp.tar.* ServerManager_WebHelp.tar.* EnhancedResults_WebHelp.tar.*&#xd;
+del /f /q TestCenter_WebHelp.tar* ServerManager_WebHelp.tar* EnhancedResults_WebHelp.tar*&#xd;
 curl -o TestCenter_WebHelp.tar.gz https://artifactory.cal.ci.spirentcom.com/artifactory/STC/webhelp/%STC_MAJ_MIN_VERSION%/TestCenter_WebHelp.tar.gz&#xd;
 curl -o ServerManager_WebHelp.tar.gz https://artifactory.cal.ci.spirentcom.com/artifactory/STC/webhelp/%STC_MAJ_MIN_VERSION%/ServerManager_WebHelp.tar.gz&#xd;
 curl -o EnhancedResults_WebHelp.tar.gz https://artifactory.cal.ci.spirentcom.com/artifactory/STC/webhelp/%STC_MAJ_MIN_VERSION%/EnhancedResults_WebHelp.tar.gz</command>
