@@ -162,7 +162,7 @@ del /f Win64ResultsReporter.tar&#xd;
 del /f Win64ResultsReporter.tar.gz&#xd;
 &#xd;
 REM downloading webhelp files from Artifactory&#xd;
-del /f /q TestCenter_WebHelp.tar.gz ServerManager_WebHelp.tar.gz EnhancedResults_WebHelp.tar.gz&#xd;
+del /f /q TestCenter_WebHelp.tar* ServerManager_WebHelp.tar* EnhancedResults_WebHelp.tar*&#xd;
 curl -o TestCenter_WebHelp.tar.gz https://artifactory.cal.ci.spirentcom.com/artifactory/STC/webhelp/%STC_MAJ_MIN_VERSION%/TestCenter_WebHelp.tar.gz&#xd;
 curl -o ServerManager_WebHelp.tar.gz https://artifactory.cal.ci.spirentcom.com/artifactory/STC/webhelp/%STC_MAJ_MIN_VERSION%/ServerManager_WebHelp.tar.gz&#xd;
 curl -o EnhancedResults_WebHelp.tar.gz https://artifactory.cal.ci.spirentcom.com/artifactory/STC/webhelp/%STC_MAJ_MIN_VERSION%/EnhancedResults_WebHelp.tar.gz&#xd;
@@ -192,15 +192,6 @@ exit /B 0</command>
 python framework\tools\buildUtil\package.py --install TestCenter.Windows.x64.no_version.tar.gz --directory=bin/Release_x64&#xd;
 </command>
     </hudson.tasks.BatchFile>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
-      <project>release_webhelp</project>
-      <filter>TestCenter_WebHelp.tar.gz, Provisioning_WebHelp.tar.gz, ServerManager_WebHelp.tar.gz,EnhancedResults_WebHelp.tar.gz</filter>
-      <target>$WORKSPACE/old</target>
-      <excludes></excludes>
-      <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
-      <flatten>true</flatten>
-      <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
-    </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
       <project>release_results_reporter_windows_ci</project>
       <filter>Win64ResultsReporter.tar.gz</filter>
