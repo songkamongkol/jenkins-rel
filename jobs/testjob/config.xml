@@ -58,7 +58,7 @@
     </userRemoteConfigs>
     <branches>
       <hudson.plugins.git.BranchSpec>
-        <name>*/tags/rMP5.00_rel</name>
+        <name>refs/tags/rMP5.00_rel refs/heads/stc_nova_master</name>
       </hudson.plugins.git.BranchSpec>
     </branches>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
