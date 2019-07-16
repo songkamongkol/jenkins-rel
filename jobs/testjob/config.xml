@@ -102,7 +102,7 @@ def unzip(fname,dir_name):
         print &quot;Not a zip file: &apos;%s &apos;&quot; % fname
 
 def extract_tarball(fname):
-    if ( fname.endswith(&quot;tgz&quot;) || fname.endswith(&quot;tar.gz&quot;) ):
+    if ( fname.endswith(&quot;tgz&quot;) or fname.endswith(&quot;tar.gz&quot;) ):
         tar = tarfile.open(fname, &quot;r:gz&quot;)
         tar.extractall()
         tar.close()
