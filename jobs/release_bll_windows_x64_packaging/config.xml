@@ -144,6 +144,7 @@ release_win_bll_x64_copy_to_filer</blockingJobs>
       <revert>false</revert>
     </populate>
   </scm>
+  <quietPeriod>1800</quietPeriod>
   <assignedNode>relpkg-05</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
