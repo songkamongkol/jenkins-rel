@@ -47,7 +47,28 @@
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
-  <scm class="hudson.scm.NullSCM"/>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.3.0">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <refspec>+refs/tags/*:refs/remotes/origin/tags/* +refs/heads/stc_nova_master:refs/remotes/origin/stc_nova_master</refspec>
+        <url>ssh://git@git-appsec.cal.ci.spirentcom.com:2222/git-server/repos/appsec_l4l7.git</url>
+        <credentialsId>5c922c1a-3cc4-4b9c-87a7-0f81202bcd09</credentialsId>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>*/tags/rMP5.00_rel</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="list"/>
+    <extensions>
+      <hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+        <relativeTargetDir>content/Avalanche</relativeTargetDir>
+      </hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+    </extensions>
+  </scm>
   <assignedNode>bllbuild-win-01</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
@@ -115,6 +136,7 @@ def extract_tarball(fname):
 
 
 
+
 bin_rel_dir=os.path.join(os.environ[&apos;WORKSPACE&apos;],os.environ[&apos;BUILD_OUTPUT_DIR&apos;])
 os.chdir(bin_rel_dir)
 archangel_web_dir = os.path.join(bin_rel_dir, &apos;web&apos;)
@@ -126,7 +148,7 @@ for file in [&apos;enhancedl47.exe&apos;, &apos;enhancedl47.yaml&apos;]:
         os.remove(file)
         
 tar_filename = &apos;enhancedl47-win32.tar.gz&apos;
-extract_tarball(tar_filename)
+# extract_tarball(tar_filename)
 </command>
     </hudson.plugins.python.Python>
   </builders>
