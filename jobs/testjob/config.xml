@@ -51,7 +51,7 @@
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
-        <refspec>+refs/tags/*:refs/remotes/origin/tags/* +refs/heads/stc_nova_master:refs/remotes/origin/stc_nova_master</refspec>
+        <refspec>+refs/tags/*:refs/remotes/origin/tags/*</refspec>
         <url>ssh://git@git-appsec.cal.ci.spirentcom.com:2222/git-server/repos/appsec_l4l7.git</url>
         <credentialsId>5c922c1a-3cc4-4b9c-87a7-0f81202bcd09</credentialsId>
       </hudson.plugins.git.UserRemoteConfig>
