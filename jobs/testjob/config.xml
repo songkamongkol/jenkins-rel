@@ -56,6 +56,12 @@
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
+    <hudson.tasks.BatchFile>
+      <command>mkdir bin&#xd;
+cd bin&#xd;
+mkdir Release&#xd;
+exit /B 0</command>
+    </hudson.tasks.BatchFile>
     <hudson.plugins.python.Python plugin="python@1.3">
       <command>import os
 import zipfile
@@ -106,19 +112,8 @@ def extract_tarball(fname):
        tar.close()
         
 
-zip_filename = &apos;orion-res.windows-386.zip&apos;
-orion_res_output_dir = os.path.join(os.environ[&apos;WORKSPACE&apos;], &apos;bin&apos;, &apos;Release&apos;, &apos;orion-res&apos;)
-if os.path.exists(orion_res_output_dir):
-    shutil.rmtree(orion_res_output_dir) # clean up previous output dir if exists
-unzip(zip_filename, orion_res_output_dir)
 
 
-os.chdir(&apos;bin&apos;)
-tgz_filename = &apos;magellan-frontend.tgz&apos;
-if os.path.exists(&apos;build&apos;):
-    shutil.rmtree(&apos;build&apos;) # clean up previous output dir from tgz file if exists
-extract_tarball(tgz_filename)
-shutil.move(&apos;build&apos;, os.path.join(orion_res_output_dir, &apos;content&apos;))
 
 bin_rel_dir=os.path.join(os.environ[&apos;WORKSPACE&apos;],os.environ[&apos;BUILD_OUTPUT_DIR&apos;])
 os.chdir(bin_rel_dir)
