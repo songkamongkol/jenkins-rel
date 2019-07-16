@@ -97,7 +97,7 @@
         <hudson.model.StringParameterDefinition>
           <name>ARCHANGEL_PATH</name>
           <description>Path to archangle artifact in Artifactory (https://artifactory.srv.orionprod.net)</description>
-          <defaultValue>stc/archangel/archangel-publish/archangel-publish.tar</defaultValue>
+          <defaultValue>stc/archangel/archangel-publish/release/testcenter-v5.0.0/enhancedl47-win32.tar.gz</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -362,7 +362,7 @@ def unzip(fname,dir_name):
         print &quot;Not a zip file: &apos;%s &apos;&quot; % fname
 
 def extract_tarball(fname):
-    if (fname.endswith(&quot;tgz&quot;)):
+    if ( fname.endswith(&quot;tgz&quot;) || fname.endswith(&quot;tar.gz&quot;) ):
         tar = tarfile.open(fname, &quot;r:gz&quot;)
         tar.extractall()
         tar.close()
@@ -392,11 +392,11 @@ archangel_web_dir = os.path.join(bin_rel_dir, &apos;web&apos;)
 if os.path.exists(archangel_web_dir):
     shutil.rmtree(archangel_web_dir) # clean up previous output dir if exists
     
-for file in [&apos;advancedl4l7.exe&apos;, &apos;advancedl4l7.yaml&apos;]:
+for file in [&apos;enhancedl47.exe&apos;, &apos;enhancedl47.yaml&apos;]:
     if os.path.exists(file):
         os.remove(file)
         
-tar_filename = &apos;archangel-publish.tar&apos;
+tar_filename = &apos;enhancedl47-win32.tar.gz&apos;
 extract_tarball(tar_filename)
 </command>
     </hudson.plugins.python.Python>
@@ -567,7 +567,7 @@ shutil.make_archive(output_filename, &apos;zip&apos;, dir_name)</command>
         },
         {
             &quot;pattern&quot;: &quot;${ARCHANGEL_PATH}&quot;,
-            &quot;target&quot;: &quot;${BUILD_OUTPUT_DIR}/archangel-publish.tar&quot;,
+            &quot;target&quot;: &quot;${BUILD_OUTPUT_DIR}/enhancedl47-win32.tar.gz&quot;,
             &quot;flat&quot;: &quot;true&quot;
         }
     ]
