@@ -109,8 +109,8 @@
 +//TestCenter/${BRANCH_NAME}/framework/tools/postgres/check_pwd.py //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/payload/check_pwd.py
 +//TestCenter/${BRANCH_NAME}/framework/tools/postgres/create_role.sql //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/payload/create_role.sql
 +//TestCenter/${BRANCH_NAME}/framework/tools/postgres/postgres_linux.sh //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/payload/postgres_linux.sh
-+//TestCenter/${BRANCH_NAME}/framework/tools/postgres/change_postgres_settings.py //jenkins-${NODE_NAME}-${JOB_NAME}/payload/change_postgres_settings.py
-+//TestCenter/${BRANCH_NAME}/framework/tools/postgres/check_postgres_settings.py //jenkins-${NODE_NAME}-${JOB_NAME}/payload/check_postgres_settings.py</view>
++//TestCenter/${BRANCH_NAME}/framework/tools/postgres/change_postgres_settings.py //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/payload/change_postgres_settings.py
++//TestCenter/${BRANCH_NAME}/framework/tools/postgres/check_postgres_settings.py //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/payload/check_postgres_settings.py</view>
         <type>WRITABLE</type>
         <serverID></serverID>
         <backup>false</backup>
