@@ -51,13 +51,14 @@
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
+        <refspec>+refs/tags/*:refs/remotes/origin/tags/*</refspec>
         <url>ssh://git@git-appsec.cal.ci.spirentcom.com:2222/git-server/repos/appsec_l4l7.git</url>
         <credentialsId>5c922c1a-3cc4-4b9c-87a7-0f81202bcd09</credentialsId>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
     <branches>
       <hudson.plugins.git.BranchSpec>
-        <name>*/stc_nova_master</name>
+        <name>*/tags/rMP5.00_rel</name>
       </hudson.plugins.git.BranchSpec>
     </branches>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
@@ -76,12 +77,6 @@
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
-    <hudson.tasks.BatchFile>
-      <command>mkdir bin&#xd;
-cd bin&#xd;
-mkdir Release&#xd;
-exit /B 0</command>
-    </hudson.tasks.BatchFile>
     <hudson.plugins.python.Python plugin="python@1.3">
       <command>import os
 import zipfile
