@@ -1,7 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<project>
+<?xml version="1.0" encoding="UTF-8"?><project>
   <actions/>
-  <description></description>
+  <description/>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
@@ -13,9 +12,9 @@
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain></teamDomain>
-      <token></token>
-      <room></room>
+      <teamDomain/>
+      <token/>
+      <room/>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -31,28 +30,28 @@
       <parameterDefinitions>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
-          <description></description>
+          <description/>
           <defaultValue>false</defaultValue>
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BUILD_OUTPUT_DIR</name>
-          <description></description>
+          <description/>
           <defaultValue>bin/Release</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>ARCHANGEL_PATH</name>
-          <description></description>
+          <description/>
           <defaultValue>stc/archangel/archangel-publish/release/testcenter-v5.0.0/enhancedl47-win32.tar.gz</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>MAGELLAN_FRONTEND_PATH</name>
-          <description></description>
-          <defaultValue>stc/temeva/magellan-frontend-commit/796/magellan-frontend.tgz</defaultValue>
+          <description/>
+          <defaultValue>stc/temeva/magellan-frontend-commit/500/magellan-frontend.tgz</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>MAGELLAN_BACKEND_PATH</name>
-          <description></description>
-          <defaultValue> stc/temeva/magellan-backend-commit/421</defaultValue>
+          <description/>
+          <defaultValue>stc/temeva/magellan-backend-commit/500</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -95,12 +94,12 @@ import tarfile
 import shutil
 
 def _download_file_from_url(url=None):
-    file_name = url.split(&apos;/&apos;)[-1]
+    file_name = url.split('/')[-1]
     u = urllib2.urlopen(url)
-    f = open(file_name, &apos;wb&apos;)
+    f = open(file_name, 'wb')
     meta = u.info()
-    file_size = int(meta.getheaders(&quot;Content-Length&quot;)[0])
-    print &quot;Downloading: %s Bytes: %s&quot; % (file_name, file_size)
+    file_size = int(meta.getheaders("Content-Length")[0])
+    print "Downloading: %s Bytes: %s" % (file_name, file_size)
 
     file_size_dl = 0
     block_sz = 8192
@@ -111,28 +110,28 @@ def _download_file_from_url(url=None):
 
         file_size_dl += len(buffer)
         f.write(buffer)
-        status = r&quot;%10d  [%3.2f%%]&quot; % (file_size_dl, file_size_dl * 100. / file_size)
+        status = r"%10d  [%3.2f%%]" % (file_size_dl, file_size_dl * 100. / file_size)
         status = status + chr(8)*(len(status)+1)
         print status,
 
     f.close()
 
 def unzip(fname,dir_name):
-    if (fname.endswith(&quot;zip&quot;)):
-        zip_ref = zipfile.ZipFile(fname, &apos;r&apos;)
+    if (fname.endswith("zip")):
+        zip_ref = zipfile.ZipFile(fname, 'r')
         zip_ref.extractall(dir_name)
         zip_ref.close()
-        print &quot;Extracted in %s Directory&quot; % dir_name
+        print "Extracted in %s Directory" % dir_name
     else:
-        print &quot;Not a zip file: &apos;%s &apos;&quot; % fname
+        print "Not a zip file: '%s '" % fname
 
 def extract_tarball(fname):
-    if ( fname.endswith(&quot;tgz&quot;) or fname.endswith(&quot;tar.gz&quot;) ):
-        tar = tarfile.open(fname, &quot;r:gz&quot;)
+    if ( fname.endswith("tgz") or fname.endswith("tar.gz") ):
+        tar = tarfile.open(fname, "r:gz")
         tar.extractall()
         tar.close()
-    elif (fname.endswith(&quot;tar&quot;)):
-       tar = tarfile.open(fname, &quot;r:&quot;)
+    elif (fname.endswith("tar")):
+       tar = tarfile.open(fname, "r:")
        tar.extractall()
        tar.close()
         
@@ -141,17 +140,17 @@ def extract_tarball(fname):
 
 
 
-bin_rel_dir=os.path.join(os.environ[&apos;WORKSPACE&apos;],os.environ[&apos;BUILD_OUTPUT_DIR&apos;])
+bin_rel_dir=os.path.join(os.environ['WORKSPACE'],os.environ['BUILD_OUTPUT_DIR'])
 os.chdir(bin_rel_dir)
-archangel_web_dir = os.path.join(bin_rel_dir, &apos;web&apos;)
+archangel_web_dir = os.path.join(bin_rel_dir, 'web')
 if os.path.exists(archangel_web_dir):
     shutil.rmtree(archangel_web_dir) # clean up previous output dir if exists
     
-for file in [&apos;enhancedl47.exe&apos;, &apos;enhancedl47.yaml&apos;]:
+for file in ['enhancedl47.exe', 'enhancedl47.yaml']:
     if os.path.exists(file):
         os.remove(file)
         
-tar_filename = &apos;enhancedl47-win32.tar.gz&apos;
+tar_filename = 'enhancedl47-win32.tar.gz'
 # extract_tarball(tar_filename)
 </command>
     </hudson.plugins.python.Python>
@@ -171,51 +170,51 @@ tar_filename = &apos;enhancedl47-win32.tar.gz&apos;
       </resolverDetails>
       <deployerCredentialsConfig>
         <credentials>
-          <username></username>
-          <password></password>
+          <username/>
+          <password/>
         </credentials>
-        <credentialsId></credentialsId>
+        <credentialsId/>
         <overridingCredentials>false</overridingCredentials>
         <ignoreCredentialPluginDisabled>false</ignoreCredentialPluginDisabled>
       </deployerCredentialsConfig>
       <resolverCredentialsConfig>
         <credentials>
-          <username></username>
-          <password></password>
+          <username/>
+          <password/>
         </credentials>
-        <credentialsId></credentialsId>
+        <credentialsId/>
         <overridingCredentials>false</overridingCredentials>
         <ignoreCredentialPluginDisabled>false</ignoreCredentialPluginDisabled>
       </resolverCredentialsConfig>
       <useSpecs>true</useSpecs>
       <uploadSpec>
-        <spec></spec>
+        <spec/>
       </uploadSpec>
       <downloadSpec>
         <spec>{
-    &quot;files&quot;: [
+    "files": [
         {
-            &quot;pattern&quot;: &quot;${ARCHANGEL_PATH}&quot;,
-            &quot;target&quot;: &quot;${BUILD_OUTPUT_DIR}/enhancedl47-win32.tar.gz&quot;,
-            &quot;flat&quot;: &quot;true&quot;
+            "pattern": "${ARCHANGEL_PATH}",
+            "target": "${BUILD_OUTPUT_DIR}/enhancedl47-win32.tar.gz",
+            "flat": "true"
         }
     ]
 }</spec>
       </downloadSpec>
-      <deployPattern></deployPattern>
-      <resolvePattern></resolvePattern>
-      <matrixParams></matrixParams>
+      <deployPattern/>
+      <resolvePattern/>
+      <matrixParams/>
       <deployBuildInfo>true</deployBuildInfo>
       <includeEnvVars>false</includeEnvVars>
       <envVarsPatterns>
-        <includePatterns></includePatterns>
+        <includePatterns/>
         <excludePatterns>*password*,*secret*,*key*</excludePatterns>
       </envVarsPatterns>
       <discardOldBuilds>false</discardOldBuilds>
       <discardBuildArtifacts>true</discardBuildArtifacts>
       <asyncBuildRetention>false</asyncBuildRetention>
       <multiConfProject>false</multiConfProject>
-      <customBuildName></customBuildName>
+      <customBuildName/>
       <overrideBuildName>false</overrideBuildName>
     </org.jfrog.hudson.generic.ArtifactoryGenericConfigurator>
   </buildWrappers>
