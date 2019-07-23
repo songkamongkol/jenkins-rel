@@ -333,7 +333,7 @@ rd /s /q %modified%\Release&#xd;
 rd /s /q %modified%\scm&#xd;
 rd /s /q %modified%\trafficcenter-app&#xd;
 rd /s /q %modified%\userdocauto&#xd;
-del %modified%\*&#xd;
+del /f /q %modified%\*&#xd;
 echo 9R1Y9fE4$PSH|p4 -u tableuser -p perforce.spirentcom.com:1666 login&#xd;
 p4 -u tableuser -p perforce.spirentcom.com:1666 -c jenkins-%NODE_NAME%-%JOB_NAME% sync //jenkins-%NODE_NAME%-%JOB_NAME%/...#none &gt; clean.txt 2&gt;&amp;1&#xd;
 )</command>
