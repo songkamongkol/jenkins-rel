@@ -166,7 +166,7 @@ exit /B 0</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
       <project>release_bll_windows_ci</project>
-      <filter>bin/Release/TestCenter.Windows.bll.tar.gz, BLL_changelist*.txt</filter>
+      <filter>bin/Release/TestCenter.Windows.bll.tar.gz, BLL_changelist*.txt,bll_idl_crc.txt</filter>
       <target></target>
       <excludes></excludes>
       <selector class="hudson.plugins.copyartifact.PermalinkBuildSelector">
@@ -231,7 +231,7 @@ REM -- coverage report no longer needed # mv *_CoverageReport unit_test_report&#
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
-      <artifacts>${BUILD_OUTPUT_DIR}/TestCenter.Windows*.tar.gz, UI_changelist_*.txt, BLL_changelist*.txt, ${BUILD_OUTPUT_DIR}/UnitTestLogs.tar.gz, ${BUILD_OUTPUT_DIR}/STAKCommands.beta.Windows.tar.gz</artifacts>
+      <artifacts>${BUILD_OUTPUT_DIR}/TestCenter.Windows*.tar.gz, UI_changelist_*.txt, BLL_changelist*.txt, ${BUILD_OUTPUT_DIR}/UnitTestLogs.tar.gz, ${BUILD_OUTPUT_DIR}/STAKCommands.beta.Windows.tar.gz,bll_idl_crc.txt</artifacts>
       <allowEmptyArchive>false</allowEmptyArchive>
       <onlyIfSuccessful>false</onlyIfSuccessful>
       <fingerprint>false</fingerprint>
@@ -274,7 +274,7 @@ REM -- coverage report no longer needed # mv *_CoverageReport unit_test_report&#
       <failIfNoResults>false</failIfNoResults>
     </hudson.plugins.nunit.NUnitPublisher>
     <hudson.tasks.Fingerprinter>
-      <targets>${BUILD_OUTPUT_DIR}/TestCenter.Windows*.tar.gz, UI_changelist_*.txt, BLL_changelist*.txt</targets>
+      <targets>${BUILD_OUTPUT_DIR}/TestCenter.Windows*.tar.gz, UI_changelist_*.txt, BLL_changelist*.txt,bll_idl_crc.txt</targets>
     </hudson.tasks.Fingerprinter>
     <hudson.plugins.claim.ClaimPublisher plugin="claim@2.9"/>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.57">
