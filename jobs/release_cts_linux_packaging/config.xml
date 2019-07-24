@@ -119,7 +119,7 @@ Triggers integration_ftp_tarball which restructures the tarball and copies the o
   <quietPeriod>330</quietPeriod>
   <assignedNode>bllbldlnx-v27</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>true</disabled>
+  <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
