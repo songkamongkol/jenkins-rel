@@ -137,7 +137,7 @@ Jenkins Node(s): spccalengec01,spccalengec02</description>
   </scm>
   <assignedNode>relpkg-05</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>true</blockBuildWhenUpstreamBuilding>
   <triggers/>
