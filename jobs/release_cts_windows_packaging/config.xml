@@ -140,7 +140,7 @@ release_bll_windows_x64_packaging</blockingJobs>
   <quietPeriod>320</quietPeriod>
   <assignedNode>relpkg-05</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>true</disabled>
+  <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>true</blockBuildWhenUpstreamBuilding>
   <triggers/>
