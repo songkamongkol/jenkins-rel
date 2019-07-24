@@ -246,7 +246,9 @@ else
 fi
 
 sudo rm -rf $WORKSPACE/build/il/bld_*
-sudo chmod a+r $WORKSPACE/build/il/packages/rawimg/*.ova</command>
+sudo chmod a+r $WORKSPACE/build/il/packages/rawimg/*.ova
+
+python $WORKSPACE/common/idl/crc.py -f il_idl_crc.txt</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command># rm -f il_virtual_$STC_MAJ_MIN_VERSION.tar
@@ -257,7 +259,7 @@ python $HOME/jenkins/build_cleanup.py --n=30 --file=/mnt/builds/jenkins/il_virtu
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
-      <artifacts>*_changelist_*.txt,changelist.properties</artifacts>
+      <artifacts>*_changelist_*.txt,changelist.properties,il_idl_crc.txt</artifacts>
       <allowEmptyArchive>false</allowEmptyArchive>
       <onlyIfSuccessful>false</onlyIfSuccessful>
       <fingerprint>false</fingerprint>
@@ -317,6 +319,7 @@ fi
 cp -r $WORKSPACE/build/il/packages/bundle $STORAGE_DIR
 cp -r $WORKSPACE/build/il/packages/fsimg $STORAGE_DIR
 cp -r $WORKSPACE/build/il/packages/rawimg $STORAGE_DIR
+cp $WORKSPACE/il_idl_crc.txt $STORAGE_DIR
 
 </command>
         </hudson.tasks.Shell>
