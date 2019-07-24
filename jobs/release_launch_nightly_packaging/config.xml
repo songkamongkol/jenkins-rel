@@ -91,7 +91,8 @@
 -//TestCenter/*/Layer1/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/*/Layer1/...
 -//TestCenter/*/framework/ui/resultsanalysis/tools/jvm/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/*/framework/ui/resultsanalysis/tools/jvm/...
 -//TestCenter/*/framework/il/freebsd/sys/dev/digi/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/*/framework/il/freebsd/sys/dev/digi/...
--//TestCenter/*/framework/il/platform/scripts/chassis/i686/filesys/etc/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/*/framework/il/platform/scripts/chassis/i686/filesys/etc/...</view>
+-//TestCenter/*/framework/il/platform/scripts/chassis/i686/filesys/etc/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/*/framework/il/platform/scripts/chassis/i686/filesys/etc/...
++//TestCenter/*/regression/jenkins/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}//regression/jenkins/...</view>
         <type>WRITABLE</type>
         <serverID></serverID>
         <backup>false</backup>
@@ -162,7 +163,7 @@ rem c:\python27\python %WORKSPACE%\Scripts\ci_run_jenkins_steps.py --createchang
     </hudson.tasks.BatchFile>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
       <project>release_ui_ci</project>
-      <filter>BLL_changelist_*.txt, UI_changelist_*.txt</filter>
+      <filter>BLL_changelist_*.txt, UI_changelist_*.txt,bll_idl_crc.txt</filter>
       <target></target>
       <excludes></excludes>
       <selector class="hudson.plugins.copyartifact.PermalinkBuildSelector">
@@ -193,6 +194,21 @@ rem c:\python27\python %WORKSPACE%\Scripts\ci_run_jenkins_steps.py --createchang
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
+      <project>release_il_virtual_yocto_ci</project>
+      <filter>il_idl_crc.txt</filter>
+      <target></target>
+      <excludes></excludes>
+      <selector class="hudson.plugins.copyartifact.PermalinkBuildSelector">
+        <id>Release IL Build Passed on all platforms</id>
+      </selector>
+      <flatten>true</flatten>
+      <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
+    </hudson.plugins.copyartifact.CopyArtifact>
+    <hudson.tasks.BatchFile>
+      <command># -- ensure BLL and IL have matching IDL checksum&#xd;
+python regression\jenkins\compare_crc.py --first bll_idl_crc.txt --second il_idl_crc.txt </command>
+    </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
       <command>del /f /q %WORKSPACE%\stc_version.txt&#xd;
 echo STC_MAJ_MIN_VERSION=%STC_MAJ_MIN_VERSION% &gt; %WORKSPACE%\stc_version.txt</command>
