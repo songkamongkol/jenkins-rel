@@ -206,7 +206,7 @@ rem c:\python27\python %WORKSPACE%\Scripts\ci_run_jenkins_steps.py --createchang
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.BatchFile>
-      <command># -- ensure BLL and IL have matching IDL checksum&#xd;
+      <command>REM -- ensure BLL and IL have matching IDL checksum&#xd;
 python regression\jenkins\compare_crc.py --first bll_idl_crc.txt --second il_idl_crc.txt </command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
