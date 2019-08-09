@@ -98,19 +98,12 @@
         <backup>false</backup>
       </spec>
     </workspace>
-    <populate class="org.jenkinsci.plugins.p4.populate.SyncOnlyImpl">
+    <populate class="org.jenkinsci.plugins.p4.populate.FlushOnlyImpl">
       <have>true</have>
       <force>false</force>
       <modtime>false</modtime>
       <quiet>true</quiet>
       <pin></pin>
-      <parallel>
-        <enable>false</enable>
-        <threads>4</threads>
-        <minfiles>1</minfiles>
-        <minbytes>1024</minbytes>
-      </parallel>
-      <revert>false</revert>
     </populate>
   </scm>
   <assignedNode>relpkg-05</assignedNode>
@@ -299,7 +292,6 @@ exit /B 0</command>
       <scriptOnlyIfSuccess>true</scriptOnlyIfSuccess>
       <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
       <markBuildUnstable>false</markBuildUnstable>
-      <executeOn>BOTH</executeOn>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
     <hudson.plugins.claim.ClaimPublisher plugin="claim@2.9"/>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.57">
