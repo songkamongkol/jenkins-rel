@@ -138,6 +138,7 @@
             <string>release_launch_nightly_packaging</string>
             <string>release_linux_installer_packaging</string>
             <string>release_ls_vm_packaging</string>
+            <string>release_NoCrypto_bll_windows_x64_packaging</string>
             <string>release_reset_tag_file</string>
             <string>release_set_status</string>
             <string>release_update_latestbuild</string>
