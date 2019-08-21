@@ -88,6 +88,11 @@ release_win_bll_x64_copy_to_filer</blockingJobs>
           <description></description>
           <defaultValue>NIGHTLY</defaultValue>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>NON_CRYPTO</name>
+          <description>Build with no crypto </description>
+          <defaultValue>true</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
