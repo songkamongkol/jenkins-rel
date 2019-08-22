@@ -5,10 +5,7 @@
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
-      <useBuildBlocker>true</useBuildBlocker>
-      <blockingJobs>release_cts_windows_packaging
-release_bll_windows_packaging_new
-release_win_bll_x64_copy_to_filer</blockingJobs>
+      <useBuildBlocker>false</useBuildBlocker>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
     <jenkins.model.BuildDiscarderProperty>
       <strategy class="hudson.tasks.LogRotator">
@@ -88,11 +85,6 @@ release_win_bll_x64_copy_to_filer</blockingJobs>
           <description></description>
           <defaultValue>NIGHTLY</defaultValue>
         </hudson.model.StringParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>NON_CRYPTO</name>
-          <description>Build with no crypto </description>
-          <defaultValue>true</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
