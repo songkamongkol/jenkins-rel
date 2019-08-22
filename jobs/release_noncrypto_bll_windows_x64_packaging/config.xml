@@ -264,11 +264,11 @@ SET P4PORT=perforce.spirentcom.com:1666&#xd;
 copy  %WIN_WORKSPACE%\%JOB_NAME%\bin\Release_x64\NTAF\tool\Stc420Publication.xml %WIN_WORKSPACE%\%JOB_NAME%\bin\Release_x64\NTAF\tool\Stc500Publication.xml /y&#xd;
 c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --createpropfile=yes --runcimaketarballs=no --runsetver=yes --updateilversionxml=yes --updatereleasetag=yes --updatepkgindextcl=yes --updatespirenttestcentertcl=yes --updatestclibtcl=yes --updatentafxml=yes --updatehltapiversion=yes --updatemagellanversion=yes&#xd;
 &#xd;
-perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% STC_X64_APP_COPY_ONLY&#xd;
+perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% STC_X64_APP_COPY_ONLY NOCRYPTO&#xd;
 &#xd;
 perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% PACKAGE_X64_P2_INSTALLER&#xd;
 &#xd;
-perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% COPY_X64_P2_INSTALLER&#xd;
+REM perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% COPY_X64_P2_INSTALLER&#xd;
 </command>
     </hudson.tasks.BatchFile>
   </builders>
