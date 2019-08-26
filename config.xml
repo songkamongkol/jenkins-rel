@@ -124,7 +124,6 @@
             <string>release_bll_linux_x86_client_packaging</string>
             <string>release_bll_win_pkg_webhelp</string>
             <string>release_bll_windows_packaging_new</string>
-            <string>release_bll_windows_packaging_nocrypto</string>
             <string>release_bll_windows_x64_packaging</string>
             <string>release_copy_to_spccalfs03_packaging</string>
             <string>release_core_labserver_packaging</string>
@@ -139,8 +138,6 @@
             <string>release_launch_nightly_packaging</string>
             <string>release_linux_installer_packaging</string>
             <string>release_ls_vm_packaging</string>
-            <string>release_NoCrypto_bll_windows_x64_packaging</string>
-            <string>release_noncrypto_bll_windows_x64_packaging</string>
             <string>release_reset_tag_file</string>
             <string>release_set_status</string>
             <string>release_update_latestbuild</string>
