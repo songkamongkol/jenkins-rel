@@ -181,6 +181,7 @@
           <properties class="hudson.model.View$PropertyList"/>
           <jobNames>
             <comparator class="hudson.util.CaseInsensitiveComparator"/>
+            <string>release_bll_windows_packaging_nocrypto</string>
             <string>release_bll_windows_x64_packaging_nocrypto</string>
           </jobNames>
           <jobFilters/>
