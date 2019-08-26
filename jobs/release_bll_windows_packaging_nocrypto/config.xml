@@ -1,14 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>cSync SCM build scripts, help files and other files as needed for packaging.&lt;br&gt;
-Retrieve tar.gz files from UI and RR build.&lt;br&gt;
-Extract TestCenter.Windows.no_version.tar.gz, ResultsReporter.tar.gz UI and RR tar.gz files to bin/release folder.&lt;br&gt;
-Retrieve TestCenter_WebHelp.tar.gz, Provisioning_WebHelp.tar.gz, ServerManager_WebHelp.tar.gz from webhelp build.&lt;br&gt;
-Run setver.py to set the version of the TestCenter binary files.&lt;br&gt;
-Run ci_packageinstaller.pl to create P2_installer and FORTHOT installer files.&lt;br&gt;
-Run ci_packageinstaller.pl to create DMCP installer files.&lt;br&gt;
-Copy build results to \\martin\archive\pv\TestCenter\4.10\Engineering_Builds\integration\BUILDVERSION&lt;br&gt;
+  <description>cSync SCM build scripts, help files and other files as needed for packaging.&lt;br&gt;&#xd;
+Retrieve tar.gz files from UI and RR build.&lt;br&gt;&#xd;
+Extract TestCenter.Windows.no_version.tar.gz, ResultsReporter.tar.gz UI and RR tar.gz files to bin/release folder.&lt;br&gt;&#xd;
+Retrieve TestCenter_WebHelp.tar.gz, Provisioning_WebHelp.tar.gz, ServerManager_WebHelp.tar.gz from webhelp build.&lt;br&gt;&#xd;
+Run setver.py to set the version of the TestCenter binary files.&lt;br&gt;&#xd;
+Run ci_packageinstaller.pl to create P2_installer and FORTHOT installer files.&lt;br&gt;&#xd;
+Run ci_packageinstaller.pl to create DMCP installer files.&lt;br&gt;&#xd;
+Copy build results to \\martin\archive\pv\TestCenter\4.10\Engineering_Builds\integration\BUILDVERSION&lt;br&gt;&#xd;
 Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
   <keepDependencies>false</keepDependencies>
   <properties>
@@ -286,9 +286,6 @@ perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPA
 del /f /q %WORKSPACE%\Installer&#xd;
 rd /s /q %WORKSPACE%\Installer&#xd;
 mkdir %WORKSPACE%\Installer&#xd;
-&#xd;
-perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% COMPILE_FORTHOT&#xd;
-&#xd;
 &#xd;
 perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% PACKAGE_P2_INSTALLER&#xd;
 &#xd;
