@@ -281,15 +281,15 @@ copy  c:\jenkins-rel\release_bll_windows_packaging_new\bin\Release\NTAF\tool\Stc
 &#xd;
 c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --createpropfile=yes --runcimaketarballs=no --runsetver=yes --updateilversionxml=yes --updatereleasetag=yes --updatepkgindextcl=yes --updatespirenttestcentertcl=yes --updatestclibtcl=yes --updategemspecversion=yes --updatentafxml=yes --updatehltapiversion=yes --updatemagellanversion=yes&#xd;
 &#xd;
-perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% STC_APP_COPY_ONLY&#xd;
+perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% STC_APP_COPY_ONLY NOCRYPTO&#xd;
 &#xd;
 del /f /q %WORKSPACE%\Installer&#xd;
 rd /s /q %WORKSPACE%\Installer&#xd;
 mkdir %WORKSPACE%\Installer&#xd;
 &#xd;
-perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% PACKAGE_P2_INSTALLER&#xd;
+perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% PACKAGE_P2_INSTALLER NOCRYPTO&#xd;
 &#xd;
-perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% COPY_P2_INSTALLER&#xd;
+perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% COPY_P2_INSTALLER NOCRYPTO&#xd;
 rem exit /B 0</command>
     </hudson.tasks.BatchFile>
   </builders>
@@ -344,25 +344,6 @@ rem exit /B 0</command>
       <selectedTarget>http://influxdb-01.cal.ci.spirentcom.com:8086,release_jenkins_db</selectedTarget>
       <customPrefix></customPrefix>
     </jenkinsci.plugins.influxdb.InfluxDbPublisher>
-    <hudson.plugins.parameterizedtrigger.BuildTrigger plugin="parameterized-trigger@2.35.2">
-      <configs>
-        <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
-          <configs>
-            <hudson.plugins.parameterizedtrigger.FileBuildParameters>
-              <propertiesFile>properties.txt</propertiesFile>
-              <failTriggerOnMissing>false</failTriggerOnMissing>
-              <textParamValueOnNewLine>false</textParamValueOnNewLine>
-              <useMatrixChild>false</useMatrixChild>
-              <onlyExactRuns>false</onlyExactRuns>
-            </hudson.plugins.parameterizedtrigger.FileBuildParameters>
-          </configs>
-          <projects>release_bll_linux_packaging,release_set_status,release_bll_windows_x64_packaging</projects>
-          <condition>SUCCESS</condition>
-          <triggerWithNoParameters>false</triggerWithNoParameters>
-          <triggerFromChildProjects>false</triggerFromChildProjects>
-        </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
-      </configs>
-    </hudson.plugins.parameterizedtrigger.BuildTrigger>
   </publishers>
   <buildWrappers>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.8"/>
