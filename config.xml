@@ -179,6 +179,7 @@
           <jobNames>
             <comparator class="hudson.util.CaseInsensitiveComparator"/>
             <string>release_bll_linux_64_packaging_nocrypto</string>
+            <string>release_bll_linux_packaging_nocrypto</string>
             <string>release_bll_windows_packaging_nocrypto</string>
             <string>release_bll_windows_x64_packaging_nocrypto</string>
           </jobNames>
