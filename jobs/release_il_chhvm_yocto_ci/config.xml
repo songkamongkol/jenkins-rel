@@ -226,6 +226,7 @@ fi
 cp -r $WORKSPACE/build/il/packages/bundle $STORAGE_DIR
 cp $WORKSPACE/build/il/packages/fsimg/*chassis_hypervisor* $STORAGE_DIR/fsimg
 cp $WORKSPACE/build/il/packages/fsimg/yocto_version $STORAGE_DIR/fsimg
+cp $WORKSPACE/build/il/packages/fsimg/yocto_signature $STORAGE_DIR/fsimg
 cp -r $WORKSPACE/build/il/packages/rawimg $STORAGE_DIR
 cp -r $WORKSPACE/build/il/packages/fsimg/*chassis_installer* $STORAGE_DIR/fsimg</command>
         </hudson.tasks.Shell>
