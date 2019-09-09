@@ -85,6 +85,11 @@ The latest build is stored at \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_
           <description>1.0 or 1.5</description>
           <defaultValue>1.5</defaultValue>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>STC_MAJ_MIN_VERSION</name>
+          <description></description>
+          <defaultValue>5.01</defaultValue>
+        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
