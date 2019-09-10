@@ -94,6 +94,11 @@
           <description>Path to archangle artifact in Artifactory (https://artifactory.srv.orionprod.net)</description>
           <defaultValue>stc/archangel/archangel-publish/release/testcenter-v5.01/enhancedl47-win64.tar.gz</defaultValue>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>STC_MAJ_MIN_VERSION</name>
+          <description></description>
+          <defaultValue>5.01</defaultValue>
+        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
@@ -250,7 +255,7 @@ import glob
 import shutil
 import re
 
-stc_maj_min_ver=&apos;4.50&apos;
+stc_maj_min_ver=os.environ[&apos;STC_MAJ_MIN_VERSION&apos;]
 print &quot;\nIN:_run_update_ilversion_xml&quot;
 ilversion_xml_path = os.path.join(os.environ[&apos;WORKSPACE&apos;], &apos;framework&apos;, &apos;bll&apos;, &apos;core&apos;, &apos;install&apos;, &apos;release&apos;, &apos;ILVersion.xml&apos;)
 tmpfile = ilversion_xml_path + &quot;.new&quot;
