@@ -136,7 +136,7 @@ The latest build is stored at \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_
     </workspace>
     <populate class="org.jenkinsci.plugins.p4.populate.SyncOnlyImpl">
       <have>true</have>
-      <force>false</force>
+      <force>true</force>
       <modtime>false</modtime>
       <quiet>true</quiet>
       <pin></pin>
