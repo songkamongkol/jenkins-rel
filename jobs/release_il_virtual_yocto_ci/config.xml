@@ -142,7 +142,7 @@ Archive il_virtual_*.tar&lt;br&gt;&#xd;
         </workspace>
         <populate class="org.jenkinsci.plugins.p4.populate.SyncOnlyImpl">
           <have>true</have>
-          <force>true</force>
+          <force>false</force>
           <modtime>false</modtime>
           <quiet>true</quiet>
           <pin></pin>
