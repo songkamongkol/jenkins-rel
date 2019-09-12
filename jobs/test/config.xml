@@ -27,6 +27,15 @@
       <includeTestSummary>false</includeTestSummary>
       <showCommitList>false</showCommitList>
     </jenkins.plugins.slack.SlackNotifier_-SlackJobProperty>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>BRANCH_NAME</name>
+          <description></description>
+          <defaultValue>5.02_rel</defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <assignedNode>relpkg-05</assignedNode>
@@ -40,6 +49,8 @@
     <hudson.tasks.BatchFile>
       <command>&#xd;
 rd /s /q \\devops-nas-1.cal.ci.spirentcom.com\builds\NoCrypto\Release_x64\&#xd;
+set release_64=\\devops-nas-1.cal.ci.spirentcom.com\builds\NoCrypto\%BRANCH_NAME%\Release_x64\&#xd;
+if not exists %release_64% (mkdir %release_64%)&#xd;
 </command>
     </hudson.tasks.BatchFile>
   </builders>
