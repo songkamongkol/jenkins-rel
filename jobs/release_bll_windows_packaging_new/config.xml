@@ -299,7 +299,7 @@ rem exit /B 0</command>
       <command>setlocal EnableExtensions DisableDelayedExpansion&#xd;
 &#xd;
 set branch=%BRANCH_NAME%&#xd;
-set release=\\devops-nas-1.cal.ci.spirentcom.com\builds\NoCrypto\%branch%\Release&#xd;
+set release=\\devops-nas-1.cal.ci.spirentcom.com\builds\NoCrypto\%branch%\window\Release&#xd;
 &#xd;
 rd /s /q &quot;%release%&quot;&#xd;
 &#xd;
