@@ -39,7 +39,7 @@
   <builders>
     <hudson.tasks.BatchFile>
       <command>&#xd;
-rd /s /q \\devops-nas-1.cal.ci.spirentcom.com\builds\NoCrypto\Release\&#xd;
+rd /s /q \\devops-nas-1.cal.ci.spirentcom.com\builds\NoCrypto\Release_x64\&#xd;
 </command>
     </hudson.tasks.BatchFile>
   </builders>
