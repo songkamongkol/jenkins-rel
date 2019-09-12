@@ -241,7 +241,7 @@ c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --c
       <command>setlocal EnableExtensions DisableDelayedExpansion&#xd;
 &#xd;
 set branch=%BRANCH_NAME%&#xd;
-set release=\\devops-nas-1.cal.ci.spirentcom.com\builds\NoCrypto\%branch%\window\Release_x64&#xd;
+set release=\\devops-nas-1.cal.ci.spirentcom.com\builds\NoCrypto\%branch%\linux\Release_x64&#xd;
 &#xd;
 rd /s /q &quot;%release%&quot;&#xd;
 &#xd;
