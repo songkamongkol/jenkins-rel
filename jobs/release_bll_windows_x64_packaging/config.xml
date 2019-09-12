@@ -270,7 +270,7 @@ perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPA
       <command>setlocal EnableExtensions DisableDelayedExpansion&#xd;
 &#xd;
 set branch=%BRANCH_NAME%&#xd;
-set release=\\devops-nas-1.cal.ci.spirentcom.com\builds\NoCrypto\%branch%\Release_x64&#xd;
+set release=\\devops-nas-1.cal.ci.spirentcom.com\builds\NoCrypto\%branch%\window\Release_x64&#xd;
 &#xd;
 rd /s /q &quot;%release%&quot;&#xd;
 &#xd;
