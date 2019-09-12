@@ -52,7 +52,7 @@ set &quot;release_64=\\devops-nas-1.cal.ci.spirentcom.com\builds\NoCrypto\%branc
 &#xd;
 rd /s /q &quot;%release_64%&quot;&#xd;
 &#xd;
-REM if not exists &quot;%release_64%&quot; ( md %release_64% )&#xd;
+if not exists &quot;%release_64%&quot; ( md %release_64% )&#xd;
 </command>
     </hudson.tasks.BatchFile>
   </builders>
