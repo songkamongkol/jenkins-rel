@@ -52,6 +52,8 @@ set release_64=\\devops-nas-1.cal.ci.spirentcom.com\builds\NoCrypto\%branch%\Rel
 &#xd;
 &#xd;
 rd /s /q &quot;%release_64%&quot;&#xd;
+&#xd;
+if not exists &quot;%%release_64%%&quot; ( mkdir &quot;%release_64%&quot; )&#xd;
 </command>
     </hudson.tasks.BatchFile>
   </builders>
