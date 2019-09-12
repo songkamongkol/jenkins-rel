@@ -39,8 +39,7 @@
   <builders>
     <hudson.tasks.BatchFile>
       <command>&#xd;
-del \\devops-nas-1.cal.ci.spirentcom.com\builds\NoCrypto\Release\TestCenter.Windows.no_version.tar.gz&#xd;
-</command>
+del \\devops-nas-1.cal.ci.spirentcom.com\builds\NoCrypto\Release\STAKCommands.beta.Windows.tar.gz</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers/>
