@@ -58,7 +58,7 @@ rd /s /q &quot;%release_64%&quot;&#xd;
 &#xd;
 if not exist %release_64% ( mkdir %release_64% )&#xd;
 &#xd;
-copy %WORKSPACE%\test.txt %release%\test.txt /y</command>
+copy %WORKSPACE%\test.txt %release_64%\test.txt /y</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers/>
