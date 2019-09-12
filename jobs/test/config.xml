@@ -49,7 +49,8 @@
     <hudson.tasks.BatchFile>
       <command>&#xd;
 rd /s /q \\devops-nas-1.cal.ci.spirentcom.com\builds\NoCrypto\Release_x64\&#xd;
-set release_64=&quot;\\devops-nas-1.cal.ci.spirentcom.com\builds\NoCrypto\%BRANCH_NAME%\Release_x64\&quot;&#xd;
+set branch=%BRANCH_NAME%&#xd;
+set release_64=\\devops-nas-1.cal.ci.spirentcom.com\builds\NoCrypto\%branch%\Release_x64&#xd;
 if not exists %release_64% (mkdir %release_64%)&#xd;
 </command>
     </hudson.tasks.BatchFile>
