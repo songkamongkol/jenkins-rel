@@ -56,9 +56,9 @@ set release_64=\\devops-nas-1.cal.ci.spirentcom.com\builds\NoCrypto\%branch%\Rel
 &#xd;
 rd /s /q &quot;%release_64%&quot;&#xd;
 &#xd;
-if not exist %release_64% ( mkdir %release_64% )&#xd;
+REM if not exist %release_64% ( mkdir %release_64% )&#xd;
 &#xd;
-copy %WORKSPACE%\test.txt %release_64%\test.txt /y</command>
+REM copy %WORKSPACE%\test.txt %release_64%\test.txt /y</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers/>
