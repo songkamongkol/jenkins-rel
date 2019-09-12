@@ -49,6 +49,7 @@
     <hudson.tasks.BatchFile>
       <command>setlocal EnableExtensions DisableDelayedExpansion&#xd;
 &#xd;
+echo &quot;hello&quot; &gt;&gt; test.txt&#xd;
 set branch=%BRANCH_NAME%&#xd;
 set release_64=\\devops-nas-1.cal.ci.spirentcom.com\builds\NoCrypto\%branch%\Release_x64&#xd;
 &#xd;
@@ -56,7 +57,8 @@ set release_64=\\devops-nas-1.cal.ci.spirentcom.com\builds\NoCrypto\%branch%\Rel
 rd /s /q &quot;%release_64%&quot;&#xd;
 &#xd;
 if not exist %release_64% ( mkdir %release_64% )&#xd;
-</command>
+&#xd;
+copy %WORKSPACE%\test.txt %release%\test.txt /y</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers/>
