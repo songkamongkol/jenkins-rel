@@ -51,12 +51,12 @@
 &#xd;
 echo &quot;hello&quot; &gt;&gt; test.txt&#xd;
 set branch=%BRANCH_NAME%&#xd;
-set release_64=\\devops-nas-1.cal.ci.spirentcom.com\builds\NoCrypto\%branch%\Release_x64&#xd;
+set release_64=\\devops-nas-1.cal.ci.spirentcom.com\builds\NoCrypto\%branch%\window\Release_x64&#xd;
 &#xd;
 &#xd;
 rd /s /q &quot;%release_64%&quot;&#xd;
 &#xd;
-REM if not exist %release_64% ( mkdir %release_64% )&#xd;
+if not exist %release_64% ( mkdir %release_64% )&#xd;
 &#xd;
 REM copy %WORKSPACE%\test.txt %release_64%\test.txt /y</command>
     </hudson.tasks.BatchFile>
