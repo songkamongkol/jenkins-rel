@@ -298,7 +298,7 @@ rem exit /B 0</command>
     <hudson.tasks.BatchFile>
       <command>setlocal EnableExtensions DisableDelayedExpansion&#xd;
 &#xd;
-set branch=%BRANCH_NAME%&#xd;
+set branch=%STC_MAJ_MIN_VERSION%&#xd;
 set release=\\devops-nas-1.cal.ci.spirentcom.com\builds\NoCrypto\%branch%\window\Release&#xd;
 &#xd;
 rd /s /q &quot;%release%&quot;&#xd;
