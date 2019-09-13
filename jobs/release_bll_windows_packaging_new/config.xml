@@ -14,7 +14,8 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
       <useBuildBlocker>true</useBuildBlocker>
-      <blockingJobs>release_bll_win_pkg_webhelp</blockingJobs>
+      <blockingJobs>release_bll_win_pkg_webhelp
+release_bll_windows_x64_packaging</blockingJobs>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
     <jenkins.model.BuildDiscarderProperty>
       <strategy class="hudson.tasks.LogRotator">
@@ -373,7 +374,7 @@ copy %WORKSPACE%\STAKCommands.beta.Windows.tar.gz %release%\STAKCommands.beta.Wi
               <onlyExactRuns>false</onlyExactRuns>
             </hudson.plugins.parameterizedtrigger.FileBuildParameters>
           </configs>
-          <projects>release_bll_linux_packaging,release_set_status,release_bll_windows_x64_packaging</projects>
+          <projects>release_bll_linux_packaging,release_set_status</projects>
           <condition>SUCCESS</condition>
           <triggerWithNoParameters>false</triggerWithNoParameters>
           <triggerFromChildProjects>false</triggerFromChildProjects>
