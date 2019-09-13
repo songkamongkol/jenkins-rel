@@ -8,7 +8,8 @@
       <useBuildBlocker>true</useBuildBlocker>
       <blockingJobs>release_cts_windows_packaging
 release_bll_windows_packaging_new
-release_win_bll_x64_copy_to_filer</blockingJobs>
+release_win_bll_x64_copy_to_filer
+release_bll_windows_packaging_new</blockingJobs>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
     <jenkins.model.BuildDiscarderProperty>
       <strategy class="hudson.tasks.LogRotator">
