@@ -245,7 +245,7 @@ rd /s /q &quot;%release%&quot;&#xd;
 if not exist %release% ( mkdir %release% )&#xd;
 &#xd;
 copy %WORKSPACE%\TestCenter.Linux.x64.full.tar.gz %release%\TestCenter.Linux.x64.full.tar.gz /y&#xd;
-copy %WORKSPACE%\BLL_Linux_x64_changelist_*.txt %release%\BLL_Linux_x64_changelist_*.txt /y</command>
+</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
