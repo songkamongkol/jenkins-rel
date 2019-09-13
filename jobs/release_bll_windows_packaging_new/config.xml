@@ -307,8 +307,6 @@ if not exist %release% ( mkdir %release% )&#xd;
 &#xd;
 &#xd;
 copy %WORKSPACE%\TestCenter.Windows.no_version.tar.gz %release%\TestCenter.Windows.no_version.tar.gz /y&#xd;
-copy %WORKSPACE%\BLL_changelist*.txt %release%\BLL_changelist*.txt /y&#xd;
-copy %WORKSPACE%\UI_changelist*.txt %release%\UI_changelist*.txt /y&#xd;
 copy %WORKSPACE%\STAKCommands.beta.Windows.tar.gz %release%\STAKCommands.beta.Windows.tar.gz /y</command>
     </hudson.tasks.BatchFile>
   </builders>
