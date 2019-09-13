@@ -278,8 +278,6 @@ if not exist %release% ( mkdir %release% )&#xd;
 &#xd;
 &#xd;
 copy %WORKSPACE%\TestCenter.Windows.x64.no_version.tar.gz %release%\TestCenter.Windows.x64.no_version.tar.gz /y&#xd;
-copy %WORKSPACE%\BLL_x64_changelist*.txt %release%\BLL_x64_changelist*.txt /y&#xd;
-copy %WORKSPACE%\UI_x64_changelist*.txt %release%\UI_x64_changelist*.txt /y&#xd;
 copy %WORKSPACE%\STAKCommands.beta.Windows.tar.gz %release%\STAKCommands.beta.Windows.tar.gz /y&#xd;
 copy %WORKSPACE%\Magellan_*end_Build_*.txt %release%\Magellan_*end_Build_*.txt</command>
     </hudson.tasks.BatchFile>
