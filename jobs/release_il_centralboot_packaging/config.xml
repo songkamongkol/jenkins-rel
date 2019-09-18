@@ -163,12 +163,12 @@ echo Clean up prior to extracting tarballs
 sudo chmod 777 $WORKSPACE/build/il/version
 
 # need to remove information in repos directory and packages directory
-# -- TEMP sudo -S rm -rf $WORKSPACE/build/il/repos/*
-# -- TEMP sudo -S rm -rf $WORKSPACE/build/il/packages/*
+sudo -S rm -rf $WORKSPACE/build/il/repos/*
+sudo -S rm -rf $WORKSPACE/build/il/packages/*
 
 
-# -- TEMP sudo scons target=packageclean
-# -- TEMP sudo scons target=kernelclean
+sudo scons target=packageclean
+sudo scons target=kernelclean
 
 rm -f $WORKSPACE/*.txt</command>
     </hudson.tasks.Shell>
@@ -183,9 +183,6 @@ rm -f $WORKSPACE/*.txt</command>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.Shell>
       <command>#!/bin/bash
-
-# -- TEMP 
-exit 0
 
 if [[ $INCLUDE_APPSEC_PKG == &quot;FALSE&quot; ]]; then 
     exit 0
@@ -219,8 +216,7 @@ rm -f /mnt/builds/jenkins/il_changeling_all_yocto-${BRANCH_NAME}_packaging.txt</
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>#!/bin/bash
-# -- TEMP 
-exit 0
+
 for i in $(seq 1 3)
    do
       if [ -f /mnt/builds/jenkins/il_changeling_yocto-${BRANCH_NAME}_promoting.txt ]; then
@@ -250,8 +246,7 @@ rm -f /mnt/builds/jenkins/il_changeling_yocto-${BRANCH_NAME}_packaging.txt</comm
     <hudson.tasks.Shell>
       <command>#!/bin/bash
 
-# -- TEMP 
-exit 0
+
 for i in $(seq 1 3)
    do
       if [ -f /mnt/builds/jenkins/il_chos2_yocto-${BRANCH_NAME}_promoting.txt ]; then
@@ -278,8 +273,7 @@ rm -f /mnt/builds/jenkins/il_chos2_yocto-${BRANCH_NAME}_packaging.txt</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>#!/bin/bash
-# -- TEMP 
-exit 0
+
 for i in $(seq 1 7)
    do
       if [ -f /mnt/builds/jenkins/il_virtual_yocto-${BRANCH_NAME}_promoting.txt ]; then
@@ -312,8 +306,7 @@ rm -f /mnt/builds/jenkins/il_virtual_yocto-${BRANCH_NAME}_packaging.txt</command
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>#!/bin/bash
-# -- TEMP 
-exit 0
+
 for i in $(seq 1 3)
    do
       if [ -f /mnt/builds/jenkins/il_stca-${BRANCH_NAME}_promoting.txt ]; then
@@ -341,8 +334,7 @@ rm -f /mnt/builds/jenkins/il_stca-${BRANCH_NAME}_packaging.txt</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>#!/bin/bash
-# -- TEMP 
-exit 0
+
 for i in $(seq 1 3)
    do
       if [ -f /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}_promoting.txt ]; then
@@ -371,8 +363,7 @@ rm -f /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}_packaging.txt</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>#!/bin/bash
-# -- TEMP 
-exit 0
+
 for i in $(seq 1 3)
    do
       if [ -f /mnt/builds/jenkins/il_qemu_yocto-${BRANCH_NAME}_promoting.txt ]; then
@@ -400,8 +391,7 @@ rm -f /mnt/builds/jenkins/il_qemu_yocto-${BRANCH_NAME}_packaging.txt</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>#!/bin/bash
-# -- TEMP 
-exit 0
+
 for i in $(seq 1 3)
    do
       if [ -f /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}_promoting.txt ]; then
@@ -434,8 +424,7 @@ rm -f /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}_packaging.txt
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>#!/bin/bash
-# -- TEMP 
-exit 0
+
 for i in $(seq 1 3)
    do
       if [ -f /mnt/builds/jenkins/il_testmodule_contents-${BRANCH_NAME}_promoting.txt ]; then
@@ -469,9 +458,7 @@ rm $WORKSPACE/build/il/packages/fsimg/*_rawimage.map
 echo &quot;Finished copying all il ci build artifacts&quot;</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command># -- TEMP 
-exit 0
-export DEPENDENT_JOB_NAME=integration_il_centralboot_packaging
+      <command>export DEPENDENT_JOB_NAME=integration_il_centralboot_packaging
 echo &quot;Removing extra l4l7 bundle package: $WORKSPACE/build/il/packages/bundle/l4l7-*..zip&quot;
 rm -rf $WORKSPACE/build/il/packages/bundle/l4l7-*.zip
 if [[ $INCLUDE_APPSEC_PKG == &quot;TRUE&quot; ]]; then 
@@ -482,18 +469,14 @@ fi
 python $WORKSPACE/Build_Scripts/Scripts/ci_run_jenkins_steps.py --createpropfile=yes --runcimaketarballs=no --runsetver=no --runciftpcentralboot=no --runcimakelstarballs=no --runcopyl4l7=$l4l7pkg --createversionfile=no</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command># -- TEMP 
-exit 0
-echo Creating Central Boot image file
+      <command>echo Creating Central Boot image file
 sudo scons target=centralboot_yoctovm packaging=1
 
 echo Create ttwb bundle file
 scons -j0 target=ttwb_pkg</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command># -- TEMP 
-exit 0
-echo &quot;Creating Amara C3 image file&quot;
+      <command>echo &quot;Creating Amara C3 image file&quot;
 if [ $APP_ARCH == &quot;x86_64&quot; ]; then
     sudo scons target=c3_pkg_yocto_vm packaging=1 yocto_ver=${YOCTO_VERSION}
 else
@@ -501,9 +484,7 @@ else
 fi</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command># -- TEMP 
-exit 0
-echo &quot;Copying tmos bundle from vtc job for Avalanche build ...&quot;
+      <command>echo &quot;Copying tmos bundle from vtc job for Avalanche build ...&quot;
 rm -rf $WORKSPACE/build/il/packages/tmos-av
 mkdir $WORKSPACE/build/il/packages/tmos-av
 cp /mnt/builds/jenkins/il_stca-$BRANCH_NAME/build-packaging/bundle/tmos*.zip .
@@ -520,9 +501,7 @@ rm -f $WORKSPACE/tmos-*.zip</command>
 </command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command># -- TEMP 
-exit 0
-echo &quot;Creating place holder &apos;Spirent TestCenter Application.exe&apos;  file ...&quot;
+      <command>echo &quot;Creating place holder &apos;Spirent TestCenter Application.exe&apos;  file ...&quot;
 mkdir -p $WORKSPACE/build/stc/setup
 echo testcenter &gt; $WORKSPACE/build/stc/setup/Spirent\ TestCenter\ Application.exe
 echo testcenter_x64 &gt; $WORKSPACE/build/stc/setup/Spirent\ TestCenter\ Application\ x64.exe
@@ -534,9 +513,7 @@ ln -s $WORKSPACE/ChassisImage/chassis.img.gz $WORKSPACE/build/il/packages/rawimg
 # sudo $WORKSPACE/build/il/scripts/phxbld -j0 amara_yocto</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command># -- TEMP 
-exit 0
-export DEPENDENT_JOB_NAME=integration_il_centralboot_packaging
+      <command>export DEPENDENT_JOB_NAME=integration_il_centralboot_packaging
 echo &quot;Running reversion_il.sh script ...&quot;
 python $WORKSPACE/Build_Scripts/Scripts/ci_run_jenkins_steps.py --runilreversion=yes</command>
     </hudson.tasks.Shell>
@@ -699,6 +676,7 @@ ssh scm@martin.spirentcom.com chmod 777 $BUILD_DIR/mfgbld/*</command>
       <scriptOnlyIfSuccess>true</scriptOnlyIfSuccess>
       <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
       <markBuildUnstable>false</markBuildUnstable>
+      <executeOn>BOTH</executeOn>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.57">
       <recipientList>$DEFAULT_RECIPIENTS</recipientList>
