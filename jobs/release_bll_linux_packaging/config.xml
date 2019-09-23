@@ -236,8 +236,11 @@ c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --c
 c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --createpropfile=yes --runcimaketarballs=yes --runsetver=no --runcopyeattomartin=yes</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>SET SOURCE_OS=EL3LinuxServer&#xd;
-c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --createpropfile=no --runcimakelstarballs=yes --runsetver=no</command>
+      <command>REM -- Per Michelle Bruni (via Ticket ENG0002524 -- 2019-09-13), LabServer tar ball&#xd;
+REM -- is no longer needed for STC releases&#xd;
+&#xd;
+REM SET SOURCE_OS=EL3LinuxServer&#xd;
+REM c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --createpropfile=no --runcimakelstarballs=yes --runsetver=no</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
       <command>setlocal EnableExtensions DisableDelayedExpansion&#xd;
