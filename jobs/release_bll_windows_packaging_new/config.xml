@@ -419,7 +419,7 @@ copy %WORKSPACE%\STAKCommands.beta.Windows.tar.gz %release%\STAKCommands.beta.Wi
     &quot;files&quot;: [
         {
             &quot;pattern&quot;: &quot;$WORKSPACE/bin/Release/Resource.zip&quot;,
-            &quot;target&quot;: &quot;STC/DataModel/Resource.zip&quot;,
+            &quot;target&quot;: &quot;STC/DataModel/Resource-${STC_MAJ_MIN_VERSION}.zip&quot;,
             &quot;flat&quot;: &quot;true&quot;,
             &quot;props&quot;: &quot;STC_MAJ_MIN_VERSION=$STC_MAJ_MIN_VERSION&quot;
         }
