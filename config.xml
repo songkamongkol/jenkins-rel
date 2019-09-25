@@ -144,6 +144,7 @@
             <string>release_upload_stca_stcv_orion</string>
             <string>release_win_bll_copy_to_filer</string>
             <string>release_win_bll_x64_copy_to_filer</string>
+            <string>release_win_bll_x64_tarball_to_filer</string>
             <string>SMT-Regression-SYS-01-Jenkins-smt</string>
             <string>test</string>
             <string>Unset-P4CleanupWorkspace</string>
