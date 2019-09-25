@@ -83,7 +83,7 @@ if %BLL_BUILD_NUMBER% gtr 99 SET FULLVER=%BLL_BUILD_NUMBER%%BRANCH_ID%&#xd;
 echo FULLVER is %FULLVER%&#xd;
 net use K: /delete&#xd;
 net use K: \\10.40.52.42\home\qabuild Spirent8 /USER:SPIRENTCOM\qabuild&#xd;
-set FILER_DIR=K:\TestCenter\2.00\engineering_builds\GUI_BLL64_tmp\%STC_MAJ_MIN_VERSION%.%FULLVER%&#xd;
+set FILER_DIR=K:\TestCenter\2.00\engineering_builds\GUI_BLL64\%STC_MAJ_MIN_VERSION%.%FULLVER%&#xd;
 echo &quot;Copying raw files from %PKG_BUILD_OUTPUT_DIR%\bin\Release_x64 to %FILER_DIR% ...&quot;&#xd;
 mkdir %FILER_DIR%&#xd;
 xcopy %PKG_BUILD_OUTPUT_DIR%\bin\Release_x64\Model %FILER_DIR%\Model /e /i /y&#xd;
