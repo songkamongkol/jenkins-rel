@@ -197,7 +197,7 @@ REM TEMP 7z a %STC_MAJ_MIN_VERSION%.%FULLVER%.tar.gz %STC_MAJ_MIN_VERSION%.%FULL
       <deployPattern></deployPattern>
       <resolvePattern></resolvePattern>
       <matrixParams></matrixParams>
-      <deployBuildInfo>true</deployBuildInfo>
+      <deployBuildInfo>false</deployBuildInfo>
       <includeEnvVars>false</includeEnvVars>
       <envVarsPatterns>
         <includePatterns></includePatterns>
