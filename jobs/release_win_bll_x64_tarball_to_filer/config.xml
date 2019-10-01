@@ -86,13 +86,13 @@ if %BLL_BUILD_NUMBER% gtr 9 SET FULLVER=0%BLL_BUILD_NUMBER%%BRANCH_ID%&#xd;
 if %BLL_BUILD_NUMBER% gtr 99 SET FULLVER=%BLL_BUILD_NUMBER%%BRANCH_ID%&#xd;
 echo FULLVER is %FULLVER%&#xd;
 &#xd;
-REM TEMP del /f /q *.tar.*&#xd;
+del /f /q *.tar.*&#xd;
 &#xd;
 echo &quot;Creating %STC_MAJ_MIN_VERSION%.%FULLVER%.tar from raw files in %PKG_BUILD_OUTPUT_DIR%\bin\Release_x64 ...&quot;&#xd;
 &#xd;
-REM TEMP 7z a -ttar %STC_MAJ_MIN_VERSION%.%FULLVER%.tar %PKG_BUILD_OUTPUT_DIR%\bin\Release_x64\Model %PKG_BUILD_OUTPUT_DIR%\bin\Release_x64\PDUs %PKG_BUILD_OUTPUT_DIR%\bin\Release_x64\RcmDb %PKG_BUILD_OUTPUT_DIR%\bin\Release_x64\Resources %PKG_BUILD_OUTPUT_DIR%\bin\Release_x64\stclib %PKG_BUILD_OUTPUT_DIR%\bin\Release_x64\Templates %PKG_BUILD_OUTPUT_DIR%\bin\Release_x64\Tcl %PKG_BUILD_OUTPUT_DIR%\bin\Release_x64\Python %PKG_BUILD_OUTPUT_DIR%\bin\Release_x64\STAKCommands %PKG_BUILD_OUTPUT_DIR%\bin\Release_x64\STAKvirtualenvs %PKG_BUILD_OUTPUT_DIR%\bin\Release_x64\*.*&#xd;
+7z a -ttar %STC_MAJ_MIN_VERSION%.%FULLVER%.tar %PKG_BUILD_OUTPUT_DIR%\bin\Release_x64\Model %PKG_BUILD_OUTPUT_DIR%\bin\Release_x64\PDUs %PKG_BUILD_OUTPUT_DIR%\bin\Release_x64\RcmDb %PKG_BUILD_OUTPUT_DIR%\bin\Release_x64\Resources %PKG_BUILD_OUTPUT_DIR%\bin\Release_x64\stclib %PKG_BUILD_OUTPUT_DIR%\bin\Release_x64\Templates %PKG_BUILD_OUTPUT_DIR%\bin\Release_x64\Tcl %PKG_BUILD_OUTPUT_DIR%\bin\Release_x64\Python %PKG_BUILD_OUTPUT_DIR%\bin\Release_x64\STAKCommands %PKG_BUILD_OUTPUT_DIR%\bin\Release_x64\STAKvirtualenvs %PKG_BUILD_OUTPUT_DIR%\bin\Release_x64\*.*&#xd;
 &#xd;
-REM TEMP 7z a %STC_MAJ_MIN_VERSION%.%FULLVER%.tar.gz %STC_MAJ_MIN_VERSION%.%FULLVER%.tar&#xd;
+7z a %STC_MAJ_MIN_VERSION%.%FULLVER%.tar.gz %STC_MAJ_MIN_VERSION%.%FULLVER%.tar&#xd;
 </command>
     </hudson.tasks.BatchFile>
   </builders>
