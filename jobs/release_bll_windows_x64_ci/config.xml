@@ -333,6 +333,29 @@ REM rebase.exe -b 0x12000000 -u . *.dll&#xd;
 REM exit /B 0</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
+      <command>if %BUILD_SAVE_PDB% == true (&#xd;
+&#xd;
+net use \\pine.cal.ci.spirentcom.com\builds Sspirent01 /USER:spirent&#xd;
+&#xd;
+cd bin\Release_x64&#xd;
+rmdir /q /s pdb&#xd;
+mkdir pdb&#xd;
+copy *.pdb pdb&#xd;
+del /q pdb\test*.pdb &#xd;
+copy TestCenter*.pdb pdb&#xd;
+&#xd;
+set P4PORT=perforce.spirentcom.com:1666&#xd;
+set P4USER=tableuser&#xd;
+set P4CLIENT=%p4Client%&#xd;
+&quot;C:\Program Files (x86)\Debugging Tools for Windows (x86)\srcsrv\p4index.cmd&quot; -source=%WORKSPACE% -symbols=pdb -debug&#xd;
+&#xd;
+&quot;C:\Program Files (x86)\Debugging Tools for Windows (x86)\symstore&quot; add /f %WORKSPACE%\bin\Release_x64\pdb\*.pdb /s \\pine.cal.ci.spirentcom.com\builds\symbols_x64\rel\testcenter_ci /t SpirentTestCenter&#xd;
+&quot;C:\Program Files (x86)\Debugging Tools for Windows (x86)\symstore&quot; add /f %WORKSPACE%\bin\Release_x64\*.dll /s \\pine.cal.ci.spirentcom.com\builds\symbols_x64\rel\testcenter_ci /t SpirentTestCenter&#xd;
+&#xd;
+rmdir /q /s pdb&#xd;
+)</command>
+    </hudson.tasks.BatchFile>
+    <hudson.tasks.BatchFile>
       <command>python common\idl\crc.py -f bll_idl_crc.txt --desc &quot;%JOB_NAME% %BUILD_NUMBER%&quot;&#xd;
 &#xd;
 if %RUN_BLL_UI_UNITTEST% == true (&#xd;
