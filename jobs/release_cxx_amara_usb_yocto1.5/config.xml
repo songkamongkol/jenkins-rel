@@ -204,6 +204,9 @@ sudo scons target=packageclean
 
 rm -f $WORKSPACE/*.txt
 
+# -- ensure content/Avalanche is synced (there is a known issue with git plugin as sometimes it removes Perforce files in this directory)
+p4 -u scmbuild -p perforce.spirentcom.com:1666 -c jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME} sync -f //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/content/Avalanche/...
+
 # 2016-01-18: Temporary for 4.61, unshelve Ramana&apos;s change to fix AV l4l7vm version issue
 # cp -f /home/spirent/appliance_usb /home/spirent/jenkins-rel/workspace/release_cxx_amara_usb_yocto1.5/build/il/scripts/targets/appliance_usb</command>
     </hudson.tasks.Shell>
