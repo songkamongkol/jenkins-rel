@@ -370,7 +370,7 @@ if(manager.logContains(&quot;.*getFileVer.vbs(.*) (null): The system cannot find
           <configs>
             <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
           </configs>
-          <projects>release_win_bll_x64_copy_to_filer</projects>
+          <projects>release_win_bll_x64_copy_to_filer,release_win_bll_x64_tarball_to_filer</projects>
           <condition>SUCCESS</condition>
           <triggerWithNoParameters>false</triggerWithNoParameters>
           <triggerFromChildProjects>false</triggerFromChildProjects>
