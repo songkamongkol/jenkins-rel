@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>Startup error problem with TestCenter.Windows.tar.gz?&#xd;
-&#xd;
+  <description>Startup error problem with TestCenter.Windows.tar.gz?
+
 Install the latest vcredist from http://www.microsoft.com/download/en/details.aspx?displaylang=en&amp;id=26347</description>
   <keepDependencies>false</keepDependencies>
   <properties>
@@ -47,12 +47,12 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>5.02_rel</defaultValue>
+          <defaultValue>5.03_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
           <description>clean build</description>
-          <defaultValue>false</defaultValue>
+          <defaultValue>true</defaultValue>
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>RUN_BLL_UI_UNITTEST</name>
@@ -72,7 +72,7 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description>major minor version TODO: get this from a file</description>
-          <defaultValue>5.02</defaultValue>
+          <defaultValue>5.03</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -92,7 +92,7 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
         <rmdir>false</rmdir>
         <streamName></streamName>
         <line>LOCAL</line>
-        <view>+//TestCenter/5.02_rel/... //jenkins-${NODE_NAME}-${JOB_NAME}/...
+        <view>+//TestCenter/5.03_rel/... //jenkins-${NODE_NAME}-${JOB_NAME}/...
 -//TestCenter/*/Layer1/... //jenkins-${NODE_NAME}-${JOB_NAME}/TestCenter/*/Layer1/...
 -//TestCenter/*/userdocauto/... //jenkins-${NODE_NAME}-${JOB_NAME}/TestCenter/*/userdocauto/... 
 -//TestCenter/*/sandbox/... //jenkins-${NODE_NAME}-${JOB_NAME}/TestCenter/*/sandbox/...
@@ -112,9 +112,9 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
 -//TestCenter/*/regression/... //jenkins-${NODE_NAME}-${JOB_NAME}/TestCenter/*/regression/...
 -//TestCenter/*/framework/bll/vendor/lib/i386-* //jenkins-${NODE_NAME}-${JOB_NAME}/*/framework/bll/vendor/lib/i386-*
 -//TestCenter/*/ui/common/lib/ACE_wrappers_6.1.6/i386* //jenkins-${NODE_NAME}-${JOB_NAME}/*/ui/common/lib/ACE_wrappers_6.1.6/i386*
-+//TestCenter/5.02_rel/scm/tools/... //jenkins-${NODE_NAME}-${JOB_NAME}/scm/tools/...
-+//TestCenter/5.02_rel/build/il/scripts/... //jenkins-${NODE_NAME}-${JOB_NAME}/build/il/scripts/...
-+//TestCenter/5.02_rel/build/il/configs/scripts/... //jenkins-${NODE_NAME}-${JOB_NAME}/build/il/configs/scripts/...</view>
++//TestCenter/5.03_rel/scm/tools/... //jenkins-${NODE_NAME}-${JOB_NAME}/scm/tools/...
++//TestCenter/5.03_rel/build/il/scripts/... //jenkins-${NODE_NAME}-${JOB_NAME}/build/il/scripts/...
++//TestCenter/5.03_rel/build/il/configs/scripts/... //jenkins-${NODE_NAME}-${JOB_NAME}/build/il/configs/scripts/...</view>
         <type>WRITABLE</type>
         <serverID></serverID>
         <backup>false</backup>
@@ -253,6 +253,7 @@ python ..\..\framework\tools\buildUtil\setver.py --package=TestCenter.Windows.x6
       <scriptOnlyIfSuccess>false</scriptOnlyIfSuccess>
       <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
       <markBuildUnstable>false</markBuildUnstable>
+      <executeOn>BOTH</executeOn>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
     <hudson.plugins.claim.ClaimPublisher plugin="claim@2.9"/>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.57">

@@ -1,7 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<project>
+<?xml version="1.0" encoding="UTF-8"?><project>
   <actions/>
-  <description></description>
+  <description/>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
@@ -13,9 +12,9 @@
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain></teamDomain>
-      <token></token>
-      <room></room>
+      <teamDomain/>
+      <token/>
+      <room/>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -31,8 +30,8 @@
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
-          <description></description>
-          <defaultValue>5.02_rel</defaultValue>
+          <description/>
+          <defaultValue>5.03_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -47,17 +46,17 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>setlocal EnableExtensions DisableDelayedExpansion&#xd;
-&#xd;
-echo &quot;hello&quot; &gt;&gt; test.txt&#xd;
-set branch=%BRANCH_NAME%&#xd;
-set release_64=\\devops-nas-1.cal.ci.spirentcom.com\builds\NoCrypto\%branch%\window\Release_x64&#xd;
-&#xd;
-&#xd;
-rd /s /q &quot;%release_64%&quot;&#xd;
-&#xd;
-if not exist %release_64% ( mkdir %release_64% )&#xd;
-&#xd;
+      <command>setlocal EnableExtensions DisableDelayedExpansion
+
+echo "hello" &gt;&gt; test.txt
+set branch=%BRANCH_NAME%
+set release_64=\\devops-nas-1.cal.ci.spirentcom.com\builds\NoCrypto\%branch%\window\Release_x64
+
+
+rd /s /q "%release_64%"
+
+if not exist %release_64% ( mkdir %release_64% )
+
 REM copy %WORKSPACE%\test.txt %release_64%\test.txt /y</command>
     </hudson.tasks.BatchFile>
   </builders>
