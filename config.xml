@@ -119,6 +119,7 @@
             <string>initiate_filecatalyst_transfer</string>
             <string>release_bll_linux_64_packaging</string>
             <string>release_bll_linux_packaging</string>
+            <string>release_bll_linux_packaging_backup</string>
             <string>release_bll_linux_rpm_packaging</string>
             <string>release_bll_linux_x64_client_packaging</string>
             <string>release_bll_linux_x86_client_packaging</string>
