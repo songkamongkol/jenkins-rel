@@ -207,47 +207,21 @@ python $WORKSPACE/Build_Scripts/Scripts/ci_run_jenkins_steps.py --updatepkgindex
 
 </command>
     </hudson.tasks.Shell>
-    <hudson.tasks.BatchFile>
-      <command>cd Spirent_TestCenter_Application_Linux_Server&#xd;
-attrib /s -r *&#xd;
-&#xd;
-if &quot;%BLL_BUILD_NUMBER%&quot;==&quot;BAD_BUILD_NUMBER&quot; SET BLL_BUILD_NUMBER=%BUILD_NUMBER%&#xd;
-echo BLL_BUILD_NUMBER is %BLL_BUILD_NUMBER%&#xd;
-SET FULLVER=00%BLL_BUILD_NUMBER%6&#xd;
-if %BLL_BUILD_NUMBER% gtr 9 SET FULLVER=0%BLL_BUILD_NUMBER%6&#xd;
-if %BLL_BUILD_NUMBER% gtr 99 SET FULLVER=%BLL_BUILD_NUMBER%6&#xd;
-echo FULLVER is %FULLVER%&#xd;
-xcopy &quot;%WORKSPACE%\Extreme Automation Toolkit - Linux&quot; &quot;\\martin\archive\pv\TestCenter\%STC_MAJ_MIN_VERSION%\Engineering_Builds\GUI_BLL\%STC_MAJ_MIN_VERSION%.%FULLVER%\Extreme Automation Toolkit - Linux&quot; /i /e /Y /H&#xd;
-&#xd;
-cd ..&#xd;
-echo OUTPUT_DIR=\\\\martin\\archive\\pv\\TestCenter\\%STC_MAJ_MIN_VERSION%\\Engineering_Builds\\GUI_BLL\\%STC_MAJ_MIN_VERSION%.%FULLVER%\\tar &gt; param.txt</command>
-    </hudson.tasks.BatchFile>
-    <hudson.tasks.BatchFile>
-      <command>SET SOURCE_OS=EL3Linux&#xd;
-SET DEPENDENT_JOB_NAME=%JOB_NAME%&#xd;
-c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --createpropfile=no --runsetver=no --runcopyeattomartin=no --updatepkgindextcl=yes --updatespirenttestcentertcl=yes --updatestclibtcl=yes --updategemspecversion=yes --runcimaketarballs=no --updateilversionxml=yes --updatemagellanversion=yes&#xd;
-&#xd;
-c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --createpropfile=yes --runcimaketarballs=yes --runsetver=no --runcopyeattomartin=yes</command>
-    </hudson.tasks.BatchFile>
-    <hudson.tasks.BatchFile>
-      <command>REM -- Per Michelle Bruni (via Ticket ENG0002524 -- 2019-09-13), LabServer tar ball&#xd;
-REM -- is no longer needed for STC releases&#xd;
-&#xd;
-REM SET SOURCE_OS=EL3LinuxServer&#xd;
-REM c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --createpropfile=no --runcimakelstarballs=yes --runsetver=no</command>
-    </hudson.tasks.BatchFile>
-    <hudson.tasks.BatchFile>
-      <command>setlocal EnableExtensions DisableDelayedExpansion&#xd;
-&#xd;
-set branch=%STC_MAJ_MIN_VERSION%&#xd;
-set release=\\devops-nas-1.cal.ci.spirentcom.com\builds\NoCrypto\%branch%\linux\Release&#xd;
-&#xd;
-rd /s /q &quot;%release%&quot;&#xd;
-&#xd;
-if not exist %release% ( mkdir %release% )&#xd;
-&#xd;
-copy %WORKSPACE%\TestCenter.Linux.tar.gz %release%\TestCenter.Linux.tar.gz /y</command>
-    </hudson.tasks.BatchFile>
+    <hudson.tasks.Shell>
+      <command>python $WORKSPACE/Build_Scripts/Scripts/ci_run_jenkins_steps.py --runcimaketarballsx86=yes</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command># setlocal EnableExtensions DisableDelayedExpansion
+
+# set branch=%STC_MAJ_MIN_VERSION%
+# set release=\\devops-nas-1.cal.ci.spirentcom.com\builds\NoCrypto\%branch%\linux\Release
+
+# rd /s /q &quot;%release%&quot;
+
+# if not exist %release% ( mkdir %release% )
+
+# . copy %WORKSPACE%\TestCenter.Linux.tar.gz %release%\TestCenter.Linux.tar.gz /y</command>
+    </hudson.tasks.Shell>
   </builders>
   <publishers>
     <hudson.plugins.logparser.LogParserPublisher plugin="log-parser@2.0">
