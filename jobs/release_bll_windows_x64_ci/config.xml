@@ -175,7 +175,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>del BLL_x64_changelist_*.txt Magellan_*end_Build_*.txt&#xd;
+      <command>del BLL_x64_changelist_*.txt Magellan_*end_Build_*.txt archangel_version_*.txt&#xd;
 echo %P4_CHANGELIST% %JOB_NAME% %BUILD_NUMBER% &gt; BLL_x64_changelist_%P4_CHANGELIST%.txt&#xd;
 python bll_cleanuptmps.py</command>
     </hudson.tasks.BatchFile>
