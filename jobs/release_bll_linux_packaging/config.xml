@@ -169,7 +169,8 @@ rm -f $WORKSPACE/BUILD_*.txt
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.Shell>
-      <command>tar xvfz TestCenter.Linux.tar.gz</command>
+      <command>tar xvfz TestCenter.Linux.tar.gz
+chmod -R u+w Spirent_TestCenter_Application_Linux_Server/</command>
     </hudson.tasks.Shell>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
       <project>release_results_reporter_windows_ci</project>
