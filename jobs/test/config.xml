@@ -31,7 +31,7 @@
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description/>
-          <defaultValue>5.03_rel</defaultValue>
+          <defaultValue>5.04_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
