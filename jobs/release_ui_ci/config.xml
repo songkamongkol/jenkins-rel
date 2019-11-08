@@ -373,7 +373,7 @@ rd /s /q %modified%\trafficcenter-app&#xd;
 rd /s /q %modified%\userdocauto&#xd;
 del /f /q %modified%\*.*&#xd;
 echo 3LoQdl*vYiz3|p4 -u scmbuild -p perforce.spirentcom.com:1666 login&#xd;
-p4 -u scmbuild -p perforce.spirentcom.com:1666 -c jenkins-%NODE_NAME%-%JOB_NAME% sync //jenkins-%NODE_NAME%-%JOB_NAME%-%BRANCH_NAME%/...#none&#xd;
+p4 -u scmbuild -p perforce.spirentcom.com:1666 -c jenkins-%NODE_NAME%-%JOB_NAME% sync //jenkins-%NODE_NAME%-%JOB_NAME%/...#none&#xd;
 )</command>
         </hudson.tasks.BatchFile>
       </buildSteps>
