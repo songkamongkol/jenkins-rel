@@ -97,7 +97,7 @@
         <hudson.model.StringParameterDefinition>
           <name>ARCHANGEL_PATH</name>
           <description>Path to archangle artifact in Artifactory (https://artifactory.srv.orionprod.net)</description>
-          <defaultValue>stc/archangel/archangel-publish/release/testcenter-v5.04/318/enhancedl47-win32.tar.gz</defaultValue>
+          <defaultValue>stc/archangel/archangel-publish/release/testcenter-v5.04/324/enhancedl47-win32.tar.gz</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
