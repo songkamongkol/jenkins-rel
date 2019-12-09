@@ -1,7 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<project>
+<?xml version="1.0" encoding="UTF-8"?><project>
   <actions/>
-  <description></description>
+  <description/>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
@@ -21,9 +20,9 @@
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain></teamDomain>
-      <token></token>
-      <room></room>
+      <teamDomain/>
+      <token/>
+      <room/>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -39,8 +38,8 @@
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
-          <description></description>
-          <defaultValue>5.04_rel</defaultValue>
+          <description/>
+          <defaultValue>5.05_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -50,7 +49,7 @@
     <workspace class="org.jenkinsci.plugins.p4.workspace.ManualWorkspaceImpl">
       <charset>none</charset>
       <pinHost>false</pinHost>
-      <name>jenkins-${NODE_NAME}-${JOB_NAME}-5.04_rel</name>
+      <name>jenkins-${NODE_NAME}-${JOB_NAME}-5.05_rel</name>
       <spec>
         <allwrite>false</allwrite>
         <clobber>false</clobber>
@@ -58,30 +57,30 @@
         <locked>false</locked>
         <modtime>false</modtime>
         <rmdir>false</rmdir>
-        <streamName></streamName>
+        <streamName/>
         <line>LOCAL</line>
-        <view>+//TestCenter/5.04_rel/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.04_rel/...
--//TestCenter/*/sandbox/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.04_rel/*/sandbox/...
--//TestCenter/*/.../WebHelp/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.04_rel/*/.../WebHelp/...
--//TestCenter/*/Bakeoff_TestCaseScripts/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.04_rel/*/Bakeoff_TestCaseScripts/... 
--//TestCenter/*/other/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.04_rel/*/other/...
--//TestCenter/*/documents/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.04_rel/*/documents/...
--//TestCenter/*/schedules/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.04_rel/*/schedules/...
--//TestCenter/*/scm/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.04_rel/*/scm/...
--//TestCenter/*/dmcp/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.04_rel/*/dmcp/...
--//TestCenter/*/regression/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.04_rel/*/regression/... 
--//TestCenter/*/userdocauto/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.04_rel/*/userdocauto/...
--//TestCenter/*/common/lib/boost_1_34_0/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.04_rel/*/common/lib/boost_1_34_0/...
--//TestCenter/*/framework/ui/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.04_rel/*/framework/ui/... 
--//TestCenter/*/content/.../ui/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.04_rel/*/content/.../ui/...
--//TestCenter/*/.../bll/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.04_rel/*/.../bll/...
-+//TestCenter/5.04_rel/framework/bll/base/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.04_rel/framework/bll/base/...
-+//TestCenter/5.04_rel/framework/bll/unittestdrv/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.04_rel/framework/bll/unittestdrv/...
-+//TestCenter/5.04_rel/framework/bll/vendor/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.04_rel/framework/bll/vendor/...
-//TARDIS/avalanche_release/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.04_rel/content/traffic/l4l7vm/...
-//TARDIS/Studio_release/avanext/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.04_rel/content/traffic/studio_perf/avanext/...</view>
+        <view>+//TestCenter/5.05_rel/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.05_rel/...
+-//TestCenter/*/sandbox/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.05_rel/*/sandbox/...
+-//TestCenter/*/.../WebHelp/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.05_rel/*/.../WebHelp/...
+-//TestCenter/*/Bakeoff_TestCaseScripts/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.05_rel/*/Bakeoff_TestCaseScripts/... 
+-//TestCenter/*/other/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.05_rel/*/other/...
+-//TestCenter/*/documents/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.05_rel/*/documents/...
+-//TestCenter/*/schedules/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.05_rel/*/schedules/...
+-//TestCenter/*/scm/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.05_rel/*/scm/...
+-//TestCenter/*/dmcp/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.05_rel/*/dmcp/...
+-//TestCenter/*/regression/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.05_rel/*/regression/... 
+-//TestCenter/*/userdocauto/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.05_rel/*/userdocauto/...
+-//TestCenter/*/common/lib/boost_1_34_0/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.05_rel/*/common/lib/boost_1_34_0/...
+-//TestCenter/*/framework/ui/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.05_rel/*/framework/ui/... 
+-//TestCenter/*/content/.../ui/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.05_rel/*/content/.../ui/...
+-//TestCenter/*/.../bll/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.05_rel/*/.../bll/...
++//TestCenter/5.05_rel/framework/bll/base/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.05_rel/framework/bll/base/...
++//TestCenter/5.05_rel/framework/bll/unittestdrv/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.05_rel/framework/bll/unittestdrv/...
++//TestCenter/5.05_rel/framework/bll/vendor/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.05_rel/framework/bll/vendor/...
+//TARDIS/avalanche_release/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.05_rel/content/traffic/l4l7vm/...
+//TARDIS/Studio_release/avanext/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.05_rel/content/traffic/studio_perf/avanext/...</view>
         <type>WRITABLE</type>
-        <serverID></serverID>
+        <serverID/>
         <backup>false</backup>
       </spec>
     </workspace>
@@ -90,7 +89,7 @@
       <force>false</force>
       <modtime>false</modtime>
       <quiet>true</quiet>
-      <pin></pin>
+      <pin/>
     </populate>
   </scm>
   <assignedNode>ilpkg-02</assignedNode>
@@ -150,7 +149,7 @@ export rev=`head -1 $WORKSPACE/framework/il/kernel/yocto/revision.hg`
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern></attachmentsPattern>
+            <attachmentsPattern/>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -166,7 +165,7 @@ export rev=`head -1 $WORKSPACE/framework/il/kernel/yocto/revision.hg`
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern></attachmentsPattern>
+            <attachmentsPattern/>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -182,7 +181,7 @@ export rev=`head -1 $WORKSPACE/framework/il/kernel/yocto/revision.hg`
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern></attachmentsPattern>
+            <attachmentsPattern/>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -192,12 +191,12 @@ export rev=`head -1 $WORKSPACE/framework/il/kernel/yocto/revision.hg`
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern></attachmentsPattern>
-      <presendScript></presendScript>
-      <postsendScript></postsendScript>
+      <attachmentsPattern/>
+      <presendScript/>
+      <postsendScript/>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
-      <replyTo></replyTo>
+      <replyTo/>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
