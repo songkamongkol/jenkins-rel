@@ -666,7 +666,7 @@ rsync -avz $BUILD_OUTPUT_DIR/build/il/packages/fsimg/stca* scm@martin.spirentcom
 rsync -avz $BUILD_OUTPUT_DIR/build/il/packages/fsimg/yocto* scm@martin.spirentcom.com:$BUILD_DIR/fsimg
 rsync -avz --exclude=rawimage.map --exclude=qemu*.img.gz $BUILD_OUTPUT_DIR/build/il/packages/rawimg scm@martin.spirentcom.com:$BUILD_DIR
 rsync -avz --exclude=rpm* --exclude=spec* $BUILD_OUTPUT_DIR/build/il/packages/stca scm@martin.spirentcom.com:$BUILD_DIR
-rsync -avz  $BUILD_OUTPUT_DIR/build/il/packages/mfgbld scm@martin.spirentcom.com:$BUILD_DIR
+# rsync -avz  $BUILD_OUTPUT_DIR/build/il/packages/mfgbld scm@martin.spirentcom.com:$BUILD_DIR
 rsync -avz  $BUILD_OUTPUT_DIR/build/il/packages/bundle scm@martin.spirentcom.com:$BUILD_DIR
 ssh scm@martin.spirentcom.com mkdir -p $BUILD_DIR/chassisvm
 ssh scm@martin.spirentcom.com chmod 777 $BUILD_DIR/mfgbld
