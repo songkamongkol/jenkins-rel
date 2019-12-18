@@ -79,6 +79,7 @@
             <string>release_ui_x64_ci</string>
             <string>release_webhelp</string>
             <string>test-meenu</string>
+            <string>update_revanche_artifactory_retention</string>
           </jobNames>
           <jobFilters/>
           <columns>
