@@ -41,7 +41,7 @@
     <workspace class="org.jenkinsci.plugins.p4.workspace.ManualWorkspaceImpl">
       <charset>none</charset>
       <pinHost>false</pinHost>
-      <name>jenkins-${NODE_NAME}-${JOB_NAME}</name>
+      <name>jenkins-${NODE_NAME}-${JOB_NAME}-integration</name>
       <spec>
         <allwrite>false</allwrite>
         <clobber>false</clobber>
