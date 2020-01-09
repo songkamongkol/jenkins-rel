@@ -1,5 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<project>
+<?xml version="1.0" encoding="UTF-8"?><project>
   <actions/>
   <description>This job is watching ipq_version.txt file in releaes branch such as //TestCenter/5.05_rel/framework/il/platform/fpga/testmodule/ccpu/revanche/ipq_version.txt and will run this job to retain those versions in artifactory</description>
   <keepDependencies>false</keepDependencies>
@@ -21,9 +20,9 @@
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain></teamDomain>
-      <token></token>
-      <room></room>
+      <teamDomain/>
+      <token/>
+      <room/>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -41,7 +40,7 @@
     <workspace class="org.jenkinsci.plugins.p4.workspace.ManualWorkspaceImpl">
       <charset>none</charset>
       <pinHost>false</pinHost>
-      <name>jenkins-${NODE_NAME}-${JOB_NAME}-5.05_rel</name>
+      <name>jenkins-${NODE_NAME}-${JOB_NAME}-5.06_rel</name>
       <spec>
         <allwrite>false</allwrite>
         <clobber>false</clobber>
@@ -49,11 +48,11 @@
         <locked>false</locked>
         <modtime>false</modtime>
         <rmdir>false</rmdir>
-        <streamName></streamName>
+        <streamName/>
         <line>LOCAL</line>
-        <view>//TestCenter/5.05_rel/framework/il/platform/fpga/testmodule/ccpu/revanche/ipq_version.txt //jenkins-${NODE_NAME}-${JOB_NAME}-5.05_rel/framework/il/platform/fpga/testmodule/ccpu/revanche/ipq_version.txt</view>
+        <view>//TestCenter/5.06_rel/framework/il/platform/fpga/testmodule/ccpu/revanche/ipq_version.txt //jenkins-${NODE_NAME}-${JOB_NAME}-5.06_rel/framework/il/platform/fpga/testmodule/ccpu/revanche/ipq_version.txt</view>
         <type>WRITABLE</type>
-        <serverID></serverID>
+        <serverID/>
         <backup>false</backup>
       </spec>
     </workspace>
@@ -62,7 +61,7 @@
       <force>false</force>
       <modtime>false</modtime>
       <quiet>true</quiet>
-      <pin></pin>
+      <pin/>
       <parallel>
         <enable>false</enable>
         <threads>4</threads>
@@ -91,7 +90,7 @@
 echo 
 REVANCHE_BUILD_NUMBER=`cat ${WORKSPACE}/framework/il/platform/fpga/testmodule/ccpu/revanche/ipq_version.txt`
 echo $REVANCHE_BUILD_NUMBER
-filename=&quot;revanche.txt&quot;
+filename="revanche.txt"
 # -- add the new build to the list of build to be retained
 echo $REVANCHE_BUILD_NUMBER &gt;&gt; ${filename}
 
@@ -103,26 +102,26 @@ mv tmp.txt ${filename}
 # -- create a variable from the file which contains
 # -- list of builds to be retained
 readarray builds &lt; ${filename}
-export build_list=&quot;[&quot;
-for i in &quot;${!builds[@]}&quot;
+export build_list="["
+for i in "${!builds[@]}"
 do
     bldnum=${builds[i]}
     bldnum=`echo ${bldnum}`
     if [ $i = 0 ]; then
         build_list=${build_list}${bldnum}
     else
-        build_list=${build_list}&quot;,&quot;${bldnum}
+        build_list=${build_list}","${bldnum}
     fi
 done
-build_list=${build_list}&quot;]&quot;
+build_list=${build_list}"]"
 
 echo $build_list
 
 # Trigger retention policy endpoint via curl
-AF_URL=&quot;https://artifactory.cal.ci.spirentcom.com/artifactory/api/build/retention/revanche-ipq-fw-build?async=true&quot;
-BODY=&quot;{\&quot;deleteBuildArtifacts\&quot;:true,\&quot;count\&quot;:10,\&quot;buildNumbersNotToBeDiscarded\&quot;:${build_list}}&quot;
+AF_URL="https://artifactory.cal.ci.spirentcom.com/artifactory/api/build/retention/revanche-ipq-fw-build?async=true"
+BODY="{\"deleteBuildArtifacts\":true,\"count\":10,\"buildNumbersNotToBeDiscarded\":${build_list}}"
 
-curl -XPOST -ubuilder:${AF_PASSWORD} -H&quot;Content-Type: application/json&quot; -d${BODY} &quot;$AF_URL&quot;</command>
+curl -XPOST -ubuilder:${AF_PASSWORD} -H"Content-Type: application/json" -d${BODY} "$AF_URL"</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers/>
