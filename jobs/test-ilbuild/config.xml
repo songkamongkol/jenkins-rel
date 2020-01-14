@@ -57,7 +57,7 @@ Archive il_virtual_*.tar&lt;br&gt;&#xd;
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
           <description>clean build</description>
-          <defaultValue>false</defaultValue>
+          <defaultValue>true</defaultValue>
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>UTEST_OUTPUT_DIR</name>
@@ -86,7 +86,7 @@ Archive il_virtual_*.tar&lt;br&gt;&#xd;
   <quietPeriod>45</quietPeriod>
   <assignedNode>ilbuild-04</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>true</disabled>
+  <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
