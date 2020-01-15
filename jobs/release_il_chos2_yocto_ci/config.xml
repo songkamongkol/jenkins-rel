@@ -55,7 +55,7 @@ Wait 10 minutes&lt;br&gt;</description>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
           <description>clean build</description>
-          <defaultValue>true</defaultValue>
+          <defaultValue>false</defaultValue>
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>UTEST_OUTPUT_DIR</name>
@@ -65,7 +65,7 @@ Wait 10 minutes&lt;br&gt;</description>
         <hudson.model.BooleanParameterDefinition>
           <name>BUILD_IMAGE</name>
           <description>build image</description>
-          <defaultValue>true</defaultValue>
+          <defaultValue>false</defaultValue>
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
