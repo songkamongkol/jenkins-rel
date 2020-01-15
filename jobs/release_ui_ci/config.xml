@@ -57,12 +57,12 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
         <hudson.model.BooleanParameterDefinition>
           <name>BUILD_RUN_UNITTEST</name>
           <description>run unittest</description>
-          <defaultValue>false</defaultValue>
+          <defaultValue>true</defaultValue>
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>BUILD_PACKAGE_BUILD</name>
           <description>package build</description>
-          <defaultValue>false</defaultValue>
+          <defaultValue>true</defaultValue>
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BUILD_OUTPUT_DIR</name>
