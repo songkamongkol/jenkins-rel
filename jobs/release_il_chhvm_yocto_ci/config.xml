@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>CI IL Build job for chassis VM yocto:&lt;br&gt;
-$WORKSPACE/build/il/scripts/phxbld -j32 c3_y3&lt;br&gt;
-
+  <description>CI IL Build job for chassis VM yocto:&lt;br&gt;&#xd;
+$WORKSPACE/build/il/scripts/phxbld -j32 c3_y3&lt;br&gt;&#xd;
+&#xd;
 The latest build is stored at \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_chhvm_yocto\build-latest</description>
   <keepDependencies>false</keepDependencies>
   <properties>
@@ -53,7 +53,7 @@ The latest build is stored at \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
           <description>clean build</description>
-          <defaultValue>true</defaultValue>
+          <defaultValue>false</defaultValue>
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>UTEST_OUTPUT_DIR</name>
@@ -233,7 +233,6 @@ cp -r $WORKSPACE/build/il/packages/fsimg/*chassis_installer* $STORAGE_DIR/fsimg<
       <scriptOnlyIfSuccess>true</scriptOnlyIfSuccess>
       <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
       <markBuildUnstable>false</markBuildUnstable>
-      <executeOn>BOTH</executeOn>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
     <hudson.plugins.claim.ClaimPublisher plugin="claim@2.9"/>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.57">
