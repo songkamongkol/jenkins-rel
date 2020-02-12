@@ -115,7 +115,7 @@ export P4USER=scmbuild
 export P4PORT=perforce.spirentcom.com:1666
 p4 login &lt; /home/spirent/.p4passwd
 
-p4 -c jenkins-${NODE_NAME}-${JOB_NAME} sync -f $WORKSPACE/content/Avalanche/revision-wawr.git
+p4 -c jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME} sync -f $WORKSPACE/content/Avalanche/revision-wawr.git
 
 # export rev=`head -1 $WORKSPACE/framework/il/kernel/yocto/revision.hg`
 # --- sync the latest crosstools
