@@ -94,6 +94,11 @@ Archive il_virtual_*.tar&lt;br&gt;&#xd;
           <description>1.0 or 1.5</description>
           <defaultValue>1.5</defaultValue>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>WAWR_GIT_BRANCH</name>
+          <description></description>
+          <defaultValue>stc_nova_master</defaultValue>
+        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
