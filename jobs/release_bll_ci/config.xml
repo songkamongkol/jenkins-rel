@@ -55,7 +55,7 @@
         <hudson.model.StringParameterDefinition>
           <name>ARCHANGEL_PATH</name>
           <description></description>
-          <defaultValue>stc/archangel/archangel-publish/release/testcenter-v5.06/368/enhancedl47-win32.tar.gz</defaultValue>
+          <defaultValue>stc/archangel/archangel-publish/release/testcenter-v5.07/368/enhancedl47-win32.tar.gz</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
