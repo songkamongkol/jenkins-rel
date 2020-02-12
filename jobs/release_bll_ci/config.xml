@@ -52,6 +52,11 @@
           <description>Path to magellan backend artifact (orion-res) in Artifactory (https://artifactory.srv.orionprod.net)</description>
           <defaultValue>stc/temeva/magellan-backend-commit/668</defaultValue>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>ARCHANGEL_PATH</name>
+          <description></description>
+          <defaultValue>stc/archangel/archangel-publish/release/testcenter-v5.06/368/enhancedl47-win32.tar.gz</defaultValue>
+        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
