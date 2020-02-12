@@ -109,12 +109,30 @@
     <hudson.tasks.Shell>
       <command>#!/bin/bash -xe
 
-export rev=`head -1 $WORKSPACE/framework/il/kernel/yocto/revision.hg`
+# --- sync the latest crosstools
+cd /export/crosstools
+export P4USER=scmbuild
+export P4PORT=perforce.spirentcom.com:1666
+p4 login &lt; /home/spirent/.p4passwd
+
+p4 -c jenkins-${NODE_NAME}-${JOB_NAME} sync -f $WORKSPACE/content/Avalanche/revision-wawr.git
+
+# export rev=`head -1 $WORKSPACE/framework/il/kernel/yocto/revision.hg`
 # --- sync the latest crosstools
 # cd /export/crosstools
 # p4 -u scmbuild -p perforce.spirentcom.com:1666 -c ilpkg-02 sync ...
 # cd /export/crosstools/yocto-1.0
 # sudo python install_yocto_crosstools.py -r $rev
+
+# -- yocto 1.5 environment
+export FILE=$WORKSPACE/content/Avalanche/revision-wawr.git
+if [ -f $FILE ];
+then
+   export wawr_git_branch=`head -1 $FILE`
+   echo &quot;WAWR_GIT_BRANCH=${wawr_git_branch}&quot; &gt; $WORKSPACE/wawr_git_branch.txt
+
+fi
+
 </command>
     </hudson.tasks.Shell>
   </builders>
@@ -210,6 +228,25 @@ export rev=`head -1 $WORKSPACE/framework/il/kernel/yocto/revision.hg`
         <completeBuild>true</completeBuild>
       </threshold>
     </hudson.tasks.BuildTrigger>
+    <hudson.plugins.parameterizedtrigger.BuildTrigger plugin="parameterized-trigger@2.35.2">
+      <configs>
+        <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+          <configs>
+            <hudson.plugins.parameterizedtrigger.FileBuildParameters>
+              <propertiesFile>$WORKSPACE/wawr_git_branch.txt</propertiesFile>
+              <failTriggerOnMissing>false</failTriggerOnMissing>
+              <textParamValueOnNewLine>false</textParamValueOnNewLine>
+              <useMatrixChild>false</useMatrixChild>
+              <onlyExactRuns>false</onlyExactRuns>
+            </hudson.plugins.parameterizedtrigger.FileBuildParameters>
+          </configs>
+          <projects>release_il_changeling_yocto_ci,release_il_chos2_yocto_ci,release_il_testmodule_contents_ci,release_il_changeling_all_yocto_ci,release_il_virtual_yocto_ci,release_il_stca_ci,release_il_qemu_yocto_ci,release_il_lxc_yocto_ci,release_il_chhvm_yocto_ci</projects>
+          <condition>SUCCESS</condition>
+          <triggerWithNoParameters>false</triggerWithNoParameters>
+          <triggerFromChildProjects>false</triggerFromChildProjects>
+        </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+      </configs>
+    </hudson.plugins.parameterizedtrigger.BuildTrigger>
   </publishers>
   <buildWrappers>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.8"/>
