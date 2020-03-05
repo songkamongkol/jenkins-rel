@@ -382,7 +382,7 @@ cp $WORKSPACE/il_idl_crc.txt $STORAGE_DIR
     &quot;files&quot;: [
         {
             &quot;pattern&quot;: &quot;${APPSEC_ARTIFACT_PATH}/*.tgz&quot;,
-            &quot;target&quot;: &quot;$WORKSPACE/l4l7lxc&quot;,
+            &quot;target&quot;: &quot;$WORKSPACE/l4l7lxc/&quot;,
             &quot;flat&quot;: &quot;true&quot;
         }
     ]
