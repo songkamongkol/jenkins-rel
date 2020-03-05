@@ -99,6 +99,11 @@ Archive il_virtual_*.tar&lt;br&gt;&#xd;
           <description></description>
           <defaultValue>stc_nova_master</defaultValue>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>APPSEC_ARTIFACT_PATH</name>
+          <description></description>
+          <defaultValue>appsec/5.06</defaultValue>
+        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
@@ -237,7 +242,7 @@ export VM_PROFILE=all
 if [[ $INCLUDE_APPSEC_PKG == &quot;TRUE&quot; ]]; then 
     $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_yocto_tardis3_mix
 
-    l4l7lxc_storage=/mnt/builds/jenkins/l4l7lxc
+    l4l7lxc_storage=$WORKSPACE/l4l7lxc
     mkdir -p $WORKSPACE/build/il/packages/rawimg
     l4l7lxc_buildno=$(ls ${l4l7lxc_storage}/l4l7lxc*.tgz | awk -F &apos;-&apos; &apos;{print $2}&apos; | sed &apos;s/\.tgz//g&apos;)
     cp -f ${l4l7lxc_storage}/*.tgz $WORKSPACE/build/il/packages/rawimg
@@ -339,6 +344,66 @@ cp $WORKSPACE/il_idl_crc.txt $STORAGE_DIR
   </publishers>
   <buildWrappers>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.8"/>
+    <org.jfrog.hudson.generic.ArtifactoryGenericConfigurator plugin="artifactory@2.13.1">
+      <details>
+        <artifactoryName>artifactory.cal.ci.spirentcom.com</artifactoryName>
+        <artifactoryUrl>https://artifactory.cal.ci.spirentcom.com/artifactory</artifactoryUrl>
+        <stagingPlugin/>
+      </details>
+      <resolverDetails>
+        <artifactoryName>artifactory.cal.ci.spirentcom.com</artifactoryName>
+        <artifactoryUrl>https://artifactory.cal.ci.spirentcom.com/artifactory</artifactoryUrl>
+        <stagingPlugin/>
+      </resolverDetails>
+      <deployerCredentialsConfig>
+        <credentials>
+          <username></username>
+          <password></password>
+        </credentials>
+        <credentialsId></credentialsId>
+        <overridingCredentials>false</overridingCredentials>
+        <ignoreCredentialPluginDisabled>false</ignoreCredentialPluginDisabled>
+      </deployerCredentialsConfig>
+      <resolverCredentialsConfig>
+        <credentials>
+          <username></username>
+          <password></password>
+        </credentials>
+        <credentialsId></credentialsId>
+        <overridingCredentials>false</overridingCredentials>
+        <ignoreCredentialPluginDisabled>false</ignoreCredentialPluginDisabled>
+      </resolverCredentialsConfig>
+      <useSpecs>true</useSpecs>
+      <uploadSpec>
+        <spec></spec>
+      </uploadSpec>
+      <downloadSpec>
+        <spec>{
+    &quot;files&quot;: [
+        {
+            &quot;pattern&quot;: &quot;${APPSEC_ARTIFACT_PATH}/*.tgz&quot;,
+            &quot;target&quot;: &quot;$WORKSPACE/l4l7lxc&quot;,
+            &quot;flat&quot;: &quot;true&quot;
+        }
+    ]
+}</spec>
+      </downloadSpec>
+      <deployPattern></deployPattern>
+      <resolvePattern></resolvePattern>
+      <matrixParams></matrixParams>
+      <deployBuildInfo>true</deployBuildInfo>
+      <includeEnvVars>false</includeEnvVars>
+      <envVarsPatterns>
+        <includePatterns></includePatterns>
+        <excludePatterns>*password*,*secret*,*key*</excludePatterns>
+      </envVarsPatterns>
+      <discardOldBuilds>false</discardOldBuilds>
+      <discardBuildArtifacts>true</discardBuildArtifacts>
+      <asyncBuildRetention>false</asyncBuildRetention>
+      <multiConfProject>false</multiConfProject>
+      <customBuildName></customBuildName>
+      <overrideBuildName>false</overrideBuildName>
+    </org.jfrog.hudson.generic.ArtifactoryGenericConfigurator>
     <EnvInjectBuildWrapper plugin="envinject@1.89">
       <info>
         <propertiesContent>APPSEC_GIT_REPO=ssh://git@git-appsec.cal.ci.spirentcom.com:2222/git-server/repos</propertiesContent>
