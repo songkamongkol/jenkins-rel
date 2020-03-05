@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>Startup error problem with TestCenter.Windows.tar.gz?
-
+  <description>Startup error problem with TestCenter.Windows.tar.gz?&#xd;
+&#xd;
 Install the latest vcredist from http://www.microsoft.com/download/en/details.aspx?displaylang=en&amp;id=26347</description>
   <keepDependencies>false</keepDependencies>
   <properties>
@@ -140,12 +140,7 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>true</blockBuildWhenUpstreamBuilding>
-  <triggers>
-    <hudson.triggers.SCMTrigger>
-      <spec>* * * * *</spec>
-      <ignorePostCommitHooks>false</ignorePostCommitHooks>
-    </hudson.triggers.SCMTrigger>
-  </triggers>
+  <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
