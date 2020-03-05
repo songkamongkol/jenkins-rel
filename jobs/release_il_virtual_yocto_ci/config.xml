@@ -413,7 +413,8 @@ cp $WORKSPACE/il_idl_crc.txt $STORAGE_DIR
     <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
       <buildSteps>
         <hudson.tasks.Shell>
-          <command># remove files using sudo for files that may be
+          <command>rm -rf $WORKSPACE/l4l7lxc
+# remove files using sudo for files that may be
 # owned by root
 if [[ $P4CLEANWORKSPACE = &quot;true&quot; ]]; then
     if [ ! -z &quot;$WORKSPACE&quot; ]; then
