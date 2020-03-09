@@ -244,7 +244,8 @@ if [[ $INCLUDE_APPSEC_PKG == &quot;TRUE&quot; ]]; then
 
     l4l7lxc_storage=$WORKSPACE/l4l7lxc
     mkdir -p $WORKSPACE/build/il/packages/rawimg
-    l4l7lxc_buildno=$(ls ${l4l7lxc_storage}/l4l7lxc*.tgz | awk -F &apos;-&apos; &apos;{print $2}&apos; | sed &apos;s/\.tgz//g&apos;)
+    l4l7lxc_filename=$(basename `ls ${l4l7lxc_storage}/l4l7lxc*.tgz`)
+    l4l7lxc_buildno=$(echo $l4l7lxc_filename | awk -F &apos;-&apos; &apos;{print $2}&apos; | sed &apos;s/\.tgz//g&apos;)
     cp -f ${l4l7lxc_storage}/*.tgz $WORKSPACE/build/il/packages/rawimg
 
     $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 av_version=${l4l7lxc_buildno} appliance_packaging  
