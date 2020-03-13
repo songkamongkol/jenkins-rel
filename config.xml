@@ -80,6 +80,7 @@
             <string>release_webhelp</string>
             <string>test-meenu</string>
             <string>update_revanche_artifactory_retention</string>
+            <string>update_revanche_artifactory_retention-test</string>
           </jobNames>
           <jobFilters/>
           <columns>
