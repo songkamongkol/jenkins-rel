@@ -110,7 +110,7 @@ $WORKSPACE/scripts/revanche/retention-policy.sh </command>
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
-      <artifacts>/scripts/revanche/revanche-buildlist.txt</artifacts>
+      <artifacts>$WORKSPACE/scripts/revanche/revanche-buildlist.txt</artifacts>
       <allowEmptyArchive>false</allowEmptyArchive>
       <onlyIfSuccessful>false</onlyIfSuccessful>
       <fingerprint>false</fingerprint>
