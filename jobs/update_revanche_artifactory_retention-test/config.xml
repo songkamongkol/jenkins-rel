@@ -104,8 +104,8 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>chmod +x $WORKSPACE/scripts/revanche/test.sh
-$WORKSPACE/scripts/revanche/test.sh </command>
+      <command>chmod +x $WORKSPACE/scripts/revanche/retention-policy.sh
+$WORKSPACE/scripts/revanche/retention-policy.sh</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
