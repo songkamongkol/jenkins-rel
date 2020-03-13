@@ -56,11 +56,11 @@
         <extensions/>
       </hudson.plugins.git.GitSCM>
       <org.jenkinsci.plugins.p4.PerforceScm plugin="p4@1.7.7">
-        <credential></credential>
+        <credential>scmbuild</credential>
         <workspace class="org.jenkinsci.plugins.p4.workspace.ManualWorkspaceImpl">
           <charset>none</charset>
           <pinHost>false</pinHost>
-          <name>jenkins-${NODE_NAME}-${JOB_NAME}</name>
+          <name>jenkins-${NODE_NAME}-${JOB_NAME}-5.08_rel</name>
           <spec>
             <allwrite>false</allwrite>
             <clobber>false</clobber>
@@ -100,57 +100,16 @@
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <triggers>
-    <hudson.triggers.SCMTrigger>
-      <spec>* * * * *</spec>
-      <ignorePostCommitHooks>false</ignorePostCommitHooks>
-    </hudson.triggers.SCMTrigger>
-  </triggers>
+  <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>#!/bin/bash -xe
-
-echo 
-REVANCHE_BUILD_NUMBER=`cat ${WORKSPACE}/framework/il/platform/fpga/testmodule/ccpu/revanche/ipq_version.txt`
-echo $REVANCHE_BUILD_NUMBER
-filename=&quot;revanche.txt&quot;
-# -- add the new build to the list of build to be retained
-echo $REVANCHE_BUILD_NUMBER &gt;&gt; ${filename}
-
-# -- make sure the list of build number is a unique list
-sort -u ${filename} &gt; tmp.txt
-rm ${filename}
-mv tmp.txt ${filename}
-
-# -- create a variable from the file which contains
-# -- list of builds to be retained
-readarray builds &lt; ${filename}
-export build_list=&quot;[&quot;
-for i in &quot;${!builds[@]}&quot;
-do
-    bldnum=${builds[i]}
-    bldnum=`echo ${bldnum}`
-    if [ $i = 0 ]; then
-        build_list=${build_list}${bldnum}
-    else
-        build_list=${build_list}&quot;,&quot;${bldnum}
-    fi
-done
-build_list=${build_list}&quot;]&quot;
-
-echo $build_list
-
-# Trigger retention policy endpoint via curl
-AF_URL=&quot;https://artifactory.cal.ci.spirentcom.com/artifactory/api/build/retention/revanche-ipq-fw-build?async=true&quot;
-BODY=&quot;{\&quot;deleteBuildArtifacts\&quot;:true,\&quot;count\&quot;:10,\&quot;buildNumbersNotToBeDiscarded\&quot;:${build_list}}&quot;
-
-curl -XPOST -ubuilder:${AF_PASSWORD} -H&quot;Content-Type: application/json&quot; -d${BODY} &quot;$AF_URL&quot;</command>
+      <command>echo &quot;heelo&quot;</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
-      <artifacts>revanche.txt</artifacts>
+      <artifacts></artifacts>
       <allowEmptyArchive>false</allowEmptyArchive>
       <onlyIfSuccessful>false</onlyIfSuccessful>
       <fingerprint>false</fingerprint>
