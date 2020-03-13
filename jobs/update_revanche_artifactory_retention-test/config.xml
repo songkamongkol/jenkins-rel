@@ -104,7 +104,8 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>echo &quot;heelo&quot;</command>
+      <command>chmod +x $WORKSPACE/scripts/revanche/retention-policy.sh
+$WORKSPACE/scripts/revanche/retention-policy.sh </command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
