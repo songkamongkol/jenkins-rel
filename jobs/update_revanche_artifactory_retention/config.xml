@@ -35,83 +35,39 @@
       <includeTestSummary>false</includeTestSummary>
       <showCommitList>false</showCommitList>
     </jenkins.plugins.slack.SlackNotifier_-SlackJobProperty>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>REVANCHE_BUILD_NUMBER</name>
+          <description>revanche build number for a release branch</description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
   </properties>
-  <scm class="org.jenkinsci.plugins.multiplescms.MultiSCM" plugin="multiple-scms@0.6">
-    <scms>
-      <hudson.plugins.git.GitSCM plugin="git@3.3.0">
-        <configVersion>2</configVersion>
-        <userRemoteConfigs>
-          <hudson.plugins.git.UserRemoteConfig>
-            <url>git@github.com:SpirentCom/cip-devops.git</url>
-            <credentialsId>5c922c1a-3cc4-4b9c-87a7-0f81202bcd09</credentialsId>
-          </hudson.plugins.git.UserRemoteConfig>
-        </userRemoteConfigs>
-        <branches>
-          <hudson.plugins.git.BranchSpec>
-            <name>*/master</name>
-          </hudson.plugins.git.BranchSpec>
-        </branches>
-        <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
-        <submoduleCfg class="list"/>
-        <extensions/>
-      </hudson.plugins.git.GitSCM>
-      <org.jenkinsci.plugins.p4.PerforceScm plugin="p4@1.7.7">
-        <credential>scmbuild</credential>
-        <workspace class="org.jenkinsci.plugins.p4.workspace.ManualWorkspaceImpl">
-          <charset>none</charset>
-          <pinHost>false</pinHost>
-          <name>jenkins-${NODE_NAME}-${JOB_NAME}-5.08_rel</name>
-          <spec>
-            <allwrite>false</allwrite>
-            <clobber>false</clobber>
-            <compress>false</compress>
-            <locked>false</locked>
-            <modtime>false</modtime>
-            <rmdir>false</rmdir>
-            <streamName></streamName>
-            <line>LOCAL</line>
-            <view>//TestCenter/5.08_rel/framework/il/platform/fpga/testmodule/ccpu/revanche/ipq_version.txt //jenkins-${NODE_NAME}-${JOB_NAME}-5.08_rel/framework/il/platform/fpga/testmodule/ccpu/revanche/ipq_version.txt</view>
-            <type>WRITABLE</type>
-            <serverID></serverID>
-            <backup>false</backup>
-          </spec>
-        </workspace>
-        <filter>
-          <org.jenkinsci.plugins.p4.filters.FilterPerChangeImpl>
-            <perChange>true</perChange>
-            <nextChange>0</nextChange>
-          </org.jenkinsci.plugins.p4.filters.FilterPerChangeImpl>
-        </filter>
-        <populate class="org.jenkinsci.plugins.p4.populate.AutoCleanImpl">
-          <have>true</have>
-          <force>false</force>
-          <modtime>false</modtime>
-          <quiet>true</quiet>
-          <pin></pin>
-          <parallel>
-            <enable>false</enable>
-            <threads>4</threads>
-            <minfiles>1</minfiles>
-            <minbytes>1024</minbytes>
-          </parallel>
-          <replace>true</replace>
-          <delete>true</delete>
-          <tidy>false</tidy>
-        </populate>
-      </org.jenkinsci.plugins.p4.PerforceScm>
-    </scms>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.3.0">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>git@github.com:SpirentCom/cip-devops.git</url>
+        <credentialsId>5c922c1a-3cc4-4b9c-87a7-0f81202bcd09</credentialsId>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>*/master</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="list"/>
+    <extensions/>
   </scm>
   <assignedNode>ilbuild-20</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <triggers>
-    <hudson.triggers.SCMTrigger>
-      <spec>* * * * *</spec>
-      <ignorePostCommitHooks>false</ignorePostCommitHooks>
-    </hudson.triggers.SCMTrigger>
-  </triggers>
+  <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
@@ -137,7 +93,7 @@ git commit -m &quot;changed for new version&quot;
       <configVersion>2</configVersion>
       <pushMerge>false</pushMerge>
       <pushOnlyIfSuccess>true</pushOnlyIfSuccess>
-      <forcePush>true</forcePush>
+      <forcePush>false</forcePush>
       <branchesToPush>
         <hudson.plugins.git.GitPublisher_-BranchToPush>
           <targetRepoName>origin</targetRepoName>
