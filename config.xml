@@ -81,6 +81,7 @@
             <string>test-meenu</string>
             <string>update_revanche_artifactory_retention</string>
             <string>update_revanche_artifactory_retention-test</string>
+            <string>watch_stc_branch_for_revanche</string>
           </jobNames>
           <jobFilters/>
           <columns>

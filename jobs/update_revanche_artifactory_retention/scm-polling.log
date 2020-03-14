@@ -1,0 +1,11 @@
+Started on Mar 13, 2020 3:40:00 PM
+Using strategy: Default
+[poll] Last Built Revision: Revision 48f243c0f45ee125147aae843192fcdeec453ddd (refs/remotes/origin/terraform-dd-monitors)
+using GIT_SSH to set credentials 
+ > git ls-remote -h git@github.com:SpirentCom/cip-devops.git # timeout=10
+Found 11 remote heads on git@github.com:SpirentCom/cip-devops.git
+[poll] Latest remote head revision on refs/heads/terraform-dd-monitors is: 48f243c0f45ee125147aae843192fcdeec453ddd - already built by 3
+P4: Polling on: master with:jenkins-master-update_revanche_artifactory_retention-test
+No previous build found...
+Done. Took 1.6 sec
+Changes found

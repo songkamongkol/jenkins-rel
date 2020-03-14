@@ -1,0 +1,11 @@
+<multi-scm-log>
+<sub-log scm="git git@github.com:SpirentCom/cip-devops.git">
+<![CDATA[]]>
+</sub-log>
+<sub-log scm="p4-scmbuild-//TestCenter/5.08_rel/framework/il/platform/fpga/testmodule/ccpu/revanche/ipq_version.txt //jenkins-${NODE_NAME}-${JOB_NAME}-5.08_rel/framework/il/platform/fpga/testmodule/ccpu/revanche/ipq_version.txt">
+<![CDATA[&lt;?xml version=&apos;1.0&apos; encoding=&apos;UTF-8&apos;?&gt;
+&lt;changelog&gt;
+&lt;/changelog&gt;
+]]>
+</sub-log>
+</multi-scm-log>

@@ -1,0 +1,22 @@
+<multi-scm-log>
+<sub-log scm="git git@github.com:SpirentCom/cip-devops.git">
+<![CDATA[commit 511e5d1dfa96d427a964ffde24923c75bcb409b0
+tree 143ad8ae2e57aa7a5e8e7351cb601c1e1208d79f
+parent 8675ee5e0f345f18ed954b8f69c8880c95e0ab62
+author meenupandey &lt;meenu.pandey@spirent.com&gt; 2020-03-13 15:51:05 -0700
+committer meenupandey &lt;meenu.pandey@spirent.com&gt; 2020-03-13 15:51:05 -0700
+
+    Add new line
+
+
+
+:100644 100644 02f800ccc1e14cce61a0eec5a5292253a6325073 2d7e48b7bb563d8085700fbda08436e572abd8e0 M	scripts/revanche/retention-policy.sh
+]]>
+</sub-log>
+<sub-log scm="p4-scmbuild-//TestCenter/5.08_rel/framework/il/platform/fpga/testmodule/ccpu/revanche/ipq_version.txt //jenkins-${NODE_NAME}-${JOB_NAME}-5.08_rel/framework/il/platform/fpga/testmodule/ccpu/revanche/ipq_version.txt">
+<![CDATA[&lt;?xml version=&apos;1.0&apos; encoding=&apos;UTF-8&apos;?&gt;
+&lt;changelog&gt;
+&lt;/changelog&gt;
+]]>
+</sub-log>
+</multi-scm-log>
