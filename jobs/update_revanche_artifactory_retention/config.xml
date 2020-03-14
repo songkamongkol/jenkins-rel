@@ -96,7 +96,7 @@ git commit -m &quot;changed for new revanche version -$REVANCHE_BUILD_NUMBER &qu
       <forcePush>false</forcePush>
       <branchesToPush>
         <hudson.plugins.git.GitPublisher_-BranchToPush>
-          <targetRepoName>origin</targetRepoName>
+          <targetRepoName>git@github.com:SpirentCom/cip-devops.git</targetRepoName>
           <branchName>master</branchName>
         </hudson.plugins.git.GitPublisher_-BranchToPush>
       </branchesToPush>
