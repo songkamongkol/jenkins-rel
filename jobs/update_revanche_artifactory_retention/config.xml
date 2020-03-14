@@ -97,7 +97,7 @@ git commit -m &quot;changed for new revanche version -$REVANCHE_BUILD_NUMBER &qu
       <branchesToPush>
         <hudson.plugins.git.GitPublisher_-BranchToPush>
           <targetRepoName>origin</targetRepoName>
-          <branchName>*/master</branchName>
+          <branchName>master</branchName>
         </hudson.plugins.git.GitPublisher_-BranchToPush>
       </branchesToPush>
     </hudson.plugins.git.GitPublisher>
