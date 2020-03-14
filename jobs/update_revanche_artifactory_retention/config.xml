@@ -76,7 +76,7 @@ $WORKSPACE/scripts/revanche/retention-policy.sh
 
 
 git add $WORKSPACE/scripts/revanche/revanche-buildlist.txt
-git commit -m &quot;changed for new version&quot;
+git commit -m &quot;changed for new revanche version -$REVANCHE_BUILD_NUMBER &quot;
 </command>
     </hudson.tasks.Shell>
   </builders>
