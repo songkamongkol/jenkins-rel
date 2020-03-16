@@ -38,14 +38,14 @@
     <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.19">
       <emailAddress>deepak.kandarpa@spirent.com</emailAddress>
     </hudson.tasks.Mailer_-UserProperty>
-    <org.jenkinsci.plugins.p4.email.P4UserProperty plugin="p4@1.7.7">
-      <email>Deepak.Kandarpa@spirent.com</email>
-    </org.jenkinsci.plugins.p4.email.P4UserProperty>
     <jenkins.security.LastGrantedAuthoritiesProperty>
       <roles>
         <string>authenticated</string>
       </roles>
       <timestamp>1581055360900</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
+    <org.jenkinsci.plugins.p4.email.P4UserProperty plugin="p4@1.7.7">
+      <email>Deepak.Kandarpa@spirent.com</email>
+    </org.jenkinsci.plugins.p4.email.P4UserProperty>
   </properties>
 </user>
