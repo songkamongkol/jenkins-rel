@@ -71,7 +71,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>chmod +x $WORKSPACE/scripts/revanche/retention-policy.sh
+      <command>chmod +x $WORKSPACE/scripts/revanche/retention-policy.sh $REVANCHE_BUILD_NUMBER
 $WORKSPACE/scripts/revanche/retention-policy.sh
 
 
