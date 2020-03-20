@@ -166,7 +166,7 @@ NOTE: if any value other than none is provided, the job will try to upload the u
         </userRemoteConfigs>
         <branches>
           <hudson.plugins.git.BranchSpec>
-            <name>*/tags/rMP5.08_rel</name>
+            <name>*/tags/rMP5.07_rel</name>
           </hudson.plugins.git.BranchSpec>
         </branches>
         <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
