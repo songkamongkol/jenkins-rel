@@ -231,7 +231,7 @@ with open(buildno_file, &apos;w&apos;) as outfile:
     outfile.write(url)
 
     # -- Retrieve ARCHANGEL build number
-url = af_base_url + &apos;/&apos; + os.environ[&apos;ARCHANGEL_PATH&apos;] + &apos;?properties&apos; # &quot;pattern&quot; from AF plugin config section above
+url = af_base_url + &apos;/&apos; + os.environ[&apos;ARCHANGEL_PATH&apos;] + &apos;/enhancedl47-win64.tar.gz&apos; + &apos;?properties&apos; # &quot;pattern&quot; from AF plugin config section above
 
 # -- creating request object with auth.
 request = urllib2.Request(url)
