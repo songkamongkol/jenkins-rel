@@ -385,7 +385,7 @@ cp $WORKSPACE/il_idl_crc.txt $STORAGE_DIR
             &quot;pattern&quot;: &quot;${APPSEC_ARTIFACT_PATH}/*.tgz&quot;,
             &quot;target&quot;: &quot;$WORKSPACE/l4l7lxc/&quot;,
             &quot;flat&quot;: &quot;true&quot;,
-            &quot;excludePatterns&quot;: [&quot;AdvFuzzVM*&quot;]
+            &quot;excludePatterns&quot;: [&quot;${APPSEC_ARTIFACT_PATH}/AdvFuzzVM*&quot;]
         }
     ]
 }</spec>
