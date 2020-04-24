@@ -35,11 +35,11 @@
       <perforceId>songkamong</perforceId>
       <perforceEmail>somboon.ongkamongkol@spirent.com</perforceEmail>
     </hudson.plugins.perforce.PerforceUserProperty>
-    <org.jenkinsci.plugins.p4.email.P4UserProperty plugin="p4@1.7.7">
-      <email>somboon.ongkamongkol@spirent.com</email>
-    </org.jenkinsci.plugins.p4.email.P4UserProperty>
     <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.19">
       <emailAddress>songkamong@CALC02TK08RH03Y.local</emailAddress>
     </hudson.tasks.Mailer_-UserProperty>
+    <org.jenkinsci.plugins.p4.email.P4UserProperty plugin="p4@1.7.7">
+      <email>somboon.ongkamongkol@spirent.com</email>
+    </org.jenkinsci.plugins.p4.email.P4UserProperty>
   </properties>
 </user>
