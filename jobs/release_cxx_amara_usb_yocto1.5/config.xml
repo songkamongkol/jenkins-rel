@@ -91,7 +91,7 @@ NOTE: if any value other than none is provided, the job will try to upload the u
         <hudson.model.StringParameterDefinition>
           <name>APPSEC_ARTIFACT_PATH</name>
           <description></description>
-          <defaultValue>appsec/5.07</defaultValue>
+          <defaultValue>appsec/5.09</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
