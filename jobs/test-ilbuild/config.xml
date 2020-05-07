@@ -91,7 +91,7 @@ Archive il_virtual_*.tar&lt;br&gt;&#xd;
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <quietPeriod>45</quietPeriod>
-  <assignedNode>ilbuild-04</assignedNode>
+  <assignedNode>ilbuild-16</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
