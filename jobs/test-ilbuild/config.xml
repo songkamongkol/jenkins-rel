@@ -19,6 +19,13 @@ Archive il_virtual_*.tar&lt;br&gt;&#xd;
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
       <useBuildBlocker>false</useBuildBlocker>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <org.datadog.jenkins.plugins.datadog.DatadogJobProperty plugin="datadog@1.1.1">
+      <enableFile>false</enableFile>
+      <tagFile></tagFile>
+      <enableProperty>false</enableProperty>
+      <tagProperties></tagProperties>
+      <emitSCMEvents>true</emitSCMEvents>
+    </org.datadog.jenkins.plugins.datadog.DatadogJobProperty>
     <jenkins.model.BuildDiscarderProperty>
       <strategy class="hudson.tasks.LogRotator">
         <daysToKeep>-1</daysToKeep>
@@ -94,6 +101,8 @@ Archive il_virtual_*.tar&lt;br&gt;&#xd;
   <builders>
     <hudson.tasks.Shell>
       <command>export WS=/home/spirent
+
+exit 1
 
 cd $WS
 # release_il_virtual_yocto_ci
