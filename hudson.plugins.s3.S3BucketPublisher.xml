@@ -285,8 +285,8 @@
                     <service>application-autoscaling</service>
                   </credentialScope>
                   <protocols>
-                    <string>https</string>
                     <string>http</string>
+                    <string>https</string>
                   </protocols>
                 </defaults>
                 <isRegionalized>false</isRegionalized>
@@ -403,8 +403,8 @@
                 </endpoints>
                 <defaults>
                   <protocols>
-                    <string>https</string>
                     <string>http</string>
+                    <string>https</string>
                   </protocols>
                 </defaults>
                 <isRegionalized>false</isRegionalized>
@@ -504,8 +504,8 @@
                         <region>us-east-1</region>
                       </credentialScope>
                       <protocols>
-                        <string>https</string>
                         <string>http</string>
+                        <string>https</string>
                       </protocols>
                     </com.amazonaws.partitions.model.Endpoint>
                   </entry>
@@ -1349,8 +1349,8 @@
                 </endpoints>
                 <defaults>
                   <protocols>
-                    <string>https</string>
                     <string>http</string>
+                    <string>https</string>
                   </protocols>
                 </defaults>
                 <isRegionalized>false</isRegionalized>
@@ -1419,8 +1419,8 @@
                 </endpoints>
                 <defaults>
                   <protocols>
-                    <string>https</string>
                     <string>http</string>
+                    <string>https</string>
                   </protocols>
                 </defaults>
                 <isRegionalized>false</isRegionalized>
@@ -1745,8 +1745,8 @@
                 </endpoints>
                 <defaults>
                   <protocols>
-                    <string>https</string>
                     <string>http</string>
+                    <string>https</string>
                   </protocols>
                 </defaults>
                 <isRegionalized>false</isRegionalized>
@@ -1819,8 +1819,8 @@
                 </endpoints>
                 <defaults>
                   <protocols>
-                    <string>https</string>
                     <string>http</string>
+                    <string>https</string>
                   </protocols>
                   <sslCommonName>{region}.{service}.{dnsSuffix}</sslCommonName>
                 </defaults>
@@ -2118,8 +2118,8 @@
                 </endpoints>
                 <defaults>
                   <protocols>
-                    <string>https</string>
                     <string>http</string>
+                    <string>https</string>
                   </protocols>
                 </defaults>
                 <isRegionalized>false</isRegionalized>
@@ -2168,8 +2168,8 @@
                         <service>IngestionService</service>
                       </credentialScope>
                       <signatureVersions>
-                        <string>v4</string>
                         <string>v2</string>
+                        <string>v4</string>
                       </signatureVersions>
                     </com.amazonaws.partitions.model.Endpoint>
                   </entry>
@@ -2650,8 +2650,8 @@
                 </endpoints>
                 <defaults>
                   <protocols>
-                    <string>https</string>
                     <string>http</string>
+                    <string>https</string>
                   </protocols>
                 </defaults>
                 <isRegionalized>false</isRegionalized>
@@ -3082,8 +3082,8 @@
                 </endpoints>
                 <defaults>
                   <protocols>
-                    <string>https</string>
                     <string>http</string>
+                    <string>https</string>
                   </protocols>
                   <signatureVersions>
                     <string>s3v4</string>
@@ -3134,8 +3134,8 @@
                 </endpoints>
                 <defaults>
                   <protocols>
-                    <string>https</string>
                     <string>http</string>
+                    <string>https</string>
                   </protocols>
                   <signatureVersions>
                     <string>v2</string>
@@ -3333,8 +3333,8 @@
                 </endpoints>
                 <defaults>
                   <protocols>
-                    <string>https</string>
                     <string>http</string>
+                    <string>https</string>
                   </protocols>
                 </defaults>
                 <isRegionalized>false</isRegionalized>
@@ -3405,8 +3405,8 @@
                 </endpoints>
                 <defaults>
                   <protocols>
-                    <string>https</string>
                     <string>http</string>
+                    <string>https</string>
                   </protocols>
                   <sslCommonName>{region}.queue.{dnsSuffix}</sslCommonName>
                 </defaults>
@@ -3631,8 +3631,8 @@
                     <service>dynamodb</service>
                   </credentialScope>
                   <protocols>
-                    <string>https</string>
                     <string>http</string>
+                    <string>https</string>
                   </protocols>
                 </defaults>
                 <isRegionalized>false</isRegionalized>
@@ -4058,8 +4058,8 @@
                     <string>us-gov-west-1</string>
                     <com.amazonaws.partitions.model.Endpoint>
                       <protocols>
-                        <string>https</string>
                         <string>http</string>
+                        <string>https</string>
                       </protocols>
                     </com.amazonaws.partitions.model.Endpoint>
                   </entry>
@@ -4171,8 +4171,8 @@
                     <string>us-gov-west-1</string>
                     <com.amazonaws.partitions.model.Endpoint>
                       <protocols>
-                        <string>https</string>
                         <string>http</string>
+                        <string>https</string>
                       </protocols>
                     </com.amazonaws.partitions.model.Endpoint>
                   </entry>
@@ -4188,8 +4188,8 @@
                     <string>us-gov-west-1</string>
                     <com.amazonaws.partitions.model.Endpoint>
                       <protocols>
-                        <string>https</string>
                         <string>http</string>
+                        <string>https</string>
                       </protocols>
                     </com.amazonaws.partitions.model.Endpoint>
                   </entry>
@@ -4205,8 +4205,8 @@
                     <string>us-gov-west-1</string>
                     <com.amazonaws.partitions.model.Endpoint>
                       <protocols>
-                        <string>https</string>
                         <string>http</string>
+                        <string>https</string>
                       </protocols>
                     </com.amazonaws.partitions.model.Endpoint>
                   </entry>
@@ -4310,8 +4310,8 @@
                     <com.amazonaws.partitions.model.Endpoint>
                       <hostName>s3-us-gov-west-1.amazonaws.com</hostName>
                       <protocols>
-                        <string>https</string>
                         <string>http</string>
+                        <string>https</string>
                       </protocols>
                     </com.amazonaws.partitions.model.Endpoint>
                   </entry>
@@ -4345,8 +4345,8 @@
                     <string>us-gov-west-1</string>
                     <com.amazonaws.partitions.model.Endpoint>
                       <protocols>
-                        <string>https</string>
                         <string>http</string>
+                        <string>https</string>
                       </protocols>
                     </com.amazonaws.partitions.model.Endpoint>
                   </entry>
@@ -4362,8 +4362,8 @@
                     <string>us-gov-west-1</string>
                     <com.amazonaws.partitions.model.Endpoint>
                       <protocols>
-                        <string>https</string>
                         <string>http</string>
+                        <string>https</string>
                       </protocols>
                       <sslCommonName>{region}.queue.{dnsSuffix}</sslCommonName>
                     </com.amazonaws.partitions.model.Endpoint>
@@ -4455,8 +4455,8 @@
                 </endpoints>
                 <defaults>
                   <protocols>
-                    <string>https</string>
                     <string>http</string>
+                    <string>https</string>
                   </protocols>
                 </defaults>
                 <isRegionalized>false</isRegionalized>
@@ -4521,8 +4521,8 @@
                 </endpoints>
                 <defaults>
                   <protocols>
-                    <string>https</string>
                     <string>http</string>
+                    <string>https</string>
                   </protocols>
                 </defaults>
                 <isRegionalized>false</isRegionalized>
@@ -4539,8 +4539,8 @@
                 </endpoints>
                 <defaults>
                   <protocols>
-                    <string>https</string>
                     <string>http</string>
+                    <string>https</string>
                   </protocols>
                 </defaults>
                 <isRegionalized>false</isRegionalized>
@@ -4581,8 +4581,8 @@
                 </endpoints>
                 <defaults>
                   <protocols>
-                    <string>https</string>
                     <string>http</string>
+                    <string>https</string>
                   </protocols>
                 </defaults>
                 <isRegionalized>false</isRegionalized>
@@ -4599,8 +4599,8 @@
                 </endpoints>
                 <defaults>
                   <protocols>
-                    <string>https</string>
                     <string>http</string>
+                    <string>https</string>
                   </protocols>
                 </defaults>
                 <isRegionalized>false</isRegionalized>
@@ -4629,8 +4629,8 @@
                 </endpoints>
                 <defaults>
                   <protocols>
-                    <string>https</string>
                     <string>http</string>
+                    <string>https</string>
                   </protocols>
                 </defaults>
                 <isRegionalized>false</isRegionalized>
@@ -4689,8 +4689,8 @@
                 </endpoints>
                 <defaults>
                   <protocols>
-                    <string>https</string>
                     <string>http</string>
+                    <string>https</string>
                   </protocols>
                 </defaults>
                 <isRegionalized>false</isRegionalized>
@@ -4731,8 +4731,8 @@
                 </endpoints>
                 <defaults>
                   <protocols>
-                    <string>https</string>
                     <string>http</string>
+                    <string>https</string>
                   </protocols>
                   <signatureVersions>
                     <string>s3v4</string>
@@ -4752,8 +4752,8 @@
                 </endpoints>
                 <defaults>
                   <protocols>
-                    <string>https</string>
                     <string>http</string>
+                    <string>https</string>
                   </protocols>
                 </defaults>
                 <isRegionalized>false</isRegionalized>
@@ -4770,8 +4770,8 @@
                 </endpoints>
                 <defaults>
                   <protocols>
-                    <string>https</string>
                     <string>http</string>
+                    <string>https</string>
                   </protocols>
                   <sslCommonName>{region}.queue.{dnsSuffix}</sslCommonName>
                 </defaults>
@@ -4804,8 +4804,8 @@
                     <service>dynamodb</service>
                   </credentialScope>
                   <protocols>
-                    <string>https</string>
                     <string>http</string>
+                    <string>https</string>
                   </protocols>
                 </defaults>
                 <isRegionalized>false</isRegionalized>
