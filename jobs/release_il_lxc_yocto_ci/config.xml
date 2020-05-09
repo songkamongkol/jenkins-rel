@@ -178,17 +178,9 @@ export SCONSFLAGS=&quot;-j8 ccache=1 distcc=1&quot;
 # $WORKSPACE/build/il/scripts/phxbld centralboot_changeling
 # 8/26/2019 - Remove per Emil&apos;s request -- $WORKSPACE/build/il/scripts/phxbld yocto_lxc
 
+$WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 k9vm
 $WORKSPACE/build/il/scripts/phxbld  -j16 yocto_ver=1.5 flexevm
 $WORKSPACE/build/il/scripts/phxbld idltarball
-
-# export PAD_BUILD_NUMBER=`printf &apos;%04i&apos; $BUILD_NUMBER`
-
-# sudo scons reversion_il $RELEASE_NUM.$PAD_BUILD_NUMBER $RELEASE_NUM.$PAD_BUILD_NUMBER</command>
-    </hudson.tasks.Shell>
-    <hudson.tasks.Shell>
-      <command>export SCONSFLAGS=&quot;-j8 ccache=1 distcc=1&quot;
-# sudo scons target=k9vm
-$WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 k9vm
 
 </command>
     </hudson.tasks.Shell>
