@@ -7,6 +7,13 @@
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
       <useBuildBlocker>false</useBuildBlocker>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <org.datadog.jenkins.plugins.datadog.DatadogJobProperty plugin="datadog@1.1.1">
+      <enableFile>false</enableFile>
+      <tagFile></tagFile>
+      <enableProperty>false</enableProperty>
+      <tagProperties></tagProperties>
+      <emitSCMEvents>true</emitSCMEvents>
+    </org.datadog.jenkins.plugins.datadog.DatadogJobProperty>
     <jenkins.model.BuildDiscarderProperty>
       <strategy class="hudson.tasks.LogRotator">
         <daysToKeep>-1</daysToKeep>
@@ -231,7 +238,7 @@ fi
               <onlyExactRuns>false</onlyExactRuns>
             </hudson.plugins.parameterizedtrigger.FileBuildParameters>
           </configs>
-          <projects>release_il_changeling_yocto_ci,release_il_chos2_yocto_ci,release_il_testmodule_contents_ci,release_il_changeling_all_yocto_ci,release_il_virtual_yocto_ci,release_il_stca_ci,release_il_qemu_yocto_ci,release_il_lxc_yocto_ci,release_il_chhvm_yocto_ci</projects>
+          <projects>release_il_changeling_yocto_ci,release_il_testmodule_contents_ci,release_il_changeling_all_yocto_ci,release_il_virtual_yocto_ci,release_il_stca_ci,release_il_qemu_yocto_ci,release_il_lxc_yocto_ci,release_il_chhvm_yocto_ci</projects>
           <condition>SUCCESS</condition>
           <triggerWithNoParameters>false</triggerWithNoParameters>
           <triggerFromChildProjects>false</triggerFromChildProjects>
