@@ -180,6 +180,7 @@ export SCONSFLAGS=&quot;-j8 ccache=1 distcc=1&quot;
 
 $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 k9vm
 $WORKSPACE/build/il/scripts/phxbld  -j16 yocto_ver=1.5 flexevm
+sudo chown -R spirent:spirent $WORKSPACE/build/il/packages
 $WORKSPACE/build/il/scripts/phxbld idltarball
 
 </command>
