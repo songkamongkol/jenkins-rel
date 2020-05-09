@@ -362,7 +362,7 @@ content=`cat $filename`
 content=${content//\&quot;/}
 buildno=${content#*number}
 echo $changelist il_lxc_yocto $buildno &gt;&gt; .changelists
-cp -r -v /mnt/builds/jenkins/il_lxc_yocto/$PACKAGE_TYPE/idltar $WORKSPACE/build/il/packages/
+cp -r -v /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}/build-packaging/idltar $WORKSPACE/build/il/packages/
 cp -v /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}/build-packaging/bundle/k9* $WORKSPACE/build/il/packages/bundle
 cp -v /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}/build-packaging/bundle/*flexe* $WORKSPACE/build/il/packages/bundle
 cp -v /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}/build-packaging/rawimg/*lxc* $WORKSPACE/build/il/packages/rawimg
@@ -684,7 +684,6 @@ ssh scm@martin.spirentcom.com chmod 777 $BUILD_DIR/mfgbld/*</command>
       <scriptOnlyIfSuccess>true</scriptOnlyIfSuccess>
       <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
       <markBuildUnstable>false</markBuildUnstable>
-      <executeOn>BOTH</executeOn>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.57">
       <recipientList>$DEFAULT_RECIPIENTS</recipientList>
