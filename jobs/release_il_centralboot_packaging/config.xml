@@ -362,7 +362,7 @@ content=`cat $filename`
 content=${content//\&quot;/}
 buildno=${content#*number}
 echo $changelist il_lxc_yocto $buildno &gt;&gt; .changelists
-# TEMP -- cp -r -v /mnt/builds/jenkins/il_lxc_yocto/$PACKAGE_TYPE/idltar $WORKSPACE/build/il/packages/
+cp -r -v /mnt/builds/jenkins/il_lxc_yocto/$PACKAGE_TYPE/idltar $WORKSPACE/build/il/packages/
 cp -v /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}/build-packaging/bundle/k9* $WORKSPACE/build/il/packages/bundle
 cp -v /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}/build-packaging/bundle/*flexe* $WORKSPACE/build/il/packages/bundle
 cp -v /mnt/builds/jenkins/il_lxc_yocto-${BRANCH_NAME}/build-packaging/rawimg/*lxc* $WORKSPACE/build/il/packages/rawimg
@@ -659,7 +659,7 @@ rsync -avz --exclude=iceboy* --exclude=changeling* --exclude=stca* --exclude=yoc
 rsync -avz $BUILD_OUTPUT_DIR/build/il/packages/fsimg/yocto_version ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/fsimg
 rsync -avz $BUILD_OUTPUT_DIR/build/il/packages/fsimg/yocto_signature ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/fsimg
 rsync -avz $BUILD_OUTPUT_DIR/build/il/packages/rawimg/qemu*.img.gz ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/rawimg
-# TEMP -- rsync -avz $BUILD_OUTPUT_DIR/build/il/packages/idltar/p2CliTarBall.tar ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/mfgbld/p2CliTarBall.tar
+rsync -avz $BUILD_OUTPUT_DIR/build/il/packages/idltar/p2CliTarBall.tar ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/mfgbld/p2CliTarBall.tar
 rsync -avz  $BUILD_OUTPUT_DIR/.changelists ${RSYNCUSER}@${MARTIN}:$BUILD_DIR
 rsync -avz  $BUILD_OUTPUT_DIR/IL_*.txt ${RSYNCUSER}@${MARTIN}:$BUILD_DIR
 # ssh ${RSYNCUSER}@${MARTIN} mkdir -p $BUILD_DIR/chassisvm
@@ -684,6 +684,7 @@ ssh scm@martin.spirentcom.com chmod 777 $BUILD_DIR/mfgbld/*</command>
       <scriptOnlyIfSuccess>true</scriptOnlyIfSuccess>
       <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
       <markBuildUnstable>false</markBuildUnstable>
+      <executeOn>BOTH</executeOn>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.57">
       <recipientList>$DEFAULT_RECIPIENTS</recipientList>
