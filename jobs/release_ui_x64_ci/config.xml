@@ -58,7 +58,7 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
           <description>clean build</description>
-          <defaultValue>false</defaultValue>
+          <defaultValue>true</defaultValue>
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>RUN_BLL_UI_UNITTEST</name>
