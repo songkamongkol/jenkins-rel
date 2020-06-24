@@ -59,11 +59,6 @@
           <description>Path to magellan backend artifact (orion-res) in Artifactory (https://artifactory.srv.orionprod.net)</description>
           <defaultValue>stc/temeva/magellan-backend-commit/829</defaultValue>
         </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>OLD_ARCHANGEL_PATH</name>
-          <description></description>
-          <defaultValue>stc/archangel/archangel-publish/release/testcenter-v5.11/443</defaultValue>
-        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
@@ -250,7 +245,7 @@ with open(&apos;properties.txt&apos;, &apos;w&apos;) as f:
               <onlyExactRuns>false</onlyExactRuns>
             </hudson.plugins.parameterizedtrigger.FileBuildParameters>
           </configs>
-          <projects>release_bll_windows_ci,release_bll_linux_ci,release_bll_windows_x64_ci,release_bll_linux_x64_ci,test, </projects>
+          <projects>release_bll_windows_ci,release_bll_linux_ci,release_bll_windows_x64_ci,release_bll_linux_x64_ci</projects>
           <condition>SUCCESS</condition>
           <triggerWithNoParameters>false</triggerWithNoParameters>
           <triggerFromChildProjects>false</triggerFromChildProjects>
