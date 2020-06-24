@@ -136,7 +136,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>p4 sync -f //TestCenter/%BRANCH_NAME%/content/traffic/enhancedl47/release_artifact.txt&#xd;
+      <command>p4 -c jenkins-%NODE_NAME%-%JOB_NAME% -u scmbuild sync -f //TestCenter/%BRANCH_NAME%/content/traffic/enhancedl47/release_artifact.txt&#xd;
 </command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.python.Python plugin="python@1.3">
