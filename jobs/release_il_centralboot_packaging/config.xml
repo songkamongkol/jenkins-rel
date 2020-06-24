@@ -10,13 +10,6 @@ Then runs Centralboot to generate centralboot image and run reversion script to 
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
       <useBuildBlocker>false</useBuildBlocker>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
-    <org.datadog.jenkins.plugins.datadog.DatadogJobProperty plugin="datadog@1.1.1">
-      <enableFile>false</enableFile>
-      <tagFile/>
-      <enableProperty>false</enableProperty>
-      <tagProperties/>
-      <emitSCMEvents>true</emitSCMEvents>
-    </org.datadog.jenkins.plugins.datadog.DatadogJobProperty>
     <jenkins.model.BuildDiscarderProperty>
       <strategy class="hudson.tasks.LogRotator">
         <daysToKeep>-1</daysToKeep>
@@ -94,7 +87,21 @@ Then runs Centralboot to generate centralboot image and run reversion script to 
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
-  </properties>
+  <org.datadog.jenkins.plugins.datadog.DatadogJobProperty plugin="datadog@1.1.1">
+         <enableFile>false</enableFile>
+         <tagFile/>
+         <enableProperty>true</enableProperty>
+        <tagProperties>Environment=release-build
+EnvironmentShortName=relbld
+EnvironmentLevel=prod
+EnvironmentType=build
+Server=jenkins-rel
+JobSeverity=high
+Branch=$BRANCH_NAME
+STCVersion=$STC_MAJ_MIN_VERSION
+           </tagProperties>
+         <emitSCMEvents>true</emitSCMEvents>
+         </org.datadog.jenkins.plugins.datadog.DatadogJobProperty></properties>
   <scm class="org.jenkinsci.plugins.p4.PerforceScm" plugin="p4@1.7.7">
     <credential>scmbuild</credential>
     <workspace class="org.jenkinsci.plugins.p4.workspace.ManualWorkspaceImpl">
