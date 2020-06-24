@@ -60,7 +60,7 @@
           <defaultValue>stc/temeva/magellan-backend-commit/829</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>ARCHANGEL_PATH</name>
+          <name>OLD_ARCHANGEL_PATH</name>
           <description></description>
           <defaultValue>stc/archangel/archangel-publish/release/testcenter-v5.11/443</defaultValue>
         </hudson.model.StringParameterDefinition>
