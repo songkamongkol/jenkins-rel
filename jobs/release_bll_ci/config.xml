@@ -250,7 +250,7 @@ with open(&apos;properties.txt&apos;, &apos;w&apos;) as f:
               <onlyExactRuns>false</onlyExactRuns>
             </hudson.plugins.parameterizedtrigger.FileBuildParameters>
           </configs>
-          <projects>release_bll_windows_ci,release_bll_linux_ci,release_bll_windows_x64_ci,release_bll_linux_x64_ci</projects>
+          <projects>release_bll_windows_ci,release_bll_linux_ci,release_bll_windows_x64_ci,release_bll_linux_x64_ci,test, </projects>
           <condition>SUCCESS</condition>
           <triggerWithNoParameters>false</triggerWithNoParameters>
           <triggerFromChildProjects>false</triggerFromChildProjects>
