@@ -1,13 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>&lt;STRONG&gt;This job upload stca and stcv images from nightly build into S3 bucket in Orion. It also cleans up old images that are older than &lt;DAYS_TO_KEEP_IMAGES&gt; parameter &lt;/STRONG&gt;&#xd;
-&lt;BR&gt;&lt;BR&gt;&#xd;
-&lt;B&gt;Pre-Requisite:&lt;/B&gt;&lt;BR&gt;&#xd;
-- orion-cli.tgz from s3://spirent-orion-artifacts/deploys/test must be extracted and installed (path to datautil must be in the PATH environment variable)&lt;BR&gt;&#xd;
-- jq must be installed&lt;BR&gt;&#xd;
-&#xd;
-&lt;I&gt;NOTE: ORION_TOKEN value used in this job is retrieved from jenkins.oriondev.net (it&apos;s configured as global environment variable there)&lt;/I&gt;</description>
+  <description>&lt;STRONG&gt;This job upload stcv qemu and hyperv images from nightly build into Artifactory (artifactory.srv.orionprod.net). It also cleans up old images that are older than &lt;DAYS_TO_KEEP_IMAGES&gt; parameter &lt;/STRONG&gt;&#xd;
+</description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
@@ -168,7 +163,7 @@
   &quot;files&quot;: [
     {
       &quot;pattern&quot;: &quot;$IL_WORKSPACE/build/il/packages/rawimg/Spirent_TestCenter_Virtual_HyperV_&lt;version&gt;.zip*${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}*.zip&quot;,
-      &quot;target&quot;: &quot;stc/stcv/&quot;,
+      &quot;target&quot;: &quot;stc/stcv-hyperv/&quot;,
       &quot;props&quot;: &quot;name=${STCV_NAME};version=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID};category=${CATEGORY};description=${STCV_DESCRIPTION};os=HyperV- QEMU/KVM;format=zip&quot;,
       &quot;recursive&quot;: &quot;true&quot;,
       &quot;flat&quot;: &quot;true&quot;,
@@ -176,7 +171,7 @@
     },
     {
       &quot;pattern&quot;: &quot;$IL_WORKSPACE/build/il/packages/rawimg/qemu*${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}*.img.gz&quot;,
-      &quot;target&quot;: &quot;stc/stca/&quot;,
+      &quot;target&quot;: &quot;stc/stcv-qemu/&quot;,
       &quot;props&quot;: &quot;name=${STCV_NAME};version=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID};category=${CATEGORY};description=${STCV_DESCRIPTION};os=QEMU;format=gz&quot;,
       &quot;recursive&quot;: &quot;true&quot;,
       &quot;flat&quot;: &quot;true&quot;
