@@ -42,7 +42,7 @@ Triggers release_bll_win_pkg_webhelp&lt;br&gt;</description>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description/>
-          <defaultValue>5.11_rel</defaultValue>
+          <defaultValue>5.12_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -52,7 +52,7 @@ Triggers release_bll_win_pkg_webhelp&lt;br&gt;</description>
     <workspace class="org.jenkinsci.plugins.p4.workspace.ManualWorkspaceImpl">
       <charset>none</charset>
       <pinHost>false</pinHost>
-      <name>jenkins-${NODE_NAME}-${JOB_NAME}-5.11_rel</name>
+      <name>jenkins-${NODE_NAME}-${JOB_NAME}-5.12_rel</name>
       <spec>
         <allwrite>false</allwrite>
         <clobber>false</clobber>
@@ -62,10 +62,10 @@ Triggers release_bll_win_pkg_webhelp&lt;br&gt;</description>
         <rmdir>false</rmdir>
         <streamName/>
         <line>LOCAL</line>
-        <view>//tech_pubs/online_help/Spirent_TestCenter/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.11_rel/online_help/Spirent_TestCenter/...
-//tech_pubs/online_help/Session_Manager/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.11_rel/online_help/Session_Manager/...
-//tech_pubs/online_help/CTS/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.11_rel/online_help/CTS/...
-//tech_pubs/online_help/stciq/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.11_rel/online_help/stciq/...</view>
+        <view>//tech_pubs/online_help/Spirent_TestCenter/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.12_rel/online_help/Spirent_TestCenter/...
+//tech_pubs/online_help/Session_Manager/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.12_rel/online_help/Session_Manager/...
+//tech_pubs/online_help/CTS/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.12_rel/online_help/CTS/...
+//tech_pubs/online_help/stciq/... //jenkins-${NODE_NAME}-${JOB_NAME}-5.12_rel/online_help/stciq/...</view>
         <type>WRITABLE</type>
         <serverID/>
         <backup>false</backup>
