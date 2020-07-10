@@ -57,7 +57,7 @@ example: "38" "FreeBSD" "integration_ftp_tarball" "integration"&lt;br&gt;
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description/>
-          <defaultValue>5.11_rel</defaultValue>
+          <defaultValue>5.12_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_ID</name>
