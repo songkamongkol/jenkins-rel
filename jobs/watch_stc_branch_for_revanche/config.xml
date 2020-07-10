@@ -40,7 +40,7 @@
     <workspace class="org.jenkinsci.plugins.p4.workspace.ManualWorkspaceImpl">
       <charset>none</charset>
       <pinHost>false</pinHost>
-      <name>jenkins-${NODE_NAME}-${JOB_NAME}-5.11_rel</name>
+      <name>jenkins-${NODE_NAME}-${JOB_NAME}-5.12_rel</name>
       <spec>
         <allwrite>false</allwrite>
         <clobber>false</clobber>
@@ -50,7 +50,7 @@
         <rmdir>false</rmdir>
         <streamName/>
         <line>LOCAL</line>
-        <view>//TestCenter/5.11_rel/framework/il/platform/fpga/testmodule/ccpu/revanche/ipq_version.txt //jenkins-${NODE_NAME}-${JOB_NAME}-5.11_rel/framework/il/platform/fpga/testmodule/ccpu/revanche/ipq_version.txt</view>
+        <view>//TestCenter/5.12_rel/framework/il/platform/fpga/testmodule/ccpu/revanche/ipq_version.txt //jenkins-${NODE_NAME}-${JOB_NAME}-5.12_rel/framework/il/platform/fpga/testmodule/ccpu/revanche/ipq_version.txt</view>
         <type>WRITABLE</type>
         <serverID/>
         <backup>false</backup>
