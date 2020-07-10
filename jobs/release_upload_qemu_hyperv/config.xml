@@ -1,20 +1,25 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>&lt;STRONG&gt;This job upload stca and stcv images from nightly build into S3 bucket in Orion. It also cleans up old images that are older than &lt;DAYS_TO_KEEP_IMAGES&gt; parameter &lt;/STRONG&gt;
-&lt;BR&gt;&lt;BR&gt;
-&lt;B&gt;Pre-Requisite:&lt;/B&gt;&lt;BR&gt;
-- orion-cli.tgz from s3://spirent-orion-artifacts/deploys/test must be extracted and installed (path to datautil must be in the PATH environment variable)&lt;BR&gt;
-- jq must be installed&lt;BR&gt;
-
+  <description>&lt;STRONG&gt;This job upload stca and stcv images from nightly build into S3 bucket in Orion. It also cleans up old images that are older than &lt;DAYS_TO_KEEP_IMAGES&gt; parameter &lt;/STRONG&gt;&#xd;
+&lt;BR&gt;&lt;BR&gt;&#xd;
+&lt;B&gt;Pre-Requisite:&lt;/B&gt;&lt;BR&gt;&#xd;
+- orion-cli.tgz from s3://spirent-orion-artifacts/deploys/test must be extracted and installed (path to datautil must be in the PATH environment variable)&lt;BR&gt;&#xd;
+- jq must be installed&lt;BR&gt;&#xd;
+&#xd;
 &lt;I&gt;NOTE: ORION_TOKEN value used in this job is retrieved from jenkins.oriondev.net (it&apos;s configured as global environment variable there)&lt;/I&gt;</description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
-      <useBuildBlocker>true</useBuildBlocker>
-      <blockingJobs>release_bll_linux_packaging
-release_bll_windows_packaging_new</blockingJobs>
+      <useBuildBlocker>false</useBuildBlocker>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <org.datadog.jenkins.plugins.datadog.DatadogJobProperty plugin="datadog@1.1.1">
+      <enableFile>false</enableFile>
+      <tagFile></tagFile>
+      <enableProperty>false</enableProperty>
+      <tagProperties></tagProperties>
+      <emitSCMEvents>true</emitSCMEvents>
+    </org.datadog.jenkins.plugins.datadog.DatadogJobProperty>
     <hudson.plugins.libvirt.BeforeJobSnapshotJobProperty plugin="libvirt-slave@1.8.5"/>
     <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.25">
       <autoRebuild>false</autoRebuild>
@@ -114,19 +119,7 @@ release_bll_windows_packaging_new</blockingJobs>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
-  <builders>
-    <hudson.tasks.Shell>
-      <command># $ORION_CLI_PATH/datautil get-folder -id=a31b64186ec24391a1482a92674610e4
-./upload_stca_stcv_orion.sh
-./upload_stc_bll_orion.sh
-</command>
-    </hudson.tasks.Shell>
-    <hudson.tasks.Shell>
-      <command>export PATH=/home/spirent/bin:$PATH
-python ./temeva_test_s3_artifacts_cleanup.py -t $DAYS_TO_KEEP_IMAGES
-python ./af_cleanup.py -t $DAYS_TO_KEEP_IMAGES</command>
-    </hudson.tasks.Shell>
-  </builders>
+  <builders/>
   <publishers>
     <hudson.tasks.Mailer plugin="mailer@1.19">
       <recipients>somboon.ongkamongkol@spirent.com</recipients>
@@ -174,60 +167,17 @@ python ./af_cleanup.py -t $DAYS_TO_KEEP_IMAGES</command>
         <spec>{
   &quot;files&quot;: [
     {
-      &quot;pattern&quot;: &quot;$IL_WORKSPACE/build/il/packages/rawimg/Spirent_TestCenter_Virtual_*${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}*.ova&quot;,
+      &quot;pattern&quot;: &quot;$IL_WORKSPACE/build/il/packages/rawimg/Spirent_TestCenter_Virtual_HyperV_&lt;version&gt;.zip*${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}*.zip&quot;,
       &quot;target&quot;: &quot;stc/stcv/&quot;,
-      &quot;props&quot;: &quot;name=${STCV_NAME};version=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID};category=${CATEGORY};application_id=${APP_ID};description=${STCV_DESCRIPTION};os=VMware - ESX/ESXi;format=ova&quot;,
+      &quot;props&quot;: &quot;name=${STCV_NAME};version=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID};category=${CATEGORY};description=${STCV_DESCRIPTION};os=HyperV- QEMU/KVM;format=zip&quot;,
       &quot;recursive&quot;: &quot;true&quot;,
       &quot;flat&quot;: &quot;true&quot;,
       &quot;excludePatterns&quot;: [&quot;*HyperV*&quot;]
     },
     {
-      &quot;pattern&quot;: &quot;$IL_WORKSPACE/build/il/packages/rawimg/Spirent_TestCenter_Virtual_qcow2*${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}*.zip&quot;,
-      &quot;target&quot;: &quot;stc/stcv/&quot;,
-      &quot;props&quot;: &quot;name=${STCV_NAME};version=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID};category=${CATEGORY};application_id=${APP_ID};description=${STCV_DESCRIPTION};os=OpenStack - QEMU/KVM;format=zip&quot;,
-      &quot;recursive&quot;: &quot;true&quot;,
-      &quot;flat&quot;: &quot;true&quot;,
-      &quot;excludePatterns&quot;: [&quot;*HyperV*&quot;]
-    },
-    {
-      &quot;pattern&quot;: &quot;$IL_WORKSPACE/build/il/packages/stca/stca*${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}*i386*.deb&quot;,
+      &quot;pattern&quot;: &quot;$IL_WORKSPACE/build/il/packages/rawimg/qemu*${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}*.img.gz&quot;,
       &quot;target&quot;: &quot;stc/stca/&quot;,
-      &quot;props&quot;: &quot;name=${STCA_NAME};version=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID};category=${CATEGORY};application_id=${APP_ID};description=${STCA_DESCRIPTION};os=Linux - 32 bit;format=deb&quot;,
-      &quot;recursive&quot;: &quot;true&quot;,
-      &quot;flat&quot;: &quot;true&quot;
-    },
-    {
-      &quot;pattern&quot;: &quot;$IL_WORKSPACE/build/il/packages/stca/stca*${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}*amd64*.deb&quot;,
-      &quot;target&quot;: &quot;stc/stca/&quot;,
-      &quot;props&quot;: &quot;name=${STCA_NAME};version=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID};category=${CATEGORY};application_id=${APP_ID};description=${STCA_DESCRIPTION};os=Linux - 64 bit;format=deb&quot;,
-      &quot;recursive&quot;: &quot;true&quot;,
-      &quot;flat&quot;: &quot;true&quot;
-    },
-    {
-      &quot;pattern&quot;: &quot;$IL_WORKSPACE/build/il/packages/stca/stca*${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}*.rpm&quot;,
-      &quot;target&quot;: &quot;stc/stca/&quot;,
-      &quot;props&quot;: &quot;name=${STCA_NAME};version=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID};category=${CATEGORY};application_id=${APP_ID};description=${STCA_DESCRIPTION};os=Fedora, CentOS;format=rpm&quot;,
-      &quot;recursive&quot;: &quot;true&quot;,
-      &quot;flat&quot;: &quot;true&quot;
-    },
-    {
-      &quot;pattern&quot;: &quot;$BLL_ROOT_PATH/TestCenter/${STC_MAJ_MIN_VERSION}/Engineering_Builds/GUI_BLL/${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}/Spirent TestCenter Application.exe&quot;,
-      &quot;target&quot;: &quot;stc/bll/Spirent TestCenter Application ${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}.exe&quot;,
-      &quot;props&quot;: &quot;name=${STC_NAME};version=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID};category=${CATEGORY};application_id=${APP_ID};description=${STC_DESCRIPTION};os=Windows - 32 bit;format=exe&quot;,
-      &quot;recursive&quot;: &quot;true&quot;,
-      &quot;flat&quot;: &quot;true&quot;
-    },
-    {
-      &quot;pattern&quot;: &quot;$BLL_ROOT_PATH/TestCenter/${STC_MAJ_MIN_VERSION}/Engineering_Builds/GUI_BLL/${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}/tar/Spirent_TestCenter_Auto_Linux_${STC_MAJ_MIN_VERSION}.tar.gz&quot;,
-      &quot;target&quot;: &quot;stc/bll/Spirent_TestCenter_Auto_Linux_${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}.tar.gz&quot;,
-      &quot;props&quot;: &quot;name=${STC_NAME};version=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID};category=${CATEGORY};application_id=${APP_ID};description=${STC_DESCRIPTION};os=Linux - 32 bit;format=gz&quot;,
-      &quot;recursive&quot;: &quot;true&quot;,
-      &quot;flat&quot;: &quot;true&quot;
-    },
-    {
-      &quot;pattern&quot;: &quot;$BLL_ROOT_PATH/TestCenter/${STC_MAJ_MIN_VERSION}/Engineering_Builds/GUI_BLL/${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}/tar/Spirent_TestCenter_Auto_Linux64_${STC_MAJ_MIN_VERSION}.tar.gz&quot;,
-      &quot;target&quot;: &quot;stc/bll/Spirent_TestCenter_Auto_Linux64_${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}.tar.gz&quot;,
-      &quot;props&quot;: &quot;name=${STC_NAME};version=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID};category=${CATEGORY};application_id=${APP_ID};description=${STC_DESCRIPTION};os=Linux - 64 bit;format=gz&quot;,
+      &quot;props&quot;: &quot;name=${STCV_NAME};version=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID};category=${CATEGORY};description=${STCV_DESCRIPTION};os=QEMU;format=gz&quot;,
       &quot;recursive&quot;: &quot;true&quot;,
       &quot;flat&quot;: &quot;true&quot;
     }
@@ -256,28 +206,13 @@ python ./af_cleanup.py -t $DAYS_TO_KEEP_IMAGES</command>
     <EnvInjectBuildWrapper plugin="envinject@1.89">
       <info>
         <propertiesContent>IL_WORKSPACE=/home/spirent/jenkins-rel/workspace/release_il_centralboot_packaging
-FOLDER_ID=a31b64186ec24391a1482a92674610e4 
-APP_ID=e8c43606b3924efbaa86f82bc47dd279
 CATEGORY=product-image
-STCA_NAME=stca
 STCV_NAME=stcv
-STCA_DESCRIPTION=Spirent TestCenter Anywhere
 STCV_DESCRIPTION=Spirent TestCenter Virtual
-STC_DESCRIPTION=Spirent TestCenter Application
 STC_NAME=STC
-BLL_ROOT_PATH=/gibson
 </propertiesContent>
         <loadFilesFromMaster>false</loadFilesFromMaster>
       </info>
     </EnvInjectBuildWrapper>
-    <EnvInjectPasswordWrapper plugin="envinject@1.89">
-      <injectGlobalPasswords>false</injectGlobalPasswords>
-      <passwordEntries>
-        <EnvInjectPasswordEntry>
-          <name>ORION_TOKEN</name>
-          <value>ZLtb/252P7vo3zS5z3BUofKWaN2L/ADpKI7KoEEDanBsPKAkdbhRXdskoYcM933JwbtOcoT9oniAvLC2kSbdmnEXNCybh8RsCjS4Cf2P1mTREy5NlLDrSNJoWeSi86NfO8v8EY6QIKjJuraFkLFO4qw7QIbf8DDi7/uk37D1rclc7XkG8NIU9/CDjzz67dH4JixSb7GTcFn23fcKQDRnemmYksCxxd4ev7a49EIxUYfYWyA+yR3vozOpTTdpJq3BSpDtNPaexqP4LFQnfx6uWukrMC3uDt3164npgLR7K5pcBOSqhEY4RxtRlPfOQvwqHM9IEjGzQmn/Nk2/BMwI1WBd7QydrLL4BuQwskGJUH+FbxpC5ZxsiGE+E6xKC3lVFfWH0b4gmIKFgLOor8hoKxWkAgZxQ0bVUvcGh29Apr0Ju32h+F6bLrIf7WtKkojyg4pGao8S/wbFw0kjndDpTy6IqM9WGz4wf1EyFtLqwBaxXoLwT20yzDGvnSgsCqEdVRufQw2c9AvutzsnNrzSiHAxlLlGYTaTua7niWzj9PfOLJpk7eDbkTckxE3mh2rX2W4DYQLVbXRihtEgTUFb+wgG0VCjB2b5leVJILHChaKsQTZpPwcHoW0z/3YKCm2sqmBvRJwzf5pgGONBL5GPcuzXzanVNN5cUBR284X8UoSPa2EExx1r/oZDcVGeCBnaJk79XfRo7nXPg7EAUbFmM9/kakp0mRCF3p4gPqzL8AkL+z7yB9fbz1y4EbjvWsTs69kjcZe+prDykj/XkP4OJx3eIjMFsZEXpPUs4f7ijE2LzTfis6BhzpCF+wDB9DfMASb+dwZLgDbl4Gy2AeN+WCVsO+pfkbEfXC/Kf7qenjZmoNkVd7inTkLri1Lupdhn</value>
-        </EnvInjectPasswordEntry>
-      </passwordEntries>
-    </EnvInjectPasswordWrapper>
   </buildWrappers>
 </project>
