@@ -145,6 +145,7 @@
             <string>release_reset_tag_file</string>
             <string>release_set_status</string>
             <string>release_update_latestbuild</string>
+            <string>release_upload_qemu_hyperv</string>
             <string>release_upload_stca_stcv_orion</string>
             <string>release_win_bll_copy_to_filer</string>
             <string>release_win_bll_tarball_to_filer</string>
