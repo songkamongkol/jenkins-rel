@@ -167,7 +167,6 @@
       &quot;props&quot;: &quot;name=${STCV_NAME};version=${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID};category=${CATEGORY};description=${STCV_DESCRIPTION};os=HyperV- QEMU/KVM;format=zip&quot;,
       &quot;recursive&quot;: &quot;true&quot;,
       &quot;flat&quot;: &quot;true&quot;,
-      &quot;excludePatterns&quot;: [&quot;*HyperV*&quot;]
     },
     {
       &quot;pattern&quot;: &quot;$IL_WORKSPACE/build/il/packages/rawimg/qemu*${STC_MAJ_MIN_VERSION}.${BLL_BUILD_NUMBER}${BRANCH_ID}*.img.gz&quot;,
