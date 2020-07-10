@@ -1,5 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<project>
+<?xml version="1.0" encoding="UTF-8"?><project>
   <actions/>
   <description>Startup error problem with TestCenter.Windows.tar.gz?
 
@@ -11,9 +10,9 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
     </hudson.plugins.buildblocker.BuildBlockerProperty>
     <org.datadog.jenkins.plugins.datadog.DatadogJobProperty plugin="datadog@1.1.1">
       <enableFile>false</enableFile>
-      <tagFile></tagFile>
+      <tagFile/>
       <enableProperty>false</enableProperty>
-      <tagProperties></tagProperties>
+      <tagProperties/>
       <emitSCMEvents>true</emitSCMEvents>
     </org.datadog.jenkins.plugins.datadog.DatadogJobProperty>
     <jenkins.model.BuildDiscarderProperty>
@@ -35,9 +34,9 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain></teamDomain>
-      <token></token>
-      <room></room>
+      <teamDomain/>
+      <token/>
+      <room/>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -54,7 +53,7 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>5.11_rel</defaultValue>
+          <defaultValue>5.12_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -79,7 +78,7 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description>major minor version TODO: get this from a file</description>
-          <defaultValue>5.11</defaultValue>
+          <defaultValue>5.12</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -97,9 +96,9 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
         <locked>false</locked>
         <modtime>false</modtime>
         <rmdir>false</rmdir>
-        <streamName></streamName>
+        <streamName/>
         <line>LOCAL</line>
-        <view>+//TestCenter/5.11_rel/... //jenkins-${NODE_NAME}-${JOB_NAME}/...
+        <view>+//TestCenter/5.12_rel/... //jenkins-${NODE_NAME}-${JOB_NAME}/...
 -//TestCenter/*/Layer1/... //jenkins-${NODE_NAME}-${JOB_NAME}/TestCenter/*/Layer1/...
 -//TestCenter/*/userdocauto/... //jenkins-${NODE_NAME}-${JOB_NAME}/TestCenter/*/userdocauto/... 
 -//TestCenter/*/sandbox/... //jenkins-${NODE_NAME}-${JOB_NAME}/TestCenter/*/sandbox/...
@@ -119,11 +118,11 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
 -//TestCenter/*/regression/... //jenkins-${NODE_NAME}-${JOB_NAME}/TestCenter/*/regression/...
 -//TestCenter/*/framework/bll/vendor/lib/i386-* //jenkins-${NODE_NAME}-${JOB_NAME}/*/framework/bll/vendor/lib/i386-*
 -//TestCenter/*/ui/common/lib/ACE_wrappers_6.1.6/i386* //jenkins-${NODE_NAME}-${JOB_NAME}/*/ui/common/lib/ACE_wrappers_6.1.6/i386*
-+//TestCenter/5.11_rel/scm/tools/... //jenkins-${NODE_NAME}-${JOB_NAME}/scm/tools/...
-+//TestCenter/5.11_rel/build/il/scripts/... //jenkins-${NODE_NAME}-${JOB_NAME}/build/il/scripts/...
-+//TestCenter/5.11_rel/build/il/configs/scripts/... //jenkins-${NODE_NAME}-${JOB_NAME}/build/il/configs/scripts/...</view>
++//TestCenter/5.12_rel/scm/tools/... //jenkins-${NODE_NAME}-${JOB_NAME}/scm/tools/...
++//TestCenter/5.12_rel/build/il/scripts/... //jenkins-${NODE_NAME}-${JOB_NAME}/build/il/scripts/...
++//TestCenter/5.12_rel/build/il/configs/scripts/... //jenkins-${NODE_NAME}-${JOB_NAME}/build/il/configs/scripts/...</view>
         <type>WRITABLE</type>
-        <serverID></serverID>
+        <serverID/>
         <backup>false</backup>
       </spec>
     </workspace>
@@ -132,7 +131,7 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
       <force>false</force>
       <modtime>false</modtime>
       <quiet>true</quiet>
-      <pin></pin>
+      <pin/>
       <parallel>
         <enable>false</enable>
         <threads>4</threads>
@@ -157,24 +156,24 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>del UI_changelist_*.txt Magellan_*end_Build_*.txt del archangel*.txt&#xd;
-echo %P4_CHANGELIST% %JOB_NAME% %BUILD_NUMBER% &gt; UI_changelist_%P4_CHANGELIST%.txt&#xd;
+      <command>del UI_changelist_*.txt Magellan_*end_Build_*.txt del archangel*.txt
+echo %P4_CHANGELIST% %JOB_NAME% %BUILD_NUMBER% &gt; UI_changelist_%P4_CHANGELIST%.txt
 del properties.txt</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>echo STC BUILD ROOT is %STC_BUILD_ROOT%&#xd;
-mkdir __ui_only_build__&#xd;
-del /Q TestCenter.Windows.x64.bll.tar.gz&#xd;
-del BLL_changelist*.txt&#xd;
-rd /s /q bin\Release_x64\STAKCommands&#xd;
-&#xd;
+      <command>echo STC BUILD ROOT is %STC_BUILD_ROOT%
+mkdir __ui_only_build__
+del /Q TestCenter.Windows.x64.bll.tar.gz
+del BLL_changelist*.txt
+rd /s /q bin\Release_x64\STAKCommands
+
 exit /B 0</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
       <project>release_bll_windows_x64_ci</project>
       <filter>bin/Release_x64/TestCenter.Windows.x64.bll.tar.gz,*BLL_changelist*.txt,Magellan_*end_Build_*.txt,archangel_*.txt</filter>
-      <target></target>
-      <excludes></excludes>
+      <target/>
+      <excludes/>
       <selector class="hudson.plugins.copyartifact.PermalinkBuildSelector">
         <id>Release Build Passed on all OS</id>
       </selector>
@@ -184,8 +183,8 @@ exit /B 0</command>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
       <project>release_bll_windows_x64_ci</project>
       <filter>bin/Release_x64/STAKCommands.beta.Windows.x64.tar.gz</filter>
-      <target></target>
-      <excludes></excludes>
+      <target/>
+      <excludes/>
       <selector class="hudson.plugins.copyartifact.PermalinkBuildSelector">
         <id>Release Build Passed on all OS</id>
       </selector>
@@ -193,47 +192,47 @@ exit /B 0</command>
       <doNotFingerprintArtifacts>true</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.BatchFile>
-      <command>python framework\tools\buildUtil\package.py --install TestCenter.Windows.x64.bll.tar.gz --directory=bin/Release_x64&#xd;
-attrib -r C:\jenkins-rel\workspace\release_ui_x64_ci\bin\Release_x64\phxrpc.dll&#xd;
-&#xd;
+      <command>python framework\tools\buildUtil\package.py --install TestCenter.Windows.x64.bll.tar.gz --directory=bin/Release_x64
+attrib -r C:\jenkins-rel\workspace\release_ui_x64_ci\bin\Release_x64\phxrpc.dll
+
 python framework\tools\buildUtil\package.py --install STAKCommands.beta.Windows.x64.tar.gz --directory=bin/Release_x64 --append</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
       <command>python genSln.py</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>pushd C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\Tools&#xd;
-call VsDevCmd.bat -arch=x64&#xd;
-popd&#xd;
-msbuild.exe TestCenter.UI.Gen.sln /t:build /p:Configuration=Release /p:Platform=x64&#xd;
+      <command>pushd C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\Tools
+call VsDevCmd.bat -arch=x64
+popd
+msbuild.exe TestCenter.UI.Gen.sln /t:build /p:Configuration=Release /p:Platform=x64
 </command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>REM cd bin\Release_x64&#xd;
-REM rebase.exe -b 0x12000000 -u . *.dll&#xd;
+      <command>REM cd bin\Release_x64
+REM rebase.exe -b 0x12000000 -u . *.dll
 REM exit /B 0</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>if %RUN_BLL_UI_UNITTEST% == true (&#xd;
-cd bin\Release_x64&#xd;
-python ..\..\framework\tools\testRunner\testRunner.py --runInParallel=8 --ui --archive&#xd;
-rmdir /Q /S unit_test_report&#xd;
-mkdir unit_test_report&#xd;
-copy *.html unit_test_report&#xd;
-echo move *_CoverageReport unit_test_report&#xd;
+      <command>if %RUN_BLL_UI_UNITTEST% == true (
+cd bin\Release_x64
+python ..\..\framework\tools\testRunner\testRunner.py --runInParallel=8 --ui --archive
+rmdir /Q /S unit_test_report
+mkdir unit_test_report
+copy *.html unit_test_report
+echo move *_CoverageReport unit_test_report
 )</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>cd bin\Release_x64&#xd;
-del TestCenter*.tar.gz&#xd;
-if %BUILD_PACKAGE_BUILD% == true (&#xd;
-xcopy /Y /R /D ..\..\scm\tools\devexpress .&#xd;
-xcopy /Y /R /D ..\..\scm\tools\dundas .&#xd;
-xcopy /Y /R /D ..\..\scm\tools\janus .&#xd;
-python ..\..\framework\tools\buildUtil\package.py --package=TestCenter &#xd;
-python ..\..\framework\tools\buildUtil\package.py --package=STAKCommands.beta&#xd;
-copy TestCenter.Windows.x64.tar.gz TestCenter.Windows.x64.no_version.tar.gz&#xd;
-python ..\..\framework\tools\buildUtil\setver.py --package=TestCenter.Windows.x64.tar.gz %STC_MAJ_MIN_VERSION% %P4_CHANGELIST%&#xd;
+      <command>cd bin\Release_x64
+del TestCenter*.tar.gz
+if %BUILD_PACKAGE_BUILD% == true (
+xcopy /Y /R /D ..\..\scm\tools\devexpress .
+xcopy /Y /R /D ..\..\scm\tools\dundas .
+xcopy /Y /R /D ..\..\scm\tools\janus .
+python ..\..\framework\tools\buildUtil\package.py --package=TestCenter 
+python ..\..\framework\tools\buildUtil\package.py --package=STAKCommands.beta
+copy TestCenter.Windows.x64.tar.gz TestCenter.Windows.x64.no_version.tar.gz
+python ..\..\framework\tools\buildUtil\setver.py --package=TestCenter.Windows.x64.tar.gz %STC_MAJ_MIN_VERSION% %P4_CHANGELIST%
 )</command>
     </hudson.tasks.BatchFile>
   </builders>
@@ -274,7 +273,7 @@ python ..\..\framework\tools\buildUtil\setver.py --package=TestCenter.Windows.x6
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.DevelopersRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern></attachmentsPattern>
+            <attachmentsPattern/>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -287,7 +286,7 @@ python ..\..\framework\tools\buildUtil\setver.py --package=TestCenter.Windows.x6
             <recipientProviders>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern></attachmentsPattern>
+            <attachmentsPattern/>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -300,7 +299,7 @@ python ..\..\framework\tools\buildUtil\setver.py --package=TestCenter.Windows.x6
             <recipientProviders>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern></attachmentsPattern>
+            <attachmentsPattern/>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -310,18 +309,18 @@ python ..\..\framework\tools\buildUtil\setver.py --package=TestCenter.Windows.x6
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern></attachmentsPattern>
-      <presendScript></presendScript>
-      <postsendScript></postsendScript>
+      <attachmentsPattern/>
+      <presendScript/>
+      <postsendScript/>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
-      <replyTo></replyTo>
+      <replyTo/>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
     <jenkinsci.plugins.influxdb.InfluxDbPublisher plugin="influxdb@1.10.3">
       <selectedTarget>http://influxdb-01.cal.ci.spirentcom.com:8086,release_jenkins_db</selectedTarget>
-      <customPrefix></customPrefix>
+      <customPrefix/>
     </jenkinsci.plugins.influxdb.InfluxDbPublisher>
   </publishers>
   <buildWrappers>
@@ -335,25 +334,25 @@ python ..\..\framework\tools\buildUtil\setver.py --package=TestCenter.Windows.x6
     <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
       <buildSteps>
         <hudson.tasks.BatchFile>
-          <command>setlocal enabledelayedexpansion&#xd;
-SET modified=%WORKSPACE:/=\%&#xd;
-if &quot;%P4CLEANWORKSPACE%&quot; == &quot;true&quot; (&#xd;
-&#xd;
-echo &quot;Removing %modified%&quot;&#xd;
-rd /s /q %modified%\Bakeoff_TestCaseScripts&#xd;
-rd /s /q %modified%\bin&#xd;
-rd /s /q %modified%\build&#xd;
-rd /s /q %modified%\common&#xd;
-rd /s /q %modified%\content&#xd;
-rd /s /q %modified%\framework&#xd;
-rd /s /q %modified%\Layer1&#xd;
-rd /s /q %modified%\Release&#xd;
-rd /s /q %modified%\scm&#xd;
-rd /s /q %modified%\trafficcenter-app&#xd;
-rd /s /q %modified%\userdocauto&#xd;
-del /f /q %modified%\*.*&#xd;
-echo 9R1Y9fE4$PSH|p4 -u tableuser -p perforce.spirentcom.com:1666 login&#xd;
-p4 -u tableuser -p perforce.spirentcom.com:1666 -c jenkins-%NODE_NAME%-%JOB_NAME% sync //jenkins-%NODE_NAME%-%JOB_NAME%-%BRANCH_NAME%/...#none&#xd;
+          <command>setlocal enabledelayedexpansion
+SET modified=%WORKSPACE:/=\%
+if "%P4CLEANWORKSPACE%" == "true" (
+
+echo "Removing %modified%"
+rd /s /q %modified%\Bakeoff_TestCaseScripts
+rd /s /q %modified%\bin
+rd /s /q %modified%\build
+rd /s /q %modified%\common
+rd /s /q %modified%\content
+rd /s /q %modified%\framework
+rd /s /q %modified%\Layer1
+rd /s /q %modified%\Release
+rd /s /q %modified%\scm
+rd /s /q %modified%\trafficcenter-app
+rd /s /q %modified%\userdocauto
+del /f /q %modified%\*.*
+echo 9R1Y9fE4$PSH|p4 -u tableuser -p perforce.spirentcom.com:1666 login
+p4 -u tableuser -p perforce.spirentcom.com:1666 -c jenkins-%NODE_NAME%-%JOB_NAME% sync //jenkins-%NODE_NAME%-%JOB_NAME%-%BRANCH_NAME%/...#none
 )</command>
         </hudson.tasks.BatchFile>
       </buildSteps>
