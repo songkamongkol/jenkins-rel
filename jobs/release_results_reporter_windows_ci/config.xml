@@ -39,7 +39,7 @@
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>5.11_rel</defaultValue>
+          <defaultValue>5.12_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -64,10 +64,10 @@
         <rmdir>false</rmdir>
         <streamName/>
         <line>LOCAL</line>
-        <view>+//TestCenter/5.11_rel/framework/ui/resultsanalysis/... //jenkins-${NODE_NAME}-${JOB_NAME}/framework/ui/resultsanalysis/...
--//TestCenter/5.11_rel/framework/ui/resultsanalysis/tools/jvm/linux_x86/man/... //jenkins-${NODE_NAME}-${JOB_NAME}/framework/ui/resultsanalysis/tools/jvm/linux_x86/man/...
-+//TestCenter/5.11_rel/framework/ui/resultsanalysis/tools/jvm/windows_x86_1.6.0_35/... //jenkins-${NODE_NAME}-${JOB_NAME}/framework/ui/resultsanalysis/tools/jvm/windows_x86_1.6.0_35/...
-+//TestCenter/5.11_rel/framework/tools/buildUtil/... //jenkins-${NODE_NAME}-${JOB_NAME}/framework/tools/buildUtil/...</view>
+        <view>+//TestCenter/5.12_rel/framework/ui/resultsanalysis/... //jenkins-${NODE_NAME}-${JOB_NAME}/framework/ui/resultsanalysis/...
+-//TestCenter/5.12_rel/framework/ui/resultsanalysis/tools/jvm/linux_x86/man/... //jenkins-${NODE_NAME}-${JOB_NAME}/framework/ui/resultsanalysis/tools/jvm/linux_x86/man/...
++//TestCenter/5.12_rel/framework/ui/resultsanalysis/tools/jvm/windows_x86_1.6.0_35/... //jenkins-${NODE_NAME}-${JOB_NAME}/framework/ui/resultsanalysis/tools/jvm/windows_x86_1.6.0_35/...
++//TestCenter/5.12_rel/framework/tools/buildUtil/... //jenkins-${NODE_NAME}-${JOB_NAME}/framework/tools/buildUtil/...</view>
         <type>WRITABLE</type>
         <serverID/>
         <backup>false</backup>
