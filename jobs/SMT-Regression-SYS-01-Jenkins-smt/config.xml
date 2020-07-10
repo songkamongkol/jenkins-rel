@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
   <description>remotely trigger smarttest job on http://jenkins-smt.cal.ci.spirentcom.com:8080/job/release_patch_launch_smarttest/</description>
   <keepDependencies>false</keepDependencies>
@@ -20,9 +21,9 @@
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain/>
-      <token/>
-      <room/>
+      <teamDomain></teamDomain>
+      <token></token>
+      <room></room>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -38,12 +39,12 @@
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
-          <description/>
+          <description></description>
           <defaultValue>5.12_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
-          <description/>
+          <description></description>
           <defaultValue>5.12</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -53,7 +54,7 @@
   <quietPeriod>120</quietPeriod>
   <assignedNode>relpkg-05</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>true</disabled>
+  <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
@@ -70,10 +71,10 @@ import urllib2
 
 
  
-job = 'SMT-Remote-Regression-SYS-01'
-url = "http://jenkins-smt.cal.ci.spirentcom.com:8080/job/" + job +"/buildWithParameters?token=mosheallowedtodothis&amp;STC_MAJ_MIN_VERSION="+os.environ['STC_MAJ_MIN_VERSION']
+job = &apos;SMT-Remote-Regression-SYS-01&apos;
+url = &quot;http://jenkins-smt.cal.ci.spirentcom.com:8080/job/&quot; + job +&quot;/buildWithParameters?token=mosheallowedtodothis&amp;STC_MAJ_MIN_VERSION=&quot;+os.environ[&apos;STC_MAJ_MIN_VERSION&apos;]
 
-#data="token=mosheallowedtodothis"
+#data=&quot;token=mosheallowedtodothis&quot;
 #creating HTTP Req
 req = urllib2.Request(url)
 f = urllib2.urlopen(req)
