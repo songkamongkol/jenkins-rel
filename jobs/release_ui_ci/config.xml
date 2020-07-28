@@ -1,14 +1,21 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>Startup error problem with TestCenter.Windows.tar.gz?
-
+  <description>Startup error problem with TestCenter.Windows.tar.gz?&#xd;
+&#xd;
 Install the latest vcredist from http://www.microsoft.com/download/en/details.aspx?displaylang=en&amp;id=26347</description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
       <useBuildBlocker>false</useBuildBlocker>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <org.datadog.jenkins.plugins.datadog.DatadogJobProperty plugin="datadog@1.1.1">
+      <enableFile>false</enableFile>
+      <tagFile></tagFile>
+      <enableProperty>false</enableProperty>
+      <tagProperties></tagProperties>
+      <emitSCMEvents>true</emitSCMEvents>
+    </org.datadog.jenkins.plugins.datadog.DatadogJobProperty>
     <jenkins.model.BuildDiscarderProperty>
       <strategy class="hudson.tasks.LogRotator">
         <daysToKeep>-1</daysToKeep>
@@ -92,7 +99,7 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
         <rmdir>false</rmdir>
         <streamName></streamName>
         <line>LOCAL</line>
-        <view>+//TestCenter/5.12_rel/... //jenkins-${NODE_NAME}-${JOB_NAME}/...
+        <view>+//TestCenter/5.11_rel/... //jenkins-${NODE_NAME}-${JOB_NAME}/...
 -//TestCenter/*/Layer1/... //jenkins-${NODE_NAME}-${JOB_NAME}/TestCenter/*/Layer1/...
 -//TestCenter/*/userdocauto/... //jenkins-${NODE_NAME}-${JOB_NAME}/TestCenter/*/userdocauto/... 
 -//TestCenter/*/sandbox/... //jenkins-${NODE_NAME}-${JOB_NAME}/TestCenter/*/sandbox/...
@@ -112,9 +119,9 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
 -//TestCenter/*/regression/... //jenkins-${NODE_NAME}-${JOB_NAME}/TestCenter/*/regression/...
 -//TestCenter/*/framework/bll/vendor/lib/i386-* //jenkins-${NODE_NAME}-${JOB_NAME}/*/framework/bll/vendor/lib/i386-*
 -//TestCenter/*/common/lib/ACE_wrappers_6.1.6/i386.yocto_i686 //jenkins-${NODE_NAME}-${JOB_NAME}/*/common/lib/ACE_wrappers_6.1.6/i386.yocto_i686 
-+//TestCenter/5.12_rel/scm/tools/... //jenkins-${NODE_NAME}-${JOB_NAME}/scm/tools/...
-+//TestCenter/5.12_rel/build/il/scripts/... //jenkins-${NODE_NAME}-${JOB_NAME}/build/il/scripts/...
-+//TestCenter/5.12_rel/build/il/configs/scripts/... //jenkins-${NODE_NAME}-${JOB_NAME}/build/il/configs/scripts/...</view>
++//TestCenter/5.11_rel/scm/tools/... //jenkins-${NODE_NAME}-${JOB_NAME}/scm/tools/...
++//TestCenter/5.11_rel/build/il/scripts/... //jenkins-${NODE_NAME}-${JOB_NAME}/build/il/scripts/...
++//TestCenter/5.11_rel/build/il/configs/scripts/... //jenkins-${NODE_NAME}-${JOB_NAME}/build/il/configs/scripts/...</view>
         <type>WRITABLE</type>
         <serverID></serverID>
         <backup>false</backup>
