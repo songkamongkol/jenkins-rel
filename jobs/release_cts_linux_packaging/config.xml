@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
   <description>Extracts CTS.Linux.x64.tar.gz from integration_cts_linux build job&lt;br&gt;
 Runs setver.py using python script ci_run_jenkins_steps.py script&lt;br&gt;
@@ -23,9 +24,9 @@ Triggers integration_ftp_tarball which restructures the tarball and copies the o
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain/>
-      <token/>
-      <room/>
+      <teamDomain></teamDomain>
+      <token></token>
+      <room></room>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -42,7 +43,7 @@ Triggers integration_ftp_tarball which restructures the tarball and copies the o
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>5.12_rel</defaultValue>
+          <defaultValue>5.11_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -57,21 +58,21 @@ Triggers integration_ftp_tarball which restructures the tarball and copies the o
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description>major minor version TODO: get this from a file</description>
-          <defaultValue>5.12</defaultValue>
+          <defaultValue>5.11</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
-          <description/>
+          <description></description>
           <defaultValue>BAD_BUILD_NUMBER</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>SOURCE_OS</name>
-          <description/>
+          <description></description>
           <defaultValue>CTSLinuxEL3</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>RELEASE_TYPE</name>
-          <description/>
+          <description></description>
           <defaultValue>RELEASE</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -90,13 +91,13 @@ Triggers integration_ftp_tarball which restructures the tarball and copies the o
         <locked>false</locked>
         <modtime>false</modtime>
         <rmdir>false</rmdir>
-        <streamName/>
+        <streamName></streamName>
         <line>LOCAL</line>
         <view>//SCM/Build_Scripts/STC_Build_Scripts/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/Build_Scripts/STC_Build_Scripts/...
 //SCM/Scripts/ci_* //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/Build_Scripts/Scripts/ci_*
 //TestCenter/${BRANCH_NAME}/framework/tools/buildUtil/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/framework/tools/buildUtil/...</view>
         <type>WRITABLE</type>
-        <serverID/>
+        <serverID></serverID>
         <backup>false</backup>
       </spec>
     </workspace>
@@ -105,7 +106,7 @@ Triggers integration_ftp_tarball which restructures the tarball and copies the o
       <force>false</force>
       <modtime>false</modtime>
       <quiet>true</quiet>
-      <pin/>
+      <pin></pin>
       <parallel>
         <enable>false</enable>
         <threads>4</threads>
@@ -127,8 +128,8 @@ Triggers integration_ftp_tarball which restructures the tarball and copies the o
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
       <project>release_cts_linux_ci</project>
       <filter>build/il/bld_bll-el3_x86/Release/bin/CTS.Linux.tar.gz</filter>
-      <target/>
-      <excludes/>
+      <target></target>
+      <excludes></excludes>
       <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
@@ -144,7 +145,7 @@ rm -f CTS.Linux.tar.gz
 rm -f CTS.Linux_$STC_MAJ_MIN_VERSION.tar*
 tar cvf CTS.Linux_$STC_MAJ_MIN_VERSION.tar *
 gzip CTS.Linux_$STC_MAJ_MIN_VERSION.tar
-echo "Finished creating CTS.Linux_$STC_MAJ_MIN_VERSION.tar.gz"</command>
+echo &quot;Finished creating CTS.Linux_$STC_MAJ_MIN_VERSION.tar.gz&quot;</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
@@ -157,7 +158,7 @@ echo "Finished creating CTS.Linux_$STC_MAJ_MIN_VERSION.tar.gz"</command>
     </hudson.plugins.logparser.LogParserPublisher>
     <jenkinsci.plugins.influxdb.InfluxDbPublisher plugin="influxdb@1.10.3">
       <selectedTarget>http://influxdb-01.cal.ci.spirentcom.com:8086,release_jenkins_db</selectedTarget>
-      <customPrefix/>
+      <customPrefix></customPrefix>
     </jenkinsci.plugins.influxdb.InfluxDbPublisher>
     <hudson.plugins.parameterizedtrigger.BuildTrigger plugin="parameterized-trigger@2.35.2">
       <configs>

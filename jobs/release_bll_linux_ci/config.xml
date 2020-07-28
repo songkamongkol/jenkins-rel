@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
-  <description/>
+  <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
@@ -26,9 +27,9 @@
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain/>
-      <token/>
-      <room/>
+      <teamDomain></teamDomain>
+      <token></token>
+      <room></room>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -45,7 +46,7 @@
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>5.12_rel</defaultValue>
+          <defaultValue>5.11_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -70,7 +71,7 @@
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description>major minor version TODO: get this from a file</description>
-          <defaultValue>5.12</defaultValue>
+          <defaultValue>5.11</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>RELEASE_BUILD</name>
@@ -104,7 +105,7 @@
         <locked>false</locked>
         <modtime>false</modtime>
         <rmdir>false</rmdir>
-        <streamName/>
+        <streamName></streamName>
         <line>LOCAL</line>
         <view>+//TestCenter/${BRANCH_NAME}/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/...
 -//TestCenter/*/Layer1/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/*/Layer1/...
@@ -133,7 +134,7 @@
 +//TestCenter/${BRANCH_NAME}/common/.../ui/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/common/.../ui/...
 +//TestCenter/${BRANCH_NAME}/framework/ui/automation/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/framework/ui/automation/...</view>
         <type>WRITABLE</type>
-        <serverID/>
+        <serverID></serverID>
         <backup>false</backup>
       </spec>
     </workspace>
@@ -142,7 +143,7 @@
       <force>false</force>
       <modtime>false</modtime>
       <quiet>true</quiet>
-      <pin/>
+      <pin></pin>
       <parallel>
         <enable>false</enable>
         <threads>4</threads>
@@ -166,11 +167,11 @@ echo $P4_CHANGELIST $JOB_NAME $BUILD_NUMBER &gt; BLL_Linux_changelist_$P4_CHANGE
 rm -rf $WORKSPACE/$BUILD_OUTPUT_DIR/STAKCommands</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command>if [ "$P4CLEANWORKSPACE" = "true" ]; then
+      <command>if [ &quot;$P4CLEANWORKSPACE&quot; = &quot;true&quot; ]; then
 	ccache -C
 fi
 
-if [ "$RELEASE_BUILD" = "true" ]; then
+if [ &quot;$RELEASE_BUILD&quot; = &quot;true&quot; ]; then
     cp -f $WORKSPACE/framework/bll/core/include/licensing/ga_release/ControlledReleaseCheck.h $WORKSPACE/framework/bll/core/include/licensing/ControlledReleaseCheck.h
 fi</command>
     </hudson.tasks.Shell>
@@ -180,13 +181,13 @@ export PATH=/usr/gcc_4_9/bin:$PATH
 python genSln.py
 ./scons.sh -f SConstruct.bll -j 12 --debug=time debug=0 coverage=0 target=bll-el3 2&gt;&amp;1 | tee compile_output.txt
 python $WORKSPACE/framework/tools/buildUtil/gcc_warning_detect.py compile_output.txt
-python $WORKSPACE/common/idl/crc.py -f bll_idl_crc.txt --desc "$JOB_NAME $BUILD_NUMBER"
+python $WORKSPACE/common/idl/crc.py -f bll_idl_crc.txt --desc &quot;$JOB_NAME $BUILD_NUMBER&quot;
 
 # scons -j 12 --debug=time debug=0 coverage=0 target=bll-el3 2&gt;&amp;1 | tee compile_output.txt
 # python $WORKSPACE/framework/tools/buildUtil/gcc_warning_detect.py compile_output.txt</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command>if [ "$BUILD_RUN_UNITTEST" = "true" ]; then
+      <command>if [ &quot;$BUILD_RUN_UNITTEST&quot; = &quot;true&quot; ]; then
     cd $WORKSPACE/$BUILD_OUTPUT_DIR
     python $WORKSPACE/framework/tools/testRunner/testRunner.py --runInParallel=4 --bll --stak --archive
 fi</command>
@@ -199,12 +200,12 @@ import tarfile
 import shutil
 
 def _download_file_from_url(url=None):
-    file_name = url.split('/')[-1]
+    file_name = url.split(&apos;/&apos;)[-1]
     u = urllib2.urlopen(url)
-    f = open(file_name, 'wb')
+    f = open(file_name, &apos;wb&apos;)
     meta = u.info()
-    file_size = int(meta.getheaders("Content-Length")[0])
-    print "Downloading: %s Bytes: %s" % (file_name, file_size)
+    file_size = int(meta.getheaders(&quot;Content-Length&quot;)[0])
+    print &quot;Downloading: %s Bytes: %s&quot; % (file_name, file_size)
 
     file_size_dl = 0
     block_sz = 8192
@@ -215,91 +216,91 @@ def _download_file_from_url(url=None):
 
         file_size_dl += len(buffer)
         f.write(buffer)
-        status = r"%10d  [%3.2f%%]" % (file_size_dl, file_size_dl * 100. / file_size)
+        status = r&quot;%10d  [%3.2f%%]&quot; % (file_size_dl, file_size_dl * 100. / file_size)
         status = status + chr(8)*(len(status)+1)
         print status,
 
     f.close()
 
 def unzip(fname,dir_name):
-    if (fname.endswith("zip")):
-        zip_ref = zipfile.ZipFile(fname, 'r')
+    if (fname.endswith(&quot;zip&quot;)):
+        zip_ref = zipfile.ZipFile(fname, &apos;r&apos;)
         zip_ref.extractall(dir_name)
         zip_ref.close()
-        print "Extracted in %s Directory" % dir_name
+        print &quot;Extracted in %s Directory&quot; % dir_name
     else:
-        print "Not a zip file: '%s '" % fname
+        print &quot;Not a zip file: &apos;%s &apos;&quot; % fname
 
 def extract_tarball(fname):
-    if (fname.endswith("tgz")):
-        tar = tarfile.open(fname, "r:gz")
+    if (fname.endswith(&quot;tgz&quot;)):
+        tar = tarfile.open(fname, &quot;r:gz&quot;)
         tar.extractall()
         tar.close()
-    elif (fname.endswith("tar")):
-       tar = tarfile.open(fname, "r:")
+    elif (fname.endswith(&quot;tar&quot;)):
+       tar = tarfile.open(fname, &quot;r:&quot;)
        tar.extractall()
        tar.close()
         
 # -- download and extract orion-res*.zip file if 
 # -- specified in the job parameter
 #try:
-#    orion_res_url = os.environ['ORION_RES_URL']
+#    orion_res_url = os.environ[&apos;ORION_RES_URL&apos;]
 #except Exception, e:
-#    print "Cannot find ORION_RES_URL in environment variable, skipping orion-res zip file download"
+#    print &quot;Cannot find ORION_RES_URL in environment variable, skipping orion-res zip file download&quot;
 #    exit(0)
     
 #if len(orion_res_url) &gt; 0:
-#    print "Downloading from %s" % orion_res_url 
+#    print &quot;Downloading from %s&quot; % orion_res_url 
 #    zip_filename = os.path.basename(orion_res_url)
 #    if os.path.exists(zip_filename):
 #        os.remove(zip_filename) # clean up previous file if exists
-#    orion_res_output_dir = os.path.join(os.environ['WORKSPACE'], "build", "il", "bld_bll-el3_x86", "Release", "bin", 'orion-res')
+#    orion_res_output_dir = os.path.join(os.environ[&apos;WORKSPACE&apos;], &quot;build&quot;, &quot;il&quot;, &quot;bld_bll-el3_x86&quot;, &quot;Release&quot;, &quot;bin&quot;, &apos;orion-res&apos;)
 #    if os.path.exists(orion_res_output_dir):
 #        shutil.rmtree(orion_res_output_dir) # clean up previous output dir if exists
 #    _download_file_from_url(orion_res_url)
 #    unzip(zip_filename, orion_res_output_dir)#
-#    os.chmod(os.path.join(os.environ['WORKSPACE'], "build", "il", "bld_bll-el3_x86", "Release", "bin", 'orion-res', 'bin', 'orion-res'), 0755)
+#    os.chmod(os.path.join(os.environ[&apos;WORKSPACE&apos;], &quot;build&quot;, &quot;il&quot;, &quot;bld_bll-el3_x86&quot;, &quot;Release&quot;, &quot;bin&quot;, &apos;orion-res&apos;, &apos;bin&apos;, &apos;orion-res&apos;), 0755)
 
 # -- download and extract magellan-frontend*.tgz file if 
 # -- specified in the job parameter
 #try:
-#    magellan_frontend_url = os.environ['MAGELLAN_FRONTEND_URL']
+#    magellan_frontend_url = os.environ[&apos;MAGELLAN_FRONTEND_URL&apos;]
 #except Exception, e:
-#    print "Cannot find MAGELLAN_FRONTEND_URL in environment variable, skipping MAGELLAN_FRONTEND_URL tar file download"
+#    print &quot;Cannot find MAGELLAN_FRONTEND_URL in environment variable, skipping MAGELLAN_FRONTEND_URL tar file download&quot;
 #    exit(0)
     
 #if len(magellan_frontend_url) &gt; 0:
-#    print "Downloading from %s" % magellan_frontend_url 
-#    os.chdir('bin')
+#    print &quot;Downloading from %s&quot; % magellan_frontend_url 
+#    os.chdir(&apos;bin&apos;)
 #    tgz_filename = os.path.basename(magellan_frontend_url)
 #    if os.path.exists(tgz_filename):
 #        os.remove(tgz_filename) # clean up previous file if exists
-#    if os.path.exists('build'):
-#        shutil.rmtree('build') # clean up previous output dir from tgz file if exists
+#    if os.path.exists(&apos;build&apos;):
+#        shutil.rmtree(&apos;build&apos;) # clean up previous output dir from tgz file if exists
 #    _download_file_from_url(magellan_frontend_url)
 #    extract_tarball(tgz_filename)
-#    shutil.move('build', os.path.join(orion_res_output_dir, 'content'))
+#    shutil.move(&apos;build&apos;, os.path.join(orion_res_output_dir, &apos;content&apos;))
 
 # --Extract orion-res*.zip
-zip_filename = 'orion-res.linux-386.zip'
-orion_res_output_dir = os.path.join(os.environ['WORKSPACE'], "build", "il", "bld_bll-el3_x86", "Release", "bin", 'orion-res')
+zip_filename = &apos;orion-res.linux-386.zip&apos;
+orion_res_output_dir = os.path.join(os.environ[&apos;WORKSPACE&apos;], &quot;build&quot;, &quot;il&quot;, &quot;bld_bll-el3_x86&quot;, &quot;Release&quot;, &quot;bin&quot;, &apos;orion-res&apos;)
 if os.path.exists(orion_res_output_dir):
     shutil.rmtree(orion_res_output_dir) # clean up previous output dir if exists
 unzip(zip_filename, orion_res_output_dir)
-os.chmod(os.path.join(os.environ['WORKSPACE'], "build", "il", "bld_bll-el3_x86", "Release", "bin", 'orion-res', 'bin', 'orion-res'), 0755)
+os.chmod(os.path.join(os.environ[&apos;WORKSPACE&apos;], &quot;build&quot;, &quot;il&quot;, &quot;bld_bll-el3_x86&quot;, &quot;Release&quot;, &quot;bin&quot;, &apos;orion-res&apos;, &apos;bin&apos;, &apos;orion-res&apos;), 0755)
 
 # -- Extract magellan-frontend*.tgz
-os.chdir('bin')
-tgz_filename = 'magellan-frontend.tgz'
-if os.path.exists('build'):
-    shutil.rmtree('build') # clean up previous output dir from tgz file if exists
+os.chdir(&apos;bin&apos;)
+tgz_filename = &apos;magellan-frontend.tgz&apos;
+if os.path.exists(&apos;build&apos;):
+    shutil.rmtree(&apos;build&apos;) # clean up previous output dir from tgz file if exists
 extract_tarball(tgz_filename)
-shutil.move('build', os.path.join(orion_res_output_dir, 'content'))</command>
+shutil.move(&apos;build&apos;, os.path.join(orion_res_output_dir, &apos;content&apos;))</command>
     </hudson.plugins.python.Python>
     <hudson.tasks.Shell>
       <command>cd $WORKSPACE/$BUILD_OUTPUT_DIR
 rm -f TestCenter*.tar.gz
-if [ "$BUILD_PACKAGE_BUILD" = "true" ]; then
+if [ &quot;$BUILD_PACKAGE_BUILD&quot; = &quot;true&quot; ]; then
     python $WORKSPACE/framework/tools/buildUtil/package.py --arch-dir=Spirent_TestCenter_Application_Linux_Server --package=TestCenter 
     python $WORKSPACE/framework/tools/buildUtil/package.py --arch-dir=Spirent_TestCenter_Application_Linux_Server --package=STAKCommands.beta
     #cp TestCenter.Linux.tar.gz TestCenter.Linux.no_version.tar.gz
@@ -312,31 +313,31 @@ fi</command>
     <hudson.plugins.python.Python plugin="python@1.3">
       <command>import os
 
-bld_dir = os.environ['BUILD_OUTPUT_DIR']
-version = os.environ['STC_MAJ_MIN_VERSION']
-wrk_space = os.environ['WORKSPACE']
-in_file_name = 'pw_packages_to_test.txt'
-out_file_name = 'pw_packages_to_test'
-out_dir = "/results/SCMSmartTest"
+bld_dir = os.environ[&apos;BUILD_OUTPUT_DIR&apos;]
+version = os.environ[&apos;STC_MAJ_MIN_VERSION&apos;]
+wrk_space = os.environ[&apos;WORKSPACE&apos;]
+in_file_name = &apos;pw_packages_to_test.txt&apos;
+out_file_name = &apos;pw_packages_to_test&apos;
+out_dir = &quot;/results/SCMSmartTest&quot;
 
 file_to_read = os.path.join(wrk_space, bld_dir, in_file_name)
 file_to_update = os.path.join(out_dir, version, out_file_name)
 
-reader = open(file_to_read, 'rb')
-writer = open(file_to_update, 'wb')
+reader = open(file_to_read, &apos;rb&apos;)
+writer = open(file_to_update, &apos;wb&apos;)
 for row in reader:
     writer.write(row)
-    print "New Tags: %s" % row</command>
+    print &quot;New Tags: %s&quot; % row</command>
     </hudson.plugins.python.Python>
     <hudson.plugins.python.Python plugin="python@1.3">
       <command>import shutil
 import os
 
-output_filename = 'orion-res'
-dir_name = os.path.join(os.environ['WORKSPACE'], 'build', 'il', 'bld_bll-el3_x86', 'Release', 'bin', 'orion-res')
-if os.path.exists('orion-res.zip'):
-    os.remove('orion-res.zip')
-shutil.make_archive(output_filename, 'zip', dir_name)</command>
+output_filename = &apos;orion-res&apos;
+dir_name = os.path.join(os.environ[&apos;WORKSPACE&apos;], &apos;build&apos;, &apos;il&apos;, &apos;bld_bll-el3_x86&apos;, &apos;Release&apos;, &apos;bin&apos;, &apos;orion-res&apos;)
+if os.path.exists(&apos;orion-res.zip&apos;):
+    os.remove(&apos;orion-res.zip&apos;)
+shutil.make_archive(output_filename, &apos;zip&apos;, dir_name)</command>
     </hudson.plugins.python.Python>
   </builders>
   <publishers>
@@ -388,7 +389,7 @@ shutil.make_archive(output_filename, 'zip', dir_name)</command>
               <hudson.plugins.emailext.plugins.recipients.DevelopersRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -398,18 +399,18 @@ shutil.make_archive(output_filename, 'zip', dir_name)</command>
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern/>
-      <presendScript/>
-      <postsendScript/>
+      <attachmentsPattern></attachmentsPattern>
+      <presendScript></presendScript>
+      <postsendScript></postsendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
-      <replyTo/>
+      <replyTo></replyTo>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
     <jenkinsci.plugins.influxdb.InfluxDbPublisher plugin="influxdb@1.10.3">
       <selectedTarget>http://influxdb-01.cal.ci.spirentcom.com:8086,release_jenkins_db</selectedTarget>
-      <customPrefix/>
+      <customPrefix></customPrefix>
     </jenkinsci.plugins.influxdb.InfluxDbPublisher>
   </publishers>
   <buildWrappers>
@@ -430,7 +431,7 @@ shutil.make_archive(output_filename, 'zip', dir_name)</command>
           <username>spirent</username>
           <password>c3BpcmVudA==</password>
         </credentials>
-        <credentialsId/>
+        <credentialsId></credentialsId>
         <overridingCredentials>false</overridingCredentials>
         <ignoreCredentialPluginDisabled>false</ignoreCredentialPluginDisabled>
       </deployerCredentialsConfig>
@@ -439,51 +440,51 @@ shutil.make_archive(output_filename, 'zip', dir_name)</command>
           <username>spirent</username>
           <password>c3BpcmVudA==</password>
         </credentials>
-        <credentialsId/>
+        <credentialsId></credentialsId>
         <overridingCredentials>false</overridingCredentials>
         <ignoreCredentialPluginDisabled>false</ignoreCredentialPluginDisabled>
       </resolverCredentialsConfig>
       <useSpecs>true</useSpecs>
       <uploadSpec>
-        <spec/>
+        <spec></spec>
       </uploadSpec>
       <downloadSpec>
         <spec>{
-    "files": [
+    &quot;files&quot;: [
         {
-            "pattern": "${MAGELLAN_BACKEND_PATH}/orion-res.linux-386.zip",
-            "target": "./orion-res.linux-386.zip",
-            "flat": "true"
+            &quot;pattern&quot;: &quot;${MAGELLAN_BACKEND_PATH}/orion-res.linux-386.zip&quot;,
+            &quot;target&quot;: &quot;./orion-res.linux-386.zip&quot;,
+            &quot;flat&quot;: &quot;true&quot;
         },
         {
-            "pattern": "${MAGELLAN_FRONTEND_PATH}",
-            "target": "./bin/magellan-frontend.tgz",
-            "flat": "true"
+            &quot;pattern&quot;: &quot;${MAGELLAN_FRONTEND_PATH}&quot;,
+            &quot;target&quot;: &quot;./bin/magellan-frontend.tgz&quot;,
+            &quot;flat&quot;: &quot;true&quot;
         }
 
     ]
 }</spec>
       </downloadSpec>
-      <deployPattern/>
-      <resolvePattern/>
-      <matrixParams/>
+      <deployPattern></deployPattern>
+      <resolvePattern></resolvePattern>
+      <matrixParams></matrixParams>
       <deployBuildInfo>true</deployBuildInfo>
       <includeEnvVars>false</includeEnvVars>
       <envVarsPatterns>
-        <includePatterns/>
+        <includePatterns></includePatterns>
         <excludePatterns>*password*,*secret*,*key*</excludePatterns>
       </envVarsPatterns>
       <discardOldBuilds>false</discardOldBuilds>
       <discardBuildArtifacts>true</discardBuildArtifacts>
       <asyncBuildRetention>false</asyncBuildRetention>
       <multiConfProject>false</multiConfProject>
-      <customBuildName/>
+      <customBuildName></customBuildName>
       <overrideBuildName>false</overrideBuildName>
     </org.jfrog.hudson.generic.ArtifactoryGenericConfigurator>
     <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
       <buildSteps>
         <hudson.tasks.Shell>
-          <command>if [[ $P4CLEANWORKSPACE = "true" ]]; then
+          <command>if [[ $P4CLEANWORKSPACE = &quot;true&quot; ]]; then
   rm -rf $WORKSPACE/*
   p4 -u scmbuild -p perforce.spirentcom.com:1666 -c jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME} sync //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/...#none 2&gt;&amp;1 &gt; clean_build.txt
 fi</command>

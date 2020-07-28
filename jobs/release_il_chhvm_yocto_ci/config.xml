@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
   <description>CI IL Build job for chassis VM yocto:&lt;br&gt;
 $WORKSPACE/build/il/scripts/phxbld -j32 c3_y3&lt;br&gt;
@@ -28,9 +29,9 @@ The latest build is stored at \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain/>
-      <token/>
-      <room/>
+      <teamDomain></teamDomain>
+      <token></token>
+      <room></room>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -47,7 +48,7 @@ The latest build is stored at \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>5.12_rel</defaultValue>
+          <defaultValue>5.11_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -67,16 +68,16 @@ The latest build is stored at \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_
         <hudson.model.StringParameterDefinition>
           <name>RELEASE_NUM</name>
           <description>release number</description>
-          <defaultValue>5.12</defaultValue>
+          <defaultValue>5.11</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>CHANGELIST</name>
-          <description/>
-          <defaultValue/>
+          <description></description>
+          <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>APP_ARCH</name>
-          <description/>
+          <description></description>
           <defaultValue>x86_64</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -86,8 +87,8 @@ The latest build is stored at \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
-          <description/>
-          <defaultValue>5.12</defaultValue>
+          <description></description>
+          <defaultValue>5.11</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -105,7 +106,7 @@ The latest build is stored at \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_
         <locked>false</locked>
         <modtime>false</modtime>
         <rmdir>false</rmdir>
-        <streamName/>
+        <streamName></streamName>
         <line>LOCAL</line>
         <view>+//TestCenter/${BRANCH_NAME}/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/...
 -//TestCenter/*/sandbox/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/*/sandbox/...
@@ -128,7 +129,7 @@ The latest build is stored at \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_
 +//TestCenter/integration/framework/il/rest/x64/chassisController.tgz //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/chassisController.tgz
 //hypervisor/mainline/amara/ChassisImage/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/ChassisImage/...</view>
         <type>WRITABLE</type>
-        <serverID/>
+        <serverID></serverID>
         <backup>false</backup>
       </spec>
     </workspace>
@@ -137,7 +138,7 @@ The latest build is stored at \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_
       <force>true</force>
       <modtime>false</modtime>
       <quiet>true</quiet>
-      <pin/>
+      <pin></pin>
       <parallel>
         <enable>false</enable>
         <threads>4</threads>
@@ -169,7 +170,7 @@ sudo scons target=packageclean
 sudo scons target=kernelclean</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command># The file 'chassisController.tgz' is now synced from 
+      <command># The file &apos;chassisController.tgz&apos; is now synced from 
 # Perforce (integration branch) to the root of the 
 # workspace. The line below copy the file to the 
 # expected location before starting the build.
@@ -216,7 +217,7 @@ python $HOME/jenkins/build_cleanup.py --n=50 --file=/mnt/builds/jenkins/il_chhvm
           <command># copy the build output to storage server
 export STORAGE_DIR=/mnt/builds/jenkins/il_chhvm_yocto-$BRANCH_NAME/build-$P4_CHANGELIST
 
-if [ ! -d "$STORAGE_DIR" ]; then
+if [ ! -d &quot;$STORAGE_DIR&quot; ]; then
   mkdir -p $STORAGE_DIR
   mkdir -p $STORAGE_DIR/fsimg
 fi
@@ -232,6 +233,7 @@ cp -r $WORKSPACE/build/il/packages/fsimg/*chassis_installer* $STORAGE_DIR/fsimg<
       <scriptOnlyIfSuccess>true</scriptOnlyIfSuccess>
       <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
       <markBuildUnstable>false</markBuildUnstable>
+      <executeOn>BOTH</executeOn>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
     <hudson.plugins.claim.ClaimPublisher plugin="claim@2.9"/>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.57">
@@ -247,7 +249,7 @@ cp -r $WORKSPACE/build/il/packages/fsimg/*chassis_installer* $STORAGE_DIR/fsimg<
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -263,7 +265,7 @@ cp -r $WORKSPACE/build/il/packages/fsimg/*chassis_installer* $STORAGE_DIR/fsimg<
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -279,7 +281,7 @@ cp -r $WORKSPACE/build/il/packages/fsimg/*chassis_installer* $STORAGE_DIR/fsimg<
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -289,18 +291,18 @@ cp -r $WORKSPACE/build/il/packages/fsimg/*chassis_installer* $STORAGE_DIR/fsimg<
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern/>
-      <presendScript/>
-      <postsendScript/>
+      <attachmentsPattern></attachmentsPattern>
+      <presendScript></presendScript>
+      <postsendScript></postsendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
-      <replyTo/>
+      <replyTo></replyTo>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
     <jenkinsci.plugins.influxdb.InfluxDbPublisher plugin="influxdb@1.10.3">
       <selectedTarget>http://influxdb-01.cal.ci.spirentcom.com:8086,release_jenkins_db</selectedTarget>
-      <customPrefix/>
+      <customPrefix></customPrefix>
     </jenkinsci.plugins.influxdb.InfluxDbPublisher>
   </publishers>
   <buildWrappers>
@@ -310,8 +312,8 @@ cp -r $WORKSPACE/build/il/packages/fsimg/*chassis_installer* $STORAGE_DIR/fsimg<
         <hudson.tasks.Shell>
           <command># remove files using sudo for files that may be
 # owned by root
-if [[ $P4CLEANWORKSPACE = "true" ]]; then
-    if [ ! -z "$WORKSPACE" ]; then
+if [[ $P4CLEANWORKSPACE = &quot;true&quot; ]]; then
+    if [ ! -z &quot;$WORKSPACE&quot; ]; then
         sudo rm -rf $WORKSPACE/*
         p4 -u scmbuild -p perforce.spirentcom.com:1666 -c jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME} sync //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/...#none
     fi

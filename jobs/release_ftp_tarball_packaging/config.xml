@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
   <description>Copy the tar.gz file created on FreeBSD or other os to windows system&lt;br&gt;
 Extract the tarball&lt;br&gt;
@@ -24,9 +25,9 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain/>
-      <token/>
-      <room/>
+      <teamDomain></teamDomain>
+      <token></token>
+      <room></room>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -43,7 +44,7 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>5.12_rel</defaultValue>
+          <defaultValue>5.11_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -68,16 +69,16 @@ Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description>major minor version</description>
-          <defaultValue>5.12</defaultValue>
+          <defaultValue>5.11</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
-          <description/>
+          <description></description>
           <defaultValue>BAD_BUILD_NUMBER</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>SOURCE_OS</name>
-          <description/>
+          <description></description>
           <defaultValue>BAD_SOURCE_OS</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -105,7 +106,7 @@ release_bll_freebsd_packaging</description>
         <locked>false</locked>
         <modtime>false</modtime>
         <rmdir>false</rmdir>
-        <streamName/>
+        <streamName></streamName>
         <line>LOCAL</line>
         <view>//SCM/Build_Scripts/STC_Build_Scripts/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/Build_Scripts/STC_Build_Scripts/...
 //SCM/Scripts/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/Build_Scripts/Scripts/...
@@ -114,7 +115,7 @@ release_bll_freebsd_packaging</description>
 //TestCenter/${BRANCH_NAME}/content/traffic/l4l7/templates/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/Spirent_TestCenter_Application_Linux_Server/Dpg/...
 //TestCenter/${BRANCH_NAME}/content/traffic/l4l7/tools/DpgUpdate/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/Spirent_TestCenter_Application_Linux_Server/Dpg/DpgUpdate/...</view>
         <type>WRITABLE</type>
-        <serverID/>
+        <serverID></serverID>
         <backup>false</backup>
       </spec>
     </workspace>
@@ -123,7 +124,7 @@ release_bll_freebsd_packaging</description>
       <force>false</force>
       <modtime>false</modtime>
       <quiet>true</quiet>
-      <pin/>
+      <pin></pin>
       <parallel>
         <enable>false</enable>
         <threads>4</threads>
@@ -144,7 +145,7 @@ release_bll_freebsd_packaging</description>
   <customWorkspace>${JOB_NAME}</customWorkspace>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>echo "Running ci_cleanup_by_date.pl."
+      <command>echo &quot;Running ci_cleanup_by_date.pl.&quot;&#xd;
 perl %WORKSPACE%\Build_Scripts\Scripts\ci_cleanup_by_date.pl</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
@@ -221,7 +222,7 @@ P4CLEANWORKSPACE=true</properties>
     <hudson.plugins.claim.ClaimPublisher plugin="claim@2.9"/>
     <jenkinsci.plugins.influxdb.InfluxDbPublisher plugin="influxdb@1.10.3">
       <selectedTarget>http://influxdb-01.cal.ci.spirentcom.com:8086,release_jenkins_db</selectedTarget>
-      <customPrefix/>
+      <customPrefix></customPrefix>
     </jenkinsci.plugins.influxdb.InfluxDbPublisher>
     <hudson.plugins.parameterizedtrigger.BuildTrigger plugin="parameterized-trigger@2.35.2">
       <configs>

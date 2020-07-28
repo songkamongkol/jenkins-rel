@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
   <description>Copy build output raw files to \\filer.caw.com\home\qabuild\TestCenter\2.00\engineering_builds\GUI_BLL as per request from Nicolas
 
@@ -23,9 +24,9 @@ NOTE: This job must be setup to run on the same machine as the Windows </descrip
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain/>
-      <token/>
-      <room/>
+      <teamDomain></teamDomain>
+      <token></token>
+      <room></room>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -42,7 +43,7 @@ NOTE: This job must be setup to run on the same machine as the Windows </descrip
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>5.12_rel</defaultValue>
+          <defaultValue>5.11_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BUILD_OUTPUT_DIR</name>
@@ -52,11 +53,11 @@ NOTE: This job must be setup to run on the same machine as the Windows </descrip
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description>major minor version</description>
-          <defaultValue>5.12</defaultValue>
+          <defaultValue>5.11</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
-          <description/>
+          <description></description>
           <defaultValue>BAD_BUILD_NUMBER</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -73,43 +74,43 @@ NOTE: This job must be setup to run on the same machine as the Windows </descrip
   <customWorkspace>${JOB_NAME}</customWorkspace>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>set BRANCH_ID=6
-rem -- set FILER_DIR=L:TestCenter\2.00\engineering_builds\GUI_BLL\%STC_MAJ_MIN_VERSION%.%BLL_BUILD_NUMBER%%BRANCH_ID%
-rem -- echo "Copying raw files from %BUILD_OUTPUT_DIR%\bin\Release to %FILER_DIR% ..."
-rem -- mkdir %FILER_DIR%
-rem -- xcopy %BUILD_OUTPUT_DIR%\bin\Release\Model %FILER_DIR%\Model /e /i /y
-rem -- xcopy %BUILD_OUTPUT_DIR%\bin\Release\PDUs %FILER_DIR%\PDUs /e /i /y
-rem -- xcopy %BUILD_OUTPUT_DIR%\bin\Release\RcmDb %FILER_DIR%\RcmDb /e /i /y
-rem -- xcopy %BUILD_OUTPUT_DIR%\bin\Release\Resources %FILER_DIR%\Resources /e /i /y
-rem -- xcopy %BUILD_OUTPUT_DIR%\bin\Release\stclib %FILER_DIR%\ stclib /e /i /y
-rem -- xcopy %BUILD_OUTPUT_DIR%\bin\Release\Templates %FILER_DIR%\Templates /e /i /y
-rem -- xcopy %BUILD_OUTPUT_DIR%\bin\Release\Tcl %FILER_DIR%\Tcl /e /i /y
-rem -- xcopy %BUILD_OUTPUT_DIR%\bin\Release\Python %FILER_DIR%\Python /e /i /y
-rem -- xcopy %BUILD_OUTPUT_DIR%\bin\Release\STAKCommands %FILER_DIR%\STAKCommands /e /i /y
-rem -- copy %BUILD_OUTPUT_DIR%\bin\Release\*.* %FILER_DIR% /y
-
-REM 0-padding build number
-SET FULLVER=00%BLL_BUILD_NUMBER%%BRANCH_ID%
-if %BLL_BUILD_NUMBER% gtr 9 SET FULLVER=0%BLL_BUILD_NUMBER%%BRANCH_ID%
-if %BLL_BUILD_NUMBER% gtr 99 SET FULLVER=%BLL_BUILD_NUMBER%%BRANCH_ID%
-echo FULLVER is %FULLVER%
-net use K: /delete
-net use K: \\10.40.52.42\home\qabuild Spirent8 /USER:SPIRENTCOM\qabuild
-set FILER_DIR=K:\TestCenter\2.00\engineering_builds\GUI_BLL\%STC_MAJ_MIN_VERSION%.%FULLVER%
-echo "Copying raw files from %BUILD_OUTPUT_DIR%\bin\Release to %FILER_DIR% ..."
-mkdir %FILER_DIR%
-xcopy %BUILD_OUTPUT_DIR%\bin\Release\Model %FILER_DIR%\Model /e /i /y
-xcopy %BUILD_OUTPUT_DIR%\bin\Release\PDUs %FILER_DIR%\PDUs /e /i /y
-xcopy %BUILD_OUTPUT_DIR%\bin\Release\RcmDb %FILER_DIR%\RcmDb /e /i /y
-xcopy %BUILD_OUTPUT_DIR%\bin\Release\Resources %FILER_DIR%\Resources /e /i /y
-xcopy %BUILD_OUTPUT_DIR%\bin\Release\stclib %FILER_DIR%\ stclib /e /i /y
-xcopy %BUILD_OUTPUT_DIR%\bin\Release\Templates %FILER_DIR%\Templates /e /i /y
-xcopy %BUILD_OUTPUT_DIR%\bin\Release\Tcl %FILER_DIR%\Tcl /e /i /y
-xcopy %BUILD_OUTPUT_DIR%\bin\Release\Python %FILER_DIR%\Python /e /i /y
-xcopy %BUILD_OUTPUT_DIR%\bin\Release\STAKCommands %FILER_DIR%\STAKCommands /e /i /y
-xcopy %BUILD_OUTPUT_DIR%\bin\Release\STAKvirtualenvs %FILER_DIR%\STAKvirtualenvs/e /i /y
-copy %BUILD_OUTPUT_DIR%\bin\Release\*.* %FILER_DIR% /y
-
+      <command>set BRANCH_ID=6&#xd;
+rem -- set FILER_DIR=L:TestCenter\2.00\engineering_builds\GUI_BLL\%STC_MAJ_MIN_VERSION%.%BLL_BUILD_NUMBER%%BRANCH_ID%&#xd;
+rem -- echo &quot;Copying raw files from %BUILD_OUTPUT_DIR%\bin\Release to %FILER_DIR% ...&quot;&#xd;
+rem -- mkdir %FILER_DIR%&#xd;
+rem -- xcopy %BUILD_OUTPUT_DIR%\bin\Release\Model %FILER_DIR%\Model /e /i /y&#xd;
+rem -- xcopy %BUILD_OUTPUT_DIR%\bin\Release\PDUs %FILER_DIR%\PDUs /e /i /y&#xd;
+rem -- xcopy %BUILD_OUTPUT_DIR%\bin\Release\RcmDb %FILER_DIR%\RcmDb /e /i /y&#xd;
+rem -- xcopy %BUILD_OUTPUT_DIR%\bin\Release\Resources %FILER_DIR%\Resources /e /i /y&#xd;
+rem -- xcopy %BUILD_OUTPUT_DIR%\bin\Release\stclib %FILER_DIR%\ stclib /e /i /y&#xd;
+rem -- xcopy %BUILD_OUTPUT_DIR%\bin\Release\Templates %FILER_DIR%\Templates /e /i /y&#xd;
+rem -- xcopy %BUILD_OUTPUT_DIR%\bin\Release\Tcl %FILER_DIR%\Tcl /e /i /y&#xd;
+rem -- xcopy %BUILD_OUTPUT_DIR%\bin\Release\Python %FILER_DIR%\Python /e /i /y&#xd;
+rem -- xcopy %BUILD_OUTPUT_DIR%\bin\Release\STAKCommands %FILER_DIR%\STAKCommands /e /i /y&#xd;
+rem -- copy %BUILD_OUTPUT_DIR%\bin\Release\*.* %FILER_DIR% /y&#xd;
+&#xd;
+REM 0-padding build number&#xd;
+SET FULLVER=00%BLL_BUILD_NUMBER%%BRANCH_ID%&#xd;
+if %BLL_BUILD_NUMBER% gtr 9 SET FULLVER=0%BLL_BUILD_NUMBER%%BRANCH_ID%&#xd;
+if %BLL_BUILD_NUMBER% gtr 99 SET FULLVER=%BLL_BUILD_NUMBER%%BRANCH_ID%&#xd;
+echo FULLVER is %FULLVER%&#xd;
+net use K: /delete&#xd;
+net use K: \\10.40.52.42\home\qabuild Spirent8 /USER:SPIRENTCOM\qabuild&#xd;
+set FILER_DIR=K:\TestCenter\2.00\engineering_builds\GUI_BLL\%STC_MAJ_MIN_VERSION%.%FULLVER%&#xd;
+echo &quot;Copying raw files from %BUILD_OUTPUT_DIR%\bin\Release to %FILER_DIR% ...&quot;&#xd;
+mkdir %FILER_DIR%&#xd;
+xcopy %BUILD_OUTPUT_DIR%\bin\Release\Model %FILER_DIR%\Model /e /i /y&#xd;
+xcopy %BUILD_OUTPUT_DIR%\bin\Release\PDUs %FILER_DIR%\PDUs /e /i /y&#xd;
+xcopy %BUILD_OUTPUT_DIR%\bin\Release\RcmDb %FILER_DIR%\RcmDb /e /i /y&#xd;
+xcopy %BUILD_OUTPUT_DIR%\bin\Release\Resources %FILER_DIR%\Resources /e /i /y&#xd;
+xcopy %BUILD_OUTPUT_DIR%\bin\Release\stclib %FILER_DIR%\ stclib /e /i /y&#xd;
+xcopy %BUILD_OUTPUT_DIR%\bin\Release\Templates %FILER_DIR%\Templates /e /i /y&#xd;
+xcopy %BUILD_OUTPUT_DIR%\bin\Release\Tcl %FILER_DIR%\Tcl /e /i /y&#xd;
+xcopy %BUILD_OUTPUT_DIR%\bin\Release\Python %FILER_DIR%\Python /e /i /y&#xd;
+xcopy %BUILD_OUTPUT_DIR%\bin\Release\STAKCommands %FILER_DIR%\STAKCommands /e /i /y&#xd;
+xcopy %BUILD_OUTPUT_DIR%\bin\Release\STAKvirtualenvs %FILER_DIR%\STAKvirtualenvs/e /i /y&#xd;
+copy %BUILD_OUTPUT_DIR%\bin\Release\*.* %FILER_DIR% /y&#xd;
+&#xd;
 </command>
     </hudson.tasks.BatchFile>
   </builders>
@@ -132,7 +133,7 @@ copy %BUILD_OUTPUT_DIR%\bin\Release\*.* %FILER_DIR% /y
             <recipientProviders>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -142,18 +143,18 @@ copy %BUILD_OUTPUT_DIR%\bin\Release\*.* %FILER_DIR% /y
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern/>
-      <presendScript/>
-      <postsendScript/>
+      <attachmentsPattern></attachmentsPattern>
+      <presendScript></presendScript>
+      <postsendScript></postsendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
-      <replyTo/>
+      <replyTo></replyTo>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
     <jenkinsci.plugins.influxdb.InfluxDbPublisher plugin="influxdb@1.10.3">
       <selectedTarget>http://influxdb-01.cal.ci.spirentcom.com:8086,release_jenkins_db</selectedTarget>
-      <customPrefix/>
+      <customPrefix></customPrefix>
     </jenkinsci.plugins.influxdb.InfluxDbPublisher>
   </publishers>
   <buildWrappers>

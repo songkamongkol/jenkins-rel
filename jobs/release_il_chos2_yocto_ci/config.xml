@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
   <description>CI IL Build job for chos2:&lt;br&gt;
 $WORKSPACE/build/il/scripts/phxbld -j8 chos2_yocto&lt;br&gt;
@@ -30,9 +31,9 @@ Wait 10 minutes&lt;br&gt;</description>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain/>
-      <token/>
-      <room/>
+      <teamDomain></teamDomain>
+      <token></token>
+      <room></room>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -49,7 +50,7 @@ Wait 10 minutes&lt;br&gt;</description>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>5.12_rel</defaultValue>
+          <defaultValue>5.11_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -68,12 +69,12 @@ Wait 10 minutes&lt;br&gt;</description>
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
-          <description/>
-          <defaultValue>5.12</defaultValue>
+          <description></description>
+          <defaultValue>5.11</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>APP_ARCH</name>
-          <description/>
+          <description></description>
           <defaultValue>x86_64</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -97,7 +98,7 @@ Wait 10 minutes&lt;br&gt;</description>
         <locked>false</locked>
         <modtime>false</modtime>
         <rmdir>false</rmdir>
-        <streamName/>
+        <streamName></streamName>
         <line>LOCAL</line>
         <view>+//TestCenter/${BRANCH_NAME}/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/...
 -//TestCenter/*/sandbox/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/*/sandbox/...
@@ -118,7 +119,7 @@ Wait 10 minutes&lt;br&gt;</description>
 +//TestCenter/${BRANCH_NAME}/framework/bll/unittestdrv/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/framework/bll/unittestdrv/...
 +//TestCenter/${BRANCH_NAME}/framework/bll/vendor/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/framework/bll/vendor/...</view>
         <type>WRITABLE</type>
-        <serverID/>
+        <serverID></serverID>
         <backup>false</backup>
       </spec>
     </workspace>
@@ -127,7 +128,7 @@ Wait 10 minutes&lt;br&gt;</description>
       <force>false</force>
       <modtime>false</modtime>
       <quiet>true</quiet>
-      <pin/>
+      <pin></pin>
       <parallel>
         <enable>false</enable>
         <threads>4</threads>
@@ -157,7 +158,7 @@ echo BRANCH_NAME=$BRANCH_NAME &gt;&gt; $WORKSPACE/changelist.properties</command
     <hudson.tasks.Shell>
       <command># sync the latest cross compiler tool using a pre-defined p4 workspace 
 # if echo $HOSTNAME | grep SCM-IL-Build ; then
-#     echo "Part of CI Build Cluster, no crosstool sync is required"
+#     echo &quot;Part of CI Build Cluster, no crosstool sync is required&quot;
 # else
 #     p4 -c $HOSTNAME sync //$HOSTNAME/...
 # fi
@@ -186,7 +187,7 @@ $WORKSPACE/build/il/scripts/phxbld idltarball</command>
     <hudson.tasks.Shell>
       <command># rm -f il_chos2_$STC_MAJ_MIN_VERSION.tar
 # tar cvf il_chos2_$STC_MAJ_MIN_VERSION.tar ./build/il/packages
-echo "Finished creating il_chos2_$STC_MAJ_MIN_VERSION.tar"
+echo &quot;Finished creating il_chos2_$STC_MAJ_MIN_VERSION.tar&quot;
 # python $HOME/jenkins/ftp.py --ip=storage.cal.ci.spirentcom.com --n=30 --file=jenkins/il_chos2_yocto-$BRANCH_NAME/
 python $HOME/jenkins/build_cleanup.py --n=50 --file=/mnt/builds/jenkins/il_chos2_yocto-$BRANCH_NAME</command>
     </hudson.tasks.Shell>
@@ -222,7 +223,7 @@ python $HOME/jenkins/build_cleanup.py --n=50 --file=/mnt/builds/jenkins/il_chos2
               <hudson.plugins.emailext.plugins.recipients.DevelopersRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -232,12 +233,12 @@ python $HOME/jenkins/build_cleanup.py --n=50 --file=/mnt/builds/jenkins/il_chos2
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern/>
-      <presendScript/>
-      <postsendScript/>
+      <attachmentsPattern></attachmentsPattern>
+      <presendScript></presendScript>
+      <postsendScript></postsendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
-      <replyTo/>
+      <replyTo></replyTo>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
@@ -247,7 +248,7 @@ python $HOME/jenkins/build_cleanup.py --n=50 --file=/mnt/builds/jenkins/il_chos2
           <command># copy the build output to storage server
 export STORAGE_DIR=/mnt/builds/jenkins/il_chos2_yocto-$BRANCH_NAME/build-$P4_CHANGELIST
 
-if [ ! -d "$STORAGE_DIR" ]; then
+if [ ! -d &quot;$STORAGE_DIR&quot; ]; then
   mkdir -p $STORAGE_DIR
 fi
 
@@ -263,7 +264,7 @@ cp -r $WORKSPACE/build/il/packages/idltar $STORAGE_DIR
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
     <jenkinsci.plugins.influxdb.InfluxDbPublisher plugin="influxdb@1.10.3">
       <selectedTarget>http://influxdb-01.cal.ci.spirentcom.com:8086,release_jenkins_db</selectedTarget>
-      <customPrefix/>
+      <customPrefix></customPrefix>
     </jenkinsci.plugins.influxdb.InfluxDbPublisher>
   </publishers>
   <buildWrappers>
@@ -273,8 +274,8 @@ cp -r $WORKSPACE/build/il/packages/idltar $STORAGE_DIR
         <hudson.tasks.Shell>
           <command># remove files using sudo for files that may be
 # owned by root
-if [[ $P4CLEANWORKSPACE = "true" ]]; then
-    if [ ! -z "$WORKSPACE" ]; then
+if [[ $P4CLEANWORKSPACE = &quot;true&quot; ]]; then
+    if [ ! -z &quot;$WORKSPACE&quot; ]; then
         sudo rm -rf $WORKSPACE/*
         p4 -u scmbuild -p perforce.spirentcom.com:1666 -c jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME} sync //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/...#none
     fi

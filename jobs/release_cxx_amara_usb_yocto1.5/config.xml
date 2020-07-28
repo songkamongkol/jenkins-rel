@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
-  <description/>
+  <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
@@ -20,9 +21,9 @@
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain/>
-      <token/>
-      <room/>
+      <teamDomain></teamDomain>
+      <token></token>
+      <room></room>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -39,7 +40,7 @@
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>5.12_rel</defaultValue>
+          <defaultValue>5.11_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -53,27 +54,27 @@
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
-          <description/>
-          <defaultValue>5.12</defaultValue>
+          <description></description>
+          <defaultValue>5.11</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>SOURCE_OS</name>
-          <description/>
+          <description></description>
           <defaultValue>IL</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_ID</name>
-          <description/>
+          <description></description>
           <defaultValue>6</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>AV_BUILD_NUMBER</name>
-          <description/>
+          <description></description>
           <defaultValue>BAD_BUILD_NUMBER</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>OUTPUT_DIR</name>
-          <description/>
+          <description></description>
           <defaultValue>\\storage\gr\TestCenter\4.62\SR_Builds\SR462.1.2</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -84,12 +85,12 @@ NOTE: if any value other than none is provided, the job will try to upload the u
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>INCLUDE_APPSEC_PKG</name>
-          <description/>
+          <description></description>
           <defaultValue>TRUE</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>APPSEC_ARTIFACT_PATH</name>
-          <description/>
+          <description></description>
           <defaultValue>appsec/5.09</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -110,7 +111,7 @@ NOTE: if any value other than none is provided, the job will try to upload the u
             <locked>false</locked>
             <modtime>false</modtime>
             <rmdir>false</rmdir>
-            <streamName/>
+            <streamName></streamName>
             <line>LOCAL</line>
             <view>//SCM/Scripts/ci_* //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/Build_Scripts/Scripts/ci_*
 //TestCenter/${BRANCH_NAME}/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/...
@@ -135,7 +136,7 @@ NOTE: if any value other than none is provided, the job will try to upload the u
 //TARDIS/avalanche_release/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/content/traffic/l4l7vm/...
 //TARDIS/Studio_release/avanext/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/content/traffic/studio_perf/avanext/...</view>
             <type>WRITABLE</type>
-            <serverID/>
+            <serverID></serverID>
             <backup>false</backup>
           </spec>
         </workspace>
@@ -144,7 +145,7 @@ NOTE: if any value other than none is provided, the job will try to upload the u
           <force>false</force>
           <modtime>false</modtime>
           <quiet>true</quiet>
-          <pin/>
+          <pin></pin>
           <parallel>
             <enable>false</enable>
             <threads>4</threads>
@@ -211,32 +212,32 @@ rm -f $WORKSPACE/*.txt
 # -- ensure content/Avalanche is synced (there is a known issue with git plugin as sometimes it removes Perforce files in this directory)
 p4 -u scmbuild -p perforce.spirentcom.com:1666 -c jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME} sync -f //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/content/Avalanche/...
 
-# 2016-01-18: Temporary for 4.61, unshelve Ramana's change to fix AV l4l7vm version issue
+# 2016-01-18: Temporary for 4.61, unshelve Ramana&apos;s change to fix AV l4l7vm version issue
 # cp -f /home/spirent/appliance_usb /home/spirent/jenkins-rel/workspace/release_cxx_amara_usb_yocto1.5/build/il/scripts/targets/appliance_usb</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>#!/bin/bash
 
 # -- setup build number and path based on the branch name
-if [ "$BRANCH_NAME" = "integration" ]; then
-     export BRANCH_ID='3'
+if [ &quot;$BRANCH_NAME&quot; = &quot;integration&quot; ]; then
+     export BRANCH_ID=&apos;3&apos;
 fi
 
-if [ "$BRANCH_NAME" = "release" ]; then
-     export BRANCH_ID='6'
+if [ &quot;$BRANCH_NAME&quot; = &quot;release&quot; ]; then
+     export BRANCH_ID=&apos;6&apos;
 fi
 
 if [[ $BRANCH_NAME = *_rel* ]]; then
-     export BRANCH_ID='6'
+     export BRANCH_ID=&apos;6&apos;
 fi
-export PADDING=''
+export PADDING=&apos;&apos;
 
 if [ $BLL_BUILD_NUMBER -lt 100 ]; then 
-   export PADDING='0'
+   export PADDING=&apos;0&apos;
 fi;
 
 if [ $BLL_BUILD_NUMBER -lt 10 ]; then 
-   export PADDING='00'
+   export PADDING=&apos;00&apos;
 fi;
 
 
@@ -249,9 +250,9 @@ fi;
 # export c3_file=/gibson/TestCenter/${STC_MAJ_MIN_VERSION}/Engineering_Builds/IL/${FULL_BUILD}/fsimg/controller3-${FULL_BUILD}-fs-1.1.tgz
 # export c3_md5_file=/gibson/TestCenter/${STC_MAJ_MIN_VERSION}/Engineering_Builds/IL/${FULL_BUILD}/fsimg/controller3-${FULL_BUILD}-fs-1.1.tgz.md5
 # if [ -f $aonic_file ]; then
-# echo "Applicance file: $aonic_file"
+# echo &quot;Applicance file: $aonic_file&quot;
 # else
-# echo "Applicance file '$aonic_file'  not found, aborting"
+# echo &quot;Applicance file &apos;$aonic_file&apos;  not found, aborting&quot;
 # exit 1
 # fi
 
@@ -266,24 +267,24 @@ fi;
 # python $WORKSPACE/Build_Scripts/Scripts/ci_run_jenkins_steps.py --createversionfile=yes</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command>if [ "$AV_BUILD_NUMBER" = "BAD_BUILD_NUMBER" ]; then
+      <command>if [ &quot;$AV_BUILD_NUMBER&quot; = &quot;BAD_BUILD_NUMBER&quot; ]; then
 	echo $SCMBUILD_PASSWORD | p4 login
-    export DESC=`p4 describe $(p4 changes -m1 content/traffic/l4l7vm/... | awk '{print $2}') |grep Description\:`
+    export DESC=`p4 describe $(p4 changes -m1 content/traffic/l4l7vm/... | awk &apos;{print $2}&apos;) |grep Description\:`
     export AV_BUILD_NUMBER=${DESC: -9}
-    echo "No explicit AV build number has been specified in the job parameter, obtaining AV build number from Perforce check-in ..."
-    echo "Setting AV Build number to $AV_BUILD_NUMBER"
+    echo &quot;No explicit AV build number has been specified in the job parameter, obtaining AV build number from Perforce check-in ...&quot;
+    echo &quot;Setting AV Build number to $AV_BUILD_NUMBER&quot;
 fi
 
-echo 'Creating C1/C100 USB image (Appliance)'
+echo &apos;Creating C1/C100 USB image (Appliance)&apos;
 rm -rf $WORKSPACE/framework/il/kernel/yocto/spirent-linux
-if [ "$INCLUDE_APPSEC_PKG" = "TRUE" ]; then
+if [ &quot;$INCLUDE_APPSEC_PKG&quot; = &quot;TRUE&quot; ]; then
     export VM_PROFILE=all
     $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_yocto_tardis3_mix
 
     l4l7lxc_storage=$WORKSPACE/l4l7lxc
     mkdir -p $WORKSPACE/build/il/packages/rawimg
     l4l7lxc_filename=$(basename `ls ${l4l7lxc_storage}/l4l7lxc*.tgz`)
-    l4l7lxc_buildno=$(echo $l4l7lxc_filename | awk -F '-' '{print $2}' | sed 's/\.tgz//g')
+    l4l7lxc_buildno=$(echo $l4l7lxc_filename | awk -F &apos;-&apos; &apos;{print $2}&apos; | sed &apos;s/\.tgz//g&apos;)
     cp -f ${l4l7lxc_storage}/*.tgz $WORKSPACE/build/il/packages/rawimg
 
     $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 av_version=${l4l7lxc_buildno} appliance_packaging  
@@ -296,11 +297,11 @@ else
 fi
 
 export RAW_BLDSTR=${BLL_BUILD_NUMBER}${BRANCH_ID}
-printf -v BLDNUMBER "%04d" ${RAW_BLDSTR#0}
+printf -v BLDNUMBER &quot;%04d&quot; ${RAW_BLDSTR#0}
 
-if [ "$AV_BUILD_NUMBER" = "" ]; then
+if [ &quot;$AV_BUILD_NUMBER&quot; = &quot;&quot; ]; then
     export AV_BUILD_NUMBER=${STC_MAJ_MIN_VERSION}.${BLDNUMBER}
-    echo "Setting AV Build number to ${STC_MAJ_MIN_VERSION}.${BLDNUMBER}"
+    echo &quot;Setting AV Build number to ${STC_MAJ_MIN_VERSION}.${BLDNUMBER}&quot;
 fi
 
 sudo $WORKSPACE/build/il/scripts/reversion_il.sh ${STC_MAJ_MIN_VERSION}.${BLDNUMBER} ${AV_BUILD_NUMBER}
@@ -309,7 +310,7 @@ $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 il_version=${STC_MAJ_MIN_V
 # gzip $WORKSPACE/framework/il/kernel/yocto/Install/usbimg_cxxx-1.5.img</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command>echo 'Creating Amara/Controller3 USB image (Yocto 1.5)'
+      <command>echo &apos;Creating Amara/Controller3 USB image (Yocto 1.5)&apos;
 $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 c3_hypervisor
 $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 c3_usb   
 rm -rf $WORKSPACE/framework/il/kernel/yocto/Install/usb_amara-1.5.img.gz
@@ -328,7 +329,7 @@ export BUILD_OUTPUT_DIR=$WORKSPACE
 export MARTIN_ROOT=/spirent/data/archive/pv/TestCenter
 export MARTIN=martin.spirentcom.com
 export RAW_BLDSTR=${BLL_BUILD_NUMBER}${BRANCH_ID}
-printf -v BLDNUMBER "%04d" ${RAW_BLDSTR#0}
+printf -v BLDNUMBER &quot;%04d&quot; ${RAW_BLDSTR#0}
 export BLDNBR=${STC_MAJ_MIN_VERSION}.${BLDNUMBER}
 export BUILD_DIR=$MARTIN_ROOT/$STC_MAJ_MIN_VERSION/Engineering_Builds/IL/$BLDNBR
 
@@ -336,11 +337,11 @@ ssh ${RSYNCUSER}@${MARTIN} mkdir -p $BUILD_DIR/usbimg
 rsync -avz $BUILD_OUTPUT_DIR/framework/il/kernel/yocto/Install/usb*1.5*.img.gz ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/usbimg
 
 # trim white space from SR
-export SR="$(echo -e "${SR}" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
+export SR=&quot;$(echo -e &quot;${SR}&quot; | sed -e &apos;s/^[[:space:]]*//&apos; -e &apos;s/[[:space:]]*$//&apos;)&quot;
 
-if [ "$SR" != "NONE" ];
+if [ &quot;$SR&quot; != &quot;NONE&quot; ];
 then
-    echo "Rsync USB image to -SR{$SR}-"
+    echo &quot;Rsync USB image to -SR{$SR}-&quot;
     export RSYNCUSER=spirent
     export STORAGE=storage.cal.ci.spirentcom.com
     export SR_DIR=/GR/TestCenter/${STC_MAJ_MIN_VERSION}/SR_Builds/SR${SR}/Manufacturing
@@ -384,7 +385,7 @@ fi
               <hudson.plugins.emailext.plugins.recipients.DevelopersRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -394,9 +395,9 @@ fi
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern/>
-      <presendScript/>
-      <postsendScript/>
+      <attachmentsPattern></attachmentsPattern>
+      <presendScript></presendScript>
+      <postsendScript></postsendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
       <replyTo>$DEFAULT_RECIPIENTS</replyTo>
@@ -405,7 +406,7 @@ fi
     </hudson.plugins.emailext.ExtendedEmailPublisher>
     <jenkinsci.plugins.influxdb.InfluxDbPublisher plugin="influxdb@1.10.3">
       <selectedTarget>http://influxdb-01.cal.ci.spirentcom.com:8086,release_jenkins_db</selectedTarget>
-      <customPrefix/>
+      <customPrefix></customPrefix>
     </jenkinsci.plugins.influxdb.InfluxDbPublisher>
   </publishers>
   <buildWrappers>
@@ -423,52 +424,52 @@ fi
       </resolverDetails>
       <deployerCredentialsConfig>
         <credentials>
-          <username/>
-          <password/>
+          <username></username>
+          <password></password>
         </credentials>
-        <credentialsId/>
+        <credentialsId></credentialsId>
         <overridingCredentials>false</overridingCredentials>
         <ignoreCredentialPluginDisabled>false</ignoreCredentialPluginDisabled>
       </deployerCredentialsConfig>
       <resolverCredentialsConfig>
         <credentials>
-          <username/>
-          <password/>
+          <username></username>
+          <password></password>
         </credentials>
-        <credentialsId/>
+        <credentialsId></credentialsId>
         <overridingCredentials>false</overridingCredentials>
         <ignoreCredentialPluginDisabled>false</ignoreCredentialPluginDisabled>
       </resolverCredentialsConfig>
       <useSpecs>true</useSpecs>
       <uploadSpec>
-        <spec/>
+        <spec></spec>
       </uploadSpec>
       <downloadSpec>
         <spec>{
-    "files": [
+    &quot;files&quot;: [
         {
-            "pattern": "${APPSEC_ARTIFACT_PATH}/*.tgz",
-            "target": "$WORKSPACE/l4l7lxc/",
-            "flat": "true",
-            "excludePatterns": ["AdvFuzzVM*"]
+            &quot;pattern&quot;: &quot;${APPSEC_ARTIFACT_PATH}/*.tgz&quot;,
+            &quot;target&quot;: &quot;$WORKSPACE/l4l7lxc/&quot;,
+            &quot;flat&quot;: &quot;true&quot;,
+            &quot;excludePatterns&quot;: [&quot;AdvFuzzVM*&quot;]
         }
     ]
 }</spec>
       </downloadSpec>
-      <deployPattern/>
-      <resolvePattern/>
-      <matrixParams/>
+      <deployPattern></deployPattern>
+      <resolvePattern></resolvePattern>
+      <matrixParams></matrixParams>
       <deployBuildInfo>true</deployBuildInfo>
       <includeEnvVars>false</includeEnvVars>
       <envVarsPatterns>
-        <includePatterns/>
+        <includePatterns></includePatterns>
         <excludePatterns>*password*,*secret*,*key*</excludePatterns>
       </envVarsPatterns>
       <discardOldBuilds>false</discardOldBuilds>
       <discardBuildArtifacts>true</discardBuildArtifacts>
       <asyncBuildRetention>false</asyncBuildRetention>
       <multiConfProject>false</multiConfProject>
-      <customBuildName/>
+      <customBuildName></customBuildName>
       <overrideBuildName>false</overrideBuildName>
     </org.jfrog.hudson.generic.ArtifactoryGenericConfigurator>
     <EnvInjectBuildWrapper plugin="envinject@1.89">
@@ -493,8 +494,8 @@ P4CLIENT=jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}</propertiesContent>
         <hudson.tasks.Shell>
           <command>rm -rf $WORKSPACE/l4l7lxc/*
 
-if [[ $P4CLEANWORKSPACE = "true" ]]; then
-    if [ ! -z "$WORKSPACE" ]; then
+if [[ $P4CLEANWORKSPACE = &quot;true&quot; ]]; then
+    if [ ! -z &quot;$WORKSPACE&quot; ]; then
         sudo rm -rf $WORKSPACE/*
         p4 -u scmbuild -p perforce.spirentcom.com:1666 -c jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME} sync //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/...#none &gt; clean.txt 2&gt;&amp;1
     fi

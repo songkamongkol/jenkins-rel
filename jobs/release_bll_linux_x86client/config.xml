@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
   <description>This job creat 32-bit Linux Client tar ball</description>
   <keepDependencies>false</keepDependencies>
@@ -20,9 +21,9 @@
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain/>
-      <token/>
-      <room/>
+      <teamDomain></teamDomain>
+      <token></token>
+      <room></room>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -38,23 +39,23 @@
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
-          <description/>
-          <defaultValue>5.12_rel</defaultValue>
+          <description></description>
+          <defaultValue>5.11_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>BUILD_PACKAGE_BUILD</name>
-          <description/>
+          <description></description>
           <defaultValue>true</defaultValue>
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BUILD_OUTPUT_DIR</name>
-          <description/>
+          <description></description>
           <defaultValue>build/il/bld_bll-el3-automation-client-only_x86/Release/bin</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
-          <description/>
-          <defaultValue>5.12</defaultValue>
+          <description></description>
+          <defaultValue>5.11</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -75,11 +76,11 @@ cd $BLL_WORKSPACE
 </command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command># this job use the workspace from 'bll_linux' job to build 
+      <command># this job use the workspace from &apos;bll_linux&apos; job to build 
 export BLL_WORKSPACE=/home/spirent/jenkins-rel/workspace/release_bll_linux_ci
 cd $BLL_WORKSPACE/$BUILD_OUTPUT_DIR
 rm -f TestCenter*.tar.gz
-if [ "$BUILD_PACKAGE_BUILD" = "true" ]; then
+if [ &quot;$BUILD_PACKAGE_BUILD&quot; = &quot;true&quot; ]; then
     python $BLL_WORKSPACE/framework/tools/buildUtil/package.py --arch-dir=Spirent_TestCenter_Application_Linux_Server --package=TestCenter 
     mv TestCenter.Linux.tar.gz $WORKSPACE/TestCenter.Linux.AutomationClient.x86.tar.gz
 fi</command>
@@ -114,7 +115,7 @@ fi</command>
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.RequesterRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <replyTo>$PROJECT_DEFAULT_REPLYTO</replyTo>
@@ -125,9 +126,9 @@ fi</command>
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern/>
+      <attachmentsPattern></attachmentsPattern>
       <presendScript>$DEFAULT_PRESEND_SCRIPT</presendScript>
-      <postsendScript/>
+      <postsendScript></postsendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
       <replyTo>$DEFAULT_REPLYTO</replyTo>
@@ -136,7 +137,7 @@ fi</command>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
     <jenkinsci.plugins.influxdb.InfluxDbPublisher plugin="influxdb@1.10.3">
       <selectedTarget>http://influxdb-01.cal.ci.spirentcom.com:8086,release_jenkins_db</selectedTarget>
-      <customPrefix/>
+      <customPrefix></customPrefix>
     </jenkinsci.plugins.influxdb.InfluxDbPublisher>
   </publishers>
   <buildWrappers>
