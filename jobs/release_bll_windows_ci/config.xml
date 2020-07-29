@@ -1,7 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<project>
+<?xml version="1.0" encoding="UTF-8"?><project>
   <actions/>
-  <description></description>
+  <description/>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
@@ -9,9 +8,9 @@
     </hudson.plugins.buildblocker.BuildBlockerProperty>
     <org.datadog.jenkins.plugins.datadog.DatadogJobProperty plugin="datadog@1.1.1">
       <enableFile>false</enableFile>
-      <tagFile></tagFile>
+      <tagFile/>
       <enableProperty>false</enableProperty>
-      <tagProperties></tagProperties>
+      <tagProperties/>
       <emitSCMEvents>true</emitSCMEvents>
     </org.datadog.jenkins.plugins.datadog.DatadogJobProperty>
     <jenkins.model.BuildDiscarderProperty>
@@ -34,9 +33,9 @@
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain></teamDomain>
-      <token></token>
-      <room></room>
+      <teamDomain/>
+      <token/>
+      <room/>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -58,7 +57,7 @@
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
           <description>clean build</description>
-          <defaultValue>true</defaultValue>
+          <defaultValue>false</defaultValue>
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>BUILD_RUN_UNITTEST</name>
@@ -88,7 +87,7 @@
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
-          <description></description>
+          <description/>
           <defaultValue>5.11</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -124,7 +123,7 @@
         <locked>false</locked>
         <modtime>false</modtime>
         <rmdir>false</rmdir>
-        <streamName></streamName>
+        <streamName/>
         <line>LOCAL</line>
         <view>+//TestCenter/${BRANCH_NAME}/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/...
 -//TestCenter/*/Layer1/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/*/Layer1/...
@@ -156,7 +155,7 @@
 +//TestCenter/${BRANCH_NAME}/framework/ui/automation/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/framework/ui/automation/...
 +//SCM/Scripts/bll_cleanuptmps.py //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/bll_cleanuptmps.py</view>
         <type>WRITABLE</type>
-        <serverID></serverID>
+        <serverID/>
         <backup>false</backup>
       </spec>
     </workspace>
@@ -165,7 +164,7 @@
       <force>false</force>
       <modtime>false</modtime>
       <quiet>true</quiet>
-      <pin></pin>
+      <pin/>
       <parallel>
         <enable>false</enable>
         <threads>4</threads>
@@ -184,12 +183,12 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>del BLL_changelist_*.txt&#xd;
-echo %P4_CHANGELIST% %JOB_NAME% %BUILD_NUMBER% &gt; BLL_changelist_%P4_CHANGELIST%.txt&#xd;
-python bll_cleanuptmps.py&#xd;
-&#xd;
-&#xd;
-&#xd;
+      <command>del BLL_changelist_*.txt
+echo %P4_CHANGELIST% %JOB_NAME% %BUILD_NUMBER% &gt; BLL_changelist_%P4_CHANGELIST%.txt
+python bll_cleanuptmps.py
+
+
+
 </command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.python.Python plugin="python@1.3">
@@ -198,40 +197,40 @@ import os
 import base64
 import json
 
-username = &apos;builder&apos;
-password = os.environ[&apos;AF_PASSWORD&apos;]
+username = 'builder'
+password = os.environ['AF_PASSWORD']
 
-af_base_url = &apos;https://artifactory.srv.orionprod.net/artifactory/api/storage&apos;
-url = af_base_url + &apos;/&apos; + os.environ[&apos;MAGELLAN_FRONTEND_PATH&apos;] + &apos;?properties&apos; # &quot;pattern&quot; from AF plugin config section above
+af_base_url = 'https://artifactory.srv.orionprod.net/artifactory/api/storage'
+url = af_base_url + '/' + os.environ['MAGELLAN_FRONTEND_PATH'] + '?properties' # "pattern" from AF plugin config section above
 
 print url
 # -- creating request object with auth.
 request = urllib2.Request(url)
-base64string = base64.b64encode(&apos;%s:%s&apos; % (username, password))
-request.add_header(&quot;Authorization&quot;, &quot;Basic %s&quot; % base64string)
+base64string = base64.b64encode('%s:%s' % (username, password))
+request.add_header("Authorization", "Basic %s" % base64string)
 
 # -- Open url and process json output
 result = urllib2.urlopen(request)
 props = json.loads(result.read())
-magellan_fe_build = props[&apos;properties&apos;][&apos;build.number&apos;][0]
+magellan_fe_build = props['properties']['build.number'][0]
 
-print &quot;Magellan FrontEnd build number: &quot; + magellan_fe_build
+print "Magellan FrontEnd build number: " + magellan_fe_build
 
 </command>
     </hudson.plugins.python.Python>
     <hudson.tasks.BatchFile>
-      <command>echo P4CHANGESTART %P4_CHANGELIST% P4CHANGEEND&#xd;
-genSln.bat&#xd;
-&#xd;
-scons.cmd -v &#xd;
-rd /s /q bin\Release\STAKCommands&#xd;
+      <command>echo P4CHANGESTART %P4_CHANGELIST% P4CHANGEEND
+genSln.bat
+
+scons.cmd -v 
+rd /s /q bin\Release\STAKCommands
 exit /B 0</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>if &quot;%RELEASE_BUILD%&quot; == &quot;true&quot; (&#xd;
-attrib -r framework\bll\core\include\licensing\ControlledReleaseCheck.h&#xd;
-copy framework\bll\core\include\licensing\ga_release\ControlledReleaseCheck.h framework\bll\core\include\licensing\ControlledReleaseCheck.h /y&#xd;
-&#xd;
+      <command>if "%RELEASE_BUILD%" == "true" (
+attrib -r framework\bll\core\include\licensing\ControlledReleaseCheck.h
+copy framework\bll\core\include\licensing\ga_release\ControlledReleaseCheck.h framework\bll\core\include\licensing\ControlledReleaseCheck.h /y
+
 )</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.python.Python plugin="python@1.3">
@@ -244,91 +243,91 @@ import glob
 import shutil
 import re
 
-stc_maj_min_ver=os.environ[&apos;STC_MAJ_MIN_VERSION&apos;]
-print &quot;\nIN:_run_update_ilversion_xml&quot;
-ilversion_xml_path = os.path.join(os.environ[&apos;WORKSPACE&apos;], &apos;framework&apos;, &apos;bll&apos;, &apos;core&apos;, &apos;install&apos;, &apos;release&apos;, &apos;ILVersion.xml&apos;)
-tmpfile = ilversion_xml_path + &quot;.new&quot;
-print &quot;ILVerson.xml path: &quot;, ilversion_xml_path
+stc_maj_min_ver=os.environ['STC_MAJ_MIN_VERSION']
+print "\nIN:_run_update_ilversion_xml"
+ilversion_xml_path = os.path.join(os.environ['WORKSPACE'], 'framework', 'bll', 'core', 'install', 'release', 'ILVersion.xml')
+tmpfile = ilversion_xml_path + ".new"
+print "ILVerson.xml path: ", ilversion_xml_path
 
-ilbuildnumber = &apos;0000&apos;
+ilbuildnumber = '0000'
 
-f1 = open(ilversion_xml_path, &apos;r&apos;) 
-f2 = open(&apos;yourBigFile.txt.tmp&apos;, &apos;w&apos;) 
+f1 = open(ilversion_xml_path, 'r') 
+f2 = open('yourBigFile.txt.tmp', 'w') 
 for line in f1.readlines(): 
-	match = re.search( &apos;StcSystem Version=&apos; , line )
+	match = re.search( 'StcSystem Version=' , line )
 	if match : 
-	    line = &apos;&lt;StcSystem Version=&quot;&apos; + stc_maj_min_ver + &apos;&quot;&gt;\n&apos;
+	    line = '&lt;StcSystem Version="' + stc_maj_min_ver + '"&gt;\n'
 
-	match = re.search( &apos;TestModule Id=&apos; , line )
+	match = re.search( 'TestModule Id=' , line )
 	if match : 
-	        line = &apos;&lt;TestModule Id=&quot;Firmware&quot; Version=\&quot;&apos; + stc_maj_min_ver + &apos;.&apos; + ilbuildnumber + &apos;&quot;&apos; + &apos; CheckExactVersion=&quot;true&quot;/&gt;\n&apos;
+	        line = '&lt;TestModule Id="Firmware" Version=\"' + stc_maj_min_ver + '.' + ilbuildnumber + '"' + ' CheckExactVersion="true"/&gt;\n'
 	
-	match = re.search( &apos;TestPackage Id=&quot;stc&quot;&apos; , line )
+	match = re.search( 'TestPackage Id="stc"' , line )
 	if match : 
-	        line = &apos;&lt;TestPackage Id=&quot;stc&quot; Version=&quot;&apos; + stc_maj_min_ver + &apos;.&apos; + ilbuildnumber + &apos;&quot;&apos; + &apos; CheckExactVersion=&quot;true&quot;/&gt;\n&apos;
+	        line = '&lt;TestPackage Id="stc" Version="' + stc_maj_min_ver + '.' + ilbuildnumber + '"' + ' CheckExactVersion="true"/&gt;\n'
 	
-	match = re.search( &apos;TestPackage Id=&quot;l2l3&quot;&apos; , line )
+	match = re.search( 'TestPackage Id="l2l3"' , line )
 	if match : 
-	        line = &apos;&lt;TestPackage Id=&quot;l2l3&quot; Version=&quot;&apos; + stc_maj_min_ver + &apos;.&apos; + ilbuildnumber + &apos;&quot;&apos; + &apos; CheckExactVersion=&quot;true&quot;/&gt;\n&apos;
+	        line = '&lt;TestPackage Id="l2l3" Version="' + stc_maj_min_ver + '.' + ilbuildnumber + '"' + ' CheckExactVersion="true"/&gt;\n'
 	f2.write(line) 
 
 f1.close() 
 f2.close() 
 
-if os.path.exists(&quot;ILVersion.old&quot;):
+if os.path.exists("ILVersion.old"):
 	sys.stdout.flush()
-	pipe = subprocess.Popen([&quot;cmd&quot;, &quot;/c&quot;, &quot;attrib&quot;,  &quot;-r&quot;, &quot;ILVersion.old&quot;], stdout=subprocess.PIPE)
+	pipe = subprocess.Popen(["cmd", "/c", "attrib",  "-r", "ILVersion.old"], stdout=subprocess.PIPE)
 	pipe.wait()
 	attrib_output = pipe.stdout.read()
-	print &quot;attrib output: &quot; + attrib_output
-	os.remove(&apos;ILVersion.old&apos;)       
+	print "attrib output: " + attrib_output
+	os.remove('ILVersion.old')       
 	
-os.rename(ilversion_xml_path, &quot;ILVersion.old&quot;)
-os.rename(&quot;yourBigFile.txt.tmp&quot;, ilversion_xml_path) 
-print &quot;_run_update_ilversion_xml: complete&quot;</command>
+os.rename(ilversion_xml_path, "ILVersion.old")
+os.rename("yourBigFile.txt.tmp", ilversion_xml_path) 
+print "_run_update_ilversion_xml: complete"</command>
     </hudson.plugins.python.Python>
     <hudson.tasks.BatchFile>
-      <command>rem devenv /build Release Framework.BLL.Gen.sln&#xd;
-rem devenv /build Release Plugins.BLL.Gen.sln&#xd;
-rem devenv /build Release TestCenter.Automation.Gen.sln&#xd;
-&#xd;
+      <command>rem devenv /build Release Framework.BLL.Gen.sln
+rem devenv /build Release Plugins.BLL.Gen.sln
+rem devenv /build Release TestCenter.Automation.Gen.sln
+
 .\scons.cmd -j 12 -f SConstruct.bll debug=0 target=bll-win32</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>cd bin\Release&#xd;
-rebase.exe -b 0x12000000 -u . *.dll&#xd;
+      <command>cd bin\Release
+rebase.exe -b 0x12000000 -u . *.dll
 exit /B 0</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>if %BUILD_SAVE_PDB% == true (&#xd;
-&#xd;
-cd bin\Release&#xd;
-rmdir /q /s pdb&#xd;
-mkdir pdb&#xd;
-copy *.pdb pdb&#xd;
-del /q pdb\test*.pdb&#xd;
-copy TestCenter*.pdb pdb&#xd;
-&#xd;
-set P4PORT=perforce.spirentcom.com:1666&#xd;
-set P4USER=tableuser&#xd;
-set P4CLIENT=%p4Client%&#xd;
-&quot;C:\Program Files (x86)\Debugging Tools for Windows (x86)\srcsrv\p4index.cmd&quot; -source=%WORKSPACE% -symbols=pdb -debug&#xd;
-&#xd;
-&quot;C:\Program Files (x86)\Debugging Tools for Windows (x86)\symstore&quot; add /f %WORKSPACE%\bin\Release\pdb\*.pdb /s \\archive.cal.ci.spirentcom.com\symbols\testcenter_ci /t SpirentTestCenter&#xd;
-&quot;C:\Program Files (x86)\Debugging Tools for Windows (x86)\symstore&quot; add /f %WORKSPACE%\bin\Release\*.dll /s \\archive.cal.ci.spirentcom.com\symbols\testcenter_ci /t SpirentTestCenter&#xd;
-REM &quot;C:\Program Files (x86)\Debugging Tools for Windows (x86)\agestore&quot; \\archive.cal.ci.spirentcom.com\symbols\testcenter_ci -days 20&#xd;
-&#xd;
-rmdir /q /s pdb&#xd;
+      <command>if %BUILD_SAVE_PDB% == true (
+
+cd bin\Release
+rmdir /q /s pdb
+mkdir pdb
+copy *.pdb pdb
+del /q pdb\test*.pdb
+copy TestCenter*.pdb pdb
+
+set P4PORT=perforce.spirentcom.com:1666
+set P4USER=tableuser
+set P4CLIENT=%p4Client%
+"C:\Program Files (x86)\Debugging Tools for Windows (x86)\srcsrv\p4index.cmd" -source=%WORKSPACE% -symbols=pdb -debug
+
+"C:\Program Files (x86)\Debugging Tools for Windows (x86)\symstore" add /f %WORKSPACE%\bin\Release\pdb\*.pdb /s \\archive.cal.ci.spirentcom.com\symbols\testcenter_ci /t SpirentTestCenter
+"C:\Program Files (x86)\Debugging Tools for Windows (x86)\symstore" add /f %WORKSPACE%\bin\Release\*.dll /s \\archive.cal.ci.spirentcom.com\symbols\testcenter_ci /t SpirentTestCenter
+REM "C:\Program Files (x86)\Debugging Tools for Windows (x86)\agestore" \\archive.cal.ci.spirentcom.com\symbols\testcenter_ci -days 20
+
+rmdir /q /s pdb
 )</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>python.exe framework\tools\buildUtil\pw_build_tracker.py --build_dir=&quot;c:\jenkins\workspace\release_bll_windows_ci\bin\Release&quot;&#xd;
-python.exe common\idl\crc.py -f bll_idl_crc.txt --desc &quot;%JOB_NAME% %BUILD_NUMBER%&quot;</command>
+      <command>python.exe framework\tools\buildUtil\pw_build_tracker.py --build_dir="c:\jenkins\workspace\release_bll_windows_ci\bin\Release"
+python.exe common\idl\crc.py -f bll_idl_crc.txt --desc "%JOB_NAME% %BUILD_NUMBER%"</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>if %BUILD_RUN_UNITTEST% == true (&#xd;
-cd bin\Release&#xd;
-python ..\..\framework\tools\testRunner\testRunner.py --runInParallel=8 --bll --stak --archive&#xd;
+      <command>if %BUILD_RUN_UNITTEST% == true (
+cd bin\Release
+python ..\..\framework\tools\testRunner\testRunner.py --runInParallel=8 --bll --stak --archive
 )</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.python.Python plugin="python@1.3">
@@ -339,12 +338,12 @@ import tarfile
 import shutil
 
 def _download_file_from_url(url=None):
-    file_name = url.split(&apos;/&apos;)[-1]
+    file_name = url.split('/')[-1]
     u = urllib2.urlopen(url)
-    f = open(file_name, &apos;wb&apos;)
+    f = open(file_name, 'wb')
     meta = u.info()
-    file_size = int(meta.getheaders(&quot;Content-Length&quot;)[0])
-    print &quot;Downloading: %s Bytes: %s&quot; % (file_name, file_size)
+    file_size = int(meta.getheaders("Content-Length")[0])
+    print "Downloading: %s Bytes: %s" % (file_name, file_size)
 
     file_size_dl = 0
     block_sz = 8192
@@ -355,77 +354,77 @@ def _download_file_from_url(url=None):
 
         file_size_dl += len(buffer)
         f.write(buffer)
-        status = r&quot;%10d  [%3.2f%%]&quot; % (file_size_dl, file_size_dl * 100. / file_size)
+        status = r"%10d  [%3.2f%%]" % (file_size_dl, file_size_dl * 100. / file_size)
         status = status + chr(8)*(len(status)+1)
         print status,
 
     f.close()
 
 def unzip(fname,dir_name):
-    if (fname.endswith(&quot;zip&quot;)):
-        zip_ref = zipfile.ZipFile(fname, &apos;r&apos;)
+    if (fname.endswith("zip")):
+        zip_ref = zipfile.ZipFile(fname, 'r')
         zip_ref.extractall(dir_name)
         zip_ref.close()
-        print &quot;Extracted in %s Directory&quot; % dir_name
+        print "Extracted in %s Directory" % dir_name
     else:
-        print &quot;Not a zip file: &apos;%s &apos;&quot; % fname
+        print "Not a zip file: '%s '" % fname
 
 def extract_tarball(fname):
-    if ( fname.endswith(&quot;tgz&quot;) or fname.endswith(&quot;tar.gz&quot;) ):
-        tar = tarfile.open(fname, &quot;r:gz&quot;)
+    if ( fname.endswith("tgz") or fname.endswith("tar.gz") ):
+        tar = tarfile.open(fname, "r:gz")
         tar.extractall()
         tar.close()
-    elif (fname.endswith(&quot;tar&quot;)):
-       tar = tarfile.open(fname, &quot;r:&quot;)
+    elif (fname.endswith("tar")):
+       tar = tarfile.open(fname, "r:")
        tar.extractall()
        tar.close()
         
 
-zip_filename = &apos;orion-res.windows-386.zip&apos;
-orion_res_output_dir = os.path.join(os.environ[&apos;WORKSPACE&apos;], &apos;bin&apos;, &apos;Release&apos;, &apos;orion-res&apos;)
+zip_filename = 'orion-res.windows-386.zip'
+orion_res_output_dir = os.path.join(os.environ['WORKSPACE'], 'bin', 'Release', 'orion-res')
 if os.path.exists(orion_res_output_dir):
     shutil.rmtree(orion_res_output_dir) # clean up previous output dir if exists
 unzip(zip_filename, orion_res_output_dir)
 
 
-os.chdir(&apos;bin&apos;)
-tgz_filename = &apos;magellan-frontend.tgz&apos;
-if os.path.exists(&apos;build&apos;):
-    shutil.rmtree(&apos;build&apos;) # clean up previous output dir from tgz file if exists
+os.chdir('bin')
+tgz_filename = 'magellan-frontend.tgz'
+if os.path.exists('build'):
+    shutil.rmtree('build') # clean up previous output dir from tgz file if exists
 extract_tarball(tgz_filename)
-shutil.move(&apos;build&apos;, os.path.join(orion_res_output_dir, &apos;content&apos;))
+shutil.move('build', os.path.join(orion_res_output_dir, 'content'))
 
-bin_rel_dir=os.path.join(os.environ[&apos;WORKSPACE&apos;],os.environ[&apos;BUILD_OUTPUT_DIR&apos;])
+bin_rel_dir=os.path.join(os.environ['WORKSPACE'],os.environ['BUILD_OUTPUT_DIR'])
 os.chdir(bin_rel_dir)
-archangel_web_dir = os.path.join(bin_rel_dir, &apos;web&apos;)
+archangel_web_dir = os.path.join(bin_rel_dir, 'web')
 if os.path.exists(archangel_web_dir):
     shutil.rmtree(archangel_web_dir) # clean up previous output dir if exists
     
-for file in [&apos;enhancedl47.exe&apos;, &apos;enhancedl47.yaml&apos;]:
+for file in ['enhancedl47.exe', 'enhancedl47.yaml']:
     if os.path.exists(file):
         os.remove(file)
         
-tar_filename = &apos;enhancedl47-win32.tar.gz&apos;
+tar_filename = 'enhancedl47-win32.tar.gz'
 extract_tarball(tar_filename)
 </command>
     </hudson.plugins.python.Python>
     <hudson.tasks.BatchFile>
-      <command>cd bin\Release&#xd;
-del TestCenter*.tar.gz&#xd;
-if %BUILD_PACKAGE_BUILD% == true (&#xd;
-python ..\..\framework\tools\buildUtil\package.py --suffix=bll --package=TestCenter &#xd;
-python ..\..\framework\tools\buildUtil\package.py --package=STAKCommands.beta&#xd;
+      <command>cd bin\Release
+del TestCenter*.tar.gz
+if %BUILD_PACKAGE_BUILD% == true (
+python ..\..\framework\tools\buildUtil\package.py --suffix=bll --package=TestCenter 
+python ..\..\framework\tools\buildUtil\package.py --package=STAKCommands.beta
 )</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.python.Python plugin="python@1.3">
       <command>import shutil
 import os
 
-output_filename = &apos;orion-res&apos;
-dir_name = os.path.join(os.environ[&apos;WORKSPACE&apos;], &apos;bin&apos;, &apos;Release&apos;, &apos;orion-res&apos;)
-if os.path.exists(&apos;orion-res.zip&apos;):
-    os.remove(&apos;orion-res.zip&apos;)
-shutil.make_archive(output_filename, &apos;zip&apos;, dir_name)</command>
+output_filename = 'orion-res'
+dir_name = os.path.join(os.environ['WORKSPACE'], 'bin', 'Release', 'orion-res')
+if os.path.exists('orion-res.zip'):
+    os.remove('orion-res.zip')
+shutil.make_archive(output_filename, 'zip', dir_name)</command>
     </hudson.plugins.python.Python>
   </builders>
   <publishers>
@@ -470,7 +469,7 @@ shutil.make_archive(output_filename, &apos;zip&apos;, dir_name)</command>
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern></attachmentsPattern>
+            <attachmentsPattern/>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -486,7 +485,7 @@ shutil.make_archive(output_filename, &apos;zip&apos;, dir_name)</command>
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern></attachmentsPattern>
+            <attachmentsPattern/>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -502,7 +501,7 @@ shutil.make_archive(output_filename, &apos;zip&apos;, dir_name)</command>
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern></attachmentsPattern>
+            <attachmentsPattern/>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -512,18 +511,18 @@ shutil.make_archive(output_filename, &apos;zip&apos;, dir_name)</command>
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern></attachmentsPattern>
-      <presendScript></presendScript>
-      <postsendScript></postsendScript>
+      <attachmentsPattern/>
+      <presendScript/>
+      <postsendScript/>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
-      <replyTo></replyTo>
+      <replyTo/>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
     <jenkinsci.plugins.influxdb.InfluxDbPublisher plugin="influxdb@1.10.3">
       <selectedTarget>http://influxdb-01.cal.ci.spirentcom.com:8086,release_jenkins_db</selectedTarget>
-      <customPrefix></customPrefix>
+      <customPrefix/>
     </jenkinsci.plugins.influxdb.InfluxDbPublisher>
   </publishers>
   <buildWrappers>
@@ -544,7 +543,7 @@ shutil.make_archive(output_filename, &apos;zip&apos;, dir_name)</command>
           <username>spirent</username>
           <password>c3BpcmVudA==</password>
         </credentials>
-        <credentialsId></credentialsId>
+        <credentialsId/>
         <overridingCredentials>false</overridingCredentials>
         <ignoreCredentialPluginDisabled>false</ignoreCredentialPluginDisabled>
       </deployerCredentialsConfig>
@@ -553,49 +552,49 @@ shutil.make_archive(output_filename, &apos;zip&apos;, dir_name)</command>
           <username>spirent</username>
           <password>c3BpcmVudA==</password>
         </credentials>
-        <credentialsId></credentialsId>
+        <credentialsId/>
         <overridingCredentials>false</overridingCredentials>
         <ignoreCredentialPluginDisabled>false</ignoreCredentialPluginDisabled>
       </resolverCredentialsConfig>
       <useSpecs>true</useSpecs>
       <uploadSpec>
-        <spec></spec>
+        <spec/>
       </uploadSpec>
       <downloadSpec>
         <spec>{
-    &quot;files&quot;: [
+    "files": [
         {
-            &quot;pattern&quot;: &quot;${MAGELLAN_BACKEND_PATH}/orion-res.windows-386.zip&quot;,
-            &quot;target&quot;: &quot;./orion-res.windows-386.zip&quot;,
-            &quot;flat&quot;: &quot;true&quot;
+            "pattern": "${MAGELLAN_BACKEND_PATH}/orion-res.windows-386.zip",
+            "target": "./orion-res.windows-386.zip",
+            "flat": "true"
         },
         {
-            &quot;pattern&quot;: &quot;${MAGELLAN_FRONTEND_PATH}&quot;,
-            &quot;target&quot;: &quot;./bin/magellan-frontend.tgz&quot;,
-            &quot;flat&quot;: &quot;true&quot;
+            "pattern": "${MAGELLAN_FRONTEND_PATH}",
+            "target": "./bin/magellan-frontend.tgz",
+            "flat": "true"
         },
         {
-            &quot;pattern&quot;: &quot;${ARCHANGEL_PATH}/enhancedl47-win32.tar.gz&quot;,
-            &quot;target&quot;: &quot;${BUILD_OUTPUT_DIR}/enhancedl47-win32.tar.gz&quot;,
-            &quot;flat&quot;: &quot;true&quot;
+            "pattern": "${ARCHANGEL_PATH}/enhancedl47-win32.tar.gz",
+            "target": "${BUILD_OUTPUT_DIR}/enhancedl47-win32.tar.gz",
+            "flat": "true"
         }
     ]
 }</spec>
       </downloadSpec>
-      <deployPattern></deployPattern>
-      <resolvePattern></resolvePattern>
-      <matrixParams></matrixParams>
+      <deployPattern/>
+      <resolvePattern/>
+      <matrixParams/>
       <deployBuildInfo>true</deployBuildInfo>
       <includeEnvVars>false</includeEnvVars>
       <envVarsPatterns>
-        <includePatterns></includePatterns>
+        <includePatterns/>
         <excludePatterns>*password*,*secret*,*key*</excludePatterns>
       </envVarsPatterns>
       <discardOldBuilds>false</discardOldBuilds>
       <discardBuildArtifacts>true</discardBuildArtifacts>
       <asyncBuildRetention>false</asyncBuildRetention>
       <multiConfProject>false</multiConfProject>
-      <customBuildName></customBuildName>
+      <customBuildName/>
       <overrideBuildName>false</overrideBuildName>
     </org.jfrog.hudson.generic.ArtifactoryGenericConfigurator>
     <EnvInjectPasswordWrapper plugin="envinject@1.89">
@@ -610,25 +609,25 @@ shutil.make_archive(output_filename, &apos;zip&apos;, dir_name)</command>
     <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
       <buildSteps>
         <hudson.tasks.BatchFile>
-          <command>setlocal enabledelayedexpansion&#xd;
-SET modified=%WORKSPACE:/=\%&#xd;
-if &quot;%P4CLEANWORKSPACE%&quot; == &quot;true&quot; (&#xd;
-&#xd;
-echo &quot;Removing %modified%&quot;&#xd;
-rd /s /q %modified%\Bakeoff_TestCaseScripts&#xd;
-rd /s /q %modified%\bin&#xd;
-rd /s /q %modified%\build&#xd;
-rd /s /q %modified%\common&#xd;
-rd /s /q %modified%\content&#xd;
-rd /s /q %modified%\framework&#xd;
-rd /s /q %modified%\Layer1&#xd;
-rd /s /q %modified%\Release&#xd;
-rd /s /q %modified%\scm&#xd;
-rd /s /q %modified%\trafficcenter-app&#xd;
-rd /s /q %modified%\userdocauto&#xd;
-del /f /q %modified%\*.*&#xd;
-echo 9R1Y9fE4$PSH|p4 -u tableuser -p perforce.spirentcom.com:1666 login&#xd;
-p4 -u tableuser -p perforce.spirentcom.com:1666 -c jenkins-%NODE_NAME%-%JOB_NAME%-%BRANCH_NAME% sync //jenkins-%NODE_NAME%-%JOB_NAME%-%BRANCH_NAME%/...#none&#xd;
+          <command>setlocal enabledelayedexpansion
+SET modified=%WORKSPACE:/=\%
+if "%P4CLEANWORKSPACE%" == "true" (
+
+echo "Removing %modified%"
+rd /s /q %modified%\Bakeoff_TestCaseScripts
+rd /s /q %modified%\bin
+rd /s /q %modified%\build
+rd /s /q %modified%\common
+rd /s /q %modified%\content
+rd /s /q %modified%\framework
+rd /s /q %modified%\Layer1
+rd /s /q %modified%\Release
+rd /s /q %modified%\scm
+rd /s /q %modified%\trafficcenter-app
+rd /s /q %modified%\userdocauto
+del /f /q %modified%\*.*
+echo 9R1Y9fE4$PSH|p4 -u tableuser -p perforce.spirentcom.com:1666 login
+p4 -u tableuser -p perforce.spirentcom.com:1666 -c jenkins-%NODE_NAME%-%JOB_NAME%-%BRANCH_NAME% sync //jenkins-%NODE_NAME%-%JOB_NAME%-%BRANCH_NAME%/...#none
 )</command>
         </hudson.tasks.BatchFile>
       </buildSteps>
