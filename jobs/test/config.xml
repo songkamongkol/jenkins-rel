@@ -1,7 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<project>
+<?xml version="1.0" encoding="UTF-8"?><project>
   <actions/>
-  <description></description>
+  <description/>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
@@ -9,9 +8,9 @@
     </hudson.plugins.buildblocker.BuildBlockerProperty>
     <org.datadog.jenkins.plugins.datadog.DatadogJobProperty plugin="datadog@1.1.1">
       <enableFile>false</enableFile>
-      <tagFile></tagFile>
+      <tagFile/>
       <enableProperty>false</enableProperty>
-      <tagProperties></tagProperties>
+      <tagProperties/>
       <emitSCMEvents>true</emitSCMEvents>
     </org.datadog.jenkins.plugins.datadog.DatadogJobProperty>
     <hudson.plugins.libvirt.BeforeJobSnapshotJobProperty plugin="libvirt-slave@1.8.5"/>
@@ -20,9 +19,9 @@
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain></teamDomain>
-      <token></token>
-      <room></room>
+      <teamDomain/>
+      <token/>
+      <room/>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -38,12 +37,12 @@
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
-          <description></description>
-          <defaultValue>5.11_rel</defaultValue>
+          <description/>
+          <defaultValue>5.13_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>ARCHANGEL_PATH</name>
-          <description></description>
+          <description/>
           <defaultValue>stc/archangel/archangel-publish/release/5.10/123</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
