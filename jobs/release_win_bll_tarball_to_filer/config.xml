@@ -1,5 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<project>
+<?xml version="1.0" encoding="UTF-8"?><project>
   <actions/>
   <description>Copy build output raw files to \\filer.caw.com\home\qabuild\TestCenter\2.00\engineering_builds\GUI_BLL as per request from Chris
 
@@ -24,9 +23,9 @@ NOTE: This job must be setup to run on the same machine as the Windows </descrip
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain></teamDomain>
-      <token></token>
-      <room></room>
+      <teamDomain/>
+      <token/>
+      <room/>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -43,7 +42,7 @@ NOTE: This job must be setup to run on the same machine as the Windows </descrip
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>5.11_rel</defaultValue>
+          <defaultValue>5.13_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BUILD_OUTPUT_DIR</name>
@@ -53,16 +52,16 @@ NOTE: This job must be setup to run on the same machine as the Windows </descrip
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description>major minor version</description>
-          <defaultValue>5.11</defaultValue>
+          <defaultValue>5.13</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
-          <description></description>
+          <description/>
           <defaultValue>BAD_BUILD_NUMBER</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_ID</name>
-          <description></description>
+          <description/>
           <defaultValue>6</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -79,21 +78,21 @@ NOTE: This job must be setup to run on the same machine as the Windows </descrip
   <customWorkspace>${JOB_NAME}</customWorkspace>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>&#xd;
-REM 0-padding build number&#xd;
-SET FULLVER=00%BLL_BUILD_NUMBER%%BRANCH_ID%&#xd;
-if %BLL_BUILD_NUMBER% gtr 9 SET FULLVER=0%BLL_BUILD_NUMBER%%BRANCH_ID%&#xd;
-if %BLL_BUILD_NUMBER% gtr 99 SET FULLVER=%BLL_BUILD_NUMBER%%BRANCH_ID%&#xd;
-echo FULLVER is %FULLVER%&#xd;
-&#xd;
-del /f /q *.tar.*&#xd;
-&#xd;
-echo &quot;Creating %STC_MAJ_MIN_VERSION%.%FULLVER%.tar from raw files in %BUILD_OUTPUT_DIR%\bin\Release ...&quot;&#xd;
-&#xd;
-7z a -ttar %STC_MAJ_MIN_VERSION%.%FULLVER%.tar %BUILD_OUTPUT_DIR%\bin\Release\Model %BUILD_OUTPUT_DIR%\bin\Release\PDUs %BUILD_OUTPUT_DIR%\bin\Release\RcmDb %BUILD_OUTPUT_DIR%\bin\Release\Resources %BUILD_OUTPUT_DIR%\bin\Release\stclib %BUILD_OUTPUT_DIR%\bin\Release\Templates %BUILD_OUTPUT_DIR%\bin\Release\Tcl %BUILD_OUTPUT_DIR%\bin\Release\Python %BUILD_OUTPUT_DIR%\bin\Release\STAKCommands %BUILD_OUTPUT_DIR%\bin\Release\STAKvirtualenvs %BUILD_OUTPUT_DIR%\bin\Release\*.*&#xd;
-&#xd;
-7z a %STC_MAJ_MIN_VERSION%.%FULLVER%.tar.gz %STC_MAJ_MIN_VERSION%.%FULLVER%.tar&#xd;
-&#xd;
+      <command>
+REM 0-padding build number
+SET FULLVER=00%BLL_BUILD_NUMBER%%BRANCH_ID%
+if %BLL_BUILD_NUMBER% gtr 9 SET FULLVER=0%BLL_BUILD_NUMBER%%BRANCH_ID%
+if %BLL_BUILD_NUMBER% gtr 99 SET FULLVER=%BLL_BUILD_NUMBER%%BRANCH_ID%
+echo FULLVER is %FULLVER%
+
+del /f /q *.tar.*
+
+echo "Creating %STC_MAJ_MIN_VERSION%.%FULLVER%.tar from raw files in %BUILD_OUTPUT_DIR%\bin\Release ..."
+
+7z a -ttar %STC_MAJ_MIN_VERSION%.%FULLVER%.tar %BUILD_OUTPUT_DIR%\bin\Release\Model %BUILD_OUTPUT_DIR%\bin\Release\PDUs %BUILD_OUTPUT_DIR%\bin\Release\RcmDb %BUILD_OUTPUT_DIR%\bin\Release\Resources %BUILD_OUTPUT_DIR%\bin\Release\stclib %BUILD_OUTPUT_DIR%\bin\Release\Templates %BUILD_OUTPUT_DIR%\bin\Release\Tcl %BUILD_OUTPUT_DIR%\bin\Release\Python %BUILD_OUTPUT_DIR%\bin\Release\STAKCommands %BUILD_OUTPUT_DIR%\bin\Release\STAKvirtualenvs %BUILD_OUTPUT_DIR%\bin\Release\*.*
+
+7z a %STC_MAJ_MIN_VERSION%.%FULLVER%.tar.gz %STC_MAJ_MIN_VERSION%.%FULLVER%.tar
+
 </command>
     </hudson.tasks.BatchFile>
   </builders>
@@ -116,7 +115,7 @@ echo &quot;Creating %STC_MAJ_MIN_VERSION%.%FULLVER%.tar from raw files in %BUILD
             <recipientProviders>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern></attachmentsPattern>
+            <attachmentsPattern/>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -126,18 +125,18 @@ echo &quot;Creating %STC_MAJ_MIN_VERSION%.%FULLVER%.tar from raw files in %BUILD
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern></attachmentsPattern>
-      <presendScript></presendScript>
-      <postsendScript></postsendScript>
+      <attachmentsPattern/>
+      <presendScript/>
+      <postsendScript/>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
-      <replyTo></replyTo>
+      <replyTo/>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
     <jenkinsci.plugins.influxdb.InfluxDbPublisher plugin="influxdb@1.10.3">
       <selectedTarget>http://influxdb-01.cal.ci.spirentcom.com:8086,release_jenkins_db</selectedTarget>
-      <customPrefix></customPrefix>
+      <customPrefix/>
     </jenkinsci.plugins.influxdb.InfluxDbPublisher>
   </publishers>
   <buildWrappers>
@@ -163,52 +162,52 @@ echo &quot;Creating %STC_MAJ_MIN_VERSION%.%FULLVER%.tar from raw files in %BUILD
       </resolverDetails>
       <deployerCredentialsConfig>
         <credentials>
-          <username></username>
-          <password></password>
+          <username/>
+          <password/>
         </credentials>
-        <credentialsId></credentialsId>
+        <credentialsId/>
         <overridingCredentials>false</overridingCredentials>
         <ignoreCredentialPluginDisabled>false</ignoreCredentialPluginDisabled>
       </deployerCredentialsConfig>
       <resolverCredentialsConfig>
         <credentials>
-          <username></username>
-          <password></password>
+          <username/>
+          <password/>
         </credentials>
-        <credentialsId></credentialsId>
+        <credentialsId/>
         <overridingCredentials>false</overridingCredentials>
         <ignoreCredentialPluginDisabled>false</ignoreCredentialPluginDisabled>
       </resolverCredentialsConfig>
       <useSpecs>true</useSpecs>
       <uploadSpec>
         <spec>{
-    &quot;files&quot;: [
+    "files": [
         {
-            &quot;pattern&quot;: &quot;$WORKSPACE/*.tar.gz&quot;,
-            &quot;target&quot;: &quot;cip-bll/win32/$STC_MAJ_MIN_VERSION/&quot;,
-            &quot;flat&quot;: &quot;true&quot;,
-            &quot;props&quot;: &quot;STC_MAJ_MIN_VERSION=$STC_MAJ_MIN_VERSION&quot;
+            "pattern": "$WORKSPACE/*.tar.gz",
+            "target": "cip-bll/win32/$STC_MAJ_MIN_VERSION/",
+            "flat": "true",
+            "props": "STC_MAJ_MIN_VERSION=$STC_MAJ_MIN_VERSION"
         }
     ]
 }</spec>
       </uploadSpec>
       <downloadSpec>
-        <spec></spec>
+        <spec/>
       </downloadSpec>
-      <deployPattern></deployPattern>
-      <resolvePattern></resolvePattern>
-      <matrixParams></matrixParams>
+      <deployPattern/>
+      <resolvePattern/>
+      <matrixParams/>
       <deployBuildInfo>false</deployBuildInfo>
       <includeEnvVars>false</includeEnvVars>
       <envVarsPatterns>
-        <includePatterns></includePatterns>
+        <includePatterns/>
         <excludePatterns>*password*,*secret*,*key*</excludePatterns>
       </envVarsPatterns>
       <discardOldBuilds>false</discardOldBuilds>
       <discardBuildArtifacts>true</discardBuildArtifacts>
       <asyncBuildRetention>false</asyncBuildRetention>
       <multiConfProject>false</multiConfProject>
-      <customBuildName></customBuildName>
+      <customBuildName/>
       <overrideBuildName>false</overrideBuildName>
     </org.jfrog.hudson.generic.ArtifactoryGenericConfigurator>
   </buildWrappers>
