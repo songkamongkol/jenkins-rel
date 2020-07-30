@@ -1,5 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<project>
+<?xml version="1.0" encoding="UTF-8"?><project>
   <actions/>
   <description>IL Build job for virtual targets:&lt;br&gt;
 $WORKSPACE/build/il/scripts/phxbld -j8 vtc&lt;br&gt;
@@ -34,9 +33,9 @@ Archive il_vtc_*.tar&lt;br&gt;
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain></teamDomain>
-      <token></token>
-      <room></room>
+      <teamDomain/>
+      <token/>
+      <room/>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -53,7 +52,7 @@ Archive il_vtc_*.tar&lt;br&gt;
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>5.11_rel</defaultValue>
+          <defaultValue>5.13_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -72,12 +71,12 @@ Archive il_vtc_*.tar&lt;br&gt;
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
-          <description></description>
-          <defaultValue>5.11</defaultValue>
+          <description/>
+          <defaultValue>5.13</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>APP_ARCH</name>
-          <description></description>
+          <description/>
           <defaultValue>x86_64</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -101,7 +100,7 @@ Archive il_vtc_*.tar&lt;br&gt;
         <locked>false</locked>
         <modtime>false</modtime>
         <rmdir>false</rmdir>
-        <streamName></streamName>
+        <streamName/>
         <line>LOCAL</line>
         <view>+//TestCenter/${BRANCH_NAME}/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/...
 -//TestCenter/*/sandbox/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/*/sandbox/...
@@ -127,7 +126,7 @@ Archive il_vtc_*.tar&lt;br&gt;
 //LandSlide_Binaries/bof/content/traffic/mobi/il/blink/GlueServer //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/content/traffic/mobi/il/blink/GlueServer
 //TARDIS/Studio/pretardis/4.17_studio/il/vm/studio.qcow2.gz //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/content/traffic/studio/il/vm/studio.qcow2.gz</view>
         <type>WRITABLE</type>
-        <serverID></serverID>
+        <serverID/>
         <backup>false</backup>
       </spec>
     </workspace>
@@ -136,7 +135,7 @@ Archive il_vtc_*.tar&lt;br&gt;
       <force>false</force>
       <modtime>false</modtime>
       <quiet>true</quiet>
-      <pin></pin>
+      <pin/>
       <parallel>
         <enable>false</enable>
         <threads>4</threads>
@@ -189,9 +188,9 @@ lbd=`sudo losetup -a`
 for line in $lbd; do
         echo $line | grep dev
         if [ $? -eq 0 ] ; then
-                # echo $line | awk &apos;{ print substr ($0, 0, 10) }&apos;;
-                echo &quot;Cleaning up loopback device ...&quot;
-                sudo losetup -d `echo $line | awk &apos;{ print substr ($0, 0, 10) }i&apos;`
+                # echo $line | awk '{ print substr ($0, 0, 10) }';
+                echo "Cleaning up loopback device ..."
+                sudo losetup -d `echo $line | awk '{ print substr ($0, 0, 10) }i'`
         fi
 done</command>
     </hudson.tasks.Shell>
@@ -219,7 +218,7 @@ sudo rm -rf $WORKSPACE/build/il/bld_*</command>
     <hudson.tasks.Shell>
       <command># rm -f il_vtc_$STC_MAJ_MIN_VERSION.tar
 # tar cvf il_vtc_$STC_MAJ_MIN_VERSION.tar ./build/il/packages
-echo &quot;Finished creating il_stca_$STC_MAJ_MIN_VERSION.tar&quot;
+echo "Finished creating il_stca_$STC_MAJ_MIN_VERSION.tar"
 # python $HOME/jenkins/ftp.py --ip=storage.cal.ci.spirentcom.com --n=30 --file=jenkins/il_stca-$BRANCH_NAME/
 python $HOME/jenkins/build_cleanup.py --n=50 --file=/mnt/builds/jenkins/il_stca-$BRANCH_NAME</command>
     </hudson.tasks.Shell>
@@ -254,7 +253,7 @@ python $HOME/jenkins/build_cleanup.py --n=50 --file=/mnt/builds/jenkins/il_stca-
               <hudson.plugins.emailext.plugins.recipients.DevelopersRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern></attachmentsPattern>
+            <attachmentsPattern/>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -264,12 +263,12 @@ python $HOME/jenkins/build_cleanup.py --n=50 --file=/mnt/builds/jenkins/il_stca-
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern></attachmentsPattern>
-      <presendScript></presendScript>
-      <postsendScript></postsendScript>
+      <attachmentsPattern/>
+      <presendScript/>
+      <postsendScript/>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
-      <replyTo></replyTo>
+      <replyTo/>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
@@ -279,7 +278,7 @@ python $HOME/jenkins/build_cleanup.py --n=50 --file=/mnt/builds/jenkins/il_stca-
           <command># copy the build output to storage server
 export STORAGE_DIR=/mnt/builds/jenkins/il_stca-$BRANCH_NAME/build-$P4_CHANGELIST/
 
-if [ ! -d &quot;$STORAGE_DIR&quot; ]; then
+if [ ! -d "$STORAGE_DIR" ]; then
   mkdir -p $STORAGE_DIR
   mkdir -p $STORAGE_DIR/rawimg
 fi
@@ -298,7 +297,7 @@ cp -r $WORKSPACE/build/il/packages/stca $STORAGE_DIR
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
     <jenkinsci.plugins.influxdb.InfluxDbPublisher plugin="influxdb@1.10.3">
       <selectedTarget>http://influxdb-01.cal.ci.spirentcom.com:8086,release_jenkins_db</selectedTarget>
-      <customPrefix></customPrefix>
+      <customPrefix/>
     </jenkinsci.plugins.influxdb.InfluxDbPublisher>
   </publishers>
   <buildWrappers>
@@ -308,8 +307,8 @@ cp -r $WORKSPACE/build/il/packages/stca $STORAGE_DIR
         <hudson.tasks.Shell>
           <command># remove files using sudo for files that may be
 # owned by root
-if [[ $P4CLEANWORKSPACE = &quot;true&quot; ]]; then
-    if [ ! -z &quot;$WORKSPACE&quot; ]; then
+if [[ $P4CLEANWORKSPACE = "true" ]]; then
+    if [ ! -z "$WORKSPACE" ]; then
         sudo rm -rf $WORKSPACE/*
         p4 -u scmbuild -p perforce.spirentcom.com:1666 -c jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME} sync //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/...#none
     fi
