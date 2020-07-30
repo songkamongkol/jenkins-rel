@@ -1,7 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<project>
+<?xml version="1.0" encoding="UTF-8"?><project>
   <actions/>
-  <description></description>
+  <description/>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
@@ -21,9 +20,9 @@
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain></teamDomain>
-      <token></token>
-      <room></room>
+      <teamDomain/>
+      <token/>
+      <room/>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -39,52 +38,52 @@
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
-          <description></description>
-          <defaultValue>5.11</defaultValue>
+          <description/>
+          <defaultValue>5.13</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>STC_SUBDIR</name>
-          <description></description>
+          <description/>
           <defaultValue>Spirent_TestCenter_Application_Linux</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>TARNAME</name>
-          <description></description>
+          <description/>
           <defaultValue>Spirent_TestCenter_Auto_Linux_4.84.tar.gz</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>OUTPUT_INSTALLER_NAME</name>
-          <description></description>
+          <description/>
           <defaultValue>install_Spirent_TestCenter_Auto_Linux_4.84.sh</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
-          <description></description>
+          <description/>
           <defaultValue>BAD_BUILD_NUMBER</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_ID</name>
-          <description></description>
+          <description/>
           <defaultValue>6</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>MODE</name>
-          <description></description>
+          <description/>
           <defaultValue>NIGHTLY</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
-          <description></description>
-          <defaultValue>5.11_rel</defaultValue>
+          <description/>
+          <defaultValue>5.13_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
-          <description></description>
+          <description/>
           <defaultValue>true</defaultValue>
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>NO_CRYPTO</name>
-          <description></description>
+          <description/>
           <defaultValue>NO</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -103,7 +102,7 @@
         <locked>false</locked>
         <modtime>false</modtime>
         <rmdir>false</rmdir>
-        <streamName></streamName>
+        <streamName/>
         <line>LOCAL</line>
         <view>//TestCenter/${BRANCH_NAME}/scm/linux_installer/build //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/build
 //TestCenter/${BRANCH_NAME}/scm/linux_installer/decompress //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/decompress
@@ -117,7 +116,7 @@
 +//TestCenter/${BRANCH_NAME}/framework/tools/postgres/change_postgres_settings.py //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/payload/change_postgres_settings.py
 +//TestCenter/${BRANCH_NAME}/framework/tools/postgres/check_postgres_settings.py //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/payload/check_postgres_settings.py</view>
         <type>WRITABLE</type>
-        <serverID></serverID>
+        <serverID/>
         <backup>false</backup>
       </spec>
     </workspace>
@@ -126,7 +125,7 @@
       <force>true</force>
       <modtime>false</modtime>
       <quiet>true</quiet>
-      <pin></pin>
+      <pin/>
       <parallel>
         <enable>false</enable>
         <threads>4</threads>
@@ -146,13 +145,13 @@
     <hudson.tasks.Shell>
       <command>#!/bin/bash -xe
 
-if [ $MODE = &quot;INC&quot; ]; then
+if [ $MODE = "INC" ]; then
     exit 0
 fi
 
 export RAW_BLDSTR=${BLL_BUILD_NUMBER}${BRANCH_ID}
 
-printf -v BLDNUMBER &quot;%04d&quot; $RAW_BLDSTR
+printf -v BLDNUMBER "%04d" $RAW_BLDSTR
 
 SOURCE_TAR_PATH=/spirent/data/archive/pv/TestCenter/${STC_MAJ_MIN_VERSION}/Engineering_Builds/GUI_BLL/${STC_MAJ_MIN_VERSION}.${BLDNUMBER}/tar
 BUILD_SERVER=martin.spirentcom.com
@@ -171,7 +170,7 @@ rsync -avz $WORKSPACE/${OUTPUT_INSTALLER_NAME} ${LOGON_USER}@${BUILD_SERVER}:${S
   <publishers>
     <jenkinsci.plugins.influxdb.InfluxDbPublisher plugin="influxdb@1.10.3">
       <selectedTarget>http://influxdb-01.cal.ci.spirentcom.com:8086,release_jenkins_db</selectedTarget>
-      <customPrefix></customPrefix>
+      <customPrefix/>
     </jenkinsci.plugins.influxdb.InfluxDbPublisher>
   </publishers>
   <buildWrappers>
