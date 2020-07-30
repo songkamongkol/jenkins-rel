@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>Startup error problem with TestCenter.Windows.tar.gz?
-
+  <description>Startup error problem with TestCenter.Windows.tar.gz?&#xd;
+&#xd;
 Install the latest vcredist from http://www.microsoft.com/download/en/details.aspx?displaylang=en&amp;id=26347</description>
   <keepDependencies>false</keepDependencies>
   <properties>
@@ -260,7 +260,6 @@ python ..\..\framework\tools\buildUtil\setver.py --package=TestCenter.Windows.x6
       <scriptOnlyIfSuccess>false</scriptOnlyIfSuccess>
       <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
       <markBuildUnstable>false</markBuildUnstable>
-      <executeOn>BOTH</executeOn>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
     <hudson.plugins.claim.ClaimPublisher plugin="claim@2.9"/>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.57">
@@ -353,7 +352,7 @@ rd /s /q %modified%\trafficcenter-app&#xd;
 rd /s /q %modified%\userdocauto&#xd;
 del /f /q %modified%\*.*&#xd;
 echo 9R1Y9fE4$PSH|p4 -u tableuser -p perforce.spirentcom.com:1666 login&#xd;
-p4 -u tableuser -p perforce.spirentcom.com:1666 -c jenkins-%NODE_NAME%-%JOB_NAME% sync //jenkins-%NODE_NAME%-%JOB_NAME%-%BRANCH_NAME%/...#none&#xd;
+p4 -u tableuser -p perforce.spirentcom.com:1666 -c jenkins-%NODE_NAME%-%JOB_NAME% sync //jenkins-%NODE_NAME%-%JOB_NAME%/...#none&#xd;
 )</command>
         </hudson.tasks.BatchFile>
       </buildSteps>
