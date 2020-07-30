@@ -1,5 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<project>
+<?xml version="1.0" encoding="UTF-8"?><project>
   <actions/>
   <description>remotely trigger smarttest job on http://jenkins-smt.cal.ci.spirentcom.com:8080/job/release_patch_launch_smarttest/</description>
   <keepDependencies>false</keepDependencies>
@@ -21,9 +20,9 @@
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain></teamDomain>
-      <token></token>
-      <room></room>
+      <teamDomain/>
+      <token/>
+      <room/>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -39,13 +38,13 @@
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
-          <description></description>
-          <defaultValue>5.11_rel</defaultValue>
+          <description/>
+          <defaultValue>5.13_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
-          <description></description>
-          <defaultValue>5.11</defaultValue>
+          <description/>
+          <defaultValue>5.13</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -71,10 +70,10 @@ import urllib2
 
 
  
-job = &apos;SMT-Remote-Regression-SYS-01&apos;
-url = &quot;http://jenkins-smt.cal.ci.spirentcom.com:8080/job/&quot; + job +&quot;/buildWithParameters?token=mosheallowedtodothis&amp;STC_MAJ_MIN_VERSION=&quot;+os.environ[&apos;STC_MAJ_MIN_VERSION&apos;]
+job = 'SMT-Remote-Regression-SYS-01'
+url = "http://jenkins-smt.cal.ci.spirentcom.com:8080/job/" + job +"/buildWithParameters?token=mosheallowedtodothis&amp;STC_MAJ_MIN_VERSION="+os.environ['STC_MAJ_MIN_VERSION']
 
-#data=&quot;token=mosheallowedtodothis&quot;
+#data="token=mosheallowedtodothis"
 #creating HTTP Req
 req = urllib2.Request(url)
 f = urllib2.urlopen(req)
