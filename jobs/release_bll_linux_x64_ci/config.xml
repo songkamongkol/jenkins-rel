@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
-  <description/>
+  <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
@@ -8,9 +9,9 @@
     </hudson.plugins.buildblocker.BuildBlockerProperty>
     <org.datadog.jenkins.plugins.datadog.DatadogJobProperty plugin="datadog@1.1.1">
       <enableFile>false</enableFile>
-      <tagFile/>
+      <tagFile></tagFile>
       <enableProperty>false</enableProperty>
-      <tagProperties/>
+      <tagProperties></tagProperties>
       <emitSCMEvents>true</emitSCMEvents>
     </org.datadog.jenkins.plugins.datadog.DatadogJobProperty>
     <jenkins.model.BuildDiscarderProperty>
@@ -33,9 +34,9 @@
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain/>
-      <token/>
-      <room/>
+      <teamDomain></teamDomain>
+      <token></token>
+      <room></room>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -110,7 +111,7 @@
         <locked>false</locked>
         <modtime>false</modtime>
         <rmdir>false</rmdir>
-        <streamName/>
+        <streamName></streamName>
         <line>LOCAL</line>
         <view>+//TestCenter/${BRANCH_NAME}/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/...
 -//TestCenter/*/Layer1/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/*/Layer1/...
@@ -139,7 +140,7 @@
 +//TestCenter/${BRANCH_NAME}/common/.../ui/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/common/.../ui/...
 +//TestCenter/${BRANCH_NAME}/framework/ui/automation/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/framework/ui/automation/...</view>
         <type>WRITABLE</type>
-        <serverID/>
+        <serverID></serverID>
         <backup>false</backup>
       </spec>
     </workspace>
@@ -148,7 +149,7 @@
       <force>false</force>
       <modtime>false</modtime>
       <quiet>true</quiet>
-      <pin/>
+      <pin></pin>
       <parallel>
         <enable>false</enable>
         <threads>4</threads>
@@ -160,18 +161,18 @@
   </scm>
   <assignedNode>bllbldlnx-v26</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>if [ "$P4CLEANWORKSPACE" = "true" ]; then
+      <command>if [ &quot;$P4CLEANWORKSPACE&quot; = &quot;true&quot; ]; then
 	ccache -C
 fi
 
-if [ "$RELEASE_BUILD" = "true" ]; then
+if [ &quot;$RELEASE_BUILD&quot; = &quot;true&quot; ]; then
     cp -f $WORKSPACE/framework/bll/core/include/licensing/ga_release/ControlledReleaseCheck.h $WORKSPACE/framework/bll/core/include/licensing/ControlledReleaseCheck.h
 fi
 
@@ -188,7 +189,7 @@ echo $P4_CHANGELIST $JOB_NAME $BUILD_NUMBER &gt; BLL_Linux_x64_changelist_$P4_CH
 ./scons.sh -f SConstruct.bll  -j 12 --debug=time debug=0 coverage=0 target=bll-el3-64-automation-client-only</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command>if [ "$BUILD_RUN_UNITTEST" = "true" ]; then
+      <command>if [ &quot;$BUILD_RUN_UNITTEST&quot; = &quot;true&quot; ]; then
     cd $WORKSPACE/$BUILD_OUTPUT_DIR
     python $WORKSPACE/framework/tools/testRunner/testRunner.py --runInParallel=4 --bll --stak --archive
 fi</command>
@@ -196,7 +197,7 @@ fi</command>
     <hudson.tasks.Shell>
       <command>cd $WORKSPACE/build/il/bld_bll-el3-64-automation-client-only_x86_64/Release/bin
 rm -f TestCenter*.tar.gz
-if [ "$BUILD_PACKAGE_BUILD" = "true" ]; then
+if [ &quot;$BUILD_PACKAGE_BUILD&quot; = &quot;true&quot; ]; then
     python $WORKSPACE/framework/tools/buildUtil/package.py --arch-dir=Spirent_TestCenter_Application_Linux_Server --package=TestCenter 
     mv TestCenter.Linux.x64.tar.gz TestCenter.Linux.AutomationClient.x64.tar.gz
     #python $WORKSPACE/framework/tools/buildUtil/setver.py --package=TestCenter.Linux.x64.tar.gz $STC_MAJ_MIN_VERSION $P4_CHANGELIST
@@ -210,12 +211,12 @@ import tarfile
 import shutil
 
 def _download_file_from_url(url=None):
-    file_name = url.split('/')[-1]
+    file_name = url.split(&apos;/&apos;)[-1]
     u = urllib2.urlopen(url)
-    f = open(file_name, 'wb')
+    f = open(file_name, &apos;wb&apos;)
     meta = u.info()
-    file_size = int(meta.getheaders("Content-Length")[0])
-    print "Downloading: %s Bytes: %s" % (file_name, file_size)
+    file_size = int(meta.getheaders(&quot;Content-Length&quot;)[0])
+    print &quot;Downloading: %s Bytes: %s&quot; % (file_name, file_size)
 
     file_size_dl = 0
     block_sz = 8192
@@ -226,50 +227,50 @@ def _download_file_from_url(url=None):
 
         file_size_dl += len(buffer)
         f.write(buffer)
-        status = r"%10d  [%3.2f%%]" % (file_size_dl, file_size_dl * 100. / file_size)
+        status = r&quot;%10d  [%3.2f%%]&quot; % (file_size_dl, file_size_dl * 100. / file_size)
         status = status + chr(8)*(len(status)+1)
         print status,
 
     f.close()
 
 def unzip(fname,dir_name):
-    if (fname.endswith("zip")):
-        zip_ref = zipfile.ZipFile(fname, 'r')
+    if (fname.endswith(&quot;zip&quot;)):
+        zip_ref = zipfile.ZipFile(fname, &apos;r&apos;)
         zip_ref.extractall(dir_name)
         zip_ref.close()
-        print "Extracted in %s Directory" % dir_name
+        print &quot;Extracted in %s Directory&quot; % dir_name
     else:
-        print "Not a zip file: '%s '" % fname
+        print &quot;Not a zip file: &apos;%s &apos;&quot; % fname
 
 def extract_tarball(fname):
-    if (fname.endswith("tgz")):
-        tar = tarfile.open(fname, "r:gz")
+    if (fname.endswith(&quot;tgz&quot;)):
+        tar = tarfile.open(fname, &quot;r:gz&quot;)
         tar.extractall()
         tar.close()
-    elif (fname.endswith("tar")):
-       tar = tarfile.open(fname, "r:")
+    elif (fname.endswith(&quot;tar&quot;)):
+       tar = tarfile.open(fname, &quot;r:&quot;)
        tar.extractall()
        tar.close()
         
-zip_filename = 'orion-res.linux-amd64.zip'
-orion_res_output_dir = os.path.join(os.environ['WORKSPACE'], "build", "il", "bld_bll-el3-64_x86_64", "Release", "bin", 'orion-res')
+zip_filename = &apos;orion-res.linux-amd64.zip&apos;
+orion_res_output_dir = os.path.join(os.environ[&apos;WORKSPACE&apos;], &quot;build&quot;, &quot;il&quot;, &quot;bld_bll-el3-64_x86_64&quot;, &quot;Release&quot;, &quot;bin&quot;, &apos;orion-res&apos;)
 if os.path.exists(orion_res_output_dir):
     shutil.rmtree(orion_res_output_dir) # clean up previous output dir if exists
 unzip(zip_filename, orion_res_output_dir)
-os.chmod(os.path.join(os.environ['WORKSPACE'], "build", "il", "bld_bll-el3-64_x86_64", "Release", "bin", 'orion-res', 'bin', 'orion-res'), 0755)
+os.chmod(os.path.join(os.environ[&apos;WORKSPACE&apos;], &quot;build&quot;, &quot;il&quot;, &quot;bld_bll-el3-64_x86_64&quot;, &quot;Release&quot;, &quot;bin&quot;, &apos;orion-res&apos;, &apos;bin&apos;, &apos;orion-res&apos;), 0755)
     
-os.chdir('bin')
-tgz_filename = 'magellan-frontend.tgz'
-if os.path.exists('build'):
-    shutil.rmtree('build') # clean up previous output dir from tgz file if exists
+os.chdir(&apos;bin&apos;)
+tgz_filename = &apos;magellan-frontend.tgz&apos;
+if os.path.exists(&apos;build&apos;):
+    shutil.rmtree(&apos;build&apos;) # clean up previous output dir from tgz file if exists
 extract_tarball(tgz_filename)
-shutil.move('build', os.path.join(orion_res_output_dir, 'content'))</command>
+shutil.move(&apos;build&apos;, os.path.join(orion_res_output_dir, &apos;content&apos;))</command>
     </hudson.plugins.python.Python>
     <hudson.tasks.Shell>
-      <command># creating tar ball for build output of the build command 'scons target=-j 12 --debug=time debug=0 coverage=0 target=bll-el3-64'
+      <command># creating tar ball for build output of the build command &apos;scons target=-j 12 --debug=time debug=0 coverage=0 target=bll-el3-64&apos;
 cd build/il/bld_bll-el3-64_x86_64/Release/bin
 rm -f TestCenter*.tar.gz
-if [ "$BUILD_PACKAGE_BUILD" = "true" ]; then
+if [ &quot;$BUILD_PACKAGE_BUILD&quot; = &quot;true&quot; ]; then
     python $WORKSPACE/framework/tools/buildUtil/package.py --arch-dir=Spirent_TestCenter_Application_Linux_Server --package=TestCenter
     python $WORKSPACE/framework/tools/buildUtil/package.py --arch-dir=Spirent_TestCenter_Application_Linux_Server --package=STAKCommands.beta
     mv TestCenter.Linux.x64.tar.gz TestCenter.Linux.x64.full.tar.gz
@@ -280,11 +281,11 @@ fi</command>
       <command>import shutil
 import os
 
-output_filename = 'orion-res'
-dir_name = os.path.join(os.environ['WORKSPACE'], 'build', 'il', 'bld_bll-el3-64_x86_64', 'Release', 'bin', 'orion-res')
-if os.path.exists('orion-res.zip'):
-    os.remove('orion-res.zip')
-shutil.make_archive(output_filename, 'zip', dir_name)</command>
+output_filename = &apos;orion-res&apos;
+dir_name = os.path.join(os.environ[&apos;WORKSPACE&apos;], &apos;build&apos;, &apos;il&apos;, &apos;bld_bll-el3-64_x86_64&apos;, &apos;Release&apos;, &apos;bin&apos;, &apos;orion-res&apos;)
+if os.path.exists(&apos;orion-res.zip&apos;):
+    os.remove(&apos;orion-res.zip&apos;)
+shutil.make_archive(output_filename, &apos;zip&apos;, dir_name)</command>
     </hudson.plugins.python.Python>
   </builders>
   <publishers>
@@ -329,7 +330,7 @@ shutil.make_archive(output_filename, 'zip', dir_name)</command>
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -345,7 +346,7 @@ shutil.make_archive(output_filename, 'zip', dir_name)</command>
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -361,7 +362,7 @@ shutil.make_archive(output_filename, 'zip', dir_name)</command>
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -371,18 +372,18 @@ shutil.make_archive(output_filename, 'zip', dir_name)</command>
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern/>
-      <presendScript/>
-      <postsendScript/>
+      <attachmentsPattern></attachmentsPattern>
+      <presendScript></presendScript>
+      <postsendScript></postsendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
-      <replyTo/>
+      <replyTo></replyTo>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
     <jenkinsci.plugins.influxdb.InfluxDbPublisher plugin="influxdb@1.10.3">
       <selectedTarget>http://influxdb-01.cal.ci.spirentcom.com:8086,release_jenkins_db</selectedTarget>
-      <customPrefix/>
+      <customPrefix></customPrefix>
     </jenkinsci.plugins.influxdb.InfluxDbPublisher>
   </publishers>
   <buildWrappers>
@@ -403,7 +404,7 @@ shutil.make_archive(output_filename, 'zip', dir_name)</command>
           <username>spirent</username>
           <password>c3BpcmVudA==</password>
         </credentials>
-        <credentialsId/>
+        <credentialsId></credentialsId>
         <overridingCredentials>false</overridingCredentials>
         <ignoreCredentialPluginDisabled>false</ignoreCredentialPluginDisabled>
       </deployerCredentialsConfig>
@@ -412,45 +413,45 @@ shutil.make_archive(output_filename, 'zip', dir_name)</command>
           <username>spirent</username>
           <password>c3BpcmVudA==</password>
         </credentials>
-        <credentialsId/>
+        <credentialsId></credentialsId>
         <overridingCredentials>false</overridingCredentials>
         <ignoreCredentialPluginDisabled>false</ignoreCredentialPluginDisabled>
       </resolverCredentialsConfig>
       <useSpecs>true</useSpecs>
       <uploadSpec>
-        <spec/>
+        <spec></spec>
       </uploadSpec>
       <downloadSpec>
         <spec>{
-    "files": [
+    &quot;files&quot;: [
         {
-            "pattern": "${MAGELLAN_BACKEND_PATH}/orion-res.linux-amd64.zip",
-            "target": "./orion-res.linux-amd64.zip",
-            "flat": "true"
+            &quot;pattern&quot;: &quot;${MAGELLAN_BACKEND_PATH}/orion-res.linux-amd64.zip&quot;,
+            &quot;target&quot;: &quot;./orion-res.linux-amd64.zip&quot;,
+            &quot;flat&quot;: &quot;true&quot;
         },
         {
-            "pattern": "${MAGELLAN_FRONTEND_PATH}",
-            "target": "./bin/magellan-frontend.tgz",
-            "flat": "true"
+            &quot;pattern&quot;: &quot;${MAGELLAN_FRONTEND_PATH}&quot;,
+            &quot;target&quot;: &quot;./bin/magellan-frontend.tgz&quot;,
+            &quot;flat&quot;: &quot;true&quot;
         }
 
     ]
 }</spec>
       </downloadSpec>
-      <deployPattern/>
-      <resolvePattern/>
-      <matrixParams/>
+      <deployPattern></deployPattern>
+      <resolvePattern></resolvePattern>
+      <matrixParams></matrixParams>
       <deployBuildInfo>true</deployBuildInfo>
       <includeEnvVars>false</includeEnvVars>
       <envVarsPatterns>
-        <includePatterns/>
+        <includePatterns></includePatterns>
         <excludePatterns>*password*,*secret*,*key*</excludePatterns>
       </envVarsPatterns>
       <discardOldBuilds>false</discardOldBuilds>
       <discardBuildArtifacts>true</discardBuildArtifacts>
       <asyncBuildRetention>false</asyncBuildRetention>
       <multiConfProject>false</multiConfProject>
-      <customBuildName/>
+      <customBuildName></customBuildName>
       <overrideBuildName>false</overrideBuildName>
     </org.jfrog.hudson.generic.ArtifactoryGenericConfigurator>
     <EnvInjectBuildWrapper plugin="envinject@1.89">
@@ -463,7 +464,7 @@ PATH=/usr/gcc_4_9/bin:$PATH</propertiesContent>
     <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
       <buildSteps>
         <hudson.tasks.Shell>
-          <command>if [[ $P4CLEANWORKSPACE = "true" ]]; then
+          <command>if [[ $P4CLEANWORKSPACE = &quot;true&quot; ]]; then
   rm -rf $WORKSPACE/*
   p4 -u scmbuild -p perforce.spirentcom.com:1666 -c jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME} sync //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/...#none 2&gt;&amp;1 &gt; clean_build.txt 
 fi</command>
