@@ -145,7 +145,7 @@ Install the latest vcredist from http://www.microsoft.com/download/en/details.as
   <quietPeriod>60</quietPeriod>
   <assignedNode>bllbuild-win-04</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>true</disabled>
+  <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>true</blockBuildWhenUpstreamBuilding>
   <triggers>
