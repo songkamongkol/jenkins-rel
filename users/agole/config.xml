@@ -8,10 +8,10 @@
     <jenkins.security.ApiTokenProperty>
       <apiToken>r56Cdw/CfMPG8sYP9WdYCLGGUw7Z2+ipGbb2Hvb7/kmj2SGnAO6/rDRfFdaxvytg</apiToken>
     </jenkins.security.ApiTokenProperty>
-    <com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty plugin="credentials@1.22">
+    <com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty plugin="credentials@2.1.13">
       <domainCredentialsMap class="hudson.util.CopyOnWriteMap$Hash"/>
     </com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty>
-    <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.15"/>
+    <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.19"/>
     <hudson.model.MyViewsProperty>
       <views>
         <hudson.model.AllView>
@@ -26,6 +26,15 @@
     <hudson.search.UserSearchProperty>
       <insensitiveSearch>false</insensitiveSearch>
     </hudson.search.UserSearchProperty>
-    <hudson.plugins.perforce.PerforceUserProperty plugin="perforce@1.3.34"/>
+    <hudson.plugins.perforce.PerforceUserProperty plugin="perforce@1.3.36"/>
+    <hudson.plugins.emailext.watching.EmailExtWatchAction_-UserProperty plugin="email-ext@2.57">
+      <triggers/>
+    </hudson.plugins.emailext.watching.EmailExtWatchAction_-UserProperty>
+    <org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty plugin="display-url-api@1.1.1">
+      <providerId>default</providerId>
+    </org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty>
+    <org.jenkinsci.plugins.p4.email.P4UserProperty plugin="p4@1.7.7">
+      <email>ashwini.gole@spirent.com</email>
+    </org.jenkinsci.plugins.p4.email.P4UserProperty>
   </properties>
 </user>
