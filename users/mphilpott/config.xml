@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <user>
-  <fullName>mphilpott</fullName>
+  <fullName>Matt Philpott</fullName>
   <properties>
     <hudson.model.PaneStatusProperties>
       <collapsed/>
@@ -11,7 +11,6 @@
     <com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty plugin="credentials@2.1.13">
       <domainCredentialsMap class="hudson.util.CopyOnWriteMap$Hash"/>
     </com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty>
-    <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.19"/>
     <hudson.model.MyViewsProperty>
       <views>
         <hudson.model.AllView>
@@ -36,5 +35,11 @@
     <org.jenkinsci.plugins.p4.email.P4UserProperty plugin="p4@1.7.7">
       <email>matthew.philpott@spirentcom.com</email>
     </org.jenkinsci.plugins.p4.email.P4UserProperty>
+    <hudson.security.HudsonPrivateSecurityRealm_-Details>
+      <passwordHash>#jbcrypt:$2a$10$iKi6kUHstfMCyxd0wdoM3.q2hlyZtA8zWGlUHgfAhbAWGItc6qrqS</passwordHash>
+    </hudson.security.HudsonPrivateSecurityRealm_-Details>
+    <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.19">
+      <emailAddress>matthew.philpott@spirent.com</emailAddress>
+    </hudson.tasks.Mailer_-UserProperty>
   </properties>
 </user>
