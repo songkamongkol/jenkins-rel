@@ -145,7 +145,7 @@
       <revert>false</revert>
     </populate>
   </scm>
-  <assignedNode>ilbuild-02</assignedNode>
+  <assignedNode>ilbld02</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
