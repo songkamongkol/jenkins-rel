@@ -1,27 +1,20 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>IL Build job for virtual targets:&lt;br&gt;&#xd;
-$WORKSPACE/build/il/scripts/phxbld -j8 vtc&lt;br&gt;&#xd;
-$WORKSPACE/build/il/scripts/phxbld -j8 stca&lt;br&gt;&#xd;
-and BoF&#xd;
-$WORKSPACE/build/il/scripts/phxbld -j4 tsvm&lt;br&gt;&#xd;
-sudo $WORKSPACE/build/il/scripts/phxbld tsvm_raw&lt;br&gt;&#xd;
-Archive il_vtc_*.tar&lt;br&gt;&#xd;
-&#xd;
+  <description>IL Build job for virtual targets:&lt;br&gt;
+$WORKSPACE/build/il/scripts/phxbld -j8 vtc&lt;br&gt;
+$WORKSPACE/build/il/scripts/phxbld -j8 stca&lt;br&gt;
+and BoF
+$WORKSPACE/build/il/scripts/phxbld -j4 tsvm&lt;br&gt;
+sudo $WORKSPACE/build/il/scripts/phxbld tsvm_raw&lt;br&gt;
+Archive il_vtc_*.tar&lt;br&gt;
+
 </description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
       <useBuildBlocker>false</useBuildBlocker>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
-    <org.datadog.jenkins.plugins.datadog.DatadogJobProperty plugin="datadog@1.1.1">
-      <enableFile>false</enableFile>
-      <tagFile></tagFile>
-      <enableProperty>false</enableProperty>
-      <tagProperties></tagProperties>
-      <emitSCMEvents>true</emitSCMEvents>
-    </org.datadog.jenkins.plugins.datadog.DatadogJobProperty>
     <jenkins.model.BuildDiscarderProperty>
       <strategy class="hudson.tasks.LogRotator">
         <daysToKeep>-1</daysToKeep>
@@ -143,7 +136,7 @@ Archive il_vtc_*.tar&lt;br&gt;&#xd;
       <force>false</force>
       <modtime>false</modtime>
       <quiet>true</quiet>
-      <pin>979000</pin>
+      <pin></pin>
       <parallel>
         <enable>false</enable>
         <threads>4</threads>
@@ -154,7 +147,7 @@ Archive il_vtc_*.tar&lt;br&gt;&#xd;
     </populate>
   </scm>
   <quietPeriod>55</quietPeriod>
-  <assignedNode>ilbld06</assignedNode>
+  <assignedNode>ilbuild-v116</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
@@ -301,6 +294,7 @@ cp -r $WORKSPACE/build/il/packages/stca $STORAGE_DIR
       <scriptOnlyIfSuccess>true</scriptOnlyIfSuccess>
       <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
       <markBuildUnstable>false</markBuildUnstable>
+      <executeOn>BOTH</executeOn>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
     <jenkinsci.plugins.influxdb.InfluxDbPublisher plugin="influxdb@1.10.3">
       <selectedTarget>http://influxdb-01.cal.ci.spirentcom.com:8086,release_jenkins_db</selectedTarget>
