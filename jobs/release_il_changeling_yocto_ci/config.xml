@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
   <description>The latest build is stored at \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_changeling_yocto-release\build-latest</description>
   <keepDependencies>false</keepDependencies>
@@ -8,9 +9,9 @@
     </hudson.plugins.buildblocker.BuildBlockerProperty>
     <org.datadog.jenkins.plugins.datadog.DatadogJobProperty plugin="datadog@1.1.1">
       <enableFile>false</enableFile>
-      <tagFile/>
+      <tagFile></tagFile>
       <enableProperty>false</enableProperty>
-      <tagProperties/>
+      <tagProperties></tagProperties>
       <emitSCMEvents>true</emitSCMEvents>
     </org.datadog.jenkins.plugins.datadog.DatadogJobProperty>
     <jenkins.model.BuildDiscarderProperty>
@@ -32,9 +33,9 @@
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain/>
-      <token/>
-      <room/>
+      <teamDomain></teamDomain>
+      <token></token>
+      <room></room>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -80,7 +81,7 @@
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>APP_ARCH</name>
-          <description/>
+          <description></description>
           <defaultValue>x86_64</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -104,7 +105,7 @@
         <locked>false</locked>
         <modtime>false</modtime>
         <rmdir>false</rmdir>
-        <streamName/>
+        <streamName></streamName>
         <line>LOCAL</line>
         <view>+//TestCenter/${BRANCH_NAME}/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/...
 -//TestCenter/*/sandbox/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/*/sandbox/...
@@ -125,7 +126,7 @@
 +//TestCenter/${BRANCH_NAME}/framework/bll/unittestdrv/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/framework/bll/unittestdrv/...
 +//TestCenter/${BRANCH_NAME}/framework/bll/vendor/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/framework/bll/vendor/...</view>
         <type>WRITABLE</type>
-        <serverID/>
+        <serverID></serverID>
         <backup>false</backup>
       </spec>
     </workspace>
@@ -134,7 +135,7 @@
       <force>false</force>
       <modtime>false</modtime>
       <quiet>true</quiet>
-      <pin/>
+      <pin>979000</pin>
       <parallel>
         <enable>false</enable>
         <threads>4</threads>
@@ -144,7 +145,7 @@
       <revert>false</revert>
     </populate>
   </scm>
-  <assignedNode>ilbuild-16</assignedNode>
+  <assignedNode>ilbuild-02</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
@@ -168,7 +169,7 @@ sudo scons target=packageclean</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command># export CCACHE_DISABLE=1 
-export SCONSFLAGS="-j32 ccache=1 distcc=1"
+export SCONSFLAGS=&quot;-j32 ccache=1 distcc=1&quot;
 # $WORKSPACE/build/il/scripts/phxbld centralboot_changeling
 scons target=raw_yocto arch=yocto_i686
 
@@ -176,7 +177,7 @@ $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 c3_hypervisor
 $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 centralboot_changeling_yocto2
 sudo scons target=c3_pkg_yocto_vm packaging=1 yocto_ver=1.5 strict=no
 
-export PAD_BUILD_NUMBER=`printf '%04i' $BUILD_NUMBER`
+export PAD_BUILD_NUMBER=`printf &apos;%04i&apos; $BUILD_NUMBER`
 export PAD_BUILD_NUMBER=${PAD_BUILD_NUMBER:(-4)} # reversion_il.sh cannot take build number greater than 4 digits
 
 sudo scons target=reversion_il il_version=$RELEASE_NUM.$PAD_BUILD_NUMBER av_version=$RELEASE_NUM.$PAD_BUILD_NUMBER
@@ -189,12 +190,12 @@ import glob
 import os
 import string
 
-fsimg_dir = os.path.join(os.environ['WORKSPACE'], 'build', 'il', 'packages', 'fsimg')
+fsimg_dir = os.path.join(os.environ[&apos;WORKSPACE&apos;], &apos;build&apos;, &apos;il&apos;, &apos;packages&apos;, &apos;fsimg&apos;)
 os.chdir(fsimg_dir)
-ctl_images = glob.glob('*yoctovm*')
+ctl_images = glob.glob(&apos;*yoctovm*&apos;)
 
 for file in ctl_images:
-	newname = string.replace(file , '_yoctovm', '')
+	newname = string.replace(file , &apos;_yoctovm&apos;, &apos;&apos;)
 	print newname
 	os.rename(file ,newname)
 </command>
@@ -205,7 +206,7 @@ for file in ctl_images:
 python $HOME/jenkins/build_cleanup.py --n=50 --file=/mnt/builds/jenkins/il_changeling_yocto-$BRANCH_NAME</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command># Per Klaus's suggestion, remove c3_tmp directory to prevent error from pw_build_tracker.py
+      <command># Per Klaus&apos;s suggestion, remove c3_tmp directory to prevent error from pw_build_tracker.py
 sudo rm -rf $WORKSPACE/build/il/bld_i686_chassis_3_yocto/c3_tmp
 sudo rm -rf $WORKSPACE/build/il/bld_x86_64_chassis_3_yocto/c3_tmp
 sudo rm -rf $WORKSPACE/build/il/bld_x86_64_chassis_3_yocto/tmp</command>
@@ -255,7 +256,7 @@ python $WORKSPACE/common/idl/crc.py -f il_idl_crc.txt</command>
               <hudson.plugins.emailext.plugins.recipients.DevelopersRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -265,12 +266,12 @@ python $WORKSPACE/common/idl/crc.py -f il_idl_crc.txt</command>
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern/>
-      <presendScript/>
-      <postsendScript/>
+      <attachmentsPattern></attachmentsPattern>
+      <presendScript></presendScript>
+      <postsendScript></postsendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
-      <replyTo/>
+      <replyTo></replyTo>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
@@ -280,7 +281,7 @@ python $WORKSPACE/common/idl/crc.py -f il_idl_crc.txt</command>
           <command># copy the build output to storage server
 export STORAGE_DIR=/mnt/builds/jenkins/il_changeling_yocto-$BRANCH_NAME/build-$BUILD_NUMBER
 
-if [ ! -d "$STORAGE_DIR" ]; then
+if [ ! -d &quot;$STORAGE_DIR&quot; ]; then
   mkdir -p $STORAGE_DIR
 fi
 
@@ -298,11 +299,10 @@ cp $WORKSPACE/${JOB_NAME}_changelist_${P4_CHANGELIST}.txt $STORAGE_DIR</command>
       <scriptOnlyIfSuccess>true</scriptOnlyIfSuccess>
       <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
       <markBuildUnstable>false</markBuildUnstable>
-      <executeOn>BOTH</executeOn>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
     <jenkinsci.plugins.influxdb.InfluxDbPublisher plugin="influxdb@1.10.3">
       <selectedTarget>http://influxdb-01.cal.ci.spirentcom.com:8086,release_jenkins_db</selectedTarget>
-      <customPrefix/>
+      <customPrefix></customPrefix>
     </jenkinsci.plugins.influxdb.InfluxDbPublisher>
   </publishers>
   <buildWrappers>
@@ -312,8 +312,8 @@ cp $WORKSPACE/${JOB_NAME}_changelist_${P4_CHANGELIST}.txt $STORAGE_DIR</command>
         <hudson.tasks.Shell>
           <command># remove files using sudo for files that may be
 # owned by root
-if [[ $P4CLEANWORKSPACE = "true" ]]; then
-    if [ ! -z "$WORKSPACE" ]; then
+if [[ $P4CLEANWORKSPACE = &quot;true&quot; ]]; then
+    if [ ! -z &quot;$WORKSPACE&quot; ]; then
         sudo rm -rf $WORKSPACE/*
         p4 -u scmbuild -p perforce.spirentcom.com:1666 -c jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME} sync //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/...#none
     fi
