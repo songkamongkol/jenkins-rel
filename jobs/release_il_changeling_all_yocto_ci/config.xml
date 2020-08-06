@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>IL Build job for Changeling targets:&lt;br&gt;&#xd;
-$WORKSPACE/build/il/scripts/phxbld -j16 changeling&lt;br&gt;&#xd;
-$WORKSPACE/build/il/scripts/phxbld -j16 changeling_raw&lt;br&gt;&#xd;
-$WORKSPACE/build/il/scripts/phxbld -j16 changeling_64&lt;br&gt;&#xd;
-$WORKSPACE/build/il/scripts/phxbld -j16 changeling_64_raw&lt;br&gt;&#xd;
-Archive il_changeling_*.tar&lt;br&gt;&#xd;
+  <description>IL Build job for Changeling targets:&lt;br&gt;
+$WORKSPACE/build/il/scripts/phxbld -j16 changeling&lt;br&gt;
+$WORKSPACE/build/il/scripts/phxbld -j16 changeling_raw&lt;br&gt;
+$WORKSPACE/build/il/scripts/phxbld -j16 changeling_64&lt;br&gt;
+$WORKSPACE/build/il/scripts/phxbld -j16 changeling_64_raw&lt;br&gt;
+Archive il_changeling_*.tar&lt;br&gt;
 </description>
   <keepDependencies>false</keepDependencies>
   <properties>
@@ -141,7 +141,7 @@ Archive il_changeling_*.tar&lt;br&gt;&#xd;
       <force>false</force>
       <modtime>false</modtime>
       <quiet>true</quiet>
-      <pin>979000</pin>
+      <pin></pin>
       <parallel>
         <enable>false</enable>
         <threads>4</threads>
@@ -152,7 +152,7 @@ Archive il_changeling_*.tar&lt;br&gt;&#xd;
     </populate>
   </scm>
   <quietPeriod>30</quietPeriod>
-  <assignedNode>ilbld01</assignedNode>
+  <assignedNode>ilbuild-v109</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
@@ -241,6 +241,7 @@ cp -r $WORKSPACE/build/il/packages/rawimg $STORAGE_DIR
       <scriptOnlyIfSuccess>true</scriptOnlyIfSuccess>
       <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
       <markBuildUnstable>false</markBuildUnstable>
+      <executeOn>BOTH</executeOn>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
     <hudson.plugins.claim.ClaimPublisher plugin="claim@2.9"/>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.57">
