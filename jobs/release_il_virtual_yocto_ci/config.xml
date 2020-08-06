@@ -208,14 +208,14 @@ Archive il_virtual_*.tar&lt;br&gt;&#xd;
       <command>export avail=`df -h | grep \/dev\/sda1 | sed &apos;s/\(.*\)G\(.*\)G\(.*\)[G|M].*/\3/g&apos; | sed &apos;s/\ //g&apos; | cut -d . -f 1`
 export cutoff_limit=10
 # clear ccache is disk space is too low
-# TEMP if [[ $avail -ge $cutoff_limit ]]; then 
-     # TEMP echo &quot;Available disk space is $avail and is greater than $cutoff_limit, ccache not clear&quot;; 
-# TEMP else 
-     # TEMP echo &quot;Cut-off limit for disk space is $cutoff_limit and is greater than available disk space of $avail, clearing ccache&quot;;
-     # TEMP ccache -C
-     # TEMP export avail=`df -h | grep \/dev\/sda1 | sed &apos;s/\(.*\)G\(.*\)G\(.*\)G.*/\3/g&apos;`
-     # TEMP echo &quot;Available disk space after ccache cleared is now $avail&quot;
-# TEMP fi</command>
+if [[ $avail -ge $cutoff_limit ]]; then 
+     echo &quot;Available disk space is $avail and is greater than $cutoff_limit, ccache not clear&quot;; 
+else 
+     echo &quot;Cut-off limit for disk space is $cutoff_limit and is greater than available disk space of $avail, clearing ccache&quot;;
+     ccache -C
+     export avail=`df -h | grep \/dev\/sda1 | sed &apos;s/\(.*\)G\(.*\)G\(.*\)G.*/\3/g&apos;`
+     echo &quot;Available disk space after ccache cleared is now $avail&quot;
+fi</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>rm -rf ${JOB_NAME}_changelist_*.txt
@@ -236,8 +236,8 @@ sudo chmod 777 $WORKSPACE/build/il/version
 # sudo -S rm -rf $WORKSPACE/build/il/repos/*
 # sudo -S rm -rf $WORKSPACE/build/il/packages/*
 
-# TEMP sudo scons target=packageclean
-# TEMP sudo scons target=kernelclean</command>
+sudo scons target=packageclean
+sudo scons target=kernelclean</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>env
@@ -247,23 +247,22 @@ sudo chmod 777 $WORKSPACE/build/il/version
 export VM_PROFILE=all
 
 if [[ $INCLUDE_APPSEC_PKG == &quot;TRUE&quot; ]]; then 
-    # TEMP $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_yocto_tardis3_mix
+    $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_yocto_tardis3_mix
 
     l4l7lxc_storage=$WORKSPACE/l4l7lxc
-    # TEMP mkdir -p $WORKSPACE/build/il/packages/rawimg
+    mkdir -p $WORKSPACE/build/il/packages/rawimg
     l4l7lxc_filename=$(basename `ls ${l4l7lxc_storage}/l4l7lxc*.tgz`)
     l4l7lxc_buildno=$(echo $l4l7lxc_filename | awk -F &apos;-&apos; &apos;{print $2}&apos; | sed &apos;s/\.tgz//g&apos;)
-    # TEMP cp -f ${l4l7lxc_storage}/*.tgz $WORKSPACE/build/il/packages/rawimg
+    cp -f ${l4l7lxc_storage}/*.tgz $WORKSPACE/build/il/packages/rawimg
 
-    # TEMP $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 av_version=${l4l7lxc_buildno} appliance_packaging  
-    # TEMP $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_hypervisor_mix
-    # TEMP $WORKSPACE/build/il/scripts/phxbld -j32 yocto_lxc_ose
+    $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 av_version=${l4l7lxc_buildno} appliance_packaging  
+    $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_hypervisor_mix
+    $WORKSPACE/build/il/scripts/phxbld -j32 yocto_lxc_ose
 else
-    # TEMP $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_hypervisor_stc_only
-    echo &quot;TEMP&quot;
+    $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_hypervisor_stc_only
 fi
 
-# TEMP sudo rm -rf $WORKSPACE/build/il/bld_*
+sudo rm -rf $WORKSPACE/build/il/bld_*
 sudo chmod a+r $WORKSPACE/build/il/packages/rawimg/*.ova
 
 python $WORKSPACE/common/idl/crc.py -f il_idl_crc.txt</command>
@@ -345,6 +344,7 @@ cp $WORKSPACE/il_idl_crc.txt $STORAGE_DIR
       <scriptOnlyIfSuccess>true</scriptOnlyIfSuccess>
       <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
       <markBuildUnstable>false</markBuildUnstable>
+      <executeOn>BOTH</executeOn>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
     <jenkinsci.plugins.influxdb.InfluxDbPublisher plugin="influxdb@1.10.3">
       <selectedTarget>http://influxdb-01.cal.ci.spirentcom.com:8086,release_jenkins_db</selectedTarget>
