@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>CI IL Build job for testmodule_contents:&lt;br&gt;&#xd;
-$WORKSPACE/build/il/scripts/phxbld testmodule_contents&lt;br&gt;&#xd;
-Archive il_testmodule_contents_*.tar&lt;br&gt;&#xd;
+  <description>CI IL Build job for testmodule_contents:&lt;br&gt;
+$WORKSPACE/build/il/scripts/phxbld testmodule_contents&lt;br&gt;
+Archive il_testmodule_contents_*.tar&lt;br&gt;
 </description>
   <keepDependencies>false</keepDependencies>
   <properties>
@@ -128,7 +128,7 @@ Archive il_testmodule_contents_*.tar&lt;br&gt;&#xd;
       <force>false</force>
       <modtime>false</modtime>
       <quiet>true</quiet>
-      <pin>979000</pin>
+      <pin></pin>
       <parallel>
         <enable>false</enable>
         <threads>4</threads>
@@ -139,7 +139,7 @@ Archive il_testmodule_contents_*.tar&lt;br&gt;&#xd;
     </populate>
   </scm>
   <quietPeriod>5</quietPeriod>
-  <assignedNode>ilbld07</assignedNode>
+  <assignedNode>ilbuild-v119</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
@@ -282,6 +282,7 @@ cp -r $WORKSPACE/build/il/packages/bundle $STORAGE_DIR
       <scriptOnlyIfSuccess>true</scriptOnlyIfSuccess>
       <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
       <markBuildUnstable>false</markBuildUnstable>
+      <executeOn>BOTH</executeOn>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
     <jenkinsci.plugins.influxdb.InfluxDbPublisher plugin="influxdb@1.10.3">
       <selectedTarget>http://influxdb-01.cal.ci.spirentcom.com:8086,release_jenkins_db</selectedTarget>
