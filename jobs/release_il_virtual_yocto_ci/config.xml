@@ -205,19 +205,6 @@ Archive il_virtual_*.tar&lt;br&gt;&#xd;
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>export avail=`df -h | grep \/dev\/sda1 | sed &apos;s/\(.*\)G\(.*\)G\(.*\)[G|M].*/\3/g&apos; | sed &apos;s/\ //g&apos; | cut -d . -f 1`
-export cutoff_limit=10
-# clear ccache is disk space is too low
-if [[ $avail -ge $cutoff_limit ]]; then 
-     echo &quot;Available disk space is $avail and is greater than $cutoff_limit, ccache not clear&quot;; 
-else 
-     echo &quot;Cut-off limit for disk space is $cutoff_limit and is greater than available disk space of $avail, clearing ccache&quot;;
-     ccache -C
-     export avail=`df -h | grep \/dev\/sda1 | sed &apos;s/\(.*\)G\(.*\)G\(.*\)G.*/\3/g&apos;`
-     echo &quot;Available disk space after ccache cleared is now $avail&quot;
-fi</command>
-    </hudson.tasks.Shell>
-    <hudson.tasks.Shell>
       <command>rm -rf ${JOB_NAME}_changelist_*.txt
 sudo rm -rf /tmp/*.log
 sudo rm -rf $WORKSPACE/framework/il/platform/hypervisor/tardis/temp
@@ -344,7 +331,6 @@ cp $WORKSPACE/il_idl_crc.txt $STORAGE_DIR
       <scriptOnlyIfSuccess>true</scriptOnlyIfSuccess>
       <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
       <markBuildUnstable>false</markBuildUnstable>
-      <executeOn>BOTH</executeOn>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
     <jenkinsci.plugins.influxdb.InfluxDbPublisher plugin="influxdb@1.10.3">
       <selectedTarget>http://influxdb-01.cal.ci.spirentcom.com:8086,release_jenkins_db</selectedTarget>
