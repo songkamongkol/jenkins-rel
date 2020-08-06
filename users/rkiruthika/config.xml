@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <user>
-  <fullName>RKiruthika</fullName>
+  <fullName>Kiruhtika R</fullName>
   <properties>
     <jenkins.security.ApiTokenProperty>
       <apiToken>xjA2n+IsSEjZ/Xh2A0Ogt2U3cBfUlSk94wZfQzQzj8qj2SGnAO6/rDRfFdaxvytg</apiToken>
@@ -8,7 +8,6 @@
     <com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty plugin="credentials@2.1.13">
       <domainCredentialsMap class="hudson.util.CopyOnWriteMap$Hash"/>
     </com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty>
-    <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.19"/>
     <hudson.plugins.emailext.watching.EmailExtWatchAction_-UserProperty plugin="email-ext@2.57">
       <triggers/>
     </hudson.plugins.emailext.watching.EmailExtWatchAction_-UserProperty>
@@ -39,5 +38,11 @@
     <org.jenkinsci.plugins.p4.email.P4UserProperty plugin="p4@1.7.7">
       <email>Kiruthika.R@spirent.com</email>
     </org.jenkinsci.plugins.p4.email.P4UserProperty>
+    <hudson.security.HudsonPrivateSecurityRealm_-Details>
+      <passwordHash>#jbcrypt:$2a$10$QjZOh9DqIFDzvrMJYq3wf.AsubOHPl1A64S9W0FtjvmWa4MiYntRm</passwordHash>
+    </hudson.security.HudsonPrivateSecurityRealm_-Details>
+    <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.19">
+      <emailAddress>kiruthika.r@spirent.com</emailAddress>
+    </hudson.tasks.Mailer_-UserProperty>
   </properties>
 </user>
