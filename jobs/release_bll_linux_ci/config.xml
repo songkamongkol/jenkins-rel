@@ -150,7 +150,7 @@
       <force>false</force>
       <modtime>false</modtime>
       <quiet>true</quiet>
-      <pin></pin>
+      <pin>979000</pin>
       <parallel>
         <enable>false</enable>
         <threads>4</threads>
