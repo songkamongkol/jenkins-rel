@@ -260,6 +260,7 @@ if [[ $INCLUDE_APPSEC_PKG == &quot;TRUE&quot; ]]; then
     # TEMP $WORKSPACE/build/il/scripts/phxbld -j32 yocto_lxc_ose
 else
     # TEMP $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_hypervisor_stc_only
+    echo &quot;TEMP&quot;
 fi
 
 # TEMP sudo rm -rf $WORKSPACE/build/il/bld_*
