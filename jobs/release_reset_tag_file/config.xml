@@ -1,13 +1,21 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
-  <description>Rename pw_packages_to_test.new in \\martin\archive\pv\TestCenter\4.20\Engineering_Builds to &lt;br&gt;
-pw_packages_to_test and clean out the same file in \\spccalfs04\SCM\SCMSmartTest\4.20 &lt;br&gt;
+  <description>Rename pw_packages_to_test.new in \\martin\archive\pv\TestCenter\4.20\Engineering_Builds to &lt;br&gt;&#xd;
+pw_packages_to_test and clean out the same file in \\spccalfs04\SCM\SCMSmartTest\4.20 &lt;br&gt;&#xd;
 &lt;br&gt;</description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
       <useBuildBlocker>false</useBuildBlocker>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <org.datadog.jenkins.plugins.datadog.DatadogJobProperty plugin="datadog@1.1.1">
+      <enableFile>false</enableFile>
+      <tagFile></tagFile>
+      <enableProperty>false</enableProperty>
+      <tagProperties></tagProperties>
+      <emitSCMEvents>true</emitSCMEvents>
+    </org.datadog.jenkins.plugins.datadog.DatadogJobProperty>
     <jenkins.model.BuildDiscarderProperty>
       <strategy class="hudson.tasks.LogRotator">
         <daysToKeep>-1</daysToKeep>
@@ -22,9 +30,9 @@ pw_packages_to_test and clean out the same file in \\spccalfs04\SCM\SCMSmartTest
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain/>
-      <token/>
-      <room/>
+      <teamDomain></teamDomain>
+      <token></token>
+      <room></room>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -40,22 +48,22 @@ pw_packages_to_test and clean out the same file in \\spccalfs04\SCM\SCMSmartTest
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
-          <description/>
+          <description></description>
           <defaultValue>5.13_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
-          <description/>
+          <description></description>
           <defaultValue>5.13</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
-          <description/>
+          <description></description>
           <defaultValue>BAD_BUILD_NUMBER</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>SOURCE_OS</name>
-          <description/>
+          <description></description>
           <defaultValue>IL</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -71,17 +79,17 @@ pw_packages_to_test and clean out the same file in \\spccalfs04\SCM\SCMSmartTest
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>REM -- SmartTest tag file handling
-
-del \\martin\archive\pv\TestCenter\%STC_MAJ_MIN_VERSION%\Engineering_Builds\pw_packages_to_test.old
-ren \\martin\archive\pv\TestCenter\%STC_MAJ_MIN_VERSION%\Engineering_Builds\pw_packages_to_test pw_packages_to_test.old
-ren \\martin\archive\pv\TestCenter\%STC_MAJ_MIN_VERSION%\Engineering_Builds\pw_packages_to_test.new pw_packages_to_test
-del \\results.cal.ci.spirentcom.com\smt\SCMSmartTest\%STC_MAJ_MIN_VERSION%\pw_packages_to_test
-
-
-rem del \\storage.cal.ci.spirentcom.com\Results\SCMSmartTest\%STC_MAJ_MIN_VERSION%\pw_packages_to_test
-rem touch \\storage.cal.ci.spirentcom.com\Results\SCMSmartTest\%STC_MAJ_MIN_VERSION%\pw_packages_to_test
-rem rem del \\spccalfs04\SCM\SCMSmartTest\%STC_MAJ_MIN_VERSION%\pw_packages_to_test
+      <command>REM -- SmartTest tag file handling&#xd;
+&#xd;
+del \\martin\archive\pv\TestCenter\%STC_MAJ_MIN_VERSION%\Engineering_Builds\pw_packages_to_test.old&#xd;
+ren \\martin\archive\pv\TestCenter\%STC_MAJ_MIN_VERSION%\Engineering_Builds\pw_packages_to_test pw_packages_to_test.old&#xd;
+ren \\martin\archive\pv\TestCenter\%STC_MAJ_MIN_VERSION%\Engineering_Builds\pw_packages_to_test.new pw_packages_to_test&#xd;
+del \\results.cal.ci.spirentcom.com\smt\SCMSmartTest\%STC_MAJ_MIN_VERSION%\pw_packages_to_test&#xd;
+exit /B 0&#xd;
+&#xd;
+rem del \\storage.cal.ci.spirentcom.com\Results\SCMSmartTest\%STC_MAJ_MIN_VERSION%\pw_packages_to_test&#xd;
+rem touch \\storage.cal.ci.spirentcom.com\Results\SCMSmartTest\%STC_MAJ_MIN_VERSION%\pw_packages_to_test&#xd;
+rem rem del \\spccalfs04\SCM\SCMSmartTest\%STC_MAJ_MIN_VERSION%\pw_packages_to_test&#xd;
 rem touch \\spccalfs04\SCM\SCMSmartTest\%STC_MAJ_MIN_VERSION%\pw_packages_to_test</command>
     </hudson.tasks.BatchFile>
   </builders>
@@ -100,7 +108,7 @@ rem touch \\spccalfs04\SCM\SCMSmartTest\%STC_MAJ_MIN_VERSION%\pw_packages_to_tes
     </hudson.tasks.Mailer>
     <jenkinsci.plugins.influxdb.InfluxDbPublisher plugin="influxdb@1.10.3">
       <selectedTarget>http://influxdb-01.cal.ci.spirentcom.com:8086,release_jenkins_db</selectedTarget>
-      <customPrefix/>
+      <customPrefix></customPrefix>
     </jenkinsci.plugins.influxdb.InfluxDbPublisher>
   </publishers>
   <buildWrappers>
