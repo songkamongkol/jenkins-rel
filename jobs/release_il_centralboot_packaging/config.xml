@@ -1,16 +1,31 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>IL Build job for centralboot image targets:&lt;br&gt;
-target=centralboot packaging=1&lt;br&gt;
-Copies artfacts from ci jobs: il_changeling_all, il_chos2, il_virtual, il_vtc, il_testmodule_contents&lt;br&gt;
-Then runs Centralboot to generate centralboot image and run reversion script to update the version info.&lt;br&gt;
+  <description>IL Build job for centralboot image targets:&lt;br&gt;&#xd;
+target=centralboot packaging=1&lt;br&gt;&#xd;
+Copies artfacts from ci jobs: il_changeling_all, il_chos2, il_virtual, il_vtc, il_testmodule_contents&lt;br&gt;&#xd;
+Then runs Centralboot to generate centralboot image and run reversion script to update the version info.&lt;br&gt;&#xd;
 </description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
       <useBuildBlocker>false</useBuildBlocker>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <org.datadog.jenkins.plugins.datadog.DatadogJobProperty plugin="datadog@1.1.1">
+      <enableFile>false</enableFile>
+      <tagFile></tagFile>
+      <enableProperty>true</enableProperty>
+      <tagProperties>Environment=release-build
+EnvironmentShortName=relbld
+EnvironmentLevel=prod
+EnvironmentType=build
+Server=jenkins-rel
+JobSeverity=high
+Branch=$BRANCH_NAME
+STCVersion=$STC_MAJ_MIN_VERSION
+           </tagProperties>
+      <emitSCMEvents>true</emitSCMEvents>
+    </org.datadog.jenkins.plugins.datadog.DatadogJobProperty>
     <jenkins.model.BuildDiscarderProperty>
       <strategy class="hudson.tasks.LogRotator">
         <daysToKeep>-1</daysToKeep>
@@ -88,21 +103,6 @@ Then runs Centralboot to generate centralboot image and run reversion script to 
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
-    <org.datadog.jenkins.plugins.datadog.DatadogJobProperty plugin="datadog@1.1.1">
-      <enableFile>false</enableFile>
-      <tagFile></tagFile>
-      <enableProperty>true</enableProperty>
-      <tagProperties>Environment=release-build
-EnvironmentShortName=relbld
-EnvironmentLevel=prod
-EnvironmentType=build
-Server=jenkins-rel
-JobSeverity=high
-Branch=$BRANCH_NAME
-STCVersion=$STC_MAJ_MIN_VERSION
-           </tagProperties>
-      <emitSCMEvents>true</emitSCMEvents>
-    </org.datadog.jenkins.plugins.datadog.DatadogJobProperty>
   </properties>
   <scm class="org.jenkinsci.plugins.p4.PerforceScm" plugin="p4@1.7.7">
     <credential>scmbuild</credential>
@@ -433,6 +433,7 @@ cp -v /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}/build-packaging/rawimg/*
 cp -v /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}/build-packaging/rawimg/*.img.gz* $WORKSPACE/build/il/packages/rawimg
 cp -v /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}/build-packaging/fsimg/*chassis_hypervisor* $WORKSPACE/build/il/packages/fsimg
 cp -v /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}/build-packaging/fsimg/yocto_version $WORKSPACE/build/il/packages/fsimg
+cp -v /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}/build-packaging/fsimg/yocto_signature $WORKSPACE/build/il/packages/fsimg
 cp -v /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}/build-packaging/fsimg/*chassis_installer* $WORKSPACE/build/il/packages/fsimg
 
 rm -f /mnt/builds/jenkins/il_chhvm_yocto-${BRANCH_NAME}_packaging.txt
@@ -692,7 +693,6 @@ ssh scm@martin.spirentcom.com chmod 777 $BUILD_DIR/mfgbld/*</command>
       <scriptOnlyIfSuccess>true</scriptOnlyIfSuccess>
       <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
       <markBuildUnstable>false</markBuildUnstable>
-      <executeOn>BOTH</executeOn>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.57">
       <recipientList>$DEFAULT_RECIPIENTS</recipientList>
