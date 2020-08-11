@@ -262,6 +262,11 @@ else
     $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_hypervisor_stc_only
 fi
 
+# for ttwb
+$WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 ttwbvm
+sudo scons target=appliance_yocto_stc_pkg_ttwb -j0 yocto_ver=1.5 -c
+sudo scons target=appliance_yocto_stc_pkg_ttwb -j0 yocto_ver=1.5
+
 sudo rm -rf $WORKSPACE/build/il/bld_*
 sudo chmod a+r $WORKSPACE/build/il/packages/rawimg/*.ova
 
