@@ -236,8 +236,8 @@ sudo chmod 777 $WORKSPACE/build/il/version
 # sudo -S rm -rf $WORKSPACE/build/il/repos/*
 # sudo -S rm -rf $WORKSPACE/build/il/packages/*
 
-# TEMP -- sudo scons target=packageclean
-# TEMP -- sudo scons target=kernelclean</command>
+sudo scons target=packageclean
+sudo scons target=kernelclean</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>env
@@ -247,7 +247,7 @@ sudo chmod 777 $WORKSPACE/build/il/version
 export VM_PROFILE=all
 
 if [[ $INCLUDE_APPSEC_PKG == &quot;TRUE&quot; ]]; then 
-    # TEMP --  $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_yocto_tardis3_mix
+    $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_yocto_tardis3_mix
 
     l4l7lxc_storage=$WORKSPACE/l4l7lxc
     mkdir -p $WORKSPACE/build/il/packages/rawimg
@@ -255,17 +255,17 @@ if [[ $INCLUDE_APPSEC_PKG == &quot;TRUE&quot; ]]; then
     l4l7lxc_buildno=$(echo $l4l7lxc_filename | awk -F &apos;-&apos; &apos;{print $2}&apos; | sed &apos;s/\.tgz//g&apos;)
     cp -f ${l4l7lxc_storage}/*.tgz $WORKSPACE/build/il/packages/rawimg
 
-    # TEMP -- $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 av_version=${l4l7lxc_buildno} appliance_packaging  
-    # TEMP -- $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_hypervisor_mix
-    # TEMP -- $WORKSPACE/build/il/scripts/phxbld -j32 yocto_lxc_ose
+    $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 av_version=${l4l7lxc_buildno} appliance_packaging  
+    $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_hypervisor_mix
+    $WORKSPACE/build/il/scripts/phxbld -j32 yocto_lxc_ose
 else
     $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 appliance_hypervisor_stc_only
 fi
 
 # for ttwb
-# TEMP -- $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 ttwbvm
-# TEMP -- sudo scons target=appliance_yocto_stc_pkg_ttwb -j0 yocto_ver=1.5 -c
-# TEMP -- sudo scons target=appliance_yocto_stc_pkg_ttwb -j0 yocto_ver=1.5
+$WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 ttwbvm
+sudo scons target=appliance_yocto_stc_pkg_ttwb -j0 yocto_ver=1.5 -c
+sudo scons target=appliance_yocto_stc_pkg_ttwb -j0 yocto_ver=1.5
 
 sudo rm -rf $WORKSPACE/build/il/bld_*
 sudo chmod a+r $WORKSPACE/build/il/packages/rawimg/*.ova
@@ -349,6 +349,7 @@ cp $WORKSPACE/il_idl_crc.txt $STORAGE_DIR
       <scriptOnlyIfSuccess>true</scriptOnlyIfSuccess>
       <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
       <markBuildUnstable>false</markBuildUnstable>
+      <executeOn>BOTH</executeOn>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
     <jenkinsci.plugins.influxdb.InfluxDbPublisher plugin="influxdb@1.10.3">
       <selectedTarget>http://influxdb-01.cal.ci.spirentcom.com:8086,release_jenkins_db</selectedTarget>
