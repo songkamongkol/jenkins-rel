@@ -263,9 +263,9 @@ else
 fi
 
 # for ttwb
-$WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 ttwbvm
-sudo scons target=appliance_yocto_stc_pkg_ttwb -j0 yocto_ver=1.5 -c
-sudo scons target=appliance_yocto_stc_pkg_ttwb -j0 yocto_ver=1.5
+# $WORKSPACE/build/il/scripts/phxbld -j32 yocto_ver=1.5 ttwbvm
+# sudo scons target=appliance_yocto_stc_pkg_ttwb -j0 yocto_ver=1.5 -c
+# sudo scons target=appliance_yocto_stc_pkg_ttwb -j0 yocto_ver=1.5
 
 sudo rm -rf $WORKSPACE/build/il/bld_*
 sudo chmod a+r $WORKSPACE/build/il/packages/rawimg/*.ova
@@ -349,7 +349,6 @@ cp $WORKSPACE/il_idl_crc.txt $STORAGE_DIR
       <scriptOnlyIfSuccess>true</scriptOnlyIfSuccess>
       <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
       <markBuildUnstable>false</markBuildUnstable>
-      <executeOn>BOTH</executeOn>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
     <jenkinsci.plugins.influxdb.InfluxDbPublisher plugin="influxdb@1.10.3">
       <selectedTarget>http://influxdb-01.cal.ci.spirentcom.com:8086,release_jenkins_db</selectedTarget>
