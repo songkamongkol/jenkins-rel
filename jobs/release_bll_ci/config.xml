@@ -57,7 +57,7 @@
         <hudson.model.StringParameterDefinition>
           <name>MAGELLAN_BACKEND_PATH</name>
           <description>Path to magellan backend artifact (orion-res) in Artifactory (https://artifactory.srv.orionprod.net)</description>
-          <defaultValue>stc/temeva/magellan-backend-commit/897</defaultValue>
+          <defaultValue>stc/temeva/magellan-backend-commit/898</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
