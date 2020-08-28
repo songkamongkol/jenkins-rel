@@ -1,5 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<project>
+<?xml version="1.0" encoding="UTF-8"?><project>
   <actions/>
   <description>remotely trigger smarttest job on http://jenkins-smt.cal.ci.spirentcom.com:8080/job/release_patch_launch_smarttest/</description>
   <keepDependencies>false</keepDependencies>
@@ -9,9 +8,9 @@
     </hudson.plugins.buildblocker.BuildBlockerProperty>
     <org.datadog.jenkins.plugins.datadog.DatadogJobProperty plugin="datadog@1.1.1">
       <enableFile>false</enableFile>
-      <tagFile></tagFile>
+      <tagFile/>
       <enableProperty>false</enableProperty>
-      <tagProperties></tagProperties>
+      <tagProperties/>
       <emitSCMEvents>true</emitSCMEvents>
     </org.datadog.jenkins.plugins.datadog.DatadogJobProperty>
     <jenkins.model.BuildDiscarderProperty>
@@ -28,9 +27,9 @@
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain></teamDomain>
-      <token></token>
-      <room></room>
+      <teamDomain/>
+      <token/>
+      <room/>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -46,7 +45,7 @@
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
           <name>JENKINS_SERVER</name>
-          <description></description>
+          <description/>
           <defaultValue>http://jenkins-rel.cal.ci.spirentcom.com:8080/</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -56,32 +55,32 @@
         </hudson.model.StringParameterDefinition>
         <hudson.model.PasswordParameterDefinition>
           <name>PASSWORD</name>
-          <description></description>
+          <description/>
           <defaultValue>Lo5GxWE+uHHBx8pRSJF/1782Wfq/lcZZmloW3cyha58=</defaultValue>
         </hudson.model.PasswordParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
-          <description></description>
-          <defaultValue>5.13</defaultValue>
+          <description/>
+          <defaultValue>5.14</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>LINUX_CLI_LOCATION</name>
-          <description></description>
+          <description/>
           <defaultValue>/home/spirent</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>LIST_OF_P4CLEANUP_BLD_JOBS</name>
-          <description></description>
+          <description/>
           <defaultValue>release_bll_linux_ci,release_bll_linux_x64_ci,release_bll_linux_x86client,release_bll_windows_ci,release_bll_windows_x64_ci,release_cts_linux_ci,release_cts_windows_ci,release_ui_ci,release_ui_x64_ci</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>LIST_OF_P4CLEANUP_PKG_JOBS</name>
-          <description></description>
+          <description/>
           <defaultValue>release_bll_linux_64_packaging,release_bll_linux_packaging,release_bll_linux_rpm_packaging,release_bll_linux_x64_client_packaging,release_bll_linux_x86_client_packaging,release_bll_win_pkg_webhelp,release_bll_windows_packaging_new,release_bll_windows_x64_packaging,release_cts_linux_packaging,release_cts_windows_packaging,release_il_centralboot_packaging</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>LIST_OF_P4CLEANUP_IL_BLD_JOBS</name>
-          <description></description>
+          <description/>
           <defaultValue>release_il_changeling_yocto_ci,release_il_chos2_yocto_ci,release_il_testmodule_contents_ci,release_il_changeling_all_yocto_ci,release_il_virtual_yocto_ci,release_il_stca_ci,release_il_qemu_yocto_ci,release_il_lxc_yocto_ci,release_il_chhvm_yocto_ci</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -90,13 +89,13 @@
   <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.36">
     <configVersion>2</configVersion>
     <p4User>scmbuild</p4User>
-    <p4Passwd></p4Passwd>
+    <p4Passwd/>
     <p4Port>perforce.spirentcom.com:1666</p4Port>
     <p4Client>${JOB_NAME}_ws</p4Client>
     <projectPath>//SCM/Scripts/Auto_branch_switching/... //ws/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
-    <p4SysDrive></p4SysDrive>
-    <p4SysRoot></p4SysRoot>
+    <p4SysDrive/>
+    <p4SysRoot/>
     <p4Tool>p4</p4Tool>
     <useClientSpec>false</useClientSpec>
     <useStreamDepot>false</useStreamDepot>
@@ -139,14 +138,14 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>echo &quot;set P4CLEANWORKSPACE option to false for build jobs&quot;
-python $WORKSPACE/updateP4cleanworkspace.py -s $JENKINS_SERVER -u $JENKINS_USER -p $PASSWORD  -c $LINUX_CLI_LOCATION -v &quot;release(&quot;${STC_MAJ_MIN_VERSION}_rel&quot;)&quot; -j list -l $LIST_OF_P4CLEANUP_BLD_JOBS -w false
+      <command>echo "set P4CLEANWORKSPACE option to false for build jobs"
+python $WORKSPACE/updateP4cleanworkspace.py -s $JENKINS_SERVER -u $JENKINS_USER -p $PASSWORD  -c $LINUX_CLI_LOCATION -v "release("${STC_MAJ_MIN_VERSION}_rel")" -j list -l $LIST_OF_P4CLEANUP_BLD_JOBS -w false
 
-echo &quot;set P4CLEANWORKSPACE option for packaging jobs to false&quot;
-python $WORKSPACE/updateP4cleanworkspace.py -s $JENKINS_SERVER -u $JENKINS_USER -p $PASSWORD  -c $LINUX_CLI_LOCATION -v &quot;release(&quot;${STC_MAJ_MIN_VERSION}_rel&quot;)&quot; -j list -l $LIST_OF_P4CLEANUP_PKG_JOBS -w false
+echo "set P4CLEANWORKSPACE option for packaging jobs to false"
+python $WORKSPACE/updateP4cleanworkspace.py -s $JENKINS_SERVER -u $JENKINS_USER -p $PASSWORD  -c $LINUX_CLI_LOCATION -v "release("${STC_MAJ_MIN_VERSION}_rel")" -j list -l $LIST_OF_P4CLEANUP_PKG_JOBS -w false
 
-echo &quot;set P4CLEANWORKSPACE option for il build jobs to false&quot;
-python $WORKSPACE/updateP4cleanworkspace.py -s $JENKINS_SERVER -u $JENKINS_USER -p $PASSWORD  -c $LINUX_CLI_LOCATION -v &quot;release(&quot;${STC_MAJ_MIN_VERSION}_rel&quot;)&quot; -j list -l $LIST_OF_P4CLEANUP_IL_BLD_JOBS -w false
+echo "set P4CLEANWORKSPACE option for il build jobs to false"
+python $WORKSPACE/updateP4cleanworkspace.py -s $JENKINS_SERVER -u $JENKINS_USER -p $PASSWORD  -c $LINUX_CLI_LOCATION -v "release("${STC_MAJ_MIN_VERSION}_rel")" -j list -l $LIST_OF_P4CLEANUP_IL_BLD_JOBS -w false
 
 </command>
     </hudson.tasks.Shell>
@@ -154,7 +153,7 @@ python $WORKSPACE/updateP4cleanworkspace.py -s $JENKINS_SERVER -u $JENKINS_USER 
   <publishers>
     <jenkinsci.plugins.influxdb.InfluxDbPublisher plugin="influxdb@1.10.3">
       <selectedTarget>http://influxdb-01.cal.ci.spirentcom.com:8086,release_jenkins_db</selectedTarget>
-      <customPrefix></customPrefix>
+      <customPrefix/>
     </jenkinsci.plugins.influxdb.InfluxDbPublisher>
   </publishers>
   <buildWrappers>
