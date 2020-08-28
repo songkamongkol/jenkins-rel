@@ -1,5 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<project>
+<?xml version="1.0" encoding="UTF-8"?><project>
   <actions/>
   <description>The latest build is stored at \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_qemu\build-latest</description>
   <keepDependencies>false</keepDependencies>
@@ -26,9 +25,9 @@
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain></teamDomain>
-      <token></token>
-      <room></room>
+      <teamDomain/>
+      <token/>
+      <room/>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -45,7 +44,7 @@
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>5.13_rel</defaultValue>
+          <defaultValue>5.14_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -70,11 +69,11 @@
         <hudson.model.StringParameterDefinition>
           <name>RELEASE_NUM</name>
           <description>release number</description>
-          <defaultValue>5.13</defaultValue>
+          <defaultValue>5.14</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>APP_ARCH</name>
-          <description></description>
+          <description/>
           <defaultValue>x86_64</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -84,7 +83,7 @@
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>WAWR_GIT_BRANCH</name>
-          <description></description>
+          <description/>
           <defaultValue>stc_nova_master</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -105,7 +104,7 @@
             <locked>false</locked>
             <modtime>false</modtime>
             <rmdir>false</rmdir>
-            <streamName></streamName>
+            <streamName/>
             <line>LOCAL</line>
             <view>+//TestCenter/${BRANCH_NAME}/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/...
 -//TestCenter/*/sandbox/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/*/sandbox/...
@@ -126,7 +125,7 @@
 +//TestCenter/${BRANCH_NAME}/framework/bll/unittestdrv/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/framework/bll/unittestdrv/...
 +//TestCenter/${BRANCH_NAME}/framework/bll/vendor/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/framework/bll/vendor/...</view>
             <type>WRITABLE</type>
-            <serverID></serverID>
+            <serverID/>
             <backup>false</backup>
           </spec>
         </workspace>
@@ -135,7 +134,7 @@
           <force>true</force>
           <modtime>false</modtime>
           <quiet>true</quiet>
-          <pin></pin>
+          <pin/>
           <parallel>
             <enable>false</enable>
             <threads>4</threads>
@@ -195,12 +194,12 @@ p4 -u scmbuild -p perforce.spirentcom.com:1666 -c jenkins-${NODE_NAME}-${JOB_NAM
       <command>$WORKSPACE/build/il/scripts/phxbld -j32 qemu_yocto</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command>if [ &quot;$BUILD_IMAGE&quot; = &quot;true&quot; ]; then
-    export SCONSFLAGS=&quot;-j8 ccache=1 distcc=1&quot;
+      <command>if [ "$BUILD_IMAGE" = "true" ]; then
+    export SCONSFLAGS="-j8 ccache=1 distcc=1"
 
     # $WORKSPACE/build/il/scripts/phxbld qemu_raw
 
-    export PAD_BUILD_NUMBER=`printf &apos;%04i&apos; $BUILD_NUMBER`
+    export PAD_BUILD_NUMBER=`printf '%04i' $BUILD_NUMBER`
 
     # sudo scons reversion_il $RELEASE_NUM.$PAD_BUILD_NUMBER $RELEASE_NUM.$PAD_BUILD_NUMBER
     sudo scons target=reversion_il il_version=$RELEASE_NUM.$PAD_BUILD_NUMBER av_version=$RELEASE_NUM.$PAD_BUILD_NUMBER
@@ -209,7 +208,7 @@ p4 -u scmbuild -p perforce.spirentcom.com:1666 -c jenkins-${NODE_NAME}-${JOB_NAM
     cd $WORKSPACE/build/il/packages/rawimg
     # export OLDNAME=`ls yocto.512*.img.gz`
     export OLDNAME=`ls yocto_cloud*.img.gz`
-    export NEWNAME=`echo $OLDNAME | sed &apos;s/yocto/qemu/&apos;`
+    export NEWNAME=`echo $OLDNAME | sed 's/yocto/qemu/'`
     mv $OLDNAME $NEWNAME
 fi</command>
     </hudson.tasks.Shell>
@@ -254,7 +253,7 @@ python $WORKSPACE/common/idl/crc.py -f il_idl_crc.txt</command>
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern></attachmentsPattern>
+            <attachmentsPattern/>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -270,7 +269,7 @@ python $WORKSPACE/common/idl/crc.py -f il_idl_crc.txt</command>
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern></attachmentsPattern>
+            <attachmentsPattern/>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -286,7 +285,7 @@ python $WORKSPACE/common/idl/crc.py -f il_idl_crc.txt</command>
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern></attachmentsPattern>
+            <attachmentsPattern/>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -296,12 +295,12 @@ python $WORKSPACE/common/idl/crc.py -f il_idl_crc.txt</command>
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern></attachmentsPattern>
-      <presendScript></presendScript>
-      <postsendScript></postsendScript>
+      <attachmentsPattern/>
+      <presendScript/>
+      <postsendScript/>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
-      <replyTo></replyTo>
+      <replyTo/>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
@@ -311,7 +310,7 @@ python $WORKSPACE/common/idl/crc.py -f il_idl_crc.txt</command>
           <command># copy the build output to storage server
 export STORAGE_DIR=/mnt/builds/jenkins/il_qemu_yocto-$BRANCH_NAME/build-$BUILD_NUMBER
 
-if [ ! -d &quot;$STORAGE_DIR&quot; ]; then
+if [ ! -d "$STORAGE_DIR" ]; then
   mkdir -p $STORAGE_DIR
 fi
 
@@ -331,7 +330,7 @@ cp $WORKSPACE/${JOB_NAME}_changelist_${P4_CHANGELIST}.txt $STORAGE_DIR</command>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
     <jenkinsci.plugins.influxdb.InfluxDbPublisher plugin="influxdb@1.10.3">
       <selectedTarget>http://influxdb-01.cal.ci.spirentcom.com:8086,release_jenkins_db</selectedTarget>
-      <customPrefix></customPrefix>
+      <customPrefix/>
     </jenkinsci.plugins.influxdb.InfluxDbPublisher>
   </publishers>
   <buildWrappers>
@@ -347,8 +346,8 @@ cp $WORKSPACE/${JOB_NAME}_changelist_${P4_CHANGELIST}.txt $STORAGE_DIR</command>
         <hudson.tasks.Shell>
           <command># remove files using sudo for files that may be
 # owned by root
-if [[ $P4CLEANWORKSPACE = &quot;true&quot; ]]; then
-    if [ ! -z &quot;$WORKSPACE&quot; ]; then
+if [[ $P4CLEANWORKSPACE = "true" ]]; then
+    if [ ! -z "$WORKSPACE" ]; then
         sudo rm -rf $WORKSPACE/*
         p4 -u scmbuild -p perforce.spirentcom.com:1666 -c jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME} sync //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/...#none
     fi
