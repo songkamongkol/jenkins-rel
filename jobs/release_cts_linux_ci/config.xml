@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
-  <description/>
+  <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
@@ -20,9 +21,9 @@
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain/>
-      <token/>
-      <room/>
+      <teamDomain></teamDomain>
+      <token></token>
+      <room></room>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -88,7 +89,7 @@
         <locked>false</locked>
         <modtime>false</modtime>
         <rmdir>false</rmdir>
-        <streamName/>
+        <streamName></streamName>
         <line>LOCAL</line>
         <view>+//TestCenter/5.12_rel/... //jenkins-${NODE_NAME}-${JOB_NAME}/...
 -//TestCenter/*/Layer1/... //jenkins-${NODE_NAME}-${JOB_NAME}/*/Layer1/...
@@ -113,7 +114,7 @@
 +//TestCenter/5.12_rel/common/.../ui/... //jenkins-${NODE_NAME}-${JOB_NAME}/common/.../ui/...
 +//TestCenter/5.12_rel/framework/ui/automation/... //jenkins-${NODE_NAME}-${JOB_NAME}/framework/ui/automation/...</view>
         <type>WRITABLE</type>
-        <serverID/>
+        <serverID></serverID>
         <backup>false</backup>
       </spec>
     </workspace>
@@ -122,7 +123,7 @@
       <force>true</force>
       <modtime>false</modtime>
       <quiet>true</quiet>
-      <pin/>
+      <pin></pin>
       <parallel>
         <enable>false</enable>
         <threads>4</threads>
@@ -133,7 +134,7 @@
   </scm>
   <assignedNode>bllbldlnx-v27</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
@@ -145,20 +146,20 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>if [ "$RELEASE_BUILD" = "true" ]; then
+      <command>if [ &quot;$RELEASE_BUILD&quot; = &quot;true&quot; ]; then
     cp -f $WORKSPACE/framework/bll/core/include/licensing/ga_release/ControlledReleaseCheck.h $WORKSPACE/framework/bll/core/include/licensing/ControlledReleaseCheck.h
 fi</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>python genSln.py
 ./scons.sh -j 12 -f SConstruct.bll --debug=time debug=0 coverage=0 target=bll-el3
-python $WORKSPACE/common/idl/crc.py -f bll_idl_crc.txt --desc "$JOB_NAME $BUILD_NUMBER"
+python $WORKSPACE/common/idl/crc.py -f bll_idl_crc.txt --desc &quot;$JOB_NAME $BUILD_NUMBER&quot;
 ./scons.sh -j 12 -f SConstruct.bll --debug=time debug=0 coverage=0 distcc=0 target=cts-bll-el3</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>cd $WORKSPACE/$BUILD_OUTPUT_DIR
 rm -f CTS*.tar.gz
-if [ "$BUILD_PACKAGE_BUILD" = "true" ]; then
+if [ &quot;$BUILD_PACKAGE_BUILD&quot; = &quot;true&quot; ]; then
     python $WORKSPACE/framework/tools/buildUtil/package.py --package=CTS
 fi</command>
     </hudson.tasks.Shell>
@@ -193,7 +194,7 @@ fi</command>
             <recipientProviders>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -206,7 +207,7 @@ fi</command>
             <recipientProviders>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -219,7 +220,7 @@ fi</command>
             <recipientProviders>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -229,18 +230,18 @@ fi</command>
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern/>
-      <presendScript/>
-      <postsendScript/>
+      <attachmentsPattern></attachmentsPattern>
+      <presendScript></presendScript>
+      <postsendScript></postsendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
-      <replyTo/>
+      <replyTo></replyTo>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
     <jenkinsci.plugins.influxdb.InfluxDbPublisher plugin="influxdb@1.10.3">
       <selectedTarget>http://influxdb-01.cal.ci.spirentcom.com:8086,release_jenkins_db</selectedTarget>
-      <customPrefix/>
+      <customPrefix></customPrefix>
     </jenkinsci.plugins.influxdb.InfluxDbPublisher>
   </publishers>
   <buildWrappers>
@@ -256,7 +257,7 @@ PATH=/usr/gcc_4_9/bin:$PATH</propertiesContent>
     <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
       <buildSteps>
         <hudson.tasks.Shell>
-          <command>if [[ $P4CLEANWORKSPACE = "true" ]]; then
+          <command>if [[ $P4CLEANWORKSPACE = &quot;true&quot; ]]; then
   rm -rf $WORKSPACE/*
   p4 -u scmbuild -p perforce.spirentcom.com:1666 -c jenkins-${NODE_NAME}-${JOB_NAME} sync //jenkins-${NODE_NAME}-${JOB_NAME}/...#none
 fi</command>
