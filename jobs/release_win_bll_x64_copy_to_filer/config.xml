@@ -42,7 +42,7 @@ NOTE: This job must be setup to run on the same machine as the Windows </descrip
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>5.13_rel</defaultValue>
+          <defaultValue>5.14_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>PKG_BUILD_OUTPUT_DIR</name>
@@ -52,7 +52,7 @@ NOTE: This job must be setup to run on the same machine as the Windows </descrip
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description>major minor version</description>
-          <defaultValue>5.13</defaultValue>
+          <defaultValue>5.14</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
