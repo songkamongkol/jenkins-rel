@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
-  <description/>
+  <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
@@ -20,9 +21,9 @@
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain/>
-      <token/>
-      <room/>
+      <teamDomain></teamDomain>
+      <token></token>
+      <room></room>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -88,7 +89,7 @@
         <locked>false</locked>
         <modtime>false</modtime>
         <rmdir>false</rmdir>
-        <streamName/>
+        <streamName></streamName>
         <line>LOCAL</line>
         <view>//TestCenter/5.12_rel/... //jenkins-${NODE_NAME}-${JOB_NAME}/...
 -//TestCenter/*/other/... //jenkins-${NODE_NAME}-${JOB_NAME}/*/other/...
@@ -104,7 +105,7 @@
 -//TestCenter/*/.../WebHelp/... //jenkins-${NODE_NAME}-${JOB_NAME}/*/.../WebHelp/...
 +//TestCenter/5.12_rel/scm/tools/... //jenkins-${NODE_NAME}-${JOB_NAME}/scm/tools/...</view>
         <type>WRITABLE</type>
-        <serverID/>
+        <serverID></serverID>
         <backup>false</backup>
       </spec>
     </workspace>
@@ -113,7 +114,7 @@
       <force>false</force>
       <modtime>false</modtime>
       <quiet>true</quiet>
-      <pin/>
+      <pin></pin>
       <parallel>
         <enable>false</enable>
         <threads>4</threads>
@@ -125,7 +126,7 @@
   </scm>
   <assignedNode>bllbuild-win-07</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>true</disabled>
+  <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
@@ -137,89 +138,89 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>rem check environment
-set
-genSln.bat
-echo "attrib -r bin\Release\Cts\* /s"
+      <command>rem check environment&#xd;
+set&#xd;
+genSln.bat&#xd;
+echo &quot;attrib -r bin\Release\Cts\* /s&quot;&#xd;
 attrib -r bin\Release\Cts\* /s</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>if "%RELEASE_BUILD%" == "true" (
-attrib -r framework\bll\core\include\licensing\ControlledReleaseCheck.h
-copy framework\bll\core\include\licensing\ga_release\ControlledReleaseCheck.h framework\bll\core\include\licensing\ControlledReleaseCheck.h /y
-
+      <command>if &quot;%RELEASE_BUILD%&quot; == &quot;true&quot; (&#xd;
+attrib -r framework\bll\core\include\licensing\ControlledReleaseCheck.h&#xd;
+copy framework\bll\core\include\licensing\ga_release\ControlledReleaseCheck.h framework\bll\core\include\licensing\ControlledReleaseCheck.h /y&#xd;
+&#xd;
 )</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>rem devenv /build Release Framework.BLL.Gen.sln
-rem devenv /build Release Plugins.BLL.Gen.sln
-rem devenv /build Release TestCenter.Automation.Gen.sln
-
-.\scons.cmd -j 4 -f SConstruct.bll debug=0 target=bll-win32
+      <command>rem devenv /build Release Framework.BLL.Gen.sln&#xd;
+rem devenv /build Release Plugins.BLL.Gen.sln&#xd;
+rem devenv /build Release TestCenter.Automation.Gen.sln&#xd;
+&#xd;
+.\scons.cmd -j 4 -f SConstruct.bll debug=0 target=bll-win32&#xd;
 </command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>rem devenv /build Release TestCenter.UI.Gen.sln
-pushd C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\Tools
-call VsDevCmd.bat -arch=x86
-popd
+      <command>rem devenv /build Release TestCenter.UI.Gen.sln&#xd;
+pushd C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\Tools&#xd;
+call VsDevCmd.bat -arch=x86&#xd;
+popd&#xd;
 msbuild.exe TestCenter.UI.Gen.sln /t:build /p:Configuration=Release</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>rem devenv /build Release CTS.sln
-.\scons.cmd -j 4 -f SConstruct.bll debug=0 target=cts-bll-win32
+      <command>rem devenv /build Release CTS.sln&#xd;
+.\scons.cmd -j 4 -f SConstruct.bll debug=0 target=cts-bll-win32&#xd;
 </command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>rem devenv /build Release CTS.UI.Gen.sln
-pushd C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\Tools
-call VsDevCmd.bat -arch=x86
-popd
+      <command>rem devenv /build Release CTS.UI.Gen.sln&#xd;
+pushd C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\Tools&#xd;
+call VsDevCmd.bat -arch=x86&#xd;
+popd&#xd;
 msbuild.exe CTS.UI.Gen.sln /t:build /p:Configuration=Release</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>REM cd bin\Release
-REM rebase.exe -b 0x12000000 -u . *.dll
+      <command>REM cd bin\Release&#xd;
+REM rebase.exe -b 0x12000000 -u . *.dll&#xd;
 REM exit /B 0</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>rem cd %WORKSPACE%
-rem %WORKSPACE%\distribute_cts.bat
-echo "Skipped"</command>
+      <command>rem cd %WORKSPACE%&#xd;
+rem %WORKSPACE%\distribute_cts.bat&#xd;
+echo &quot;Skipped&quot;</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>if %BUILD_SAVE_PDB% == true (
-
-cd bin\Release
-rmdir /q /s pdb
-mkdir pdb
-copy *.pdb pdb
-del /q pdb\test*.pdb 
-
-set P4PORT=perforce.spirentcom.com:1666
-set P4USER=tableuser
-set P4CLIENT=%p4Client%
-"C:\Program Files (x86)\Debugging Tools for Windows (x86)\srcsrv\p4index.cmd" -source=%WORKSPACE% -symbols=pdb -debug
-
-"C:\Program Files (x86)\Debugging Tools for Windows (x86)\symstore" add /f %WORKSPACE%\bin\Release\pdb\*.pdb /s \\storage.cal.ci.spirentcom.com\Builds\jenkins\symbols\cts_ci /t Conformance
-"C:\Program Files (x86)\Debugging Tools for Windows (x86)\symstore" add /f %WORKSPACE%\bin\Release\*.dll /s \\storage.cal.ci.spirentcom.com\Builds\jenkins\symbols\cts_ci /t Conformance
-REM c:\tools\psexec\PsExec.exe -s cmd.exe /c "C:\Program Files\Debugging Tools for Windows (x86)\agestore" \\spccalfs04\PV-Results\Builds\jenkins\symbols\cts_ci -days 20
-
-rmdir /q /s pdb
+      <command>if %BUILD_SAVE_PDB% == true (&#xd;
+&#xd;
+cd bin\Release&#xd;
+rmdir /q /s pdb&#xd;
+mkdir pdb&#xd;
+copy *.pdb pdb&#xd;
+del /q pdb\test*.pdb &#xd;
+&#xd;
+set P4PORT=perforce.spirentcom.com:1666&#xd;
+set P4USER=tableuser&#xd;
+set P4CLIENT=%p4Client%&#xd;
+&quot;C:\Program Files (x86)\Debugging Tools for Windows (x86)\srcsrv\p4index.cmd&quot; -source=%WORKSPACE% -symbols=pdb -debug&#xd;
+&#xd;
+&quot;C:\Program Files (x86)\Debugging Tools for Windows (x86)\symstore&quot; add /f %WORKSPACE%\bin\Release\pdb\*.pdb /s \\storage.cal.ci.spirentcom.com\Builds\jenkins\symbols\cts_ci /t Conformance&#xd;
+&quot;C:\Program Files (x86)\Debugging Tools for Windows (x86)\symstore&quot; add /f %WORKSPACE%\bin\Release\*.dll /s \\storage.cal.ci.spirentcom.com\Builds\jenkins\symbols\cts_ci /t Conformance&#xd;
+REM c:\tools\psexec\PsExec.exe -s cmd.exe /c &quot;C:\Program Files\Debugging Tools for Windows (x86)\agestore&quot; \\spccalfs04\PV-Results\Builds\jenkins\symbols\cts_ci -days 20&#xd;
+&#xd;
+rmdir /q /s pdb&#xd;
 )</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>rem c:\Python27\python.exe framework\tools\buildUtil\pw_build_tracker.py --build_dir="c:\dev\jenkins\workspace\cts_windows\bin\Release"
-echo "Skipping pw_build_tracker.py "</command>
+      <command>rem c:\Python27\python.exe framework\tools\buildUtil\pw_build_tracker.py --build_dir=&quot;c:\dev\jenkins\workspace\cts_windows\bin\Release&quot;&#xd;
+echo &quot;Skipping pw_build_tracker.py &quot;</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>cd bin\Release
-del CTS*.tar.gz
-xcopy /Y /R /D ..\..\scm\tools\devexpress .
-xcopy /Y /R /D ..\..\scm\tools\dundas .
-xcopy /Y /R /D ..\..\scm\tools\janus .
-if %BUILD_PACKAGE_BUILD% == true (
-  python ..\..\framework\tools\buildUtil\package.py --suffix=all --package=CTS
+      <command>cd bin\Release&#xd;
+del CTS*.tar.gz&#xd;
+xcopy /Y /R /D ..\..\scm\tools\devexpress .&#xd;
+xcopy /Y /R /D ..\..\scm\tools\dundas .&#xd;
+xcopy /Y /R /D ..\..\scm\tools\janus .&#xd;
+if %BUILD_PACKAGE_BUILD% == true (&#xd;
+  python ..\..\framework\tools\buildUtil\package.py --suffix=all --package=CTS&#xd;
 )</command>
     </hudson.tasks.BatchFile>
   </builders>
@@ -250,7 +251,7 @@ if %BUILD_PACKAGE_BUILD% == true (
             <recipientProviders>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -263,7 +264,7 @@ if %BUILD_PACKAGE_BUILD% == true (
             <recipientProviders>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -276,7 +277,7 @@ if %BUILD_PACKAGE_BUILD% == true (
             <recipientProviders>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -286,18 +287,18 @@ if %BUILD_PACKAGE_BUILD% == true (
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern/>
-      <presendScript/>
-      <postsendScript/>
+      <attachmentsPattern></attachmentsPattern>
+      <presendScript></presendScript>
+      <postsendScript></postsendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
-      <replyTo/>
+      <replyTo></replyTo>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
     <jenkinsci.plugins.influxdb.InfluxDbPublisher plugin="influxdb@1.10.3">
       <selectedTarget>http://influxdb-01.cal.ci.spirentcom.com:8086,release_jenkins_db</selectedTarget>
-      <customPrefix/>
+      <customPrefix></customPrefix>
     </jenkinsci.plugins.influxdb.InfluxDbPublisher>
   </publishers>
   <buildWrappers>
@@ -316,25 +317,25 @@ if %BUILD_PACKAGE_BUILD% == true (
     <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
       <buildSteps>
         <hudson.tasks.BatchFile>
-          <command>setlocal enabledelayedexpansion
-SET modified=%WORKSPACE:/=\%
-if "%P4CLEANWORKSPACE%" == "true" (
-
-echo "Removing %modified%"
-rd /s /q %modified%\Bakeoff_TestCaseScripts
-rd /s /q %modified%\bin
-rd /s /q %modified%\build
-rd /s /q %modified%\common
-rd /s /q %modified%\content
-rd /s /q %modified%\framework
-rd /s /q %modified%\Layer1
-rd /s /q %modified%\Release
-rd /s /q %modified%\scm
-rd /s /q %modified%\trafficcenter-app
-rd /s /q %modified%\userdocauto
-del /f /q %modified%\*
-echo 9R1Y9fE4$PSH|p4 -u tableuser -p perforce.spirentcom.com:1666 login
-p4 -u tableuser -p perforce.spirentcom.com:1666 -c jenkins-%NODE_NAME%-%JOB_NAME% sync //jenkins-%NODE_NAME%-%JOB_NAME%/...#none &gt; clean.txt 2&gt;&amp;1
+          <command>setlocal enabledelayedexpansion&#xd;
+SET modified=%WORKSPACE:/=\%&#xd;
+if &quot;%P4CLEANWORKSPACE%&quot; == &quot;true&quot; (&#xd;
+&#xd;
+echo &quot;Removing %modified%&quot;&#xd;
+rd /s /q %modified%\Bakeoff_TestCaseScripts&#xd;
+rd /s /q %modified%\bin&#xd;
+rd /s /q %modified%\build&#xd;
+rd /s /q %modified%\common&#xd;
+rd /s /q %modified%\content&#xd;
+rd /s /q %modified%\framework&#xd;
+rd /s /q %modified%\Layer1&#xd;
+rd /s /q %modified%\Release&#xd;
+rd /s /q %modified%\scm&#xd;
+rd /s /q %modified%\trafficcenter-app&#xd;
+rd /s /q %modified%\userdocauto&#xd;
+del /f /q %modified%\*&#xd;
+echo 9R1Y9fE4$PSH|p4 -u tableuser -p perforce.spirentcom.com:1666 login&#xd;
+p4 -u tableuser -p perforce.spirentcom.com:1666 -c jenkins-%NODE_NAME%-%JOB_NAME% sync //jenkins-%NODE_NAME%-%JOB_NAME%/...#none &gt; clean.txt 2&gt;&amp;1&#xd;
 )</command>
         </hudson.tasks.BatchFile>
       </buildSteps>
