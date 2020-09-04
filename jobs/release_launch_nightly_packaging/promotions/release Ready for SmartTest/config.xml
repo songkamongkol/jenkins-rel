@@ -12,7 +12,7 @@
   <concurrentBuild>false</concurrentBuild>
   <conditions>
     <hudson.plugins.promoted__builds.conditions.DownstreamPassCondition>
-      <jobs>release_il_centralboot_packaging, release_bll_linux_packaging,release_bll_linux_64_packaging,release_bll_windows_x64_packaging</jobs>
+      <jobs>release_il_centralboot_packaging, release_bll_linux_packaging,release_bll_linux_64_packaging,release_bll_windows_x64_packaging,release_bll_windows_packaging_new</jobs>
       <evenIfUnstable>false</evenIfUnstable>
     </hudson.plugins.promoted__builds.conditions.DownstreamPassCondition>
   </conditions>
