@@ -149,7 +149,6 @@ Archive il_virtual_*.tar&lt;br&gt;&#xd;
 +//TestCenter/${BRANCH_NAME}/framework/bll/base/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/framework/bll/base/...
 +//TestCenter/${BRANCH_NAME}/framework/bll/unittestdrv/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/framework/bll/unittestdrv/...
 +//TestCenter/${BRANCH_NAME}/framework/bll/vendor/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/framework/bll/vendor/...
-//TARDIS/avalanche_release/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/content/traffic/l4l7vm/...
 //TARDIS/Studio_release/avanext/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/content/traffic/studio_perf/avanext/...</view>
             <type>WRITABLE</type>
             <serverID></serverID>
@@ -237,7 +236,21 @@ sudo chmod 777 $WORKSPACE/build/il/version
 # sudo -S rm -rf $WORKSPACE/build/il/packages/*
 
 sudo scons target=packageclean
-sudo scons target=kernelclean</command>
+sudo scons target=kernelclean
+
+# -- Extract l4l7 legacy content for blink
+l4l7blink_filename=$(basename `ls ${WORKSPACE}/blink*.tgz`)
+tar xvfz ${WORKSPACE}/${l4l7blink_filename} -C ${WORKSPACE}/content/traffic/wawr/il
+
+# -- Extract l4l7 legacy content for aonic
+l4l7aonic_filename=$(basename `ls ${WORKSPACE}/aonic*.tgz`)
+tar xvfz ${WORKSPACE}/${l4l7aonic_filename} -C ${WORKSPACE}/content/traffic/wawr/il
+
+# -- Extract l4l7vm content
+l4l7vm_filename=$(basename `ls ${WORKSPACE}/vm-*.tgz`)
+mkdir -p ${WORKSPACE}/content/traffic/l4l7vm/avanext/il
+tar xvfz ${WORKSPACE}/${l4l7vm_filename} -C ${WORKSPACE}/content/traffic/l4l7vm/avanext/il
+</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>env
@@ -394,10 +407,25 @@ cp $WORKSPACE/il_idl_crc.txt $STORAGE_DIR
         <spec>{
     &quot;files&quot;: [
         {
-            &quot;pattern&quot;: &quot;${APPSEC_ARTIFACT_PATH}/*.tgz&quot;,
+            &quot;pattern&quot;: &quot;${APPSEC_ARTIFACT_PATH}/l4l7*.tgz&quot;,
             &quot;target&quot;: &quot;$WORKSPACE/l4l7lxc/&quot;,
             &quot;flat&quot;: &quot;true&quot;,
             &quot;excludePatterns&quot;: [&quot;*/AdvFuzzVM*&quot;]
+        },
+        {
+            &quot;pattern&quot;: &quot;${APPSEC_ARTIFACT_PATH}/blink*.tgz&quot;,
+            &quot;target&quot;: &quot;$WORKSPACE/&quot;,
+            &quot;flat&quot;: &quot;true&quot;
+        },
+       {
+            &quot;pattern&quot;: &quot;${APPSEC_ARTIFACT_PATH}/aonic*.tgz&quot;,
+            &quot;target&quot;: &quot;$WORKSPACE/&quot;,
+            &quot;flat&quot;: &quot;true&quot;
+        },
+       {
+            &quot;pattern&quot;: &quot;${APPSEC_ARTIFACT_PATH}/vm-*.tgz&quot;,
+            &quot;target&quot;: &quot;$WORKSPACE/&quot;,
+            &quot;flat&quot;: &quot;true&quot;
         }
     ]
 }</spec>
@@ -428,6 +456,10 @@ cp $WORKSPACE/il_idl_crc.txt $STORAGE_DIR
       <buildSteps>
         <hudson.tasks.Shell>
           <command>rm -rf $WORKSPACE/l4l7lxc
+
+# clean up previous l4l7 artifacts from artifactory
+rm -f $WORKSPACE/*.tgz
+
 # remove files using sudo for files that may be
 # owned by root
 if [[ $P4CLEANWORKSPACE = &quot;true&quot; ]]; then
