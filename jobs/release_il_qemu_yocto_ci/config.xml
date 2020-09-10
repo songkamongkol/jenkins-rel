@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
   <description>The latest build is stored at \\storage.cal.ci.spirentcom.com\Builds\jenkins\il_qemu\build-latest</description>
   <keepDependencies>false</keepDependencies>
@@ -6,6 +7,13 @@
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
       <useBuildBlocker>false</useBuildBlocker>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <org.datadog.jenkins.plugins.datadog.DatadogJobProperty plugin="datadog@1.1.3-SNAPSHOT">
+      <enableFile>false</enableFile>
+      <tagFile></tagFile>
+      <enableProperty>false</enableProperty>
+      <tagProperties></tagProperties>
+      <emitSCMEvents>true</emitSCMEvents>
+    </org.datadog.jenkins.plugins.datadog.DatadogJobProperty>
     <jenkins.model.BuildDiscarderProperty>
       <strategy class="hudson.tasks.LogRotator">
         <daysToKeep>-1</daysToKeep>
@@ -25,9 +33,9 @@
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain/>
-      <token/>
-      <room/>
+      <teamDomain></teamDomain>
+      <token></token>
+      <room></room>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -73,7 +81,7 @@
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>APP_ARCH</name>
-          <description/>
+          <description></description>
           <defaultValue>x86_64</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -83,8 +91,13 @@
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>WAWR_GIT_BRANCH</name>
-          <description/>
+          <description></description>
           <defaultValue>stc_nova_master</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>APPSEC_ARTIFACT_PATH</name>
+          <description></description>
+          <defaultValue>appsec/5.14</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -104,7 +117,7 @@
             <locked>false</locked>
             <modtime>false</modtime>
             <rmdir>false</rmdir>
-            <streamName/>
+            <streamName></streamName>
             <line>LOCAL</line>
             <view>+//TestCenter/${BRANCH_NAME}/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/...
 -//TestCenter/*/sandbox/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/*/sandbox/...
@@ -123,9 +136,11 @@
 -//TestCenter/*/.../bll/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/*/.../bll/...
 +//TestCenter/${BRANCH_NAME}/framework/bll/base/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/framework/bll/base/...
 +//TestCenter/${BRANCH_NAME}/framework/bll/unittestdrv/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/framework/bll/unittestdrv/...
-+//TestCenter/${BRANCH_NAME}/framework/bll/vendor/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/framework/bll/vendor/...</view>
++//TestCenter/${BRANCH_NAME}/framework/bll/vendor/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/framework/bll/vendor/...
+-//TestCenter/${BRANCH_NAME}/content/traffic/wawr/il/blink/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/content/traffic/wawr/il/blink/...
+-//TestCenter/${BRANCH_NAME}/content/traffic/wawr/il/aonic/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/content/traffic/wawr/il/aonic/...</view>
             <type>WRITABLE</type>
-            <serverID/>
+            <serverID></serverID>
             <backup>false</backup>
           </spec>
         </workspace>
@@ -134,7 +149,7 @@
           <force>true</force>
           <modtime>false</modtime>
           <quiet>true</quiet>
-          <pin/>
+          <pin></pin>
           <parallel>
             <enable>false</enable>
             <threads>4</threads>
@@ -188,18 +203,26 @@ echo BRANCH_NAME=$BRANCH_NAME &gt;&gt; $WORKSPACE/changelist.properties
 p4 -u scmbuild -p perforce.spirentcom.com:1666 -c jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME} sync -f //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/content/Avalanche/...</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command>sudo scons target=packageclean</command>
+      <command>sudo scons target=packageclean
+
+# -- Extract l4l7 legacy content for blink
+l4l7blink_filename=$(basename `ls ${WORKSPACE}/blink*.tgz`)
+tar xvfz ${WORKSPACE}/${l4l7blink_filename} -C ${WORKSPACE}/content/traffic/wawr/il
+
+# -- Extract l4l7 legacy content for aonic
+l4l7aonic_filename=$(basename `ls ${WORKSPACE}/aonic*.tgz`)
+tar xvfz ${WORKSPACE}/${l4l7aonic_filename} -C ${WORKSPACE}/content/traffic/wawr/il</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>$WORKSPACE/build/il/scripts/phxbld -j32 qemu_yocto</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command>if [ "$BUILD_IMAGE" = "true" ]; then
-    export SCONSFLAGS="-j8 ccache=1 distcc=1"
+      <command>if [ &quot;$BUILD_IMAGE&quot; = &quot;true&quot; ]; then
+    export SCONSFLAGS=&quot;-j8 ccache=1 distcc=1&quot;
 
     # $WORKSPACE/build/il/scripts/phxbld qemu_raw
 
-    export PAD_BUILD_NUMBER=`printf '%04i' $BUILD_NUMBER`
+    export PAD_BUILD_NUMBER=`printf &apos;%04i&apos; $BUILD_NUMBER`
 
     # sudo scons reversion_il $RELEASE_NUM.$PAD_BUILD_NUMBER $RELEASE_NUM.$PAD_BUILD_NUMBER
     sudo scons target=reversion_il il_version=$RELEASE_NUM.$PAD_BUILD_NUMBER av_version=$RELEASE_NUM.$PAD_BUILD_NUMBER
@@ -208,7 +231,7 @@ p4 -u scmbuild -p perforce.spirentcom.com:1666 -c jenkins-${NODE_NAME}-${JOB_NAM
     cd $WORKSPACE/build/il/packages/rawimg
     # export OLDNAME=`ls yocto.512*.img.gz`
     export OLDNAME=`ls yocto_cloud*.img.gz`
-    export NEWNAME=`echo $OLDNAME | sed 's/yocto/qemu/'`
+    export NEWNAME=`echo $OLDNAME | sed &apos;s/yocto/qemu/&apos;`
     mv $OLDNAME $NEWNAME
 fi</command>
     </hudson.tasks.Shell>
@@ -253,7 +276,7 @@ python $WORKSPACE/common/idl/crc.py -f il_idl_crc.txt</command>
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -269,7 +292,7 @@ python $WORKSPACE/common/idl/crc.py -f il_idl_crc.txt</command>
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -285,7 +308,7 @@ python $WORKSPACE/common/idl/crc.py -f il_idl_crc.txt</command>
               <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -295,12 +318,12 @@ python $WORKSPACE/common/idl/crc.py -f il_idl_crc.txt</command>
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern/>
-      <presendScript/>
-      <postsendScript/>
+      <attachmentsPattern></attachmentsPattern>
+      <presendScript></presendScript>
+      <postsendScript></postsendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
-      <replyTo/>
+      <replyTo></replyTo>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
@@ -310,7 +333,7 @@ python $WORKSPACE/common/idl/crc.py -f il_idl_crc.txt</command>
           <command># copy the build output to storage server
 export STORAGE_DIR=/mnt/builds/jenkins/il_qemu_yocto-$BRANCH_NAME/build-$BUILD_NUMBER
 
-if [ ! -d "$STORAGE_DIR" ]; then
+if [ ! -d &quot;$STORAGE_DIR&quot; ]; then
   mkdir -p $STORAGE_DIR
 fi
 
@@ -326,15 +349,79 @@ cp $WORKSPACE/${JOB_NAME}_changelist_${P4_CHANGELIST}.txt $STORAGE_DIR</command>
       <scriptOnlyIfSuccess>true</scriptOnlyIfSuccess>
       <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
       <markBuildUnstable>false</markBuildUnstable>
-      <executeOn>BOTH</executeOn>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
     <jenkinsci.plugins.influxdb.InfluxDbPublisher plugin="influxdb@1.10.3">
       <selectedTarget>http://influxdb-01.cal.ci.spirentcom.com:8086,release_jenkins_db</selectedTarget>
-      <customPrefix/>
+      <customPrefix></customPrefix>
     </jenkinsci.plugins.influxdb.InfluxDbPublisher>
   </publishers>
   <buildWrappers>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.8"/>
+    <org.jfrog.hudson.generic.ArtifactoryGenericConfigurator plugin="artifactory@2.13.1">
+      <details>
+        <artifactoryName>artifactory.srv.orionprod.net</artifactoryName>
+        <artifactoryUrl>https://artifactory.srv.orionprod.net/artifactory</artifactoryUrl>
+        <stagingPlugin/>
+      </details>
+      <resolverDetails>
+        <artifactoryName>artifactory.cal.ci.spirentcom.com</artifactoryName>
+        <artifactoryUrl>https://artifactory.cal.ci.spirentcom.com/artifactory</artifactoryUrl>
+        <stagingPlugin/>
+      </resolverDetails>
+      <deployerCredentialsConfig>
+        <credentials>
+          <username></username>
+          <password></password>
+        </credentials>
+        <credentialsId></credentialsId>
+        <overridingCredentials>false</overridingCredentials>
+        <ignoreCredentialPluginDisabled>false</ignoreCredentialPluginDisabled>
+      </deployerCredentialsConfig>
+      <resolverCredentialsConfig>
+        <credentials>
+          <username></username>
+          <password></password>
+        </credentials>
+        <credentialsId></credentialsId>
+        <overridingCredentials>false</overridingCredentials>
+        <ignoreCredentialPluginDisabled>false</ignoreCredentialPluginDisabled>
+      </resolverCredentialsConfig>
+      <useSpecs>true</useSpecs>
+      <uploadSpec>
+        <spec></spec>
+      </uploadSpec>
+      <downloadSpec>
+        <spec>{
+    &quot;files&quot;: [
+        {
+            &quot;pattern&quot;: &quot;${APPSEC_ARTIFACT_PATH}/blink*.tgz&quot;,
+            &quot;target&quot;: &quot;$WORKSPACE/&quot;,
+            &quot;flat&quot;: &quot;true&quot;
+        },
+       {
+            &quot;pattern&quot;: &quot;${APPSEC_ARTIFACT_PATH}/aonic*.tgz&quot;,
+            &quot;target&quot;: &quot;$WORKSPACE/&quot;,
+            &quot;flat&quot;: &quot;true&quot;
+        }
+    ]
+}</spec>
+      </downloadSpec>
+      <deployPattern></deployPattern>
+      <resolvePattern></resolvePattern>
+      <matrixParams></matrixParams>
+      <deployBuildInfo>true</deployBuildInfo>
+      <includeEnvVars>false</includeEnvVars>
+      <envVarsPatterns>
+        <includePatterns></includePatterns>
+        <excludePatterns>*password*,*secret*,*key*</excludePatterns>
+      </envVarsPatterns>
+      <discardOldBuilds>false</discardOldBuilds>
+      <discardBuildArtifacts>true</discardBuildArtifacts>
+      <asyncBuildRetention>false</asyncBuildRetention>
+      <multiConfProject>false</multiConfProject>
+      <customBuildName></customBuildName>
+      <overrideBuildName>false</overrideBuildName>
+    </org.jfrog.hudson.generic.ArtifactoryGenericConfigurator>
     <EnvInjectBuildWrapper plugin="envinject@1.89">
       <info>
         <propertiesContent>APPSEC_GIT_REPO=ssh://git@git-appsec.cal.ci.spirentcom.com:2222/git-server/repos</propertiesContent>
@@ -344,10 +431,14 @@ cp $WORKSPACE/${JOB_NAME}_changelist_${P4_CHANGELIST}.txt $STORAGE_DIR</command>
     <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
       <buildSteps>
         <hudson.tasks.Shell>
-          <command># remove files using sudo for files that may be
+          <command># clean up previous l4l7 artifacts from artifactory
+rm -f $WORKSPACE/*.tgz
+
+
+# remove files using sudo for files that may be
 # owned by root
-if [[ $P4CLEANWORKSPACE = "true" ]]; then
-    if [ ! -z "$WORKSPACE" ]; then
+if [[ $P4CLEANWORKSPACE = &quot;true&quot; ]]; then
+    if [ ! -z &quot;$WORKSPACE&quot; ]; then
         sudo rm -rf $WORKSPACE/*
         p4 -u scmbuild -p perforce.spirentcom.com:1666 -c jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME} sync //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/...#none
     fi
