@@ -301,8 +301,8 @@ cp -r $WORKSPACE/build/il/packages/rawimg $STORAGE_DIR
         <stagingPlugin/>
       </details>
       <resolverDetails>
-        <artifactoryName>artifactory.srv.orionprod.net</artifactoryName>
-        <artifactoryUrl>https://artifactory.srv.orionprod.net/artifactory</artifactoryUrl>
+        <artifactoryName>artifactory.cal.ci.spirentcom.com</artifactoryName>
+        <artifactoryUrl>https://artifactory.cal.ci.spirentcom.com/artifactory</artifactoryUrl>
         <stagingPlugin/>
       </resolverDetails>
       <deployerCredentialsConfig>
