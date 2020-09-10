@@ -95,6 +95,11 @@ Archive il_changeling_*.tar&lt;br&gt;&#xd;
           <description>1.0 or 1.5</description>
           <defaultValue>1.5</defaultValue>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>APPSEC_ARTIFACT_PATH</name>
+          <description></description>
+          <defaultValue>appsec/5.14</defaultValue>
+        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
