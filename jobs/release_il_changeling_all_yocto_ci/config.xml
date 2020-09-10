@@ -334,7 +334,7 @@ cp -r $WORKSPACE/build/il/packages/rawimg $STORAGE_DIR
             &quot;pattern&quot;: &quot;${APPSEC_ARTIFACT_PATH}/aonic*.tgz&quot;,
             &quot;target&quot;: &quot;$WORKSPACE/&quot;,
             &quot;flat&quot;: &quot;true&quot;
-        },
+        }
     ]
 }</spec>
       </downloadSpec>
