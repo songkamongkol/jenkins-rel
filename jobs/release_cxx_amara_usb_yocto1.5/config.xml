@@ -357,7 +357,7 @@ export BLDNBR=${STC_MAJ_MIN_VERSION}.${BLDNUMBER}
 export BUILD_DIR=$MARTIN_ROOT/$STC_MAJ_MIN_VERSION/Engineering_Builds/IL/$BLDNBR
 
 ssh ${RSYNCUSER}@${MARTIN} mkdir -p $BUILD_DIR/usbimg
-rsync -avz $BUILD_OUTPUT_DIR/framework/il/kernel/yocto/Install/usb*1.5*.img.gz ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/usbimg
+rsync -avz $BUILD_OUTPUT_DIR/framework/il/kernel/yocto/Install/usb*.img.gz ${RSYNCUSER}@${MARTIN}:$BUILD_DIR/usbimg
 
 # trim white space from SR
 export SR=&quot;$(echo -e &quot;${SR}&quot; | sed -e &apos;s/^[[:space:]]*//&apos; -e &apos;s/[[:space:]]*$//&apos;)&quot;
