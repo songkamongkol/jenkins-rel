@@ -84,7 +84,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>python $WORKSPACE%/scripts/release-process/generate_next_sr_number.py -v $STC_MAJ_MIN_VERSION</command>
+      <command>python $WORKSPACE/scripts/release-process/generate_next_sr_number.py -v $STC_MAJ_MIN_VERSION</command>
     </hudson.tasks.Shell>
     <EnvInjectBuilder plugin="envinject@1.89">
       <info>
