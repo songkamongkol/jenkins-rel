@@ -1,12 +1,19 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>remotely trigger smarttest job on http://jenkins-smt.cal.ci.spirentcom.com:8080/job/release_patch_launch_smarttest/</description>
+  <description>remotely trigger jenkins-devops job on http://jenkins-devops.cal.ci.spirentcom.com:8080/view/Release_packaging/job/Start-Installer-Packaging/</description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
       <useBuildBlocker>false</useBuildBlocker>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <org.datadog.jenkins.plugins.datadog.DatadogJobProperty plugin="datadog@1.1.3-SNAPSHOT">
+      <enableFile>false</enableFile>
+      <tagFile></tagFile>
+      <enableProperty>false</enableProperty>
+      <tagProperties></tagProperties>
+      <emitSCMEvents>true</emitSCMEvents>
+    </org.datadog.jenkins.plugins.datadog.DatadogJobProperty>
     <jenkins.model.BuildDiscarderProperty>
       <strategy class="hudson.tasks.LogRotator">
         <daysToKeep>-1</daysToKeep>
@@ -50,7 +57,23 @@
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
-  <scm class="hudson.scm.NullSCM"/>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.3.0">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>git@github.com:SpirentCom/cip-devops.git</url>
+        <credentialsId>5c922c1a-3cc4-4b9c-87a7-0f81202bcd09</credentialsId>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>*/master</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="list"/>
+    <extensions/>
+  </scm>
   <quietPeriod>120</quietPeriod>
   <assignedNode>relpkg-05</assignedNode>
   <canRoam>false</canRoam>
@@ -60,30 +83,14 @@
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
-    <hudson.plugins.python.Python plugin="python@1.3">
-      <command>import os
-import sys
-import subprocess
-import optparse
-import re
-import string
-import urllib2
-
-
- 
-job = &apos;SMT-Remote-Regression-SYS-01&apos;
-url = &quot;http://jenkins-smt.cal.ci.spirentcom.com:8080/job/&quot; + job +&quot;/buildWithParameters?token=mosheallowedtodothis&amp;STC_MAJ_MIN_VERSION=&quot;+os.environ[&apos;STC_MAJ_MIN_VERSION&apos;]
-
-#data=&quot;token=mosheallowedtodothis&quot;
-#creating HTTP Req
-req = urllib2.Request(url)
-f = urllib2.urlopen(req)
-
-#req2 = urllib2.Request(url2)
-#f = urllib2.urlopen(req2)
-
-</command>
-    </hudson.plugins.python.Python>
+    <hudson.tasks.BatchFile>
+      <command>python %WORKSPACE%/scripts/release-process/generate_next_sr_number.py -v %STC_MAJ_MIN_VERSION%</command>
+    </hudson.tasks.BatchFile>
+    <EnvInjectBuilder plugin="envinject@1.89">
+      <info>
+        <propertiesFilePath>sr_build.txt</propertiesFilePath>
+      </info>
+    </EnvInjectBuilder>
   </builders>
   <publishers/>
   <buildWrappers>
