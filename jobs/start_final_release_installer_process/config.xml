@@ -75,7 +75,7 @@
     <extensions/>
   </scm>
   <quietPeriod>120</quietPeriod>
-  <assignedNode>relpkg-05</assignedNode>
+  <assignedNode>ilbuild-v107</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
@@ -83,9 +83,9 @@
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
-    <hudson.tasks.BatchFile>
+    <hudson.tasks.Shell>
       <command>python %WORKSPACE%/scripts/release-process/generate_next_sr_number.py -v %STC_MAJ_MIN_VERSION%</command>
-    </hudson.tasks.BatchFile>
+    </hudson.tasks.Shell>
     <EnvInjectBuilder plugin="envinject@1.89">
       <info>
         <propertiesFilePath>sr_build.txt</propertiesFilePath>
