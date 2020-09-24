@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
-  <description/>
+  <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
@@ -8,9 +9,9 @@
     </hudson.plugins.buildblocker.BuildBlockerProperty>
     <org.datadog.jenkins.plugins.datadog.DatadogJobProperty plugin="datadog@1.1.3-SNAPSHOT">
       <enableFile>false</enableFile>
-      <tagFile/>
+      <tagFile></tagFile>
       <enableProperty>false</enableProperty>
-      <tagProperties/>
+      <tagProperties></tagProperties>
       <emitSCMEvents>true</emitSCMEvents>
     </org.datadog.jenkins.plugins.datadog.DatadogJobProperty>
     <jenkins.model.BuildDiscarderProperty>
@@ -33,9 +34,9 @@
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain/>
-      <token/>
-      <room/>
+      <teamDomain></teamDomain>
+      <token></token>
+      <room></room>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -51,17 +52,17 @@
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
-          <description/>
+          <description></description>
           <defaultValue>5.15_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
-          <description/>
+          <description></description>
           <defaultValue>5.15</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_ID</name>
-          <description/>
+          <description></description>
           <defaultValue>6</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -80,7 +81,7 @@
         <locked>false</locked>
         <modtime>false</modtime>
         <rmdir>false</rmdir>
-        <streamName/>
+        <streamName></streamName>
         <line>LOCAL</line>
         <view>//SCM/Scripts/ci_* //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/Scripts/ci_*
 //SCM/Scripts/changelist_info/update_database_with_changelist.py //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/Scripts/changelist_info/update_database_with_changelist.py
@@ -100,7 +101,7 @@
 -//TestCenter/*/framework/il/platform/scripts/chassis/i686/filesys/etc/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/*/framework/il/platform/scripts/chassis/i686/filesys/etc/...
 +//TestCenter/${BRANCH_NAME}/regression/jenkins/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/regression/jenkins/...</view>
         <type>WRITABLE</type>
-        <serverID/>
+        <serverID></serverID>
         <backup>false</backup>
       </spec>
     </workspace>
@@ -109,12 +110,12 @@
       <force>false</force>
       <modtime>false</modtime>
       <quiet>true</quiet>
-      <pin/>
+      <pin></pin>
     </populate>
   </scm>
   <assignedNode>relpkg-05</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>true</disabled>
+  <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
@@ -147,24 +148,24 @@
         </org.jenkinsci.plugins.ParameterizedRemoteTrigger.Auth>
       </auth>
       <loadParamsFromFile>false</loadParamsFromFile>
-      <parameterFile/>
-      <queryString/>
+      <parameterFile></parameterFile>
+      <queryString></queryString>
     </org.jenkinsci.plugins.ParameterizedRemoteTrigger.RemoteBuildConfiguration>
     <hudson.tasks.BatchFile>
-      <command>set BLL_BUILD_NUMBER=%BUILD_NUMBER%
-del ui_*.txt
-del bll_*.txt
-del *il_*changelist*.txt
-del Report_*.txt
-del Build_*.txt
-del Magellan_Frontend_Build_*.txt
+      <command>set BLL_BUILD_NUMBER=%BUILD_NUMBER%&#xd;
+del ui_*.txt&#xd;
+del bll_*.txt&#xd;
+del *il_*changelist*.txt&#xd;
+del Report_*.txt&#xd;
+del Build_*.txt&#xd;
+del Magellan_Frontend_Build_*.txt&#xd;
 rem c:\python27\python %WORKSPACE%\Scripts\ci_run_jenkins_steps.py --createchangereport=yes</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
       <project>release_ui_ci</project>
       <filter>BLL_changelist_*.txt, UI_changelist_*.txt,bll_idl_crc.txt</filter>
-      <target/>
-      <excludes/>
+      <target></target>
+      <excludes></excludes>
       <selector class="hudson.plugins.copyartifact.PermalinkBuildSelector">
         <id>Release Build Passed Regression</id>
       </selector>
@@ -174,8 +175,8 @@ rem c:\python27\python %WORKSPACE%\Scripts\ci_run_jenkins_steps.py --createchang
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
       <project>release_ui_x64_ci</project>
       <filter>Magellan_Frontend_Build_*.txt</filter>
-      <target/>
-      <excludes/>
+      <target></target>
+      <excludes></excludes>
       <selector class="hudson.plugins.copyartifact.PermalinkBuildSelector">
         <id>Release Build Passed Regression</id>
       </selector>
@@ -185,8 +186,8 @@ rem c:\python27\python %WORKSPACE%\Scripts\ci_run_jenkins_steps.py --createchang
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
       <project>release_il_testmodule_contents_ci</project>
       <filter>*il_testmodule_contents*changelist_*.txt</filter>
-      <target/>
-      <excludes/>
+      <target></target>
+      <excludes></excludes>
       <selector class="hudson.plugins.copyartifact.PermalinkBuildSelector">
         <id>Release IL Build Passed on all platforms</id>
       </selector>
@@ -196,8 +197,8 @@ rem c:\python27\python %WORKSPACE%\Scripts\ci_run_jenkins_steps.py --createchang
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
       <project>release_il_virtual_yocto_ci</project>
       <filter>il_idl_crc.txt</filter>
-      <target/>
-      <excludes/>
+      <target></target>
+      <excludes></excludes>
       <selector class="hudson.plugins.copyartifact.PermalinkBuildSelector">
         <id>Release IL Build Passed on all platforms</id>
       </selector>
@@ -205,11 +206,11 @@ rem c:\python27\python %WORKSPACE%\Scripts\ci_run_jenkins_steps.py --createchang
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.BatchFile>
-      <command>REM -- ensure BLL and IL have matching IDL checksum
+      <command>REM -- ensure BLL and IL have matching IDL checksum&#xd;
 python regression\jenkins\compare_crc.py --first bll_idl_crc.txt --second il_idl_crc.txt </command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>del /f /q %WORKSPACE%\stc_version.txt
+      <command>del /f /q %WORKSPACE%\stc_version.txt&#xd;
 echo STC_MAJ_MIN_VERSION=%STC_MAJ_MIN_VERSION% &gt; %WORKSPACE%\stc_version.txt</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.python.Python plugin="python@1.3">
@@ -217,43 +218,43 @@ echo STC_MAJ_MIN_VERSION=%STC_MAJ_MIN_VERSION% &gt; %WORKSPACE%\stc_version.txt<
 import glob
 import re
 
-files = glob.glob("*il_testmodule_contents*changelist*.txt")
-# files = glob.glob("BLL_*.txt")
+files = glob.glob(&quot;*il_testmodule_contents*changelist*.txt&quot;)
+# files = glob.glob(&quot;BLL_*.txt&quot;)
 changelistfile = files[0]
-changelist = re.sub(r'.txt$', "", changelistfile )
-changelist = re.sub(r'il_testmodule_contents_changelist_', "", changelist )
-build_number = os.environ['BUILD_NUMBER']
-print "IL Changelist is " + changelist
-il_changelist_file='IL_' + changelist + '.txt'
-f = open(il_changelist_file, 'w')
-f.write("\nCHANGELIST=" + changelist + " " + build_number)
+changelist = re.sub(r&apos;.txt$&apos;, &quot;&quot;, changelistfile )
+changelist = re.sub(r&apos;il_testmodule_contents_changelist_&apos;, &quot;&quot;, changelist )
+build_number = os.environ[&apos;BUILD_NUMBER&apos;]
+print &quot;IL Changelist is &quot; + changelist
+il_changelist_file=&apos;IL_&apos; + changelist + &apos;.txt&apos;
+f = open(il_changelist_file, &apos;w&apos;)
+f.write(&quot;\nCHANGELIST=&quot; + changelist + &quot; &quot; + build_number)
 f.close</command>
     </hudson.plugins.python.Python>
     <hudson.tasks.BatchFile>
-      <command>set P4PORT=perforce.spirentcom.com:1666
-set P4USER=scmbuild
-set P4CLIENT=jenkins-%NODE_NAME%-%JOB_NAME%-%BRANCH_NAME%
-set P4PASSWD=%SCMBUILD_PASSWORD%
-echo %SCMBUILD_PASSWORD%|p4 login
-
-SET FULLVER=00%BUILD_NUMBER%%BRANCH_ID%
-if %BUILD_NUMBER% gtr 9 SET FULLVER=0%BUILD_NUMBER%%BRANCH_ID%
-if %BUILD_NUMBER% gtr 99 SET FULLVER=%BUILD_NUMBER%%BRANCH_ID%
-echo FULLVER is %FULLVER%
-echo "%BRANCH_NAME% Build Number: %FULLVER%" &gt; BUILD_%STC_MAJ_MIN_VERSION%.%FULLVER%.txt
-
-perl %WORKSPACE%\Scripts\ci_update_database.pl ALL %STC_MAJ_MIN_VERSION% %FULLVER% %BUILD_ID% "In Progress" %BUILD_URL% %BRANCH_NAME%
-
-perl %WORKSPACE%\Scripts\ci_update_database_changelist.pl STC %STC_MAJ_MIN_VERSION% %FULLVER%
-
-python %WORKSPACE%\Scripts\changelist_info\update_database_with_changelist.py -v %STC_MAJ_MIN_VERSION% -b %FULLVER%
+      <command>set P4PORT=perforce.spirentcom.com:1666&#xd;
+set P4USER=scmbuild&#xd;
+set P4CLIENT=jenkins-%NODE_NAME%-%JOB_NAME%-%BRANCH_NAME%&#xd;
+set P4PASSWD=%SCMBUILD_PASSWORD%&#xd;
+echo %SCMBUILD_PASSWORD%|p4 login&#xd;
+&#xd;
+SET FULLVER=00%BUILD_NUMBER%%BRANCH_ID%&#xd;
+if %BUILD_NUMBER% gtr 9 SET FULLVER=0%BUILD_NUMBER%%BRANCH_ID%&#xd;
+if %BUILD_NUMBER% gtr 99 SET FULLVER=%BUILD_NUMBER%%BRANCH_ID%&#xd;
+echo FULLVER is %FULLVER%&#xd;
+echo &quot;%BRANCH_NAME% Build Number: %FULLVER%&quot; &gt; BUILD_%STC_MAJ_MIN_VERSION%.%FULLVER%.txt&#xd;
+&#xd;
+perl %WORKSPACE%\Scripts\ci_update_database.pl ALL %STC_MAJ_MIN_VERSION% %FULLVER% %BUILD_ID% &quot;In Progress&quot; %BUILD_URL% %BRANCH_NAME%&#xd;
+&#xd;
+perl %WORKSPACE%\Scripts\ci_update_database_changelist.pl STC %STC_MAJ_MIN_VERSION% %FULLVER%&#xd;
+&#xd;
+python %WORKSPACE%\Scripts\changelist_info\update_database_with_changelist.py -v %STC_MAJ_MIN_VERSION% -b %FULLVER%&#xd;
 </command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>REM --- Tag file handling for SmartTest
-rem copy \\spccalfs04\SCM\SCMSmartTest\%STC_MAJ_MIN_VERSION%\pw_packages_to_test \\martin\archive\pv\TestCenter\%STC_MAJ_MIN_VERSION%\Engineering_Builds\pw_packages_to_test.new
-
-copy \\results.cal.ci.spirentcom.com\smt\SCMSmartTest\%STC_MAJ_MIN_VERSION%\pw_packages_to_test \\martin\archive\pv\TestCenter\%STC_MAJ_MIN_VERSION%\Engineering_Builds\pw_packages_to_test.new
+      <command>REM --- Tag file handling for SmartTest&#xd;
+rem copy \\spccalfs04\SCM\SCMSmartTest\%STC_MAJ_MIN_VERSION%\pw_packages_to_test \\martin\archive\pv\TestCenter\%STC_MAJ_MIN_VERSION%\Engineering_Builds\pw_packages_to_test.new&#xd;
+&#xd;
+copy \\results.cal.ci.spirentcom.com\smt\SCMSmartTest\%STC_MAJ_MIN_VERSION%\pw_packages_to_test \\martin\archive\pv\TestCenter\%STC_MAJ_MIN_VERSION%\Engineering_Builds\pw_packages_to_test.new&#xd;
 exit /B 0</command>
     </hudson.tasks.BatchFile>
   </builders>
@@ -291,13 +292,14 @@ exit /B 0</command>
             </org.jenkinsci.plugins.ParameterizedRemoteTrigger.Auth>
           </auth>
           <loadParamsFromFile>false</loadParamsFromFile>
-          <parameterFile/>
-          <queryString/>
+          <parameterFile></parameterFile>
+          <queryString></queryString>
         </org.jenkinsci.plugins.ParameterizedRemoteTrigger.RemoteBuildConfiguration>
       </buildSteps>
       <scriptOnlyIfSuccess>true</scriptOnlyIfSuccess>
       <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
       <markBuildUnstable>false</markBuildUnstable>
+      <executeOn>BOTH</executeOn>
     </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
     <hudson.plugins.claim.ClaimPublisher plugin="claim@2.9"/>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.57">
@@ -310,7 +312,7 @@ exit /B 0</command>
             <recipientProviders>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>true</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <replyTo>$PROJECT_DEFAULT_REPLYTO</replyTo>
@@ -321,7 +323,7 @@ exit /B 0</command>
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern/>
+      <attachmentsPattern></attachmentsPattern>
       <presendScript>$DEFAULT_PRESEND_SCRIPT</presendScript>
       <postsendScript>$DEFAULT_POSTSEND_SCRIPT</postsendScript>
       <attachBuildLog>false</attachBuildLog>
@@ -332,7 +334,7 @@ exit /B 0</command>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
     <jenkinsci.plugins.influxdb.InfluxDbPublisher plugin="influxdb@1.10.3">
       <selectedTarget>http://influxdb-01.cal.ci.spirentcom.com:8086,release_jenkins_db</selectedTarget>
-      <customPrefix/>
+      <customPrefix></customPrefix>
     </jenkinsci.plugins.influxdb.InfluxDbPublisher>
     <hudson.plugins.parameterizedtrigger.BuildTrigger plugin="parameterized-trigger@2.35.2">
       <configs>
