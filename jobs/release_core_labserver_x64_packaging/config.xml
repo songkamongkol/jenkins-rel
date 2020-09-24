@@ -39,7 +39,7 @@
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description>STC BLL version  (ex. 4.68)</description>
-          <defaultValue>5.14</defaultValue>
+          <defaultValue>5.15</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
@@ -49,7 +49,7 @@
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>4.40_rel, etc</description>
-          <defaultValue>5.14_rel</defaultValue>
+          <defaultValue>5.15_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>MODE</name>
