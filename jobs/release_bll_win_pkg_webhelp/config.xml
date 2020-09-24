@@ -1,15 +1,14 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<project>
+<?xml version="1.0" encoding="UTF-8"?><project>
   <actions/>
-  <description>Sync SCM build scripts, EAT, help files and other files as needed for packaging.&lt;br&gt;&#xd;
-Retrieve tar.gz files from UI and RR build.&lt;br&gt;&#xd;
-Extract TestCenter.Windows.no_version.tar.gz, ResultsReporter.tar.gz UI and RR tar.gz files to bin/release folder.&lt;br&gt;&#xd;
-Retrieve TestCenter_WebHelp.tar.gz, Provisioning_WebHelp.tar.gz, ServerManager_WebHelp.tar.gz from webhelp build.&lt;br&gt;&#xd;
-Run EAT ANT build&lt;br&gt;&#xd;
-Run setver.py to set the version of the TestCenter binary files.&lt;br&gt;&#xd;
-Run ci_packageinstaller.pl to create P2_installer and FORTHOT installer files.&lt;br&gt;&#xd;
-Run ci_packageinstaller.pl to create DMCP installer files.&lt;br&gt;&#xd;
-Copy build results to \\martin\archive\pv\TestCenter\4.44\Engineering_Builds\integration\BUILDVERSION&lt;br&gt;&#xd;
+  <description>Sync SCM build scripts, EAT, help files and other files as needed for packaging.&lt;br&gt;
+Retrieve tar.gz files from UI and RR build.&lt;br&gt;
+Extract TestCenter.Windows.no_version.tar.gz, ResultsReporter.tar.gz UI and RR tar.gz files to bin/release folder.&lt;br&gt;
+Retrieve TestCenter_WebHelp.tar.gz, Provisioning_WebHelp.tar.gz, ServerManager_WebHelp.tar.gz from webhelp build.&lt;br&gt;
+Run EAT ANT build&lt;br&gt;
+Run setver.py to set the version of the TestCenter binary files.&lt;br&gt;
+Run ci_packageinstaller.pl to create P2_installer and FORTHOT installer files.&lt;br&gt;
+Run ci_packageinstaller.pl to create DMCP installer files.&lt;br&gt;
+Copy build results to \\martin\archive\pv\TestCenter\4.44\Engineering_Builds\integration\BUILDVERSION&lt;br&gt;
 Jenkins Node(s): spccalengec01, spccalpvxpvm-01, spccalengec02</description>
   <keepDependencies>false</keepDependencies>
   <properties>
@@ -21,9 +20,9 @@ release_cts_windows_packaging</blockingJobs>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
     <org.datadog.jenkins.plugins.datadog.DatadogJobProperty plugin="datadog@1.1.3-SNAPSHOT">
       <enableFile>false</enableFile>
-      <tagFile></tagFile>
+      <tagFile/>
       <enableProperty>false</enableProperty>
-      <tagProperties></tagProperties>
+      <tagProperties/>
       <emitSCMEvents>true</emitSCMEvents>
     </org.datadog.jenkins.plugins.datadog.DatadogJobProperty>
     <jenkins.model.BuildDiscarderProperty>
@@ -40,9 +39,9 @@ release_cts_windows_packaging</blockingJobs>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain></teamDomain>
-      <token></token>
-      <room></room>
+      <teamDomain/>
+      <token/>
+      <room/>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -59,7 +58,7 @@ release_cts_windows_packaging</blockingJobs>
         <hudson.model.StringParameterDefinition>
           <name>BRANCH_NAME</name>
           <description>branch name</description>
-          <defaultValue>5.14_rel</defaultValue>
+          <defaultValue>5.15_rel</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>P4CLEANWORKSPACE</name>
@@ -79,16 +78,16 @@ release_cts_windows_packaging</blockingJobs>
         <hudson.model.StringParameterDefinition>
           <name>STC_MAJ_MIN_VERSION</name>
           <description>major minor version</description>
-          <defaultValue>5.14</defaultValue>
+          <defaultValue>5.15</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
-          <description></description>
+          <description/>
           <defaultValue>BAD_BUILD_NUMBER</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>SOURCE_OS</name>
-          <description></description>
+          <description/>
           <defaultValue>BLLWindows</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -96,7 +95,7 @@ release_cts_windows_packaging</blockingJobs>
           <description>The release type tag displayed in STC GUI Help-About and splash screen. Available option are:
 - Alpha
 - Beta
-- RELEASE (no release type tag will be displayed in the GUI if set to &apos;RELEASE&apos;)</description>
+- RELEASE (no release type tag will be displayed in the GUI if set to 'RELEASE')</description>
           <defaultValue>Alpha</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -115,7 +114,7 @@ release_cts_windows_packaging</blockingJobs>
         <locked>false</locked>
         <modtime>false</modtime>
         <rmdir>false</rmdir>
-        <streamName></streamName>
+        <streamName/>
         <line>LOCAL</line>
         <view>//SCM/Build_Scripts/STC_Build_Scripts/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/Build_Scripts/STC_Build_Scripts/...
 //SCM/Scripts/ci_* //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/Build_Scripts/Scripts/ci_*
@@ -134,7 +133,7 @@ release_cts_windows_packaging</blockingJobs>
 //TestCenter/${BRANCH_NAME}/common/lib/pduEditor/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/common/lib/pduEditor/...
 //TestCenter/${BRANCH_NAME}/framework/bll/serverManager/scripts/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/framework/bll/serverManager/scripts/...</view>
         <type>WRITABLE</type>
-        <serverID></serverID>
+        <serverID/>
         <backup>false</backup>
       </spec>
     </workspace>
@@ -143,7 +142,7 @@ release_cts_windows_packaging</blockingJobs>
       <force>false</force>
       <modtime>false</modtime>
       <quiet>true</quiet>
-      <pin></pin>
+      <pin/>
       <parallel>
         <enable>false</enable>
         <threads>4</threads>
@@ -164,16 +163,16 @@ release_cts_windows_packaging</blockingJobs>
   <customWorkspace>${JOB_NAME}</customWorkspace>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>del BLL_changelist*.txt&#xd;
-del UI_changelist*.txt&#xd;
-del *.tar&#xd;
+      <command>del BLL_changelist*.txt
+del UI_changelist*.txt
+del *.tar
 exit /B 0</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
       <project>release_ui_ci</project>
       <filter>bin/Release/TestCenter.Windows.no_version.tar.gz, BLL_changelist*.txt, UI_changelist*.txt</filter>
-      <target></target>
-      <excludes></excludes>
+      <target/>
+      <excludes/>
       <selector class="hudson.plugins.copyartifact.PermalinkBuildSelector">
         <id>lastSuccessfulBuild</id>
       </selector>
@@ -181,14 +180,14 @@ exit /B 0</command>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.BatchFile>
-      <command>echo extracting TestCenter.Windows.no_version.tar.gz file from job %COPYARTIFACT_BUILD_NUMBER_UI%&#xd;
+      <command>echo extracting TestCenter.Windows.no_version.tar.gz file from job %COPYARTIFACT_BUILD_NUMBER_UI%
 python framework\tools\buildUtil\package.py --install TestCenter.Windows.no_version.tar.gz --directory=bin/Release</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
       <project>release_webhelp</project>
       <filter>TestCenter_WebHelp.tar.gz, Provisioning_WebHelp.tar.gz, ServerManager_WebHelp.tar.gz, EnhancedResults_WebHelp.tar.gz</filter>
       <target>$WORKSPACE/old</target>
-      <excludes></excludes>
+      <excludes/>
       <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
@@ -196,54 +195,54 @@ python framework\tools\buildUtil\package.py --install TestCenter.Windows.no_vers
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
       <project>release_results_reporter_windows_ci</project>
       <filter>Win32ResultsReporter.tar.gz,Unix32ResultsReporter.Unix.tar.gz</filter>
-      <target></target>
-      <excludes></excludes>
+      <target/>
+      <excludes/>
       <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.BatchFile>
-      <command>echo extracting ResultsReporter.tar.gz file from job %COPYARTIFACT_BUILD_NUMBER_RESULTS_REPORTER_WINDOWS%&#xd;
-python framework\tools\buildUtil\package.py --install Win32ResultsReporter.tar.gz --directory=framework/ui/resultsanalysis/dist&#xd;
-p4 info&#xd;
+      <command>echo extracting ResultsReporter.tar.gz file from job %COPYARTIFACT_BUILD_NUMBER_RESULTS_REPORTER_WINDOWS%
+python framework\tools\buildUtil\package.py --install Win32ResultsReporter.tar.gz --directory=framework/ui/resultsanalysis/dist
+p4 info
 set</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>REM echo Running EAT Ant build&#xd;
-REM cd framework\ui\EAT&#xd;
+      <command>REM echo Running EAT Ant build
+REM cd framework\ui\EAT
 REM ant -f build_windows.xml&amp;&amp;ant -f build_linux.xml</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>REM echo Running Results Reporter ant unix distribution build&#xd;
-REM cd framework\ui\resultsanalysis&#xd;
+      <command>REM echo Running Results Reporter ant unix distribution build
+REM cd framework\ui\resultsanalysis
 REM ant unixDist</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>cd %WORKSPACE%\bin\release&#xd;
-SET DEPENDENT_JOB_NAME=release_cts_windows_packaging&#xd;
-SET P4USER=scmbuild&#xd;
-SET P4PORT=perforce.spirentcom.com:1666&#xd;
-c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --createpropfile=yes --runcimaketarballs=no --runsetver=yes --updateilversionxml=yes --updatereleasetag=yes&#xd;
-&#xd;
-perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% STC_APP_COPY_ONLY&#xd;
-perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% COMPILE_FORTHOT&#xd;
-perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% PACKAGE_P2_INSTALLER&#xd;
-perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% COPY_P2_INSTALLER&#xd;
+      <command>cd %WORKSPACE%\bin\release
+SET DEPENDENT_JOB_NAME=release_cts_windows_packaging
+SET P4USER=scmbuild
+SET P4PORT=perforce.spirentcom.com:1666
+c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --createpropfile=yes --runcimaketarballs=no --runsetver=yes --updateilversionxml=yes --updatereleasetag=yes
+
+perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% STC_APP_COPY_ONLY
+perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% COMPILE_FORTHOT
+perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% PACKAGE_P2_INSTALLER
+perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% COPY_P2_INSTALLER
 rem exit /B 0</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>REM echo Creating Results Reporter tar.gz for unix distribution&#xd;
-REM 7z a -ttar ResultsReporter.Unix.tar %WORKSPACE%\framework\ui\resultsanalysis\unix_dist\*&#xd;
-REM 7z a -tgzip ResultsReporter.Unix.tar.gz ResultsReporter.Unix.tar&#xd;
+      <command>REM echo Creating Results Reporter tar.gz for unix distribution
+REM 7z a -ttar ResultsReporter.Unix.tar %WORKSPACE%\framework\ui\resultsanalysis\unix_dist\*
+REM 7z a -tgzip ResultsReporter.Unix.tar.gz ResultsReporter.Unix.tar
 REM del ResultsReporter.Unix.tar</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>REM echo Creating EAT.Unix.tar.gz for unix distribution&#xd;
-REM 7z a -ttar EAT.Unix.tar %WORKSPACE%\framework\ui\EAT\Release_Linux\*&#xd;
-REM 7z a -ttar EAT.Unix.tar %WORKSPACE%\framework\ui\EAT\Build_Linux\configuration&#xd;
-REM 7z a -ttar EAT.Unix.tar %WORKSPACE%\framework\ui\EAT\Build_Linux\plugins&#xd;
-REM 7z a -ttar EAT.Unix.tar %WORKSPACE%\framework\ui\EAT\Build_Linux\.eclipseproduct&#xd;
-REM 7z a -tgzip EAT.Unix.tar.gz EAT.Unix.tar&#xd;
+      <command>REM echo Creating EAT.Unix.tar.gz for unix distribution
+REM 7z a -ttar EAT.Unix.tar %WORKSPACE%\framework\ui\EAT\Release_Linux\*
+REM 7z a -ttar EAT.Unix.tar %WORKSPACE%\framework\ui\EAT\Build_Linux\configuration
+REM 7z a -ttar EAT.Unix.tar %WORKSPACE%\framework\ui\EAT\Build_Linux\plugins
+REM 7z a -ttar EAT.Unix.tar %WORKSPACE%\framework\ui\EAT\Build_Linux\.eclipseproduct
+REM 7z a -tgzip EAT.Unix.tar.gz EAT.Unix.tar
 REM del EAT.Unix.tar</command>
     </hudson.tasks.BatchFile>
   </builders>
@@ -258,7 +257,7 @@ REM del EAT.Unix.tar</command>
     <hudson.plugins.claim.ClaimPublisher plugin="claim@2.9"/>
     <jenkinsci.plugins.influxdb.InfluxDbPublisher plugin="influxdb@1.10.3">
       <selectedTarget>http://influxdb-01.cal.ci.spirentcom.com:8086,release_jenkins_db</selectedTarget>
-      <customPrefix></customPrefix>
+      <customPrefix/>
     </jenkinsci.plugins.influxdb.InfluxDbPublisher>
   </publishers>
   <buildWrappers>
@@ -276,71 +275,71 @@ REM del EAT.Unix.tar</command>
       </resolverDetails>
       <deployerCredentialsConfig>
         <credentials>
-          <username></username>
-          <password></password>
+          <username/>
+          <password/>
         </credentials>
-        <credentialsId></credentialsId>
+        <credentialsId/>
         <overridingCredentials>false</overridingCredentials>
         <ignoreCredentialPluginDisabled>false</ignoreCredentialPluginDisabled>
       </deployerCredentialsConfig>
       <resolverCredentialsConfig>
         <credentials>
-          <username></username>
-          <password></password>
+          <username/>
+          <password/>
         </credentials>
-        <credentialsId></credentialsId>
+        <credentialsId/>
         <overridingCredentials>false</overridingCredentials>
         <ignoreCredentialPluginDisabled>false</ignoreCredentialPluginDisabled>
       </resolverCredentialsConfig>
       <useSpecs>true</useSpecs>
       <uploadSpec>
-        <spec></spec>
+        <spec/>
       </uploadSpec>
       <downloadSpec>
         <spec>{
-    &quot;files&quot;: [
+    "files": [
         {
-            &quot;target&quot;: &quot;$WORKSPACE/TestCenter_WebHelp.tar.gz&quot;,
-            &quot;pattern&quot;: &quot;STC/webhelp/${STC_MAJ_MIN_VERSION}/TestCenter_WebHelp.tar.gz&quot;,
-            &quot;flat&quot;: &quot;true&quot;
+            "target": "$WORKSPACE/TestCenter_WebHelp.tar.gz",
+            "pattern": "STC/webhelp/${STC_MAJ_MIN_VERSION}/TestCenter_WebHelp.tar.gz",
+            "flat": "true"
         },
         {
-            &quot;target&quot;: &quot;$WORKSPACE/WebHelp_mclog.tar.gz&quot;,
-            &quot;pattern&quot;: &quot;STC/webhelp/${STC_MAJ_MIN_VERSION}/WebHelp_mclog.tar.gz&quot;,
-            &quot;flat&quot;: &quot;true&quot;
+            "target": "$WORKSPACE/WebHelp_mclog.tar.gz",
+            "pattern": "STC/webhelp/${STC_MAJ_MIN_VERSION}/WebHelp_mclog.tar.gz",
+            "flat": "true"
         },
         {
-            &quot;target&quot;: &quot;$WORKSPACE/ServerManager_WebHelp.tar.gz&quot;,
-            &quot;pattern&quot;: &quot;STC/webhelp/${STC_MAJ_MIN_VERSION}/ServerManager_WebHelp.tar.gz&quot;,
-            &quot;flat&quot;: &quot;true&quot;
+            "target": "$WORKSPACE/ServerManager_WebHelp.tar.gz",
+            "pattern": "STC/webhelp/${STC_MAJ_MIN_VERSION}/ServerManager_WebHelp.tar.gz",
+            "flat": "true"
         },
         {
-            &quot;target&quot;: &quot;$WORKSPACE/CTS_WebHelp.tar.gz&quot;,
-            &quot;pattern&quot;: &quot;STC/webhelp/${STC_MAJ_MIN_VERSION}/CTS_WebHelp.tar.gz&quot;,
-            &quot;flat&quot;: &quot;true&quot;
+            "target": "$WORKSPACE/CTS_WebHelp.tar.gz",
+            "pattern": "STC/webhelp/${STC_MAJ_MIN_VERSION}/CTS_WebHelp.tar.gz",
+            "flat": "true"
         },
         {
-            &quot;target&quot;: &quot;$WORKSPACE/EnhancedResults_WebHelp.tar.gz&quot;,
-            &quot;pattern&quot;: &quot;STC/webhelp/${STC_MAJ_MIN_VERSION}/EnhancedResults_WebHelp.tar.gz&quot;,
-            &quot;flat&quot;: &quot;true&quot;
+            "target": "$WORKSPACE/EnhancedResults_WebHelp.tar.gz",
+            "pattern": "STC/webhelp/${STC_MAJ_MIN_VERSION}/EnhancedResults_WebHelp.tar.gz",
+            "flat": "true"
         }
     ]
 }</spec>
       </downloadSpec>
-      <deployPattern></deployPattern>
-      <resolvePattern></resolvePattern>
-      <matrixParams></matrixParams>
+      <deployPattern/>
+      <resolvePattern/>
+      <matrixParams/>
       <deployBuildInfo>true</deployBuildInfo>
       <includeEnvVars>false</includeEnvVars>
       <envVarsPatterns>
-        <includePatterns></includePatterns>
+        <includePatterns/>
         <excludePatterns>*password*,*secret*,*key*</excludePatterns>
       </envVarsPatterns>
       <discardOldBuilds>false</discardOldBuilds>
       <discardBuildArtifacts>true</discardBuildArtifacts>
       <asyncBuildRetention>false</asyncBuildRetention>
       <multiConfProject>false</multiConfProject>
-      <customBuildName></customBuildName>
+      <customBuildName/>
       <overrideBuildName>false</overrideBuildName>
     </org.jfrog.hudson.generic.ArtifactoryGenericConfigurator>
     <EnvInjectBuildWrapper plugin="envinject@1.89">
