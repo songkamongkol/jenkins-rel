@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
   <description>*** ---- This job is for Full STC Linux 64-bit BLL packaging --- ***
 Sync SCM build scripts and other files as needed for packaging.&lt;br&gt;
@@ -17,9 +18,9 @@ Jenkins Node(s): spccalengec01,spccalengec02</description>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
     <org.datadog.jenkins.plugins.datadog.DatadogJobProperty plugin="datadog@1.1.3-SNAPSHOT">
       <enableFile>false</enableFile>
-      <tagFile/>
+      <tagFile></tagFile>
       <enableProperty>false</enableProperty>
-      <tagProperties/>
+      <tagProperties></tagProperties>
       <emitSCMEvents>true</emitSCMEvents>
     </org.datadog.jenkins.plugins.datadog.DatadogJobProperty>
     <jenkins.model.BuildDiscarderProperty>
@@ -36,9 +37,9 @@ Jenkins Node(s): spccalengec01,spccalengec02</description>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain/>
-      <token/>
-      <room/>
+      <teamDomain></teamDomain>
+      <token></token>
+      <room></room>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -74,22 +75,22 @@ Jenkins Node(s): spccalengec01,spccalengec02</description>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
-          <description/>
+          <description></description>
           <defaultValue>BAD_BUILD_NUMBER</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>SOURCE_OS</name>
-          <description/>
+          <description></description>
           <defaultValue>EL3Linux64</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>DEPENDENT_JOB_NAME</name>
-          <description/>
+          <description></description>
           <defaultValue>release_bll_linux_packaging</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>RELEASE_TYPE</name>
-          <description/>
+          <description></description>
           <defaultValue>RELEASE</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -108,7 +109,7 @@ Jenkins Node(s): spccalengec01,spccalengec02</description>
         <locked>false</locked>
         <modtime>false</modtime>
         <rmdir>false</rmdir>
-        <streamName/>
+        <streamName></streamName>
         <line>LOCAL</line>
         <view>//SCM/Build_Scripts/STC_Build_Scripts/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/Build_Scripts/STC_Build_Scripts/...
 //SCM/Scripts/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/Build_Scripts/Scripts/...
@@ -122,7 +123,7 @@ Jenkins Node(s): spccalengec01,spccalengec02</description>
 //TestCenter/${BRANCH_NAME}/content/HltAPI/SourceCode/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/content/HltAPI/SourceCode/...
 //TestCenter/${BRANCH_NAME}/content/HltAPI/build/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/content/HltAPI/build/...</view>
         <type>WRITABLE</type>
-        <serverID/>
+        <serverID></serverID>
         <backup>false</backup>
       </spec>
     </workspace>
@@ -131,7 +132,7 @@ Jenkins Node(s): spccalengec01,spccalengec02</description>
       <force>true</force>
       <modtime>false</modtime>
       <quiet>true</quiet>
-      <pin/>
+      <pin></pin>
       <parallel>
         <enable>false</enable>
         <threads>4</threads>
@@ -151,16 +152,16 @@ Jenkins Node(s): spccalengec01,spccalengec02</description>
   <customWorkspace>${JOB_NAME}</customWorkspace>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>echo Make sure TestCenter.Linux.x64.tar is removed otherwise 
-echo the untar command will not work
-del /f /q TestCenter.Linux.x64.tar TestCenter.Linux.x64.full.tar.gz
+      <command>echo Make sure TestCenter.Linux.x64.tar is removed otherwise &#xd;
+echo the untar command will not work&#xd;
+del /f /q TestCenter.Linux.x64.tar TestCenter.Linux.x64.full.tar.gz&#xd;
 </command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
       <project>release_bll_linux_x64_ci</project>
       <filter>build/il/bld_bll-el3-64_x86_64/Release/bin/TestCenter.Linux.x64.full.tar.gz</filter>
-      <target/>
-      <excludes/>
+      <target></target>
+      <excludes></excludes>
       <selector class="hudson.plugins.copyartifact.PermalinkBuildSelector">
         <id>Release Build Passed Regression</id>
       </selector>
@@ -168,97 +169,97 @@ del /f /q TestCenter.Linux.x64.tar TestCenter.Linux.x64.full.tar.gz
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.BatchFile>
-      <command>del /f /q BUILD_*.txt
-echo extracting TestCenter.Linux.x64.full.tar.gz file from job %COPYARTIFACT_BUILD_NUMBER_BLL_LINUX%
-rd /s /q Spirent_TestCenter_Application_Linux_Server
-
-7z x TestCenter.Linux.x64.full.tar.gz &gt; 7zextract_TestCenter.Linux.x64.full.tar.txt
-7z x -y TestCenter.Linux.x64.tar &gt;&gt; 7zextract_TestCenter.Linux.x64.full.tar.txt
-
-del /f /q stcapi_linux*.tgz
-del /f /q install_stcapi*.py
-
-copy session_licensing\postinstall Spirent_TestCenter_Application_Linux_Server\postinstall
-
-del /f /q EnhancedResults_WebHelp.tar*
-set URL=https://artifactory.cal.ci.spirentcom.com/artifactory/STC/webhelp/%STC_MAJ_MIN_VERSION%/EnhancedResults_WebHelp.tar.gz
-echo "Downloading %URL% ..."
-python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --downloadfilefromurl=%URL%
-7z x EnhancedResults_WebHelp.tar.gz &gt; 7zextract_EnhancedResults_WebHelp.txt
-7z x -y EnhancedResults_WebHelp.tar &gt;&gt; 7zextract_EnhancedResults_WebHelp.txt
-move .\HTML5 .\Spirent_TestCenter_Application_Linux_Server\orion-res\content\help
+      <command>del /f /q BUILD_*.txt&#xd;
+echo extracting TestCenter.Linux.x64.full.tar.gz file from job %COPYARTIFACT_BUILD_NUMBER_BLL_LINUX%&#xd;
+rd /s /q Spirent_TestCenter_Application_Linux_Server&#xd;
+&#xd;
+7z x TestCenter.Linux.x64.full.tar.gz &gt; 7zextract_TestCenter.Linux.x64.full.tar.txt&#xd;
+7z x -y TestCenter.Linux.x64.tar &gt;&gt; 7zextract_TestCenter.Linux.x64.full.tar.txt&#xd;
+&#xd;
+del /f /q stcapi_linux*.tgz&#xd;
+del /f /q install_stcapi*.py&#xd;
+&#xd;
+copy session_licensing\postinstall Spirent_TestCenter_Application_Linux_Server\postinstall&#xd;
+&#xd;
+del /f /q EnhancedResults_WebHelp.tar*&#xd;
+set URL=https://artifactory.cal.ci.spirentcom.com/artifactory/STC/webhelp/%STC_MAJ_MIN_VERSION%/EnhancedResults_WebHelp.tar.gz&#xd;
+echo &quot;Downloading %URL% ...&quot;&#xd;
+python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --downloadfilefromurl=%URL%&#xd;
+7z x EnhancedResults_WebHelp.tar.gz &gt; 7zextract_EnhancedResults_WebHelp.txt&#xd;
+7z x -y EnhancedResults_WebHelp.tar &gt;&gt; 7zextract_EnhancedResults_WebHelp.txt&#xd;
+move .\HTML5 .\Spirent_TestCenter_Application_Linux_Server\orion-res\content\help&#xd;
 </command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
-      <project>release_launch_nightly_packaging</project>
+      <project>release_launch_nightly_packaging_backup</project>
       <filter>BUILD_*.txt</filter>
-      <target/>
-      <excludes/>
+      <target></target>
+      <excludes></excludes>
       <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
       <project>release_results_reporter_windows_ci</project>
       <filter>Unix64ResultsReporter.Unix.tar.gz</filter>
-      <target/>
-      <excludes/>
+      <target></target>
+      <excludes></excludes>
       <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.BatchFile>
-      <command>del /f /q Unix64ResultsReporter.Unix.tar
-rd /s /q "Results Reporter - Unix"
-7z x Unix64ResultsReporter.Unix.tar.gz &gt; 7zextract_Unix64ResultsReporter.Unix.tar.txt
-7z x -y -o"%WORKSPACE%\Results Reporter - Unix" Unix64ResultsReporter.Unix.tar &gt;&gt; 7zextract_Unix64ResultsReporter.Unix.tar.txt
-
-
-SET DEPENDENT_JOB_NAME=%JOB_NAME%
+      <command>del /f /q Unix64ResultsReporter.Unix.tar&#xd;
+rd /s /q &quot;Results Reporter - Unix&quot;&#xd;
+7z x Unix64ResultsReporter.Unix.tar.gz &gt; 7zextract_Unix64ResultsReporter.Unix.tar.txt&#xd;
+7z x -y -o&quot;%WORKSPACE%\Results Reporter - Unix&quot; Unix64ResultsReporter.Unix.tar &gt;&gt; 7zextract_Unix64ResultsReporter.Unix.tar.txt&#xd;
+&#xd;
+&#xd;
+SET DEPENDENT_JOB_NAME=%JOB_NAME%&#xd;
 c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --updaterrjarversionlinux64=yes</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>
-REM -- not required for 4.77 -- copy \\storage.cal.ci.spirentcom.com\builds\stcweb\linux64\stc-rest-linux64.tar.gz stc-rest-linux64.tar.gz
-REM -- not required for 4.77 -- 7z x stc-rest-linux64.tar.gz
-REM -- not required for 4.77 -- 7z x -y -o"%WORKSPACE%\Spirent_TestCenter_Application_Linux_Server" stc-rest-linux64.tar
-
-REM set URL=https://jenkins.oriondev.net/job/stc-web/lastSuccessfulBuild/s3/download/stc-rest-linux64.tar.gz
-REM python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --downloadfilefromurl=%URL%
-del /f /q stc-rest*.tar
-7z x stc-rest-linux64.tar.gz
-7z x -y -o"%WORKSPACE%\Spirent_TestCenter_Application_Linux_Server" stc-rest-linux64.tar
-
-REM -- Process api navigator ---
-copy api-navigator %WORKSPACE%\Spirent_TestCenter_Application_Linux_Server\api-navigator
-
-REM -- Process OpenHLT ---
-del /f /q oht-rest-linux64*.tar
-7z x oht-rest-linux64.tar.gz
-7z x -y -o"%WORKSPACE%\Spirent_TestCenter_Application_Linux_Server" oht-rest-linux64.tar
-
+      <command>&#xd;
+REM -- not required for 4.77 -- copy \\storage.cal.ci.spirentcom.com\builds\stcweb\linux64\stc-rest-linux64.tar.gz stc-rest-linux64.tar.gz&#xd;
+REM -- not required for 4.77 -- 7z x stc-rest-linux64.tar.gz&#xd;
+REM -- not required for 4.77 -- 7z x -y -o&quot;%WORKSPACE%\Spirent_TestCenter_Application_Linux_Server&quot; stc-rest-linux64.tar&#xd;
+&#xd;
+REM set URL=https://jenkins.oriondev.net/job/stc-web/lastSuccessfulBuild/s3/download/stc-rest-linux64.tar.gz&#xd;
+REM python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --downloadfilefromurl=%URL%&#xd;
+del /f /q stc-rest*.tar&#xd;
+7z x stc-rest-linux64.tar.gz&#xd;
+7z x -y -o&quot;%WORKSPACE%\Spirent_TestCenter_Application_Linux_Server&quot; stc-rest-linux64.tar&#xd;
+&#xd;
+REM -- Process api navigator ---&#xd;
+copy api-navigator %WORKSPACE%\Spirent_TestCenter_Application_Linux_Server\api-navigator&#xd;
+&#xd;
+REM -- Process OpenHLT ---&#xd;
+del /f /q oht-rest-linux64*.tar&#xd;
+7z x oht-rest-linux64.tar.gz&#xd;
+7z x -y -o&quot;%WORKSPACE%\Spirent_TestCenter_Application_Linux_Server&quot; oht-rest-linux64.tar&#xd;
+&#xd;
 </command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>echo "Running ci_cleanup_by_date.pl."
+      <command>echo &quot;Running ci_cleanup_by_date.pl.&quot;&#xd;
 perl %WORKSPACE%\Build_Scripts\Scripts\ci_cleanup_by_date.pl</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>SET DEPENDENT_JOB_NAME=%JOB_NAME%
-c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --createpropfile=no --runsetver=no --runcopyeattomartin=no --updatepkgindextcl=yes --updatespirenttestcentertcl=yes --updatestclibtcl=yes --updategemspecversion=yes --runcimaketarballs=no --updateilversionxml=yes --updatemagellanversion=yes
-
-c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --createpropfile=yes --runcimaketarballs=yes --runsetver=no --runcopyeattomartin=no
+      <command>SET DEPENDENT_JOB_NAME=%JOB_NAME%&#xd;
+c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --createpropfile=no --runsetver=no --runcopyeattomartin=no --updatepkgindextcl=yes --updatespirenttestcentertcl=yes --updatestclibtcl=yes --updategemspecversion=yes --runcimaketarballs=no --updateilversionxml=yes --updatemagellanversion=yes&#xd;
+&#xd;
+c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --createpropfile=yes --runcimaketarballs=yes --runsetver=no --runcopyeattomartin=no&#xd;
 </command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>setlocal EnableExtensions DisableDelayedExpansion
-
-set branch=%STC_MAJ_MIN_VERSION%
-set release=\\devops-nas-1.cal.ci.spirentcom.com\builds\NoCrypto\%branch%\linux\Release_x64
-
-rd /s /q "%release%"
-
-if not exist %release% ( mkdir %release% )
-
-copy %WORKSPACE%\TestCenter.Linux.x64.full.tar.gz %release%\TestCenter.Linux.x64.full.tar.gz /y
+      <command>setlocal EnableExtensions DisableDelayedExpansion&#xd;
+&#xd;
+set branch=%STC_MAJ_MIN_VERSION%&#xd;
+set release=\\devops-nas-1.cal.ci.spirentcom.com\builds\NoCrypto\%branch%\linux\Release_x64&#xd;
+&#xd;
+rd /s /q &quot;%release%&quot;&#xd;
+&#xd;
+if not exist %release% ( mkdir %release% )&#xd;
+&#xd;
+copy %WORKSPACE%\TestCenter.Linux.x64.full.tar.gz %release%\TestCenter.Linux.x64.full.tar.gz /y&#xd;
 </command>
     </hudson.tasks.BatchFile>
   </builders>
@@ -284,7 +285,7 @@ copy %WORKSPACE%\TestCenter.Linux.x64.full.tar.gz %release%\TestCenter.Linux.x64
             <recipientProviders>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <replyTo>$PROJECT_DEFAULT_REPLYTO</replyTo>
@@ -295,9 +296,9 @@ copy %WORKSPACE%\TestCenter.Linux.x64.full.tar.gz %release%\TestCenter.Linux.x64
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern/>
+      <attachmentsPattern></attachmentsPattern>
       <presendScript>$DEFAULT_PRESEND_SCRIPT</presendScript>
-      <postsendScript/>
+      <postsendScript></postsendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
       <replyTo>$DEFAULT_RECIPIENTS</replyTo>
@@ -306,7 +307,7 @@ copy %WORKSPACE%\TestCenter.Linux.x64.full.tar.gz %release%\TestCenter.Linux.x64
     </hudson.plugins.emailext.ExtendedEmailPublisher>
     <jenkinsci.plugins.influxdb.InfluxDbPublisher plugin="influxdb@1.10.3">
       <selectedTarget>http://influxdb-01.cal.ci.spirentcom.com:8086,release_jenkins_db</selectedTarget>
-      <customPrefix/>
+      <customPrefix></customPrefix>
     </jenkinsci.plugins.influxdb.InfluxDbPublisher>
     <hudson.plugins.parameterizedtrigger.BuildTrigger plugin="parameterized-trigger@2.35.2">
       <configs>
@@ -364,7 +365,7 @@ STC_SUBDIR=Spirent_TestCenter_Application_Linux</properties>
           <username>spirent</username>
           <password>c3BpcmVudA==</password>
         </credentials>
-        <credentialsId/>
+        <credentialsId></credentialsId>
         <overridingCredentials>false</overridingCredentials>
         <ignoreCredentialPluginDisabled>false</ignoreCredentialPluginDisabled>
       </deployerCredentialsConfig>
@@ -373,49 +374,49 @@ STC_SUBDIR=Spirent_TestCenter_Application_Linux</properties>
           <username>spirent</username>
           <password>c3BpcmVudA==</password>
         </credentials>
-        <credentialsId/>
+        <credentialsId></credentialsId>
         <overridingCredentials>false</overridingCredentials>
         <ignoreCredentialPluginDisabled>false</ignoreCredentialPluginDisabled>
       </resolverCredentialsConfig>
       <useSpecs>true</useSpecs>
       <uploadSpec>
-        <spec/>
+        <spec></spec>
       </uploadSpec>
       <downloadSpec>
         <spec>{
-    "files": [
+    &quot;files&quot;: [
         {
-            "pattern": "stc-web/stc-rest-linux64.tar.gz",
-            "target": "./stc-rest-linux64.tar.gz",
-            "flat": "true"
+            &quot;pattern&quot;: &quot;stc-web/stc-rest-linux64.tar.gz&quot;,
+            &quot;target&quot;: &quot;./stc-rest-linux64.tar.gz&quot;,
+            &quot;flat&quot;: &quot;true&quot;
         },
        {
-            "pattern": "stc/api-navigator/api-navigator-linux-amd64",
-            "target": "./api-navigator",
-            "flat": "true"
+            &quot;pattern&quot;: &quot;stc/api-navigator/api-navigator-linux-amd64&quot;,
+            &quot;target&quot;: &quot;./api-navigator&quot;,
+            &quot;flat&quot;: &quot;true&quot;
         },
        {
-            "pattern": "stc/oht-web/oht-rest-linux64.tar.gz",
-            "target": "./oht-rest-linux64.tar.gz",
-            "flat": "true"
+            &quot;pattern&quot;: &quot;stc/oht-web/oht-rest-linux64.tar.gz&quot;,
+            &quot;target&quot;: &quot;./oht-rest-linux64.tar.gz&quot;,
+            &quot;flat&quot;: &quot;true&quot;
         }
     ]
 }</spec>
       </downloadSpec>
-      <deployPattern/>
-      <resolvePattern/>
-      <matrixParams/>
+      <deployPattern></deployPattern>
+      <resolvePattern></resolvePattern>
+      <matrixParams></matrixParams>
       <deployBuildInfo>true</deployBuildInfo>
       <includeEnvVars>false</includeEnvVars>
       <envVarsPatterns>
-        <includePatterns/>
+        <includePatterns></includePatterns>
         <excludePatterns>*password*,*secret*,*key*</excludePatterns>
       </envVarsPatterns>
       <discardOldBuilds>false</discardOldBuilds>
       <discardBuildArtifacts>true</discardBuildArtifacts>
       <asyncBuildRetention>false</asyncBuildRetention>
       <multiConfProject>false</multiConfProject>
-      <customBuildName/>
+      <customBuildName></customBuildName>
       <overrideBuildName>false</overrideBuildName>
     </org.jfrog.hudson.generic.ArtifactoryGenericConfigurator>
   </buildWrappers>

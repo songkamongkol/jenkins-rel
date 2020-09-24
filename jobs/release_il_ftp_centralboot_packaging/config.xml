@@ -77,6 +77,7 @@ Triggers integration_set_status job to create entry in build database&lt;br&gt;<
     <projectPath>//SCM/Build_Scripts/STC_Build_Scripts/... //ws/Build_Scripts/STC_Build_Scripts/...
 //SCM/Scripts/... //ws/Build_Scripts/Scripts/...</projectPath>
     <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
+    <clientOwner></clientOwner>
     <p4SysDrive>C:</p4SysDrive>
     <p4SysRoot>C:\WINDOWS</p4SysRoot>
     <p4Tool>p4</p4Tool>
@@ -124,7 +125,7 @@ Triggers integration_set_status job to create entry in build database&lt;br&gt;<
 del /f /q *IL_*.txt</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
-      <project>release_launch_nightly_packaging</project>
+      <project>release_launch_nightly_packaging_backup</project>
       <filter>*IL_*.txt,BUILD_*.txt</filter>
       <target></target>
       <excludes></excludes>

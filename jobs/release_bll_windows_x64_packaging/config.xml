@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
-  <description/>
+  <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.4.1">
@@ -13,9 +14,9 @@ release_bll_win_pkg_webhelp</blockingJobs>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
     <org.datadog.jenkins.plugins.datadog.DatadogJobProperty plugin="datadog@1.1.3-SNAPSHOT">
       <enableFile>false</enableFile>
-      <tagFile/>
+      <tagFile></tagFile>
       <enableProperty>false</enableProperty>
-      <tagProperties/>
+      <tagProperties></tagProperties>
       <emitSCMEvents>true</emitSCMEvents>
     </org.datadog.jenkins.plugins.datadog.DatadogJobProperty>
     <jenkins.model.BuildDiscarderProperty>
@@ -32,9 +33,9 @@ release_bll_win_pkg_webhelp</blockingJobs>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain/>
-      <token/>
-      <room/>
+      <teamDomain></teamDomain>
+      <token></token>
+      <room></room>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -75,12 +76,12 @@ release_bll_win_pkg_webhelp</blockingJobs>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLL_BUILD_NUMBER</name>
-          <description/>
+          <description></description>
           <defaultValue>BAD_BUILD_NUMBER</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>SOURCE_OS</name>
-          <description/>
+          <description></description>
           <defaultValue>BLLWindows</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -88,12 +89,12 @@ release_bll_win_pkg_webhelp</blockingJobs>
           <description>The release type tag displayed in STC GUI Help-About and splash screen. Available option are:
 - Alpha
 - Beta
-- RELEASE (no release type tag will be displayed in the GUI if set to 'RELEASE')</description>
+- RELEASE (no release type tag will be displayed in the GUI if set to &apos;RELEASE&apos;)</description>
           <defaultValue>RELEASE</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>MODE</name>
-          <description/>
+          <description></description>
           <defaultValue>NIGHTLY</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -112,7 +113,7 @@ release_bll_win_pkg_webhelp</blockingJobs>
         <locked>false</locked>
         <modtime>false</modtime>
         <rmdir>false</rmdir>
-        <streamName/>
+        <streamName></streamName>
         <line>LOCAL</line>
         <view>//SCM/Build_Scripts/STC_Build_Scripts/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/Build_Scripts/STC_Build_Scripts/...
 //SCM/Scripts/ci_* //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/Build_Scripts/Scripts/ci_*
@@ -133,7 +134,7 @@ release_bll_win_pkg_webhelp</blockingJobs>
 //TestCenter/${BRANCH_NAME}/content/HltAPI/SourceCode/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/content/HltAPI/SourceCode/...
 //TestCenter/${BRANCH_NAME}/content/HltAPI/build/... //jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}/content/HltAPI/build/...</view>
         <type>WRITABLE</type>
-        <serverID/>
+        <serverID></serverID>
         <backup>false</backup>
       </spec>
     </workspace>
@@ -142,7 +143,7 @@ release_bll_win_pkg_webhelp</blockingJobs>
       <force>false</force>
       <modtime>false</modtime>
       <quiet>true</quiet>
-      <pin/>
+      <pin></pin>
       <parallel>
         <enable>false</enable>
         <threads>4</threads>
@@ -163,19 +164,19 @@ release_bll_win_pkg_webhelp</blockingJobs>
   <customWorkspace>${JOB_NAME}</customWorkspace>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>del BLL_changelist*.txt
-del UI_changelist*.txt
-del Magellan_*end_Build_*.txt
-del /f /q archangel_*.txt
-del BUILD_*.txt
-del /f Win64ResultsReporter.tar
-del /f Win64ResultsReporter.tar.gz
-
-REM downloading webhelp files from Artifactory
-del /f /q TestCenter_WebHelp.tar* ServerManager_WebHelp.tar* EnhancedResults_WebHelp.tar*
-curl -o TestCenter_WebHelp.tar.gz https://artifactory.cal.ci.spirentcom.com/artifactory/STC/webhelp/%STC_MAJ_MIN_VERSION%/TestCenter_WebHelp.tar.gz
-curl -o ServerManager_WebHelp.tar.gz https://artifactory.cal.ci.spirentcom.com/artifactory/STC/webhelp/%STC_MAJ_MIN_VERSION%/ServerManager_WebHelp.tar.gz
-curl -o EnhancedResults_WebHelp.tar.gz https://artifactory.cal.ci.spirentcom.com/artifactory/STC/webhelp/%STC_MAJ_MIN_VERSION%/EnhancedResults_WebHelp.tar.gz
+      <command>del BLL_changelist*.txt&#xd;
+del UI_changelist*.txt&#xd;
+del Magellan_*end_Build_*.txt&#xd;
+del /f /q archangel_*.txt&#xd;
+del BUILD_*.txt&#xd;
+del /f Win64ResultsReporter.tar&#xd;
+del /f Win64ResultsReporter.tar.gz&#xd;
+&#xd;
+REM downloading webhelp files from Artifactory&#xd;
+del /f /q TestCenter_WebHelp.tar* ServerManager_WebHelp.tar* EnhancedResults_WebHelp.tar*&#xd;
+curl -o TestCenter_WebHelp.tar.gz https://artifactory.cal.ci.spirentcom.com/artifactory/STC/webhelp/%STC_MAJ_MIN_VERSION%/TestCenter_WebHelp.tar.gz&#xd;
+curl -o ServerManager_WebHelp.tar.gz https://artifactory.cal.ci.spirentcom.com/artifactory/STC/webhelp/%STC_MAJ_MIN_VERSION%/ServerManager_WebHelp.tar.gz&#xd;
+curl -o EnhancedResults_WebHelp.tar.gz https://artifactory.cal.ci.spirentcom.com/artifactory/STC/webhelp/%STC_MAJ_MIN_VERSION%/EnhancedResults_WebHelp.tar.gz&#xd;
 exit /B 0</command>
     </hudson.tasks.BatchFile>
     <org.jenkinsci.plugins.conditionalbuildstep.singlestep.SingleConditionalBuilder plugin="conditional-buildstep@1.3.5">
@@ -187,8 +188,8 @@ exit /B 0</command>
       <buildStep class="hudson.plugins.copyartifact.CopyArtifact" plugin="copyartifact@1.38.1">
         <project>release_ui_x64_ci</project>
         <filter>bin/Release_x64/TestCenter.Windows.x64.no_version.tar.gz, *BLL_changelist*.txt,*UI_changelist*.txt,Magellan_*end_Build_*.txt,archangel_*.txt</filter>
-        <target/>
-        <excludes/>
+        <target></target>
+        <excludes></excludes>
         <selector class="hudson.plugins.copyartifact.PermalinkBuildSelector">
           <id>Release Build Passed Regression</id>
         </selector>
@@ -198,24 +199,24 @@ exit /B 0</command>
       <runner class="org.jenkins_ci.plugins.run_condition.BuildStepRunner$Fail" plugin="run-condition@1.0"/>
     </org.jenkinsci.plugins.conditionalbuildstep.singlestep.SingleConditionalBuilder>
     <hudson.tasks.BatchFile>
-      <command>echo extracting TestCenter.Windows.x64.no_version.tar.gz file from job %COPYARTIFACT_BUILD_NUMBER_RELEASE_UI_X64_CI%
-python framework\tools\buildUtil\package.py --install TestCenter.Windows.x64.no_version.tar.gz --directory=bin/Release_x64
+      <command>echo extracting TestCenter.Windows.x64.no_version.tar.gz file from job %COPYARTIFACT_BUILD_NUMBER_RELEASE_UI_X64_CI%&#xd;
+python framework\tools\buildUtil\package.py --install TestCenter.Windows.x64.no_version.tar.gz --directory=bin/Release_x64&#xd;
 </command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
       <project>release_results_reporter_windows_ci</project>
       <filter>Win64ResultsReporter.tar.gz</filter>
-      <target/>
-      <excludes/>
+      <target></target>
+      <excludes></excludes>
       <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
-      <project>release_launch_nightly_packaging</project>
+      <project>release_launch_nightly_packaging_backup</project>
       <filter>BUILD_*.txt</filter>
-      <target/>
-      <excludes/>
+      <target></target>
+      <excludes></excludes>
       <selector class="hudson.plugins.copyartifact.TriggeredBuildSelector">
         <fallbackToLastSuccessful>true</fallbackToLastSuccessful>
         <upstreamFilterStrategy>UseGlobalSetting</upstreamFilterStrategy>
@@ -225,69 +226,69 @@ python framework\tools\buildUtil\package.py --install TestCenter.Windows.x64.no_
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.BatchFile>
-      <command>echo extracting Win64ResultsReporter.tar.gz file from job %COPYARTIFACT_BUILD_NUMBER_RESULTS_REPORTER_WINDOWS%
-python framework\tools\buildUtil\package.py --install Win64ResultsReporter.tar.gz --directory=framework/ui/resultsanalysis/dist
-
-set
-
-c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --updaterrjarversion=yes
-
-
-
-
+      <command>echo extracting Win64ResultsReporter.tar.gz file from job %COPYARTIFACT_BUILD_NUMBER_RESULTS_REPORTER_WINDOWS%&#xd;
+python framework\tools\buildUtil\package.py --install Win64ResultsReporter.tar.gz --directory=framework/ui/resultsanalysis/dist&#xd;
+&#xd;
+set&#xd;
+&#xd;
+c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --updaterrjarversion=yes&#xd;
+&#xd;
+&#xd;
+&#xd;
+&#xd;
 </command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>REM if "%MODE%" == "INC" goto skipstcweb
-REM del /f /q %WORKSPACE%\stc-rest*.tar*
-REM del /f /q stc-rest-win64.tar.gz
-REM set URL=https://jenkins.oriondev.net/job/stc-web/lastSuccessfulBuild/s3/download/stc-rest-win64.tar.gz
-REM python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --downloadfilefromurl=%URL%
-
-del /f /q stc-rest-win64.tar
-7z x stc-rest-win64.tar.gz
-7z x -y -o"%WORKSPACE%\bin\Release_x64" stc-rest-win64.tar
-REM -- Process api navigator ---
-copy api-navigator.exe %WORKSPACE%\bin\Release_x64\api-navigator.exe
-
-REM -- Process OpenHLT ---
-del /f /q oht-rest-win64.tar
-7z x oht-rest-win64.tar.gz
-7z x -y -o"%WORKSPACE%\bin\Release_x64" oht-rest-win64.tar
-
-REM :skipstcweb
-
+      <command>REM if &quot;%MODE%&quot; == &quot;INC&quot; goto skipstcweb&#xd;
+REM del /f /q %WORKSPACE%\stc-rest*.tar*&#xd;
+REM del /f /q stc-rest-win64.tar.gz&#xd;
+REM set URL=https://jenkins.oriondev.net/job/stc-web/lastSuccessfulBuild/s3/download/stc-rest-win64.tar.gz&#xd;
+REM python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --downloadfilefromurl=%URL%&#xd;
+&#xd;
+del /f /q stc-rest-win64.tar&#xd;
+7z x stc-rest-win64.tar.gz&#xd;
+7z x -y -o&quot;%WORKSPACE%\bin\Release_x64&quot; stc-rest-win64.tar&#xd;
+REM -- Process api navigator ---&#xd;
+copy api-navigator.exe %WORKSPACE%\bin\Release_x64\api-navigator.exe&#xd;
+&#xd;
+REM -- Process OpenHLT ---&#xd;
+del /f /q oht-rest-win64.tar&#xd;
+7z x oht-rest-win64.tar.gz&#xd;
+7z x -y -o&quot;%WORKSPACE%\bin\Release_x64&quot; oht-rest-win64.tar&#xd;
+&#xd;
+REM :skipstcweb&#xd;
+&#xd;
 </command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>cd %WORKSPACE%\bin\release_x64
-rem SET DEPENDENT_JOB_NAME=integration_package_cts_windows
-SET DEPENDENT_JOB_NAME=%JOB_NAME%
-SET P4USER=scmbuild
-SET P4PORT=perforce.spirentcom.com:1666
-copy  %WIN_WORKSPACE%\%JOB_NAME%\bin\Release_x64\NTAF\tool\Stc420Publication.xml %WIN_WORKSPACE%\%JOB_NAME%\bin\Release_x64\NTAF\tool\Stc500Publication.xml /y
-c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --createpropfile=yes --runcimaketarballs=no --runsetver=yes --updateilversionxml=yes --updatereleasetag=yes --updatepkgindextcl=yes --updatespirenttestcentertcl=yes --updatestclibtcl=yes --updatentafxml=yes --updatehltapiversion=yes --updatemagellanversion=yes
-
-perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% STC_X64_APP_COPY_ONLY
-
-perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% PACKAGE_X64_P2_INSTALLER
-
-perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% COPY_X64_P2_INSTALLER
+      <command>cd %WORKSPACE%\bin\release_x64&#xd;
+rem SET DEPENDENT_JOB_NAME=integration_package_cts_windows&#xd;
+SET DEPENDENT_JOB_NAME=%JOB_NAME%&#xd;
+SET P4USER=scmbuild&#xd;
+SET P4PORT=perforce.spirentcom.com:1666&#xd;
+copy  %WIN_WORKSPACE%\%JOB_NAME%\bin\Release_x64\NTAF\tool\Stc420Publication.xml %WIN_WORKSPACE%\%JOB_NAME%\bin\Release_x64\NTAF\tool\Stc500Publication.xml /y&#xd;
+c:\python27\python %WORKSPACE%\Build_Scripts\Scripts\ci_run_jenkins_steps.py --createpropfile=yes --runcimaketarballs=no --runsetver=yes --updateilversionxml=yes --updatereleasetag=yes --updatepkgindextcl=yes --updatespirenttestcentertcl=yes --updatestclibtcl=yes --updatentafxml=yes --updatehltapiversion=yes --updatemagellanversion=yes&#xd;
+&#xd;
+perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% STC_X64_APP_COPY_ONLY&#xd;
+&#xd;
+perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% PACKAGE_X64_P2_INSTALLER&#xd;
+&#xd;
+perl %WORKSPACE%\Build_Scripts\STC_Build_Scripts\ci_packageinstaller.pl %WORKSPACE% %WORKSPACE%\Installer %STC_MAJ_MIN_VERSION%.%FULLVER% COPY_X64_P2_INSTALLER&#xd;
 </command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>setlocal EnableExtensions DisableDelayedExpansion
-
-set branch=%STC_MAJ_MIN_VERSION%
-set release=\\devops-nas-1.cal.ci.spirentcom.com\builds\NoCrypto\%branch%\window\Release_x64
-
-rd /s /q "%release%"
-
-if not exist %release% ( mkdir %release% )
-
-
-copy %WORKSPACE%\TestCenter.Windows.x64.no_version.tar.gz %release%\TestCenter.Windows.x64.no_version.tar.gz /y
-copy %WORKSPACE%\STAKCommands.beta.Windows.tar.gz %release%\STAKCommands.beta.Windows.tar.gz /y
+      <command>setlocal EnableExtensions DisableDelayedExpansion&#xd;
+&#xd;
+set branch=%STC_MAJ_MIN_VERSION%&#xd;
+set release=\\devops-nas-1.cal.ci.spirentcom.com\builds\NoCrypto\%branch%\window\Release_x64&#xd;
+&#xd;
+rd /s /q &quot;%release%&quot;&#xd;
+&#xd;
+if not exist %release% ( mkdir %release% )&#xd;
+&#xd;
+&#xd;
+copy %WORKSPACE%\TestCenter.Windows.x64.no_version.tar.gz %release%\TestCenter.Windows.x64.no_version.tar.gz /y&#xd;
+copy %WORKSPACE%\STAKCommands.beta.Windows.tar.gz %release%\STAKCommands.beta.Windows.tar.gz /y&#xd;
 copy %WORKSPACE%\Magellan_*end_Build_*.txt %release%\Magellan_*end_Build_*.txt</command>
     </hudson.tasks.BatchFile>
   </builders>
@@ -311,7 +312,7 @@ copy %WORKSPACE%\Magellan_*end_Build_*.txt %release%\Magellan_*end_Build_*.txt</
       <script plugin="script-security@1.27">
         <script>import hudson.model.*
 
-if(manager.logContains(".*getFileVer.vbs(.*) (null): The system cannot find the file specified.*")) {
+if(manager.logContains(&quot;.*getFileVer.vbs(.*) (null): The system cannot find the file specified.*&quot;)) {
    manager.build.@result = hudson.model.Result.FAILURE
 }
 
@@ -334,7 +335,7 @@ if(manager.logContains(".*getFileVer.vbs(.*) (null): The system cannot find the 
               <hudson.plugins.emailext.plugins.recipients.DevelopersRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
-            <attachmentsPattern/>
+            <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
             <compressBuildLog>false</compressBuildLog>
             <contentType>project</contentType>
@@ -344,18 +345,18 @@ if(manager.logContains(".*getFileVer.vbs(.*) (null): The system cannot find the 
       <contentType>default</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>$DEFAULT_CONTENT</defaultContent>
-      <attachmentsPattern/>
-      <presendScript/>
-      <postsendScript/>
+      <attachmentsPattern></attachmentsPattern>
+      <presendScript></presendScript>
+      <postsendScript></postsendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
-      <replyTo/>
+      <replyTo></replyTo>
       <saveOutput>false</saveOutput>
       <disabled>true</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
     <jenkinsci.plugins.influxdb.InfluxDbPublisher plugin="influxdb@1.10.3">
       <selectedTarget>http://influxdb-01.cal.ci.spirentcom.com:8086,release_jenkins_db</selectedTarget>
-      <customPrefix/>
+      <customPrefix></customPrefix>
     </jenkinsci.plugins.influxdb.InfluxDbPublisher>
     <hudson.plugins.parameterizedtrigger.BuildTrigger plugin="parameterized-trigger@2.35.2">
       <configs>
@@ -407,61 +408,61 @@ if(manager.logContains(".*getFileVer.vbs(.*) (null): The system cannot find the 
       </resolverDetails>
       <deployerCredentialsConfig>
         <credentials>
-          <username/>
-          <password/>
+          <username></username>
+          <password></password>
         </credentials>
-        <credentialsId/>
+        <credentialsId></credentialsId>
         <overridingCredentials>false</overridingCredentials>
         <ignoreCredentialPluginDisabled>false</ignoreCredentialPluginDisabled>
       </deployerCredentialsConfig>
       <resolverCredentialsConfig>
         <credentials>
-          <username/>
-          <password/>
+          <username></username>
+          <password></password>
         </credentials>
-        <credentialsId/>
+        <credentialsId></credentialsId>
         <overridingCredentials>false</overridingCredentials>
         <ignoreCredentialPluginDisabled>false</ignoreCredentialPluginDisabled>
       </resolverCredentialsConfig>
       <useSpecs>true</useSpecs>
       <uploadSpec>
-        <spec/>
+        <spec></spec>
       </uploadSpec>
       <downloadSpec>
         <spec>{
-    "files": [
+    &quot;files&quot;: [
         {
-            "pattern": "stc-web/stc-rest-win64.tar.gz",
-            "target": "./stc-rest-win64.tar.gz",
-            "flat": "true"
+            &quot;pattern&quot;: &quot;stc-web/stc-rest-win64.tar.gz&quot;,
+            &quot;target&quot;: &quot;./stc-rest-win64.tar.gz&quot;,
+            &quot;flat&quot;: &quot;true&quot;
         },
        {
-            "pattern": "stc/api-navigator/api-navigator-windows-amd64.exe",
-            "target": "./api-navigator.exe",
-            "flat": "true"
+            &quot;pattern&quot;: &quot;stc/api-navigator/api-navigator-windows-amd64.exe&quot;,
+            &quot;target&quot;: &quot;./api-navigator.exe&quot;,
+            &quot;flat&quot;: &quot;true&quot;
         },
        {
-            "pattern": "stc/oht-web/oht-rest-win64.tar.gz",
-            "target": "./oht-rest-win64.tar.gz",
-            "flat": "true"
+            &quot;pattern&quot;: &quot;stc/oht-web/oht-rest-win64.tar.gz&quot;,
+            &quot;target&quot;: &quot;./oht-rest-win64.tar.gz&quot;,
+            &quot;flat&quot;: &quot;true&quot;
         }
     ]
 }</spec>
       </downloadSpec>
-      <deployPattern/>
-      <resolvePattern/>
-      <matrixParams/>
+      <deployPattern></deployPattern>
+      <resolvePattern></resolvePattern>
+      <matrixParams></matrixParams>
       <deployBuildInfo>true</deployBuildInfo>
       <includeEnvVars>false</includeEnvVars>
       <envVarsPatterns>
-        <includePatterns/>
+        <includePatterns></includePatterns>
         <excludePatterns>*password*,*secret*,*key*</excludePatterns>
       </envVarsPatterns>
       <discardOldBuilds>false</discardOldBuilds>
       <discardBuildArtifacts>true</discardBuildArtifacts>
       <asyncBuildRetention>false</asyncBuildRetention>
       <multiConfProject>false</multiConfProject>
-      <customBuildName/>
+      <customBuildName></customBuildName>
       <overrideBuildName>false</overrideBuildName>
     </org.jfrog.hudson.generic.ArtifactoryGenericConfigurator>
     <EnvInjectBuildWrapper plugin="envinject@1.89">
@@ -474,15 +475,15 @@ ISCMDBLD=c:\progra~2\instal~1\2014\system\iscmdbld.exe</propertiesContent>
     <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
       <buildSteps>
         <hudson.tasks.BatchFile>
-          <command>setlocal enabledelayedexpansion
-SET modified=%WORKSPACE:/=\%
-if "%P4CLEANWORKSPACE%" == "true" (
-
-echo "Removing %modified%"
-rd /s /q %modified%
-REM jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}
-echo 3LoQdl*vYiz3|p4 -u scmbuild-p perforce.spirentcom.com:1666 login
-p4 -u scmbuild -p perforce.spirentcom.com:1666 -c jenkins-%NODE_NAME%-%JOB_NAME%-%BRANCH_NAME% sync //jenkins-%NODE_NAME%-%JOB_NAME%-%BRANCH_NAME%/...#none &gt; clean.txt
+          <command>setlocal enabledelayedexpansion&#xd;
+SET modified=%WORKSPACE:/=\%&#xd;
+if &quot;%P4CLEANWORKSPACE%&quot; == &quot;true&quot; (&#xd;
+&#xd;
+echo &quot;Removing %modified%&quot;&#xd;
+rd /s /q %modified%&#xd;
+REM jenkins-${NODE_NAME}-${JOB_NAME}-${BRANCH_NAME}&#xd;
+echo 3LoQdl*vYiz3|p4 -u scmbuild-p perforce.spirentcom.com:1666 login&#xd;
+p4 -u scmbuild -p perforce.spirentcom.com:1666 -c jenkins-%NODE_NAME%-%JOB_NAME%-%BRANCH_NAME% sync //jenkins-%NODE_NAME%-%JOB_NAME%-%BRANCH_NAME%/...#none &gt; clean.txt&#xd;
 )</command>
         </hudson.tasks.BatchFile>
       </buildSteps>

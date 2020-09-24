@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
   <actions/>
   <description>This job is watching ipq_version.txt file in releaes branch such as //TestCenter/5.06_rel/framework/il/platform/fpga/testmodule/ccpu/revanche/ipq_version.txt and will run this job to retain those versions in artifactory</description>
   <keepDependencies>false</keepDependencies>
@@ -20,9 +21,9 @@
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <jenkins.plugins.slack.SlackNotifier_-SlackJobProperty plugin="slack@1.7">
-      <teamDomain/>
-      <token/>
-      <room/>
+      <teamDomain></teamDomain>
+      <token></token>
+      <room></room>
       <startNotification>false</startNotification>
       <notifySuccess>false</notifySuccess>
       <notifyAborted>false</notifyAborted>
@@ -48,11 +49,11 @@
         <locked>false</locked>
         <modtime>false</modtime>
         <rmdir>false</rmdir>
-        <streamName/>
+        <streamName></streamName>
         <line>LOCAL</line>
         <view>//TestCenter/5.12_rel/framework/il/platform/fpga/testmodule/ccpu/revanche/ipq_version.txt //jenkins-${NODE_NAME}-${JOB_NAME}-5.12_rel/framework/il/platform/fpga/testmodule/ccpu/revanche/ipq_version.txt</view>
         <type>WRITABLE</type>
-        <serverID/>
+        <serverID></serverID>
         <backup>false</backup>
       </spec>
     </workspace>
@@ -61,7 +62,7 @@
       <force>false</force>
       <modtime>false</modtime>
       <quiet>true</quiet>
-      <pin/>
+      <pin></pin>
       <parallel>
         <enable>false</enable>
         <threads>4</threads>
@@ -89,7 +90,7 @@
     <hudson.tasks.Shell>
       <command>echo 
 REVANCHE_BUILD_NUMBER=`cat ${WORKSPACE}/framework/il/platform/fpga/testmodule/ccpu/revanche/ipq_version.txt`
-echo "REVANCHE_BUILD_NUMBER=$REVANCHE_BUILD_NUMBER" &gt;&gt; "revanche_build.txt"
+echo &quot;REVANCHE_BUILD_NUMBER=$REVANCHE_BUILD_NUMBER&quot; &gt;&gt; &quot;revanche_build.txt&quot;
 </command>
     </hudson.tasks.Shell>
     <EnvInjectBuilder plugin="envinject@1.89">
@@ -98,7 +99,7 @@ echo "REVANCHE_BUILD_NUMBER=$REVANCHE_BUILD_NUMBER" &gt;&gt; "revanche_build.txt
       </info>
     </EnvInjectBuilder>
     <hudson.tasks.Shell>
-      <command>echo "in nw shell $REVANCHE_BUILD_NUMBER"</command>
+      <command>echo &quot;in nw shell $REVANCHE_BUILD_NUMBER&quot;</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
@@ -111,7 +112,7 @@ echo "REVANCHE_BUILD_NUMBER=$REVANCHE_BUILD_NUMBER" &gt;&gt; "revanche_build.txt
               <textParamValueOnNewLine>false</textParamValueOnNewLine>
             </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
           </configs>
-          <projects>update_revanche_artifactory_retention, </projects>
+          <projects>update_revanche_artifactory_retention,</projects>
           <condition>SUCCESS</condition>
           <triggerWithNoParameters>false</triggerWithNoParameters>
           <triggerFromChildProjects>false</triggerFromChildProjects>
