@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<hudson.plugins.promoted__builds.PromotionProcess plugin="promoted-builds@2.28.1">
+  <actions/>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <conditions>
+    <hudson.plugins.promoted__builds.conditions.DownstreamPassCondition>
+      <jobs>release_il_centralboot_packaging, release_bll_linux_packaging,release_bll_linux_64_packaging,release_bll_windows_x64_packaging,release_bll_windows_packaging_new</jobs>
+      <evenIfUnstable>false</evenIfUnstable>
+    </hudson.plugins.promoted__builds.conditions.DownstreamPassCondition>
+  </conditions>
+  <icon>star-gold</icon>
+  <assignedLabel>spccalengec06</assignedLabel>
+  <isVisible></isVisible>
+  <buildSteps>
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38.1">
+      <project>release_launch_nightly_packaging</project>
+      <filter>stc_version.txt</filter>
+      <target></target>
+      <excludes></excludes>
+      <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
+      <flatten>true</flatten>
+      <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
+    </hudson.plugins.copyartifact.CopyArtifact>
+    <EnvInjectBuilder plugin="envinject@1.89">
+      <info>
+        <propertiesFilePath>stc_version.txt</propertiesFilePath>
+      </info>
+    </EnvInjectBuilder>
+    <hudson.plugins.parameterizedtrigger.BuildTrigger plugin="parameterized-trigger@2.35.2">
+      <configs>
+        <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+          <configs>
+            <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+              <properties>BLL_BUILD_NUMBER=${PROMOTED_NUMBER}</properties>
+              <textParamValueOnNewLine>false</textParamValueOnNewLine>
+            </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+          </configs>
+          <projects>release_update_latestbuild, </projects>
+          <condition>SUCCESS</condition>
+          <triggerWithNoParameters>false</triggerWithNoParameters>
+          <triggerFromChildProjects>false</triggerFromChildProjects>
+        </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+        <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+          <configs>
+            <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+              <properties>STC_MAJ_MIN_VERSION=${STC_MAJ_MIN_VERSION}
+BLL_BUILD_NUMBER=${PROMOTED_NUMBER}
+MODE=NIGHTLY
+BRANCH_ID=6</properties>
+              <textParamValueOnNewLine>false</textParamValueOnNewLine>
+            </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+          </configs>
+          <projects>SMT-Regression-SYS-01-Jenkins-smt,Unset-P4CleanupWorkspace</projects>
+          <condition>SUCCESS</condition>
+          <triggerWithNoParameters>false</triggerWithNoParameters>
+          <triggerFromChildProjects>false</triggerFromChildProjects>
+        </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+        <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+          <configs>
+            <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+              <properties>BLL_BUILD_NUMBER=${PROMOTED_NUMBER}</properties>
+              <textParamValueOnNewLine>false</textParamValueOnNewLine>
+            </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+          </configs>
+          <projects>release_win_bll_copy_to_filer,release_win_bll_tarball_to_filer</projects>
+          <condition>SUCCESS</condition>
+          <triggerWithNoParameters>false</triggerWithNoParameters>
+          <triggerFromChildProjects>false</triggerFromChildProjects>
+        </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+        <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+          <configs>
+            <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+              <properties>STC_MAJ_MIN_VERSION=${STC_MAJ_MIN_VERSION}
+BLL_BUILD_NUMBER=${PROMOTED_NUMBER}
+MODE=NIGHTLY
+BRANCH_ID=6</properties>
+              <textParamValueOnNewLine>false</textParamValueOnNewLine>
+            </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+          </configs>
+          <projects>initiate_filecatalyst_transfer</projects>
+          <condition>SUCCESS</condition>
+          <triggerWithNoParameters>false</triggerWithNoParameters>
+          <triggerFromChildProjects>false</triggerFromChildProjects>
+        </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+      </configs>
+    </hudson.plugins.parameterizedtrigger.BuildTrigger>
+  </buildSteps>
+</hudson.plugins.promoted__builds.PromotionProcess>
